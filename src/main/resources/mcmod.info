@@ -1,0 +1,16 @@
+[
+{
+  "modid": "mcpvp",
+  "name": "MCPVP Mod",
+  "description": "",
+  "version": "2.0",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["DrPluto, NomNuggetNom, TISSIN"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
