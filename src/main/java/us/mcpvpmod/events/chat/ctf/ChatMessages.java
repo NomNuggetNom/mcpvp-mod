@@ -62,6 +62,7 @@ public class ChatMessages {
 		}
 		
 		// Changed class.
+		//TODO fix
 		 if (message.matches(reClass)) {
 			 String classChosen = message.replaceAll(reClass, "$1");
 			 Vars.put("class", classChosen);
@@ -71,7 +72,7 @@ public class ChatMessages {
 		}
 		 
 			// Medic calling.
-		if (message.matches(reMedic)) {			
+		if (message.matches(reMedic)) {		
 			String needMedic = message.replaceAll(reMedic, "$1");
 			if (StateCTF.getState() == StateCTF.PLAY) {
 				for (String string : ConfigCTFChat.medicClasses) {
