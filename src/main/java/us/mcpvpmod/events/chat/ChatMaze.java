@@ -12,22 +12,20 @@ public class ChatMaze {
 	public static void onChat(ClientChatReceivedEvent event) {
 		String message = event.message.getUnformattedText();
 
-		for (ChatTrigger trigger : ChatTrigger.triggers) {
-			trigger.check(message);
-		}
+		ChatTrigger.checkAll(message);
+		ChatTracker.checkAll(message);
 		
-		for (ChatTracker checker : ChatTracker.chatTrackers) {
-			checker.check(message);
-		}
-		
+		// Auto-Select support
 		if (message.equals("§r§aClick on or type the kit name to pick a kit:§r")
 				&& ConfigMazeSelect.selectMode.equals("Select On Join")) {
 
+			// Select kit
 			if (Vars.get("maze:i.kit").equals("")) {
 				Main.mc.thePlayer.sendChatMessage("/kit " + ConfigMazeSelect.selectClass);
 			}
 			
-			if (Vars.get("maze:i.kit").equals("")) {
+			// Select team
+			if (Vars.get("maze:i.team").equals("")) {
 				Main.mc.thePlayer.sendChatMessage("/team " + ConfigMazeSelect.selectTeam);
 			}
 			
