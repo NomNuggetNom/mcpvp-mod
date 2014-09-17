@@ -20,10 +20,15 @@ public class ChatMaze {
 			checker.check(message);
 		}
 		
-		if (message.equals("§r§aClick on or type the kit name to pick a kit:§r")) {
-			System.out.println("hi");
+		if (message.equals("§r§aClick on or type the kit name to pick a kit:§r")
+				&& ConfigMazeSelect.selectMode.equals("Select On Join")) {
+
 			if (Vars.get("maze:i.kit").equals("")) {
-				Main.mc.thePlayer.sendChatMessage(ConfigMazeSelect.selectClass);
+				Main.mc.thePlayer.sendChatMessage("/kit " + ConfigMazeSelect.selectClass);
+			}
+			
+			if (Vars.get("maze:i.kit").equals("")) {
+				Main.mc.thePlayer.sendChatMessage("/team " + ConfigMazeSelect.selectTeam);
 			}
 			
 		}
