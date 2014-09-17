@@ -9,7 +9,6 @@ import us.mcpvpmod.util.MCPVPMath;
 public class VarsKit {
 
 	public static HashMap<String, String> vars = new HashMap<String, String>();
-	public static HashMap<String, Boolean> alerts = new HashMap<String, Boolean>();
 	
 	/**
 	 * Called every tick to update information.

@@ -41,6 +41,7 @@ import us.mcpvpmod.game.state.StateCTF;
 import us.mcpvpmod.game.state.StateKit;
 import us.mcpvpmod.game.state.StateMaze;
 import us.mcpvpmod.game.vars.AllVars;
+import us.mcpvpmod.game.vars.VarsBuild;
 import us.mcpvpmod.game.vars.VarsCTF;
 import us.mcpvpmod.game.vars.VarsKit;
 import us.mcpvpmod.game.vars.VarsMaze;
@@ -215,7 +216,7 @@ public enum Server {
 		case KIT: 	return VarsKit.get(var);
 		case MAZE: 	return VarsMaze.get(var);
 		case SAB: 	break;
-		case BUILD:	break;
+		case BUILD:	return VarsBuild.get(var);
 		case HS: 	break;
 		case HUB: 	break;
 		case NONE: 	break;

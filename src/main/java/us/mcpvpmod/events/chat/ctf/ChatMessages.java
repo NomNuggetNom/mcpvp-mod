@@ -41,13 +41,8 @@ public class ChatMessages {
 	public static void handleChat(ClientChatReceivedEvent event) {
 		String message = event.message.getUnformattedText();
 
-		for (ChatTracker checker : ChatTracker.chatTrackers) {
-			checker.check(message);
-		}
-		
-		for (ChatTrigger trigger : ChatTrigger.triggers) {
-			trigger.check(message);
-		}
+		ChatTracker.checkAll(message);
+		ChatTrigger.checkAll(message);
 		
 		// Game over.
 		if (message.matches(reGameOver)) {

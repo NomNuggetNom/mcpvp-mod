@@ -1,5 +1,6 @@
 package us.mcpvpmod;
 
+import us.mcpvpmod.config.build.ConfigBuildHUD;
 import us.mcpvpmod.config.ctf.ConfigCTFAlerts;
 import us.mcpvpmod.config.ctf.ConfigCTFChat;
 import us.mcpvpmod.config.ctf.ConfigCTFHUD;
@@ -14,9 +15,11 @@ import us.mcpvpmod.config.maze.ConfigMazeSounds;
 import us.mcpvpmod.config.mcpvp.ConfigChat;
 import us.mcpvpmod.config.mcpvp.ConfigFriends;
 import us.mcpvpmod.config.mcpvp.ConfigHUD;
+import us.mcpvpmod.game.core.CoreBuild;
 import us.mcpvpmod.game.core.CoreCTF;
 import us.mcpvpmod.game.core.CoreKit;
 import us.mcpvpmod.game.core.CoreMaze;
+import us.mcpvpmod.game.state.DummyState;
 import us.mcpvpmod.game.state.StateCTF;
 import us.mcpvpmod.game.state.StateKit;
 import us.mcpvpmod.game.state.StateMaze;
@@ -53,6 +56,8 @@ public class Sync {
 		ConfigMazeAlerts.syncConfig();
 		ConfigMazeSounds.syncConfig();
 		ConfigMazeSelect.syncConfig();
+		
+		ConfigBuildHUD.syncConfig();
 
 		FriendsList.clearList();
 
@@ -68,10 +73,13 @@ public class Sync {
 		InfoBlock.createBlocks(ConfigMazeHUD.renderPre, Server.MAZE,StateMaze.PRE);
 		InfoBlock.createBlocks(ConfigMazeHUD.renderPlay, Server.MAZE,StateMaze.PLAY);
 		InfoBlock.createBlocks(ConfigMazeHUD.renderPost, Server.MAZE,StateMaze.DEAD);
+		
+		InfoBlock.createBlocks(ConfigBuildHUD.render, Server.BUILD, DummyState.NONE);
 
 		CoreCTF.setup();
 		CoreKit.setup();
 		CoreMaze.setup();
+		CoreBuild.setup();
 	}
 
 }
