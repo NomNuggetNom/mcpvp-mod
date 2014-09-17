@@ -18,6 +18,7 @@ public class HandleJoin {
 		if (!(event.entity instanceof EntityPlayer)) return;
 		
 		if (((EntityPlayer)event.entity).getDisplayName().equals(Main.mc.thePlayer.getDisplayName())) {
+			System.out.println("Joined.");
 		}
 		
 		if (ConfigFriends.onlineNotifications) {

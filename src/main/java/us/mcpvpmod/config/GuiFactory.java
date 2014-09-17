@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
 import us.mcpvpmod.Server;
+import us.mcpvpmod.config.build.ConfigBuild;
 import us.mcpvpmod.config.ctf.ConfigCTF;
 import us.mcpvpmod.config.kit.ConfigKit;
 import us.mcpvpmod.config.maze.ConfigMaze;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiScreen;
 import cpw.mods.fml.client.IModGuiFactory;
 import cpw.mods.fml.client.config.DummyConfigElement.DummyCategoryElement;
 import cpw.mods.fml.client.config.GuiConfig;
@@ -51,6 +52,7 @@ public class GuiFactory implements IModGuiFactory {
 	        list.add(new DummyCategoryElement(Server.CTF.toString(), "mcpvp.config.CTF", ConfigCTF.class));
 	        list.add(new DummyCategoryElement(Server.KIT.toString(), "mcpvp.config.Kit", ConfigKit.class));
 	        list.add(new DummyCategoryElement(Server.MAZE.toString(), "mcpvp.config.Maze", ConfigMaze.class));
+	        list.add(new DummyCategoryElement(Server.BUILD.toString(), "mcpvp.config.Build", ConfigBuild.class));
 	        
 	        return list;
 		}

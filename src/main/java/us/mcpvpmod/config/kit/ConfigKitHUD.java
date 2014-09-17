@@ -61,36 +61,6 @@ public class ConfigKitHUD extends DummyModContainer {
         prop.setLanguageKey("mcpvp.kit.configHUD.renderPre");
     	render = prop.getStringList();
     	propOrder.add(prop.getName());
-
-    	prop = config.get(CATEGORY_GENERAL, "renderBG", true);
-        prop.setLanguageKey("mcpvp.kit.configHUD.renderBG");
-    	renderBG = prop.getBoolean();
-    	propOrder.add(prop.getName());
-    	
-    	prop = config.get(CATEGORY_GENERAL, "margin", 3, "The space between display blocks.", 0, 1000);
-        prop.setLanguageKey("mcpvp.kit.configHUD.margin");
-    	margin = prop.getInt();
-    	propOrder.add(prop.getName());
-    	
-    	prop = config.get(CATEGORY_GENERAL, "centerTitles", true);
-        prop.setLanguageKey("mcpvp.kit.configHUD.centerTitles");
-    	centerTitles = prop.getBoolean();
-    	propOrder.add(prop.getName());
-    	
-    	prop = config.get(CATEGORY_GENERAL, "alignWidths", true);
-        prop.setLanguageKey("mcpvp.kit.configHUD.alignWidths");
-    	alignWidths = prop.getBoolean();
-    	propOrder.add(prop.getName());
-    	
-    	prop = config.get(CATEGORY_GENERAL, "alignHeights", true);
-        prop.setLanguageKey("mcpvp.kit.configHUD.alignHeights");
-    	alignHeights = prop.getBoolean();
-    	propOrder.add(prop.getName());
-        
-    	prop = config.get(CATEGORY_GENERAL, "medalTimer", 7, "The number of seconds to display a medal for.", 1, 1000);
-    	prop.setLanguageKey("mcpvp.kit.configHUD.medalTimer");
-    	margin = prop.getInt();
-    	propOrder.add(prop.getName());
     	
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
 

@@ -30,7 +30,6 @@ public class ChatTracker {
 	/**
 	 * Constructor for building multiple trackers at once.
 	 * @param pattern The message to match.
-	 * @param mode Either "alert" or "info." This will switch which variable database the information is put into.
 	 * @param data The regular expression position and variable to set.
 	 */
 	public ChatTracker(String pattern, String[]... data) {
@@ -41,7 +40,9 @@ public class ChatTracker {
 	
 	public void check(String message) {
 		if (message.matches(this.pattern)) {
+
 			String val = message.replaceAll(pattern, replace);
+			FMLLog.info("Message \"%s\" triggered. Val: %s", message, val);
 			Vars.put(varName, val);
 		}
 	}

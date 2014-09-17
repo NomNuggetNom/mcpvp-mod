@@ -3,9 +3,6 @@ package us.mcpvpmod;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
 import us.mcpvpmod.events.Events;
-import us.mcpvpmod.mgi.CTFHandler;
-import us.mcpvpmod.mgi.MGI;
-import us.mcpvpmod.mgi.MGIGamemode;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
@@ -34,7 +31,6 @@ public class Main {
     
     @EventHandler
     public void init(FMLInitializationEvent e) {
-    	MGI.addHandler(MGIGamemode.CTF, 1337, new CTFHandler());
     }
     
     @EventHandler
