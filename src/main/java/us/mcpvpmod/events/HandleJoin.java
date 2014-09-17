@@ -18,20 +18,6 @@ public class HandleJoin {
 		if (!(event.entity instanceof EntityPlayer)) return;
 		
 		if (((EntityPlayer)event.entity).getDisplayName().equals(Main.mc.thePlayer.getDisplayName())) {
-			/*
-			
-			if (Server.getServer().equals(Server.MAZE)) {
-				
-				if (Vars.get("maze:i.kit").equals("")) {
-					Main.mc.thePlayer.sendChatMessage(ConfigMazeSelect.selectClass);
-				}
-				
-				if (Vars.get("maze:i.team").equals("")) {
-					Main.mc.thePlayer.sendChatMessage("/team " + ConfigMazeSelect.selectTeam);
-				}
-			}
-			
-			*/
 		}
 		
 		if (ConfigFriends.onlineNotifications) {
