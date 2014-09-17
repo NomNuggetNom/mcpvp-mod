@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import scala.reflect.internal.Mode;
 import us.mcpvpmod.game.vars.Vars;
+import us.mcpvpmod.triggers.ChatTrigger;
 import cpw.mods.fml.common.FMLLog;
 
 public class ChatTracker {
@@ -42,6 +43,16 @@ public class ChatTracker {
 		if (message.matches(this.pattern)) {
 			String val = message.replaceAll(pattern, replace);
 			Vars.put(varName, val);
+		}
+	}
+	
+	/**
+	 * Checks the message in every registered ChatTracker.
+	 * @param message The message to check.
+	 */
+	public static void checkAll(String message) {
+		for (ChatTracker tracker : chatTrackers) {
+			tracker.check(message);
 		}
 	}
 	

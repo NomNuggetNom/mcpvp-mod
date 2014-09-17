@@ -83,4 +83,15 @@ public class ChatTrigger {
 		}
 	}
 	
+
+	/**
+	 * Checks the message in every registered ChatTrigger.
+	 * @param message The message to check.
+	 */
+	public static void checkAll(String message) {
+		for (ChatTrigger trigger : triggers) {
+			trigger.check(message);
+		}
+	}
+	
 }

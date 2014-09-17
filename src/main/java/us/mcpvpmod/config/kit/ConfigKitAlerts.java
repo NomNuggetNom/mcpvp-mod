@@ -76,6 +76,13 @@ public class ConfigKitAlerts extends DummyModContainer {
     	alertStreak = prop.getString();
     	propOrder.add(prop.getName());
     	new CustomAlert("kit.restart", prop.getString());
+    	
+    	prop = config.get(CATEGORY_GENERAL, "alertHi", "#white#Hello! ||| #gray#Nom said hi ||| bread");
+    	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
+        prop.setLanguageKey("mcpvp.kit.config.Alerts.restart");
+    	alertStreak = prop.getString();
+    	propOrder.add(prop.getName());
+    	new CustomAlert("kit.hi", prop.getString());
         
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
 
