@@ -15,11 +15,12 @@ import cpw.mods.fml.common.Loader;
 
 public class ConfigMazeSelect extends DummyModContainer {
 
-
+	public static String selectMode = "";
 	public static String selectClass = "";
 	public static String selectTeam = "";
+
     
-    public static String fileName = "mcpvp_kit_select.cfg";
+    public static String fileName = "mcpvp_maze_select.cfg";
     
     private static Configuration config;
 
@@ -50,6 +51,11 @@ public class ConfigMazeSelect extends DummyModContainer {
         List<String> propOrder = new ArrayList<String>();
         
         Property prop;
+        
+        prop = config.get(CATEGORY_GENERAL, "selectMode", "Select On Join", "Comment", new String[]{"Select On Join", "Select Before Start"});
+        prop.setLanguageKey("mcpvp.maze.config.Select.selectMode");
+    	selectMode = prop.getString();
+    	propOrder.add(prop.getName());
         
     	prop = config.get(CATEGORY_GENERAL, "selectClass", "mapper");
         prop.setLanguageKey("mcpvp.maze.config.Select.selectClass");
