@@ -31,7 +31,7 @@ public class KillTimerCTF {
 		if (killsOld != StatsCTF.kills) {
 			if ((killsInARow == 0 && StatsCTF.kills != 0) || System.currentTimeMillis() - lastKillTime <= resetTime) {
 				// Killed a player within the window of time required for achievements!
-				FMLLog.info("Killed someone at " + System.currentTimeMillis());
+				FMLLog.info("Killed someone at %s", System.currentTimeMillis());
 				killsInARow++;
 				if (killsInARow == 2) {
 					Medal.add(new Medal("doublekill"));

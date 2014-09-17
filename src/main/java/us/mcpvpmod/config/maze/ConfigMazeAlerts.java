@@ -56,26 +56,40 @@ public class ConfigMazeAlerts extends DummyModContainer {
         
         Property prop;
         
-    	prop = config.get(CATEGORY_GENERAL, "alertKit", "#white#Kit Selected ||| #gray#Now a {kit} ||| kit");
+    	prop = config.get(CATEGORY_GENERAL, "alertKit", "#white#Kit Selected ||| #gray#Now a #green#{kit} ||| kit");
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
         prop.setLanguageKey("mcpvp.maze.config.Alerts.kit");
     	alertStreak = prop.getString();
     	propOrder.add(prop.getName());
     	new CustomAlert("maze.kit", prop.getString());
     	
+    	prop = config.get(CATEGORY_GENERAL, "alertTeam", "#white#Joined Team ||| #gray#Now on team #green#{team} ||| nether_star");
+    	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
+        prop.setLanguageKey("mcpvp.maze.config.Alerts.team.join");
+    	alertStreak = prop.getString();
+    	propOrder.add(prop.getName());
+    	new CustomAlert("maze.team.join", prop.getString());
+    	
     	prop = config.get(CATEGORY_GENERAL, "alertPlayerKilled", "-X- #white#Player Killed! ||| {killed}#gray# was killed by {killer} ({kit}) ||| bone");
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-    	prop.setLanguageKey("mcpvp.maze.config.Alerts.kit");
+    	prop.setLanguageKey("mcpvp.maze.config.Alerts.playerkilled");
     	alertStreak = prop.getString();
     	propOrder.add(prop.getName());
     	new CustomAlert("maze.playerkilled", prop.getString());
     	
     	prop = config.get(CATEGORY_GENERAL, "alertTeamOut", "#white#Team Out! ||| {team} has been eliminated! {remain} teams left. ||| skeletonskull");
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-    	prop.setLanguageKey("mcpvp.maze.config.Alerts.kit");
+    	prop.setLanguageKey("mcpvp.maze.config.Alerts.team.out");
     	alertStreak = prop.getString();
     	propOrder.add(prop.getName());
-    	new CustomAlert("maze.teamout", prop.getString());
+    	new CustomAlert("maze.team.out", prop.getString());
+    	
+    	prop = config.get(CATEGORY_GENERAL, "alertHunger", "#white#Don't Forget... ||| #gray#Your princess is at #red#{hunger} ||| bread");
+    	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
+    	prop.setLanguageKey("mcpvp.maze.config.Alerts.hunger");
+    	alertStreak = prop.getString();
+    	propOrder.add(prop.getName());
+    	new CustomAlert("maze.hunger", prop.getString());
         
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
 

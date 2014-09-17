@@ -3,8 +3,11 @@ package us.mcpvpmod.events;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import us.mcpvpmod.Main;
+import us.mcpvpmod.Server;
+import us.mcpvpmod.config.maze.ConfigMazeSelect;
 import us.mcpvpmod.config.mcpvp.ConfigFriends;
 import us.mcpvpmod.game.alerts.FriendAlerts;
+import us.mcpvpmod.game.vars.Vars;
 import us.mcpvpmod.gui.FriendsList;
 
 public class HandleJoin {
@@ -15,7 +18,20 @@ public class HandleJoin {
 		if (!(event.entity instanceof EntityPlayer)) return;
 		
 		if (((EntityPlayer)event.entity).getDisplayName().equals(Main.mc.thePlayer.getDisplayName())) {
-			Main.mc.thePlayer.sendChatMessage(send);
+			/*
+			
+			if (Server.getServer().equals(Server.MAZE)) {
+				
+				if (Vars.get("maze:i.kit").equals("")) {
+					Main.mc.thePlayer.sendChatMessage(ConfigMazeSelect.selectClass);
+				}
+				
+				if (Vars.get("maze:i.team").equals("")) {
+					Main.mc.thePlayer.sendChatMessage("/team " + ConfigMazeSelect.selectTeam);
+				}
+			}
+			
+			*/
 		}
 		
 		if (ConfigFriends.onlineNotifications) {

@@ -74,6 +74,10 @@ public class Medal {
 		}
 	}
 	
+	public static void add(String string) {
+		add(new Medal(string));
+	}
+	
 	/**
 	 * Called every Render tick to draw the medals on the screen.
 	 */

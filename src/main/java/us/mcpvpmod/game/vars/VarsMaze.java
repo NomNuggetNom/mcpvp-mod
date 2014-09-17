@@ -15,21 +15,20 @@ public class VarsMaze {
 	 */
 	public static void putVars() {
 		vars.put("kills", "" + StatsMaze.kills);
-		vars.put("hunger", "" + StatsMaze.princessHunger);
-		vars.put("princesshunger", "" + StatsMaze.princessHunger);
-		vars.put("princess_hunger", "" + StatsMaze.princessHunger);
-		vars.put("princess-hunger", "" + StatsMaze.princessHunger);
-		vars.put("health", "" + StatsMaze.princessHealth);
-		vars.put("princesshealth", "" + StatsMaze.princessHealth);
-		vars.put("princess_health", "" + StatsMaze.princessHealth);
-		vars.put("princess-health", "" + StatsMaze.princessHealth);
-		vars.put("baseX", "" + StatsMaze.baseX);
-		vars.put("base x", "" + StatsMaze.baseX);
-		vars.put("baseZ", "" + StatsMaze.baseZ);
-		vars.put("base z", "" + StatsMaze.baseZ);
-		vars.put("team", Vars.get("team"));
-		vars.put("kit", Vars.get("kit"));
-		//vars.put("assists", "" + StatsMaze.assists);
+		vars.put("hunger", Vars.get("maze:i.princess.hunger"));
+		vars.put("princesshunger", Vars.get("maze:i.princess.hunger"));
+		vars.put("princess_hunger", Vars.get("maze:i.princess.hunger"));
+		vars.put("princess-hunger", Vars.get("maze:i.princess.hunger"));
+		vars.put("health", Vars.get("maze:i.princess.health"));
+		vars.put("princesshealth", Vars.get("maze:i.princess.health"));
+		vars.put("princess_health", Vars.get("maze:i.princess.health"));
+		vars.put("princess-health", Vars.get("maze:i.princess.health"));
+		vars.put("baseX", Vars.get("maze:i.base.x"));
+		vars.put("base x", Vars.get("maze:i.base.x"));
+		vars.put("baseZ", Vars.get("maze:i.base.z"));
+		vars.put("base z", Vars.get("maze:i.base.z"));
+		vars.put("team", Vars.get("maze:i.team"));
+		vars.put("kit", Vars.get("maze:i.kit"));
 	}
 	
 	/**

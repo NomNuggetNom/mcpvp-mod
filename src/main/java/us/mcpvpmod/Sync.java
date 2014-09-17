@@ -14,9 +14,9 @@ import us.mcpvpmod.config.maze.ConfigMazeSounds;
 import us.mcpvpmod.config.mcpvp.ConfigChat;
 import us.mcpvpmod.config.mcpvp.ConfigFriends;
 import us.mcpvpmod.config.mcpvp.ConfigHUD;
-import us.mcpvpmod.game.alerts.AlertsCTF;
-import us.mcpvpmod.game.alerts.AlertsKit;
-import us.mcpvpmod.game.alerts.AlertsMaze;
+import us.mcpvpmod.game.core.CoreCTF;
+import us.mcpvpmod.game.core.CoreKit;
+import us.mcpvpmod.game.core.CoreMaze;
 import us.mcpvpmod.game.state.StateCTF;
 import us.mcpvpmod.game.state.StateKit;
 import us.mcpvpmod.game.state.StateMaze;
@@ -29,49 +29,49 @@ public class Sync {
 
 	public static void sync() {
 		FMLLog.info("[MCPVP] Syncing configurations.");
-		
+
 		Format.setCodes();
-		
+
 		ConfigChat.syncConfig();
 		ConfigFriends.syncConfig();
 		ConfigHUD.syncConfig();
-		
+
 		ConfigCTFChat.syncConfig();
 		ConfigCTFAlerts.syncConfig();
-    	ConfigCTFHUD.syncConfig();
-    	ConfigCTFSounds.syncConfig();
-    	
-    	ConfigChat.syncConfig();
-    	ConfigFriends.syncConfig();
-    	ConfigCTFChat.syncConfig();
-    	
-    	ConfigKitHUD.syncConfig();
-    	ConfigKitAlerts.syncConfig();
-    	ConfigKitSounds.syncConfig();
-    	
-    	ConfigMazeHUD.syncConfig();
-    	ConfigMazeAlerts.syncConfig();
-    	ConfigMazeSounds.syncConfig();
-    	ConfigMazeSelect.syncConfig();
+		ConfigCTFHUD.syncConfig();
+		ConfigCTFSounds.syncConfig();
 
-    	FriendsList.clearList();
-		
-    	InfoBlock.blocks.clear();
-    	
-    	InfoBlock.createBlocks(ConfigKitHUD.render, 	Server.KIT, StateKit.PLAY);
-    	
-		InfoBlock.createBlocks(ConfigCTFHUD.renderPre,	Server.CTF, StateCTF.PRE);
-		InfoBlock.createBlocks(ConfigCTFHUD.renderPlay, Server.CTF, StateCTF.PLAY);
-		InfoBlock.createBlocks(ConfigCTFHUD.renderPost, Server.CTF, StateCTF.POST);
-		
-		InfoBlock.createBlocks(ConfigMazeHUD.renderPre,	Server.MAZE, StateMaze.WAIT);
-		InfoBlock.createBlocks(ConfigMazeHUD.renderPre,	Server.MAZE, StateMaze.PRE);
-		InfoBlock.createBlocks(ConfigMazeHUD.renderPlay, Server.MAZE, StateMaze.PLAY);
-		InfoBlock.createBlocks(ConfigMazeHUD.renderPost, Server.MAZE, StateMaze.DEAD);
-		
-		AlertsCTF.setAlerts();
-		AlertsKit.setAlerts();
-		AlertsMaze.setAlerts();
+		ConfigChat.syncConfig();
+		ConfigFriends.syncConfig();
+		ConfigCTFChat.syncConfig();
+
+		ConfigKitHUD.syncConfig();
+		ConfigKitAlerts.syncConfig();
+		ConfigKitSounds.syncConfig();
+
+		ConfigMazeHUD.syncConfig();
+		ConfigMazeAlerts.syncConfig();
+		ConfigMazeSounds.syncConfig();
+		ConfigMazeSelect.syncConfig();
+
+		FriendsList.clearList();
+
+		InfoBlock.blocks.clear();
+
+		InfoBlock.createBlocks(ConfigKitHUD.render, Server.KIT, StateKit.PLAY);
+
+		InfoBlock.createBlocks(ConfigCTFHUD.renderPre, Server.CTF, StateCTF.PRE);
+		InfoBlock.createBlocks(ConfigCTFHUD.renderPlay, Server.CTF,StateCTF.PLAY);
+		InfoBlock.createBlocks(ConfigCTFHUD.renderPost, Server.CTF,StateCTF.POST);
+
+		InfoBlock.createBlocks(ConfigMazeHUD.renderPre, Server.MAZE,StateMaze.WAIT);
+		InfoBlock.createBlocks(ConfigMazeHUD.renderPre, Server.MAZE,StateMaze.PRE);
+		InfoBlock.createBlocks(ConfigMazeHUD.renderPlay, Server.MAZE,StateMaze.PLAY);
+		InfoBlock.createBlocks(ConfigMazeHUD.renderPost, Server.MAZE,StateMaze.DEAD);
+
+		CoreCTF.setup();
+		CoreKit.setup();
+		CoreMaze.setup();
 	}
-	
+
 }

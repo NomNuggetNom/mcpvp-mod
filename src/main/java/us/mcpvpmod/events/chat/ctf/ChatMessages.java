@@ -14,6 +14,8 @@ import us.mcpvpmod.game.stats.StatsCTF;
 import us.mcpvpmod.game.team.TeamCTF;
 import us.mcpvpmod.game.vars.Vars;
 import us.mcpvpmod.gui.Medal;
+import us.mcpvpmod.trackers.ChatTracker;
+import us.mcpvpmod.triggers.ChatTrigger;
 
 public class ChatMessages {
 	
@@ -39,6 +41,14 @@ public class ChatMessages {
 	public static void handleChat(ClientChatReceivedEvent event) {
 		String message = event.message.getUnformattedText();
 
+		for (ChatTracker checker : ChatTracker.chatTrackers) {
+			checker.check(message);
+		}
+		
+		for (ChatTrigger trigger : ChatTrigger.triggers) {
+			trigger.check(message);
+		}
+		
 		// Game over.
 		if (message.matches(reGameOver)) {
 			System.out.println("Game over!");
@@ -58,17 +68,19 @@ public class ChatMessages {
 		
 		if (message.matches(reHeadshot)) {
 			StatsCTF.headshots++;
-			Medal.add(new Medal("headshot"));
+			Medal.add("headshot");
 		}
 		
 		// Changed class.
 		//TODO fix
 		 if (message.matches(reClass)) {
+			 /*
 			 String classChosen = message.replaceAll(reClass, "$1");
 			 Vars.put("class", classChosen);
 			 Vars.put("kit", classChosen);
 			 CustomAlert.get("class").show();
 			 InfoCTF.chosenClass = classChosen;
+			 */
 		}
 		 
 			// Medic calling.

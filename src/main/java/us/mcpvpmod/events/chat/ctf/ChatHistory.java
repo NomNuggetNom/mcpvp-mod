@@ -5,10 +5,8 @@ import java.util.Arrays;
 
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import us.mcpvpmod.config.ctf.ConfigCTFChat;
-import us.mcpvpmod.game.alerts.AlertsCTF;
 import us.mcpvpmod.game.alerts.ctf.MessageAlerts;
 import us.mcpvpmod.game.state.StateCTF;
-import us.mcpvpmod.game.vars.Vars;
 
 public class ChatHistory {
 

@@ -15,8 +15,9 @@ import cpw.mods.fml.common.Loader;
 
 public class ConfigMazeSelect extends DummyModContainer {
 
-	public static String soundStreakEnd;
-	public static String soundStreak;
+
+	public static String selectClass = "";
+	public static String selectTeam = "";
     
     public static String fileName = "mcpvp_kit_select.cfg";
     
@@ -52,12 +53,12 @@ public class ConfigMazeSelect extends DummyModContainer {
         
     	prop = config.get(CATEGORY_GENERAL, "selectClass", "mapper");
         prop.setLanguageKey("mcpvp.maze.config.Select.selectClass");
-    	soundStreak = prop.getString();
+    	selectClass = prop.getString();
     	propOrder.add(prop.getName());
     	
     	prop = config.get(CATEGORY_GENERAL, "selectTeam", "winners");
         prop.setLanguageKey("mcpvp.maze.config.Select.selectTeam");
-    	soundStreak = prop.getString();
+    	selectTeam = prop.getString();
     	propOrder.add(prop.getName());
         
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
