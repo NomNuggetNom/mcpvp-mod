@@ -50,6 +50,7 @@ public class ConfigSabSounds extends DummyModContainer {
         
         Property prop;
         
+        /*
     	prop = config.get(CATEGORY_GENERAL, "soundStreak", "mob.enderdragon.growl");
         prop.setLanguageKey("mcpvp.sab.config.Sounds.soundStole");
     	soundStreak = prop.getString();
@@ -61,6 +62,7 @@ public class ConfigSabSounds extends DummyModContainer {
     	soundStreakEnd = prop.getString();
     	propOrder.add(prop.getName());
     	new SoundAlert("streak.end", prop.getString());
+    	*/
         
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
 

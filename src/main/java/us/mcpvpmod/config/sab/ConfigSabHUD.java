@@ -14,16 +14,6 @@ import cpw.mods.fml.common.Loader;
 public class ConfigSabHUD extends DummyModContainer {
 
 	public static String[] render= new String[1000];
-	public static boolean renderDebug = false;
-	public static String[] yourStats = new String[1000];
-	public static String[] gameInfo = new String[1000];
-	public static boolean customTextures = false;
-	public static boolean renderBG = true;
-	public static int margin = 3;
-	public static boolean centerTitles = true;
-	public static boolean alignWidths = false;
-	public static boolean alignHeights = false;
-	public static int medalTimer = 7;
 	
     public static String fileName = "mcpvp_sab_hud.cfg";
     
