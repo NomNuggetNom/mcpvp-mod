@@ -23,11 +23,12 @@ public class Main {
 	public void preInit(FMLPreInitializationEvent e) {
 		FMLLog.info("[MCPVP] Mod starting up!");
     	
-    	// Register all events in the Events class
-	MinecraftForge.EVENT_BUS.register(new Events());
-	FMLCommonHandler.instance().bus().register(new Events());
+    		// Register all events in the Events class
+		MinecraftForge.EVENT_BUS.register(new Events());
+		FMLCommonHandler.instance().bus().register(new Events());
     	
-	Sync.sync();
+    		// Sync all files.
+		Sync.sync();
     	}
     	
     	@EventHandler
