@@ -48,6 +48,8 @@ public class GuiFactory implements IModGuiFactory {
 		private static List<IConfigElement> getConfigElements() {
 	        List<IConfigElement> list = new ArrayList<IConfigElement>();
 	        
+	        // Here is where sub-categories are added.
+	        // Use Server.toString to create the name.
 	        list.add(new DummyCategoryElement("All Servers", "mcpvp.config.mcpvp", AllConfig.class));
 	        list.add(new DummyCategoryElement(Server.CTF.toString(), "mcpvp.config.CTF", ConfigCTF.class));
 	        list.add(new DummyCategoryElement(Server.KIT.toString(), "mcpvp.config.Kit", ConfigKit.class));
