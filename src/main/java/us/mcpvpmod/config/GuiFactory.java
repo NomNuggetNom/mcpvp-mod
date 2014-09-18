@@ -41,6 +41,8 @@ public class GuiFactory implements IModGuiFactory {
 		return null;
 	}
 	
+	// Here is where sub-categories are added.
+	// Use Server.toString to create the name.
 	public static class MCPVPConfig extends GuiConfig {
 		
 		public MCPVPConfig(GuiScreen parent) {
