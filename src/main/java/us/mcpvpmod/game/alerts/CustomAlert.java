@@ -27,6 +27,8 @@ public class CustomAlert {
 	public ResourceLocation image;
 	public String mode;
 	
+	// All possible values.
+	// TODO: Consider removing
 	public String team   = "";
 	public String player = "";
 	public String action = "";
@@ -98,8 +100,8 @@ public class CustomAlert {
 	
 	/**
 	 * Replaces the necessary information from the alert in the config file.
-	 * @param string
-	 * @return
+	 * @param string The string that contains variables.
+	 * @return The string with all variables replaced with information.
 	 */
 	public String replaceInfo(String string) {	
 		String reVar = "\\{(.+?)\\}";
@@ -118,18 +120,20 @@ public class CustomAlert {
 				string = "null";
 			}
 		}
-		
 		string = Format.process(string);
+		// TODO: return original if string is null?
+		// Establish handle to avoid changing string given
 		
 		return string;
 	}
 	
 	/**
 	 * Processes the ItemStack to make it either a blue flag or a red flag.
-	 * @param item
-	 * @return
+	 * @param item The item to check.
+	 * @return The processed item.
 	 */
 	public ItemStack setWool(ItemStack item) {
+		// TODO: Fix.
 		if (item.toString().equals(getItem("wool").toString())) {
 			if (team.contains("Blue")) {
 				return new ItemStack(Blocks.wool, 1, 11);
@@ -142,10 +146,11 @@ public class CustomAlert {
 	
 	/**
 	 * Sets the flag image.
-	 * @param resource
-	 * @return
+	 * @param resource The resource location?
+	 * @return The image file.
 	 */
 	public ResourceLocation setFlag(ResourceLocation resource) {
+		// TODO: Add flag to resource path.
 		System.out.println(resource.getResourcePath());
 		if (team.equals("Blue")) {
 			return new ResourceLocation("mcpvp", "textures/flag_blue_" + action.replaceAll(" ", "") + ".png");
@@ -172,8 +177,8 @@ public class CustomAlert {
 	
 	/**
 	 * Returns the ItemStack with the name specified, or air if nothing is found.
-	 * @param name
-	 * @return
+	 * @param name The name of the item to get.
+	 * @return The item with the name, or an item that is bound to that name.
 	 */
 	public ItemStack getItem(String name) {
 		if (GameData.getBlockRegistry().containsKey(name)) {
@@ -202,11 +207,13 @@ public class CustomAlert {
 	 * Shows the alert.
 	 */
 	public void show() {
+		// Update information.
 		setStrings();
 		setMode();
 		title = replaceInfo(title);
 		desc  = replaceInfo(desc);
 		
+		// Avoid showing alerts that should be "cancelled"
 		if (desc.startsWith("-X-") || title.startsWith("-X-")) return;
 
 		if (this.mode == "item") {
