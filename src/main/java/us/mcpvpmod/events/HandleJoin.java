@@ -12,13 +12,12 @@ import us.mcpvpmod.gui.FriendsList;
 
 public class HandleJoin {
 
-	public static String send = "/59D8AE933F582F5441C6F5C8FA19CBA2";
-	
 	public static void onJoin(EntityJoinWorldEvent event) {
 		if (!(event.entity instanceof EntityPlayer)) return;
 		
 		if (((EntityPlayer)event.entity).getDisplayName().equals(Main.mc.thePlayer.getDisplayName())) {
-			System.out.println("Joined.");
+			// The current player joined the game.
+			//System.out.println("Joined.");
 		}
 		
 		if (ConfigFriends.onlineNotifications) {
