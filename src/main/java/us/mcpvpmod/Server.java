@@ -69,7 +69,7 @@ public enum Server {
 		case SAB: 	return "Sabotage";
 		case CTF: 	return "Capture the Flag";
 		case HS: 	return "Headshot";
-		case PARTY:	return "Piñata Party";
+		case PARTY:	return "PiÃ±ata Party";
 		case BUILD:	return "Minecraft Build";
 		case RAID: 	return "Raid";
 		case HG2: 	return "Phoenix Hunger Games";
@@ -86,16 +86,16 @@ public enum Server {
 		if (Main.mc.isSingleplayer()) return NONE;
 		
 		if (ServerData.serverIP().endsWith("hub.mcpvp.com"))		return HUB;
-		if (ServerData.serverIP().endsWith("kitpvp.us"))			return KIT;
-		if (ServerData.serverIP().endsWith("mc-maze.com"))			return MAZE;
+		if (ServerData.serverIP().endsWith("kitpvp.us"))		return KIT;
+		if (ServerData.serverIP().endsWith("mc-maze.com"))		return MAZE;
 		if (ServerData.serverIP().endsWith("mc-sabotage.com"))		return SAB;
-		if (ServerData.serverIP().endsWith("mcctf.com"))			return CTF;
+		if (ServerData.serverIP().endsWith("mcctf.com"))		return CTF;
 		if (ServerData.serverIP().endsWith("mcheadshot.com"))		return HS;
 		if (ServerData.serverIP().endsWith("party.mcpvp.com"))		return PARTY;
 		if (ServerData.serverIP().endsWith("minecraftbuild.com"))	return BUILD;
 		if (ServerData.serverIP().endsWith("raid.mcpvp.com"))		return RAID;
-		if (ServerData.serverIP().endsWith("v2.mc-hg.com"))			return HG2;
-		if (ServerData.serverIP().endsWith("mc-hg.com"))			return HG;
+		if (ServerData.serverIP().endsWith("v2.mc-hg.com"))		return HG2;
+		if (ServerData.serverIP().endsWith("mc-hg.com"))		return HG;
 
 		return NONE;
 	}
@@ -135,7 +135,7 @@ public enum Server {
 		case KIT: 	RenderKit.onRender(event); 		break;
 		case MAZE: 	RenderMaze.onRender(event);		break;
 		case SAB: 	RenderSab.onRender(event);		break;
-		case BUILD:	RenderBuild.onRender(event);	break;
+		case BUILD:	RenderBuild.onRender(event);		break;
 		case HS: 	RenderHS.onRender(event); 		break;
 		case HUB: 	RenderHub.onRender(event); 		break;
 		case NONE: 	break;
@@ -244,6 +244,9 @@ public enum Server {
 		return DummyState.NONE;
 	}
 	
+	/**
+	 * @return Whether or not the server is team-based.
+	 */
 	public static boolean hasTeams() {
 		switch (getServer()) {
 		case HG: 	return false;
@@ -260,6 +263,9 @@ public enum Server {
 		return false;
 	}
 	
+	/**
+	 * Draws the current Server and State
+	 */ 
 	public void drawOnScreen() {
 		Draw.string(this.toString(), 0, 0, 0xFFFFFF, true);
 		Draw.string(getState().toString(), 0, 9, 0xFFFFFF, true);
