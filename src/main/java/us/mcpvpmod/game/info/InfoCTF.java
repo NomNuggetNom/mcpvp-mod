@@ -16,7 +16,7 @@ public class InfoCTF {
 	public static String chosenClass = "Heavy";
 	public static String currentMap = "Unknown";
 	public static boolean freeDay = false;
-	public static String reMap = ".*Map: (.*)";//§eVisit §9www.mcpvp.com§r";
+	public static String reMap = ".*Map: (.*)";//Â§eVisit Â§9www.mcpvp.comÂ§r";
 	
 	/*
 	 * Match Info
@@ -41,7 +41,7 @@ public class InfoCTF {
 	public static String gameWinner = "";
 	
 	/**
-	 * Gets the time as an integer. E.g. 5:00 left would be 500.
+	 * @return The time as an integer. E.g. 5:00 left would be 500.
 	 */	
 	public static int getTime() {
 		String boardTitle = BoardHelper.getBoardTitle();
@@ -52,17 +52,22 @@ public class InfoCTF {
 		return -1;
 	}
 	
+	/**
+	 * @return Formatted time, including color code.
+	 */ 
 	public static String getFormattedTime() {
 		String boardTitle = BoardHelper.getBoardTitle();
-		if (StateCTF.getState().equals(StateCTF.WAIT)) {
-			return "-1";
-		}
+		
+		// WAIT has no time.
+		if (StateCTF.getState().equals(StateCTF.WAIT)) return "-1";
 		
 		if (boardTitle != null) {
 			String timeLeft = boardTitle.replaceAll(StateCTF.getState().regex(), "$2");
 			
+			// Less than 5:00 is yellow.
 			if (getTime() <= 500 && getTime() > 100) {
 				return (Format.process("#yellow#" + timeLeft));
+			// Less than 1:00 is red.
 			} else if (getTime() <= 100) {
 				return (Format.process("#red#" + timeLeft));
 			} else {
@@ -72,6 +77,9 @@ public class InfoCTF {
 		return "-1";
 	}
 	
+	/**
+	 * @return Returns text along with formatted time.
+	 */ 
 	public static String getTimeString() {
 		if (StateCTF.getState() == StateCTF.WAIT) {
 			return "Waiting...";
@@ -95,6 +103,10 @@ public class InfoCTF {
 		return "null";
 	}
 	
+	/**
+	 * @return The game number. 
+	 */ 
+	 // TODO: Use a BoardTracker.
 	public static String getGameNum() {
 		String boardTitle = BoardHelper.getBoardTitle();
 		if (boardTitle != null) {
@@ -105,14 +117,19 @@ public class InfoCTF {
 		return "-1";
 	}
 	
+	// TODO: Use a BoardTracker.
 	public static int getRedWins() {
 		return BoardHelper.getScore("Red");
 	}
 	
+	// TODO: Use a BoardTracker.
 	public static int getBlueWins() {
 		return BoardHelper.getScore("Blue");
 	}
 	
+	/**
+	 * @return The "free day" string to be rendered. 
+	 */ 
 	public static String getFreeDay() {
 		if (freeDay) {
 			return Format.process("#green#Free day!");
@@ -122,14 +139,20 @@ public class InfoCTF {
 		}
 	}
 	
+	// TODO: Remove
 	public static String getIP() {
 		return Main.mc.func_147104_D().serverIP;
 	}
 	
+	// TODO: Remove
 	public static int getPing() {
 		return (int) Main.mc.func_147104_D().pingToServer;
 	}
 	
+	/**
+	 * @return The winner of the game.
+	 */ 
+	// TODO: Fix
 	public static String getWinner() {
 		if (StateCTF.getState().equals(StateCTF.POST)) {
 			return InfoCTF.gameWinner;
@@ -138,12 +161,13 @@ public class InfoCTF {
 		}
 	}
 	
+	// TODO: Better map detection using MOTD or PingJSON
 	public static String getMap() {
 		return currentMap;
 		/*
 		if (mc.func_147104_D() != null) {
 			if (mc.func_147104_D().serverMOTD != null && mc.func_147104_D().serverMOTD.contains("")) {
-				return (mc.func_147104_D().serverMOTD.replaceAll(reMap, "$1").replaceAll("\n§eVisit §9www.mcpvp.com§r", ""));
+				return (mc.func_147104_D().serverMOTD.replaceAll(reMap, "$1").replaceAll("\nÂ§eVisit Â§9www.mcpvp.comÂ§r", ""));
 			} else {
 				return GameState.currentMap;
 			}
