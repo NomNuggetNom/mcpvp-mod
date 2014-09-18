@@ -1,4 +1,4 @@
-package us.mcpvpmod.config;
+package us.mcpvpmod.config.mcpvp;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,18 +6,15 @@ import java.util.List;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;
-import us.mcpvpmod.config.mcpvp.ConfigChat;
-import us.mcpvpmod.config.mcpvp.ConfigFriends;
-import us.mcpvpmod.config.mcpvp.ConfigHUD;
 import cpw.mods.fml.client.config.DummyConfigElement.DummyCategoryElement;
 import cpw.mods.fml.client.config.GuiConfig;
 import cpw.mods.fml.client.config.GuiConfigEntries;
 import cpw.mods.fml.client.config.GuiConfigEntries.CategoryEntry;
 import cpw.mods.fml.client.config.IConfigElement;
 
-public class AllConfig extends CategoryEntry {
+public class ConfigMCPVP extends CategoryEntry {
 	
-    public AllConfig(GuiConfig owningScreen, GuiConfigEntries owningEntryList, IConfigElement prop) {
+    public ConfigMCPVP(GuiConfig owningScreen, GuiConfigEntries owningEntryList, IConfigElement prop) {
         super(owningScreen, owningEntryList, prop);
     }
     

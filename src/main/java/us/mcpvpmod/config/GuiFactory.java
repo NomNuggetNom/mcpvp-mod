@@ -11,6 +11,8 @@ import us.mcpvpmod.config.build.ConfigBuild;
 import us.mcpvpmod.config.ctf.ConfigCTF;
 import us.mcpvpmod.config.kit.ConfigKit;
 import us.mcpvpmod.config.maze.ConfigMaze;
+import us.mcpvpmod.config.mcpvp.ConfigMCPVP;
+import us.mcpvpmod.config.sab.ConfigSab;
 import cpw.mods.fml.client.IModGuiFactory;
 import cpw.mods.fml.client.config.DummyConfigElement.DummyCategoryElement;
 import cpw.mods.fml.client.config.GuiConfig;
@@ -48,11 +50,12 @@ public class GuiFactory implements IModGuiFactory {
 		private static List<IConfigElement> getConfigElements() {
 	        List<IConfigElement> list = new ArrayList<IConfigElement>();
 	        
-	        list.add(new DummyCategoryElement("All Servers", "mcpvp.config.mcpvp", AllConfig.class));
+	        list.add(new DummyCategoryElement("All Servers", "mcpvp.config.mcpvp", ConfigMCPVP.class));
 	        list.add(new DummyCategoryElement(Server.CTF.toString(), "mcpvp.config.CTF", ConfigCTF.class));
 	        list.add(new DummyCategoryElement(Server.KIT.toString(), "mcpvp.config.Kit", ConfigKit.class));
 	        list.add(new DummyCategoryElement(Server.MAZE.toString(), "mcpvp.config.Maze", ConfigMaze.class));
 	        list.add(new DummyCategoryElement(Server.BUILD.toString(), "mcpvp.config.Build", ConfigBuild.class));
+	        list.add(new DummyCategoryElement(Server.SAB.toString(), "mcpvp.config.Sab", ConfigSab.class));
 	        
 	        return list;
 		}
