@@ -5,6 +5,8 @@ import net.minecraft.util.MathHelper;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.util.MCPVPMath;
 
+
+// TODO: Remove
 public class Stats {
 
 	public static String getIP() {
