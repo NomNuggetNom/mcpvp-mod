@@ -12,6 +12,9 @@ import cpw.mods.fml.client.config.GuiConfigEntries;
 import cpw.mods.fml.client.config.GuiConfigEntries.CategoryEntry;
 import cpw.mods.fml.client.config.IConfigElement;
 
+/**
+ * Options for CTF.
+ */ 
 public class ConfigCTF extends CategoryEntry {
 	
     public ConfigCTF(GuiConfig owningScreen, GuiConfigEntries owningEntryList, IConfigElement prop) {
