@@ -30,6 +30,9 @@ import cpw.mods.fml.common.FMLLog;
 
 public class Sync {
 
+	/**
+	 * Fired during startup. Handles creation of formatting codes, InfoBlocks, ChatTriggers, and ChatTrackers.
+	 */ 
 	public static void sync() {
 		FMLLog.info("[MCPVP] Syncing configurations.");
 
