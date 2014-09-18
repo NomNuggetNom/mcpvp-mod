@@ -4,6 +4,9 @@ import us.mcpvpmod.game.checks.kills.KillTimerCTF;
 import us.mcpvpmod.game.vars.Vars;
 import us.mcpvpmod.util.MCPVPMath;
 
+/**
+ * Contains all statistics for CTF.
+ */ 
 public class StatsCTF extends Stats {
 
 	public static int kills = 0;
@@ -16,6 +19,10 @@ public class StatsCTF extends Stats {
 	public static int assists = 0;
 	public static String streakName = "null";
 	
+	/**
+	 * Resets statics.
+	 * Happens during pre-game or when we join a new server.
+	 */ 
 	public static void reset() {
 		kills = 0;
 		streak = 0;
@@ -30,6 +37,10 @@ public class StatsCTF extends Stats {
 		KillTimerCTF.killsInARow = 0;
 	}
 	
+	/**
+	 * Called every tick to get stats from the Trackers.
+	 */ 
+	// TODO: Replace the variables with direct reference to the variables.
 	public static void getStats() {
 		kills = Vars.getInt("ctf:i.kills");
 		streak = Vars.getInt("ctf:i.streak");
