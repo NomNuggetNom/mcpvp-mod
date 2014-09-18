@@ -35,9 +35,11 @@ public class AllVars {
 	 * @return The value of the stored variable.
 	 */
 	public static String get(String string) {
-		
-		
-		return "";
+		if (vars.keySet().contains(string)) {
+			return vars.get(string);
+		} else {
+			return "";
+		}
 	}
 	
 }
