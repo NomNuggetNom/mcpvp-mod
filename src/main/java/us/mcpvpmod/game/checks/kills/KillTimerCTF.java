@@ -4,6 +4,8 @@ import us.mcpvpmod.game.stats.StatsCTF;
 import us.mcpvpmod.gui.Medal;
 import cpw.mods.fml.common.FMLLog;
 
+
+// TODO: Consider renaming to KillMedalsCTF
 public class KillTimerCTF {
 	
 	/*
