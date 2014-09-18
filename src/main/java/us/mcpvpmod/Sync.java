@@ -22,6 +22,7 @@ import us.mcpvpmod.game.core.CoreBuild;
 import us.mcpvpmod.game.core.CoreCTF;
 import us.mcpvpmod.game.core.CoreKit;
 import us.mcpvpmod.game.core.CoreMaze;
+import us.mcpvpmod.game.core.CoreSab;
 import us.mcpvpmod.game.state.DummyState;
 import us.mcpvpmod.game.state.StateCTF;
 import us.mcpvpmod.game.state.StateKit;
@@ -83,6 +84,8 @@ public class Sync {
 		InfoBlock.createBlocks(ConfigMazeHUD.renderPost, Server.MAZE,StateMaze.DEAD);
 		InfoBlock.createBlocks(ConfigBuildHUD.render, Server.BUILD, DummyState.NONE);
 		InfoBlock.createBlocks(ConfigSabHUD.renderPre, Server.SAB, StateSab.PRE);
+		InfoBlock.createBlocks(ConfigSabHUD.renderPlay, Server.SAB, StateSab.PLAY);
+		InfoBlock.createBlocks(ConfigSabHUD.renderPost, Server.SAB, StateSab.DEAD);
 
 
 		// Sync cores, which are responsible for setting triggers and trackers.
@@ -90,6 +93,7 @@ public class Sync {
 		CoreKit.setup();
 		CoreMaze.setup();
 		CoreBuild.setup();
+		CoreSab.setup();
 	}
 
 }

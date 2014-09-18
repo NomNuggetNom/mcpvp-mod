@@ -54,12 +54,12 @@ public class ConfigSabHUD extends DummyModContainer {
     	renderPre = prop.getStringList();
     	propOrder.add(prop.getName());
     	
-    	prop = config.get(CATEGORY_GENERAL, "renderPlay", new String[]{""});
+    	prop = config.get(CATEGORY_GENERAL, "renderPlay", new String[]{"---#bold#Sab", "Role: {role}", "Players: {remain}", "Detective: {detective}"});
     	prop.setLanguageKey("mcpvp.sab.configHUD.renderPlay");
     	renderPlay = prop.getStringList();
     	propOrder.add(prop.getName());
     	
-    	prop = config.get(CATEGORY_GENERAL, "renderPost", new String[]{""});
+    	prop = config.get(CATEGORY_GENERAL, "renderPost", new String[]{"---#bold#Sab", "Role: {role}", "Players: {players}", "Winner: {winner}"});
     	prop.setLanguageKey("mcpvp.sab.configHUD.renderPost");
     	renderPost = prop.getStringList();
     	propOrder.add(prop.getName());

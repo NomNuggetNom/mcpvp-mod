@@ -26,6 +26,7 @@ public class ConfigSab extends CategoryEntry {
         list.add(new DummyCategoryElement("HUD", "mcpvp.config.sab.HUD", SabHUD.class));
         list.add(new DummyCategoryElement("Alerts", "mcpvp.config.sab.Alerts", SabAlerts.class));
         list.add(new DummyCategoryElement("Sounds", "mcpvp.config.sab.Sounds", SabSounds.class));
+        list.add(new DummyCategoryElement("Auto-Select", "mcpvp.config.sab.Select", SabSelect.class));
         
         return new GuiConfig(this.owningScreen,
         		list, 
@@ -78,6 +79,22 @@ public class ConfigSab extends CategoryEntry {
 	                this.owningScreen.modID, Configuration.CATEGORY_GENERAL, this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart, 
 	                this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart,
 	                "Sounds");
+	
+	    }
+	}
+	
+	public static class SabSelect extends CategoryEntry {
+	    public SabSelect(GuiConfig owningScreen, GuiConfigEntries owningEntryList, IConfigElement prop) {
+	        super(owningScreen, owningEntryList, prop);
+	    }
+	    
+	    @Override
+	    protected GuiScreen buildChildScreen() {
+	        return new GuiConfig(this.owningScreen, 
+	                (new ConfigElement(ConfigSabSelect.getConfig().getCategory(Configuration.CATEGORY_GENERAL))).getChildElements(), 
+	                this.owningScreen.modID, Configuration.CATEGORY_GENERAL, this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart, 
+	                this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart,
+	                "Auto-Select");
 	
 	    }
 	}

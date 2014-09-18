@@ -5,7 +5,7 @@ import us.mcpvpmod.game.vars.Vars;
 import us.mcpvpmod.gui.InfoBlock;
 
 public enum StateSab implements State {
-	WAIT, PRE, PLAY, DEAD, NONE;
+	WAIT, PRE, PLAY, DEAD, POST, NONE;
 	
 	public static StateSab state = NONE;
 	
@@ -32,9 +32,23 @@ public enum StateSab implements State {
 			}
 			
 			break;
-		case PLAY: break;
-		case DEAD: break;
-		case NONE: break;
+			
+		case PLAY: 
+			for (InfoBlock block : InfoBlock.get(Server.SAB, PLAY)) {
+				block.display();
+			}
+			
+			break;
+		
+		case DEAD: 
+			for (InfoBlock block : InfoBlock.get(Server.SAB, DEAD)) {
+				block.display();
+			}
+			
+			break;
+		case NONE: 
+			
+			break;
 		}
 	}
 }
