@@ -5,6 +5,7 @@ import us.mcpvpmod.game.state.StateCTF;
 import us.mcpvpmod.gui.Format;
 import us.mcpvpmod.util.BoardHelper;
 
+// TODO: Move to InfoCTF
 public class BoardCTF {
 
 	/**
