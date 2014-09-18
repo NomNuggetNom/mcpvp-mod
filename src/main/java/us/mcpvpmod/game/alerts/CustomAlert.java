@@ -43,8 +43,8 @@ public class CustomAlert {
 	
 	/**
 	 * A custom alert processes text from the Config and display the appropriate information.
-	 * @param id 
-	 * @param template
+	 * @param id The ID that the CustomAlert can be referenced from.
+	 * @param template The information from the config that contains title, description, and icon.
 	 */
 	public CustomAlert(String id, String template) {
 		this.id = id;
@@ -54,8 +54,8 @@ public class CustomAlert {
 	
 	/**
 	 * Returns a message alert with the specified id.
-	 * @param id
-	 * @return
+	 * @param id The ID of the alert to get.
+	 * @return The Alert with the ID. Could be null.
 	 */
 	public static CustomAlert get(String id) {
 		return (messageAlerts.get(id));
