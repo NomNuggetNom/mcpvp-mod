@@ -18,18 +18,27 @@ public class SoundAlert {
 	 * @param sound The sound file to be played
 	 */
 	public SoundAlert(String id, String sound) {
+		// TODO: add options for volume.
 		this.sound = sound;
 		soundAlerts.put(id, this);
 	}
 	
+	/**
+	 * @param id The ID of the alert to get.
+	 * @return The SoundAlert with the ID.
+	 */ 
 	public static SoundAlert get(String id) {
 		return (soundAlerts.get(id));
 	}
 	
+	/**
+	* Plays the sound.
+	*/
 	public void play() {
+		// Support for cancelling.
 		if (!this.sound.startsWith("-X-")) {
 			mc.thePlayer.playSound(this.sound, 1.0F, 1.0F);
+			FMLLog.info("Playing sound: %s", sound);
 		}
-		FMLLog.info("Playing sound " + sound);
 	}
 }
