@@ -16,25 +16,27 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 public class Main {
 
 	@Instance
-    public static Main instance = new Main();
+	public static Main instance = new Main();
 	public static Minecraft mc = Minecraft.getMinecraft();
 	
-    @EventHandler
-    public void preInit(FMLPreInitializationEvent e) {
+	@EventHandler
+	public void preInit(FMLPreInitializationEvent e) {
 		FMLLog.info("[MCPVP] Mod starting up!");
     	
-    	MinecraftForge.EVENT_BUS.register(new Events());
-    	FMLCommonHandler.instance().bus().register(new Events());
+    		// Register all events in the Events class
+		MinecraftForge.EVENT_BUS.register(new Events());
+		FMLCommonHandler.instance().bus().register(new Events());
     	
-    	Sync.sync();
-    }
+    		// Sync all files.
+		Sync.sync();
+    	}
+    	
+    	@EventHandler
+	public void init(FMLInitializationEvent e) {
+	}
     
-    @EventHandler
-    public void init(FMLInitializationEvent e) {
-    }
-    
-    @EventHandler
-    public void postInit(FMLPostInitializationEvent e) {
-    }
+	@EventHandler
+	public void postInit(FMLPostInitializationEvent e) {
+	}
     
 }
