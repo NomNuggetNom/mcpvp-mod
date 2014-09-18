@@ -15,10 +15,14 @@ import us.mcpvpmod.config.maze.ConfigMazeSounds;
 import us.mcpvpmod.config.mcpvp.ConfigChat;
 import us.mcpvpmod.config.mcpvp.ConfigFriends;
 import us.mcpvpmod.config.mcpvp.ConfigHUD;
+import us.mcpvpmod.config.sab.ConfigSabAlerts;
+import us.mcpvpmod.config.sab.ConfigSabHUD;
+import us.mcpvpmod.config.sab.ConfigSabSounds;
 import us.mcpvpmod.game.core.CoreBuild;
 import us.mcpvpmod.game.core.CoreCTF;
 import us.mcpvpmod.game.core.CoreKit;
 import us.mcpvpmod.game.core.CoreMaze;
+import us.mcpvpmod.game.core.CoreSab;
 import us.mcpvpmod.game.state.DummyState;
 import us.mcpvpmod.game.state.StateCTF;
 import us.mcpvpmod.game.state.StateKit;
@@ -57,6 +61,10 @@ public class Sync {
 		ConfigMazeSounds.syncConfig();
 		ConfigMazeSelect.syncConfig();
 		
+		ConfigSabHUD.syncConfig();
+		ConfigSabAlerts.syncConfig();
+		ConfigSabSounds.syncConfig();
+		
 		ConfigBuildHUD.syncConfig();
 
 		FriendsList.clearList();
@@ -80,6 +88,7 @@ public class Sync {
 		CoreKit.setup();
 		CoreMaze.setup();
 		CoreBuild.setup();
+		CoreSab.setup();
 	}
 
 }

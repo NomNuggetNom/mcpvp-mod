@@ -65,6 +65,10 @@ public class ChatTrigger {
 		}
 	}
 	
+	/**
+	 * Checks if the message fits the pattern. If so, update the value and show the alerts.
+	 * @param message The message to check.
+	 */
 	public void check(String message) {
 		if (message.matches(this.pattern)) {
 			

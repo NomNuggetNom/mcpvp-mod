@@ -38,11 +38,13 @@ public class ChatTracker {
 		}
 	}
 	
+	/**
+	 * Checks if the message fits the pattern. If so, update the value.
+	 * @param message The message to check.
+	 */
 	public void check(String message) {
 		if (message.matches(this.pattern)) {
-
 			String val = message.replaceAll(pattern, replace);
-			FMLLog.info("Message \"%s\" triggered. Val: %s", message, val);
 			Vars.put(varName, val);
 		}
 	}

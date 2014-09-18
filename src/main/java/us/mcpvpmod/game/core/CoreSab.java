@@ -1,5 +1,7 @@
 package us.mcpvpmod.game.core;
 
+import us.mcpvpmod.trackers.ChatTracker;
+
 public class CoreSab {
 
 	public static String reVoting = "§r§6Currently voting for: §r";
@@ -13,7 +15,7 @@ public class CoreSab {
 	
 	public static void setup() {
 		
-		
+		new ChatTracker(reVoting, new String[]{"pre", "sab:state"});
 		
 	}
 	
