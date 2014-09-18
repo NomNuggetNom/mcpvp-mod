@@ -11,6 +11,7 @@ import net.minecraft.client.gui.ScaledResolution;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.config.mcpvp.ConfigHUD;
 import us.mcpvpmod.game.state.State;
+import us.mcpvpmod.game.vars.AllVars;
 import cpw.mods.fml.common.FMLLog;
 
 /**
@@ -479,9 +480,9 @@ public class InfoBlock {
 	}
 	
 	/**
-	 * Processes {variables} in text, e.g. {kills}
-	 * @param line
-	 * @return
+	 * Processes {variables} in text, e.g. {kills} -> 2
+	 * @param line The line to process.
+	 * @return The processed line.
 	 */
 	public static String processVars(String line) {
 		String reVar = "\\{(.+?)\\}";
@@ -491,7 +492,11 @@ public class InfoBlock {
 		while (varMatch.find()) {
 			String var = varMatch.group().replaceAll("\\{", "").replaceAll("\\}", "");
 
-			if (Server.getVar(var) != null && !(Server.getVar(var).equals(""))) {		
+			// Check AllVars first.
+			if (AllVars.get(var) != "") {
+				line = line.replaceAll("\\{" + var + "\\}", AllVars.get(var));
+				
+			} else if (Server.getVar(var) != null && !(Server.getVar(var).equals(""))) {		
 				// Replace the occurance of the var with the actual info.
 				line = line.replaceAll("\\{" + var + "\\}", Server.getVar(var));
 				

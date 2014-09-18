@@ -4,6 +4,8 @@ import us.mcpvpmod.trackers.ChatTracker;
 
 public class CoreSab {
 
+	public static String reWait = "§r§cWaiting for more Players...§r";
+	public static String reWelcome = "§r§cWelcome to Sabotage!§r";
 	public static String reVoting = "§r§6Currently voting for: §r";
 	public static String reStarting = "§.§.Sabotage will start in 1 minute§.";
 	public static String reRole = "§.§.§.You are §.§.§(..*)§.§.§. this game!§.";
@@ -15,7 +17,9 @@ public class CoreSab {
 	
 	public static void setup() {
 		
-		new ChatTracker(reVoting, new String[]{"pre", "sab:state"});
+		new ChatTracker(reRole, new String[]{"$1", "sab:role"});
+		
+		new ChatTracker(reRemain, new String[]{"$1", "sab:remain"});
 		
 	}
 	

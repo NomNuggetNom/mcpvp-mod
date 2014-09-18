@@ -56,33 +56,12 @@ public class ConfigSabAlerts extends DummyModContainer {
         
         Property prop;
         
-    	prop = config.get(CATEGORY_GENERAL, "alertStreak", "#white#Kill Streak! ||| {player} #gray#got a killstreak of #cyan#{streak} ||| nether_star");
+    	prop = config.get(CATEGORY_GENERAL, "alertStart", "#white#The game has begun! ||| You are {role}. Good luck! ||| nether_star");
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-        prop.setLanguageKey("mcpvp.sab.config.Alerts.streak");
+        prop.setLanguageKey("mcpvp.sab.config.Alerts.start");
     	alertStreak = prop.getString();
     	propOrder.add(prop.getName());
-    	new CustomAlert("kit.streak.get", prop.getString());
-    	
-    	prop = config.get(CATEGORY_GENERAL, "alertStreakEnd", "#white#Streak Ended! ||| {killer} #gray#ended #r#{killed}#gray#'s streak of #cyan#{streak} ||| bone");
-    	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-        prop.setLanguageKey("mcpvp.sab.config.Alerts.streakEnd");
-    	alertStreak = prop.getString();
-    	propOrder.add(prop.getName());
-    	new CustomAlert("kit.streak.end", prop.getString());
-    	
-    	prop = config.get(CATEGORY_GENERAL, "alertRestart", "#white#Heads Up! ||| #gray#Server restarting in #red#1 #r#minute ||| clock");
-    	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-        prop.setLanguageKey("mcpvp.sab.config.Alerts.restart");
-    	alertStreak = prop.getString();
-    	propOrder.add(prop.getName());
-    	new CustomAlert("kit.restart", prop.getString());
-    	
-    	prop = config.get(CATEGORY_GENERAL, "alertHi", "#white#Hello! ||| #gray#Nom said hi ||| bread");
-    	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-        prop.setLanguageKey("mcpvp.sab.config.Alerts.restart");
-    	alertStreak = prop.getString();
-    	propOrder.add(prop.getName());
-    	new CustomAlert("kit.hi", prop.getString());
+    	new CustomAlert("sab.start", prop.getString());
         
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
 

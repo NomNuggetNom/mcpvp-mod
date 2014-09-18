@@ -13,7 +13,9 @@ import cpw.mods.fml.common.Loader;
 
 public class ConfigSabHUD extends DummyModContainer {
 
-	public static String[] render= new String[1000];
+	public static String[] renderPre= new String[1000];
+	public static String[] renderPlay= new String[1000];
+	public static String[] renderPost= new String[1000];
 	
     public static String fileName = "mcpvp_sab_hud.cfg";
     
@@ -47,9 +49,19 @@ public class ConfigSabHUD extends DummyModContainer {
         
         Property prop;
         
-    	prop = config.get(CATEGORY_GENERAL, "render", new String[]{""});
+    	prop = config.get(CATEGORY_GENERAL, "renderPre", new String[]{"---#bold#Sab", "Players: {players}", "abc"});
         prop.setLanguageKey("mcpvp.sab.configHUD.renderPre");
-    	render = prop.getStringList();
+    	renderPre = prop.getStringList();
+    	propOrder.add(prop.getName());
+    	
+    	prop = config.get(CATEGORY_GENERAL, "renderPlay", new String[]{""});
+    	prop.setLanguageKey("mcpvp.sab.configHUD.renderPlay");
+    	renderPlay = prop.getStringList();
+    	propOrder.add(prop.getName());
+    	
+    	prop = config.get(CATEGORY_GENERAL, "renderPost", new String[]{""});
+    	prop.setLanguageKey("mcpvp.sab.configHUD.renderPost");
+    	renderPost = prop.getStringList();
     	propOrder.add(prop.getName());
     	
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
