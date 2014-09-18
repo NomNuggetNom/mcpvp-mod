@@ -8,6 +8,9 @@ import net.minecraft.item.ItemStack;
 
 public class AllKits {
 
+	/**
+	 * @return The ItemStack that serves as an icon for the class in an alert.
+	 */ 
 	public static ItemStack getIcon(String kitName) {
 		switch (Server.getServer()) {
 		case HG: 	break;
@@ -20,12 +23,9 @@ public class AllKits {
 		case HS: 	break;
 		case HUB: 	break;
 		case NONE: 	break;
-		case HG2:
-			break;
-		case PARTY:
-			break;
-		default:
-			break;
+		case HG2:	break;
+		case PARTY:	break;
+		default:	break;
 		}
 		return new ItemStack(Blocks.air);
 	}
