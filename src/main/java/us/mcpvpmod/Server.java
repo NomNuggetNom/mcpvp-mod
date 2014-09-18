@@ -143,7 +143,8 @@ public enum Server {
 	}
 	
 	/**
-	 * Dictates which render handler to re-direct to.
+	 * Dictates which tick handler to re-direct to.
+	 * On tick, we want to update our variables!
 	 * @param event The render event to handle.
 	 */
 	public void onTick(TickEvent event) {
