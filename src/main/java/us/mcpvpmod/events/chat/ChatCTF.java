@@ -26,7 +26,7 @@ public class ChatCTF {
 	public static String reStreak = "\u00A7.(.*)\u00A7. ended \u00A7.(.*)'s \u00A7.([0-9]+) kill streak!.*";
 	public static String reRestore = "\u00A7.(.*)\u00A76's flag has been restored!";
 	public static String reAction = "\u00A7.(.*)\u00A7. (stole|dropped|picked up|recovered|captured) \u00A7.(.*)\u00A7.'s flag!.*";
-	public static String reCompass = "\u00A7.Compass pointing at \u00A7.(.*)\u00A7. flag.*";	//TODO fix compass!
+	public static String reCompass = "\u00A7.Compass pointing at \u00A7.(.*)\u00A7. flag.*";
 	public static String reTeam = "\u00A77You are on team .*";
 	public static String reVisit = "\u00A7rVisit \u00A7rmcpvp.com\u00A7r for more info!\u00A7r";
 	public static String reMedic = ".*\u00A7.(.+)\u00A7.> \u00A7f\u00A75/m \u00A7fMedic!.*";
@@ -83,6 +83,7 @@ public class ChatCTF {
 					handleMessages(event);
 					oldChat.add(message);
 				} else {
+					// Set it canceled based on config settings.
 					event.setCanceled(ConfigCTFChat.chatHistory);
 				}
 			}
@@ -98,9 +99,10 @@ public class ChatCTF {
 		ChatTrigger.checkAll(message);
 		
 		// Game over.
-		if (message.matches(reGameOver)) {
-			InfoCTF.gameWinner = message.replaceAll(reGameOver, "$1");
-		}
+		// TODO: Replace with ChatTacker.
+		//if (message.matches(reGameOver)) {
+			//InfoCTF.gameWinner = message.replaceAll(reGameOver, "$1");
+		//}
 		
 		/*
 		if (message.matches(reMap)) {

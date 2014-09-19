@@ -133,12 +133,21 @@ public class CustomAlert {
 	 * @return The processed item.
 	 */
 	public ItemStack setWool(ItemStack item) {
+		String team = Vars.get("team");
+		
 		// TODO: Fix.
 		if (item.toString().equals(getItem("wool").toString())) {
+			System.out.println("Attempting to replace wool : " + team);
 			if (team.contains("Blue")) {
+				System.out.println("Found blue");
 				return new ItemStack(Blocks.wool, 1, 11);
+
 			} else if (team.contains("Red")) {
+				System.out.println("Found red");
 				return new ItemStack(Blocks.wool, 1, 14);
+
+			} else {
+				System.out.println("Can't find either team!");
 			}
 		}
 		return item;

@@ -10,7 +10,7 @@ public class CoreCTF {
 	public static String reDropped = "(\u00A7..*)\u00A7. dropped (\u00A7..*)\u00A7.'s flag!.*";
 	public static String rePickedUp = "(\u00A7..*)\u00A7. picked up (\u00A7..*)\u00A7.'s flag!.*";
 	public static String reRecovered = "(\u00A7..*)\u00A7. recovered (\u00A7..*)\u00A7.'s flag!.*";
-	public static String reStreak = "(\u00A7..*)\u00A7. ended \u00A7.(.*)'s \u00A7.([0-9]+) kill streak!.*";
+	public static String reStreak = "(\u00A7..*)\u00A7. ended (\u00A7..*)'s \u00A7.([0-9]+) kill streak!.*";
 	public static String reRestore = "(\u00A7..*)\u00A76's flag has been restored!.*";
 	public static String reCompass = "\u00A7.Compass pointing at (\u00A7..*)\u00A77 flag.*";
 	
@@ -20,7 +20,8 @@ public class CoreCTF {
 
 	public static String reMap = "\u00A7.Map: \u00A7r(.*)";
 	public static String reClass = "\u00A7.\u00A7.You have selected the (\\w+) class\u00A7.";
-	
+	public static String reGameOver = "\u00A7r\u00A76Game over! Winner: \u00A7r\u00A79(.*).*";
+
 	public static void setup() {
 		
 		new ChatTrigger(reStole, "flag.stolen", 
@@ -67,27 +68,30 @@ public class CoreCTF {
 				new String[]{"$1", "ctf:a.team"});
 
 		new ChatTracker(reStats, 
-				new String[]{"$1", "ctf:i.kills"}, 
-				new String[]{"$2", "ctf:i.streak"}, 
-				new String[]{"$3", "ctf:i.deaths"}, 
-				new String[]{"$4", "ctf:i.steals"}, 
-				new String[]{"$4", "ctf:i.caps"});
+				new String[]{"$1", "ctf:kills"}, 
+				new String[]{"$2", "ctf:streak"}, 
+				new String[]{"$3", "ctf:deaths"}, 
+				new String[]{"$4", "ctf:steals"}, 
+				new String[]{"$4", "ctf:caps"});
 		
 		new ChatTracker(reBlueTeam, 
-				new String[]{"$1", "ctf:i.team.blue.caps"}, 
-				new String[]{"$3", "ctf:i.team.blue.flag"}, 
-				new String[]{"$4", "ctf:i.team.blue.players"});
+				new String[]{"$1", "ctf:team.blue.caps"}, 
+				new String[]{"$3", "ctf:team.blue.flag"}, 
+				new String[]{"$4", "ctf:team.blue.players"});
 		
 		new ChatTracker(reRedTeam, 
-				new String[]{"$1", "ctf:i.team.red.caps"}, 
-				new String[]{"$3", "ctf:i.team.red.flag"}, 
-				new String[]{"$4", "ctf:i.team.red.players"});
+				new String[]{"$1", "ctf:team.red.caps"}, 
+				new String[]{"$3", "ctf:team.red.flag"}, 
+				new String[]{"$4", "ctf:team.red.players"});
 		
 		new ChatTracker(reMap,
-				new String[]{"$1", "ctf:i.map"});
+				new String[]{"$1", "ctf:map"});
 		
-		new BoardTracker("\u00A79Blue", "ctf:i.team.blue.wins");
-		new BoardTracker("\u00A7cRed", "ctf:i.team.red.wins");
+		new ChatTracker(reGameOver,
+				new String[]{"$1", "ctf:winner"});
+		
+		new BoardTracker("\u00A79Blue", "ctf:team.blue.wins");
+		new BoardTracker("\u00A7cRed", "ctf:team.red.wins");
 	}
 	
 }
