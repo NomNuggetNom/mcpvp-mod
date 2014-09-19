@@ -31,7 +31,6 @@ public class ChatCTF {
 	public static String reVisit = "\u00A7rVisit \u00A7rmcpvp.com\u00A7r for more info!\u00A7r";
 	public static String reMedic = ".*\u00A7.(.+)\u00A7.> \u00A7f\u00A75/m \u00A7fMedic!.*";
 	public static String reHeadshot = "\u00A7.\u00A7.You headshotted (.*)!\u00A7.";
-	public static String reClass = "\u00A7.\u00A7.You have selected the (.*) class\u00A7.";
 	public static String reGameOver = "\u00A7r\u00A76Game over! Winner: \u00A7r\u00A79(.*).*";
 	public static String reWho = "\u00A7.\\[\u00A77.TW\u00A7.\\] \u00A7.NomNuggetNom\u00A7.> \u00A7.\u00A7.\u00A7.\\/a \u00A7.\\?\u00A7.";
 	public static String lastAlert = "";
@@ -98,12 +97,6 @@ public class ChatCTF {
 		ChatTracker.checkAll(message);
 		ChatTrigger.checkAll(message);
 		
-		// Game over.
-		// TODO: Replace with ChatTacker.
-		//if (message.matches(reGameOver)) {
-			//InfoCTF.gameWinner = message.replaceAll(reGameOver, "$1");
-		//}
-		
 		/*
 		if (message.matches(reMap)) {
 			InfoCTF.currentMap = event.message.getUnformattedText().replaceAll(reMap, "$1");
@@ -117,18 +110,6 @@ public class ChatCTF {
 		if (message.matches(reHeadshot)) {
 			StatsCTF.headshots++;
 			Medal.add("headshot");
-		}
-		
-		// Changed class.
-		//TODO fix
-		 if (message.matches(reClass)) {
-			 /*
-			 String classChosen = message.replaceAll(reClass, "$1");
-			 Vars.put("class", classChosen);
-			 Vars.put("kit", classChosen);
-			 CustomAlert.get("class").show();
-			 InfoCTF.chosenClass = classChosen;
-			 */
 		}
 		 
 		// Medic calling.

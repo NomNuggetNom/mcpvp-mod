@@ -44,8 +44,13 @@ public class ChatTracker {
 	 */
 	public void check(String message) {
 		if (message.matches(this.pattern)) {
-			String val = message.replaceAll(pattern, replace);
-			Vars.put(varName, val);
+			if (replace.startsWith("$")) {
+				String val = message.replaceAll(pattern, replace);
+				Vars.put(varName, val);
+			} else {
+				FMLLog.info("Unusual tracker. varName: %s - replace: %s", varName, replace);
+				Vars.put(varName, replace);
+			}
 		}
 	}
 	

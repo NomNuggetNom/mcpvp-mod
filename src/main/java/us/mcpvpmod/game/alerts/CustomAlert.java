@@ -134,20 +134,13 @@ public class CustomAlert {
 	 */
 	public ItemStack setWool(ItemStack item) {
 		String team = Vars.get("team");
-		
-		// TODO: Fix.
+
 		if (item.toString().equals(getItem("wool").toString())) {
 			System.out.println("Attempting to replace wool : " + team);
 			if (team.contains("Blue")) {
-				System.out.println("Found blue");
 				return new ItemStack(Blocks.wool, 1, 11);
-
 			} else if (team.contains("Red")) {
-				System.out.println("Found red");
 				return new ItemStack(Blocks.wool, 1, 14);
-
-			} else {
-				System.out.println("Can't find either team!");
 			}
 		}
 		return item;
@@ -159,7 +152,7 @@ public class CustomAlert {
 	 * @return The image file.
 	 */
 	public ResourceLocation setFlag(ResourceLocation resource) {
-		// TODO: Add flag to resource path.
+		// TODO: Fix!
 		System.out.println(resource.getResourcePath());
 		if (team.equals("Blue")) {
 			return new ResourceLocation("mcpvp", "textures/flag_blue_" + action.replaceAll(" ", "") + ".png");
@@ -198,7 +191,7 @@ public class CustomAlert {
 			if (name.equals("head")) {
 				return new ItemStack(Items.skull, 1, 3);
 			} else if (name.equals("class") || name.equals("kit")) {
-				return AllKits.getIcon(kit);
+				return AllKits.getIcon(Vars.get("kit"));
 			} else if (name.matches("skeleton.*skull")) {
 				return new ItemStack(Items.skull, 1, 0);
 			} else if (name.matches("wither.*skull")) {

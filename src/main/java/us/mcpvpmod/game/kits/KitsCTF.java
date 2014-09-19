@@ -50,7 +50,7 @@ public enum KitsCTF {
 	}
 	
 	public static KitsCTF getClass(String string) {
-		System.out.println("Getting class class for string " + string);
+		System.out.println("Getting class for string: " + string);
 		if (string.contains("Archer")) {
 			return ARCHER;
 		} else if (string.contains("Assassin")) {

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import us.mcpvpmod.game.alerts.CustomAlert;
 import us.mcpvpmod.game.alerts.SoundAlert;
 import us.mcpvpmod.game.vars.Vars;
-import net.minecraftforge.client.event.ClientChatReceivedEvent;
+import cpw.mods.fml.common.FMLLog;
 
 public class ChatTrigger {
 

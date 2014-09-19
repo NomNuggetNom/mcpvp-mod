@@ -21,6 +21,7 @@ public class CoreCTF {
 	public static String reMap = "\u00A7.Map: \u00A7r(.*)";
 	public static String reClass = "\u00A7.\u00A7.You have selected the (\\w+) class\u00A7.";
 	public static String reGameOver = "\u00A7r\u00A76Game over! Winner: \u00A7r\u00A79(.*).*";
+	public static String reFreeDay = "\u00A7aIt's free-play day! Everyone can play all classes!\u00A7r";
 
 	public static void setup() {
 		
@@ -57,12 +58,12 @@ public class CoreCTF {
 				new String[]{"$1", "team"});
 		
 		new ChatTrigger(reClass, "class",
-				new String[]{"$1", "class"},
-				new String[]{"$1", "kit"});
+				new String[]{"$1", "kit"},
+				new String[]{"$1", "class"});
 		
 		new ChatTracker(reClass,
-				new String[]{"$1", "class"},
-				new String[]{"$1", "kit"});
+				new String[]{"$1", "kit"},
+				new String[]{"$1", "class"});
 		
 		new ChatTracker(reRestore, 
 				new String[]{"$1", "ctf:a.team"});
