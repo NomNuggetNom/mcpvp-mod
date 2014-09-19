@@ -17,6 +17,7 @@ import us.mcpvpmod.config.mcpvp.ConfigFriends;
 import us.mcpvpmod.config.mcpvp.ConfigHUD;
 import us.mcpvpmod.config.sab.ConfigSabAlerts;
 import us.mcpvpmod.config.sab.ConfigSabHUD;
+import us.mcpvpmod.config.sab.ConfigSabSelect;
 import us.mcpvpmod.config.sab.ConfigSabSounds;
 import us.mcpvpmod.game.core.CoreBuild;
 import us.mcpvpmod.game.core.CoreCTF;
@@ -70,23 +71,28 @@ public class Sync {
 		ConfigSabHUD.syncConfig();
 		ConfigSabAlerts.syncConfig();
 		ConfigSabSounds.syncConfig();
+		ConfigSabSelect.syncConfig();
 
 		// Sync all InfoBlocks
 		InfoBlock.blocks.clear();
 		InfoBlock.createBlocks(ConfigKitHUD.render, Server.KIT, StateKit.PLAY);
+		
 		InfoBlock.createBlocks(ConfigCTFHUD.renderPre, Server.CTF, StateCTF.WAIT);
 		InfoBlock.createBlocks(ConfigCTFHUD.renderPre, Server.CTF, StateCTF.PRE);
 		InfoBlock.createBlocks(ConfigCTFHUD.renderPlay, Server.CTF,StateCTF.PLAY);
 		InfoBlock.createBlocks(ConfigCTFHUD.renderPost, Server.CTF,StateCTF.POST);
+		
 		InfoBlock.createBlocks(ConfigMazeHUD.renderPre, Server.MAZE,StateMaze.WAIT);
 		InfoBlock.createBlocks(ConfigMazeHUD.renderPre, Server.MAZE,StateMaze.PRE);
 		InfoBlock.createBlocks(ConfigMazeHUD.renderPlay, Server.MAZE,StateMaze.PLAY);
 		InfoBlock.createBlocks(ConfigMazeHUD.renderPost, Server.MAZE,StateMaze.DEAD);
+		
 		InfoBlock.createBlocks(ConfigBuildHUD.render, Server.BUILD, DummyState.NONE);
+		
 		InfoBlock.createBlocks(ConfigSabHUD.renderPre, Server.SAB, StateSab.PRE);
 		InfoBlock.createBlocks(ConfigSabHUD.renderPlay, Server.SAB, StateSab.PLAY);
 		InfoBlock.createBlocks(ConfigSabHUD.renderPost, Server.SAB, StateSab.DEAD);
-
+		InfoBlock.createBlocks(ConfigSabHUD.renderPost, Server.SAB, StateSab.POST);
 
 		// Sync cores, which are responsible for setting triggers and trackers.
 		CoreCTF.setup();

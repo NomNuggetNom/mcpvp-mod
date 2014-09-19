@@ -42,11 +42,11 @@ import us.mcpvpmod.game.state.StateKit;
 import us.mcpvpmod.game.state.StateMaze;
 import us.mcpvpmod.game.state.StateSab;
 import us.mcpvpmod.game.vars.AllVars;
-import us.mcpvpmod.game.vars.Vars;
 import us.mcpvpmod.game.vars.VarsBuild;
 import us.mcpvpmod.game.vars.VarsCTF;
 import us.mcpvpmod.game.vars.VarsKit;
 import us.mcpvpmod.game.vars.VarsMaze;
+import us.mcpvpmod.game.vars.VarsSab;
 import us.mcpvpmod.gui.Draw;
 import cpw.mods.fml.common.gameevent.TickEvent;
 
@@ -217,7 +217,7 @@ public enum Server {
 		case RAID: 	break;
 		case KIT: 	return VarsKit.get(var);
 		case MAZE: 	return VarsMaze.get(var);
-		case SAB: 	return Vars.get(var);
+		case SAB: 	return VarsSab.get(var);
 		case BUILD:	return VarsBuild.get(var);
 		case HS: 	break;
 		case HUB: 	break;

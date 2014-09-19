@@ -17,7 +17,7 @@ public class ChatSab {
 		ChatTracker.checkAll(message);
 		ChatTrigger.checkAll(message);
 
-		// Implementation for auto-sabbing.
+		// Implementation of auto-sabbing.
 		if (message.matches(CoreSab.reJoin)) {
 			if (ConfigSabSelect.autoSab) {
 				Main.mc.thePlayer.sendChatMessage("/sab");
@@ -25,6 +25,7 @@ public class ChatSab {
 		}
 		
 		// Sabotage state detection relies on chat messages.
+		
 		if (message.matches(CoreSab.reWelcome) 
 				|| message.matches(CoreSab.reVoting)
 				|| message.matches(CoreSab.reStarting)
@@ -37,8 +38,12 @@ public class ChatSab {
 			StateSab.state = StateSab.PLAY;
 		}
 		
-		if (message.matches(CoreSab.reSpectate) || message.matches(CoreSab.reWin)) {
+		if (message.matches(CoreSab.reSpectate)) {
 			StateSab.state = StateSab.DEAD;
+		}
+		
+		if (message.matches(CoreSab.reWin)) {
+			StateSab.state = StateSab.POST;
 		}
  	}
 	
