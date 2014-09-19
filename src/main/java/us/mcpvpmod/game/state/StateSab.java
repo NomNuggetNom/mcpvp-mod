@@ -46,6 +46,14 @@ public enum StateSab implements State {
 			}
 			
 			break;
+			
+		case POST: 
+			for (InfoBlock block : InfoBlock.get(Server.SAB, POST)) {
+				block.display();
+			}
+			
+			break;
+			
 		case NONE: 
 			
 			break;
