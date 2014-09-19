@@ -12,7 +12,7 @@ public class CoreSab {
 	public static String reStarting = "§.§.Sabotage will start in 1 minute§.";
 	public static String reStart = "§r§6Sabotage... Begins!§r";
 	public static String reRole = "§.§.§.You are (?:a|the)*\\s*(§.§.§..*§.§.§.) this game!§.";
-	public static String reDetective = "§r§6The detective is: §r§(.*)§r";
+	public static String reDetective = "§r§6The detective is: §r(§.*)§r";
 	public static String reMurdered = "§r§bA player just got murdered...§r";
 	public static String reRemain = "§r§3(\\d*) players remaining.§r";
 	public static String reInspector = "§rSaboteur Inspecter for another §r§315 seconds§r";

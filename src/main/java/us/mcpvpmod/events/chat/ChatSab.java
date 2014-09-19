@@ -25,6 +25,7 @@ public class ChatSab {
 		}
 		
 		// Sabotage state detection relies on chat messages.
+		
 		if (message.matches(CoreSab.reWelcome) 
 				|| message.matches(CoreSab.reVoting)
 				|| message.matches(CoreSab.reStarting)
@@ -42,22 +43,7 @@ public class ChatSab {
 		}
 		
 		if (message.matches(CoreSab.reWin)) {
-			StateSab.state = StateSab.PRE;
-		}
-		
-		if (message.matches(CoreSab.reRemain)) {
-			System.out.println("Remain: " + message.replaceAll(CoreSab.reRemain, "$1"));
-			System.out.println(Vars.get("sab:remain"));
-		}
-		
-		if (message.matches(CoreSab.reDetective)) {
-			System.out.println("Det: " + message.replaceAll(CoreSab.reDetective, "$1"));
-			System.out.println(Vars.get("sab:detective"));
-		}
-		
-		if (message.matches(CoreSab.reWin)) {
-			System.out.println("Win: " + message.replaceAll(CoreSab.reWin, "$1"));
-			System.out.println(Vars.get("sab:winner"));
+			StateSab.state = StateSab.POST;
 		}
  	}
 	
