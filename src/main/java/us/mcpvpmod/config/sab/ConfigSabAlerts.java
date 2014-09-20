@@ -62,6 +62,20 @@ public class ConfigSabAlerts extends DummyModContainer {
     	alertStreak = prop.getString();
     	propOrder.add(prop.getName());
     	new CustomAlert("sab.start", prop.getString());
+    	
+    	prop = config.get(CATEGORY_GENERAL, "alertDeath", "#white#Hold on to your seats, folks... ||| #gray#Someone just died. Only #cyan#{remain} #gray#players left. ||| bone");
+    	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
+    	prop.setLanguageKey("mcpvp.sab.config.Alerts.death");
+    	alertStreak = prop.getString();
+    	propOrder.add(prop.getName());
+    	new CustomAlert("sab.death", prop.getString());
+    	
+    	prop = config.get(CATEGORY_GENERAL, "alertEnd", "#white#Game Over! ||| #gray#Winner: {winner} ||| cobweb");
+    	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
+    	prop.setLanguageKey("mcpvp.sab.config.Alerts.end");
+    	alertStreak = prop.getString();
+    	propOrder.add(prop.getName());
+    	new CustomAlert("sab.end", prop.getString());
         
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
 

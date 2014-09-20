@@ -13,6 +13,7 @@ public class CoreCTF {
 	public static String reStreak = "(\u00A7..*)\u00A7. ended (\u00A7..*)'s \u00A7.([0-9]+) kill streak!.*";
 	public static String reRestore = "(\u00A7..*)\u00A76's flag has been restored!.*";
 	public static String reCompass = "\u00A7.Compass pointing at (\u00A7..*)\u00A77 flag.*";
+	public static String reCaptured = "(\u00A7..*)\u00A7. captured (\u00A7..*)\u00A7.'s flag!.*";
 	
 	public static String reStats = ".*\u00A76Kills: \u00A7f([0-9]+)\\s+\\(([0-9]+) in a row\\)\\s+\u00A76Deaths: \u00A7f([0-9]+)\\s+\u00A76Steals:\\s+\u00A7f([0-9]+)\\s+\u00A76Captures: \u00A7f([0-9]+).*";
 	public static String reBlueTeam = ".*\u00A79Captures: \u00A7r([0-9])/([0-9])\\s+\u00A7.Flag: \u00A7r\\[(.+)]\u00A7.\\s+Players: \u00A7r([0-9]+).*";
@@ -42,11 +43,13 @@ public class CoreCTF {
 				new String[]{"$2", "team"});
 		
 		new ChatTrigger(reRestore, "flag.restored",
-				new String[]{"$1", "player"}, 
-				new String[]{"$2", "team"});
+				new String[]{"$1", "team"});
 		
 		new ChatTrigger(reRestore, "flag.restored",
-				new String[]{"$1", "player"}, 
+				new String[]{"$1", "team"});
+		
+		new ChatTrigger(reCaptured, "flag.captured",
+				new String[]{"$1", "player"},
 				new String[]{"$2", "team"});
 		
 		new ChatTrigger(reStreak, "streak",

@@ -6,8 +6,6 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.config.ctf.ConfigCTFChat;
-import us.mcpvpmod.game.alerts.CustomAlert;
-import us.mcpvpmod.game.alerts.SoundAlert;
 import us.mcpvpmod.game.info.InfoCTF;
 import us.mcpvpmod.game.kits.KitsCTF;
 import us.mcpvpmod.game.state.StateCTF;
@@ -97,12 +95,7 @@ public class ChatCTF {
 		ChatTracker.checkAll(message);
 		ChatTrigger.checkAll(message);
 		
-		/*
-		if (message.matches(reMap)) {
-			InfoCTF.currentMap = event.message.getUnformattedText().replaceAll(reMap, "$1");
-		}
-		*/
-		
+		// TODO: Move to Var system.
 		if (message.matches(reFreeDay)) {
 			InfoCTF.freeDay = true;
 		}
@@ -145,9 +138,7 @@ public class ChatCTF {
 		} else if (message.matches(reAction) && message.replaceAll(reAction, "$2").equals("captured")) {
 			// Game check to avoid messy notifications on game winning cap.
 			if (StateCTF.getState() == StateCTF.PLAY) {
-				CustomAlert.get("flag.captured").reset(message).show();
-				SoundAlert.get("flag.captured").play();
-				
+
 				if (message.replaceAll(reAction, "$1").equals(Main.mc.thePlayer.getDisplayName())) {
 					Medal.add(new Medal("flagcap"));
 				}

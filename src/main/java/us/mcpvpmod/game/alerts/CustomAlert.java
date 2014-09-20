@@ -135,6 +135,9 @@ public class CustomAlert {
 	public ItemStack setWool(ItemStack item) {
 		String team = Vars.get("team");
 
+		//if (item == null) return new ItemStack(Blocks.air);
+		//if (item.getUnlocalizedName() == null) return new ItemStack(Blocks.air);
+		
 		if (item.toString().equals(getItem("wool").toString())) {
 			System.out.println("Attempting to replace wool : " + team);
 			if (team.contains("Blue")) {
