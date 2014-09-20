@@ -33,7 +33,7 @@ public class StatsCTF extends Stats {
 		headshots = 0;
 		assists = 0;
 		streakName = "null";
-		KillTimerCTF.lastKillTime = 0;
+		KillTimerCTF.lastKillTime = System.currentTimeMillis();
 		KillTimerCTF.killsInARow = 0;
 	}
 	

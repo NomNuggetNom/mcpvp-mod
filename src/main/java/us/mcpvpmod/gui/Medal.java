@@ -34,7 +34,7 @@ public class Medal {
 	 */
 	public Medal(String id) {
 		this.id = id;
-		this.img = new ResourceLocation("mcctf", "textures/" + id + ".png");
+		this.img = new ResourceLocation("mcpvp", "textures/" + id + ".png");
 		this.medals.put(id, this);
 	}
 
