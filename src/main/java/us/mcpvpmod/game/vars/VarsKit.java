@@ -19,8 +19,8 @@ public class VarsKit {
 		vars.put("worth", Vars.get("kit:worth"));
 		vars.put("credits", Vars.get("kit:credits"));
 		vars.put("streak", Vars.get("kit:ks"));
-		vars.put("killstreak", Vars.get("kit:kills"));
-		vars.put("ks", Vars.get("kit:kills"));
+		vars.put("killstreak", Vars.get("kit:ks"));
+		vars.put("ks", Vars.get("kit:ks"));
 		vars.put("kd", "" + StatsKit.getKD());
 		//vars.put("assists", "" + StatsKit.assists);
 	}
