@@ -31,7 +31,7 @@ public class CoreCTF {
 				new String[]{"$1", "class"});
 		
 		new ChatTracker(reRestore, 
-				new String[]{"$1", "ctf:a.team"});
+				new String[]{"$1", "ctf:team"});
 
 		new ChatTracker(reStats, 
 				new String[]{"$1", "ctf:kills"}, 

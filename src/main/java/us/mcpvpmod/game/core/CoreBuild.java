@@ -10,11 +10,11 @@ public class CoreBuild {
 	public static void setup() {
 		
 		new ChatTracker(reMap,
-				new String[]{"$1", "build:i.map.name"},
-				new String[]{"$2", "build:i.map.id"});
+				new String[]{"$1", "build:map.name"},
+				new String[]{"$2", "build:map.id"});
 		
 		new ChatTracker(reRank,
-				new String[]{"$1", "build:i.map.rank"});
+				new String[]{"$1", "build:map.rank"});
 	}
 	
 }

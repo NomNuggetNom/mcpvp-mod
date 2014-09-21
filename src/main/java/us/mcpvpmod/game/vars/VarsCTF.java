@@ -45,7 +45,6 @@ public class VarsCTF {
 		vars.put("red flag", Vars.get("ctf:team.red.caps"));
 		vars.put("red players", Vars.get("ctf:team.red.players"));
 		vars.put("team", TeamCTF.usersTeam().toString());
-		//vars.put("winner", InfoCTF.getWinner());
 		vars.put("winner", Vars.get("ctf:winner"));
 		//vars.put("time streak", "" + KillTimer.killsInARow);
 		vars.put("state", StateCTF.getState().toString());
