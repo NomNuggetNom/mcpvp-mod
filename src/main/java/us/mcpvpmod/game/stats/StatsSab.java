@@ -1,6 +1,6 @@
 package us.mcpvpmod.game.stats;
 
-import us.mcpvpmod.util.MCPVPMath;
+import us.mcpvpmod.game.vars.Vars;
 
 public class StatsSab extends Stats {
 
@@ -11,6 +11,9 @@ public class StatsSab extends Stats {
 	public static boolean detectiveAlive = true;
 	
 	public static void reset() {
+		Vars.put("role", "");
+		Vars.put("detective", "");
+		Vars.put("winner", "");
 		role = "Innocent";
 		map = "";
 		playersLeft = 0;
