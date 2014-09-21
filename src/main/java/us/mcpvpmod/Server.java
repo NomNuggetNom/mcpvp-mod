@@ -63,6 +63,7 @@ public enum Server {
 	 * @return String The friendly name of the server.
 	 */
 	public String toString() {
+		
 		switch(this) {
 		case HUB: 	return "Hub";
 		case KIT: 	return "KitPVP";
@@ -120,12 +121,9 @@ public enum Server {
 		case HS: 	ChatHS.onChat(event); 		break;
 		case HUB: 	ChatHub.onChat(event); 		break;
 		case NONE: 	break;
-		case HG2:
-			break;
-		case PARTY:
-			break;
-		default:
-			break;
+		case HG2:	break;
+		case PARTY:	break;
+		default:	break;
 		}
 	}
 	
@@ -147,12 +145,9 @@ public enum Server {
 		case HS: 	RenderHS.onRender(event); 		break;
 		case HUB: 	RenderHub.onRender(event); 		break;
 		case NONE: 	break;
-		case HG2:
-			break;
-		case PARTY:
-			break;
-		default:
-			break;
+		case HG2:	break;
+		case PARTY:	break;
+		default:	break;
 		}
 	}
 	
@@ -174,12 +169,9 @@ public enum Server {
 		case HS: 	TickHS.onTick(event); 		break;
 		case HUB: 	TickHub.onTick(event); 		break;
 		case NONE: 	break;
-		case HG2:
-			break;
-		case PARTY:
-			break;
-		default:
-			break;
+		case HG2:	break;
+		case PARTY:	break;
+		default:	break;
 		}
 	}
 	
@@ -295,7 +287,7 @@ public enum Server {
 	}
 	
 	public void drawOnScreen() {
-		//Draw.string(this.toString(), 0, 0, 0xFFFFFF, true);
-		//Draw.string(getState().toString(), 0, 9, 0xFFFFFF, true);
+		Draw.string(this.toString(), 0, 0, 0xFFFFFF, true);
+		Draw.string(getState().toString(), 0, 9, 0xFFFFFF, true);
 	}
 }
