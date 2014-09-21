@@ -1,6 +1,7 @@
 package us.mcpvpmod.game.state;
 
 import us.mcpvpmod.Server;
+import us.mcpvpmod.game.stats.StatsSab;
 import us.mcpvpmod.game.vars.Vars;
 import us.mcpvpmod.gui.InfoBlock;
 
@@ -22,6 +23,8 @@ public enum StateSab implements State {
 				block.display();
 			}
 			
+			StatsSab.reset();
+			
 			break;
 		
 		case PRE: 			
@@ -30,6 +33,8 @@ public enum StateSab implements State {
 			for (InfoBlock block : InfoBlock.get(Server.SAB, PRE)) {
 				block.display();
 			}
+			
+			StatsSab.reset();
 			
 			break;
 			
