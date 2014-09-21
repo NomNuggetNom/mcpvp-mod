@@ -23,42 +23,11 @@ public class InfoSab {
 		return "";
 	}
 	
-	public static String formattedWinner(String winner) {
-		System.out.println("winner:" + winner);
-		if (winner == "") return "";
-		
-		if (winner.toLowerCase().contains("innocents")) {
-			return Format.process("#green#Innocents");
-		} else if (winner.toLowerCase().contains("saboteurs")) {
-			return Format.process("#red#Saboteurs");
-		}
-		
-		return "";
-	}
-	
 	/**
 	 * @return A properly formatted version of the user's role.
 	 */
 	public static String formatRole() {
 		String role = Vars.get("sab:role");
-		if (role == "") return "None";
-		
-		if (StateSab.getState().equals(StateSab.DEAD)) {
-			return Format.process("#gray#Spectator");
-		}
-		
-		if (role.toLowerCase().contains("innocent")) {
-			return Format.process("#green#Innocent");
-		} else if (role.toLowerCase().contains("detective")) {
-			return Format.process("#blue#Detective");
-		} else if (role.toLowerCase().contains("saboteur")) {
-			return Format.process("#red#Saboteur");
-		}
-		
-		return "None";
-	}
-	
-	public static String formattedRole(String role) {
 		if (role == "") return "None";
 		
 		if (StateSab.getState().equals(StateSab.DEAD)) {
