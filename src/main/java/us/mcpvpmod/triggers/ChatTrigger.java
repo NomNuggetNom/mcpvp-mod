@@ -73,15 +73,15 @@ public class ChatTrigger {
 		if (message.matches(this.pattern)) {
 
 			if (replace != null && varName != null) {
+	
 				if (replace.startsWith("$")) {
+					
 					String val = message.replaceAll(pattern, replace);
 					Vars.put(varName, val);
-				} else {
-					if (replace.startsWith("var:")) {
-						FMLLog.info("Unusual ChatTrigger deteceted. Key: %s --- Val: %s", varName, replace);
-						Vars.put(varName, Vars.get(replace.split("var:")[1]));
-					}
-					//Vars.put(varName, replace);
+				} else if (replace.startsWith("var:")){
+					
+					FMLLog.info("Unusual ChatTrigger deteceted. Key: %s --- Val: %s", varName, replace);
+					Vars.put(varName, Vars.get(replace.split("var:")[1]));
 				}
 			}
 			

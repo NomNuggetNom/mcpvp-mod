@@ -8,13 +8,9 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import us.mcpvpmod.Server;
 import us.mcpvpmod.game.kits.AllKits;
-import us.mcpvpmod.game.scoreboard.BoardCTF;
-import us.mcpvpmod.game.team.TeamCTF;
 import us.mcpvpmod.game.vars.Vars;
 import us.mcpvpmod.gui.Format;
-import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.registry.GameData;
 
 public class CustomAlert {
