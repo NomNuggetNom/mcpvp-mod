@@ -13,6 +13,7 @@ import us.mcpvpmod.game.alerts.CustomAlert;
 import us.mcpvpmod.game.alerts.SoundAlert;
 import us.mcpvpmod.game.stats.StatsCTF;
 import us.mcpvpmod.game.team.TeamCTF;
+import us.mcpvpmod.game.vars.Vars;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
@@ -44,7 +45,8 @@ public class AssistTrackerCTF extends AssistTracker {
 			if (System.currentTimeMillis() - playersHit.get(name) <= assistTime 
 					&& System.currentTimeMillis() - playersHit.get(name) > 500) {
 				// If we pass those checks, show the custom alert and sound alert, and increase the assist number.
-				CustomAlert.get("assist").reset("assist:" + name).show();
+				Vars.put("player", TeamCTF.getTeam(name).color() + name);
+				CustomAlert.get("assist").show();
 				SoundAlert.get("assist").play();
 				StatsCTF.assists++;
 			}
