@@ -124,10 +124,10 @@ public class ChatCTF {
 		
 		// Sometimes messages are repeated: this prevents the repetition of alerts.
 		if (message.equals(lastAlert)) return;
-			
-		ChatTrigger.checkAll(message);
-		ChatTracker.checkAll(message);
 		
+		ChatTracker.checkAll(message);
+		ChatTrigger.checkAll(message);
+
 		// Recovered flags.
 		if (message.matches(reAction) && message.replaceAll(reAction, "$2").equals("recovered")) {			
 			if (message.replaceAll(reAction, "$1").equals(Main.mc.thePlayer.getDisplayName())) {
