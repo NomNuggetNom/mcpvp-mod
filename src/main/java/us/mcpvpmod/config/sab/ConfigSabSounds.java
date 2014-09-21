@@ -5,9 +5,11 @@ import static net.minecraftforge.common.config.Configuration.CATEGORY_GENERAL;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
+import us.mcpvpmod.game.alerts.CustomAlert;
 import us.mcpvpmod.game.alerts.SoundAlert;
 import cpw.mods.fml.common.DummyModContainer;
 import cpw.mods.fml.common.FMLLog;
@@ -15,8 +17,9 @@ import cpw.mods.fml.common.Loader;
 
 public class ConfigSabSounds extends DummyModContainer {
 
-	public static String soundStreakEnd;
-	public static String soundStreak;
+    public static String soundStart = "";
+    public static String soundDeath = "";
+    public static String soundEnd = "";
     
     public static String fileName = "mcpvp_sab_sounds.cfg";
     
@@ -50,19 +53,23 @@ public class ConfigSabSounds extends DummyModContainer {
         
         Property prop;
         
-        /*
-    	prop = config.get(CATEGORY_GENERAL, "soundStreak", "mob.enderdragon.growl");
-        prop.setLanguageKey("mcpvp.sab.config.Sounds.soundStole");
-    	soundStreak = prop.getString();
+    	prop = config.get(CATEGORY_GENERAL, "soundStart", "fireworks.twinkle");
+        prop.setLanguageKey("mcpvp.sab.config.Sounds.start");
+    	soundStart = prop.getString();
     	propOrder.add(prop.getName());
-    	new SoundAlert("streak.get", prop.getString());
-
-    	prop = config.get(CATEGORY_GENERAL, "soundStreakEnd", "mob.skeleton.death");
-        prop.setLanguageKey("mcpvp.sab.config.Sounds.soundStreak");
-    	soundStreakEnd = prop.getString();
+    	new SoundAlert("sab.start", prop.getString());
+    	
+    	prop = config.get(CATEGORY_GENERAL, "soundDeath", "mob.skeleton.death");
+    	prop.setLanguageKey("mcpvp.sab.config.Sounds.death");
+    	soundStart = prop.getString();
     	propOrder.add(prop.getName());
-    	new SoundAlert("streak.end", prop.getString());
-    	*/
+    	new SoundAlert("sab.death", prop.getString());
+    	
+    	prop = config.get(CATEGORY_GENERAL, "soundEnd", "mob.enderdragon.end");
+    	prop.setLanguageKey("mcpvp.sab.config.Sounds.end");
+    	soundStart = prop.getString();
+    	propOrder.add(prop.getName());
+    	new SoundAlert("sab.end", prop.getString());
         
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
 
