@@ -24,7 +24,8 @@ public class ConfigMCPVP extends CategoryEntry {
         
         list.add(new DummyCategoryElement("Friends List", "mcpvp.config.mcpvp.Friends", AllFriends.class));
         list.add(new DummyCategoryElement("Chat", "mcpvp.config.mcpvp.Chat", AllChat.class));
-        list.add(new DummyCategoryElement("HUD", "mcpvp.config.hud.Chat", AllChat.class));
+        list.add(new DummyCategoryElement("HUD", "mcpvp.config.hud.Chat", AllSelect.class));
+        list.add(new DummyCategoryElement("Auto-Select", "mcpvp.config.hud.Chat", AllSelect.class));
         
         return new GuiConfig(this.owningScreen,
         		list, 
@@ -78,4 +79,19 @@ public class ConfigMCPVP extends CategoryEntry {
 	    }
 	}
 
+	
+	public static class AllSelect extends CategoryEntry {
+	    public AllSelect(GuiConfig owningScreen, GuiConfigEntries owningEntryList, IConfigElement prop) {
+	        super(owningScreen, owningEntryList, prop);
+	    }
+	    
+	    @Override
+	    protected GuiScreen buildChildScreen() {
+	        return new GuiConfig(this.owningScreen, 
+	                (new ConfigElement(ConfigSelect.getConfig().getCategory(Configuration.CATEGORY_GENERAL))).getChildElements(), 
+	                this.owningScreen.modID, Configuration.CATEGORY_GENERAL, this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart, 
+	                this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart, 
+	                "Auto-Selection");
+	    }
+	}
 }
