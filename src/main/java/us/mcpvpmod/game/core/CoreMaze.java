@@ -1,5 +1,6 @@
 package us.mcpvpmod.game.core;
 
+import us.mcpvpmod.Server;
 import us.mcpvpmod.trackers.BoardTracker;
 import us.mcpvpmod.trackers.ChatTracker;
 import us.mcpvpmod.triggers.ChatTrigger;
@@ -14,19 +15,19 @@ public class CoreMaze {
 	public static void setup() {
 		FMLLog.info("[MCPVP] Syncing setup for Maze");
 		
-		new ChatTracker(reKit, 
+		new ChatTracker(reKit, Server.MAZE, 
 				new String[]{"$1", "maze:kit"});
 		
-		new ChatTracker(reJoinTeam, 
+		new ChatTracker(reJoinTeam, Server.MAZE, 
 				new String[]{"$1", "maze:team"});
 		
-		new ChatTrigger(reKit, "maze.kit", 
+		new ChatTrigger(reKit, "maze.kit", Server.MAZE,  
 				new String[]{"$1", "kit"});
 		
-		new ChatTrigger(reJoinTeam, "maze.team.join", 
+		new ChatTrigger(reJoinTeam, "maze.team.join", Server.MAZE,  
 				new String[]{"$1", "team"});
 		
-		new ChatTrigger(reTeamOut, "maze.team.out", 
+		new ChatTrigger(reTeamOut, "maze.team.out", Server.MAZE, 
 				new String[]{"$1", "team"},
 				new String[]{"$2", "remain"});
 

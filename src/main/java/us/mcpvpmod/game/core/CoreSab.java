@@ -1,5 +1,6 @@
 package us.mcpvpmod.game.core;
 
+import us.mcpvpmod.Server;
 import us.mcpvpmod.game.info.InfoSab;
 import us.mcpvpmod.game.vars.Vars;
 import us.mcpvpmod.gui.Format;
@@ -25,24 +26,28 @@ public class CoreSab {
 	
 	public static void setup() {
 
-		new ChatTracker(reRole, new String[]{"$1", "sab:role"});
+		new ChatTracker(reRole, Server.SAB,
+				new String[]{"$1", "sab:role"});
 		
-		new ChatTracker(reRemain, new String[]{"$1", "sab:remain"});
+		new ChatTracker(reRemain, Server.SAB,
+				new String[]{"$1", "sab:remain"});
 		
-		new ChatTracker(reDetective, new String[]{"$1", "sab:detective"});
+		new ChatTracker(reDetective, Server.SAB,
+				new String[]{"$1", "sab:detective"});
 		
-		new ChatTracker(reWin, new String[]{"$1", "sab:winner"});
+		new ChatTracker(reWin, Server.SAB,
+				new String[]{"$1", "sab:winner"});
 		
-		new ChatTrigger(reRole, "sab.start", 
+		new ChatTrigger(reRole, "sab.start", Server.SAB,
 				new String[]{"$1", "role"});
 		
-		new ChatTrigger(reRemain, "sab.death", 
+		new ChatTrigger(reRemain, "sab.death", Server.SAB,
 				new String[]{"$1", "remain"});
 		
-		new ChatTrigger(reWin, "sab.end",
+		new ChatTrigger(reWin, "sab.end", Server.SAB,
 				new String[]{"var:sab:winner", "winner"});
 		
-		new ChatTrigger(reChestWave, "sab.chest",
+		new ChatTrigger(reChestWave, "sab.chest", Server.SAB,
 				new String[]{"$1", "wave"});
 		
 	}

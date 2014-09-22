@@ -1,5 +1,6 @@
 package us.mcpvpmod.game.core;
 
+import us.mcpvpmod.Server;
 import us.mcpvpmod.trackers.ChatTracker;
 
 public class CoreBuild {
@@ -9,11 +10,11 @@ public class CoreBuild {
 	
 	public static void setup() {
 		
-		new ChatTracker(reMap,
+		new ChatTracker(reMap, Server.BUILD,
 				new String[]{"$1", "build:map.name"},
 				new String[]{"$2", "build:map.id"});
 		
-		new ChatTracker(reRank,
+		new ChatTracker(reRank, Server.BUILD,
 				new String[]{"$1", "build:map.rank"});
 	}
 	
