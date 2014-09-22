@@ -7,7 +7,7 @@ import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.config.ctf.ConfigCTFChat;
 import us.mcpvpmod.game.info.InfoCTF;
-import us.mcpvpmod.game.kits.KitsCTF;
+import us.mcpvpmod.game.kits.KitCTF;
 import us.mcpvpmod.game.state.StateCTF;
 import us.mcpvpmod.game.stats.StatsCTF;
 import us.mcpvpmod.gui.Medal;
@@ -110,7 +110,7 @@ public class ChatCTF {
 			String needMedic = message.replaceAll(reMedic, "$1");
 			if (StateCTF.getState() == StateCTF.PLAY) {
 				for (String string : ConfigCTFChat.medicClasses) {
-					if (KitsCTF.getClass(Main.mc.thePlayer).toString().toLowerCase().equals(string.toLowerCase()) || InfoCTF.chosenClass.toLowerCase().equals(string.toLowerCase())) {
+					if (KitCTF.getKit(Main.mc.thePlayer).toString().toLowerCase().equals(string.toLowerCase()) || InfoCTF.chosenClass.toLowerCase().equals(string.toLowerCase())) {
 						String formatted = event.message.getUnformattedText().replaceAll("\u00A7(.)", "\u00A7$1\u00A7l");
 						event.message = new ChatComponentText(formatted);
 					}

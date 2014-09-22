@@ -5,6 +5,10 @@ import us.mcpvpmod.config.ctf.ConfigCTFAlerts;
 import us.mcpvpmod.config.ctf.ConfigCTFChat;
 import us.mcpvpmod.config.ctf.ConfigCTFHUD;
 import us.mcpvpmod.config.ctf.ConfigCTFSounds;
+import us.mcpvpmod.config.hg.ConfigHGAlerts;
+import us.mcpvpmod.config.hg.ConfigHGHUD;
+import us.mcpvpmod.config.hg.ConfigHGSelect;
+import us.mcpvpmod.config.hg.ConfigHGSounds;
 import us.mcpvpmod.config.kit.ConfigKitAlerts;
 import us.mcpvpmod.config.kit.ConfigKitHUD;
 import us.mcpvpmod.config.kit.ConfigKitSounds;
@@ -21,11 +25,15 @@ import us.mcpvpmod.config.sab.ConfigSabSelect;
 import us.mcpvpmod.config.sab.ConfigSabSounds;
 import us.mcpvpmod.game.core.CoreBuild;
 import us.mcpvpmod.game.core.CoreCTF;
+import us.mcpvpmod.game.core.CoreHG;
 import us.mcpvpmod.game.core.CoreKit;
 import us.mcpvpmod.game.core.CoreMaze;
 import us.mcpvpmod.game.core.CoreSab;
+import us.mcpvpmod.game.kits.KitsCTF;
+import us.mcpvpmod.game.kits.KitsHG;
 import us.mcpvpmod.game.state.DummyState;
 import us.mcpvpmod.game.state.StateCTF;
+import us.mcpvpmod.game.state.StateHG;
 import us.mcpvpmod.game.state.StateKit;
 import us.mcpvpmod.game.state.StateMaze;
 import us.mcpvpmod.game.state.StateSab;
@@ -46,6 +54,9 @@ public class Sync {
 		Format.setCodes();
 		// Clear the friends list.
 		FriendsList.clearList();
+		
+		KitsHG.putKits();
+		KitsCTF.putKits();
 		
 		// Sync MCPVP Configs
 		ConfigChat.syncConfig();
@@ -72,6 +83,11 @@ public class Sync {
 		ConfigSabAlerts.syncConfig();
 		ConfigSabSounds.syncConfig();
 		ConfigSabSelect.syncConfig();
+		
+		ConfigHGHUD.syncConfig();
+		ConfigHGAlerts.syncConfig();
+		ConfigHGSounds.syncConfig();
+		ConfigHGSelect.syncConfig();
 
 		// Sync all InfoBlocks
 		InfoBlock.blocks.clear();
@@ -93,6 +109,10 @@ public class Sync {
 		InfoBlock.createBlocks(ConfigSabHUD.renderPlay, Server.SAB, StateSab.PLAY);
 		InfoBlock.createBlocks(ConfigSabHUD.renderPost, Server.SAB, StateSab.DEAD);
 		InfoBlock.createBlocks(ConfigSabHUD.renderPost, Server.SAB, StateSab.POST);
+		
+		InfoBlock.createBlocks(ConfigHGHUD.renderPre, Server.HG, StateHG.PRE);
+		InfoBlock.createBlocks(ConfigHGHUD.renderPlay, Server.HG, StateHG.PLAY);
+		
 
 		// Sync cores, which are responsible for setting triggers and trackers.
 		CoreCTF.setup();
@@ -100,6 +120,7 @@ public class Sync {
 		CoreMaze.setup();
 		CoreBuild.setup();
 		CoreSab.setup();
+		CoreHG.setup();
 	}
 
 }

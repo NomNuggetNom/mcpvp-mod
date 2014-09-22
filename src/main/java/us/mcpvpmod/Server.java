@@ -4,6 +4,7 @@ import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
+import us.mcpvpmod.events.DeathHG;
 import us.mcpvpmod.events.chat.AllChat;
 import us.mcpvpmod.events.chat.ChatBuild;
 import us.mcpvpmod.events.chat.ChatCTF;
@@ -45,6 +46,7 @@ import us.mcpvpmod.game.state.StateSab;
 import us.mcpvpmod.game.vars.AllVars;
 import us.mcpvpmod.game.vars.VarsBuild;
 import us.mcpvpmod.game.vars.VarsCTF;
+import us.mcpvpmod.game.vars.VarsHG;
 import us.mcpvpmod.game.vars.VarsKit;
 import us.mcpvpmod.game.vars.VarsMaze;
 import us.mcpvpmod.game.vars.VarsSab;
@@ -204,19 +206,19 @@ public enum Server {
 	 */
 	public void onDeath(LivingDeathEvent event) {
 		switch (this) {
-		case HG: 	break;
-		case CTF: 	AssistTrackerCTF.onDeath(event); break;
-		case RAID: 	break;
-		case KIT: 	break;
-		case MAZE: 	break;
-		case SAB: 	break;
-		case BUILD:	break;
-		case HS: 	break;
-		case HUB: 	break;
-		case NONE: 	break;
-		case HG2:	break;
-		case PARTY:	break;
-		default:	break;
+		case HG: 	/*DeathHG.onDeath(event); */ return;
+		case CTF: 	AssistTrackerCTF.onDeath(event); return;
+		case RAID: 	return;
+		case KIT: 	return;
+		case MAZE: 	return;
+		case SAB: 	return;
+		case BUILD:	return;
+		case HS: 	return;
+		case HUB: 	return;
+		case NONE: 	return;
+		case HG2:	return;
+		case PARTY:	return;
+		default:	return;
 		}
 	}
 	
@@ -229,7 +231,7 @@ public enum Server {
 		if (!AllVars.get(var).equals("")) return (AllVars.get(var));
 		
 		switch (getServer()) {
-		case HG: 	break;
+		case HG: 	return VarsHG.get(var);
 		case CTF: 	return VarsCTF.get(var);
 		case RAID: 	break;
 		case KIT: 	return VarsKit.get(var);

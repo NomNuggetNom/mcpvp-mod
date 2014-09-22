@@ -55,7 +55,7 @@ public class BoardHelper {
 		        Score score = (Score)iterator.next();
 		        
 		        // Check if the name of the "team" (player) is what we're looking for.
-		        // In actuality, it would be better to use an equals check e.g.:
+		        // In actuality, it would be more precise to use an equals check e.g.:
 		        // if (score1.getPlayerName().equals(team)) {
 		        if (score.getPlayerName().contains(displayName)) {
 		        	
