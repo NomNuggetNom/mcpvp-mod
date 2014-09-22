@@ -17,10 +17,6 @@ import us.mcpvpmod.gui.Format;
 public class TimeAlerts {
 	
 	static Minecraft mc = Minecraft.getMinecraft();
-	static ItemStack blueWool = new ItemStack(Blocks.wool, 1, 11);
-	static ItemStack redWool = new ItemStack(Blocks.wool, 1, 14);
-	static ItemStack clock = new ItemStack(Items.clock, 1);
-	
 	public static int oldTime = 0;
 	
 	public static void updateTime() {
@@ -52,8 +48,8 @@ public class TimeAlerts {
 	
 		if (StateCTF.getState().equals(StateCTF.POST) || StateCTF.getState().equals(StateCTF.END)) {
 			if (oldTime == 15) {
-				//CustomAlert.get("game.end").show();
-				//SoundAlert.get("game.end").play();
+				CustomAlert.get("game.end").show();
+				SoundAlert.get("game.end").play();
 			} else if (oldTime == 10) {
 				if ((StatsCTF.kills > 15 && StatsCTF.deaths == 0)) {
 					Alerts.alert.sendAlertWithItem("Perfection!", Format.process("#gray#Kill #white#15 #gray#opponents without dying in one game."), -1, new ItemStack(Items.dye, 1, 15));
