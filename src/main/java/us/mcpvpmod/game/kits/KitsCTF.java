@@ -2,6 +2,8 @@ package us.mcpvpmod.game.kits;
 
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -86,6 +88,70 @@ public enum KitsCTF {
 		if (StateCTF.getState() != StateCTF.PLAY) {
 			return NONE;
 		}
+		
+		ItemStack IS_boots = player.inventory.armorInventory[0];
+		ItemStack IS_legs = player.inventory.armorInventory[1];
+		ItemStack IS_chest = player.inventory.armorInventory[2];
+		ItemStack IS_helm = player.inventory.armorInventory[3];
+		
+		/*
+		 * All classes that could have missing armor pieces.
+		 */
+		if (IS_boots == null && IS_legs == null && IS_chest == null && IS_helm == null) {
+			return NINJA;
+		} else if (IS_boots != null && IS_legs == null && IS_chest == null && IS_helm == null) {
+			return ASSASSIN;
+		} else if (IS_boots != null && IS_legs != null && IS_chest != null && IS_helm == null) {
+			return MAGE;
+		}
+		
+		if (IS_boots == null || IS_legs == null || IS_chest == null || IS_helm == null) return NONE;
+		
+		String boots = IS_boots.toString();
+		String legs = IS_legs.toString();
+		String chest = IS_chest.toString();
+		String helm = IS_helm.toString();
+		
+		ItemStack goldenHelmet = new ItemStack(Items.golden_helmet, 1);
+		
+		if (helm != null && chest != null && legs != null && boots != null) {
+			
+			if (helm.equals(new ItemStack(Items.chainmail_helmet).toString()) && chest.equals(new ItemStack(Items.chainmail_chestplate).toString())) {
+				return ARCHER;
+				
+			} else if (helm.equals(new ItemStack(Items.iron_chestplate).toString()) && chest.equals(new ItemStack(Items.golden_chestplate).toString())) {
+				return CHEMIST;
+				
+			} else if (helm.equals(Items.iron_helmet) && chest.equals(new ItemStack(Items.leather_chestplate))) {
+				return ENGINEER;
+				
+			} else if (helm.toString().equals(new ItemStack(Items.diamond_helmet).toString())) {
+				return HEAVY;
+				
+			} else if (helm.equals(new ItemStack(Items.golden_helmet).toString())) {
+				return MEDIC;
+				
+			} else if (helm.equals(new ItemStack(Items.iron_helmet).toString()) && chest.equals(new ItemStack(Items.golden_chestplate).toString())) {
+				return NECRO;
+				
+			} else if (helm.equals(new ItemStack(Items.leather_helmet).toString())) {
+				return PYRO;
+				
+			} else if (helm.equals(new ItemStack(Items.iron_helmet).toString()) && chest.equals(new ItemStack(Items.iron_chestplate).toString())) {
+				return SOLDIER;
+			}
+		}
+		return HEAVY;
+	}
+	
+	public static KitsCTF getClass(EntityPlayer player) {
+		if (StateCTF.getState() != StateCTF.PLAY) {
+			return NONE;
+		}
+		
+		if (player == null) return NONE;
+		if (player.inventory == null) return NONE;
+		if (player.inventory.armorInventory == null) return NONE;
 		
 		ItemStack IS_boots = player.inventory.armorInventory[0];
 		ItemStack IS_legs = player.inventory.armorInventory[1];
