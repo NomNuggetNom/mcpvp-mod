@@ -1,11 +1,19 @@
 package us.mcpvpmod.gui;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.client.renderer.texture.TextureManager;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
+
+import us.mcpvpmod.Main;
 
 public class Draw {
 
@@ -81,4 +89,15 @@ public class Draw {
         GL11.glEnable(GL11.GL_TEXTURE_2D);
         GL11.glDisable(GL11.GL_BLEND);
     }
+	
+	public static void item(FontRenderer fontRenderer, TextureManager textureManager, final ItemStack itemStack, int x, int y) {
+		new RenderItem().renderItemAndEffectIntoGUI(fontRenderer, textureManager, itemStack, x, y);
+	}
+	
+	public static void item(final ItemStack itemStack, int x, int y) {
+        RenderHelper.enableGUIStandardItemLighting();
+		new RenderItem().renderItemAndEffectIntoGUI(Main.mc.fontRenderer, Main.mc.getTextureManager(), itemStack, x, y);
+		new RenderItem().renderItemOverlayIntoGUI(Main.mc.fontRenderer, Main.mc.getTextureManager(), itemStack, x, y);
+		RenderHelper.disableStandardItemLighting();
+	}
 }
