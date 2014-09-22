@@ -8,6 +8,7 @@ import us.mcpvpmod.Main;
 import us.mcpvpmod.config.mcpvp.ConfigFriends;
 import us.mcpvpmod.game.vars.Vars;
 import us.mcpvpmod.gui.FriendsList;
+import us.mcpvpmod.util.BoardHelper;
 
 public class FriendAlerts {
 
@@ -29,13 +30,13 @@ public class FriendAlerts {
 			if (shownNames.get(name) != null) {
 				// Time check.
 				if (System.currentTimeMillis() - shownNames.get(name) > cooldownTime) {
-					Vars.put("player", ((EntityPlayer) event.entity).getDisplayName());
+					Vars.put("player", BoardHelper.getTeamColor(name) + name);
 					CustomAlert.get("online").show();
 					SoundAlert.get("online").play();
 				}
 			} else {
 				// If shownNames.get(name) is null, we've never shown an alert for this person.
-				Vars.put("player", ((EntityPlayer) event.entity).getDisplayName());
+				Vars.put("player", BoardHelper.getTeamColor(name) + name);
 				CustomAlert.get("online").show();
 				SoundAlert.get("online").play();
 			}
