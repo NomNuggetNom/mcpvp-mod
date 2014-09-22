@@ -6,6 +6,7 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import us.mcpvpmod.events.chat.AllChat;
 import us.mcpvpmod.events.chat.ChatBuild;
+import us.mcpvpmod.events.chat.ChatCTF;
 import us.mcpvpmod.events.chat.ChatHG;
 import us.mcpvpmod.events.chat.ChatHS;
 import us.mcpvpmod.events.chat.ChatHub;
@@ -13,7 +14,6 @@ import us.mcpvpmod.events.chat.ChatKit;
 import us.mcpvpmod.events.chat.ChatMaze;
 import us.mcpvpmod.events.chat.ChatRaid;
 import us.mcpvpmod.events.chat.ChatSab;
-import us.mcpvpmod.events.chat.ctf.ChatCTF;
 import us.mcpvpmod.events.render.AllRender;
 import us.mcpvpmod.events.render.RenderBuild;
 import us.mcpvpmod.events.render.RenderCTF;
@@ -38,6 +38,7 @@ import us.mcpvpmod.game.checks.assists.AssistTrackerCTF;
 import us.mcpvpmod.game.state.DummyState;
 import us.mcpvpmod.game.state.State;
 import us.mcpvpmod.game.state.StateCTF;
+import us.mcpvpmod.game.state.StateHG;
 import us.mcpvpmod.game.state.StateKit;
 import us.mcpvpmod.game.state.StateMaze;
 import us.mcpvpmod.game.state.StateSab;
@@ -63,6 +64,7 @@ public enum Server {
 	 * @return String The friendly name of the server.
 	 */
 	public String toString() {
+		
 		switch(this) {
 		case HUB: 	return "Hub";
 		case KIT: 	return "KitPVP";
@@ -110,16 +112,19 @@ public enum Server {
 		AllChat.handleChat(event);
 		
 		switch(this) {
-		case HG: 	ChatHG.onChat(event); 		break;
-		case CTF: 	ChatCTF.onChat(event); 		break;
-		case RAID: 	ChatRaid.onChat(event);		break;
-		case KIT: 	ChatKit.onChat(event); 		break;
-		case MAZE: 	ChatMaze.onChat(event);		break;
-		case SAB: 	ChatSab.onChat(event);		break;
-		case BUILD:	ChatBuild.onChat(event);	break;
-		case HS: 	ChatHS.onChat(event); 		break;
-		case HUB: 	ChatHub.onChat(event); 		break;
-		case NONE: 	break;
+		case HG: 	ChatHG.onChat(event); 		return;
+		case CTF: 	ChatCTF.onChat(event); 		return;
+		case RAID: 	ChatRaid.onChat(event);		return;
+		case KIT: 	ChatKit.onChat(event);		return;
+		case MAZE: 	ChatMaze.onChat(event);		return;
+		case SAB: 	ChatSab.onChat(event);		return;
+		case BUILD:	ChatBuild.onChat(event);	return;
+		case HS: 	ChatHS.onChat(event); 		return;
+		case HUB: 	ChatHub.onChat(event); 		return;
+		case NONE: 	return;
+		case HG2:	return;
+		case PARTY:	return;
+		default:	return;
 		}
 	}
 	
@@ -131,16 +136,19 @@ public enum Server {
 		AllRender.onRender(event);
 		
 		switch(this) {
-		case HG: 	RenderHG.onRender(event); 		break;
-		case CTF: 	RenderCTF.onRender(event); 		break;
-		case RAID: 	RenderRaid.onRender(event);		break;
-		case KIT: 	RenderKit.onRender(event); 		break;
-		case MAZE: 	RenderMaze.onRender(event);		break;
-		case SAB: 	RenderSab.onRender(event);		break;
-		case BUILD:	RenderBuild.onRender(event);	break;
-		case HS: 	RenderHS.onRender(event); 		break;
-		case HUB: 	RenderHub.onRender(event); 		break;
-		case NONE: 	break;
+		case HG: 	RenderHG.onRender(event); 		return;
+		case CTF: 	RenderCTF.onRender(event); 		return;
+		case RAID: 	RenderRaid.onRender(event);		return;
+		case KIT: 	RenderKit.onRender(event); 		return;
+		case MAZE: 	RenderMaze.onRender(event);		return;
+		case SAB: 	RenderSab.onRender(event);		return;
+		case BUILD:	RenderBuild.onRender(event);	return;
+		case HS: 	RenderHS.onRender(event); 		return;
+		case HUB: 	RenderHub.onRender(event); 		return;
+		case NONE: 	return;
+		case HG2:	return;
+		case PARTY:	return;
+		default:	return;
 		}
 	}
 	
@@ -152,16 +160,19 @@ public enum Server {
 		AllTick.onTick(event);
 		
 		switch(this) {
-		case HG: 	TickHG.onTick(event); 		break;
-		case CTF: 	TickCTF.onTick(event); 		break;
-		case RAID: 	TickRaid.onTick(event);		break;
-		case KIT: 	TickKit.onTick(event); 		break;
-		case MAZE: 	TickMaze.onTick(event);		break;
-		case SAB: 	TickSab.onTick(event);		break;
-		case BUILD:	TickBuild.onTick(event);	break;
-		case HS: 	TickHS.onTick(event); 		break;
-		case HUB: 	TickHub.onTick(event); 		break;
-		case NONE: 	break;
+		case HG: 	TickHG.onTick(event); 		return;
+		case CTF: 	TickCTF.onTick(event); 		return;
+		case RAID: 	TickRaid.onTick(event);		return;
+		case KIT: 	TickKit.onTick(event); 		return;
+		case MAZE: 	TickMaze.onTick(event);		return;
+		case SAB: 	TickSab.onTick(event);		return;
+		case BUILD:	TickBuild.onTick(event);	return;
+		case HS: 	TickHS.onTick(event); 		return;
+		case HUB: 	TickHub.onTick(event); 		return;
+		case NONE: 	return;
+		case HG2:	return;
+		case PARTY:	return;
+		default:	return;
 		}
 	}
 	
@@ -181,6 +192,9 @@ public enum Server {
 		case HS: 	break;
 		case HUB: 	break;
 		case NONE: 	break;
+		case HG2:	break;
+		case PARTY:	break;
+		default:	break;
 		}
 	}
 	
@@ -200,6 +214,9 @@ public enum Server {
 		case HS: 	break;
 		case HUB: 	break;
 		case NONE: 	break;
+		case HG2:	break;
+		case PARTY:	break;
+		default:	break;
 		}
 	}
 	
@@ -222,6 +239,9 @@ public enum Server {
 		case HS: 	break;
 		case HUB: 	break;
 		case NONE: 	break;
+		case HG2:	break;
+		case PARTY:	break;
+		default:	break;
 		}
 		return "";
 	}
@@ -232,7 +252,7 @@ public enum Server {
 	 */
 	public static State getState() {
 		switch (getServer()) {
-		case HG: 	break;
+		case HG: 	return StateHG.getState();
 		case CTF: 	return StateCTF.getState();
 		case RAID: 	break;
 		case KIT: 	return StateKit.PLAY;
@@ -242,6 +262,9 @@ public enum Server {
 		case HS: 	break;
 		case HUB: 	break;
 		case NONE: 	break;
+		case HG2:	break;
+		case PARTY:	break;
+		default:	break;
 		}
 		return DummyState.NONE;
 	}
@@ -258,8 +281,10 @@ public enum Server {
 		case HS: 	return true;
 		case HUB: 	return false;
 		case NONE: 	return false;
+		case HG2:	return false;
+		case PARTY: return false;
+		default: 	return false;
 		}
-		return false;
 	}
 	
 	public void drawOnScreen() {

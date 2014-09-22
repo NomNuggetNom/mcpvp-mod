@@ -1,5 +1,6 @@
 package us.mcpvpmod.game.core;
 
+import us.mcpvpmod.Server;
 import us.mcpvpmod.trackers.BoardTracker;
 import us.mcpvpmod.trackers.ChatTracker;
 import us.mcpvpmod.triggers.ChatTrigger;
@@ -14,25 +15,25 @@ public class CoreMaze {
 	public static void setup() {
 		FMLLog.info("[MCPVP] Syncing setup for Maze");
 		
-		new ChatTrigger(reKit, "maze.kit", 
+		new ChatTracker(reKit, Server.MAZE, 
+				new String[]{"$1", "maze:kit"});
+		
+		new ChatTracker(reJoinTeam, Server.MAZE, 
+				new String[]{"$1", "maze:team"});
+		
+		new ChatTrigger(reKit, "maze.kit", Server.MAZE,  
 				new String[]{"$1", "kit"});
 		
-		new ChatTrigger(reJoinTeam, "maze.team.join", 
+		new ChatTrigger(reJoinTeam, "maze.team.join", Server.MAZE,  
 				new String[]{"$1", "team"});
 		
-		new ChatTrigger(reTeamOut, "maze.team.out", 
+		new ChatTrigger(reTeamOut, "maze.team.out", Server.MAZE, 
 				new String[]{"$1", "team"},
 				new String[]{"$2", "remain"});
-		
-		new ChatTracker(reKit, 
-				new String[]{"$1", "maze:i.kit"});
-		
-		new ChatTracker(reJoinTeam, 
-				new String[]{"$1", "maze:i.team"});
-		
-		new BoardTracker("Base X Cord:", "maze:i.base.x");
-		new BoardTracker("Base Z Cord:", "maze:i.base.z");
-		new BoardTracker("Princess Health%", "maze:i.princess.health");
-		new BoardTracker("Princess Hunger%", "maze:i.princess.hunger");
+
+		new BoardTracker("Base X Cord:", "maze:base.x");
+		new BoardTracker("Base Z Cord:", "maze:base.z");
+		new BoardTracker("Princess Health%", "maze:princess.health");
+		new BoardTracker("Princess Hunger%", "maze:princess.hunger");
 	}
 }

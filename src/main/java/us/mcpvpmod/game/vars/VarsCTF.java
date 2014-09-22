@@ -20,11 +20,11 @@ public class VarsCTF {
 	 * Called every tick to update information.
 	 */
 	public static void putVars() {
-		vars.put("kills", Vars.get("ctf:i.kills"));
-		vars.put("streak", Vars.get("ctf:i.streak"));
-		vars.put("deaths", Vars.get("ctf:i.deaths"));
-		vars.put("caps", Vars.get("ctf:i.caps"));
-		vars.put("steals", Vars.get("ctf:i.steals"));
+		vars.put("kills", Vars.get("ctf:kills"));
+		vars.put("streak", Vars.get("ctf:streak"));
+		vars.put("deaths", Vars.get("ctf:deaths"));
+		vars.put("caps", Vars.get("ctf:caps"));
+		vars.put("steals", Vars.get("ctf:steals"));
 		vars.put("recovers", "" + StatsCTF.recovers);
 		vars.put("headshots", "" + StatsCTF.headshots);
 		vars.put("kd", "" + StatsCTF.getKD());
@@ -36,16 +36,16 @@ public class VarsCTF {
 		vars.put("map", InfoCTF.getMap());
 		vars.put("game", InfoCTF.getGameNum());
 		vars.put("free day", InfoCTF.getFreeDay());
-		vars.put("blue wins", Vars.get("ctf:i.team.blue.wins"));
-		vars.put("blue caps", Vars.get("ctf:i.team.blue.caps"));
-		vars.put("blue flag", Vars.get("ctf:i.team.blue.flag"));
-		vars.put("blue players", Vars.get("ctf:i.team.blue.players"));
-		vars.put("red wins", Vars.get("ctf:i.team.red.wins"));
-		vars.put("red caps", Vars.get("ctf:i.team.red.caps"));
-		vars.put("red flag", Vars.get("ctf:i.team.red.caps"));
-		vars.put("red players", Vars.get("ctf:i.team.red.players"));
+		vars.put("blue wins", Vars.get("ctf:team.blue.wins"));
+		vars.put("blue caps", Vars.get("ctf:team.blue.caps"));
+		vars.put("blue flag", Vars.get("ctf:team.blue.flag"));
+		vars.put("blue players", Vars.get("ctf:team.blue.players"));
+		vars.put("red wins", Vars.get("ctf:team.red.wins"));
+		vars.put("red caps", Vars.get("ctf:team.red.caps"));
+		vars.put("red flag", Vars.get("ctf:team.red.caps"));
+		vars.put("red players", Vars.get("ctf:team.red.players"));
 		vars.put("team", TeamCTF.usersTeam().toString());
-		vars.put("winner", InfoCTF.getWinner());
+		vars.put("winner", Vars.get("ctf:winner"));
 		//vars.put("time streak", "" + KillTimer.killsInARow);
 		vars.put("state", StateCTF.getState().toString());
 		vars.put("friends", "friends");

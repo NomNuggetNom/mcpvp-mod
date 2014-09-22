@@ -6,6 +6,7 @@ import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.config.maze.ConfigMazeSelect;
 import us.mcpvpmod.config.mcpvp.ConfigFriends;
+import us.mcpvpmod.config.mcpvp.ConfigSelect;
 import us.mcpvpmod.game.alerts.FriendAlerts;
 import us.mcpvpmod.game.vars.Vars;
 import us.mcpvpmod.gui.FriendsList;
@@ -19,6 +20,13 @@ public class HandleJoin {
 		
 		if (((EntityPlayer)event.entity).getDisplayName().equals(Main.mc.thePlayer.getDisplayName())) {
 			System.out.println("Joined.");
+			
+			// Auto-tagging implementation
+			if (Server.getServer() != Server.NONE) {
+				if (ConfigSelect.autoTagB) {
+					Main.mc.thePlayer.sendChatMessage("/tag " + ConfigSelect.autoTag);
+				}
+			}
 		}
 		
 		if (ConfigFriends.onlineNotifications) {

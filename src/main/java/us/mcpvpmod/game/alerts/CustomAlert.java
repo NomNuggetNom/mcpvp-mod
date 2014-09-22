@@ -8,13 +8,9 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import us.mcpvpmod.Server;
 import us.mcpvpmod.game.kits.AllKits;
-import us.mcpvpmod.game.scoreboard.BoardCTF;
-import us.mcpvpmod.game.team.TeamCTF;
 import us.mcpvpmod.game.vars.Vars;
 import us.mcpvpmod.gui.Format;
-import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.registry.GameData;
 
 public class CustomAlert {
@@ -28,16 +24,6 @@ public class CustomAlert {
 	public String mode;
 	
 	// All possible values.
-	// TODO: Consider removing
-	public String team   = "";
-	public String player = "";
-	public String action = "";
-	public String killer = "";
-	public String killed = "";
-	public String streak = "";
-	public String kit    = "";
-	public String time   = "";
-	public String remain = "";
 	
 	public static HashMap<String, CustomAlert> messageAlerts = new HashMap<String, CustomAlert>();
 	
@@ -75,30 +61,6 @@ public class CustomAlert {
 	}
 	
 	/**
-	 * Sets the source of the message to filter out relevant information.
-	 * @param message
-	 * @return
-	 */
-	public CustomAlert reset(String message) {
-		player = "null";
-		team   = "null";
-		action = "null";
-		killer = "null";
-		killed = "null";
-		streak = "null";
-		kit    = "null";
-		remain = "null";
-		return this;
-	}
-	
-	public CustomAlert customVar(String varName, String varValue) {
-		if (varName.equals("kit") || varName.equals("class")) {
-			this.kit = varValue;
-		}
-		return this;
-	}
-	
-	/**
 	 * Replaces the necessary information from the alert in the config file.
 	 * @param string The string that contains variables.
 	 * @return The string with all variables replaced with information.
@@ -123,7 +85,7 @@ public class CustomAlert {
 		string = Format.process(string);
 		// TODO: return original if string is null?
 		// Establish handle to avoid changing string given
-		
+
 		return string;
 	}
 	
@@ -133,8 +95,12 @@ public class CustomAlert {
 	 * @return The processed item.
 	 */
 	public ItemStack setWool(ItemStack item) {
-		// TODO: Fix.
+		String team = Vars.get("team");
+		
+		if (item.getItem() == null) return new ItemStack(Blocks.web);
+		
 		if (item.toString().equals(getItem("wool").toString())) {
+			System.out.println("Attempting to replace wool : " + team);
 			if (team.contains("Blue")) {
 				return new ItemStack(Blocks.wool, 1, 11);
 			} else if (team.contains("Red")) {
@@ -150,13 +116,19 @@ public class CustomAlert {
 	 * @return The image file.
 	 */
 	public ResourceLocation setFlag(ResourceLocation resource) {
-		// TODO: Add flag to resource path.
-		System.out.println(resource.getResourcePath());
+		// TODO: Fix!
+		/*
+		String team = Vars.get("team");
+		String action = Vars.get("action");
 		if (team.equals("Blue")) {
+			System.out.println("textures/flag_blue_" + action.replaceAll(" ", "") + ".png");
 			return new ResourceLocation("mcpvp", "textures/flag_blue_" + action.replaceAll(" ", "") + ".png");
 		}  else if (team.equals("Red")) {
+			System.out.println("textures/flag_blue_" + action.replaceAll(" ", "") + ".png");
 			return new ResourceLocation("mcpvp", "textures/flag_red_" + action.replaceAll(" ", "") + ".png");
 		}
+		System.out.println(resource);
+		*/
 		return resource;
 	}
 	
@@ -189,7 +161,7 @@ public class CustomAlert {
 			if (name.equals("head")) {
 				return new ItemStack(Items.skull, 1, 3);
 			} else if (name.equals("class") || name.equals("kit")) {
-				return AllKits.getIcon(kit);
+				return AllKits.getIcon(Vars.get("kit"));
 			} else if (name.matches("skeleton.*skull")) {
 				return new ItemStack(Items.skull, 1, 0);
 			} else if (name.matches("wither.*skull")) {

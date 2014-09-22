@@ -4,6 +4,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.game.state.StateCTF;
+import us.mcpvpmod.gui.ArmorDisplay;
 import us.mcpvpmod.gui.FriendsBlock;
 
 /**
@@ -12,12 +13,16 @@ import us.mcpvpmod.gui.FriendsBlock;
 public class AllRender {
 	
 	public static void onRender(RenderGameOverlayEvent event) {
+		
 		// If we don't render during the TEXT phase, we'll screw up other displays due to OpenGL settings.
-		// TODO: fix OpenGL interference.
 		if (event.type != RenderGameOverlayEvent.ElementType.TEXT) return;
 		
 		// Display our FriendsBlock regardless of server.
 		FriendsBlock.display();
+		
+		// Render our armor display regardless of server.
+		ArmorDisplay.renderArmor();
+
 	}
 	
 }

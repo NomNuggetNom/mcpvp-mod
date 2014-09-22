@@ -12,12 +12,12 @@ public class VarsBuild {
 	 * Called every tick to update information.
 	 */
 	public static void putVars() {
-		vars.put("map", Vars.get("build:i.map.name"));
-		vars.put("map name", Vars.get("build:i.map.name"));
-		vars.put("id", Vars.get("build:i.map.id"));
-		vars.put("map id", Vars.get("build:i.map.id"));
-		vars.put("rank", Vars.get("build:i.map.rank"));
-		vars.put("map rank", Vars.get("build:i.map.rank"));
+		vars.put("map", Vars.get("build:map.name"));
+		vars.put("map name", Vars.get("build:map.name"));
+		vars.put("id", Vars.get("build:map.id"));
+		vars.put("map id", Vars.get("build:map.id"));
+		vars.put("rank", Vars.get("build:map.rank"));
+		vars.put("map rank", Vars.get("build:map.rank"));
 	}
 	
 	/**

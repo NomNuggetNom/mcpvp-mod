@@ -21,8 +21,9 @@ import cpw.mods.fml.common.registry.GameData;
 
 public class ConfigSabAlerts extends DummyModContainer {
 
-    public static String alertStreak = "";
-    public static String alertStreakEnd = "";
+    public static String alertStart = "";
+    public static String alertDeath = "";
+    public static String alertEnd = "";
 
     public static String fileName = "mcpvp_sab_alerts.cfg";
     
@@ -59,9 +60,30 @@ public class ConfigSabAlerts extends DummyModContainer {
     	prop = config.get(CATEGORY_GENERAL, "alertStart", "#white#The game has begun! ||| You are {role}. Good luck! ||| nether_star");
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
         prop.setLanguageKey("mcpvp.sab.config.Alerts.start");
-    	alertStreak = prop.getString();
+    	alertStart = prop.getString();
     	propOrder.add(prop.getName());
     	new CustomAlert("sab.start", prop.getString());
+    	
+    	prop = config.get(CATEGORY_GENERAL, "alertDeath", "#white#Hold on to your seats, folks... ||| #gray#Someone just died. Only #cyan#{remain} #gray#players left. ||| bone");
+    	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
+    	prop.setLanguageKey("mcpvp.sab.config.Alerts.death");
+    	alertDeath = prop.getString();
+    	propOrder.add(prop.getName());
+    	new CustomAlert("sab.death", prop.getString());
+    	
+    	prop = config.get(CATEGORY_GENERAL, "alertEnd", "#white#Game Over! ||| #gray#Winner: {winner} ||| web");
+    	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
+    	prop.setLanguageKey("mcpvp.sab.config.Alerts.end");
+    	alertStart = prop.getString();
+    	propOrder.add(prop.getName());
+    	new CustomAlert("sab.end", prop.getString());
+    	
+    	prop = config.get(CATEGORY_GENERAL, "alertChest", "#white#Ooooo, goodies! ||| #gray#Chest wave #green#{wave} #gray#has spawned. ||| chest");
+    	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
+    	prop.setLanguageKey("mcpvp.sab.config.Alerts.chest");
+    	alertStart = prop.getString();
+    	propOrder.add(prop.getName());
+    	new CustomAlert("sab.chest", prop.getString());
         
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
 

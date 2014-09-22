@@ -24,16 +24,21 @@ public class StatsCTF extends Stats {
 	 * Happens during pre-game or when we join a new server.
 	 */ 
 	public static void reset() {
+		Vars.put("ctf:i.kills", "0");
 		kills = 0;
+		Vars.put("ctf:i.streak", "0");
 		streak = 0;
+		Vars.put("ctf:i.detahs", "0");
 		deaths = 0;
+		Vars.put("ctf:i.steals", "0");
 		steals = 0;
+		Vars.put("ctf:i.caps", "0");
 		caps = 0;
 		recovers = 0;
 		headshots = 0;
 		assists = 0;
 		streakName = "null";
-		KillTimerCTF.lastKillTime = 0;
+		KillTimerCTF.lastKillTime = System.currentTimeMillis();
 		KillTimerCTF.killsInARow = 0;
 	}
 	

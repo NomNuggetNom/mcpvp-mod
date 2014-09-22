@@ -1,5 +1,7 @@
 package us.mcpvpmod.game.checks.kills;
 
+import us.mcpvpmod.Server;
+import us.mcpvpmod.game.state.StateCTF;
 import us.mcpvpmod.game.stats.StatsCTF;
 import us.mcpvpmod.gui.Medal;
 import cpw.mods.fml.common.FMLLog;
@@ -15,6 +17,11 @@ public class KillTimerCTF {
 	public static int killsInARow = 0;
 	
 	public static void check() {
+		if (Server.getServer() == Server.NONE) return;
+		if (StateCTF.getState() == StateCTF.NONE) return;
+		if (StateCTF.getState() == StateCTF.WAIT) return;
+		if (StateCTF.getState() == StateCTF.PRE) return;
+		
 		if (StatsCTF.kills == 0) {
 			lastKillTime = System.currentTimeMillis();
 			killsOld = 0;

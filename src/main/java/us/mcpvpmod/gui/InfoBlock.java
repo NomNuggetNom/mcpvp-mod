@@ -135,29 +135,6 @@ public class InfoBlock {
 				FMLLog.info("[MCPVP] Not enough lines for InfoBlock " + title);
 			}
 		}
-		
-		/*
-		ArrayList<String> info = new ArrayList<String>();
-		Scanner titleScanner = new Scanner(finalString);
-		titleScanner.useDelimiter("---");
-		while (titleScanner.hasNext()) {
-			for (String string : titleScanner.next().split(uniqueString)) {
-				// Add all strings in the block.
-				// The first will be the title.
-				System.out.println(string);
-				info.add(string);
-			}
-			System.out.println("--------------------------");
-			// Set the title and then remove it.
-			String theTitle = info.get(0);
-			info.remove(0);
-			System.out.println("info:" + info);
-			InfoBlock block = new InfoBlock(Format.process(theTitle), info, state);
-			System.out.println("--------------------------");
-			info.clear();
-		}
-		titleScanner.close();
-		*/
 	}
 	
 	/**
@@ -496,7 +473,7 @@ public class InfoBlock {
 			if (AllVars.get(var) != "") {
 				line = line.replaceAll("\\{" + var + "\\}", AllVars.get(var));
 				
-			} else if (Server.getVar(var) != null && !(Server.getVar(var).equals(""))) {		
+			} else if (Server.getVar(var) != null && !(Server.getVar(var).equals("")) && !Server.getVar(var).equals("-1")) {		
 				// Replace the occurance of the var with the actual info.
 				line = line.replaceAll("\\{" + var + "\\}", Server.getVar(var));
 				
