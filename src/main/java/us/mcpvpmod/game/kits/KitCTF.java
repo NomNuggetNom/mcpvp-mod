@@ -27,8 +27,7 @@ public class KitCTF {
 		this.chest = new ItemStack(chest);
 		this.legs  = new ItemStack(legs);
 		this.boots = new ItemStack(boots);
-		if (!kits.keySet().contains(this.name))
-		kits.put(this.name, this);
+		if (!kits.keySet().contains(this.name)) kits.put(this.name, this);
 	}
 	
 	public KitCTF(String name, ItemStack icon, Item helm, Item chest, Item legs, Item boots) {
@@ -53,8 +52,8 @@ public class KitCTF {
 	}
 	
 	public static KitCTF getKit(EntityClientPlayerMP player) {
+		
 		for (KitCTF kit : kits.values()) {
-			System.out.println("Checking for kit " + kit.name);
 			
 			Item pHelm	= player.inventory.armorInventory[3] == null ? KitsCTF.empty : player.inventory.armorInventory[3].getItem();
 			Item pChest	= player.inventory.armorInventory[2] == null ? KitsCTF.empty : player.inventory.armorInventory[2].getItem();

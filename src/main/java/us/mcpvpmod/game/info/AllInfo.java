@@ -3,7 +3,7 @@ package us.mcpvpmod.game.info;
 import net.minecraft.util.Direction;
 import net.minecraft.util.MathHelper;
 import us.mcpvpmod.Main;
-import us.mcpvpmod.ServerData;
+import us.mcpvpmod.ServerHelper;
 
 /**
  * Information that is not dependent on the current server.
@@ -64,7 +64,7 @@ public class AllInfo {
 	 * @return The number of players on the current server.
 	 */
 	public static int getPlayersOnline() {
-		if (!ServerData.isMultiplayer()) return -1;
+		if (!ServerHelper.isMultiplayer()) return -1;
 		if (Main.mc.thePlayer == null) return -1;
 		return Main.mc.thePlayer.sendQueue.playerInfoList.size();
 	}

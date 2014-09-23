@@ -4,7 +4,6 @@ import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
-import us.mcpvpmod.events.DeathHG;
 import us.mcpvpmod.events.chat.AllChat;
 import us.mcpvpmod.events.chat.ChatBuild;
 import us.mcpvpmod.events.chat.ChatCTF;
@@ -91,17 +90,17 @@ public enum Server {
 	public static Server getServer() {
 		if (Main.mc.isSingleplayer()) return NONE;
 		
-		if (ServerData.serverIP().endsWith("hub.mcpvp.com"))		return HUB;
-		if (ServerData.serverIP().endsWith("kitpvp.us"))			return KIT;
-		if (ServerData.serverIP().endsWith("mc-maze.com"))			return MAZE;
-		if (ServerData.serverIP().endsWith("mc-sabotage.com"))		return SAB;
-		if (ServerData.serverIP().endsWith("mcctf.com"))			return CTF;
-		if (ServerData.serverIP().endsWith("mcheadshot.com"))		return HS;
-		if (ServerData.serverIP().endsWith("party.mcpvp.com"))		return PARTY;
-		if (ServerData.serverIP().endsWith("minecraftbuild.com"))	return BUILD;
-		if (ServerData.serverIP().endsWith("raid.mcpvp.com"))		return RAID;
-		if (ServerData.serverIP().endsWith("v2.mc-hg.com"))			return HG2;
-		if (ServerData.serverIP().endsWith("mc-hg.com"))			return HG;
+		if (ServerHelper.serverIP().endsWith("hub.mcpvp.com"))		return HUB;
+		if (ServerHelper.serverIP().endsWith("kitpvp.us"))			return KIT;
+		if (ServerHelper.serverIP().endsWith("mc-maze.com"))			return MAZE;
+		if (ServerHelper.serverIP().endsWith("mc-sabotage.com"))		return SAB;
+		if (ServerHelper.serverIP().endsWith("mcctf.com"))			return CTF;
+		if (ServerHelper.serverIP().endsWith("mcheadshot.com"))		return HS;
+		if (ServerHelper.serverIP().endsWith("party.mcpvp.com"))		return PARTY;
+		if (ServerHelper.serverIP().endsWith("minecraftbuild.com"))	return BUILD;
+		if (ServerHelper.serverIP().endsWith("raid.mcpvp.com"))		return RAID;
+		if (ServerHelper.serverIP().endsWith("v2.mc-hg.com"))			return HG2;
+		if (ServerHelper.serverIP().endsWith("mc-hg.com"))			return HG;
 
 		return NONE;
 	}
@@ -123,9 +122,9 @@ public enum Server {
 		case BUILD:	ChatBuild.onChat(event);	return;
 		case HS: 	ChatHS.onChat(event); 		return;
 		case HUB: 	ChatHub.onChat(event); 		return;
-		case NONE: 	return;
 		case HG2:	return;
 		case PARTY:	return;
+		case NONE: 	return;
 		default:	return;
 		}
 	}
@@ -147,9 +146,9 @@ public enum Server {
 		case BUILD:	RenderBuild.onRender(event);	return;
 		case HS: 	RenderHS.onRender(event); 		return;
 		case HUB: 	RenderHub.onRender(event); 		return;
-		case NONE: 	return;
 		case HG2:	return;
 		case PARTY:	return;
+		case NONE: 	return;
 		default:	return;
 		}
 	}
@@ -171,9 +170,9 @@ public enum Server {
 		case BUILD:	TickBuild.onTick(event);	return;
 		case HS: 	TickHS.onTick(event); 		return;
 		case HUB: 	TickHub.onTick(event); 		return;
-		case NONE: 	return;
 		case HG2:	return;
 		case PARTY:	return;
+		case NONE: 	return;
 		default:	return;
 		}
 	}

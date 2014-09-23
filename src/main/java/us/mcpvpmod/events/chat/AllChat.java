@@ -23,7 +23,7 @@ public class AllChat {
 			event.message = new ChatComponentText(censorChat(event.message.getFormattedText().replaceAll("§", "\u00A7")));
 		}
 		
-				/*
+		/*
 		if (MGIEvent.isMGIEvent(message)) {
 			MGIEvent.decompile(message).handle();
 		}

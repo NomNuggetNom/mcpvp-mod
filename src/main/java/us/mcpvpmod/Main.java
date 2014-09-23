@@ -1,8 +1,14 @@
 package us.mcpvpmod;
 
+import java.util.Timer;
+
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.multiplayer.GuiConnecting;
+import net.minecraft.client.multiplayer.ServerData;
 import net.minecraftforge.common.MinecraftForge;
 import us.mcpvpmod.events.Events;
+import us.mcpvpmod.util.ServerJSON;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
@@ -23,15 +29,22 @@ public class Main {
 	public void preInit(FMLPreInitializationEvent e) {
 		FMLLog.info("[MCPVP] Mod starting up!");
     	
-    		// Register all events in the Events class
+    	// Register all events in the Events class
 		MinecraftForge.EVENT_BUS.register(new Events());
 		FMLCommonHandler.instance().bus().register(new Events());
     	
-    		// Sync all files.
+    	// Sync all files.
 		Sync.sync();
-    	}
+		
+		// Create timers.
+		Timer timer = new Timer();
+		// Update servers every 7 seconds.
+		timer.scheduleAtFixedRate(new ServerJSON(), 0, 7*1000L);
+		
+		
+    }
     	
-    	@EventHandler
+    @EventHandler
 	public void init(FMLInitializationEvent e) {
 	}
     
@@ -39,4 +52,10 @@ public class Main {
 	public void postInit(FMLPostInitializationEvent e) {
 	}
     
+	public static void connectToServer(String ip, GuiScreen gui, Minecraft mc) {
+		mc.setServer(ip, 25565);
+		mc.setServerData(new ServerData("MCPVP", ip));
+		mc.displayGuiScreen(new GuiConnecting(gui, mc, ip, 25565));
+	}
+	
 }
