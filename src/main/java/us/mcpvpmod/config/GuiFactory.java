@@ -53,6 +53,7 @@ public class GuiFactory implements IModGuiFactory {
 		private static List<IConfigElement> getConfigElements() {
 	        List<IConfigElement> list = new ArrayList<IConfigElement>();
 	        
+	        list.add(new DummyCategoryElement("CONNECT", "mcpvp.config", ConnectMCPVP.class));
 	        list.add(new DummyCategoryElement("All Servers", "mcpvp.config.mcpvp", ConfigMCPVP.class));
 	        list.add(new DummyCategoryElement(Server.CTF.toString(), "mcpvp.config.CTF", ConfigCTF.class));
 	        list.add(new DummyCategoryElement(Server.KIT.toString(), "mcpvp.config.Kit", ConfigKit.class));
