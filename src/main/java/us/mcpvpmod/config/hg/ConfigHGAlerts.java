@@ -78,13 +78,6 @@ public class ConfigHGAlerts extends DummyModContainer {
     	alertDeath = prop.getString();
     	propOrder.add(prop.getName());
     	new CustomAlert("hg.death", prop.getString());
-    	
-    	prop = config.get(CATEGORY_GENERAL, "alertEnd", "#white#Game Over! ||| #gray#Winner: {winner} ||| web");
-    	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-    	prop.setLanguageKey("mcpvp.hg.config.Alerts.end");
-    	alertKit = prop.getString();
-    	propOrder.add(prop.getName());
-    	new CustomAlert("hg.end", prop.getString());
         
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
 

@@ -1,6 +1,8 @@
 package us.mcpvpmod.events.chat;
 
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
+import us.mcpvpmod.Main;
+import us.mcpvpmod.config.hg.ConfigHGSelect;
 import us.mcpvpmod.game.core.CoreHG;
 import us.mcpvpmod.game.state.StateHG;
 import us.mcpvpmod.trackers.ChatTracker;
@@ -16,6 +18,12 @@ public class ChatHG {
 		
 		if (message.matches(CoreHG.msgWelcome)) {
 			StateHG.state = StateHG.WAIT;
+		}
+		
+		if (message.matches(CoreHG.msgChoose)) {
+			if (ConfigHGSelect.selectMode == "Select On Join") {
+				Main.mc.thePlayer.sendChatMessage("/kit " + ConfigHGSelect.selectKit);
+			}
 		}
 		
 	}

@@ -15,7 +15,8 @@ import cpw.mods.fml.common.Loader;
 
 public class ConfigHGSelect extends DummyModContainer {
 
-	public static boolean autoSab;
+	public static String selectMode;
+	public static String selectKit;
     
     public static String fileName = "mcpvp_hg_select.cfg";
     
@@ -49,9 +50,14 @@ public class ConfigHGSelect extends DummyModContainer {
         
         Property prop;
 
-    	prop = config.get(CATEGORY_GENERAL, "autoSab", false);
-        prop.setLanguageKey("mcpvp.sab.config.Select.autoSab");
-    	autoSab = prop.getBoolean();
+        prop = config.get(CATEGORY_GENERAL, "selectMode", "Select Before Start", "Comment", new String[]{"Select On Join", "Select Before Start", "Don't Select"});
+        prop.setLanguageKey("mcpvp.hg.config.Select.selectMode");
+    	selectMode = prop.getString();
+    	propOrder.add(prop.getName());
+        
+    	prop = config.get(CATEGORY_GENERAL, "selectKit", "backup");
+        prop.setLanguageKey("mcpvp.hg.config.Select.selectKit");
+    	selectKit = prop.getString();
     	propOrder.add(prop.getName());
         
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
