@@ -90,6 +90,10 @@ public class BoardHelper {
 		System.out.println(Main.mc.theWorld.getScoreboard().getObjectiveNames());
 	}
 	
+	/**
+	 * @param player The name of the player.
+	 * @return The team name of the player.
+	 */
 	public static String getTeamName(String player) {
 		if (Main.mc.theWorld == null) return "";
 		if (Main.mc.theWorld.getScoreboard() == null) return "";
@@ -99,6 +103,10 @@ public class BoardHelper {
 		return board.getPlayersTeam(player).getRegisteredName();
 	}
 	
+	/**
+	 * @param player The team color of the player.
+	 * @return The color prefix, if there is one.
+	 */
 	public static String getTeamColor(String player) {
 		if (Main.mc.theWorld == null) return "";
 		if (Main.mc.theWorld.getScoreboard() == null) return "";
