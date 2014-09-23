@@ -25,11 +25,11 @@ public class CheckTimeMaze {
 				&& StateMaze.getState().equals(StateMaze.PRE)
 				&& ConfigMazeSelect.selectMode.equals("Select Before Start")) {
 			
-			if (Vars.get("maze:i.kit").equals("")) {
+			if (Vars.get("maze:kit").equals("")) {
 				Main.mc.thePlayer.sendChatMessage("/kit " + ConfigMazeSelect.selectClass);
 			}
 			
-			if (Vars.get("maze:i.team").equals("")) {
+			if (Vars.get("maze:team").equals("")) {
 				Main.mc.thePlayer.sendChatMessage("/team " + ConfigMazeSelect.selectTeam);
 			}
 			
