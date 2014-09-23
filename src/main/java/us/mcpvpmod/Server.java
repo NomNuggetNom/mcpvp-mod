@@ -82,7 +82,6 @@ public enum Server {
 		case NONE: 	return "None";
 		}
 		return "None";
-		
 	}
 	
 	/**
