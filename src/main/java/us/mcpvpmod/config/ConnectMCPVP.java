@@ -21,15 +21,20 @@ public class ConnectMCPVP extends CategoryEntry {
     
     @Override
     protected GuiScreen buildChildScreen() {
+        return new GuiMCPVP(this.owningScreen);
+    	
+        /*
         List<IConfigElement> list = new ArrayList<IConfigElement>();
         
         list.add(new DummyCategoryElement("Connect", "mcpvp.config.mcpvp.Friends", AllFriends.class));
         
+
         return new GuiConfig(this.owningScreen,
         		list, 
         		this.owningScreen.modID, Configuration.CATEGORY_GENERAL, this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart, 
         		this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart,
         		"MCPVP Global");
+        */
     }
     
 	public static class AllFriends extends CategoryEntry {
