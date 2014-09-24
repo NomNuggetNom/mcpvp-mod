@@ -1,5 +1,8 @@
 package us.mcpvpmod;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -83,13 +86,33 @@ public enum Server {
 		return "None";
 	}
 	
+	public String baseIP() {
+		
+		switch(this) {
+		case HUB: 	return "hub.mcpvp.com";
+		case KIT: 	return "kitpvp.us";
+		case HG: 	return "mc-hg.com";
+		case MAZE: 	return "mc-maze.com";
+		case SAB: 	return "mc-sabotage.com";
+		case CTF: 	return "mcctf.com";
+		case HS: 	return "mcheadshot.com";
+		case PARTY:	return "party.mcpvp.com";
+		case BUILD:	return "minecraftbuild.com";
+		case RAID: 	return "raid.mcpvp.com";
+		case HG2: 	return "v2.mc-hg.com";
+		case NONE: 	return "None";
+		}
+		
+		return "None";
+	}
+	
 	/**
 	 * @return The Server currently connected to. 
 	 * Returns NONE if on an un-recognized server.
 	 */
 	public static Server getServer() {
 		if (Main.mc.isSingleplayer()) return NONE;
-		
+		//System.out.println(ServerHelper.serverIP());
 		if (ServerHelper.serverIP().endsWith("hub.mcpvp.com"))		return HUB;
 		if (ServerHelper.serverIP().endsWith("kitpvp.us"))			return KIT;
 		if (ServerHelper.serverIP().endsWith("mc-maze.com"))			return MAZE;
@@ -291,5 +314,9 @@ public enum Server {
 	public void drawOnScreen() {
 		Draw.string(this.toString(), 0, 0, 0xFFFFFF, true);
 		Draw.string(getState().toString(), 0, 9, 0xFFFFFF, true);
+	}
+	
+	public static ArrayList<Server> allServers() {
+		return new ArrayList<Server>(Arrays.asList(HUB, KIT, HG, MAZE, SAB, CTF, HS, PARTY, BUILD, RAID, HG2));
 	}
 }

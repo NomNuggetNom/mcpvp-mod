@@ -1,7 +1,11 @@
 package us.mcpvpmod.events.chat;
 
+import cpw.mods.fml.common.FMLLog;
+import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.util.ChatComponentText;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
+import us.mcpvpmod.Main;
+import us.mcpvpmod.ServerHelper;
 import us.mcpvpmod.config.ctf.ConfigCTFChat;
 import us.mcpvpmod.config.mcpvp.ConfigChat;
 import us.mcpvpmod.mgi.MGIEvent;
@@ -11,6 +15,10 @@ import us.mcpvpmod.triggers.ChatTrigger;
  * Chat handling for all servers.
  */ 
 public class AllChat {
+	
+	public static String msgLogged = "Now Logged in!";
+	public static String reIP = "Server Address: (.*)";
+	public static boolean getIP = false;
 
 	public static void handleChat(ClientChatReceivedEvent event) {
 		String message = event.message.getUnformattedText();
@@ -20,7 +28,22 @@ public class AllChat {
 			event.setCanceled(true);
 		} else {
 			// Censor chat.
-			event.message = new ChatComponentText(censorChat(event.message.getFormattedText().replaceAll("ยง", "\u00A7")));
+			event.message = new ChatComponentText(censorChat(event.message.getFormattedText().replaceAll("ง", "\u00A7")));
+		}
+		
+		//FMLLog.info("message: \"%s\"", message);
+		if (message.equals(msgLogged)) {
+			System.out.println("Logged in.");
+			Main.mc.thePlayer.sendChatMessage("/ip");
+			getIP = true;
+		}
+		
+		if (message.matches(reIP) && getIP) {
+			System.out.println("Set IP.");
+			//Main.mc.setServerData(new ServerData("MCPVP", message.replaceAll(reIP, "$1")));
+			ServerHelper.currentIP = message.replaceAll(reIP, "$1");
+			getIP = false;
+			event.setCanceled(true);
 		}
 		
 		/*
