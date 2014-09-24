@@ -27,20 +27,6 @@ public class ChatTrigger {
 	 * An alert that is triggered when a message is received.
 	 * @param message The message to look for.
 	 * @param alertID The ID of the alert to trigger, specified in the relevant config class.
-	 */
-	public ChatTrigger(String message, String alertID, Server server) {
-		this.pattern = message;
-		this.alertID = alertID;
-		this.server  = server;
-		this.replace = null;
-		this.varName = null;
-		triggers.add(this);
-	}
-	
-	/**
-	 * An alert that is triggered when a message is received.
-	 * @param message The message to look for.
-	 * @param alertID The ID of the alert to trigger, specified in the relevant config class.
 	 * @param regex Pair of a position in the regular expression to match, and the variable name to assign the value.
 	 */
 	public ChatTrigger(String message, String alertID, Server server, String[] regex) {

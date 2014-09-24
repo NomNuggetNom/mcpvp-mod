@@ -9,6 +9,7 @@ import net.minecraft.client.gui.GuiScreen;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.config.build.ConfigBuild;
 import us.mcpvpmod.config.ctf.ConfigCTF;
+import us.mcpvpmod.config.hg.ConfigHG;
 import us.mcpvpmod.config.kit.ConfigKit;
 import us.mcpvpmod.config.maze.ConfigMaze;
 import us.mcpvpmod.config.mcpvp.ConfigMCPVP;
@@ -52,12 +53,14 @@ public class GuiFactory implements IModGuiFactory {
 		private static List<IConfigElement> getConfigElements() {
 	        List<IConfigElement> list = new ArrayList<IConfigElement>();
 	        
+	        list.add(new DummyCategoryElement("CONNECT", "mcpvp.config", ConnectMCPVP.class));
 	        list.add(new DummyCategoryElement("All Servers", "mcpvp.config.mcpvp", ConfigMCPVP.class));
 	        list.add(new DummyCategoryElement(Server.CTF.toString(), "mcpvp.config.CTF", ConfigCTF.class));
 	        list.add(new DummyCategoryElement(Server.KIT.toString(), "mcpvp.config.Kit", ConfigKit.class));
 	        list.add(new DummyCategoryElement(Server.MAZE.toString(), "mcpvp.config.Maze", ConfigMaze.class));
 	        list.add(new DummyCategoryElement(Server.BUILD.toString(), "mcpvp.config.Build", ConfigBuild.class));
 	        list.add(new DummyCategoryElement(Server.SAB.toString(), "mcpvp.config.Sab", ConfigSab.class));
+	        list.add(new DummyCategoryElement(Server.HG.toString(), "mcpvp.config.HG", ConfigHG.class));
 	        
 	        return list;
 		}

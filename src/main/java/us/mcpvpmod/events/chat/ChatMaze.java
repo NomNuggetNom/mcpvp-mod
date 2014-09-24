@@ -20,12 +20,12 @@ public class ChatMaze {
 				&& ConfigMazeSelect.selectMode.equals("Select On Join")) {
 
 			// Select kit
-			if (Vars.get("maze:i.kit").equals("")) {
+			if (Vars.get("maze:kit").equals("")) {
 				Main.mc.thePlayer.sendChatMessage("/kit " + ConfigMazeSelect.selectClass);
 			}
 			
 			// Select team
-			if (Vars.get("maze:i.team").equals("")) {
+			if (Vars.get("maze:team").equals("")) {
 				Main.mc.thePlayer.sendChatMessage("/team " + ConfigMazeSelect.selectTeam);
 			}
 			

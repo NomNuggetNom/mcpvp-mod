@@ -13,8 +13,8 @@ public class AllKits {
 	 */ 
 	public static ItemStack getIcon(String kitName) {
 		switch (Server.getServer()) {
-		case HG: 	break;
-		case CTF: 	return KitsCTF.getClass(kitName).getIcon();
+		case HG: 	return KitHG.getKit(kitName).getIcon();
+		case CTF: 	return KitCTF.getKit(kitName).getIcon();
 		case RAID: 	break;
 		case KIT: 	break;
 		case MAZE: 	return KitsMaze.getClass(kitName).getIcon();

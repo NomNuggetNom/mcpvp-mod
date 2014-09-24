@@ -1,5 +1,8 @@
 package us.mcpvpmod;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -45,6 +48,7 @@ import us.mcpvpmod.game.state.StateSab;
 import us.mcpvpmod.game.vars.AllVars;
 import us.mcpvpmod.game.vars.VarsBuild;
 import us.mcpvpmod.game.vars.VarsCTF;
+import us.mcpvpmod.game.vars.VarsHG;
 import us.mcpvpmod.game.vars.VarsKit;
 import us.mcpvpmod.game.vars.VarsMaze;
 import us.mcpvpmod.game.vars.VarsSab;
@@ -82,24 +86,44 @@ public enum Server {
 		return "None";
 	}
 	
+	public String baseIP() {
+		
+		switch(this) {
+		case HUB: 	return "hub.mcpvp.com";
+		case KIT: 	return "kitpvp.us";
+		case HG: 	return "mc-hg.com";
+		case MAZE: 	return "mc-maze.com";
+		case SAB: 	return "mc-sabotage.com";
+		case CTF: 	return "mcctf.com";
+		case HS: 	return "mcheadshot.com";
+		case PARTY:	return "party.mcpvp.com";
+		case BUILD:	return "minecraftbuild.com";
+		case RAID: 	return "raid.mcpvp.com";
+		case HG2: 	return "v2.mc-hg.com";
+		case NONE: 	return "None";
+		}
+		
+		return "None";
+	}
+	
 	/**
 	 * @return The Server currently connected to. 
 	 * Returns NONE if on an un-recognized server.
 	 */
 	public static Server getServer() {
 		if (Main.mc.isSingleplayer()) return NONE;
-		
-		if (ServerData.serverIP().endsWith("hub.mcpvp.com"))		return HUB;
-		if (ServerData.serverIP().endsWith("kitpvp.us"))			return KIT;
-		if (ServerData.serverIP().endsWith("mc-maze.com"))			return MAZE;
-		if (ServerData.serverIP().endsWith("mc-sabotage.com"))		return SAB;
-		if (ServerData.serverIP().endsWith("mcctf.com"))			return CTF;
-		if (ServerData.serverIP().endsWith("mcheadshot.com"))		return HS;
-		if (ServerData.serverIP().endsWith("party.mcpvp.com"))		return PARTY;
-		if (ServerData.serverIP().endsWith("minecraftbuild.com"))	return BUILD;
-		if (ServerData.serverIP().endsWith("raid.mcpvp.com"))		return RAID;
-		if (ServerData.serverIP().endsWith("v2.mc-hg.com"))			return HG2;
-		if (ServerData.serverIP().endsWith("mc-hg.com"))			return HG;
+		//System.out.println(ServerHelper.serverIP());
+		if (ServerHelper.serverIP().endsWith("hub.mcpvp.com"))		return HUB;
+		if (ServerHelper.serverIP().endsWith("kitpvp.us"))			return KIT;
+		if (ServerHelper.serverIP().endsWith("mc-maze.com"))			return MAZE;
+		if (ServerHelper.serverIP().endsWith("mc-sabotage.com"))		return SAB;
+		if (ServerHelper.serverIP().endsWith("mcctf.com"))			return CTF;
+		if (ServerHelper.serverIP().endsWith("mcheadshot.com"))		return HS;
+		if (ServerHelper.serverIP().endsWith("party.mcpvp.com"))		return PARTY;
+		if (ServerHelper.serverIP().endsWith("minecraftbuild.com"))	return BUILD;
+		if (ServerHelper.serverIP().endsWith("raid.mcpvp.com"))		return RAID;
+		if (ServerHelper.serverIP().endsWith("v2.mc-hg.com"))			return HG2;
+		if (ServerHelper.serverIP().endsWith("mc-hg.com"))			return HG;
 
 		return NONE;
 	}
@@ -121,9 +145,9 @@ public enum Server {
 		case BUILD:	ChatBuild.onChat(event);	return;
 		case HS: 	ChatHS.onChat(event); 		return;
 		case HUB: 	ChatHub.onChat(event); 		return;
-		case NONE: 	return;
 		case HG2:	return;
 		case PARTY:	return;
+		case NONE: 	return;
 		default:	return;
 		}
 	}
@@ -145,9 +169,9 @@ public enum Server {
 		case BUILD:	RenderBuild.onRender(event);	return;
 		case HS: 	RenderHS.onRender(event); 		return;
 		case HUB: 	RenderHub.onRender(event); 		return;
-		case NONE: 	return;
 		case HG2:	return;
 		case PARTY:	return;
+		case NONE: 	return;
 		default:	return;
 		}
 	}
@@ -169,9 +193,9 @@ public enum Server {
 		case BUILD:	TickBuild.onTick(event);	return;
 		case HS: 	TickHS.onTick(event); 		return;
 		case HUB: 	TickHub.onTick(event); 		return;
-		case NONE: 	return;
 		case HG2:	return;
 		case PARTY:	return;
+		case NONE: 	return;
 		default:	return;
 		}
 	}
@@ -204,19 +228,19 @@ public enum Server {
 	 */
 	public void onDeath(LivingDeathEvent event) {
 		switch (this) {
-		case HG: 	break;
-		case CTF: 	AssistTrackerCTF.onDeath(event); break;
-		case RAID: 	break;
-		case KIT: 	break;
-		case MAZE: 	break;
-		case SAB: 	break;
-		case BUILD:	break;
-		case HS: 	break;
-		case HUB: 	break;
-		case NONE: 	break;
-		case HG2:	break;
-		case PARTY:	break;
-		default:	break;
+		case HG: 	/*DeathHG.onDeath(event); */ return;
+		case CTF: 	AssistTrackerCTF.onDeath(event); return;
+		case RAID: 	return;
+		case KIT: 	return;
+		case MAZE: 	return;
+		case SAB: 	return;
+		case BUILD:	return;
+		case HS: 	return;
+		case HUB: 	return;
+		case NONE: 	return;
+		case HG2:	return;
+		case PARTY:	return;
+		default:	return;
 		}
 	}
 	
@@ -229,7 +253,7 @@ public enum Server {
 		if (!AllVars.get(var).equals("")) return (AllVars.get(var));
 		
 		switch (getServer()) {
-		case HG: 	break;
+		case HG: 	return VarsHG.get(var);
 		case CTF: 	return VarsCTF.get(var);
 		case RAID: 	break;
 		case KIT: 	return VarsKit.get(var);
@@ -290,5 +314,9 @@ public enum Server {
 	public void drawOnScreen() {
 		Draw.string(this.toString(), 0, 0, 0xFFFFFF, true);
 		Draw.string(getState().toString(), 0, 9, 0xFFFFFF, true);
+	}
+	
+	public static ArrayList<Server> allServers() {
+		return new ArrayList<Server>(Arrays.asList(HUB, KIT, HG, MAZE, SAB, CTF, HS, PARTY, BUILD, RAID, HG2));
 	}
 }

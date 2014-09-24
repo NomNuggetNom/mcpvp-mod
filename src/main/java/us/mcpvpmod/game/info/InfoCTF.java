@@ -28,20 +28,8 @@ public class InfoCTF {
 		currentMap = "Unknown";
 	}
 	
-	/*
-	 * Team Info
-	 */
-	public static String blueCaps = "";
-	public static String blueFlag = "";
-	public static String bluePlayers = "";
-	public static String redCaps = "";
-	public static String redFlag = "";
-	public static String redPlayers = "";
-	public static String maxCaps = "";
-	public static String gameWinner = "";
-	
 	/**
-	 * Gets the time as an integer. E.g. 5:00 left would be 500.
+	 * @return The time as an integer. E.g. 5:00 left would be 500.
 	 */	
 	public static int getTime() {
 		String boardTitle = BoardHelper.getBoardTitle();
@@ -52,6 +40,9 @@ public class InfoCTF {
 		return -1;
 	}
 	
+	/**
+	 * @return The time, E.g. 5:00.
+	 */
 	public static String getFormattedTime() {
 		String boardTitle = BoardHelper.getBoardTitle();
 		if (StateCTF.getState().equals(StateCTF.WAIT)) {
@@ -128,14 +119,6 @@ public class InfoCTF {
 	
 	public static int getPing() {
 		return (int) Main.mc.func_147104_D().pingToServer;
-	}
-	
-	public static String getWinner() {
-		if (StateCTF.getState().equals(StateCTF.POST)) {
-			return InfoCTF.gameWinner;
-		} else {
-			return "Nobody!";
-		}
 	}
 	
 	public static String getMap() {

@@ -100,4 +100,8 @@ public class Draw {
 		new RenderItem().renderItemOverlayIntoGUI(Main.mc.fontRenderer, Main.mc.getTextureManager(), itemStack, x, y);
 		RenderHelper.disableStandardItemLighting();
 	}
+	
+	public static void centeredString(String string, int x, int y, int color, boolean shadow) {
+		
+	}
 }
