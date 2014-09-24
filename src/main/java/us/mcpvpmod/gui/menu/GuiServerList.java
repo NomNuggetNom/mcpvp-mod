@@ -3,106 +3,70 @@ package us.mcpvpmod.gui.menu;
 import java.util.ArrayList;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.Tessellator;
+import us.mcpvpmod.MCPVPServer;
 import us.mcpvpmod.Main;
-import cpw.mods.fml.client.GuiModList;
+import us.mcpvpmod.gui.Format;
 import cpw.mods.fml.client.GuiScrollingList;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.LoaderState.ModState;
+import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.ModContainer;
 
 public class GuiServerList extends GuiScrollingList {
 	
 	private GuiMCPVP parent;
-	private ArrayList<String> entries;
+    public static ArrayList<MCPVPServer> servers;
 	
-	public GuiServerList(Minecraft client, int width, int height, int top,
-			int bottom, int left, int entryHeight, GuiMCPVP parent, ArrayList<String> entries) {
-		super(client, width, height, top, bottom, left, entryHeight);
-		this.parent = parent;
-		this.entries = entries;
-	}
+    public GuiServerList(GuiMCPVP parent, ArrayList<MCPVPServer> servers, int listWidth)
+    {
+        super(Main.mc.getMinecraft(), 690, parent.height, 32, parent.height - 66 + 4, 250, 35);
+        this.parent = parent;
+        this.servers = servers;
+    }
 
-
-	
 	@Override
 	protected int getSize() {
-		return 10;
+		return servers.size();
 	}
-
+	
 	@Override
-	protected void elementClicked(int var1, boolean var2) {
-		this.parent.serverSelected = true;
-	}
+	protected void elementClicked(int index, boolean doubleClick) {
+		if (doubleClick) {
+			Main.connectToServer(parent.serverList.servers.get(index).Server, (GuiScreen)parent, Main.mc);
+		} else {
+			this.parent.selectServer(index);
+		}
 
+	}
+	
 	@Override
-	protected boolean isSelected(int var1) {
-		return false;
+	protected boolean isSelected(int index) {
+		return this.parent.isServerSelected(index);
 	}
-
+	
 	@Override
 	protected void drawBackground() {
 		this.parent.drawDefaultBackground();
 	}
-
+	
 	@Override
-	protected int getContentHeight() {
-		return (this.getSize()) * 35 + 1;
-	}
-
-	@Override
-	protected void drawSlot(int listIndex, int var2, int var3, int var4, Tessellator var5) {
+	protected void drawSlot(int i, int var2, int var3, int var4,Tessellator var5) {
 		
-		Main.mc.fontRenderer.drawString(
-				Main.mc.fontRenderer.trimStringToWidth(entries.get(listIndex), listWidth - 10), 
-				this.left + 3, 
-				var3 + 2, 0xFF2222);
+		MCPVPServer server = servers.get(i);
+		String ip = server.Server;
+		String motd = server.MOTD.replaceAll("Â", "");
+		int players = server.Players;
 		
-		/*
-		Main.mc.fontRenderer.drawString(
-				Main.mc.fontRenderer.trimStringToWidth("Just testing an entry.", listWidth - 10), 
-				this.left + 3, 
-				var3 + 2, 0xFF2222);
-				*/
+		String append = "#white#";
+		if (!servers.get(i).IsAcceptingPlayers) append += "#gray#";
 		
-		/*
-		ModContainer mc = mods.get(listIndex);
-		
-		if (Loader.instance().getModState(mc) == ModState.DISABLED) {
-			
-			Main.mc.fontRenderer.drawString(
-					Main.mc.fontRenderer.trimStringToWidth(mc.getName(), listWidth - 10), 
-					this.left + 3, 
-					var3 + 2, 0xFF2222);
-			
-			Main.mc.fontRenderer.drawString(
-					Main.mc.fontRenderer.trimStringToWidth(mc.getDisplayVersion(), listWidth - 10),
-					this.left + 3, 
-					var3 + 12, 0xFF2222);
-			
-			Main.mc.fontRenderer.drawString(
-					Main.mc.fontRenderer.trimStringToWidth("DISABLED", listWidth - 10), 
-					this.left + 3,
-					var3 + 22, 0xFF2222);
-		} else {
-			
-			Main.mc.fontRenderer.drawString(
-					Main.mc.fontRenderer.trimStringToWidth(
-							mc.getName(), listWidth - 10), this.left + 3,
-					var3 + 2, 0xFFFFFF);
-			Main.mc.fontRenderer.drawString(
-					Main.mc.fontRenderer.trimStringToWidth(
-							mc.getDisplayVersion(), listWidth - 10),
-					this.left + 3, var3 + 12, 0xCCCCCC);
-			Main.mc.fontRenderer.drawString(
-					Main.mc.fontRenderer.trimStringToWidth(
-							mc.getMetadata() != null ? mc.getMetadata()
-									.getChildModCountString()
-									: "Metadata not found", listWidth - 10),
-					this.left + 3, var3 + 22, 0xCCCCCC);
-
-		}
-			*/
+		 Main.mc.fontRenderer.drawString(
+				 Main.mc.fontRenderer.trimStringToWidth(Format.process(append + "[" + server.Players + "/" + server.MaxPlayers + "] "+ ip), listWidth - 10), 
+				 this.left + 3, var3 + 2, 0xF);
+		 
+		 Main.mc.fontRenderer.drawString(
+				 Main.mc.fontRenderer.trimStringToWidth(Format.process("#gray#") + motd, listWidth - 10), 
+				 this.left + 3, var3 + 12, 0xF);
 	}
 
 }

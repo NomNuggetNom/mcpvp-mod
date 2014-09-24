@@ -1,81 +1,105 @@
 package us.mcpvpmod.gui.menu;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.GuiYesNoCallback;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.EnumChatFormatting;
 
 import org.lwjgl.input.Keyboard;
 
-import cpw.mods.fml.client.GuiSlotModList;
-import scala.actors.threadpool.Arrays;
+import us.mcpvpmod.MCPVPServer;
 import us.mcpvpmod.Main;
-import us.mcpvpmod.gui.Format;
+import us.mcpvpmod.Server;
 
-public class GuiMCPVP extends GuiScreen implements GuiYesNoCallback {
+public class GuiMCPVP extends GuiScreen {
 
-	private GuiScreen mainmenu;
-	GuiButton regionButton = null;
-	GuiServerList serverList = null;
-	public static ArrayList<String> entries = new ArrayList<String>(Arrays.asList(new String[]{"A", "B"}));
-	
+	public GuiScreen mainMenu;
+    public GuiServerList serverList;
+
+	public static HashMap<Integer, String> serverTypes = new HashMap<Integer, String>();
 	public static boolean serverSelected;
+	public int selected = -1;
+	public static String serverType = "mc-hg.com";
+	public static String serverRegion = "us";
+	
+	public GuiButton connectButton = new GuiButton(100, 25, 375, "Connect");
+	public GuiButton regionButton = new GuiButton(98, 25, 400, 95, 20, "Region: US");
+	public GuiButton refreshButton = new GuiButton(101, 130, 400, 95, 20, "Refresh");
+	public GuiButton cancelButton = new GuiButton(99, 25, 425, "Cancel");
 
-	public GuiMCPVP(GuiScreen mainmenu) {
-		this.mainmenu = mainmenu;
+	public GuiMCPVP(GuiScreen mainMenu) {
+		this.mainMenu = mainMenu;
 		initGui();
 	}
 
 	public void initGui() {
 		Keyboard.enableRepeatEvents(true);
-        this.serverList = new GuiServerList(Main.mc, 690, this.height, 25, this.height-100, 250, 0, this, entries);
 		initGuiButtons();
-		
+        //this.serverList = new GuiServerList(Main.mc, 690, this.height, 25, this.height-100, 0, 0);
+		this.serverList = new GuiServerList(this, MCPVPServer.getSortedOfType(serverType, serverRegion), 100);
+        this.serverList.registerScrollButtons(this.buttonList, 7, 8);
+
 	}
 
 	public void initGuiButtons() {
 
 		// GuiButton(int ID, x, y, w, h, text);
-		
-		//this.buttonList.add(new GuiButton(0, width/2-125, 30, 80, 20, I18n.format("Forums")));
-		//this.buttonList.add(new GuiButton(1, width/2-40, 30, 80, 20, I18n.format("Twitter")));
-		//this.buttonList.add(new GuiButton(2, width/2+45, 30, 80, 20, I18n.format("Facebook")));
-		
+
 		int y = 40;
+		int id = 1;
 		
-		this.buttonList.add(new GuiButton(3,  25, y, "Hardcore Games"));
-		y += 25;
-		this.buttonList.add(new GuiButton(4,  25, y, "Capture the Flag"));
-		y += 25;
-		this.buttonList.add(new GuiButton(5,  25, y, "Raid US"));
-		y += 25;
-		this.buttonList.add(new GuiButton(6,  25, y, "Maze Runner"));
-		y += 25;
-		this.buttonList.add(new GuiButton(7,  25, y, "Raid EU"));
-		y += 25;
-		this.buttonList.add(new GuiButton(8,  25, y, "Headshot"));
-		y += 25;
-		this.buttonList.add(new GuiButton(9,  25, y, "KitPvP"));
-		y += 25;
-		this.buttonList.add(new GuiButton(10, 25, y, "Minecraft Build"));
-		y += 25;
-		this.buttonList.add(new GuiButton(11, 25, y, "Sabotage"));
-
-		this.buttonList.add(new GuiButton(12, 25, height-30, "Hub"));
+		for (Server server : Server.allServers()) {
+			this.buttonList.add(new GuiButton(id, 25, y, server.toString()));
+			serverTypes.put(id, server.baseIP());
+			y+= 25;
+			id++;
+		}
 		
-		regionButton = new GuiButton(13, width-110, height-30, 70, 20, "Region");
 		this.buttonList.add(regionButton);
-		
-		this.buttonList.add(new GuiButton(14, 40, height-30, 70, 20, I18n.format("gui.cancel")));
-
-
+		this.buttonList.add(cancelButton);
+		this.buttonList.add(refreshButton);
+		this.buttonList.add(connectButton);
 	}
 
+	@Override
 	protected void actionPerformed(GuiButton button) {
-		if (button.id == 14) this.mc.displayGuiScreen(mainmenu);
+		
+		if (serverTypes.containsKey(button.id)) {
+			this.serverType = serverTypes.get(button.id);
+
+			for (Object guiButton : this.buttonList) {
+				((GuiButton)guiButton).enabled = true;
+			}
+			((GuiButton)this.buttonList.get(button.id-1)).enabled = false;
+		}
+
+		if (button.id == 98) {
+			if (regionButton.displayString == "Region: US") {
+				regionButton.displayString = "Region: EU";
+				serverRegion = "eu";
+			} else if (regionButton.displayString == "Region: EU") {
+				regionButton.displayString = "Region: BR";
+				serverRegion = "br";
+			} else if (regionButton.displayString == "Region: BR") {
+				regionButton.displayString = "Region: US";
+				serverRegion = "us";
+			}
+		}
+		this.serverList = new GuiServerList(this, MCPVPServer.getSortedOfType(serverType, serverRegion), 100);
+		
+		if (button.id == 99) this.mc.displayGuiScreen(mainMenu);
+		if (button.id == 100) {
+			Main.connectToServer(this.serverList.servers.get(selected).Server, (GuiScreen)this, Main.mc);
+		}
+		
+		if (button.id == 101) {
+			Main.serverJson.run();
+			new GuiServerList(this, MCPVPServer.getSortedOfType(serverType, serverRegion), 100);
+		}
 		/*
 		if (button.id <= 2) {
 			String urlStr = "";
@@ -95,31 +119,33 @@ public class GuiMCPVP extends GuiScreen implements GuiYesNoCallback {
 				ex.printStackTrace();
 			}
 		}
-		else if (button.id == 3) this.mc.displayGuiScreen(new GuiMCHG(this.mainmenu));
-		else if (button.id == 4) this.mc.displayGuiScreen(new GuiMCCTF(this.mainmenu));
-		else if (button.id == 5) Main.connectToServer("raid.us.mcpvp.com", this, this.mc);
-		else if (button.id == 6) Main.connectToServer(MCPVP.region+".mc-maze.com", this, this.mc);
-		else if (button.id == 7) Main.connectToServer("raid.eu.mcpvp.com", this, this.mc);
-		else if (button.id == 8) Main.connectToServer(MCPVP.region+".mcheadshot.com", this, this.mc);
-		else if (button.id == 9) Main.connectToServer(MCPVP.region+".kitpvp.us", this, this.mc);
-		else if (button.id == 10) Main.connectToServer(MCPVP.region+".minecraftbuild.com", this, this.mc);
-		else if (button.id == 11) Main.connectToServer(MCPVP.region+".mc-sabotage.com", this, this.mc);
-		else if (button.id == 12) Main.connectToServer(MCPVP.region+".mcpvp.com", this, this.mc);
-		else if (button.id == 13) {
-			MCPVP.changeRegion();
-			regionButton.displayString = I18n.format(MCPVP.getRegionString());
-		}
-		else if (button.id == 14) this.mc.displayGuiScreen(mainmenu);
-		else if (button.id == 15) this.mc.displayGuiScreen(new GuiMCPVPOptions(this, this.mc));
 		*/
 	}
-
+	
+	@Override
 	public void drawScreen(int p_73863_1_, int p_73863_2_, float p_73863_3_) {
+		connectButton.enabled = this.selected != -1;
+
 		this.drawDefaultBackground();
 		this.drawCenteredString(this.fontRendererObj, EnumChatFormatting.GREEN + "MCPVP Servers", this.width / 2, 15, 16777215);
 		this.serverList.drawScreen(p_73863_1_, p_73863_2_, p_73863_3_);
 		super.drawScreen(p_73863_1_, p_73863_2_, p_73863_3_);
+	}
+	
+    /**
+     * Draws either a gradient over the background screen (when it exists) or a flat gradient over background.png
+     */
+    public void drawDefaultBackground()
+    {
+        this.drawWorldBackground(0);
+    }
 
+    public void selectServer(int index) {
+    	if (!serverList.servers.get(index).MOTD.contains("Server Offline :'(")) this.selected = index;
+    }
+    
+	public boolean isServerSelected(int index) {
+		return selected == index;
 	}
 
 }

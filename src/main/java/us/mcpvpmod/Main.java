@@ -24,6 +24,7 @@ public class Main {
 	@Instance
 	public static Main instance = new Main();
 	public static Minecraft mc = Minecraft.getMinecraft();
+	public static ServerJSON serverJson = new ServerJSON();
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent e) {
@@ -39,8 +40,7 @@ public class Main {
 		// Create timers.
 		Timer timer = new Timer();
 		// Update servers every 7 seconds.
-		timer.scheduleAtFixedRate(new ServerJSON(), 0, 7*1000L);
-		
+		timer.scheduleAtFixedRate(serverJson, 0, 5*1000L);
 		
     }
     	

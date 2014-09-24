@@ -28,7 +28,7 @@ public class Format {
 				// The second line replace will finish replacing the code.
 				line = line.replaceAll("#" + colorCode + "#", "\u00A7" + formatCodes.get(colorCode));
 			} else {
-				FMLLog.warning("[MCCTF] Color code \"" + colorCode + "\" not found.");
+				FMLLog.warning("[MCPVP] Color code \"%s\" not found.", colorCode);
 			}
 		}
 		return line;
