@@ -52,10 +52,6 @@ public class Main {
 	public void postInit(FMLPostInitializationEvent e) {
 	}
     
-	public static void connectToServer(String ip, GuiScreen gui, Minecraft mc) {
-		mc.setServer(ip, 25565);
-		mc.setServerData(new ServerData("MCPVP", ip));
-		mc.displayGuiScreen(new GuiConnecting(gui, mc, ip, 25565));
-	}
+
 	
 }

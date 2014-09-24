@@ -32,7 +32,7 @@ public class GuiServerList extends GuiScrollingList {
 	@Override
 	protected void elementClicked(int index, boolean doubleClick) {
 		if (doubleClick) {
-			Main.connectToServer(parent.serverList.servers.get(index).Server, (GuiScreen)parent, Main.mc);
+			MCPVPServer.connect(parent.serverList.servers.get(index));
 		} else {
 			this.parent.selectServer(index);
 		}

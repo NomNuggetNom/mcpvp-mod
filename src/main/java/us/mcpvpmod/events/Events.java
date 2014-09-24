@@ -1,6 +1,7 @@
 package us.mcpvpmod.events;
 
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
+import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -8,6 +9,7 @@ import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.Sync;
+import us.mcpvpmod.gui.menu.GuiEvent;
 import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
@@ -62,5 +64,10 @@ public class Events {
 	@SubscribeEvent
 	public void onConnect(ClientConnectedToServerEvent event) {
 		HandleConnect.onConnect(event);
+	}
+	
+	@SubscribeEvent
+	public void onOpen(GuiOpenEvent event) {
+		GuiEvent.onOpen(event);
 	}
 }

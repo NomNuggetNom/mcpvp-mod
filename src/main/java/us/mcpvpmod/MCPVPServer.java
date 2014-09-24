@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import cpw.mods.fml.client.FMLClientHandler;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.multiplayer.GuiConnecting;
+import net.minecraft.client.multiplayer.ServerData;
+
 public class MCPVPServer {
 
 	public static ArrayList<MCPVPServer> servers = new ArrayList<MCPVPServer>();
@@ -120,4 +126,16 @@ public class MCPVPServer {
 		return null;
 	}
 	
+	public static void connect(String ip, GuiScreen gui, Minecraft mc) {
+		mc.setServer(ip, 25565);
+		mc.setServerData(new ServerData("MCPVP", ip));
+		mc.displayGuiScreen(new GuiConnecting(gui, mc, ip, 25565));
+	}
+	
+	public static void connect(MCPVPServer server) {
+		FMLClientHandler.instance().connectToServer(Main.mc.currentScreen, new ServerData(server.MOTD, server.Server));
+		//Main.mc.setServer(server.Server, 25565);
+		//Main.mc.setServerData(new ServerData(server.MOTD, server.Server));
+		//Main.mc.displayGuiScreen(new GuiConnecting(Main.mc.currentScreen, Main.mc, server.Server, 25565));
+	}
 }
