@@ -1,4 +1,4 @@
-package us.mcpvpmod.config.mcpvp;
+package us.mcpvpmod.config.all;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,9 +12,9 @@ import cpw.mods.fml.client.config.GuiConfigEntries;
 import cpw.mods.fml.client.config.GuiConfigEntries.CategoryEntry;
 import cpw.mods.fml.client.config.IConfigElement;
 
-public class ConfigMCPVP extends CategoryEntry {
+public class ConfigAll extends CategoryEntry {
 	
-    public ConfigMCPVP(GuiConfig owningScreen, GuiConfigEntries owningEntryList, IConfigElement prop) {
+    public ConfigAll(GuiConfig owningScreen, GuiConfigEntries owningEntryList, IConfigElement prop) {
         super(owningScreen, owningEntryList, prop);
     }
     

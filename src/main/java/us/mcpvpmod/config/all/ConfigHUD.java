@@ -1,4 +1,4 @@
-package us.mcpvpmod.config.mcpvp;
+package us.mcpvpmod.config.all;
 
 import static net.minecraftforge.common.config.Configuration.CATEGORY_GENERAL;
 
@@ -13,13 +13,6 @@ import cpw.mods.fml.common.Loader;
 
 public class ConfigHUD extends DummyModContainer {
 
-	public static String[] renderPre = new String[1000];
-	public static String[] renderPlay = new String[1000];
-	public static String[] renderPost = new String[1000];
-	public static boolean renderDebug = false;
-	public static String[] yourStats = new String[1000];
-	public static String[] gameInfo = new String[1000];
-	public static boolean customTextures = false;
 	public static boolean renderBG = true;
 	public static int margin = 3;
 	public static boolean centerTitles = true;
@@ -82,11 +75,6 @@ public class ConfigHUD extends DummyModContainer {
     	prop = config.get(CATEGORY_GENERAL, "alignHeights", true);
         prop.setLanguageKey("mcpvp.config.HUD.alignHeights");
     	alignHeights = prop.getBoolean();
-    	propOrder.add(prop.getName());
-    	
-    	prop = config.get(CATEGORY_GENERAL, "renderDebug", false);
-        prop.setLanguageKey("mcpvp.config.HUD.renderDebug");
-    	renderDebug = prop.getBoolean();
     	propOrder.add(prop.getName());
         
     	prop = config.get(CATEGORY_GENERAL, "medalTimer", 7, "The number of seconds to display a medal for.", 1, 1000);

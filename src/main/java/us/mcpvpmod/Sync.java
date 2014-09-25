@@ -1,5 +1,8 @@
 package us.mcpvpmod;
 
+import us.mcpvpmod.config.all.ConfigChat;
+import us.mcpvpmod.config.all.ConfigFriends;
+import us.mcpvpmod.config.all.ConfigHUD;
 import us.mcpvpmod.config.build.ConfigBuildHUD;
 import us.mcpvpmod.config.ctf.ConfigCTFAlerts;
 import us.mcpvpmod.config.ctf.ConfigCTFChat;
@@ -16,9 +19,6 @@ import us.mcpvpmod.config.maze.ConfigMazeAlerts;
 import us.mcpvpmod.config.maze.ConfigMazeHUD;
 import us.mcpvpmod.config.maze.ConfigMazeSelect;
 import us.mcpvpmod.config.maze.ConfigMazeSounds;
-import us.mcpvpmod.config.mcpvp.ConfigChat;
-import us.mcpvpmod.config.mcpvp.ConfigFriends;
-import us.mcpvpmod.config.mcpvp.ConfigHUD;
 import us.mcpvpmod.config.sab.ConfigSabAlerts;
 import us.mcpvpmod.config.sab.ConfigSabHUD;
 import us.mcpvpmod.config.sab.ConfigSabSelect;

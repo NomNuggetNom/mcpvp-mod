@@ -6,8 +6,8 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.ServerHelper;
+import us.mcpvpmod.config.all.ConfigChat;
 import us.mcpvpmod.config.ctf.ConfigCTFChat;
-import us.mcpvpmod.config.mcpvp.ConfigChat;
 import us.mcpvpmod.mgi.MGIEvent;
 import us.mcpvpmod.triggers.ChatTrigger;
 

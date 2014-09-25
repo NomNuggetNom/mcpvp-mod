@@ -5,7 +5,7 @@ import java.util.HashMap;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import us.mcpvpmod.Main;
-import us.mcpvpmod.config.mcpvp.ConfigFriends;
+import us.mcpvpmod.config.all.ConfigFriends;
 import us.mcpvpmod.game.vars.Vars;
 import us.mcpvpmod.gui.FriendsList;
 import us.mcpvpmod.util.BoardHelper;

@@ -6,7 +6,7 @@ import java.util.List;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiPlayerInfo;
 import us.mcpvpmod.Server;
-import us.mcpvpmod.config.mcpvp.ConfigFriends;
+import us.mcpvpmod.config.all.ConfigFriends;
 import us.mcpvpmod.game.team.TeamCTF;
 import us.mcpvpmod.util.BoardHelper;
 

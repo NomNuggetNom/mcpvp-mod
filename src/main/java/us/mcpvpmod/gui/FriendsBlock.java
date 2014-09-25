@@ -7,8 +7,8 @@ import java.util.regex.Pattern;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
-import us.mcpvpmod.config.mcpvp.ConfigFriends;
-import us.mcpvpmod.config.mcpvp.ConfigHUD;
+import us.mcpvpmod.config.all.ConfigFriends;
+import us.mcpvpmod.config.all.ConfigHUD;
 import us.mcpvpmod.game.vars.VarsCTF;
 
 public class FriendsBlock {

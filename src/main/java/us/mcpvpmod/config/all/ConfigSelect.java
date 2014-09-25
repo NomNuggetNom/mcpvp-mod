@@ -1,4 +1,4 @@
-package us.mcpvpmod.config.mcpvp;
+package us.mcpvpmod.config.all;
 
 import static net.minecraftforge.common.config.Configuration.CATEGORY_GENERAL;
 
