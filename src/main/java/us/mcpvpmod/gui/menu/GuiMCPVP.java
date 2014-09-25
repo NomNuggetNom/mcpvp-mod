@@ -27,10 +27,10 @@ public class GuiMCPVP extends GuiScreen {
 	public static String serverType = "hub.mcpvp.com";
 	public static String serverRegion = "us";
 	
-	public GuiButton connectButton = new GuiButton(100, 25, 375, "Connect");
-	public GuiButton regionButton = new GuiButton(98, 25, 400, 95, 20, "Region: US");
-	public GuiButton refreshButton = new GuiButton(101, 130, 400, 95, 20, "Refresh");
-	public GuiButton cancelButton = new GuiButton(99, 25, 425, "Cancel");
+	public static GuiButton connectButton = new GuiButton(100, 25, 375, "Connect");
+	public static GuiButton refreshButton = new GuiButton(101, 130, 400, 95, 20, "Refresh");
+	public static GuiButton regionButton = new GuiButton(102, 25, 400, 95, 20, "Region: US");
+	public static GuiButton cancelButton = new GuiButton(103, 25, 425, "Cancel");
 
 	public GuiMCPVP(GuiScreen mainMenu) {
 		this.mainMenu = mainMenu;
@@ -40,7 +40,7 @@ public class GuiMCPVP extends GuiScreen {
 	public void initGui() {
 		Keyboard.enableRepeatEvents(true);
 		initGuiButtons();
-		this.serverList = new GuiServerList(this, MCPVPServer.getSortedOfType(serverType, serverRegion), 100);
+		this.serverList = new GuiServerList(this, MCPVPServer.getSortedOfType(serverType, serverRegion));
         this.serverList.registerScrollButtons(this.buttonList, 7, 8);
 
 	}
@@ -49,16 +49,31 @@ public class GuiMCPVP extends GuiScreen {
 
 		// GuiButton(int ID, x, y, w, h, text);
 
-		int y = 40;
+		int y = 5;
+		int x = 5;
 		int id = 1;
+		int count = 0;
 		
 		// Create buttons and register server IDs.
-		for (Server server : Server.allServers()) {
-			this.buttonList.add(new GuiButton(id, 25, y, server.toString()));
+		for (Server server : Server.serverList()) {
+			if (count == 3) {
+				x=5;
+				y+=25;
+				count=0;
+			}
+			this.buttonList.add(new GuiButton(id, this.width/2 - 150 + x, y, 100, 20, server.toString()));
 			serverTypes.put(id, server.baseIP());
-			y+= 25;
+			x+= 105;
 			id++;
+			count++;
 		}
+		
+		y+=25;
+		
+		GuiButton connectButton = new GuiButton(100, this.width/2 - 100, this.height - 50, 200, 20, "Connect");
+		GuiButton refreshButton = new GuiButton(101, this.width/2 - 10 - 90, this.height - 25, 50, 20, "Refresh");
+		GuiButton regionButton = new GuiButton(102, this.width/2 - 45, this.height - 25, 90, 20, "Region: US");
+		GuiButton cancelButton = new GuiButton(103, this.width/2 - 10 + 60, this.height - 25, 50, 20, "Cancel");
 		
 		// Add all other buttons.
 		this.buttonList.add(regionButton);
@@ -84,7 +99,7 @@ public class GuiMCPVP extends GuiScreen {
 		}
 
 		// Lazy region swapping
-		if (button.id == 98) {
+		if (button.id == regionButton.id) {
 			if (regionButton.displayString == "Region: US") {
 				regionButton.displayString = "Region: EU";
 				serverRegion = "eu";
@@ -96,18 +111,18 @@ public class GuiMCPVP extends GuiScreen {
 				serverRegion = "us";
 			}
 		}
-		this.serverList = new GuiServerList(this, MCPVPServer.getSortedOfType(serverType, serverRegion), 100);
+		this.serverList = new GuiServerList(this, MCPVPServer.getSortedOfType(serverType, serverRegion));
 		
 		// Cancel
-		if (button.id == 99) this.mc.displayGuiScreen(mainMenu);
+		if (button.id == cancelButton.id) this.mc.displayGuiScreen(mainMenu);
 		
 		// Connect
-		if (button.id == 100) MCPVPServer.connect(this.serverList.servers.get(selected));
+		if (button.id == connectButton.id) MCPVPServer.connect(this.serverList.servers.get(selected));
 		
 		// Refresh
-		if (button.id == 101) {
+		if (button.id == refreshButton.id) {
 			Main.serverJson.run();
-			new GuiServerList(this, MCPVPServer.getSortedOfType(serverType, serverRegion), 100);
+			new GuiServerList(this, MCPVPServer.getSortedOfType(serverType, serverRegion));
 		}
 	}
 	
