@@ -19,9 +19,14 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid = "mcpvp", name = "MCPVP Mod", version="1.7.10-2.0", guiFactory="us.mcpvpmod.config.GuiFactory")
+@Mod(modid = Main.modID, name = Main.name, version = Main.version, guiFactory = Main.guiFactory)
 public class Main {
-
+	
+	public static final String modID = "mcpvp";
+	public static final String name = "MCPVP Mod";
+	public static final String version = "1.7.10-2.0";
+	public static final String guiFactory = "us.mcpvpmod.config.GuiFactory";
+	
 	@Instance
 	public static Main instance = new Main();
 	public static Minecraft mc = Minecraft.getMinecraft();

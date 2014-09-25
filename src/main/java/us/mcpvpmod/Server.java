@@ -112,7 +112,7 @@ public enum Server {
 	 */
 	public static Server getServer() {
 		if (Main.mc.isSingleplayer()) return NONE;
-		//System.out.println(ServerHelper.serverIP());
+
 		if (ServerHelper.serverIP().endsWith("hub.mcpvp.com"))		return HUB;
 		if (ServerHelper.serverIP().endsWith("kitpvp.us"))			return KIT;
 		if (ServerHelper.serverIP().endsWith("mc-maze.com"))			return MAZE;

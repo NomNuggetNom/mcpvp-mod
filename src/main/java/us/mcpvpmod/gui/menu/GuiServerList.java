@@ -75,10 +75,12 @@ public class GuiServerList extends GuiScrollingList {
 				 parent.width/2 - Main.mc.fontRenderer.getStringWidth(Format.process(append + "[" + server.Players + "/" + server.MaxPlayers + "] "+ ip))/2, 
 				 var3 + 2, 0xF);
 		 
+		 motd = motd.replaceAll("\\s\\s+", " - ");
+		 
 		 Main.mc.fontRenderer.drawString(
 				 Main.mc.fontRenderer.trimStringToWidth(Format.process("#gray#") + motd, 
 						 parent.width - 10), 
-				parent.width/2 - Main.mc.fontRenderer.getStringWidth(Format.process("#gray#") + motd)/2, 
+				parent.width/2 - Main.mc.fontRenderer.getStringWidth(Format.process("#gray#") + motd.replaceAll("\\s+", "\\s"))/2, 
 				 var3 + 12, 0xF);
 	}
 
