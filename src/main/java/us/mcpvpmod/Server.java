@@ -316,7 +316,7 @@ public enum Server {
 		Draw.string(getState().toString(), 0, 9, 0xFFFFFF, true);
 	}
 	
-	public static ArrayList<Server> allServers() {
-		return new ArrayList<Server>(Arrays.asList(HUB, KIT, HG, MAZE, SAB, CTF, HS, PARTY, BUILD, RAID, HG2));
+	public static ArrayList<Server> serverList() {
+		return new ArrayList<Server>(Arrays.asList(HUB, KIT, HG, MAZE, SAB, CTF, HS, BUILD, RAID));
 	}
 }

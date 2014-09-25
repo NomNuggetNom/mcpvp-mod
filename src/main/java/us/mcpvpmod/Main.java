@@ -8,7 +8,8 @@ import net.minecraft.client.multiplayer.GuiConnecting;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraftforge.common.MinecraftForge;
 import us.mcpvpmod.events.Events;
-import us.mcpvpmod.util.ServerJSON;
+import us.mcpvpmod.json.ServerJSON;
+import us.mcpvpmod.json.StreamJSON;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
@@ -41,6 +42,7 @@ public class Main {
 		Timer timer = new Timer();
 		// Update servers every 7 seconds.
 		timer.scheduleAtFixedRate(serverJson, 0, 5*1000L);
+		timer.scheduleAtFixedRate(new StreamJSON(), 0, 30*1000L);
 		
     }
     	

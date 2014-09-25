@@ -16,10 +16,19 @@ public class GuiServerList extends GuiScrollingList {
 	
 	private GuiMCPVP parent;
     public static ArrayList<MCPVPServer> servers;
+    
+    public static int offset = 0;
 	
-    public GuiServerList(GuiMCPVP parent, ArrayList<MCPVPServer> servers, int listWidth)
+    public GuiServerList(GuiMCPVP parent, ArrayList<MCPVPServer> servers)
     {
-        super(Main.mc.getMinecraft(), 690, parent.height, 32, parent.height - 66 + 4, 250, 35);
+        super(Main.mc.getMinecraft(), 
+        		parent.width, // width
+        		parent.height, // height
+        		80, // top
+        		parent.height - 55, // bottom
+        		0, // left
+        		25 // height of each entry
+        		);
         this.parent = parent;
         this.servers = servers;
     }
@@ -61,12 +70,16 @@ public class GuiServerList extends GuiScrollingList {
 		if (!servers.get(i).IsAcceptingPlayers) append += "#gray#";
 		
 		 Main.mc.fontRenderer.drawString(
-				 Main.mc.fontRenderer.trimStringToWidth(Format.process(append + "[" + server.Players + "/" + server.MaxPlayers + "] "+ ip), listWidth - 10), 
-				 this.left + 3, var3 + 2, 0xF);
+				 Main.mc.fontRenderer.trimStringToWidth(Format.process(append + "[" + server.Players + "/" + server.MaxPlayers + "] "+ ip), 
+						 parent.width - 10), 
+				 parent.width/2 - Main.mc.fontRenderer.getStringWidth(Format.process(append + "[" + server.Players + "/" + server.MaxPlayers + "] "+ ip))/2, 
+				 var3 + 2, 0xF);
 		 
 		 Main.mc.fontRenderer.drawString(
-				 Main.mc.fontRenderer.trimStringToWidth(Format.process("#gray#") + motd, listWidth - 10), 
-				 this.left + 3, var3 + 12, 0xF);
+				 Main.mc.fontRenderer.trimStringToWidth(Format.process("#gray#") + motd, 
+						 parent.width - 10), 
+				parent.width/2 - Main.mc.fontRenderer.getStringWidth(Format.process("#gray#") + motd)/2, 
+				 var3 + 12, 0xF);
 	}
 
 }
