@@ -24,7 +24,7 @@ public class ConfigAll extends CategoryEntry {
         
         list.add(new DummyCategoryElement("Friends List", "mcpvp.config.mcpvp.Friends", AllFriends.class));
         list.add(new DummyCategoryElement("Chat", "mcpvp.config.mcpvp.Chat", AllChat.class));
-        list.add(new DummyCategoryElement("HUD", "mcpvp.config.hud.Chat", AllSelect.class));
+        list.add(new DummyCategoryElement("HUD", "mcpvp.config.hud.Chat", AllHUD.class));
         list.add(new DummyCategoryElement("Auto-Select", "mcpvp.config.hud.Chat", AllSelect.class));
         
         return new GuiConfig(this.owningScreen,

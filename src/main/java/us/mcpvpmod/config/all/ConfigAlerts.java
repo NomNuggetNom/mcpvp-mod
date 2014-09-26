@@ -1,35 +1,33 @@
-package us.mcpvpmod.config.kit;
+package us.mcpvpmod.config.all;
 
 import static net.minecraftforge.common.config.Configuration.CATEGORY_GENERAL;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
+import us.mcpvpmod.game.alerts.CustomAlert;
 import cpw.mods.fml.common.DummyModContainer;
+import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.registry.GameData;
 
-public class ConfigKitHUD extends DummyModContainer {
+public class ConfigAlerts extends DummyModContainer {
 
-	public static String[] render= new String[1000];
-	public static boolean renderDebug = false;
-	public static String[] yourStats = new String[1000];
-	public static String[] gameInfo = new String[1000];
-	public static boolean customTextures = false;
-	public static boolean renderBG = true;
-	public static int margin = 3;
-	public static boolean centerTitles = true;
-	public static boolean alignWidths = false;
-	public static boolean alignHeights = false;
-	public static int medalTimer = 7;
-	
-    public static String fileName = "mcpvp_kit_hud.cfg";
+    public static String alertOnline = "";
+    
+    public static String fileName = "mcpvp_alerts.cfg";
     
     private static Configuration config;
 
-    public ConfigKitHUD() {
+    public ConfigAlerts() {
         config = null;
         File cfgFile = new File(Loader.instance().getConfigDir(), fileName);
         config = new Configuration(cfgFile);
@@ -56,23 +54,19 @@ public class ConfigKitHUD extends DummyModContainer {
         List<String> propOrder = new ArrayList<String>();
         
         Property prop;
-        
-    	prop = config.get(CATEGORY_GENERAL, "render", new String[]{
-    			"#bold##underline#KitPVP", 
-    			"#green##italic#X#gray# >> #r##bold#{x}",
-    			"#green##italic#Y#gray# >> #r##bold#{y}",
-    			"#green##italic#Z#gray# >> #r##bold#{z}",
-    			"#green##italic#F#gray# >> #r##bold#{f}",
-    			
-    	});
-        prop.setLanguageKey("mcpvp.kit.configHUD.renderPre");
-    	render = prop.getStringList();
+		 	
+    	prop = config.get(CATEGORY_GENERAL, "alertOnline", "#white#Party time! ||| {player}#gray# is now online. ||| head");
+    	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
+        prop.setLanguageKey("mcpvp.config.Alerts.alertOnline");
+    	alertOnline = prop.getString();
     	propOrder.add(prop.getName());
+    	new CustomAlert("online", prop.getString());
     	
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
 
         if (config.hasChanged())
         {
+        	FMLLog.info("[MCPVP] Syncing configuration for %s", fileName);
             config.save();
         }
     }

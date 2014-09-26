@@ -19,6 +19,8 @@ public class ConfigHUD extends DummyModContainer {
 	public static boolean alignWidths = false;
 	public static boolean alignHeights = false;
 	public static int medalTimer = 7;
+	public static String armorMode;
+	public static boolean alignItems = true;
 	
     public static String fileName = "mcpvp_hud.cfg";
     
@@ -67,6 +69,11 @@ public class ConfigHUD extends DummyModContainer {
     	centerTitles = prop.getBoolean();
     	propOrder.add(prop.getName());
     	
+    	prop = config.get(CATEGORY_GENERAL, "alignItems", true);
+        prop.setLanguageKey("mcpvp.config.HUD.alignItems");
+    	alignItems = prop.getBoolean();
+    	propOrder.add(prop.getName());
+    	
     	prop = config.get(CATEGORY_GENERAL, "alignWidths", true);
         prop.setLanguageKey("mcpvp.config.HUD.alignWidths");
     	alignWidths = prop.getBoolean();
@@ -80,6 +87,11 @@ public class ConfigHUD extends DummyModContainer {
     	prop = config.get(CATEGORY_GENERAL, "medalTimer", 7, "The number of seconds to display a medal for.", 1, 1000);
     	prop.setLanguageKey("mcpvp.config.HUD.medalTimer");
     	margin = prop.getInt();
+    	propOrder.add(prop.getName());
+    	
+        prop = config.get(CATEGORY_GENERAL, "armorMode", "Show Durability Remaining", "Comment", new String[]{"Show Durability Remaining", "Show Durability Remaining out of Total", "Don't show Durability Remaining"});
+        prop.setLanguageKey("mcpvp.config.HUD.armorMode");
+    	armorMode = prop.getString();
     	propOrder.add(prop.getName());
     	
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
