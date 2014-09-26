@@ -1,5 +1,6 @@
 package us.mcpvpmod;
 
+import us.mcpvpmod.config.all.ConfigAlerts;
 import us.mcpvpmod.config.all.ConfigChat;
 import us.mcpvpmod.config.all.ConfigFriends;
 import us.mcpvpmod.config.all.ConfigHUD;
@@ -62,6 +63,8 @@ public class Sync {
 		ConfigChat.syncConfig();
 		ConfigFriends.syncConfig();
 		ConfigHUD.syncConfig();
+		ConfigAlerts.syncConfig();
+		
 		// Sync CTF Configs
 		ConfigCTFChat.syncConfig();
 		ConfigCTFAlerts.syncConfig();
