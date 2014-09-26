@@ -5,8 +5,6 @@ import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.commons.lang3.StringUtils;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
@@ -21,10 +19,10 @@ import cpw.mods.fml.common.FMLLog;
  * Contains information relevant to games and the player.
  * @author NomNuggetNom
  */
-public class InfoBlock {
+public class CopyOfInfoBlock {
 	
 	/** An array of all InfoBlocks, not just ones that are visible! */
-	public static ArrayList<InfoBlock> blocks = new ArrayList<InfoBlock>();
+	public static ArrayList<CopyOfInfoBlock> blocks = new ArrayList<CopyOfInfoBlock>();
 	
 	/** The original information to process. **/
 	ArrayList<String> toDisplay = new ArrayList<String>();
@@ -52,7 +50,7 @@ public class InfoBlock {
 	boolean matchH = ConfigHUD.alignHeights;
 	
 	static Minecraft mc = Minecraft.getMinecraft();
-	static FontRenderer fR = mc.fontRenderer;
+	static FontRenderer fontRenderer = mc.fontRenderer;
 
 	/**
 	 * The backbone of the HUD.
@@ -60,7 +58,7 @@ public class InfoBlock {
 	 * @param info
 	 * @param state
 	 */
-	public InfoBlock(String title, ArrayList<String> info, Server server, State state) {
+	public CopyOfInfoBlock(String title, ArrayList<String> info, Server server, State state) {
 		this.coords = title.replaceAll(rePosCapture, "$1");
 		this.setTitle(title.replaceAll(rePosNoCapture, "").replaceAll("^\\s\\s*", "").replaceAll("\\s\\s*$", ""));
 		this.toDisplay = info;
@@ -78,8 +76,8 @@ public class InfoBlock {
 	 * @param getTitle
 	 * @return
 	 */
-	public static InfoBlock get(String getTitle) {		
-		for (InfoBlock block : blocks) {
+	public static CopyOfInfoBlock get(String getTitle) {		
+		for (CopyOfInfoBlock block : blocks) {
 			if (block.getTitle().equals(getTitle)) {
 				return block;
 			}
@@ -93,9 +91,9 @@ public class InfoBlock {
 	 * @param server
 	 * @return
 	 */
-	public static ArrayList<InfoBlock> get(Server server, State state) {
-		ArrayList<InfoBlock> toReturn = new ArrayList<InfoBlock>();
-		for (InfoBlock block : blocks) {
+	public static ArrayList<CopyOfInfoBlock> get(Server server, State state) {
+		ArrayList<CopyOfInfoBlock> toReturn = new ArrayList<CopyOfInfoBlock>();
+		for (CopyOfInfoBlock block : blocks) {
 			if (block.server == server && block.state == state) {
 				toReturn.add(block);
 			}
@@ -132,7 +130,7 @@ public class InfoBlock {
 			lines.remove(0);
 
 			if (lines.size() > 0) {
-				InfoBlock block = new InfoBlock(Format.process(title), lines, server, state);
+				CopyOfInfoBlock block = new CopyOfInfoBlock(Format.process(title), lines, server, state);
 			} else {
 				FMLLog.info("[MCPVP] Not enough lines for InfoBlock " + title);
 			}
@@ -144,7 +142,7 @@ public class InfoBlock {
 	 * Updates information and dimensions then draws.
 	 */
 	public void display() {
-		fR = mc.fontRenderer;
+		fontRenderer = mc.fontRenderer;
 
 		this.update();
 		this.setW();
@@ -192,7 +190,7 @@ public class InfoBlock {
 		
 		// Cycle through our information and calculate the length.
 		for (String line : this.display) {		
-			lineW = fR.getStringWidth(line);
+			lineW = fontRenderer.getStringWidth(line);
 			
 			// Check if it's the longest yet.
 			if (lineW > calcW) {
@@ -201,8 +199,8 @@ public class InfoBlock {
 		}
 		
 		// Include our title in the check.
-		if (fR.getStringWidth(this.getTitle()) > calcW) {
-			calcW = fR.getStringWidth(this.getTitle());
+		if (fontRenderer.getStringWidth(this.getTitle()) > calcW) {
+			calcW = fontRenderer.getStringWidth(this.getTitle());
 		}
 		return calcW;
 	}
@@ -215,7 +213,7 @@ public class InfoBlock {
 		int newW = this.calcW();
 		
 		// Cycle through all the blocks being displayed.
-		for (InfoBlock block : this.get(this.server, this.state)) {
+		for (CopyOfInfoBlock block : this.get(this.server, this.state)) {
 			
 			// Don't take the current block into account.
 			if (block.getTitle() == this.getTitle()) continue;
@@ -237,7 +235,7 @@ public class InfoBlock {
 	 */
 	public int calcH() {
 		int calcH;
-		int stringHeight = this.display.size() * fR.FONT_HEIGHT;
+		int stringHeight = this.display.size() * fontRenderer.FONT_HEIGHT;
 		int spacing = (this.display.size()-1) * 2;
 		calcH = 2 + stringHeight + spacing + 10;
 		
@@ -251,7 +249,7 @@ public class InfoBlock {
 		int newH = this.calcH();
 		
 		// Cycle through all the blocks being displayed.
-		for (InfoBlock block : this.get(this.server, this.state)) {
+		for (CopyOfInfoBlock block : this.get(this.server, this.state)) {
 			
 			// Don't take the current block into account.
 			if (block.getTitle() == this.getTitle()) continue;
@@ -309,14 +307,14 @@ public class InfoBlock {
 				// Check our symbol
 				if (symbolX.equals("+") || symbolX.equals("")) {
 					// Move to the right.
-					InfoBlock oldBlock = this.get(titleX);
+					CopyOfInfoBlock oldBlock = this.get(titleX);
 					if (oldBlock != null) {
 						this.baseX = (int) (oldBlock.baseX + oldBlock.w + shiftX + padding*2);
 					}
 				
 				} else if (symbolX.equals("-")) {
 					// Move to the left.
-					InfoBlock oldBlock = this.get(titleX);
+					CopyOfInfoBlock oldBlock = this.get(titleX);
 					if (oldBlock != null) {
 						this.baseX =  oldBlock.baseX - (int) shiftX - this.w;
 					}
@@ -374,7 +372,7 @@ public class InfoBlock {
 
 				if (symbolY.equals("+") || symbolY.equals("")) {
 					// Move up.
-					InfoBlock oldBlock = this.get(titleY);
+					CopyOfInfoBlock oldBlock = this.get(titleY);
 
 					if (oldBlock != null) {
 						this.baseY = (int) (oldBlock.baseY + oldBlock.h + shiftY + padding*2);
@@ -382,7 +380,7 @@ public class InfoBlock {
 
 				} else if (symbolY.equals("-")) {
 					// Move down.
-					InfoBlock oldBlock = this.get(titleY);
+					CopyOfInfoBlock oldBlock = this.get(titleY);
 					
 					if (oldBlock != null) {
 						this.baseY = oldBlock.baseY - this.h - padding*2 - 1;
@@ -403,29 +401,11 @@ public class InfoBlock {
 		}
 	}
 	
-	public int align(String line) {
-		if (!ConfigHUD.alignItems) return 0;
-		if (!line.contains(">>")) return 0;
-		
-		int toMiddle = 0;
-		// Get the maximum width of any string.
-		for (String string : this.display) {
-			if (!string.contains(">>")) continue;
-			if (fR.getStringWidth(string.replaceAll(">>.*", "")) > toMiddle) {
-				toMiddle = fR.getStringWidth(string.replaceAll(">>.*", ""));
-			}
-		}
-
-		String adjusted = line.replaceAll(">>.*", "");
-		int needed = toMiddle - fR.getStringWidth(adjusted);
-		return needed;
-	}
-	
 	/**
 	 * Draw the block!
 	 */
 	public void draw() {
-		int titleHeight = fR.FONT_HEIGHT-1;
+		int titleHeight = fontRenderer.FONT_HEIGHT-1;
 		bg = ConfigHUD.renderBG;
 		
 		if (bg) {
@@ -461,9 +441,9 @@ public class InfoBlock {
 		if (getTitle() != "") {
 			// Check our config for centering titles.
 			if (ConfigHUD.centerTitles) {
-				fR.drawStringWithShadow(getTitle(), baseX + centerPos(w, getTitle()), baseY-1, 0xFFFFFF);
+				fontRenderer.drawStringWithShadow(getTitle(), baseX + centerPos(w, getTitle()), baseY-1, 0xFFFFFF);
 			} else {
-				fR.drawStringWithShadow(getTitle(), baseX, baseY-1, 0xFFFFFF);
+				fontRenderer.drawStringWithShadow(getTitle(), baseX, baseY-1, 0xFFFFFF);
 			}
 			// Set our offset. All titles result in an offset of 12.
 			offset = 12;
@@ -471,8 +451,8 @@ public class InfoBlock {
 
 		// Render all other strings under the title.
 		for (String string : display) {
-			fR.drawStringWithShadow(string, baseX + align(string), baseY+offset, 0xFFFFFF);
-			offset = offset + fR.FONT_HEIGHT+2;
+			fontRenderer.drawStringWithShadow(string, baseX, baseY+offset, 0xFFFFFF);
+			offset = offset + fontRenderer.FONT_HEIGHT+2;
 		}
 	}
 	
@@ -512,7 +492,7 @@ public class InfoBlock {
 	 * @return
 	 */
 	public static int centerPos(int area, String string) {
-		return ((area/2) - (fR.getStringWidth(string)/2));
+		return ((area/2) - (fontRenderer.getStringWidth(string)/2));
 	}
 	
 	/**
@@ -520,7 +500,7 @@ public class InfoBlock {
 	 * @param match
 	 * @return
 	 */
-	public InfoBlock setMatch(boolean match) {
+	public CopyOfInfoBlock setMatch(boolean match) {
 		this.matchW = match;
 		return this;
 	}

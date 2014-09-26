@@ -4,6 +4,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 import us.mcpvpmod.Main;
+import us.mcpvpmod.config.all.ConfigHUD;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.RenderHelper;
@@ -35,8 +36,15 @@ public class ArmorDisplay {
 			Draw.item(item, res.getScaledWidth() - 20, y);
 			
 			// Draw the durability.
-			draw = (item.getMaxDamage() - item.getItemDamageForDisplay()) + "/" + item.getMaxDamage();
-			Draw.string(draw, res.getScaledWidth() - Main.mc.fontRenderer.getStringWidth(draw) - 20, y+5, 0xFFFFFF, true);
+			if (ConfigHUD.armorMode.equals("Show Durability Remaining")) {
+				draw = "" + (item.getMaxDamage() - item.getItemDamageForDisplay());
+			} else if (ConfigHUD.armorMode.equals("Show Durability Remaining out of Total")) {
+				draw = (item.getMaxDamage() - item.getItemDamageForDisplay()) + "/" + item.getMaxDamage();
+			} else {
+				draw = "";
+			}
+
+			Draw.string(draw, res.getScaledWidth() - Main.mc.fontRenderer.getStringWidth(draw) - 22, y+5, 0xFFFFFF, true);
 			y += 16;
 			
 		}
@@ -55,8 +63,14 @@ public class ArmorDisplay {
 		RenderHelper.disableStandardItemLighting();
 		
 		// Draw the durability.
-		draw = (weapon.getMaxDamage() - weapon.getItemDamageForDisplay()) + "/" + weapon.getMaxDamage();
-		Draw.string(draw, res.getScaledWidth() - Main.mc.fontRenderer.getStringWidth(draw) - 20, y+5, 0xFFFFFF, true);
+		if (ConfigHUD.armorMode.equals("Show Durability Remaining")) {
+			draw = "" + (weapon.getMaxDamage() - weapon.getItemDamageForDisplay());
+		} else if (ConfigHUD.armorMode.equals("Show Durability Remaining out of Total")) {
+			draw = (weapon.getMaxDamage() - weapon.getItemDamageForDisplay()) + "/" + weapon.getMaxDamage();
+		} else {
+			draw = "";
+		}
+		Draw.string(draw, res.getScaledWidth() - Main.mc.fontRenderer.getStringWidth(draw) - 22, y+5, 0xFFFFFF, true);
 	}
 	
 }
