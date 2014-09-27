@@ -56,6 +56,20 @@ public class ChatTrigger {
 	}
 	
 	/**
+	 * An alert that is triggered when a message is received.
+	 * @param message The message to look for.
+	 * @param alertID The ID of the alert to trigger, specified in the relevant config class.
+	 */
+	public ChatTrigger(String message, String alertID, Server server) {
+		this.pattern = message;
+		this.alertID = alertID;
+		this.server  = server;
+		this.replace = null;
+		this.varName = null;
+		triggers.add(this);
+	}
+	
+	/**
 	 * Checks if the message fits the pattern. If so, update the value and show the alerts.
 	 * @param message The message to check.
 	 */
