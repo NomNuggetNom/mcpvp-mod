@@ -17,11 +17,14 @@ public class AllRender {
 		// If we don't render during the TEXT phase, we'll screw up other displays due to OpenGL settings.
 		if (event.type != RenderGameOverlayEvent.ElementType.TEXT) return;
 		
-		// Display our FriendsBlock regardless of server.
+		// Display our FriendsBlock.
 		FriendsBlock.display();
 		
-		// Render our armor display regardless of server.
+		// Render our armor display.
 		ArmorDisplay.renderArmor();
+		
+		// Draw the split chat.
+		Main.secondChat.drawChat(Main.mc.ingameGUI.getUpdateCounter());
 
 	}
 	

@@ -17,7 +17,6 @@ public class AllTick {
 		if (event.type == TickEvent.Type.RENDER && event.phase == event.phase.END) {
 			Alerts.alert.showAlerts();
 			Medal.showAll();
-			Main.secondChat.drawChat(Main.mc.ingameGUI.getUpdateCounter());
 		}
 		
 		for (BoardTracker tracker : BoardTracker.boardTrackers) {

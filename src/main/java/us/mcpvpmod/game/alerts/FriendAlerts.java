@@ -6,8 +6,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.config.all.ConfigFriends;
+import us.mcpvpmod.game.FriendsList;
 import us.mcpvpmod.game.vars.Vars;
-import us.mcpvpmod.gui.FriendsList;
 import us.mcpvpmod.util.BoardHelper;
 
 public class FriendAlerts {

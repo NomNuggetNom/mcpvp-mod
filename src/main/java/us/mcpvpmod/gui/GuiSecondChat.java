@@ -14,12 +14,15 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.util.MathHelper;
+import net.minecraftforge.client.event.ClientChatReceivedEvent;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.GL11;
 
 import us.mcpvpmod.Main;
+import us.mcpvpmod.config.all.ConfigChat;
+import us.mcpvpmod.events.chat.AllChat;
 
 import com.google.common.collect.Lists;
 
@@ -45,6 +48,12 @@ public class GuiSecondChat extends Gui
         this.mc = p_i1022_1_;
     }
 
+
+    
+    public List getMessages() {
+    	return this.chatLines;
+    }
+    
     public void drawChat(int p_146230_1_)
     {
         if (this.mc.gameSettings.chatVisibility != EntityPlayer.EnumChatVisibility.HIDDEN)
@@ -116,10 +125,10 @@ public class GuiSecondChat extends Gui
 
                                 // Draw ONE BOX for the line of chat.
                                 drawRect(res.getScaledWidth(), //x1 
-                                		res.getScaledHeight() + j2 - 9 - 56 + 9, //y1
+                                		res.getScaledHeight() + j2 - 9 - 56 + 8, //y1
                                 		res.getScaledWidth() - i1 - 4, //x2
-                                		res.getScaledHeight() + j2 - 56 + 9,  //y2
-                                		i2 / 2 << 24);   
+                                		res.getScaledHeight() + j2 - 56 + 8,  //y2
+                                		i2 / 4 << 24);   
                             
                                 String chatString = chatline.func_151461_a().getFormattedText();
                                 
@@ -127,7 +136,6 @@ public class GuiSecondChat extends Gui
                                 this.mc.fontRenderer.drawStringWithShadow(
                                 		chatString, 
                                 		x - this.mc.fontRenderer.getStringWidth(chatString) - 4, 
-                                		//j2 - 8 + res.getScaledHeight() - 8, 
                                 		res.getScaledHeight() + j2 - 56,
                                 		16777215 + (i2 << 24));
                                 
@@ -284,6 +292,25 @@ public class GuiSecondChat extends Gui
                 this.chatLines.remove(this.chatLines.size() - 1);
             }
         }
+    }
+    
+    public boolean shouldSplit(ClientChatReceivedEvent event) {
+    	if (ConfigChat.sendToSecondChat == null) return false;
+    	if (event.isCanceled()) return false;
+    	
+    	for (String string : ConfigChat.sendToSecondChat) {
+    		if (event.message.toString().contains(string)) return true;
+    	}
+    	
+    	if (ConfigChat.movekNoHax) {
+    		for (String string : this.k) {
+        		if (event.message.getUnformattedText().matches(string)) {
+        			System.out.println("found match");
+        			return true;
+        		}
+    		}
+    	}
+    	return false;
     }
 
     public void refreshChat()
@@ -446,6 +473,13 @@ public class GuiSecondChat extends Gui
         }
     }
 
+	
+	public static String[] k = 
+		{"\u00A7[urmom]\u00A7c(.*) (?:2|f|2)(?:o|0)[uranoob][a]*[n]*[d]* .*! [DIOH]. [ODISM]. [IUSGA]. [XLNS]. [SDFEO]. [QAIOI]. [OXZM]. \u00A7r",
+			"\u00A7r\u00A74(\\w*)_{0}\\w{2}.*\\d*\\w{3}[ia0sd].{0,9}[sadn-][v_gsd9].*! ;*.*(\\(\\d\\/\\d\\))*\u00A7[rekt].*(\\(\\d\\/\\d\\))*",
+			"\u00A7r\u00A7[ds06](.*) ([oiuwea][suosi][slkdma]{1,2}|[aopiw,a][09a8w][-=0-sa])\\s*([ihn b][;wisuye])*\\s*[o9ipan Cpo](u|w|z)(to|from)-*.*(.*)\\s*(?:in (\\d*))*. .*(\\d*) .*"};
+
+    
     public int func_146228_f()
     {
         return func_146233_a(this.mc.gameSettings.chatWidth);

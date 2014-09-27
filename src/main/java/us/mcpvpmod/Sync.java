@@ -24,6 +24,7 @@ import us.mcpvpmod.config.sab.ConfigSabAlerts;
 import us.mcpvpmod.config.sab.ConfigSabHUD;
 import us.mcpvpmod.config.sab.ConfigSabSelect;
 import us.mcpvpmod.config.sab.ConfigSabSounds;
+import us.mcpvpmod.game.FriendsList;
 import us.mcpvpmod.game.core.CoreBuild;
 import us.mcpvpmod.game.core.CoreCTF;
 import us.mcpvpmod.game.core.CoreHG;
@@ -39,7 +40,6 @@ import us.mcpvpmod.game.state.StateKit;
 import us.mcpvpmod.game.state.StateMaze;
 import us.mcpvpmod.game.state.StateSab;
 import us.mcpvpmod.gui.Format;
-import us.mcpvpmod.gui.FriendsList;
 import us.mcpvpmod.gui.InfoBlock;
 import cpw.mods.fml.common.FMLLog;
 

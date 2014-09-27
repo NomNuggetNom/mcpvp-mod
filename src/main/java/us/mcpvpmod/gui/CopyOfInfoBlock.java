@@ -10,6 +10,7 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.config.all.ConfigHUD;
+import us.mcpvpmod.game.FriendsList;
 import us.mcpvpmod.game.state.State;
 import us.mcpvpmod.game.vars.AllVars;
 import cpw.mods.fml.common.FMLLog;

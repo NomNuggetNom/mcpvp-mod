@@ -2,6 +2,7 @@ package us.mcpvpmod.events.chat;
 
 import java.util.ArrayList;
 
+import net.minecraft.client.gui.ChatLine;
 import net.minecraft.util.ChatComponentText;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import us.mcpvpmod.Main;
@@ -13,6 +14,7 @@ import us.mcpvpmod.game.stats.StatsCTF;
 import us.mcpvpmod.gui.Medal;
 import us.mcpvpmod.trackers.ChatTracker;
 import us.mcpvpmod.triggers.ChatTrigger;
+import cpw.mods.fml.common.FMLLog;
 
 public class ChatCTF {
 
@@ -115,6 +117,21 @@ public class ChatCTF {
 						event.message = new ChatComponentText(formatted);
 					}
 				}
+			}
+		}
+		
+		if (Main.secondChat.shouldSplit(event)) {
+			Main.secondChat.printChatMessage(event.message);
+			event.setCanceled(true);
+		}
+		
+		// Removal of messages that appear in split chat.
+		for (Object chatLine : Main.secondChat.getMessages()) {
+			// The chat message in the second chat.
+			String oldMessage = ((ChatLine)chatLine).func_151461_a().getUnformattedText();
+			if (oldMessage.equals(event.message.getUnformattedText())) {
+				System.out.println("===");
+				event.setCanceled(true);
 			}
 		}
 	}

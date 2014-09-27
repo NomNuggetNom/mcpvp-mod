@@ -16,9 +16,8 @@ public class ConfigChat extends DummyModContainer {
 
     public static String[] filterWords = new String[1000];
     public static String[] removeWords = new String[1000];
-    public static boolean removeTips = true;
-    public static boolean chatHistory = false;
-    public static String[] medicClasses = new String[1000];
+    public static String[] sendToSecondChat = new String[1000];
+    public static boolean movekNoHax;
     
     public static String fileName = "mcpvp_chat.cfg";
     
@@ -60,6 +59,16 @@ public class ConfigChat extends DummyModContainer {
     	prop = config.get(CATEGORY_GENERAL, "removeWords", new String[]{"You are on team", "Visit mcpvp.com for more info"});
         prop.setLanguageKey("mcpvp.config.Chat.removeWords");
     	removeWords = prop.getStringList();
+    	propOrder.add(prop.getName());
+    	
+    	prop = config.get(CATEGORY_GENERAL, "splitChat", new String[]{"->"});
+        prop.setLanguageKey("mcpvp.config.Chat.splitChat");
+    	sendToSecondChat = prop.getStringList();
+    	propOrder.add(prop.getName());
+    	
+    	prop = config.get(CATEGORY_GENERAL, "movekNoHax", true);
+        prop.setLanguageKey("mcpvp.config.Chat.splitChat");
+    	movekNoHax = prop.getBoolean();
     	propOrder.add(prop.getName());
         
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);

@@ -5,6 +5,7 @@ import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.util.ChatComponentText;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import us.mcpvpmod.Main;
+import us.mcpvpmod.Server;
 import us.mcpvpmod.ServerHelper;
 import us.mcpvpmod.config.all.ConfigChat;
 import us.mcpvpmod.config.ctf.ConfigCTFChat;
@@ -36,6 +37,7 @@ public class AllChat {
 			System.out.println("Logged in.");
 			Main.mc.thePlayer.sendChatMessage("/ip");
 			getIP = true;
+			Main.secondChat.clearChatMessages();
 		}
 		
 		if (message.matches(reIP) && getIP) {
@@ -49,7 +51,7 @@ public class AllChat {
 			MGIEvent.decompile(message).handle();
 		}
 		*/
-		if (message.contains("->") && !event.isCanceled()) {
+		if (Main.secondChat.shouldSplit(event) && !Server.getServer().equals(Server.CTF)) {
 			Main.secondChat.printChatMessage(event.message);
 			event.setCanceled(true);
 		}

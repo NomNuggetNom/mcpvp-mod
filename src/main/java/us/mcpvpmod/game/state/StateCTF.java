@@ -2,10 +2,10 @@ package us.mcpvpmod.game.state;
 
 import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
+import us.mcpvpmod.game.FriendsList;
 import us.mcpvpmod.game.alerts.ctf.TimeAlerts;
 import us.mcpvpmod.game.stats.StatsCTF;
 import us.mcpvpmod.game.vars.VarsCTF;
-import us.mcpvpmod.gui.FriendsList;
 import us.mcpvpmod.gui.InfoBlock;
 import us.mcpvpmod.util.BoardHelper;
 

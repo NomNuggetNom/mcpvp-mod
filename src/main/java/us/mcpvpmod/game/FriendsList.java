@@ -1,4 +1,4 @@
-package us.mcpvpmod.gui;
+package us.mcpvpmod.game;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,7 @@ import net.minecraft.client.gui.GuiPlayerInfo;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.config.all.ConfigFriends;
 import us.mcpvpmod.game.team.TeamCTF;
+import us.mcpvpmod.gui.Format;
 import us.mcpvpmod.util.BoardHelper;
 
 public class FriendsList {

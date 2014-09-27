@@ -7,9 +7,9 @@ import us.mcpvpmod.Server;
 import us.mcpvpmod.config.all.ConfigFriends;
 import us.mcpvpmod.config.all.ConfigSelect;
 import us.mcpvpmod.config.maze.ConfigMazeSelect;
+import us.mcpvpmod.game.FriendsList;
 import us.mcpvpmod.game.alerts.FriendAlerts;
 import us.mcpvpmod.game.vars.Vars;
-import us.mcpvpmod.gui.FriendsList;
 
 public class HandleJoin {
 
