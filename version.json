@@ -1,11 +1,11 @@
 {
-  "VersionMain": {
+  "main": {
     "mod":"2.0",
     "forge":"10.13.0.1180",
     "mc":"1.7.10"
   },
   
-  "VersionBeta": {
+  "beta": {
     "mod":"2.0",
     "forge":"10.13.0.1180",
     "mc":"1.7.10"
