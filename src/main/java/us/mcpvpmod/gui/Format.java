@@ -57,10 +57,15 @@ public class Format {
 		formatCodes.put("yellow", "e");
 		formatCodes.put("white", "f");
 		formatCodes.put("obfuscated", "k");
+		formatCodes.put("obf", "k");
 		formatCodes.put("bold", "l");
+		formatCodes.put("b", "l");
 		formatCodes.put("strikethrough", "m");
+		formatCodes.put("s", "m");
 		formatCodes.put("underline", "n");
+		formatCodes.put("u", "n");
 		formatCodes.put("italic", "o");
+		formatCodes.put("i", "o");
 		formatCodes.put("reset", "r");
 		formatCodes.put("r", "r");
 		formatCodes.put("none", "r");
