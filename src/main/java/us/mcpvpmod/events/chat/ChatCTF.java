@@ -34,8 +34,6 @@ public class ChatCTF {
 	public static String reGameOver = "\u00A7r\u00A76Game over! Winner: \u00A7r\u00A79(.*).*";
 	public static String reWho = "\u00A7.\\[\u00A77.TW\u00A7.\\] \u00A7.NomNuggetNom\u00A7.> \u00A7.\u00A7.\u00A7.\\/a \u00A7.\\?\u00A7.";
 	public static String lastAlert = "";
-	public static String lastClass = "";
-	public static String lastOnline = "";
 	
 	public static ArrayList<String> oldChat = new ArrayList<String>();
 	public static ArrayList<String> chatBlock = new ArrayList<String>();

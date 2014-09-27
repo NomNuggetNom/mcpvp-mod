@@ -17,14 +17,19 @@ public class AllRender {
 		// If we don't render during the TEXT phase, we'll screw up other displays due to OpenGL settings.
 		if (event.type != RenderGameOverlayEvent.ElementType.TEXT) return;
 		
+		// Draw the split chat.
+		Main.secondChat.drawChat(Main.mc.ingameGUI.getUpdateCounter());
+		
+		// Prevent everything else from being rendered when debug is showing.
+		if (Main.mc.gameSettings.showDebugInfo) return;
+		
 		// Display our FriendsBlock.
 		FriendsBlock.display();
 		
 		// Render our armor display.
 		ArmorDisplay.renderArmor();
 		
-		// Draw the split chat.
-		Main.secondChat.drawChat(Main.mc.ingameGUI.getUpdateCounter());
+
 
 	}
 	
