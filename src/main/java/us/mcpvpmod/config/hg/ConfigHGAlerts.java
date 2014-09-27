@@ -58,26 +58,55 @@ public class ConfigHGAlerts extends DummyModContainer {
         
         Property prop;
         
-    	prop = config.get(CATEGORY_GENERAL, "alertKit", "#white#Lookin' good. ||| #gray#You picked #green#{kit}. ||| kit");
+    	prop = config.get(CATEGORY_GENERAL, "alertKit", "#white#Lookin' good ||| #gray#You picked #green#{kit} ||| kit");
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
         prop.setLanguageKey("mcpvp.hg.config.Alerts.kit");
     	alertKit = prop.getString();
     	propOrder.add(prop.getName());
     	new CustomAlert("hg.kit", prop.getString());
         
-    	prop = config.get(CATEGORY_GENERAL, "alertStart", "#white#The game has begun! ||| #gray#Enjoy, and try not to die. ||| nether_star");
+    	prop = config.get(CATEGORY_GENERAL, "alertStart", "#white#The game has begun! ||| #gray#Enjoy, and try #i#not #r##gray#to die ||| nether_star");
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
         prop.setLanguageKey("mcpvp.hg.config.Alerts.start");
     	alertKit = prop.getString();
     	propOrder.add(prop.getName());
     	new CustomAlert("hg.start", prop.getString());
     	
-    	prop = config.get(CATEGORY_GENERAL, "alertDeath", "#white#Hold on to your seats, folks... ||| #gray#Someone just died. Only #cyan#{remain} #gray#players left. ||| bone");
+    	prop = config.get(CATEGORY_GENERAL, "alertVulnerable", "#white#Stay cool... ||| #red#You are no longer invincible! ||| skeletonskull");
+    	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
+        prop.setLanguageKey("mcpvp.hg.config.Alerts.vulnerable");
+    	alertKit = prop.getString();
+    	propOrder.add(prop.getName());
+    	new CustomAlert("hg.vulnerable", prop.getString());
+    	
+    	prop = config.get(CATEGORY_GENERAL, "alertFeastMini", "#white#Oh yeaaah ||| #gray#A mini feast has appeared between #cyan#{x1}#gray#, #cyan#{x2} #gray#& #cyan#{z1}#gray#, #cyan#{z2} ||| chest");
+    	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
+        prop.setLanguageKey("mcpvp.hg.config.Alerts.feast.mini");
+    	alertKit = prop.getString();
+    	propOrder.add(prop.getName());
+    	new CustomAlert("hg.feast.mini", prop.getString());
+    	
+    	prop = config.get(CATEGORY_GENERAL, "alertFeast", "#white#I hope you're hungry ||| #gray#A feast has appeared at #cyan#{x}#gray#, #cyan#{y}#gray#, #cyan#{z} ||| ender_chest");
+    	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
+        prop.setLanguageKey("mcpvp.hg.config.Alerts.feast.mini");
+    	alertKit = prop.getString();
+    	propOrder.add(prop.getName());
+    	new CustomAlert("hg.feast", prop.getString());
+    	
+    	prop = config.get(CATEGORY_GENERAL, "alertFeastBonus", "#white#Died and gone to heaven? ||| #gray#A #underline#bonus #r##gray#feast has appeared! ||| ender_chest");
+    	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
+        prop.setLanguageKey("mcpvp.hg.config.Alerts.feast.mini");
+    	alertKit = prop.getString();
+    	propOrder.add(prop.getName());
+    	new CustomAlert("hg.feast.bonus", prop.getString());
+    	/*
+    	prop = config.get(CATEGORY_GENERAL, "alertDeath", "#white#Get dead! ||| {killer} wrecked {killed}! {remain} players left ||| bone");
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
     	prop.setLanguageKey("mcpvp.hg.config.Alerts.death");
     	alertDeath = prop.getString();
     	propOrder.add(prop.getName());
     	new CustomAlert("hg.death", prop.getString());
+    	*/
         
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
 

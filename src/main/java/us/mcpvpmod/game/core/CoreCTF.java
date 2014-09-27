@@ -91,9 +91,6 @@ public class CoreCTF {
 				new String[]{"$2", "killed"},
 				new String[]{"$3", "streak"});
 		
-		new ChatTrigger(reCompass, "compass", Server.CTF, 
-				new String[]{"abc123", "team"});
-		
 		new ChatTrigger(reClass, "class", Server.CTF, 
 				new String[]{"$1", "kit"},
 				new String[]{"$1", "class"});

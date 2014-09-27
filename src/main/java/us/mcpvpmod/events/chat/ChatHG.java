@@ -26,6 +26,9 @@ public class ChatHG {
 			}
 		}
 		
+		if (message.matches(CoreHG.msgVulernable)) {
+			StateHG.state = StateHG.PLAY;
+		}
 	}
 	
 }
