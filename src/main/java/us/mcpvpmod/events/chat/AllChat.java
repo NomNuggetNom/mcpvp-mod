@@ -39,8 +39,6 @@ public class AllChat {
 		}
 		
 		if (message.matches(reIP) && getIP) {
-			System.out.println("Set IP.");
-			//Main.mc.setServerData(new ServerData("MCPVP", message.replaceAll(reIP, "$1")));
 			ServerHelper.currentIP = message.replaceAll(reIP, "$1");
 			getIP = false;
 			event.setCanceled(true);
@@ -51,6 +49,10 @@ public class AllChat {
 			MGIEvent.decompile(message).handle();
 		}
 		*/
+		if (message.contains("->") && !event.isCanceled()) {
+			Main.secondChat.printChatMessage(event.message);
+			event.setCanceled(true);
+		}
 	}
 	
 	/**
