@@ -3,6 +3,7 @@ package us.mcpvpmod;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import net.minecraft.client.resources.I18n;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -53,6 +54,7 @@ import us.mcpvpmod.game.vars.VarsKit;
 import us.mcpvpmod.game.vars.VarsMaze;
 import us.mcpvpmod.game.vars.VarsSab;
 import us.mcpvpmod.gui.Draw;
+import us.mcpvpmod.gui.Format;
 import cpw.mods.fml.common.gameevent.TickEvent;
 
 /**
@@ -63,12 +65,16 @@ import cpw.mods.fml.common.gameevent.TickEvent;
 public enum Server {
 	HUB, KIT, HG, MAZE, SAB, CTF, HS, PARTY, BUILD, RAID, HG2, NONE;
 	
-	@Override
+
 	/**
 	 * @return String The friendly name of the server.
 	 */
+	/*
 	public String toString() {
+		return "None";
+		//return Format.s("server." + this + ".name");
 		
+		/*
 		switch(this) {
 		case HUB: 	return "Hub";
 		case KIT: 	return "KitPVP";
@@ -84,33 +90,22 @@ public enum Server {
 		case NONE: 	return "None";
 		}
 		return "None";
+		*/
+	//}
+	
+	public String getName() {
+		return Format.s("server." + this.toString().toLowerCase() + ".name");
 	}
 	
 	public String baseIP() {
-		
-		switch(this) {
-		case HUB: 	return "hub.mcpvp.com";
-		case KIT: 	return "kitpvp.us";
-		case HG: 	return "mc-hg.com";
-		case MAZE: 	return "mc-maze.com";
-		case SAB: 	return "mc-sabotage.com";
-		case CTF: 	return "mcctf.com";
-		case HS: 	return "mcheadshot.com";
-		case PARTY:	return "party.mcpvp.com";
-		case BUILD:	return "minecraftbuild.com";
-		case RAID: 	return "raid.mcpvp.com";
-		case HG2: 	return "v2.mc-hg.com";
-		case NONE: 	return "None";
-		}
-		
-		return "None";
+		return Format.s("server." + this.toString().toLowerCase() + ".ip");
 	}
 	
 	/**
 	 * @return The Server currently connected to. 
 	 * Returns NONE if on an un-recognized server.
 	 */
-	public static Server getServer() {
+	public static Server getServer() {	
 		if (Main.mc.isSingleplayer()) return NONE;
 
 		if (ServerHelper.serverIP().endsWith("hub.mcpvp.com"))		return HUB;
