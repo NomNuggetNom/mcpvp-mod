@@ -3,11 +3,9 @@ package us.mcpvpmod;
 import java.util.Timer;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.multiplayer.GuiConnecting;
-import net.minecraft.client.multiplayer.ServerData;
 import net.minecraftforge.common.MinecraftForge;
 import us.mcpvpmod.events.Events;
+import us.mcpvpmod.gui.Format;
 import us.mcpvpmod.gui.GuiSecondChat;
 import us.mcpvpmod.json.ServerJSON;
 import us.mcpvpmod.json.StreamJSON;
@@ -36,7 +34,7 @@ public class Main {
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent e) {
-		FMLLog.info("[MCPVP] Mod starting up!");
+		FMLLog.info(Format.s("startup"));
     	
     	// Register all events in the Events class
 		MinecraftForge.EVENT_BUS.register(new Events());
@@ -50,7 +48,6 @@ public class Main {
 		// Update servers every 7 seconds.
 		timer.scheduleAtFixedRate(serverJson, 0, 5*1000L);
 		timer.scheduleAtFixedRate(new StreamJSON(), 0, 30*1000L);
-		
     }
     	
     @EventHandler

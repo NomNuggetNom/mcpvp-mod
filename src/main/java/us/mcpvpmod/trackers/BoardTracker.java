@@ -9,8 +9,8 @@ public class BoardTracker {
 
 	public static ArrayList<BoardTracker> boardTrackers = new ArrayList<BoardTracker>();
 	
-	public String displayName = "";
-	public String varName = "";
+	public String displayName;
+	public String varName;
 	
 	public BoardTracker(String displayName, String varName) {
 		this.displayName = displayName;

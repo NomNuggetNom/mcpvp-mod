@@ -5,12 +5,14 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import net.minecraft.client.resources.I18n;
 import cpw.mods.fml.common.FMLLog;
 
 public class Format {
 
 	static HashMap<String, String> formatCodes = new HashMap();
-	static String reFormat = "#(\\w+?)#";
+	static String formatSymbol = Format.s("color-code");
+	static String reFormat = formatSymbol + "(\\w+?)" + formatSymbol;
 	
 	/**
 	 * Processes formatting codes in text. e.g. #r#
@@ -22,16 +24,20 @@ public class Format {
 		Matcher colorMatch = Pattern.compile(reFormat).matcher(line);
 		while (colorMatch.find()) {
 			// Seperate our color codes from the hastags.
-			String colorCode = colorMatch.group().replaceAll("#", "");
+			String colorCode = colorMatch.group().replaceAll(formatSymbol, "");
 			
 			if (formatCodes.containsKey(colorCode)) {
 				// The second line replace will finish replacing the code.
-				line = line.replaceAll("#" + colorCode + "#", "\u00A7" + formatCodes.get(colorCode));
+				line = line.replaceAll(formatSymbol + colorCode + formatSymbol, "\u00A7" + formatCodes.get(colorCode));
 			} else {
 				FMLLog.warning("[MCPVP] Color code \"%s\" not found.", colorCode);
 			}
 		}
 		return line;
+	}
+	
+	public static String s(String key) {
+		return I18n.format(key);
 	}
 	
 	public static void setCodes() {
