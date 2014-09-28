@@ -66,6 +66,7 @@ public class AllChat {
 			
 			//new ClickEvent(ClickEvent.Action.OPEN_URL, "http://google.com/");
 			Main.mc.thePlayer.addChatMessage(new ChatComponentText(Format.process(send)));
+			// a
 		}
 	}
 	
