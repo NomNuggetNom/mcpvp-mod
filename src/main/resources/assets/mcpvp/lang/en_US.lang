@@ -1,0 +1,42 @@
+startup=[MCPVP] Mod starting up!
+sync=[MCPVP] Syncing configurations!
+color-code=#
+
+<!-- =========== -->
+<!-- = SERVERS = -->
+<!-- =========== -->
+server.hub.name=Hub
+server.hub.ip=hub.mcpvp.com
+
+server.kit.name=KitPVP
+server.kit.ip=kitpvp.us
+
+server.hg.name=Hardcore Games
+server.hg.ip=mc-hg.com
+
+server.maze.name=Maze Runner
+server.maze.ip=mc-maze.com
+
+server.sab.name=Sabotage
+server.sab.ip=mc-sabotage.com
+
+server.ctf.name=Capture The Flag
+server.ctf.ip=mcctf.com
+
+server.hs.name=Headshot
+server.hs.ip=mcheadshot.com
+
+server.party.name=Piñata Party
+server.party.ip=party.mcpvp.com
+
+server.build.name=Minecraft Build
+server.build.ip=minecraftbuild.com
+
+server.raid.name=Raid
+server.raid.ip=raid.mcpvp.com
+
+server.hg2.name=Phoenix Hunger Games
+server.hg2.ip=Phoenix Hunger Games
+
+server.none.name=None
+server.none.ip=None
