@@ -305,7 +305,6 @@ public class GuiSecondChat extends Gui
     	if (ConfigChat.movekNoHax) {
     		for (String string : this.k) {
         		if (event.message.getUnformattedText().matches(string)) {
-        			System.out.println("found match");
         			return true;
         		}
     		}
@@ -477,7 +476,8 @@ public class GuiSecondChat extends Gui
 	public static String[] k = 
 		{"\u00A7[urmom]\u00A7c(.*) (?:2|f|2)(?:o|0)[uranoob][a]*[n]*[d]* .*! [DIOH]. [ODISM]. [IUSGA]. [XLNS]. [SDFEO]. [QAIOI]. [OXZM]. \u00A7r",
 			"\u00A7r\u00A74(\\w*)_{0}\\w{2}.*\\d*\\w{3}[ia0sd].{0,9}[sadn-][v_gsd9].*! ;*.*(\\(\\d\\/\\d\\))*\u00A7[rekt].*(\\(\\d\\/\\d\\))*",
-			"\u00A7r\u00A7[ds06](.*) ([oiuwea][suosi][slkdma]{1,2}|[aopiw,a][09a8w][-=0-sa])\\s*([ihn b][;wisuye])*\\s*[o9ipan Cpo](u|w|z)(to|from)-*.*(.*)\\s*(?:in (\\d*))*. .*(\\d*) .*"};
+			"\u00A7r\u00A7[ds06](.*) ([oiuwea][suosi][slkdma]{1,2}|[aopiw,a][09a8w][-=0-sa])\\s*([ihn b][;wisuye])*\\s*[o9ipan Cpo](u|w|z)(to|from)-*.*(.*)\\s*(?:in (\\d*))*. .*(\\d*) .*",
+			"\u00A7r\u00A7(c|4).*!.*\\(\\d\\/\\d\\)\u00A7r"};
 
     
     public int func_146228_f()

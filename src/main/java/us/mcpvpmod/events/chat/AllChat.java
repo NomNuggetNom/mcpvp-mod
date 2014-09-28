@@ -56,17 +56,18 @@ public class AllChat {
 			event.setCanceled(true);
 		}
 		
-		if (!sentUpdateMessage && Main.mcpvpVersion.updateAvailable()) {
-			String send = "";
+		if (!sentUpdateMessage && Main.mcpvpVersion.updateAvailable() && ConfigVersion.updateNotifications) {
+			String msg = "";
 			
 			if (ConfigVersion.channel.equalsIgnoreCase("Main"))
-				send = "#bold##underline# v" + Main.mcpvpVersion.main.mod + " is available for Minecraft " + Main.mcpvpVersion.main.mc + "! http://www.google.com/";
+				msg = "#bold##underline# v" + Main.mcpvpVersion.main.mod + " is available for Minecraft " + Main.mcpvpVersion.main.mc + "! Click to download.";
 			 else if (ConfigVersion.channel.equalsIgnoreCase("Beta")) 
-				send = "#bold##underline# v" + Main.mcpvpVersion.beta.mod + " is available for Minecraft " + Main.mcpvpVersion.beta.mc + "! http://www.google.com/";
+				msg = "#bold##underline# v" + Main.mcpvpVersion.beta.mod + " is available for Minecraft " + Main.mcpvpVersion.beta.mc + "! Click to download.";
 			
-			//new ClickEvent(ClickEvent.Action.OPEN_URL, "http://google.com/");
-			Main.mc.thePlayer.addChatMessage(new ChatComponentText(Format.process(send)));
-			// a
+			IChatComponent send = new ChatComponentText(Format.process(msg));
+			send.getChatStyle().setChatClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "http://google.com/"));
+			Main.mc.thePlayer.addChatMessage(send);
+			sentUpdateMessage = true;
 		}
 	}
 	
