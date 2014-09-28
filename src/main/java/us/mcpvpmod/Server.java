@@ -308,8 +308,8 @@ public enum Server {
 	
 	public void drawOnScreen() {
 		if (Main.mc.gameSettings.showDebugInfo) return;
-		Draw.string(this.toString(), 0, 0, 0xFFFFFF, true);
-		Draw.string(getState().toString(), 0, 9, 0xFFFFFF, true);
+		//Draw.string(this.toString(), 0, 0, 0xFFFFFF, true);
+		//Draw.string(getState().toString(), 0, 9, 0xFFFFFF, true);
 	}
 	
 	public static ArrayList<Server> serverList() {

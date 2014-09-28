@@ -8,7 +8,12 @@ import java.net.URLConnection;
 import java.util.TimerTask;
 import java.util.zip.GZIPInputStream;
 
+import us.mcpvpmod.Main;
+import us.mcpvpmod.version.MCPVPVersion;
+
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 
 import cpw.mods.fml.common.FMLLog;
 
@@ -16,7 +21,11 @@ public class VersionJSON extends TimerTask {
 
 	@Override
 	public void run() {
-		System.out.println(getJson());
+		String json = getJson();
+		Gson gson = new GsonBuilder().create();
+		MCPVPVersion v = gson.fromJson(json, MCPVPVersion.class);
+		Main.mcpvpVersion = v;
+		System.out.println(MCPVPVersion.updateAvailable());
 	}
 
 	public String getJson() {

@@ -2,13 +2,17 @@ package us.mcpvpmod.events.chat;
 
 import cpw.mods.fml.common.FMLLog;
 import net.minecraft.client.multiplayer.ServerData;
+import net.minecraft.event.ClickEvent;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.IChatComponent;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.ServerHelper;
 import us.mcpvpmod.config.all.ConfigChat;
+import us.mcpvpmod.config.all.ConfigVersion;
 import us.mcpvpmod.config.ctf.ConfigCTFChat;
+import us.mcpvpmod.gui.Format;
 import us.mcpvpmod.mgi.MGIEvent;
 import us.mcpvpmod.triggers.ChatTrigger;
 
@@ -20,6 +24,7 @@ public class AllChat {
 	public static String msgLogged = "Now Logged in!";
 	public static String reIP = "Server Address: (.*)";
 	public static boolean getIP = false;
+	public static boolean sentUpdateMessage = false;
 
 	public static void handleChat(ClientChatReceivedEvent event) {
 		String message = event.message.getUnformattedText();
@@ -45,15 +50,22 @@ public class AllChat {
 			getIP = false;
 			event.setCanceled(true);
 		}
-		
-		/*
-		if (MGIEvent.isMGIEvent(message)) {
-			MGIEvent.decompile(message).handle();
-		}
-		*/
+
 		if (Main.secondChat.shouldSplit(event) && !Server.getServer().equals(Server.CTF)) {
 			Main.secondChat.printChatMessage(event.message);
 			event.setCanceled(true);
+		}
+		
+		if (!sentUpdateMessage && Main.mcpvpVersion.updateAvailable()) {
+			String send = "";
+			
+			if (ConfigVersion.channel.equalsIgnoreCase("Main"))
+				send = "#bold##underline# v" + Main.mcpvpVersion.main.mod + " is available for Minecraft " + Main.mcpvpVersion.main.mc + "! http://www.google.com/";
+			 else if (ConfigVersion.channel.equalsIgnoreCase("Beta")) 
+				send = "#bold##underline# v" + Main.mcpvpVersion.beta.mod + " is available for Minecraft " + Main.mcpvpVersion.beta.mc + "! http://www.google.com/";
+			
+			//new ClickEvent(ClickEvent.Action.OPEN_URL, "http://google.com/");
+			Main.mc.thePlayer.addChatMessage(new ChatComponentText(Format.process(send)));
 		}
 	}
 	
@@ -70,7 +82,6 @@ public class AllChat {
 		}
 		
 		// This removes game tips. Might interfere un-intentionally with server messages that are blue.
-		// TODO: Resolve possible conflics.
 		if (ConfigCTFChat.removeTips && message.startsWith("\u00A73")) {
 			return true;
 		}

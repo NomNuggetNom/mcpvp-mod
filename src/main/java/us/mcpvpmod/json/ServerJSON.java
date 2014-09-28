@@ -56,7 +56,6 @@ public class ServerJSON extends TimerTask {
 		// creates MCPVPServers and sets all the values in the new MCPVPServer
 		ArrayList<MCPVPServer> servers = gson.fromJson(json, type);
 		
-		//if (servers == null) return;
 		if (servers != null) {
 			
 			// Cycle through all the servers created and remove parkour servers.

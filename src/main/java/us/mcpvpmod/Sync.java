@@ -4,6 +4,7 @@ import us.mcpvpmod.config.all.ConfigAlerts;
 import us.mcpvpmod.config.all.ConfigChat;
 import us.mcpvpmod.config.all.ConfigFriends;
 import us.mcpvpmod.config.all.ConfigHUD;
+import us.mcpvpmod.config.all.ConfigVersion;
 import us.mcpvpmod.config.build.ConfigBuildHUD;
 import us.mcpvpmod.config.ctf.ConfigCTFAlerts;
 import us.mcpvpmod.config.ctf.ConfigCTFChat;
@@ -64,6 +65,7 @@ public class Sync {
 		ConfigFriends.syncConfig();
 		ConfigHUD.syncConfig();
 		ConfigAlerts.syncConfig();
+		ConfigVersion.syncConfig();
 		
 		// Sync CTF Configs
 		ConfigCTFChat.syncConfig();
