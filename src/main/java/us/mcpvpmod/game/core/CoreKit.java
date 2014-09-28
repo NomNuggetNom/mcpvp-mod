@@ -13,21 +13,21 @@ public class CoreKit {
 	public static void setup() {
 		
 		new ChatTrigger(reStreak, "kit.streak.get", Server.KIT, 
-				new String[]{"$1", "player"}, 
-				new String[]{"$2", "streak"});
+				new String[]{"player", "$1"}, 
+				new String[]{"streak", "$2"});
 		
 		new ChatTrigger(reStreakEnd, "kit.streak.end", Server.KIT,  
-				new String[]{"$1", "killer"}, 
-				new String[]{"$2", "streak"},
-				new String[]{"$3", "killed"});
+				new String[]{"killer", "$1"}, 
+				new String[]{"streak", "$2"},
+				new String[]{"killed", "$3"});
 		
 		new ChatTrigger(reRestart, "kit.restart", Server.KIT);
 		
-		new BoardTracker("Credits:", "kit:credits");
-		new BoardTracker("Deaths:", "kit:deaths");
-		new BoardTracker("Kills:", "kit:kills");
-		new BoardTracker("Your worth:", "kit:worth");
-		new BoardTracker("Killstreak:", "kit:ks");
+		new BoardTracker("kit:credits", "Credits:");
+		new BoardTracker("kit:deaths", "Deaths:");
+		new BoardTracker("kit:kills", "Kills:");
+		new BoardTracker("kit:worth", "Your worth:");
+		new BoardTracker("kit:ks", "Killstreak:");
 	}
 	
 }

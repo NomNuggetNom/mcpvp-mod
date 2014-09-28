@@ -27,28 +27,28 @@ public class CoreSab {
 	public static void setup() {
 
 		new ChatTracker(reRole, Server.SAB,
-				new String[]{"$1", "sab:role"});
+				new String[]{"sab:role", "$1"});
 		
 		new ChatTracker(reRemain, Server.SAB,
-				new String[]{"$1", "sab:remain"});
+				new String[]{"sab:remain", "$1"});
 		
 		new ChatTracker(reDetective, Server.SAB,
-				new String[]{"$1", "sab:detective"});
+				new String[]{"sab:detective", "$1"});
 		
 		new ChatTracker(reWin, Server.SAB,
-				new String[]{"$1", "sab:winner"});
+				new String[]{"sab:winner", "$1"});
 		
 		new ChatTrigger(reRole, "sab.start", Server.SAB,
-				new String[]{"$1", "role"});
+				new String[]{"role", "$1"});
 		
 		new ChatTrigger(reRemain, "sab.death", Server.SAB,
-				new String[]{"$1", "remain"});
+				new String[]{"remain", "$1"});
 		
 		new ChatTrigger(reWin, "sab.end", Server.SAB,
 				new String[]{"var:sab:winner", "winner"});
 		
 		new ChatTrigger(reChestWave, "sab.chest", Server.SAB,
-				new String[]{"$1", "wave"});
+				new String[]{"wave", "$1"});
 		
 	}
 	

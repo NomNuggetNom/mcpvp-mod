@@ -13,27 +13,26 @@ public class CoreMaze {
 	public static String reTeamOut = "\u00A7.(\u00A7..*) is out. (\\d+) teams left.\u00A7.";
 	
 	public static void setup() {
-		FMLLog.info("[MCPVP] Syncing setup for Maze");
 		
 		new ChatTracker(reKit, Server.MAZE, 
-				new String[]{"$1", "maze:kit"});
+				new String[]{"maze:kit", "$1"});
 		
 		new ChatTracker(reJoinTeam, Server.MAZE, 
-				new String[]{"$1", "maze:team"});
+				new String[]{"maze:team", "$1"});
 		
 		new ChatTrigger(reKit, "maze.kit", Server.MAZE,  
-				new String[]{"$1", "kit"});
+				new String[]{"kit", "$1"});
 		
 		new ChatTrigger(reJoinTeam, "maze.team.join", Server.MAZE,  
-				new String[]{"$1", "team"});
+				new String[]{"team", "$1"});
 		
 		new ChatTrigger(reTeamOut, "maze.team.out", Server.MAZE, 
-				new String[]{"$1", "team"},
-				new String[]{"$2", "remain"});
+				new String[]{"team", "$1"},
+				new String[]{"remain", "$2"});
 
-		new BoardTracker("Base X Cord:", "maze:base.x");
-		new BoardTracker("Base Z Cord:", "maze:base.z");
-		new BoardTracker("Princess Health%", "maze:princess.health");
-		new BoardTracker("Princess Hunger%", "maze:princess.hunger");
+		new BoardTracker("maze:base.x", "Base X Cord:");
+		new BoardTracker("maze:base.z", "Base Z Cord:");
+		new BoardTracker("maze:princess.health", "Princess Health%");
+		new BoardTracker("maze:princess.hunger", "Princess Hunger%");
 	}
 }

@@ -28,78 +28,78 @@ public class CoreCTF {
 	public static void setup() {
 		
 		new ChatTracker(reClass, Server.CTF,
-				new String[]{"$1", "ctf:kit"},
-				new String[]{"$1", "ctf:class"});
+				new String[]{"ctf:kit", "$1"},
+				new String[]{"ctf:class", "$1"});
 		
 		new ChatTracker(reRestore, Server.CTF,
-				new String[]{"$1", "ctf:team"});
+				new String[]{"ctf:team", "$1"});
 
 		new ChatTracker(reStats, Server.CTF, 
-				new String[]{"$1", "ctf:kills"}, 
-				new String[]{"$2", "ctf:streak"}, 
-				new String[]{"$3", "ctf:deaths"}, 
-				new String[]{"$4", "ctf:steals"}, 
-				new String[]{"$4", "ctf:caps"});
+				new String[]{"ctf:kills", "$1"}, 
+				new String[]{"ctf:streak", "$2"}, 
+				new String[]{"ctf:deaths", "$3"}, 
+				new String[]{"ctf:steals", "$4"}, 
+				new String[]{"ctf:caps", "$4"});
 		
 		new ChatTracker(reBlueTeam, Server.CTF, 
-				new String[]{"$1", "ctf:team.blue.caps"}, 
-				new String[]{"$3", "ctf:team.blue.flag"}, 
-				new String[]{"$4", "ctf:team.blue.players"});
+				new String[]{"ctf:team.blue.caps", "$1"}, 
+				new String[]{"ctf:team.blue.flag", "$3"}, 
+				new String[]{"ctf:team.blue.players", "$4"});
 		
 		new ChatTracker(reRedTeam, Server.CTF, 
-				new String[]{"$1", "ctf:team.red.caps"}, 
-				new String[]{"$3", "ctf:team.red.flag"}, 
-				new String[]{"$4", "ctf:team.red.players"});
+				new String[]{"ctf:team.red.caps", "$1"}, 
+				new String[]{"ctf:team.red.flag", "$3"}, 
+				new String[]{"ctf:team.red.players", "$4"});
 		
 		new ChatTracker(reMap, Server.CTF,
-				new String[]{"$1", "ctf:map"});
+				new String[]{"ctf:map", "$1"});
 		
 		new ChatTracker(reGameOver, Server.CTF,
-				new String[]{"$1", "ctf:winner"});
+				new String[]{"ctf:winner", "$1"});
 		
 		new ChatTrigger(reStole, "flag.stolen", Server.CTF, 
-				new String[]{"$1", "player"}, 
-				new String[]{"$2", "team"},
+				new String[]{"player", "$1"}, 
+				new String[]{"team", "$2"},
 				new String[]{"stole", "action"});
 		
 		new ChatTrigger(reDropped, "flag.dropped", Server.CTF,  
-				new String[]{"$1", "player"}, 
-				new String[]{"$2", "team"},
+				new String[]{"player", "$1"}, 
+				new String[]{"team", "$2"},
 				new String[]{"dropped", "action"});
 		
 		new ChatTrigger(rePickedUp, "flag.pickedup", Server.CTF, 
-				new String[]{"$1", "player"}, 
-				new String[]{"$2", "team"},
+				new String[]{"player", "$1"}, 
+				new String[]{"team", "$2"},
 				new String[]{"pickedup", "action"});
 		
 		new ChatTrigger(reRecovered, "flag.recovered", Server.CTF, 			
-				new String[]{"$1", "player"}, 
-				new String[]{"$2", "team"},
+				new String[]{"player", "$1"}, 
+				new String[]{"team", "$2"},
 				new String[]{"recovered", "action"});
 		
 		new ChatTrigger(reRestore, "flag.restored", Server.CTF, 
-				new String[]{"$1", "team"},
+				new String[]{"team", "$1"},
 				new String[]{"restored", "action"});
 		
 		new ChatTrigger(reCaptured, "flag.captured", Server.CTF, 
-				new String[]{"$1", "player"},
-				new String[]{"$2", "team"},
+				new String[]{"player", "$1"},
+				new String[]{"team", "$2"},
 				new String[]{"captured", "action"});
 		
 		new ChatTrigger(reStreak, "streak", Server.CTF, 
-				new String[]{"$1", "killer"},
-				new String[]{"$2", "killed"},
-				new String[]{"$3", "streak"});
+				new String[]{"killer", "$1"},
+				new String[]{"killed", "$2"},
+				new String[]{"streak", "$3"});
 		
 		new ChatTrigger(reClass, "class", Server.CTF, 
-				new String[]{"$1", "kit"},
-				new String[]{"$1", "class"});
+				new String[]{"kit", "$1"},
+				new String[]{"class", "$1"});
 		
 		new ChatTrigger(reGameOver, "game.end", Server.CTF, 
-				new String[]{"$1", "winner"});
+				new String[]{"winner", "$1"});
 		
-		new BoardTracker("\u00A79Blue", "ctf:team.blue.wins");
-		new BoardTracker("\u00A7cRed", "ctf:team.red.wins");
+		new BoardTracker("ctf:team.blue.wins", "\u00A79Blue");
+		new BoardTracker("ctf:team.red.wins", "\u00A7cRed");
 	}
 	
 }

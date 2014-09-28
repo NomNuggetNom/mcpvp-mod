@@ -15,9 +15,9 @@ public class VarsHG {
 	 * Called every tick to update information.
 	 */
 	public static void putVars() {
-		//vars.put("kills", Vars.get("kit:kills"));
 		vars.put("time", InfoHG.getFormattedTime());
 		vars.put("kit", Vars.get("hg:kit"));
+		vars.put("remain", Vars.get("hg:remain"));
 	}
 	
 	/**

@@ -13,27 +13,30 @@ public class ChatTracker {
 	public static ArrayList<ChatTracker> chatTrackers = new ArrayList<ChatTracker>();
 	
 	public String pattern;
-	public String replace;
-	public String varName;
-	public Server  server;
+	public String value;
+	public String key;
+	public Server server;
 	
 	/**
 	 * Constructor for a single tracker.
 	 * @param pattern The message to match.
-	 * @param data The regular expression position and variable to set.
+	 * @param data In pairs, the variable name to assign the information to and the value to set. 
+	 * The value can be a position in a regular expression, 
+	 * e.g. {"hg:kit", "$1"} hg:kit is assigned the value of the message's first regex return.
 	 */
 	public ChatTracker(String pattern, Server server, String[] data) {
 		this.pattern = pattern;
 		this.server  = server;
-		this.replace = data[0];
-		this.varName = data[1];
+		this.key 	 = data[0];
+		this.value 	 = data[1];
 		chatTrackers.add(this);
 	}
 	
 	/**
 	 * Constructor for building multiple trackers at once.
 	 * @param pattern The message to match.
-	 * @param data The regular expression position and variable to set.
+	 * The value can be a position in a regular expression, 
+	 * e.g. {"hg:kit", "$1"} hg:kit is assigned the value of the message's first regex return.
 	 */
 	public ChatTracker(String pattern, Server server, String[]... data) {
 		for (String[] string : data) {
@@ -49,12 +52,12 @@ public class ChatTracker {
 		if (Server.getServer() != this.server) return;
 		
 		if (message.matches(this.pattern)) {
-			if (replace.startsWith("$")) {
-				String val = message.replaceAll(pattern, replace);
-				Vars.put(varName, val);
+			if (value.startsWith("$")) {
+				String val = message.replaceAll(pattern, value);
+				Vars.put(key, val);
 			} else {
-				FMLLog.info("Unusual tracker. varName: %s - replace: %s", varName, replace);
-				Vars.put(varName, replace);
+				FMLLog.info("Unusual tracker. varName: %s - replace: %s", key, value);
+				Vars.put(key, value);
 			}
 		}
 	}

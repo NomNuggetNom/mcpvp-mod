@@ -12,38 +12,42 @@ public class CoreHG {
 	public static String msgBegin = "§r§cThe Tournament has begun!§r";
 	public static String msgVulernable = "§r§cYou are no longer invincible.§r";
 	public static String reMiniFeast = "§r§cA mini feast has appeared between \\( x: (.*) and x: (.*) \\) and \\( z: (.*) and z: (.*) \\)§r";
-	public static String reFeast = "§r§cFeast will begin at \\((.*), (.*), (.*)\\) in 1 seconds.§r";
+	public static String reFeast = "§r§cFeast will begin at \\((.*), (.*), (.*)\\).*";
 	public static String msgFeastBegin = "§r§cThe Feast has begun!§r";
 	public static String msgBonusFeast = "§r§cA §r§c§nbonus§r§c feast has been spawned! It can be anywhere on the whole map.§r";
+	public static String reRemain = "§r§b(\\d*) players remaining.§r";
 	public static String reWin = "§r§c(.*) wins!§r";
 	
 	public static void setup() {
 		
 		new ChatTracker(reKit, Server.HG,
-				new String[]{"$1", "hg:kit"});
+				new String[]{"hg:kit", "$1"});
 		
 		new ChatTracker(reFeast, Server.HG,
-				new String[]{"$1", "hg:feast.x"},
-				new String[]{"$2", "hg:feast.y"},
-				new String[]{"$3", "hg:feast.z"});
+				new String[]{"hg:feast.x", "$1"},
+				new String[]{"hg:feast.y", "$2"},
+				new String[]{"hg:feast.z", "$3"});
+		
+		new ChatTracker(reRemain, Server.HG,
+				new String[]{"hg:remain", "$1"});
 		
 		new ChatTrigger(reKit, "hg.kit", Server.HG,  
-				new String[]{"$1", "kit"});
+				new String[]{"kit", "$1"});
 		
 		new ChatTrigger(msgBegin, "hg.start", Server.HG);
 		
 		new ChatTrigger(msgVulernable, "hg.vulnerable", Server.HG);
 
 		new ChatTrigger(reMiniFeast, "hg.feast.mini", Server.HG, 
-				new String[]{"$1", "x1"},
-				new String[]{"$2", "x2"},
-				new String[]{"$1", "z1"},
-				new String[]{"$2", "z2"});
+				new String[]{"x1", "$1"},
+				new String[]{"x2", "$2"},
+				new String[]{"z1", "$3"},
+				new String[]{"z2", "$4"});
 		
-		new ChatTrigger(reFeast, "hg.feast", Server.HG, 
-				new String[]{"hg:feast.x", "x"},
-				new String[]{"hg:feast.y", "y"},
-				new String[]{"hg:feast.z", "z"});
+		new ChatTrigger(msgFeastBegin, "hg.feast", Server.HG, 
+				new String[]{"var:hg:feast.x", "x"},
+				new String[]{"var:hg:feast.y", "y"},
+				new String[]{"var:hg:feast.z", "z"});
 		
 	}
 }

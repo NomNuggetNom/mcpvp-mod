@@ -12,7 +12,12 @@ public class BoardTracker {
 	public String displayName;
 	public String varName;
 	
-	public BoardTracker(String displayName, String varName) {
+	/**
+	 * Used to track values on the scoreboard. Updated every tick.
+	 * @param varName The key of the value to store.
+	 * @param displayName The name of the scoreboard entry to track.
+	 */
+	public BoardTracker(String varName, String displayName) {
 		this.displayName = displayName;
 		this.varName = varName;
 		boardTrackers.add(this);
