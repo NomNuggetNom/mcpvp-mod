@@ -53,7 +53,7 @@ public class ConfigCTFHUD extends DummyModContainer {
     			"---#bold#Pre-Game Info (1%, 1%)", 
     			"#gold#Class: #r#{class}", 
     			"#gold#Map: #r#{map}"});
-        prop.setLanguageKey("mcpvp.ctf.config.HUD.renderPre");
+        prop.setLanguageKey("ctf.config.hud.renderPre");
     	renderPre = prop.getStringList();
     	propOrder.add(prop.getName());
     	
@@ -69,7 +69,7 @@ public class ConfigCTFHUD extends DummyModContainer {
     			"#red#Red wins: #r#{red wins}", 
     			"#blue#Blue wins: #r#{blue wins}", 
     			"{free day}"});
-        prop.setLanguageKey("mcpvp.ctf.config.HUD.renderPlay");
+        prop.setLanguageKey("ctf.config.hud.renderPlay");
     	renderPlay = prop.getStringList();
     	propOrder.add(prop.getName());
     	
@@ -85,7 +85,7 @@ public class ConfigCTFHUD extends DummyModContainer {
     			"#red#Red wins: #r#{red wins}", 
     			"#blue#Blue wins: #r#{blue wins}", 
     			"{free day}"});
-        prop.setLanguageKey("mcpvp.ctf.config.HUD.renderPost");
+        prop.setLanguageKey("ctf.config.hud.renderPost");
     	renderPost = prop.getStringList();
     	propOrder.add(prop.getName());
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);

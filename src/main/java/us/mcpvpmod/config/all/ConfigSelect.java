@@ -51,12 +51,12 @@ public class ConfigSelect extends DummyModContainer {
         Property prop;
 
     	prop = config.get(CATEGORY_GENERAL, "autoTagB", false);
-        prop.setLanguageKey("mcpvp.config.Select.autoTagB");
+        prop.setLanguageKey("config.Select.autoTagB");
     	autoTagB = prop.getBoolean();
     	propOrder.add(prop.getName());
         
-    	prop = config.get(CATEGORY_GENERAL, "autoTag", "none", "This will automatically set your tag when you join.", new String[]{"none", "default", "normal", "vip", "mvp", "pro"});
-        prop.setLanguageKey("mcpvp.config.Select.autoTag");
+    	prop = config.get(CATEGORY_GENERAL, "autoTag", "default", "This will automatically set your tag when you join.", new String[]{"default", "normal", "vip", "mvp", "pro"});
+        prop.setLanguageKey("config.Select.autoTag");
     	autoTag = prop.getString();
     	propOrder.add(prop.getName());
         

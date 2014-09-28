@@ -6,6 +6,7 @@ import java.util.List;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;
+import us.mcpvpmod.gui.Format;
 import cpw.mods.fml.client.config.DummyConfigElement.DummyCategoryElement;
 import cpw.mods.fml.client.config.GuiConfig;
 import cpw.mods.fml.client.config.GuiConfigEntries;
@@ -22,16 +23,16 @@ public class ConfigCTF extends CategoryEntry {
     protected GuiScreen buildChildScreen() {
         List<IConfigElement> list = new ArrayList<IConfigElement>();
         
-        list.add(new DummyCategoryElement("HUD", "mcpvp.config.ctf.HUD", CTFHUD.class));
-        list.add(new DummyCategoryElement("Chat", "mcpvp.config.ctf.Chat", CTFChat.class));
-        list.add(new DummyCategoryElement("Alerts", "mcpvp.config.ctf.Alerts", CTFAlerts.class));
-        list.add(new DummyCategoryElement("Sounds", "mcpvp.config.ctf.Sounds", SoundsEntry.class));
+        list.add(new DummyCategoryElement(Format.s("config.hud.title"), "ctf.config.HUD", CTFHUD.class));
+        list.add(new DummyCategoryElement(Format.s("config.chat.title"), "ctf.config.Chat", CTFChat.class));
+        list.add(new DummyCategoryElement(Format.s("config.alerts.title"), "ctf.config.Alerts", CTFAlerts.class));
+        list.add(new DummyCategoryElement(Format.s("config.sounds.title"), "ctf.config.Sounds", SoundsEntry.class));
         
         return new GuiConfig(this.owningScreen,
         		list, 
         		this.owningScreen.modID, Configuration.CATEGORY_GENERAL, this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart, 
         		this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart,
-        		"Capture the Flag");
+        		Format.s("ctf.config.title"));
     }
 
 		public static class CTFHUD extends CategoryEntry {
@@ -45,7 +46,7 @@ public class ConfigCTF extends CategoryEntry {
 		                (new ConfigElement(ConfigCTFHUD.getConfig().getCategory(Configuration.CATEGORY_GENERAL))).getChildElements(), 
 		                this.owningScreen.modID, Configuration.CATEGORY_GENERAL, this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart, 
 		                this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart,
-		                "Heads Up Display");
+		                Format.s("config.hud.title"));
 		
 		    }
 		}
@@ -61,7 +62,7 @@ public class ConfigCTF extends CategoryEntry {
 		                (new ConfigElement(ConfigCTFChat.getConfig().getCategory(Configuration.CATEGORY_GENERAL))).getChildElements(), 
 		                this.owningScreen.modID, Configuration.CATEGORY_GENERAL, this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart, 
 		                this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart, 
-		                "Chat Controls");
+		                Format.s("config.chat.title"));
 		    }
 		}
 		
@@ -76,7 +77,7 @@ public class ConfigCTF extends CategoryEntry {
 		                (new ConfigElement(ConfigCTFAlerts.getConfig().getCategory(Configuration.CATEGORY_GENERAL))).getChildElements(), 
 		                this.owningScreen.modID, Configuration.CATEGORY_GENERAL, this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart, 
 		                this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart, 
-		                "Alert Messages");
+		                Format.s("config.alerts.title"));
 		    }
 		}
 		
@@ -91,7 +92,7 @@ public class ConfigCTF extends CategoryEntry {
 		                (new ConfigElement(ConfigCTFSounds.getConfig().getCategory(Configuration.CATEGORY_GENERAL))).getChildElements(), 
 		                this.owningScreen.modID, Configuration.CATEGORY_GENERAL, this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart, 
 		                this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart, 
-		                "Sounds");
+		                Format.s("config.sounds.title"));
 		    }
 		}
 }

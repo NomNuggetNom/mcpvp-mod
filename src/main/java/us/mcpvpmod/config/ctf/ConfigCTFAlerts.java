@@ -21,20 +21,20 @@ import cpw.mods.fml.common.registry.GameData;
 
 public class ConfigCTFAlerts extends DummyModContainer {
 
-    public static String alertStole = "";
-    public static String alertDropped = "";
-    public static String alertPickedUp = "";
-    public static String alertRecovered = "";
-    public static String alertCaptured = "";
-    public static String alertRestored = "";
-    public static String alertStreak = "";
-    public static String alertCompass = "";
-    public static String alertClass = "";
-    public static String alertAssist = "";
-    public static String alertStart = "";
-    public static String alertFiveMin = "";
-    public static String alertOneMin = "";
-    public static String alertEnd = "";
+    public static String alertStole;
+    public static String alertDropped;
+    public static String alertPickedUp;
+    public static String alertRecovered;
+    public static String alertCaptured;
+    public static String alertRestored;
+    public static String alertStreak;
+    public static String alertCompass;
+    public static String alertClass;
+    public static String alertAssist;
+    public static String alertStart;
+    public static String alertFiveMin;
+    public static String alertOneMin;
+    public static String alertEnd;
     
     public static String fileName = "mcpvp_ctf_alerts.cfg";
     
@@ -70,98 +70,98 @@ public class ConfigCTFAlerts extends DummyModContainer {
         
     	prop = config.get(CATEGORY_GENERAL, "alertStole", "#white#Flag stolen! ||| {player} #gray#stole {team}#gray#'s #gray#flag! ||| wool");
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-        prop.setLanguageKey("mcpvp.ctf.config.Alerts.alertStole");
+        prop.setLanguageKey("ctf.config.alerts.stole");
     	alertStole = prop.getString();
     	propOrder.add(prop.getName());
     	new CustomAlert("flag.stolen", prop.getString());
     	
     	prop = config.get(CATEGORY_GENERAL, "alertDropped", "#white#Flag dropped! ||| {player} #gray#dropped {team}#gray#'s flag! ||| wool");
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-        prop.setLanguageKey("mcpvp.ctf.config.Alerts.alertDropped");
+        prop.setLanguageKey("ctf.config.alerts.dropped");
     	alertDropped = prop.getString();
     	propOrder.add(prop.getName());
     	new CustomAlert("flag.dropped", prop.getString());
     	
     	prop = config.get(CATEGORY_GENERAL, "alertPickedUp", "#white#Flag picked up! ||| {player} #gray#picked up {team}#gray#'s flag! ||| wool");
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-        prop.setLanguageKey("mcpvp.ctf.config.Alerts.alertPickedUp");
+        prop.setLanguageKey("ctf.config.alerts.pickedUp");
     	alertPickedUp = prop.getString();
     	propOrder.add(prop.getName());
     	new CustomAlert("flag.pickedup", prop.getString());
     	
     	prop = config.get(CATEGORY_GENERAL, "alertRecovered", "#white#Flag recovered! ||| {player} #gray#recovered {team}#gray#'s flag! ||| wool");
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-        prop.setLanguageKey("mcpvp.ctf.config.Alerts.alertRecovered");
+        prop.setLanguageKey("ctf.config.alerts.recovered");
     	alertRecovered = prop.getString();
     	propOrder.add(prop.getName());
     	new CustomAlert("flag.recovered", prop.getString());
     	
     	prop = config.get(CATEGORY_GENERAL, "alertRestored", "#white#Flag restored! ||| {team}#gray#'s flag has been restored ||| wool");
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-        prop.setLanguageKey("mcpvp.ctf.config.Alerts.alertRestored");
+        prop.setLanguageKey("ctf.config.alerts.restored");
     	alertRecovered = prop.getString();
     	propOrder.add(prop.getName());
     	new CustomAlert("flag.restored", prop.getString());
     	
     	prop = config.get(CATEGORY_GENERAL, "alertCaptured", "#white#Flag captured! ||| {player} #gray#captured {team}#gray#'s flag! ||| wool");
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-        prop.setLanguageKey("mcpvp.ctf.config.Alerts.alertCaptured");
+        prop.setLanguageKey("ctf.config.alerts.captured");
     	alertCaptured = prop.getString();
     	propOrder.add(prop.getName());
     	new CustomAlert("flag.captured", prop.getString());
     	
     	prop = config.get(CATEGORY_GENERAL, "alertStreak", "#white#Streak ended! ||| {killer} #gray#ended {killed}#gray#'s #cyan#{streak} #gray#streak ||| bone");
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-        prop.setLanguageKey("mcpvp.ctf.config.Alerts.alertStreak");
+        prop.setLanguageKey("ctf.config.alerts.streak");
     	alertStreak = prop.getString();
     	propOrder.add(prop.getName());
     	new CustomAlert("streak", prop.getString());
     	
     	prop = config.get(CATEGORY_GENERAL, "alertCompass", "-X- #white#Compass changed ||| #gray#Now pointing at {team}#gray#'s flag ||| compass");
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-        prop.setLanguageKey("mcpvp.ctf.config.Alerts.alertCompass");
+        prop.setLanguageKey("ctf.config.alerts.compass");
     	alertCompass = prop.getString();
     	propOrder.add(prop.getName());
     	new CustomAlert("compass", prop.getString());
     	
     	prop = config.get(CATEGORY_GENERAL, "alertClass", "#white#Fancy stuff ||| #gray#Changed to #green#{class} ||| class");
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-        prop.setLanguageKey("mcpvp.ctf.config.Alerts.alertClass");
+        prop.setLanguageKey("ctf.config.alerts.class");
     	alertClass = prop.getString();
     	propOrder.add(prop.getName());
     	new CustomAlert("class", prop.getString());
     	
     	prop = config.get(CATEGORY_GENERAL, "alertAssist", "Assist Kill ||| #gray#Assisted in killing {player} ||| witherskull");
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-        prop.setLanguageKey("mcpvp.ctf.config.Alerts.alertAssist");
+        prop.setLanguageKey("ctf.config.alerts.assist");
     	alertAssist = prop.getString();
     	propOrder.add(prop.getName());
     	new CustomAlert("assist", prop.getString());
     	
     	prop = config.get(CATEGORY_GENERAL, "alertStart", "Hooray! ||| #cyan#The game has begun. Have fun! ||| nether_star");
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-        prop.setLanguageKey("mcpvp.ctf.config.Alerts.alertStart");
+        prop.setLanguageKey("ctf.config.alerts.start");
     	alertStart = prop.getString();
     	propOrder.add(prop.getName());
     	new CustomAlert("game.start", prop.getString());
     	
     	prop = config.get(CATEGORY_GENERAL, "alertFive", "Heads up! ||| #yellow#5:00 #gray#remaining. ||| clock");
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-        prop.setLanguageKey("mcpvp.ctf.config.Alerts.alertFive");
+        prop.setLanguageKey("ctf.config.alerts.five");
     	alertFiveMin = prop.getString();
     	propOrder.add(prop.getName());
     	new CustomAlert("game.time.five", prop.getString());
     	
     	prop = config.get(CATEGORY_GENERAL, "alertOne", "Warning! ||| #red#1:00 #gray#remaining! ||| clock");
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-        prop.setLanguageKey("mcpvp.ctf.config.Alerts.alertOne");
+        prop.setLanguageKey("ctf.config.alerts.one");
     	alertOneMin = prop.getString();
     	propOrder.add(prop.getName());
     	new CustomAlert("game.time.one", prop.getString());
     	
     	prop = config.get(CATEGORY_GENERAL, "alertEnd", "Game over! ||| {team} #gray#won the game! ||| wool");
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-        prop.setLanguageKey("mcpvp.ctf.config.Alerts.alertEnd");
+        prop.setLanguageKey("ctf.config.alerts.end");
     	alertEnd = prop.getString();
     	propOrder.add(prop.getName());
     	new CustomAlert("game.end", prop.getString());

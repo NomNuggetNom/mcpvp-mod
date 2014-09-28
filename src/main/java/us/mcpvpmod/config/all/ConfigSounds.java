@@ -1,4 +1,4 @@
-package us.mcpvpmod.config.build;
+package us.mcpvpmod.config.all;
 
 import static net.minecraftforge.common.config.Configuration.CATEGORY_GENERAL;
 
@@ -8,28 +8,18 @@ import java.util.List;
 
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
+import us.mcpvpmod.game.alerts.SoundAlert;
 import cpw.mods.fml.common.DummyModContainer;
+import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
 
-public class ConfigBuildHUD extends DummyModContainer {
+public class ConfigSounds extends DummyModContainer {
 
-	public static String[] render= new String[1000];
-	public static boolean renderDebug = false;
-	public static String[] yourStats = new String[1000];
-	public static String[] gameInfo = new String[1000];
-	public static boolean customTextures = false;
-	public static boolean renderBG = true;
-	public static int margin = 3;
-	public static boolean centerTitles = true;
-	public static boolean alignWidths = false;
-	public static boolean alignHeights = false;
-	public static int medalTimer = 7;
-	
-    public static String fileName = "mcpvp_build_hud.cfg";
+    public static String fileName = "mcpvp_sounds.cfg";
     
     private static Configuration config;
 
-    public ConfigBuildHUD() {
+    public ConfigSounds() {
         config = null;
         File cfgFile = new File(Loader.instance().getConfigDir(), fileName);
         config = new Configuration(cfgFile);
@@ -56,16 +46,17 @@ public class ConfigBuildHUD extends DummyModContainer {
         List<String> propOrder = new ArrayList<String>();
         
         Property prop;
-        
-    	prop = config.get(CATEGORY_GENERAL, "render", new String[]{""});
-        prop.setLanguageKey("build.config.HUD.render");
-    	render = prop.getStringList();
-    	propOrder.add(prop.getName());
     	
+    	prop = config.get(CATEGORY_GENERAL, "soundOnline", "random.pop");
+        prop.setLanguageKey("config.sounds.online");
+    	propOrder.add(prop.getName());
+    	new SoundAlert("online", prop.getString());
+        
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
 
         if (config.hasChanged())
         {
+        	FMLLog.info("[MCPVP] Syncing configuration for %s", fileName);
             config.save();
         }
     }

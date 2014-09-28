@@ -51,17 +51,17 @@ public class ConfigCTFChat extends DummyModContainer {
         Property prop;
     	
     	prop = config.get(CATEGORY_GENERAL, "removeTips", true);
-        prop.setLanguageKey("mcpvp.ctf.config.Chat.removeTips");
+        prop.setLanguageKey("ctf.config.chat.removeTips");
     	removeTips = prop.getBoolean();
     	propOrder.add(prop.getName());
     	
     	prop = config.get(CATEGORY_GENERAL, "medicClasses", new String[]{"medic", "mage", "chemist"});
-        prop.setLanguageKey("mcpvp.ctf.config.Chat.medicClasses");
+        prop.setLanguageKey("ctf.config.chat.medicClasses");
     	medicClasses = prop.getStringList();
     	propOrder.add(prop.getName());
     	
     	prop = config.get(CATEGORY_GENERAL, "chatHistory", false);
-        prop.setLanguageKey("mcpvp.ctf.config.Chat.chatHistory");
+        prop.setLanguageKey("ctf.config.chat.chatHistory");
     	chatHistory = prop.getBoolean();
     	propOrder.add(prop.getName());
     	

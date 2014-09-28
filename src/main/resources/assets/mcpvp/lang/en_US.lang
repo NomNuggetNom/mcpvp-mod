@@ -1,42 +1,235 @@
+<!-- =========== -->
+<!-- ===-----=== -->
+<!-- = GENERAL = -->
+<!-- ===-----=== -->
+<!-- =========== -->
 startup=[MCPVP] Mod starting up!
 sync=[MCPVP] Syncing configurations!
 color-code=#
 
 <!-- =========== -->
+<!-- ===-----=== -->
 <!-- = SERVERS = -->
+<!-- ===-----=== -->
 <!-- =========== -->
+server.all=All Servers
 server.hub.name=Hub
 server.hub.ip=hub.mcpvp.com
-
 server.kit.name=KitPVP
 server.kit.ip=kitpvp.us
-
 server.hg.name=Hardcore Games
 server.hg.ip=mc-hg.com
-
 server.maze.name=Maze Runner
 server.maze.ip=mc-maze.com
-
 server.sab.name=Sabotage
 server.sab.ip=mc-sabotage.com
-
 server.ctf.name=Capture The Flag
 server.ctf.ip=mcctf.com
-
 server.hs.name=Headshot
 server.hs.ip=mcheadshot.com
-
 server.party.name=Piñata Party
 server.party.ip=party.mcpvp.com
-
 server.build.name=Minecraft Build
 server.build.ip=minecraftbuild.com
-
 server.raid.name=Raid
 server.raid.ip=raid.mcpvp.com
-
 server.hg2.name=Phoenix Hunger Games
 server.hg2.ip=Phoenix Hunger Games
-
 server.none.name=None
 server.none.ip=None
+
+<!-- ========== -->
+<!-- ===----=== -->
+<!-- = CONFIG = -->
+<!-- ===----=== -->
+<!-- ========== -->
+
+<!-- ===---------=== -->
+<!-- = ALL SERVERS = -->
+<!-- ===---------=== -->
+config.title=MCPVP Configuration
+config.mcpvp=All Servers
+config.mcpvp.tooltip=Configuration options for all MCPVP servers.
+config.mcpvp.title=MCPVP Global Configuration
+config.ctf=Capture the Flag
+config.ctf.tooltip=Configuration options for Capture the Flag.
+config.ctf.title=Capture the Flag Configuration
+config.kit=KitPVP
+config.kit.tooltip=Configuration options for KitPVP.
+config.kit.title=KitPVP Configuration
+config.maze=Maze Runner
+config.maze.tooltip=Configuration options for Maze Runner.
+config.maze.title=Maze Runner Configuration
+config.build=Minecraft Build
+config.build.tooltip=Configuration options for Minecraft Build.
+config.build.title=Minecraft Build Configuration
+config.sab=Sabotage
+config.sab.tooltip=Configuration options for Sabotage.
+config.sab.title=Sabotage Configuration
+config.hg=Hardcore Games
+config.hg.tooltip=Configuration options for Hardcore Games.
+config.hg.title=Hardcore Games Configuration
+
+<!-- ALERTS -->
+config.alerts.title=Alerts
+config.alerts.online=Friend Online
+config.alerts.online.tooltip=The alert triggered when a friend comes online.
+
+<!-- CHAT -->
+config.chat.title=Chat Controls
+config.chat.filterWords=Filtered Words
+config.chat.filterWords.tooltip=These words will appear censored in chat. E.g. "toot" -> "****"
+config.chat.removeWords=Remove Messages Containing
+config.chat.removeWords.tooltip=If a message has a word in this list, it will be totally removed from chat.
+config.chat.splitChat=Send to Second Chat
+config.chat.splitChat.tooltip=If a message has a word in this list, it will be sent to the second chat window.
+config.chat.movekNoHax=Move Detection Messages
+config.chat.movekNoHax.tooltip=Moves hack detection messages to the second chat.
+
+<!-- FRIENDS -->
+config.friends.title=Friends List
+config.friends.onlineTitle=Friends Box Title
+config.friends.onlineTitle.tooltip=The title shown for the friend's list.
+config.friends.group1=Friends Group One
+config.friends.group1.tooltip=Group one of your friends. I suggest team members.
+config.friends.group2=Friends Group Two
+config.friends.group2.tooltip=Group two of your friends. I suggest team mercs.
+config.friends.group3=Friends Group Three
+config.friends.group3.tooltip=Group three of your friends. I suggest non-team friends.
+config.friends.group1Format=Group One Format
+config.friends.group1Format.tooltip=This formatting will be applied to friends in group one.
+config.friends.group2Format=Group Two Format
+config.friends.group2Format.tooltip=This formatting will be applied to friends in group two.
+config.friends.group3Format=Group Three Format
+config.friends.group3Format.tooltip=This formatting will be applied to friends in group three.
+config.friends.alwaysShow=Always Show
+config.friends.alwaysShow.tooltip=If this is true and no friends are online, the box will appear with "Nobody :(" listed. If this is false and no friends are online, the box won't appear.
+config.friends.onlineNotifications=Online Notificaitons
+config.friends.onlineNotifications.tooltip=If this is true and a friend joins your game, you'll get a nice notification.
+config.friends.cooldownTime=Cooldown Time (sec)
+config.friends.cooldownTime.tooltip=The amount of time that must pass before you receive an alert for someone twice. This helps prevent 414ing from triggering multiple alerts.
+
+<!-- HUD -->
+config.hud.title=Heads up Display
+config.hud.renderBG=Render Backgrounds
+config.hud.renderBG.tooltip=Whether or not to render the black background behind info blocks.
+config.hud.margin=Margin
+config.hud.margin.tooltip=The space between the info blocks.
+config.hud.centerTitles=Center Titles
+config.hud.centerTitles.tooltip=Whether or not to center titles above info blocks.
+config.hud.alignItems=Align Entries
+config.hud.alignItems.tooltip=If this is true, any line containing ">>" will be match horizontally other lines containing ">>" which makes for a very cool display.
+config.hud.alignWidths=Align Widths
+config.hud.alignWidths.tooltip=Whether or not to align the widths of info blocks that have the same x coordinates.
+config.hud.alignHeights=Align Heights
+config.hud.alignHeights.tooltip=Whether or not to align the heights of info blocks that have the same y coordinates.
+config.hud.medalTimer=Medal Timer
+config.hud.medalTimer.tooltip=The number of seconds that a Medal will show for.
+config.hud.armorMode=Armor Display Mode
+config.hud.armorMode.tooltip=The mode of the armor display. Show Durability Remaining will show "123"; Show Durability Remaining out of Total will show "123/456"; Don't show Durability Remaining will show only the item. 
+
+<!-- SELECT -->
+config.select.title=Auto-Selection
+config.select.autoTagB=Auto Tag
+config.select.autoTagB.tooltip=If this is true, you will automatically be tagged to whatever you specify below.
+config.select.autoTag=Select Tag
+config.select.autoTag.tooltip=The tag that will be automatically applied if Auto Tag is set to true.
+
+<!-- VERSION -->
+config.version.title=Version Checking
+config.version.updateNotifications=Update Notifications
+config.version.updateNotifications.tooltip=Whether or not to receive notifications about available updates. The notifications will appear once in your chat every time you log in.
+config.version.versionChannel=Version Channel
+config.version.versionChannel.tooltip=The channel of the mod that you want updates about. Main receives less frequent updates, but Beta updates can sometimes be glitchy.
+
+<!-- SOUNDS -->
+config.sounds.title=Sounds
+config.sounds.online=Friend Online
+config.sounds.online.tooltip=The sound triggered when a friend comes online.
+
+<!-- ===---=== -->
+<!-- = BUILD = -->
+<!-- ===---=== -->
+build.config.hud.render=Render
+build.config.hud.render.tooltip=Information that is rendered on the screen while playing Minecraft Build.
+
+<!-- ===-=== -->
+<!-- = CTF = -->
+<!-- ===-=== -->
+ctf.config.title=Capture the Flag Configuration
+
+<!-- ALERTS -->
+ctf.config.alerts.stole=Flag Stolen
+ctf.config.alerts.stole.tooltip=The alert triggered when the flag is stolen.
+ctf.config.alerts.dropped=Flag Dropped
+ctf.config.alerts.dropped.tooltip=The alert triggered when the flag is dropped.
+ctf.config.alerts.pickedUp=Flag Picked Up
+ctf.config.alerts.pickedUp.tooltip=The alert triggered when the flag is picked up.
+ctf.config.alerts.recovered=Flag Recovered
+ctf.config.alerts.recovered.tooltip=The alert triggered when the flag is recovered.
+ctf.config.alerts.restored=Flag Restored
+ctf.config.alerts.restored.tooltip=The alert triggered when the flag is restored.
+ctf.config.alerts.captured=Flag Captured
+ctf.config.alerts.captured.tooltip=The alert triggered when the flag is captured.
+ctf.config.alerts.streak=Streak Ended
+ctf.config.alerts.streak.tooltip=The alert triggered when the flag a kill streak is ended.
+ctf.config.alerts.compass=Compass Changed
+ctf.config.alerts.compass.tooltip=The alert triggered when the compass target is changed.
+ctf.config.alerts.class=Changed Class
+ctf.config.alerts.class.tooltip=The alert triggered when you change classes.
+ctf.config.alerts.assist=Assist
+ctf.config.alerts.assist.tooltip=The alert triggered when you assist in killing a player.
+ctf.config.alerts.start=Game Start
+ctf.config.alerts.start.tooltip=The alert triggered when the game starts.
+ctf.config.alerts.five=Five Mins Left
+ctf.config.alerts.five.tooltip=The alert triggered when five minutes are remaining in the game.
+ctf.config.alerts.one=Five Mins Left
+ctf.config.alerts.one.tooltip=The alert triggered when five minutes are remaining in the game.
+ctf.config.alerts.end=Game Start
+ctf.config.alerts.end.tooltip=The alert triggered when the game ends.
+
+<!-- CHAT -->
+ctf.config.chat.removeTips=Remove Tips
+ctf.config.chat.removeTips.tooltip=Whether or not to remove game tips in chat.
+ctf.config.chat.medicClasses=Bold Medic As
+ctf.config.chat.medicClasses.tooltip=If you are a class in this list, medic messages will be bold in chat.
+ctf.config.chat.chatHistory=Chat History
+ctf.config.chat.chatHistory.tooltip=This transforms chat into a regular Minecraft chatting experience. For example, you can scroll through old messages.
+
+<!-- HUD -->
+ctf.config.hud.renderPre=Render Pre
+ctf.config.hud.renderPre.tooltip=Information to be rendered before the game begins.
+ctf.config.hud.renderPlay=Render Play
+ctf.config.hud.renderPlay.tooltip=Information to be rendered while the game is in progress.
+ctf.config.hud.renderPost=Render Post
+ctf.config.hud.renderPost.tooltip=Information to be rendered after the game ends.
+
+<!-- SOUNDS -->
+ctf.config.sounds.stole=Flag Stolen
+ctf.config.sounds.stole.tooltip=The sound triggered when the flag is stolen.
+ctf.config.sounds.dropped=Flag Dropped
+ctf.config.sounds.dropped.tooltip=The sound triggered when the flag is dropped.
+ctf.config.sounds.pickedUp=Flag Picked Up
+ctf.config.sounds.pickedUp.tooltip=The sound triggered when the flag is picked up.
+ctf.config.sounds.recovered=Flag Recovered
+ctf.config.sounds.recovered.tooltip=The sound triggered when the flag is recovered.
+ctf.config.sounds.restored=Flag Restored
+ctf.config.sounds.restored.tooltip=The sound triggered when the flag is restored.
+ctf.config.sounds.captured=Flag Captured
+ctf.config.sounds.captured.tooltip=The sound triggered when the flag is captured.
+ctf.config.sounds.streak=Streak Ended
+ctf.config.sounds.streak.tooltip=The sound triggered when the flag a kill streak is ended.
+ctf.config.sounds.compass=Compass Changed
+ctf.config.sounds.compass.tooltip=The sound triggered when the compass target is changed.
+ctf.config.sounds.class=Changed Class
+ctf.config.sounds.class.tooltip=The sound triggered when you change classes.
+ctf.config.sounds.assist=Assist
+ctf.config.sounds.assist.tooltip=The sound triggered when you assist in killing a player.
+ctf.config.sounds.start=Game Start
+ctf.config.sounds.start.tooltip=The sound triggered when the game starts.
+ctf.config.sounds.five=Five Mins Left
+ctf.config.sounds.five.tooltip=The sound triggered when five minutes are remaining in the game.
+ctf.config.sounds.one=Five Mins Left
+ctf.config.sounds.one.tooltip=The sound triggered when five minutes are remaining in the game.
+ctf.config.sounds.end=Game Start
+ctf.config.sounds.end.tooltip=The sound triggered when the game ends.

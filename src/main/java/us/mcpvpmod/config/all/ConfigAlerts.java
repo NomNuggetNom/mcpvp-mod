@@ -57,7 +57,7 @@ public class ConfigAlerts extends DummyModContainer {
 		 	
     	prop = config.get(CATEGORY_GENERAL, "alertOnline", "#white#Party time! ||| {player}#gray# is now online. ||| head");
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-        prop.setLanguageKey("mcpvp.config.Alerts.alertOnline");
+        prop.setLanguageKey("config.Alerts.online");
     	alertOnline = prop.getString();
     	propOrder.add(prop.getName());
     	new CustomAlert("online", prop.getString());

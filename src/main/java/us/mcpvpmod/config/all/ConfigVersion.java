@@ -51,12 +51,12 @@ public class ConfigVersion extends DummyModContainer {
         Property prop;
         
     	prop = config.get(CATEGORY_GENERAL, "updateNotifications", true);
-        prop.setLanguageKey("mcpvp.config.version.updateNotifications");
+        prop.setLanguageKey("config.version.updateNotifications");
         updateNotifications = prop.getBoolean();
     	propOrder.add(prop.getName());
         
     	prop = config.get(CATEGORY_GENERAL, "versionChannel", "Main", "The channel of the mod that you want updates about.", new String[]{"Main", "Beta"});
-        prop.setLanguageKey("mcpvp.config.version.versionChannel");
+        prop.setLanguageKey("config.version.versionChannel");
     	channel = prop.getString();
     	propOrder.add(prop.getName());
         

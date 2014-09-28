@@ -3,6 +3,7 @@ package us.mcpvpmod.config.all;
 import java.util.ArrayList;
 import java.util.List;
 
+import us.mcpvpmod.gui.Format;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;
@@ -22,16 +23,19 @@ public class ConfigAll extends CategoryEntry {
     protected GuiScreen buildChildScreen() {
         List<IConfigElement> list = new ArrayList<IConfigElement>();
         
-        list.add(new DummyCategoryElement("Friends List", "mcpvp.config.mcpvp.Friends", AllFriends.class));
-        list.add(new DummyCategoryElement("Chat", "mcpvp.config.mcpvp.Chat", AllChat.class));
-        list.add(new DummyCategoryElement("HUD", "mcpvp.config.hud.Chat", AllHUD.class));
-        list.add(new DummyCategoryElement("Auto-Select", "mcpvp.config.hud.Chat", AllSelect.class));
+        list.add(new DummyCategoryElement(Format.s("config.friends.title"), "config.friends", AllFriends.class));
+        list.add(new DummyCategoryElement(Format.s("config.alerts.title"), "config.alerts", AllAlerts.class));
+        list.add(new DummyCategoryElement(Format.s("config.chat.title"), "config.chat", AllChat.class));
+        list.add(new DummyCategoryElement(Format.s("config.hud.title"), "config.hud", AllHUD.class));
+        list.add(new DummyCategoryElement(Format.s("config.select.title"), "config.select", AllSelect.class));
+        list.add(new DummyCategoryElement(Format.s("config.version.title"), "config.version", AllVersion.class));
+        list.add(new DummyCategoryElement(Format.s("config.sounds.title"), "config.sounds", AllSounds.class));
         
         return new GuiConfig(this.owningScreen,
         		list, 
         		this.owningScreen.modID, Configuration.CATEGORY_GENERAL, this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart, 
         		this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart,
-        		"MCPVP Global");
+        		Format.s("config.title"));
     }
     
 	public static class AllFriends extends CategoryEntry {
@@ -45,7 +49,7 @@ public class ConfigAll extends CategoryEntry {
 	                (new ConfigElement(ConfigFriends.getConfig().getCategory(Configuration.CATEGORY_GENERAL))).getChildElements(), 
 	                this.owningScreen.modID, Configuration.CATEGORY_GENERAL, this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart, 
 	                this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart, 
-	                "Chat Controls");
+	                Format.s("config.friends.title"));
 	    }
 	}
     
@@ -60,7 +64,22 @@ public class ConfigAll extends CategoryEntry {
 	                (new ConfigElement(ConfigChat.getConfig().getCategory(Configuration.CATEGORY_GENERAL))).getChildElements(), 
 	                this.owningScreen.modID, Configuration.CATEGORY_GENERAL, this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart, 
 	                this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart, 
-	                "Chat Controls");
+	                Format.s("config.chat.title"));
+	    }
+	}
+	
+	public static class AllAlerts extends CategoryEntry {
+	    public AllAlerts(GuiConfig owningScreen, GuiConfigEntries owningEntryList, IConfigElement prop) {
+	        super(owningScreen, owningEntryList, prop);
+	    }
+	    
+	    @Override
+	    protected GuiScreen buildChildScreen() {
+	        return new GuiConfig(this.owningScreen, 
+	                (new ConfigElement(ConfigAlerts.getConfig().getCategory(Configuration.CATEGORY_GENERAL))).getChildElements(), 
+	                this.owningScreen.modID, Configuration.CATEGORY_GENERAL, this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart, 
+	                this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart, 
+	                Format.s("config.alerts.title"));
 	    }
 	}
 	
@@ -75,7 +94,7 @@ public class ConfigAll extends CategoryEntry {
 	                (new ConfigElement(ConfigHUD.getConfig().getCategory(Configuration.CATEGORY_GENERAL))).getChildElements(), 
 	                this.owningScreen.modID, Configuration.CATEGORY_GENERAL, this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart, 
 	                this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart, 
-	                "Heads Up Display");
+	                Format.s("config.hud.title"));
 	    }
 	}
 
@@ -91,7 +110,37 @@ public class ConfigAll extends CategoryEntry {
 	                (new ConfigElement(ConfigSelect.getConfig().getCategory(Configuration.CATEGORY_GENERAL))).getChildElements(), 
 	                this.owningScreen.modID, Configuration.CATEGORY_GENERAL, this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart, 
 	                this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart, 
-	                "Auto-Selection");
+	                Format.s("config.select.title"));
+	    }
+	}
+	
+	public static class AllVersion extends CategoryEntry {
+	    public AllVersion(GuiConfig owningScreen, GuiConfigEntries owningEntryList, IConfigElement prop) {
+	        super(owningScreen, owningEntryList, prop);
+	    }
+	    
+	    @Override
+	    protected GuiScreen buildChildScreen() {
+	        return new GuiConfig(this.owningScreen, 
+	                (new ConfigElement(ConfigVersion.getConfig().getCategory(Configuration.CATEGORY_GENERAL))).getChildElements(), 
+	                this.owningScreen.modID, Configuration.CATEGORY_GENERAL, this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart, 
+	                this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart, 
+	                Format.s("config.version.title"));
+	    }
+	}
+	
+	public static class AllSounds extends CategoryEntry {
+	    public AllSounds(GuiConfig owningScreen, GuiConfigEntries owningEntryList, IConfigElement prop) {
+	        super(owningScreen, owningEntryList, prop);
+	    }
+	    
+	    @Override
+	    protected GuiScreen buildChildScreen() {
+	        return new GuiConfig(this.owningScreen, 
+	                (new ConfigElement(ConfigSounds.getConfig().getCategory(Configuration.CATEGORY_GENERAL))).getChildElements(), 
+	                this.owningScreen.modID, Configuration.CATEGORY_GENERAL, this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart, 
+	                this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart, 
+	                Format.s("config.sounds.title"));
 	    }
 	}
 }

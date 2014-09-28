@@ -8,6 +8,7 @@ import java.util.List;
 
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
+import us.mcpvpmod.gui.Format;
 import cpw.mods.fml.common.DummyModContainer;
 import cpw.mods.fml.common.Loader;
 
@@ -54,44 +55,44 @@ public class ConfigHUD extends DummyModContainer {
         
         Property prop;
 
+        prop = config.get(CATEGORY_GENERAL, "armorMode", "Show Durability Remaining", Format.s("config.HUD.armorMode"), new String[]{"Show Durability Remaining", "Show Durability Remaining out of Total", "Don't show Durability Remaining"});
+        prop.setLanguageKey("config.HUD.armorMode");
+    	armorMode = prop.getString();
+    	propOrder.add(prop.getName());
+        
     	prop = config.get(CATEGORY_GENERAL, "renderBG", true);
-        prop.setLanguageKey("mcpvp.config.HUD.renderBG");
+        prop.setLanguageKey("config.HUD.renderBG");
     	renderBG = prop.getBoolean();
     	propOrder.add(prop.getName());
     	
     	prop = config.get(CATEGORY_GENERAL, "margin", 3, "The space between display blocks.", 0, 1000);
-        prop.setLanguageKey("mcpvp.config.HUD.margin");
+        prop.setLanguageKey("config.HUD.margin");
     	margin = prop.getInt();
     	propOrder.add(prop.getName());
     	
     	prop = config.get(CATEGORY_GENERAL, "centerTitles", true);
-        prop.setLanguageKey("mcpvp.config.HUD.centerTitles");
+        prop.setLanguageKey("config.HUD.centerTitles");
     	centerTitles = prop.getBoolean();
     	propOrder.add(prop.getName());
     	
     	prop = config.get(CATEGORY_GENERAL, "alignItems", true);
-        prop.setLanguageKey("mcpvp.config.HUD.alignItems");
+        prop.setLanguageKey("config.HUD.alignItems");
     	alignItems = prop.getBoolean();
     	propOrder.add(prop.getName());
     	
     	prop = config.get(CATEGORY_GENERAL, "alignWidths", true);
-        prop.setLanguageKey("mcpvp.config.HUD.alignWidths");
+        prop.setLanguageKey("config.HUD.alignWidths");
     	alignWidths = prop.getBoolean();
     	propOrder.add(prop.getName());
     	
     	prop = config.get(CATEGORY_GENERAL, "alignHeights", true);
-        prop.setLanguageKey("mcpvp.config.HUD.alignHeights");
+        prop.setLanguageKey("config.HUD.alignHeights");
     	alignHeights = prop.getBoolean();
     	propOrder.add(prop.getName());
         
     	prop = config.get(CATEGORY_GENERAL, "medalTimer", 7, "The number of seconds to display a medal for.", 1, 1000);
-    	prop.setLanguageKey("mcpvp.config.HUD.medalTimer");
+    	prop.setLanguageKey("config.HUD.medalTimer");
     	margin = prop.getInt();
-    	propOrder.add(prop.getName());
-    	
-        prop = config.get(CATEGORY_GENERAL, "armorMode", "Show Durability Remaining", "Comment", new String[]{"Show Durability Remaining", "Show Durability Remaining out of Total", "Don't show Durability Remaining"});
-        prop.setLanguageKey("mcpvp.config.HUD.armorMode");
-    	armorMode = prop.getString();
     	propOrder.add(prop.getName());
     	
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);

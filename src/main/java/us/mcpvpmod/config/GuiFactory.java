@@ -14,6 +14,7 @@ import us.mcpvpmod.config.hg.ConfigHG;
 import us.mcpvpmod.config.kit.ConfigKit;
 import us.mcpvpmod.config.maze.ConfigMaze;
 import us.mcpvpmod.config.sab.ConfigSab;
+import us.mcpvpmod.gui.Format;
 import cpw.mods.fml.client.IModGuiFactory;
 import cpw.mods.fml.client.config.DummyConfigElement.DummyCategoryElement;
 import cpw.mods.fml.client.config.GuiConfig;
@@ -47,19 +48,19 @@ public class GuiFactory implements IModGuiFactory {
 	public static class MCPVPConfig extends GuiConfig {
 		
 		public MCPVPConfig(GuiScreen parent) {
-	        super(parent, getConfigElements(), "mcpvp", false, false, "MCPVP Configuration");
+	        super(parent, getConfigElements(), "mcpvp", false, false, Format.s("config.title"));
 		}
 
 		private static List<IConfigElement> getConfigElements() {
 	        List<IConfigElement> list = new ArrayList<IConfigElement>();
 	        
-	        list.add(new DummyCategoryElement("All Servers", "mcpvp.config.mcpvp", ConfigAll.class));
-	        list.add(new DummyCategoryElement(Server.CTF.toString(), "mcpvp.config.CTF", ConfigCTF.class));
-	        list.add(new DummyCategoryElement(Server.KIT.toString(), "mcpvp.config.Kit", ConfigKit.class));
-	        list.add(new DummyCategoryElement(Server.MAZE.toString(), "mcpvp.config.Maze", ConfigMaze.class));
-	        list.add(new DummyCategoryElement(Server.BUILD.toString(), "mcpvp.config.Build", ConfigBuild.class));
-	        list.add(new DummyCategoryElement(Server.SAB.toString(), "mcpvp.config.Sab", ConfigSab.class));
-	        list.add(new DummyCategoryElement(Server.HG.toString(), "mcpvp.config.HG", ConfigHG.class));
+	        list.add(new DummyCategoryElement(Format.s("server.all"), "config.mcpvp", ConfigAll.class));
+	        list.add(new DummyCategoryElement(Server.HG.getName(), "config.hg", ConfigHG.class));
+	        list.add(new DummyCategoryElement(Server.MAZE.getName(), "config.maze", ConfigMaze.class));
+	        list.add(new DummyCategoryElement(Server.CTF.getName(), "config.ctf", ConfigCTF.class));
+	        list.add(new DummyCategoryElement(Server.SAB.getName(), "config.sab", ConfigSab.class));
+	        list.add(new DummyCategoryElement(Server.KIT.getName(), "config.kit", ConfigKit.class));
+	        list.add(new DummyCategoryElement(Server.BUILD.getName(), "config.build", ConfigBuild.class));
 	        
 	        return list;
 		}
