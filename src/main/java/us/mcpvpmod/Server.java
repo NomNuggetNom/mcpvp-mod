@@ -65,34 +65,6 @@ import cpw.mods.fml.common.gameevent.TickEvent;
 public enum Server {
 	HUB, KIT, HG, MAZE, SAB, CTF, HS, PARTY, BUILD, RAID, HG2, NONE;
 	
-
-	/**
-	 * @return String The friendly name of the server.
-	 */
-	/*
-	public String toString() {
-		return "None";
-		//return Format.s("server." + this + ".name");
-		
-		/*
-		switch(this) {
-		case HUB: 	return "Hub";
-		case KIT: 	return "KitPVP";
-		case HG: 	return "Hardcore Games";
-		case MAZE: 	return "Maze Runner";
-		case SAB: 	return "Sabotage";
-		case CTF: 	return "Capture the Flag";
-		case HS: 	return "Headshot";
-		case PARTY:	return "Piñata Party";
-		case BUILD:	return "Minecraft Build";
-		case RAID: 	return "Raid";
-		case HG2: 	return "Phoenix Hunger Games";
-		case NONE: 	return "None";
-		}
-		return "None";
-		*/
-	//}
-	
 	public String getName() {
 		return Format.s("server." + this.toString().toLowerCase() + ".name");
 	}

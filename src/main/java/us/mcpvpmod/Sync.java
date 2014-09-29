@@ -21,6 +21,7 @@ import us.mcpvpmod.config.maze.ConfigMazeAlerts;
 import us.mcpvpmod.config.maze.ConfigMazeHUD;
 import us.mcpvpmod.config.maze.ConfigMazeSelect;
 import us.mcpvpmod.config.maze.ConfigMazeSounds;
+import us.mcpvpmod.config.raid.ConfigRaidHUD;
 import us.mcpvpmod.config.sab.ConfigSabAlerts;
 import us.mcpvpmod.config.sab.ConfigSabHUD;
 import us.mcpvpmod.config.sab.ConfigSabSelect;
@@ -93,6 +94,8 @@ public class Sync {
 		ConfigHGAlerts.syncConfig();
 		ConfigHGSounds.syncConfig();
 		ConfigHGSelect.syncConfig();
+		
+		ConfigRaidHUD.syncConfig();
 
 		// Sync all InfoBlocks
 		InfoBlock.blocks.clear();
@@ -117,6 +120,8 @@ public class Sync {
 		
 		InfoBlock.createBlocks(ConfigHGHUD.renderPre, Server.HG, StateHG.PRE);
 		InfoBlock.createBlocks(ConfigHGHUD.renderPlay, Server.HG, StateHG.PLAY);
+		
+		InfoBlock.createBlocks(ConfigRaidHUD.render, Server.RAID, DummyState.NONE);
 		
 
 		// Sync cores, which are responsible for setting triggers and trackers.
