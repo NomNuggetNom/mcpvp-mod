@@ -1,3 +1,13 @@
-{
-  "TEAMWORK": ["NomNuggetNom", "Arevoir"]
-}
+[
+  {
+    "name":"TEAMWORK",
+    "members":["player"],
+    "mercs":["player"]
+  },
+  
+  {
+    "name":"The Flying Walruses",
+    "members":["player"],
+    "mercs":["player"]
+  }
+]
