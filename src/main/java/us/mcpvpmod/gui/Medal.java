@@ -29,8 +29,11 @@ public class Medal {
 	public static int expireTicks = 20*7;
 	
 	/**
-	 * The basic constructor for a medal.
-	 * @param id MUST MATCH TEXTURE NAME!
+	 * The basic constructor for a medal, a small graphic that appears on screen for a few seconds. 
+	 * Used to symbolize headshots, killstreaks, and kill medals (double kill, triple kill, etc).
+	 * @param id The unique identifier for the medal; 
+	 * usually related to the reason for showing the medal, e.g. "headshot." 
+	 * MUST MATCH TEXTURE NAME!
 	 */
 	public Medal(String id) {
 		this.id = id;
@@ -53,7 +56,7 @@ public class Medal {
 	}
 	
 	/**
-	 * Add any number of medals.
+	 * Add any number of medals for rendering.
 	 * @param medals
 	 */
 	public static void add(Medal[] medals) {
@@ -65,7 +68,7 @@ public class Medal {
 	}
 	
 	/**
-	 * Add any medal.
+	 * Add any medal for rendering.
 	 * @param medal
 	 */
 	public static void add(Medal medal) {
@@ -73,7 +76,11 @@ public class Medal {
 			medalsToShow.add(medal);
 		}
 	}
-	
+	 
+	/**
+	 * Creates a Medal and adds it for rendering.
+	 * @param string The ID of the medal to add. MUST MATCH THE NAME OF THE TEXTURE!
+	 */
 	public static void add(String string) {
 		add(new Medal(string));
 	}
@@ -98,7 +105,7 @@ public class Medal {
 	}
 	
 	/**
-	 * Remove medals. Called after showAll.
+	 * Removes medals. Called after showAll.
 	 */
 	public static void remove() {
 		medalsToShow.removeAll(medalsToRemove);
@@ -108,6 +115,9 @@ public class Medal {
 		medalsToRemove.clear();
 	}
 	
+	/**
+	 * Draws the medal image on-screen.
+	 */
 	public void draw() {
 		Draw.texturedRect(img, x, y, u, v, width, height, width, height, scale);
 	}
