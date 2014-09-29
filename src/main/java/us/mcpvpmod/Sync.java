@@ -54,15 +54,26 @@ public class Sync {
 	 */ 
 	public static void sync() {
 		FMLLog.info(Format.s("sync"));
-
+		syncGeneral();
+		syncKits();
+		syncConfig();
+		syncBlocks();
+		syncCores();
+	}
+	
+	public static void syncGeneral() {
 		// Set formatting codes.
 		Format.setCodes();
 		// Clear the friends list.
 		FriendsList.clearList();
-		
+	}
+	
+	public static void syncKits() {
 		KitsHG.putKits();
 		KitsCTF.putKits();
-		
+	}
+
+	public static void syncConfig() {
 		// Sync MCPVP Configs
 		ConfigChat.syncConfig();
 		ConfigFriends.syncConfig();
@@ -99,7 +110,9 @@ public class Sync {
 		
 		ConfigRaidHUD.syncConfig();
 		ConfigRaidAlerts.syncConfig();
-
+	}
+	
+	public static void syncBlocks() {
 		// Sync all InfoBlocks
 		InfoBlock.blocks.clear();
 		InfoBlock.createBlocks(ConfigKitHUD.render, Server.KIT, StateKit.PLAY);
@@ -125,8 +138,9 @@ public class Sync {
 		InfoBlock.createBlocks(ConfigHGHUD.renderPlay, Server.HG, StateHG.PLAY);
 		
 		InfoBlock.createBlocks(ConfigRaidHUD.render, Server.RAID, DummyState.NONE);
-		
-
+	}
+	
+	public static void syncCores() {
 		// Sync cores, which are responsible for setting triggers and trackers.
 		CoreCTF.setup();
 		CoreKit.setup();
@@ -136,5 +150,5 @@ public class Sync {
 		CoreHG.setup();
 		CoreRaid.setup();
 	}
-
+	
 }
