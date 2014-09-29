@@ -29,10 +29,13 @@ public class GuiMCPVP extends GuiScreen {
 	public static String serverType = "hub.mcpvp.com";
 	public static String serverRegion = "us";
 	
-	public static GuiButton connectButton = new GuiButton(100, 25, 375, Format.s("gui.connect"));
-	public static GuiButton refreshButton = new GuiButton(101, 130, 400, 95, 20, Format.s("selectServer.refresh"));
-	public static GuiButton regionButton = new GuiButton(102, 25, 400, 95, 20, Format.s("gui.join.region") + serverRegion.toUpperCase());
-	public static GuiButton cancelButton = new GuiButton(103, 25, 425, Format.s("gui.cancel"));
+	public static GuiButton connectButton;
+	//= new GuiButton(100, 25, 375, Format.s("gui.connect"));
+	public static GuiButton refreshButton;
+	//= new GuiButton(101, 130, 400, 95, 20, Format.s("selectServer.refresh"));
+	public static GuiButton regionButton; 
+	//= new GuiButton(102, 25, 400, 95, 20, Format.s("gui.join.region") + serverRegion.toUpperCase());
+	public static GuiButton cancelButton;//= new GuiButton(103, 25, 425, Format.s("gui.cancel"));
 
 	public GuiMCPVP(GuiScreen mainMenu) {
 		this.mainMenu = mainMenu;
@@ -73,10 +76,10 @@ public class GuiMCPVP extends GuiScreen {
 		
 		y+=25;
 		
-		GuiButton connectButton = new GuiButton(100, this.width/2 - 100, this.height - 50, 200, 20, Format.s("selectServer.select"));
-		GuiButton refreshButton = new GuiButton(101, this.width/2 - 10 - 90, this.height - 25, 50, 20, Format.s("selectServer.refresh"));
-		GuiButton regionButton = new GuiButton(102, this.width/2 - 45, this.height - 25, 90, 20, Format.s("gui.join.region") + serverRegion.toUpperCase());
-		GuiButton cancelButton = new GuiButton(103, this.width/2 - 10 + 60, this.height - 25, 50, 20, Format.s("gui.cancel"));
+		connectButton = new GuiButton(100, this.width/2 - 100, this.height - 50, 200, 20, Format.s("selectServer.select"));
+		refreshButton = new GuiButton(101, this.width/2 - 10 - 90, this.height - 25, 50, 20, Format.s("selectServer.refresh"));
+		regionButton = new GuiButton(102, this.width/2 - 45, this.height - 25, 90, 20, Format.s("gui.join.region") + serverRegion.toUpperCase());
+		cancelButton = new GuiButton(103, this.width/2 - 10 + 60, this.height - 25, 50, 20, Format.s("gui.cancel"));
 		
 		// Set the connection button to disabled by default.
 		connectButton.enabled = false;
@@ -87,8 +90,7 @@ public class GuiMCPVP extends GuiScreen {
 		this.buttonList.add(refreshButton);
 		this.buttonList.add(connectButton);
 		
-		// Set the hub button by default.
-		System.out.println(serverIndex);
+		// Set the button to the last index.
 		((GuiButton)this.buttonList.get(serverIndex)).enabled = false;
 	}
 
@@ -141,7 +143,7 @@ public class GuiMCPVP extends GuiScreen {
 	
 	@Override
 	public void drawScreen(int p_73863_1_, int p_73863_2_, float p_73863_3_) {
-		connectButton.enabled = this.selected != -1;
+		connectButton.enabled = (this.selected != -1);
 		regionButton.displayString = Format.s("gui.join.region") + serverRegion.toUpperCase();
 		this.drawDefaultBackground();
 		this.serverList.drawScreen(p_73863_1_, p_73863_2_, p_73863_3_);
@@ -157,6 +159,7 @@ public class GuiMCPVP extends GuiScreen {
     }
 
     public void selectServer(int index) {
+    	System.out.println(index);
     	if (!serverList.servers.get(index).MOTD.contains("Server Offline :'(")) this.selected = index;
     }
     
