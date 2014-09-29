@@ -8,6 +8,7 @@ public class RenderCTF {
 
 	public static void onRender(RenderGameOverlayEvent event) {
 		if (event.type != RenderGameOverlayEvent.ElementType.TEXT) return;
+		if (Main.mc.gameSettings.showDebugInfo) return;
 		
 		StateCTF.getState().render();
 	}
