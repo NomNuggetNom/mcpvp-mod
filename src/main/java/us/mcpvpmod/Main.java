@@ -61,13 +61,14 @@ public class Main {
     }
     	
     @EventHandler
-	public void init(FMLInitializationEvent e) {
+	public void init(FMLInitializationEvent e) {   	
     	openConfig = new KeyBinding("key.openConfig", Keyboard.KEY_C, "MCPVP");
         ClientRegistry.registerKeyBinding(openConfig);
 	}
     
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent e) {
+
 	}
     
 
