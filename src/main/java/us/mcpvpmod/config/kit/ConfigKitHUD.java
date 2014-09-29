@@ -62,10 +62,8 @@ public class ConfigKitHUD extends DummyModContainer {
     			"#green##italic#X#gray# >> #r##bold#{x}",
     			"#green##italic#Y#gray# >> #r##bold#{y}",
     			"#green##italic#Z#gray# >> #r##bold#{z}",
-    			"#green##italic#F#gray# >> #r##bold#{f}",
-    			
-    	});
-        prop.setLanguageKey("mcpvp.kit.configHUD.renderPre");
+    			"#green##italic#F#gray# >> #r##bold#{f}",});
+        prop.setLanguageKey("kit.config.hud.render");
     	render = prop.getStringList();
     	propOrder.add(prop.getName());
     	

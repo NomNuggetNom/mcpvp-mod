@@ -17,9 +17,9 @@ import cpw.mods.fml.common.Loader;
 
 public class ConfigHGSounds extends DummyModContainer {
 
-    public static String soundStart = "";
-    public static String soundDeath = "";
-    public static String soundEnd = "";
+    public static String soundStart;
+    public static String soundDeath;
+    public static String soundEnd;
     
     public static String fileName = "mcpvp_hg_sounds.cfg";
     
@@ -54,22 +54,22 @@ public class ConfigHGSounds extends DummyModContainer {
         Property prop;
         
     	prop = config.get(CATEGORY_GENERAL, "soundStart", "fireworks.twinkle");
-        prop.setLanguageKey("mcpvp.sab.config.Sounds.start");
+        prop.setLanguageKey("hg.config.sounds.start");
     	soundStart = prop.getString();
     	propOrder.add(prop.getName());
-    	new SoundAlert("sab.start", prop.getString());
+    	new SoundAlert("hg.start", prop.getString());
     	
     	prop = config.get(CATEGORY_GENERAL, "soundDeath", "mob.skeleton.death");
-    	prop.setLanguageKey("mcpvp.sab.config.Sounds.death");
+    	prop.setLanguageKey("hg.config.sounds.death");
     	soundStart = prop.getString();
     	propOrder.add(prop.getName());
-    	new SoundAlert("sab.death", prop.getString());
+    	new SoundAlert("hg.death", prop.getString());
     	
     	prop = config.get(CATEGORY_GENERAL, "soundEnd", "mob.enderdragon.end");
-    	prop.setLanguageKey("mcpvp.sab.config.Sounds.end");
+    	prop.setLanguageKey("hg.config.sounds.end");
     	soundStart = prop.getString();
     	propOrder.add(prop.getName());
-    	new SoundAlert("sab.end", prop.getString());
+    	new SoundAlert("hg.end", prop.getString());
         
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
 

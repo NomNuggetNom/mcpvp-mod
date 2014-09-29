@@ -6,6 +6,9 @@
 startup=[MCPVP] Mod starting up!
 sync=[MCPVP] Syncing configurations!
 color-code=#
+update-url=http://google.com/
+update-msg=#bold##underline#v%VERSION% is available for MC %MCVERSION%! Click to download.
+error.json.server=[MCPVP] Unable to get JSON for servers!
 
 <!-- =========== -->
 <!-- ===-----=== -->
@@ -72,11 +75,13 @@ config.hg.title=Hardcore Games Configuration
 
 <!-- ALERTS -->
 config.alerts.title=Alerts
+config.alerts.tooltip=Here you can customize all alerts include the title, description and item shown on the alert.
 config.alerts.online=Friend Online
 config.alerts.online.tooltip=The alert triggered when a friend comes online.
 
 <!-- CHAT -->
 config.chat.title=Chat Controls
+config.chat.tooltip=Options for chat.
 config.chat.filterWords=Filtered Words
 config.chat.filterWords.tooltip=These words will appear censored in chat. E.g. "toot" -> "****"
 config.chat.removeWords=Remove Messages Containing
@@ -88,6 +93,7 @@ config.chat.movekNoHax.tooltip=Moves hack detection messages to the second chat.
 
 <!-- FRIENDS -->
 config.friends.title=Friends List
+config.friends.tooltip=Options regarding the Friends List. This is where you add friends!
 config.friends.onlineTitle=Friends Box Title
 config.friends.onlineTitle.tooltip=The title shown for the friend's list.
 config.friends.group1=Friends Group One
@@ -111,6 +117,7 @@ config.friends.cooldownTime.tooltip=The amount of time that must pass before you
 
 <!-- HUD -->
 config.hud.title=Heads up Display
+config.hud.tooltip=Options for the Heads Up Display.
 config.hud.renderBG=Render Backgrounds
 config.hud.renderBG.tooltip=Whether or not to render the black background behind info blocks.
 config.hud.margin=Margin
@@ -130,6 +137,7 @@ config.hud.armorMode.tooltip=The mode of the armor display. Show Durability Rema
 
 <!-- SELECT -->
 config.select.title=Auto-Selection
+config.select.tooltip=Options for Auto-Selection.
 config.select.autoTagB=Auto Tag
 config.select.autoTagB.tooltip=If this is true, you will automatically be tagged to whatever you specify below.
 config.select.autoTag=Select Tag
@@ -137,6 +145,7 @@ config.select.autoTag.tooltip=The tag that will be automatically applied if Auto
 
 <!-- VERSION -->
 config.version.title=Version Checking
+config.version.tooltip=Options for Version Checking.
 config.version.updateNotifications=Update Notifications
 config.version.updateNotifications.tooltip=Whether or not to receive notifications about available updates. The notifications will appear once in your chat every time you log in.
 config.version.versionChannel=Version Channel
@@ -144,6 +153,7 @@ config.version.versionChannel.tooltip=The channel of the mod that you want updat
 
 <!-- SOUNDS -->
 config.sounds.title=Sounds
+config.sounds.tooltip=Options for Sounds.
 config.sounds.online=Friend Online
 config.sounds.online.tooltip=The sound triggered when a friend comes online.
 
@@ -152,6 +162,9 @@ config.sounds.online.tooltip=The sound triggered when a friend comes online.
 <!-- ===---=== -->
 build.config.hud.render=Render
 build.config.hud.render.tooltip=Information that is rendered on the screen while playing Minecraft Build.
+
+raid.config.hud.render=Render
+raid.config.hud.render.tooltip=Information that is rendered on the screen while playing Raid.
 
 <!-- ===-=== -->
 <!-- = CTF = -->
@@ -231,5 +244,95 @@ ctf.config.sounds.five=Five Mins Left
 ctf.config.sounds.five.tooltip=The sound triggered when five minutes are remaining in the game.
 ctf.config.sounds.one=Five Mins Left
 ctf.config.sounds.one.tooltip=The sound triggered when five minutes are remaining in the game.
-ctf.config.sounds.end=Game Start
+ctf.config.sounds.end=Game End
 ctf.config.sounds.end.tooltip=The sound triggered when the game ends.
+
+
+<!-- ===--=== -->
+<!-- =  HG  = -->
+<!-- ===--=== -->
+<!-- ALERTS -->
+hg.config.alerts.kit=Kit Selected
+hg.config.alerts.kit.tooltip=The alert triggered when you select a kit.
+hg.config.alerts.start=Game Started
+hg.config.alerts.start.tooltip=The alert triggered when the game starts.
+hg.config.alerts.vulnerable=Lost Vulnerability
+hg.config.alerts.vulnerable.tooltip=The alert triggered when you lose vulnerability.
+hg.config.alerts.feast.mini=Mini Feast
+hg.config.alerts.feast.mini.tooltip=The alert triggered when a mini feast spawns.
+hg.config.alerts.feast=Feast
+hg.config.alerts.feast.tooltip=The alert triggered when a feast spawns.
+hg.config.alerts.feast.bonus=Bonus Feast
+hg.config.alerts.feast.bonus.tooltip=The alert triggered when a bonus feast spawns.
+
+<!-- HUD -->
+hg.config.hud.renderPre=Render Pre
+hg.config.hud.renderPre.tooltip=Information to be rendered before the game begins.
+hg.config.hud.renderPlay=Render Play
+hg.config.hud.renderPlay.tooltip=Information to be rendered while the game is in progress.
+
+<!-- CONFIG -->
+hg.config.select.selectMode=Selection Mode
+hg.config.select.selectMode.tooltip=This changes when your kit is automatically selected. "Select On Join" selects it right when you join the server; "Select Before Start" selects it 5 seconds before the game starts; "Don't Select" never selects.
+hg.config.select.selectKit=Select Kit
+hg.config.select.selectKit.tooltip=The kit to automatically selected.
+
+<!-- SOUNDS -->
+hg.config.sounds.start=Game Started
+hg.config.sounds.start.tooltip=The sound triggered when the game starts.
+hg.config.sounds.death=Player Dead
+hg.config.sounds.death.tooltip=The sound triggered when a player dies.
+hg.config.sounds.end=Game Over
+hg.config.sounds.end.tooltip=The sound triggered when the game ends.
+
+<!-- ===-=== -->
+<!-- = KIT = -->
+<!-- ===-=== -->
+<!-- ALERTS -->
+kit.config.alerts.streak=Streak Achieved
+kit.config.alerts.streak.tooltip=The alert triggered when a player reaches a kill streak.
+kit.config.alerts.streakEnd=Streak Ended
+kit.config.alerts.streakEnd.tooltip=The alert triggered when the flag a kill streak is ended.
+kit.config.alerts.restart=Restarting
+kit.config.alerts.restart.tooltip=The alert triggered when the server is about to restart.
+
+<!-- HUD -->
+kit.config.hud.render=Render
+kit.config.hud.render.tooltip=Information that is rendered on the screen while playing KitPVP.
+
+<!-- SOUNDS -->
+kit.config.sounds.streak=Streak Achieved
+kit.config.sounds.streak.tooltip=The sound triggered when a player reaches a kill streak.
+kit.config.sounds.streakEnd=Streak Ended
+kit.config.sounds.streakEnd.tooltip=The sound triggered when the flag a kill streak is ended.
+
+<!-- ===--=== -->
+<!-- = MAZE = -->
+<!-- ===--=== -->
+<!-- ALERTS -->
+maze.config.alerts.kit=Kit Selected
+maze.config.alerts.kit.tooltip=The alert triggered when you select a kit.
+maze.config.alerts.teamJoin=Joined Team
+maze.config.alerts.teamJoin.tooltip=The alert triggered when you join a team.
+maze.config.alerts.playerKilled=Player Killed
+maze.config.alerts.playerKilled.tooltip=The alert triggered when a player gets killed.
+maze.config.alerts.teamOut=Team Eliminated
+maze.config.alerts.teamOut.tooltip=The alert triggered when a team gets eliminated.
+maze.config.alerts.hunger=Princess Hungry
+maze.config.alerts.hunger.tooltip=The alert triggered when the princess is hungry.
+
+<!-- HUD -->
+maze.config.hud.renderPre=Render Pre
+maze.config.hud.renderPre.tooltip=Information to be rendered before the game begins.
+maze.config.hud.renderPlay=Render Play
+maze.config.hud.renderPlay.tooltip=Information to be rendered while the game is in progress.
+maze.config.hud.renderPost=Render Post
+maze.config.hud.renderPost.tooltip=Information to be rendered after the game ends.
+
+<!-- SELECT -->
+maze.config.select.selectMode=Selection Mode
+maze.config.select.selectMode.tooltip=This changes when your kit is automatically selected. "Select On Join" selects it right when you join the server; "Select Before Start" selects it 5 seconds before the game starts; "Don't Select" never selects.
+maze.config.select.selectKit=Select Kit
+maze.config.select.selectKit.tooltip=The kit to automatically selected.
+maze.config.select.selectTeam=Join Team
+maze.config.select.selectTeam.tooltip=The team to automatically join.

@@ -24,10 +24,10 @@ public class ConfigMaze extends CategoryEntry {
     protected GuiScreen buildChildScreen() {
         List<IConfigElement> list = new ArrayList<IConfigElement>();
         
-        list.add(new DummyCategoryElement("HUD", "mcpvp.config.maze.HUD", MazeHUD.class));
-        list.add(new DummyCategoryElement("Alerts", "mcpvp.config.maze.Alerts", MazeAlerts.class));
-        list.add(new DummyCategoryElement("Sounds", "mcpvp.config.maze.Sounds", MazeSelect.class));
-        list.add(new DummyCategoryElement("Auto-Select", "mcpvp.config.maze.Select", MazeSelect.class));
+        list.add(new DummyCategoryElement(Format.s("config.hud.title"), "mcpvp.config.maze.HUD", MazeHUD.class));
+        list.add(new DummyCategoryElement(Format.s("config.alerts.title"), "mcpvp.config.maze.Alerts", MazeAlerts.class));
+        list.add(new DummyCategoryElement(Format.s("config.sounds.title"), "mcpvp.config.maze.Sounds", MazeSounds.class));
+        list.add(new DummyCategoryElement(Format.s("config.select.title"), "mcpvp.config.maze.Select", MazeSelect.class));
         
         return new GuiConfig(this.owningScreen,
         		list, 
@@ -47,7 +47,7 @@ public class ConfigMaze extends CategoryEntry {
 	                (new ConfigElement(ConfigMazeHUD.getConfig().getCategory(Configuration.CATEGORY_GENERAL))).getChildElements(), 
 	                this.owningScreen.modID, Configuration.CATEGORY_GENERAL, this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart, 
 	                this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart,
-	                "Heads Up Display");
+	                Format.s("config.hud.title"));
 	
 	    }
 	}
@@ -63,7 +63,7 @@ public class ConfigMaze extends CategoryEntry {
 	                (new ConfigElement(ConfigMazeAlerts.getConfig().getCategory(Configuration.CATEGORY_GENERAL))).getChildElements(), 
 	                this.owningScreen.modID, Configuration.CATEGORY_GENERAL, this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart, 
 	                this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart,
-	                "Alerts");
+	                Format.s("config.alerts.title"));
 	
 	    }
 	}
@@ -79,7 +79,7 @@ public class ConfigMaze extends CategoryEntry {
 	                (new ConfigElement(ConfigMazeSounds.getConfig().getCategory(Configuration.CATEGORY_GENERAL))).getChildElements(), 
 	                this.owningScreen.modID, Configuration.CATEGORY_GENERAL, this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart, 
 	                this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart,
-	                "Sounds");
+	                Format.s("config.sounds.title"));
 	
 	    }
 	}
@@ -94,7 +94,7 @@ public class ConfigMaze extends CategoryEntry {
 					(new ConfigElement(ConfigMazeSelect.getConfig().getCategory(Configuration.CATEGORY_GENERAL))).getChildElements(), 
 					this.owningScreen.modID, Configuration.CATEGORY_GENERAL, this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart, 
 					this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart,
-					"Auto-Select");
+					Format.s("config.select.title"));
 			
 		}
 	}

@@ -23,10 +23,10 @@ public class ConfigSab extends CategoryEntry {
     protected GuiScreen buildChildScreen() {
         List<IConfigElement> list = new ArrayList<IConfigElement>();
         
-        list.add(new DummyCategoryElement("HUD", "mcpvp.config.sab.HUD", SabHUD.class));
-        list.add(new DummyCategoryElement("Alerts", "mcpvp.config.sab.Alerts", SabAlerts.class));
-        list.add(new DummyCategoryElement("Sounds", "mcpvp.config.sab.Sounds", SabSounds.class));
-        list.add(new DummyCategoryElement("Auto-Select", "mcpvp.config.sab.Select", SabSelect.class));
+        list.add(new DummyCategoryElement(Format.s("config.hud.title"), "mcpvp.config.sab.HUD", SabHUD.class));
+        list.add(new DummyCategoryElement(Format.s("config.alerts.title"), "mcpvp.config.sab.Alerts", SabAlerts.class));
+        list.add(new DummyCategoryElement(Format.s("config.sounds.title"), "mcpvp.config.sab.Sounds", SabSounds.class));
+        list.add(new DummyCategoryElement(Format.s("config.select.title"), "mcpvp.config.sab.Select", SabSelect.class));
         
         return new GuiConfig(this.owningScreen,
         		list, 
@@ -46,7 +46,7 @@ public class ConfigSab extends CategoryEntry {
 	                (new ConfigElement(ConfigSabHUD.getConfig().getCategory(Configuration.CATEGORY_GENERAL))).getChildElements(), 
 	                this.owningScreen.modID, Configuration.CATEGORY_GENERAL, this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart, 
 	                this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart,
-	                "Heads Up Display");
+	                Format.s("config.hud.title"));
 	
 	    }
 	}
@@ -62,7 +62,7 @@ public class ConfigSab extends CategoryEntry {
 	                (new ConfigElement(ConfigSabAlerts.getConfig().getCategory(Configuration.CATEGORY_GENERAL))).getChildElements(), 
 	                this.owningScreen.modID, Configuration.CATEGORY_GENERAL, this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart, 
 	                this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart,
-	                "Alerts");
+	                Format.s("config.alerts.title"));
 	
 	    }
 	}
@@ -78,7 +78,7 @@ public class ConfigSab extends CategoryEntry {
 	                (new ConfigElement(ConfigSabSounds.getConfig().getCategory(Configuration.CATEGORY_GENERAL))).getChildElements(), 
 	                this.owningScreen.modID, Configuration.CATEGORY_GENERAL, this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart, 
 	                this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart,
-	                "Sounds");
+	                Format.s("config.sounds.title"));
 	
 	    }
 	}

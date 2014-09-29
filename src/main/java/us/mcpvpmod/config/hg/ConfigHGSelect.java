@@ -51,12 +51,12 @@ public class ConfigHGSelect extends DummyModContainer {
         Property prop;
 
         prop = config.get(CATEGORY_GENERAL, "selectMode", "Select Before Start", "Comment", new String[]{"Select On Join", "Select Before Start", "Don't Select"});
-        prop.setLanguageKey("mcpvp.hg.config.Select.selectMode");
+        prop.setLanguageKey("hg.config.select.selectMode");
     	selectMode = prop.getString();
     	propOrder.add(prop.getName());
         
     	prop = config.get(CATEGORY_GENERAL, "selectKit", "backup");
-        prop.setLanguageKey("mcpvp.hg.config.Select.selectKit");
+        prop.setLanguageKey("hg.config.select.selectKit");
     	selectKit = prop.getString();
     	propOrder.add(prop.getName());
         

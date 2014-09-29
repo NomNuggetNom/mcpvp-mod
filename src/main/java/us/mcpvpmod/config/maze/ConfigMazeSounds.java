@@ -50,11 +50,13 @@ public class ConfigMazeSounds extends DummyModContainer {
         
         Property prop;
         
+        /*
     	prop = config.get(CATEGORY_GENERAL, "soundStreak", "mob.enderdragon.growl");
-        prop.setLanguageKey("mcpvp.kit.config.Sounds.soundStole");
+        prop.setLanguageKey("mcpvp.maze.config.Sounds.soundStole");
     	soundStreak = prop.getString();
     	propOrder.add(prop.getName());
     	new SoundAlert("streak.get", prop.getString());
+    	*/
         
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
 

@@ -23,9 +23,9 @@ public class ConfigKit extends CategoryEntry {
     protected GuiScreen buildChildScreen() {
         List<IConfigElement> list = new ArrayList<IConfigElement>();
         
-        list.add(new DummyCategoryElement("HUD", "mcpvp.config.kit.HUD", KitHUD.class));
-        list.add(new DummyCategoryElement("Alerts", "mcpvp.config.kit.Alerts", KitAlerts.class));
-        list.add(new DummyCategoryElement("Sounds", "mcpvp.config.kit.Sounds", KitSounds.class));
+        list.add(new DummyCategoryElement(Format.s("config.hud.title"), "config.kit.HUD", KitHUD.class));
+        list.add(new DummyCategoryElement(Format.s("config.alerts.title"), "config.kit.Alerts", KitAlerts.class));
+        list.add(new DummyCategoryElement(Format.s("config.sounds.title"), "config.kit.Sounds", KitSounds.class));
         
         return new GuiConfig(this.owningScreen,
         		list, 
@@ -45,7 +45,7 @@ public class ConfigKit extends CategoryEntry {
 	                (new ConfigElement(ConfigKitHUD.getConfig().getCategory(Configuration.CATEGORY_GENERAL))).getChildElements(), 
 	                this.owningScreen.modID, Configuration.CATEGORY_GENERAL, this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart, 
 	                this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart,
-	                "Heads Up Display");
+	                Format.s("config.hud.title"));
 	
 	    }
 	}
@@ -61,7 +61,7 @@ public class ConfigKit extends CategoryEntry {
 	                (new ConfigElement(ConfigKitAlerts.getConfig().getCategory(Configuration.CATEGORY_GENERAL))).getChildElements(), 
 	                this.owningScreen.modID, Configuration.CATEGORY_GENERAL, this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart, 
 	                this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart,
-	                "Alerts");
+	                Format.s("config.alerts.title"));
 	
 	    }
 	}
@@ -77,7 +77,7 @@ public class ConfigKit extends CategoryEntry {
 	                (new ConfigElement(ConfigKitSounds.getConfig().getCategory(Configuration.CATEGORY_GENERAL))).getChildElements(), 
 	                this.owningScreen.modID, Configuration.CATEGORY_GENERAL, this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart, 
 	                this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart,
-	                "Sounds");
+	                Format.s("config.sounds.title"));
 	
 	    }
 	}

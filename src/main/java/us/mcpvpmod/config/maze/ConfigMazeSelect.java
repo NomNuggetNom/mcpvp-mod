@@ -52,18 +52,18 @@ public class ConfigMazeSelect extends DummyModContainer {
         
         Property prop;
         
-        prop = config.get(CATEGORY_GENERAL, "selectMode", "Select On Join", "Comment", new String[]{"Select On Join", "Select Before Start"});
-        prop.setLanguageKey("mcpvp.maze.config.Select.selectMode");
+        prop = config.get(CATEGORY_GENERAL, "selectMode", "Select On Join", "Comment", new String[]{"Select On Join", "Select Before Start", "Don't Select"});
+        prop.setLanguageKey("maze.config.select.selectMode");
     	selectMode = prop.getString();
     	propOrder.add(prop.getName());
         
-    	prop = config.get(CATEGORY_GENERAL, "selectClass", "mapper");
-        prop.setLanguageKey("mcpvp.maze.config.Select.selectClass");
+    	prop = config.get(CATEGORY_GENERAL, "selectKit", "mapper");
+        prop.setLanguageKey("maze.config.select.selectKit");
     	selectClass = prop.getString();
     	propOrder.add(prop.getName());
     	
     	prop = config.get(CATEGORY_GENERAL, "selectTeam", "winners");
-        prop.setLanguageKey("mcpvp.maze.config.Select.selectTeam");
+        prop.setLanguageKey("maze.config.select.selectTeam");
     	selectTeam = prop.getString();
     	propOrder.add(prop.getName());
         

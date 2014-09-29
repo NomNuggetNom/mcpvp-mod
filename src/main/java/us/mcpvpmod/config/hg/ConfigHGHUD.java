@@ -49,12 +49,12 @@ public class ConfigHGHUD extends DummyModContainer {
         Property prop;
         
     	prop = config.get(CATEGORY_GENERAL, "renderPre", new String[]{"---#bold#HG", "Players: {players}", "Kit: {kit}", "Time: {time}"});
-        prop.setLanguageKey("mcpvp.hg.configHUD.renderPre");
+        prop.setLanguageKey("hg.config.hud.renderPre");
     	renderPre = prop.getStringList();
     	propOrder.add(prop.getName());
     	
     	prop = config.get(CATEGORY_GENERAL, "renderPlay", new String[]{"---#bold#HG", "Players: {players}", "Kit: {kit}"});
-    	prop.setLanguageKey("mcpvp.hg.configHUD.renderPlay");
+    	prop.setLanguageKey("hg.config.hud.renderPlay");
     	renderPlay = prop.getStringList();
     	propOrder.add(prop.getName());
     	

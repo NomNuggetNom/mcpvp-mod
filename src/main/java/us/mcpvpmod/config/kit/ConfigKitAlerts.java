@@ -21,10 +21,7 @@ import cpw.mods.fml.common.registry.GameData;
 
 public class ConfigKitAlerts extends DummyModContainer {
 
-    public static String alertStreak = "";
-    public static String alertStreakEnd = "";
-
-    public static String fileName = "mcpvp_kit_alerts.cfg";
+    public static String fileName = "kit_alerts.cfg";
     
     private static Configuration config;
 
@@ -58,31 +55,21 @@ public class ConfigKitAlerts extends DummyModContainer {
         
     	prop = config.get(CATEGORY_GENERAL, "alertStreak", "#white#Kill Streak! ||| {player} #gray#got a killstreak of #cyan#{streak} ||| nether_star");
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-        prop.setLanguageKey("mcpvp.kit.config.Alerts.streak");
-    	alertStreak = prop.getString();
+        prop.setLanguageKey("kit.config.alerts.streak");
     	propOrder.add(prop.getName());
     	new CustomAlert("kit.streak.get", prop.getString());
     	
     	prop = config.get(CATEGORY_GENERAL, "alertStreakEnd", "#white#Streak Ended! ||| {killer} #gray#ended #r#{killed}#gray#'s streak of #cyan#{streak} ||| bone");
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-        prop.setLanguageKey("mcpvp.kit.config.Alerts.streakEnd");
-    	alertStreak = prop.getString();
+        prop.setLanguageKey("kit.config.alerts.streakEnd");
     	propOrder.add(prop.getName());
     	new CustomAlert("kit.streak.end", prop.getString());
     	
     	prop = config.get(CATEGORY_GENERAL, "alertRestart", "#white#Heads Up! ||| #gray#Server restarting in #red#1 #r#minute ||| clock");
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-        prop.setLanguageKey("mcpvp.kit.config.Alerts.restart");
-    	alertStreak = prop.getString();
+        prop.setLanguageKey("kit.config.alerts.restart");
     	propOrder.add(prop.getName());
     	new CustomAlert("kit.restart", prop.getString());
-    	
-    	prop = config.get(CATEGORY_GENERAL, "alertHi", "#white#Hello! ||| #gray#Nom said hi ||| bread");
-    	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-        prop.setLanguageKey("mcpvp.kit.config.Alerts.restart");
-    	alertStreak = prop.getString();
-    	propOrder.add(prop.getName());
-    	new CustomAlert("kit.hi", prop.getString());
         
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
 

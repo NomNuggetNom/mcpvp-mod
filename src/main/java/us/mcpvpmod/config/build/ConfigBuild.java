@@ -23,7 +23,7 @@ public class ConfigBuild extends CategoryEntry {
     protected GuiScreen buildChildScreen() {
         List<IConfigElement> list = new ArrayList<IConfigElement>();
         
-        list.add(new DummyCategoryElement("HUD", "mcpvp.config.build.HUD", BuildHUD.class));
+        list.add(new DummyCategoryElement(Format.s("config.hud.title"), "mcpvp.config.build.HUD", BuildHUD.class));
         
         return new GuiConfig(this.owningScreen,
         		list, 
@@ -43,7 +43,7 @@ public class ConfigBuild extends CategoryEntry {
 	                (new ConfigElement(ConfigBuildHUD.getConfig().getCategory(Configuration.CATEGORY_GENERAL))).getChildElements(), 
 	                this.owningScreen.modID, Configuration.CATEGORY_GENERAL, this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart, 
 	                this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart,
-	                "Heads Up Display");
+	                Format.s("config.hud.title"));
 	
 	    }
 	}

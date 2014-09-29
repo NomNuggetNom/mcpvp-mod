@@ -51,13 +51,13 @@ public class ConfigKitSounds extends DummyModContainer {
         Property prop;
         
     	prop = config.get(CATEGORY_GENERAL, "soundStreak", "mob.enderdragon.growl");
-        prop.setLanguageKey("mcpvp.kit.config.Sounds.soundStole");
+        prop.setLanguageKey("kit.config.sounds.soundStole");
     	soundStreak = prop.getString();
     	propOrder.add(prop.getName());
     	new SoundAlert("streak.get", prop.getString());
 
     	prop = config.get(CATEGORY_GENERAL, "soundStreakEnd", "mob.skeleton.death");
-        prop.setLanguageKey("mcpvp.kit.config.Sounds.soundStreak");
+        prop.setLanguageKey("kit.config.sounds.soundStreak");
     	soundStreakEnd = prop.getString();
     	propOrder.add(prop.getName());
     	new SoundAlert("streak.end", prop.getString());

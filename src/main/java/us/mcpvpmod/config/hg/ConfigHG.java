@@ -24,10 +24,10 @@ public class ConfigHG extends CategoryEntry {
     protected GuiScreen buildChildScreen() {
         List<IConfigElement> list = new ArrayList<IConfigElement>();
         
-        list.add(new DummyCategoryElement("HUD", "mcpvp.config.hg.HUD", HGHUD.class));
-        list.add(new DummyCategoryElement("Alerts", "mcpvp.config.hg.Alerts", HGAlets.class));
-        list.add(new DummyCategoryElement("Sounds", "mcpvp.config.hg.Sounds", HGSounds.class));
-        list.add(new DummyCategoryElement("Auto-Select", "mcpvp.config.hg.Select", HGSelect.class));
+        list.add(new DummyCategoryElement(Format.s("config.hud.title"), "config.hud", HGHUD.class));
+        list.add(new DummyCategoryElement(Format.s("config.alerts.title"), "config.alerts", HGAlets.class));
+        list.add(new DummyCategoryElement(Format.s("config.sounds.title"), "config.sounds", HGSounds.class));
+        list.add(new DummyCategoryElement(Format.s("config.select.title"), "config.select", HGSelect.class));
         
         return new GuiConfig(this.owningScreen,
         		list, 
@@ -47,7 +47,7 @@ public class ConfigHG extends CategoryEntry {
 	                (new ConfigElement(ConfigHGHUD.getConfig().getCategory(Configuration.CATEGORY_GENERAL))).getChildElements(), 
 	                this.owningScreen.modID, Configuration.CATEGORY_GENERAL, this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart, 
 	                this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart,
-	                "Heads Up Display");
+	                Format.s("config.hud.title"));
 	
 	    }
 	}
@@ -63,7 +63,7 @@ public class ConfigHG extends CategoryEntry {
 	                (new ConfigElement(ConfigHGAlerts.getConfig().getCategory(Configuration.CATEGORY_GENERAL))).getChildElements(), 
 	                this.owningScreen.modID, Configuration.CATEGORY_GENERAL, this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart, 
 	                this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart,
-	                "Alerts");
+	                Format.s("config.alerts.title"));
 	
 	    }
 	}
@@ -79,7 +79,7 @@ public class ConfigHG extends CategoryEntry {
 	                (new ConfigElement(ConfigHGSounds.getConfig().getCategory(Configuration.CATEGORY_GENERAL))).getChildElements(), 
 	                this.owningScreen.modID, Configuration.CATEGORY_GENERAL, this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart, 
 	                this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart,
-	                "Sounds");
+	                Format.s("config.sounds.title"));
 	
 	    }
 	}
@@ -95,7 +95,7 @@ public class ConfigHG extends CategoryEntry {
 	                (new ConfigElement(ConfigHGSelect.getConfig().getCategory(Configuration.CATEGORY_GENERAL))).getChildElements(), 
 	                this.owningScreen.modID, Configuration.CATEGORY_GENERAL, this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart, 
 	                this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart,
-	                "Auto-Select");
+	                Format.s("config.select.title"));
 	
 	    }
 	}

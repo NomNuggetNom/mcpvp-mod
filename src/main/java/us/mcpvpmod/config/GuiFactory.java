@@ -13,6 +13,7 @@ import us.mcpvpmod.config.ctf.ConfigCTF;
 import us.mcpvpmod.config.hg.ConfigHG;
 import us.mcpvpmod.config.kit.ConfigKit;
 import us.mcpvpmod.config.maze.ConfigMaze;
+import us.mcpvpmod.config.raid.ConfigRaid;
 import us.mcpvpmod.config.sab.ConfigSab;
 import us.mcpvpmod.gui.Format;
 import cpw.mods.fml.client.IModGuiFactory;
@@ -61,6 +62,7 @@ public class GuiFactory implements IModGuiFactory {
 	        list.add(new DummyCategoryElement(Server.SAB.getName(), "config.sab", ConfigSab.class));
 	        list.add(new DummyCategoryElement(Server.KIT.getName(), "config.kit", ConfigKit.class));
 	        list.add(new DummyCategoryElement(Server.BUILD.getName(), "config.build", ConfigBuild.class));
+	        list.add(new DummyCategoryElement(Server.RAID.getName(), "config.raid", ConfigRaid.class));
 	        
 	        return list;
 		}
