@@ -1,4 +1,4 @@
-package us.mcpvpmod.config.sab;
+package us.mcpvpmod.config.raid;
 
 import static net.minecraftforge.common.config.Configuration.CATEGORY_GENERAL;
 
@@ -20,13 +20,13 @@ import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameData;
 
-public class ConfigSabAlerts extends DummyModContainer {
+public class ConfigRaidAlerts extends DummyModContainer {
 
-    public static String fileName = "mcpvp_sab_alerts.cfg";
+    public static String fileName = "mcpvp_raid_alerts.cfg";
     
     private static Configuration config;
 
-    public ConfigSabAlerts() {
+    public ConfigRaidAlerts() {
         config = null;
         File cfgFile = new File(Loader.instance().getConfigDir(), fileName);
         config = new Configuration(cfgFile);
@@ -54,29 +54,11 @@ public class ConfigSabAlerts extends DummyModContainer {
         
         Property prop;
         
-    	prop = config.get(CATEGORY_GENERAL, "alertStart", Format.s("sab.config.alerts.start.default"));
+    	prop = config.get(CATEGORY_GENERAL, "alertDeposit", Format.s("raid.config.alerts.deposit.default"));
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-        prop.setLanguageKey("sab.config.alerts.start");
+        prop.setLanguageKey("raid.config.alerts.deposit");
     	propOrder.add(prop.getName());
-    	new CustomAlert("sab.start", prop.getString());
-    	
-    	prop = config.get(CATEGORY_GENERAL, "alertDeath", Format.s("sab.config.alerts.death.default"));
-    	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-    	prop.setLanguageKey("sab.config.alerts.death");
-    	propOrder.add(prop.getName());
-    	new CustomAlert("sab.death", prop.getString());
-    	
-    	prop = config.get(CATEGORY_GENERAL, "alertChest", Format.s("sab.config.alerts.chest.default"));
-    	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-    	prop.setLanguageKey("sab.config.alerts.chest");
-    	propOrder.add(prop.getName());
-    	new CustomAlert("sab.chest", prop.getString());
-    	
-    	prop = config.get(CATEGORY_GENERAL, "alertEnd", Format.s("sab.config.alerts.end.default"));
-    	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-    	prop.setLanguageKey("sab.config.alerts.end");
-    	propOrder.add(prop.getName());
-    	new CustomAlert("sab.end", prop.getString());
+    	new CustomAlert("raid.deposit", prop.getString());
         
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
 

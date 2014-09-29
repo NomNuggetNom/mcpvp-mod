@@ -7,17 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import us.mcpvpmod.game.alerts.CustomAlert;
+import us.mcpvpmod.gui.Format;
 import cpw.mods.fml.common.DummyModContainer;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.registry.GameData;
 
 public class ConfigKitAlerts extends DummyModContainer {
 
@@ -53,19 +49,19 @@ public class ConfigKitAlerts extends DummyModContainer {
         
         Property prop;
         
-    	prop = config.get(CATEGORY_GENERAL, "alertStreak", "#white#Kill Streak! ||| {player} #gray#got a killstreak of #cyan#{streak} ||| nether_star");
+    	prop = config.get(CATEGORY_GENERAL, "alertStreak", Format.s("kit.config.alerts.streak.default"));
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
         prop.setLanguageKey("kit.config.alerts.streak");
     	propOrder.add(prop.getName());
     	new CustomAlert("kit.streak.get", prop.getString());
     	
-    	prop = config.get(CATEGORY_GENERAL, "alertStreakEnd", "#white#Streak Ended! ||| {killer} #gray#ended #r#{killed}#gray#'s streak of #cyan#{streak} ||| bone");
+    	prop = config.get(CATEGORY_GENERAL, "alertStreakEnd", Format.s("kit.config.alerts.streakEnd.default"));
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
         prop.setLanguageKey("kit.config.alerts.streakEnd");
     	propOrder.add(prop.getName());
     	new CustomAlert("kit.streak.end", prop.getString());
     	
-    	prop = config.get(CATEGORY_GENERAL, "alertRestart", "#white#Heads Up! ||| #gray#Server restarting in #red#1 #r#minute ||| clock");
+    	prop = config.get(CATEGORY_GENERAL, "alertRestart", Format.s("kit.config.alerts.restart.default"));
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
         prop.setLanguageKey("kit.config.alerts.restart");
     	propOrder.add(prop.getName());

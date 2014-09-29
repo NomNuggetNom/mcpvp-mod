@@ -14,6 +14,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import us.mcpvpmod.game.alerts.CustomAlert;
+import us.mcpvpmod.gui.Format;
 import cpw.mods.fml.common.DummyModContainer;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
@@ -55,7 +56,7 @@ public class ConfigAlerts extends DummyModContainer {
         
         Property prop;
 		 	
-    	prop = config.get(CATEGORY_GENERAL, "alertOnline", "#white#Party time! ||| {player}#gray# is now online. ||| head");
+    	prop = config.get(CATEGORY_GENERAL, "alertOnline", Format.s("config.alerts.online.default"));
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
         prop.setLanguageKey("config.Alerts.online");
     	alertOnline = prop.getString();

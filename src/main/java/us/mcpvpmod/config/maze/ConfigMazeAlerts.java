@@ -14,6 +14,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import us.mcpvpmod.game.alerts.CustomAlert;
+import us.mcpvpmod.gui.Format;
 import cpw.mods.fml.common.DummyModContainer;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
@@ -53,31 +54,31 @@ public class ConfigMazeAlerts extends DummyModContainer {
         
         Property prop;
         
-    	prop = config.get(CATEGORY_GENERAL, "alertKit", "#white#Kit Selected ||| #gray#Now a #green#{kit} ||| kit");
+    	prop = config.get(CATEGORY_GENERAL, "alertKit", Format.s("maze.config.alerts.kit.default"));
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
         prop.setLanguageKey("maze.config.alerts.kit");
     	propOrder.add(prop.getName());
     	new CustomAlert("maze.kit", prop.getString());
     	
-    	prop = config.get(CATEGORY_GENERAL, "alertTeam", "#white#Joined Team ||| #gray#Now on team #green#{team} ||| nether_star");
+    	prop = config.get(CATEGORY_GENERAL, "alertTeam", Format.s("maze.config.alerts.teamJoin.default"));
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
         prop.setLanguageKey("maze.config.alerts.teamJoin");
     	propOrder.add(prop.getName());
     	new CustomAlert("maze.team.join", prop.getString());
     	
-    	prop = config.get(CATEGORY_GENERAL, "alertPlayerKilled", "-X- #white#Player Killed! ||| {killed}#gray# was killed by {killer} ({kit}) ||| bone");
+    	prop = config.get(CATEGORY_GENERAL, "alertPlayerKilled", Format.s("maze.config.alerts.playerKilled.default"));
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
     	prop.setLanguageKey("maze.config.alerts.playerKilled");
     	propOrder.add(prop.getName());
     	new CustomAlert("maze.playerkilled", prop.getString());
     	
-    	prop = config.get(CATEGORY_GENERAL, "alertTeamOut", "#white#Team Out! ||| {team} has been eliminated! {remain} teams left. ||| skeletonskull");
+    	prop = config.get(CATEGORY_GENERAL, "alertTeamOut", Format.s("maze.config.alerts.teamOut.default"));
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
     	prop.setLanguageKey("maze.config.alerts.teamOut");
     	propOrder.add(prop.getName());
     	new CustomAlert("maze.team.out", prop.getString());
     	
-    	prop = config.get(CATEGORY_GENERAL, "alertHunger", "#white#Don't Forget... ||| #gray#Your princess is at #red#{hunger} ||| bread");
+    	prop = config.get(CATEGORY_GENERAL, "alertHunger", Format.s("maze.config.alerts.hunger.default"));
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
     	prop.setLanguageKey("maze.config.alerts.hunger");
     	propOrder.add(prop.getName());

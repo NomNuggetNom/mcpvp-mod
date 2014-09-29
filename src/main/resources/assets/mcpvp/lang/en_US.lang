@@ -78,6 +78,7 @@ config.alerts.title=Alerts
 config.alerts.tooltip=Here you can customize all alerts include the title, description and item shown on the alert.
 config.alerts.online=Friend Online
 config.alerts.online.tooltip=The alert triggered when a friend comes online.
+config.alerts.online.default=#white#Party time! ||| {player}#gray# is now online. ||| head
 
 <!-- CHAT -->
 config.chat.title=Chat Controls
@@ -163,8 +164,15 @@ config.sounds.online.tooltip=The sound triggered when a friend comes online.
 build.config.hud.render=Render
 build.config.hud.render.tooltip=Information that is rendered on the screen while playing Minecraft Build.
 
+<!-- ===--=== -->
+<!-- = RAID = -->
+<!-- ===--=== -->
 raid.config.hud.render=Render
 raid.config.hud.render.tooltip=Information that is rendered on the screen while playing Raid.
+
+raid.config.alerts.deposit=Deposit
+raid.config.alerts.deposit.tooltip=The alert triggered when you deposit gold.
+raid.config.alerts.deposit.default=#white#Deposit succesful ||| #gray#You now have #green#{balance} #gray#gold in the bank ||| gold_ingot
 
 <!-- ===-=== -->
 <!-- = CTF = -->
@@ -174,32 +182,46 @@ ctf.config.title=Capture the Flag Configuration
 <!-- ALERTS -->
 ctf.config.alerts.stole=Flag Stolen
 ctf.config.alerts.stole.tooltip=The alert triggered when the flag is stolen.
+ctf.config.alerts.stole.default=#white#Flag stolen! ||| {player} #gray#stole {team}#gray#'s #gray#flag! ||| wool
 ctf.config.alerts.dropped=Flag Dropped
 ctf.config.alerts.dropped.tooltip=The alert triggered when the flag is dropped.
+ctf.config.alerts.dropped.default=#white#Flag dropped! ||| {player} #gray#dropped {team}#gray#'s flag! ||| wool
 ctf.config.alerts.pickedUp=Flag Picked Up
 ctf.config.alerts.pickedUp.tooltip=The alert triggered when the flag is picked up.
+ctf.config.alerts.pickedUp.default=#white#Flag picked up! ||| {player} #gray#picked up {team}#gray#'s flag! ||| wool
 ctf.config.alerts.recovered=Flag Recovered
 ctf.config.alerts.recovered.tooltip=The alert triggered when the flag is recovered.
+ctf.config.alerts.recovered.default=#white#Flag recovered! ||| {player} #gray#recovered {team}#gray#'s flag! ||| wool
 ctf.config.alerts.restored=Flag Restored
 ctf.config.alerts.restored.tooltip=The alert triggered when the flag is restored.
+ctf.config.alerts.restored.default=#white#Flag restored! ||| {team}#gray#'s flag has been restored ||| wool
 ctf.config.alerts.captured=Flag Captured
 ctf.config.alerts.captured.tooltip=The alert triggered when the flag is captured.
+ctf.config.alerts.captured.default=#white#Flag captured! ||| {player} #gray#captured {team}#gray#'s flag! ||| wool
 ctf.config.alerts.streak=Streak Ended
 ctf.config.alerts.streak.tooltip=The alert triggered when the flag a kill streak is ended.
+ctf.config.alerts.streak.default=#white#Streak ended! ||| {killer} #gray#ended {killed}#gray#'s #cyan#{streak} #gray#streak ||| bone
 ctf.config.alerts.compass=Compass Changed
 ctf.config.alerts.compass.tooltip=The alert triggered when the compass target is changed.
+ctf.config.alerts.compass.default=-X- #white#Compass changed ||| #gray#Now pointing at {team}#gray#'s flag ||| compass
 ctf.config.alerts.class=Changed Class
 ctf.config.alerts.class.tooltip=The alert triggered when you change classes.
+ctf.config.alerts.class.default=#white#Fancy stuff ||| #gray#Changed to #green#{class} ||| class
 ctf.config.alerts.assist=Assist
 ctf.config.alerts.assist.tooltip=The alert triggered when you assist in killing a player.
+ctf.config.alerts.assist.default=Assist Kill ||| #gray#Assisted in killing {player} ||| witherskull
 ctf.config.alerts.start=Game Start
 ctf.config.alerts.start.tooltip=The alert triggered when the game starts.
+ctf.config.alerts.start.default=Hooray! ||| #cyan#The game has begun. Have fun! ||| nether_star
 ctf.config.alerts.five=Five Mins Left
 ctf.config.alerts.five.tooltip=The alert triggered when five minutes are remaining in the game.
+ctf.config.alerts.five.default=Heads up! ||| #yellow#5:00 #gray#remaining. ||| clock
 ctf.config.alerts.one=Five Mins Left
 ctf.config.alerts.one.tooltip=The alert triggered when five minutes are remaining in the game.
-ctf.config.alerts.end=Game Start
+ctf.config.alerts.one.default=Warning! ||| #red#1:00 #gray#remaining! ||| clock
+ctf.config.alerts.end=Game End
 ctf.config.alerts.end.tooltip=The alert triggered when the game ends.
+ctf.config.alerts.end.default=Game over! ||| {team} #gray#won the game! ||| wool
 
 <!-- CHAT -->
 ctf.config.chat.removeTips=Remove Tips
@@ -254,16 +276,22 @@ ctf.config.sounds.end.tooltip=The sound triggered when the game ends.
 <!-- ALERTS -->
 hg.config.alerts.kit=Kit Selected
 hg.config.alerts.kit.tooltip=The alert triggered when you select a kit.
+hg.config.alerts.kit.default=#white#Lookin' good ||| #gray#You picked #green#{kit} ||| kit
 hg.config.alerts.start=Game Started
 hg.config.alerts.start.tooltip=The alert triggered when the game starts.
+hg.config.alerts.start.default=#white#The game has begun! ||| #gray#Enjoy, and try #i#not #r##gray#to die ||| nether_star
 hg.config.alerts.vulnerable=Lost Vulnerability
 hg.config.alerts.vulnerable.tooltip=The alert triggered when you lose vulnerability.
+hg.config.alerts.vulnerable.default=#white#Stay cool... ||| #red#You are no longer invincible! ||| skeletonskull
 hg.config.alerts.feast.mini=Mini Feast
 hg.config.alerts.feast.mini.tooltip=The alert triggered when a mini feast spawns.
+hg.config.alerts.feast.mini.default=#white#Oh yeaaah ||| #gray#A mini feast has appeared between #cyan#{x1}#gray#, #cyan#{x2} #gray#& #cyan#{z1}#gray#, #cyan#{z2} ||| chest
 hg.config.alerts.feast=Feast
 hg.config.alerts.feast.tooltip=The alert triggered when a feast spawns.
+hg.config.alerts.feast.default=#white#I hope you're hungry ||| #gray#A feast has appeared at #cyan#{x}#gray#, #cyan#{y}#gray#, #cyan#{z} ||| ender_chest
 hg.config.alerts.feast.bonus=Bonus Feast
 hg.config.alerts.feast.bonus.tooltip=The alert triggered when a bonus feast spawns.
+hg.config.alerts.feast.bonus.default=#white#Died and gone to heaven? ||| #gray#A #underline#bonus #r##gray#feast has appeared! ||| ender_chest
 
 <!-- HUD -->
 hg.config.hud.renderPre=Render Pre
@@ -291,10 +319,13 @@ hg.config.sounds.end.tooltip=The sound triggered when the game ends.
 <!-- ALERTS -->
 kit.config.alerts.streak=Streak Achieved
 kit.config.alerts.streak.tooltip=The alert triggered when a player reaches a kill streak.
+kit.config.alerts.streak.default=#white#Kill Streak! ||| {player} #gray#got a killstreak of #cyan#{streak} ||| nether_star
 kit.config.alerts.streakEnd=Streak Ended
 kit.config.alerts.streakEnd.tooltip=The alert triggered when the flag a kill streak is ended.
+kit.config.alerts.streakEnd.default=#white#Streak Ended! ||| {killer} #gray#ended #r#{killed}#gray#'s streak of #cyan#{streak} ||| bone
 kit.config.alerts.restart=Restarting
 kit.config.alerts.restart.tooltip=The alert triggered when the server is about to restart.
+kit.config.alerts.restart.default=#white#Heads Up! ||| #gray#Server restarting in #red#1 #r#minute ||| clock
 
 <!-- HUD -->
 kit.config.hud.render=Render
@@ -312,14 +343,19 @@ kit.config.sounds.streakEnd.tooltip=The sound triggered when the flag a kill str
 <!-- ALERTS -->
 maze.config.alerts.kit=Kit Selected
 maze.config.alerts.kit.tooltip=The alert triggered when you select a kit.
+maze.config.alerts.kit.default=#white#Kit Selected ||| #gray#Now a #green#{kit} ||| kit
 maze.config.alerts.teamJoin=Joined Team
 maze.config.alerts.teamJoin.tooltip=The alert triggered when you join a team.
+maze.config.alerts.teamJoin.default=#white#Joined Team ||| #gray#Now on team #green#{team} ||| nether_star
 maze.config.alerts.playerKilled=Player Killed
 maze.config.alerts.playerKilled.tooltip=The alert triggered when a player gets killed.
+maze.config.alerts.playerKilled.default=-X- #white#Player Killed! ||| {killed}#gray# was killed by {killer} ({kit}) ||| bone
 maze.config.alerts.teamOut=Team Eliminated
 maze.config.alerts.teamOut.tooltip=The alert triggered when a team gets eliminated.
+maze.config.alerts.teamOut.default=#white#Team Out! ||| {team} has been eliminated! {remain} teams left. ||| skeletonskull
 maze.config.alerts.hunger=Princess Hungry
 maze.config.alerts.hunger.tooltip=The alert triggered when the princess is hungry.
+maze.config.alerts.hunger.default=#white#Don't Forget... ||| #gray#Your princess is at #red#{hunger} ||| bread
 
 <!-- HUD -->
 maze.config.hud.renderPre=Render Pre
@@ -336,3 +372,25 @@ maze.config.select.selectKit=Select Kit
 maze.config.select.selectKit.tooltip=The kit to automatically selected.
 maze.config.select.selectTeam=Join Team
 maze.config.select.selectTeam.tooltip=The team to automatically join.
+
+<!-- ===------=== -->
+<!-- = SABOTAGE = -->
+<!-- ===------=== -->
+<!-- ALERTS -->
+sab.config.alerts.start=Game Start
+sab.config.alerts.start.tooltip=The alert triggered when the game starts.
+sab.config.alerts.start.default=#white#The game has begun! ||| You are {role}. Good luck! ||| nether_star
+
+sab.config.alerts.death=Death
+sab.config.alerts.death.tooltip=The alert triggered when a player dies.
+sab.config.alerts.death.default=#white#Hold on to your seats, folks... ||| #gray#Someone just died. Only #cyan#{remain} #gray#players left. ||| bone
+
+sab.config.alerts.chest=Chest Wave
+sab.config.alerts.chest.tooltip=The alert triggered when a chest wave spawns.
+sab.config.alerts.chest.default=#white#Ooooo, goodies! ||| #gray#Chest wave #green#{wave} #gray#has spawned. ||| chest
+
+sab.config.alerts.end=Game End
+sab.config.alerts.end.tooltip=The alert triggered when the game ends.
+sab.config.alerts.end.default=#white#Game Over! ||| #gray#Winner: {winner} ||| web
+
+
