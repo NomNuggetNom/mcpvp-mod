@@ -1,5 +1,10 @@
 package us.mcpvpmod.events;
 
+import java.lang.reflect.InvocationTargetException;
+
+import com.google.common.base.Strings;
+
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -10,8 +15,14 @@ import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.Sync;
 import us.mcpvpmod.gui.menu.GuiEvent;
+import us.mcpvpmod.gui.menu.GuiMCPVP;
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.client.IModGuiFactory;
 import cpw.mods.fml.client.event.ConfigChangedEvent;
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.ModContainer;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.InputEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.common.network.FMLNetworkEvent.ClientConnectedToServerEvent;
 
@@ -63,11 +74,16 @@ public class Events {
 	
 	@SubscribeEvent
 	public void onConnect(ClientConnectedToServerEvent event) {
-		HandleConnect.onConnect(event);
+		//HandleConnect.onConnect(event);
 	}
 	
 	@SubscribeEvent
 	public void onOpen(GuiOpenEvent event) {
 		GuiEvent.onOpen(event);
 	}
+	
+    @SubscribeEvent
+    public void onKey(InputEvent.KeyInputEvent event) {
+    	HandleKey.onKey(event);
+    }
 }
