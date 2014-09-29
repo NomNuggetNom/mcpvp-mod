@@ -1,10 +1,16 @@
 package us.mcpvpmod.events.render;
 
+import java.awt.image.BufferedImage;
+import java.net.URL;
+
+import javax.imageio.ImageIO;
+
+import net.minecraft.client.renderer.texture.DynamicTexture;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import us.mcpvpmod.Main;
-import us.mcpvpmod.Server;
-import us.mcpvpmod.game.state.StateCTF;
 import us.mcpvpmod.gui.ArmorDisplay;
+import us.mcpvpmod.gui.Draw;
 import us.mcpvpmod.gui.FriendsBlock;
 
 /**
@@ -28,8 +34,6 @@ public class AllRender {
 		
 		// Render our armor display.
 		ArmorDisplay.renderArmor();
-		
-
 
 	}
 	
