@@ -16,6 +16,7 @@ import us.mcpvpmod.MCPVPServer;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.gui.Draw;
+import us.mcpvpmod.util.Format;
 
 public class GuiChooseMultiplayer extends GuiScreen {
 
@@ -34,15 +35,15 @@ public class GuiChooseMultiplayer extends GuiScreen {
 		GuiButton connectMCPVP = new GuiButton(100, 
 				this.width/2 - 100, 
 				this.height/2 - 20, 
-				"MCPVP Server Menu");
+				Format.s("gui.choose.mcpvp"));
 		GuiButton connectVanilla = new GuiButton(101, 
 				this.width/2 - 100, 
 				this.height / 2 - 20 + 25, 
-				"Vanilla Server Menu");
+				Format.s("gui.choose.vanilla"));
 		GuiButton backButton = new GuiButton(102, 
 				this.width/2 - 100, 
 				this.height / 2 - 20 + 25 + 25, 
-				"Cancel");
+				Format.s("gui.cancel"));
 		this.buttonList.add(connectMCPVP);
 		this.buttonList.add(connectVanilla);
 		this.buttonList.add(backButton);
@@ -58,8 +59,8 @@ public class GuiChooseMultiplayer extends GuiScreen {
 	@Override
 	public void drawScreen(int p_73863_1_, int p_73863_2_, float p_73863_3_) {
 		this.drawDefaultBackground();
-		Draw.string("Choose your server menu:", 
-				(this.width/2) - (Main.mc.fontRenderer.getStringWidth("Choose your server menu:")/2), 
+		Draw.string(Format.s("gui.choose"), 
+				(this.width/2) - (Main.mc.fontRenderer.getStringWidth(Format.s("gui.choose"))/2), 
 				this.height/2 - 35, 0xFFFFFF, true);
 		super.drawScreen(p_73863_1_, p_73863_2_, p_73863_3_);
 	}

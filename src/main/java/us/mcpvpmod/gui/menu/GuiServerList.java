@@ -7,7 +7,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.Tessellator;
 import us.mcpvpmod.MCPVPServer;
 import us.mcpvpmod.Main;
-import us.mcpvpmod.gui.Format;
+import us.mcpvpmod.util.Format;
 import cpw.mods.fml.client.GuiScrollingList;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.ModContainer;
