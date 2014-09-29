@@ -52,7 +52,7 @@ public class ConfigCTFSounds extends DummyModContainer {
     	propOrder.add(prop.getName());
     	new SoundAlert("flag.stole", prop.getString());
     	
-    	prop = config.get(CATEGORY_GENERAL, "soundDropped", "random.anvil_land");
+    	prop = config.get(CATEGORY_GENERAL, "soundDropped", "random.anvil_land, 0.1");
         prop.setLanguageKey("ctf.config.sounds.dropped");
     	propOrder.add(prop.getName());
     	new SoundAlert("flag.dropped", prop.getString());
@@ -62,12 +62,12 @@ public class ConfigCTFSounds extends DummyModContainer {
     	propOrder.add(prop.getName());
     	new SoundAlert("flag.pickedup", prop.getString());
     	
-    	prop = config.get(CATEGORY_GENERAL, "soundRecovered", "tile.piston.in");
+    	prop = config.get(CATEGORY_GENERAL, "soundRecovered", "tile.piston.in, 0.4");
         prop.setLanguageKey("ctf.config.sounds.recovered");
     	propOrder.add(prop.getName());
     	new SoundAlert("flag.recovered", prop.getString());
     	
-    	prop = config.get(CATEGORY_GENERAL, "soundRestored", "tile.piston.in");
+    	prop = config.get(CATEGORY_GENERAL, "soundRestored", "tile.piston.in, 0.4");
         prop.setLanguageKey("ctf.config.sounds.restored");
     	propOrder.add(prop.getName());
     	new SoundAlert("flag.restored", prop.getString());

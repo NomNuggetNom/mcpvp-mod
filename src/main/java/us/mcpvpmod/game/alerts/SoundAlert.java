@@ -11,6 +11,7 @@ public class SoundAlert {
 	public static HashMap<String, SoundAlert> soundAlerts = new HashMap<String, SoundAlert>();
 	
 	public String sound;
+	public float volume;
 
 	/**
 	 * The constructor for a SoundAlert.
@@ -19,7 +20,13 @@ public class SoundAlert {
 	 */
 	public SoundAlert(String id, String sound) {
 		// TODO: add options for volume.
-		this.sound = sound;
+		if (sound.contains(",")) {
+			this.sound	= sound.split(",")[0];
+			this.volume	= Float.valueOf(sound.split(",")[1]);
+		} else {
+			this.sound	= sound;
+			this.volume	= 1.0F;
+		}
 		soundAlerts.put(id, this);
 	}
 	
@@ -37,8 +44,8 @@ public class SoundAlert {
 	public void play() {
 		// Support for cancelling.
 		if (!this.sound.startsWith("-X-")) {
-			mc.thePlayer.playSound(this.sound, 1.0F, 1.0F);
-			FMLLog.info("Playing sound: %s", sound);
+			mc.thePlayer.playSound(this.sound, this.volume/2, 1.0F);
+			FMLLog.info("[MCPVP] Playing sound: %s", sound);
 		}
 	}
 }
