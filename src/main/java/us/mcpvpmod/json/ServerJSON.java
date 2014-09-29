@@ -21,6 +21,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.zip.GZIPInputStream;
 
 import us.mcpvpmod.MCPVPServer;
+import us.mcpvpmod.gui.Format;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -101,10 +102,10 @@ public class ServerJSON extends TimerTask {
 			return json;
 			
 		} catch (IOException ex) {
-			FMLLog.info("[MCPVP] Error getting JSON for servers!");
+			FMLLog.info(Format.s("error.json.server"));
 			ex.printStackTrace();
 		}
-		FMLLog.info("[MCPVP] Unable to get JSON for servers!");
+		FMLLog.info(Format.s("error.json.server"));
 		return "";
 	}
 	

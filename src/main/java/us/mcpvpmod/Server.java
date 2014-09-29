@@ -3,7 +3,6 @@ package us.mcpvpmod;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import net.minecraft.client.resources.I18n;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -52,23 +51,28 @@ import us.mcpvpmod.game.vars.VarsCTF;
 import us.mcpvpmod.game.vars.VarsHG;
 import us.mcpvpmod.game.vars.VarsKit;
 import us.mcpvpmod.game.vars.VarsMaze;
+import us.mcpvpmod.game.vars.VarsRaid;
 import us.mcpvpmod.game.vars.VarsSab;
-import us.mcpvpmod.gui.Draw;
 import us.mcpvpmod.gui.Format;
 import cpw.mods.fml.common.gameevent.TickEvent;
 
 /**
  * Serves as the enum for all Servers.
  * Provides a main class for getting server dependent information.
- * @author NomNuggetNom
  */
 public enum Server {
 	HUB, KIT, HG, MAZE, SAB, CTF, HS, PARTY, BUILD, RAID, HG2, NONE;
 	
+	/**
+	 * @return The friendly name of the server from the lang file.
+	 */
 	public String getName() {
 		return Format.s("server." + this.toString().toLowerCase() + ".name");
 	}
 	
+	/**
+	 * @return The base IP of the server from the lang file.
+	 */
 	public String baseIP() {
 		return Format.s("server." + this.toString().toLowerCase() + ".ip");
 	}
@@ -222,7 +226,7 @@ public enum Server {
 		switch (getServer()) {
 		case HG: 	return VarsHG.get(var);
 		case CTF: 	return VarsCTF.get(var);
-		case RAID: 	break;
+		case RAID: 	return VarsRaid.get(var);
 		case KIT: 	return VarsKit.get(var);
 		case MAZE: 	return VarsMaze.get(var);
 		case SAB: 	return VarsSab.get(var);
@@ -245,7 +249,7 @@ public enum Server {
 		switch (getServer()) {
 		case HG: 	return StateHG.getState();
 		case CTF: 	return StateCTF.getState();
-		case RAID: 	break;
+		case RAID: 	return DummyState.NONE;
 		case KIT: 	return StateKit.PLAY;
 		case MAZE: 	return StateMaze.getState();
 		case SAB: 	return StateSab.getState();

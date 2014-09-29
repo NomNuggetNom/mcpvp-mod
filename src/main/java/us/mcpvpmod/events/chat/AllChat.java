@@ -42,7 +42,7 @@ public class AllChat {
 			System.out.println("Logged in.");
 			Main.mc.thePlayer.sendChatMessage("/ip");
 			getIP = true;
-			Main.secondChat.clearChatMessages();
+			//Main.secondChat.clearChatMessages();
 		}
 		
 		if (message.matches(reIP) && getIP) {
@@ -60,12 +60,12 @@ public class AllChat {
 			String msg = "";
 			
 			if (ConfigVersion.channel.equalsIgnoreCase("Main"))
-				msg = "#bold##underline# v" + Main.mcpvpVersion.main.mod + " is available for Minecraft " + Main.mcpvpVersion.main.mc + "! Click to download.";
+				msg = Format.s("update-msg").replaceAll("%VERSION%", Main.mcpvpVersion.main.mod).replaceAll("%MCVERSION%", Main.mcpvpVersion.main.mc);
 			 else if (ConfigVersion.channel.equalsIgnoreCase("Beta")) 
-				msg = "#bold##underline# v" + Main.mcpvpVersion.beta.mod + " is available for Minecraft " + Main.mcpvpVersion.beta.mc + "! Click to download.";
+				msg = Format.s("update-msg").replaceAll("%VERSION%", Main.mcpvpVersion.beta.mod).replaceAll("%MCVERSION%", Main.mcpvpVersion.beta.mc);
 			
 			IChatComponent send = new ChatComponentText(Format.process(msg));
-			send.getChatStyle().setChatClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "http://google.com/"));
+			send.getChatStyle().setChatClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, Format.s("update-url")));
 			Main.mc.thePlayer.addChatMessage(send);
 			sentUpdateMessage = true;
 		}

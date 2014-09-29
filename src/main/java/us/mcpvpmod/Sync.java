@@ -21,6 +21,7 @@ import us.mcpvpmod.config.maze.ConfigMazeAlerts;
 import us.mcpvpmod.config.maze.ConfigMazeHUD;
 import us.mcpvpmod.config.maze.ConfigMazeSelect;
 import us.mcpvpmod.config.maze.ConfigMazeSounds;
+import us.mcpvpmod.config.raid.ConfigRaidAlerts;
 import us.mcpvpmod.config.raid.ConfigRaidHUD;
 import us.mcpvpmod.config.sab.ConfigSabAlerts;
 import us.mcpvpmod.config.sab.ConfigSabHUD;
@@ -32,6 +33,7 @@ import us.mcpvpmod.game.core.CoreCTF;
 import us.mcpvpmod.game.core.CoreHG;
 import us.mcpvpmod.game.core.CoreKit;
 import us.mcpvpmod.game.core.CoreMaze;
+import us.mcpvpmod.game.core.CoreRaid;
 import us.mcpvpmod.game.core.CoreSab;
 import us.mcpvpmod.game.kits.KitsCTF;
 import us.mcpvpmod.game.kits.KitsHG;
@@ -96,6 +98,7 @@ public class Sync {
 		ConfigHGSelect.syncConfig();
 		
 		ConfigRaidHUD.syncConfig();
+		ConfigRaidAlerts.syncConfig();
 
 		// Sync all InfoBlocks
 		InfoBlock.blocks.clear();
@@ -131,6 +134,7 @@ public class Sync {
 		CoreBuild.setup();
 		CoreSab.setup();
 		CoreHG.setup();
+		CoreRaid.setup();
 	}
 
 }

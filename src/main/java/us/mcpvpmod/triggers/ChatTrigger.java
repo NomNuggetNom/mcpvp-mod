@@ -91,7 +91,7 @@ public class ChatTrigger {
 				if (value.startsWith("$")) {
 					String val = message.replaceAll(pattern, value);
 					Vars.put(key, val);
-				} else if (value.startsWith("var:") || value.matches("\\d+:.+")){
+				} else if (value.startsWith("var:") || value.matches("\\w+:.+")){
 					FMLLog.info("Unusual ChatTrigger deteceted. Key: %s --- Val: %s", key, value);
 					Vars.put(key, Vars.get(value.split("var:")[1]));
 				}
