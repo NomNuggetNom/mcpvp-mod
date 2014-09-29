@@ -8,9 +8,12 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import us.mcpvpmod.Main;
 import us.mcpvpmod.game.kits.AllKits;
 import us.mcpvpmod.game.vars.Vars;
+import us.mcpvpmod.gui.CustomTexture;
 import us.mcpvpmod.util.Format;
+import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.registry.GameData;
 
 public class CustomAlert {
@@ -35,6 +38,8 @@ public class CustomAlert {
 	public CustomAlert(String id, String template) {
 		this.id = id;
 		this.template = template;
+		//setStrings();
+		//setMode();
 		messageAlerts.put(id, this);
 	}
 	
@@ -136,10 +141,17 @@ public class CustomAlert {
 	 * Sets the display mode to either "image" or "item"
 	 */
 	public void setMode() {
-		if (this.template.split("\\s*\\|\\|\\|\\s*")[2].endsWith(".png")) {
+		//FMLLog.info("Split: \"%s\"", this.template.split("\\s*\\|\\|\\|\\s*")[2]);
+		//System.out.println(this.template.split("\\s*\\|\\|\\|\\s*")[2].startsWith("http:"));
+		if (this.template.split("\\s*\\|\\|\\|\\s*")[2].endsWith(".png") && !this.template.split("\\s*\\|\\|\\|\\s*")[2].startsWith("http:")) {
 			this.item  = null;
 			this.image = new ResourceLocation("mcpvp", "textures/" + this.template.split("\\s*\\|\\|\\|\\s*")[2]);
 			this.mode = "image";
+		} else if (this.template.split("\\s*\\|\\|\\|\\s*")[2].startsWith("http:")) {
+			System.out.println("custom texture mode");
+			this.item  = null;
+			this.image = CustomTexture.get(this.id, this.template.split("\\s*\\|\\|\\|\\s*")[2]);
+			this.mode  = "image";
 		} else {
 			this.item  = getItem(this.template.split("\\s*\\|\\|\\|\\s*")[2]);
 			this.image = null;
