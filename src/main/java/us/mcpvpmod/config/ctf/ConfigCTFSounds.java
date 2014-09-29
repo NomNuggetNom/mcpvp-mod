@@ -50,7 +50,7 @@ public class ConfigCTFSounds extends DummyModContainer {
     	prop = config.get(CATEGORY_GENERAL, "soundStole", "mob.enderdragon.growl");
         prop.setLanguageKey("ctf.config.sounds.stole");
     	propOrder.add(prop.getName());
-    	new SoundAlert("flag.stole", prop.getString());
+    	new SoundAlert("flag.stolen", prop.getString());
     	
     	prop = config.get(CATEGORY_GENERAL, "soundDropped", "random.anvil_land, 0.1");
         prop.setLanguageKey("ctf.config.sounds.dropped");

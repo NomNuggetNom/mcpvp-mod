@@ -98,6 +98,9 @@ public class CoreCTF {
 		new ChatTrigger(reGameOver, "game.end", Server.CTF, 
 				new String[]{"winner", "$1"});
 		
+		new ChatTrigger(reCompass, "compass", Server.CTF, 
+				new String[]{"team", "$1"});
+		
 		new BoardTracker("ctf:team.blue.wins", "\u00A79Blue");
 		new BoardTracker("ctf:team.red.wins", "\u00A7cRed");
 	}
