@@ -25,7 +25,6 @@ public class VersionJSON extends TimerTask {
 		Gson gson = new GsonBuilder().create();
 		MCPVPVersion v = gson.fromJson(json, MCPVPVersion.class);
 		Main.mcpvpVersion = v;
-		System.out.println(MCPVPVersion.updateAvailable());
 	}
 
 	public String getJson() {
