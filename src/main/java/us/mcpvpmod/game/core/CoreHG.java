@@ -45,9 +45,9 @@ public class CoreHG {
 				new String[]{"z2", "$4"});
 		
 		new ChatTrigger(msgFeastBegin, "hg.feast", Server.HG, 
-				new String[]{"var:hg:feast.x", "x"},
-				new String[]{"var:hg:feast.y", "y"},
-				new String[]{"var:hg:feast.z", "z"});
+				new String[]{"x", "var:hg:feast.x"},
+				new String[]{"y", "var:hg:feast.y"},
+				new String[]{"z", "var:hg:feast.z"});
 		
 	}
 }
