@@ -11,6 +11,7 @@ import us.mcpvpmod.config.all.ConfigFriends;
 import us.mcpvpmod.config.all.ConfigHUD;
 import us.mcpvpmod.game.FriendsList;
 import us.mcpvpmod.game.vars.VarsCTF;
+import us.mcpvpmod.util.Format;
 
 public class FriendsBlock {
 	

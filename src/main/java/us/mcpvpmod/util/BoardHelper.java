@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.Iterator;
 
 import us.mcpvpmod.Main;
-import us.mcpvpmod.gui.Format;
 import net.minecraft.client.Minecraft;
 import net.minecraft.scoreboard.Score;
 import net.minecraft.scoreboard.ScoreObjective;

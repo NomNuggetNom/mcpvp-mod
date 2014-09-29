@@ -13,6 +13,7 @@ import us.mcpvpmod.config.all.ConfigHUD;
 import us.mcpvpmod.game.FriendsList;
 import us.mcpvpmod.game.state.State;
 import us.mcpvpmod.game.vars.AllVars;
+import us.mcpvpmod.util.Format;
 import cpw.mods.fml.common.FMLLog;
 
 /**

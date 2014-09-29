@@ -1,4 +1,4 @@
-package us.mcpvpmod.gui;
+package us.mcpvpmod.util;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,8 +16,8 @@ public class Format {
 	
 	/**
 	 * Processes formatting codes in text. e.g. #r#
-	 * @param line
-	 * @return
+	 * @param line The line to process.
+	 * @return The processed line.
 	 */
 	public static String process(String line) {
 		// Form our matcher for color codes.
@@ -36,6 +36,10 @@ public class Format {
 		return line;
 	}
 	
+	/**
+	 * @param key The key to find in the lang file.
+	 * @return The value of the key in the lang file.
+	 */
 	public static String s(String key) {
 		return I18n.format(key);
 	}
