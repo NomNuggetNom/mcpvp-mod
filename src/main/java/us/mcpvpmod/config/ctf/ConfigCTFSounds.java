@@ -47,7 +47,7 @@ public class ConfigCTFSounds extends DummyModContainer {
         
         Property prop;
         
-    	prop = config.get(CATEGORY_GENERAL, "soundStole", "mob.enderdragon.growl");
+    	prop = config.get(CATEGORY_GENERAL, "soundStole", "mob.enderdragon.growl, 0.8");
         prop.setLanguageKey("ctf.config.sounds.stole");
     	propOrder.add(prop.getName());
     	new SoundAlert("flag.stolen", prop.getString());
@@ -62,12 +62,12 @@ public class ConfigCTFSounds extends DummyModContainer {
     	propOrder.add(prop.getName());
     	new SoundAlert("flag.pickedup", prop.getString());
     	
-    	prop = config.get(CATEGORY_GENERAL, "soundRecovered", "tile.piston.in, 0.4");
+    	prop = config.get(CATEGORY_GENERAL, "soundRecovered", "tile.piston.in, 0.3");
         prop.setLanguageKey("ctf.config.sounds.recovered");
     	propOrder.add(prop.getName());
     	new SoundAlert("flag.recovered", prop.getString());
     	
-    	prop = config.get(CATEGORY_GENERAL, "soundRestored", "tile.piston.in, 0.4");
+    	prop = config.get(CATEGORY_GENERAL, "soundRestored", "tile.piston.in, 0.3");
         prop.setLanguageKey("ctf.config.sounds.restored");
     	propOrder.add(prop.getName());
     	new SoundAlert("flag.restored", prop.getString());
@@ -77,7 +77,7 @@ public class ConfigCTFSounds extends DummyModContainer {
     	propOrder.add(prop.getName());
     	new SoundAlert("flag.captured", prop.getString());
     	
-    	prop = config.get(CATEGORY_GENERAL, "soundStreak", "mob.skeleton.death");
+    	prop = config.get(CATEGORY_GENERAL, "soundStreak", "mob.skeleton.death, 0.4");
         prop.setLanguageKey("ctf.config.sounds.streak");
     	propOrder.add(prop.getName());
     	new SoundAlert("streak", prop.getString());
