@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import us.mcpvpmod.util.Format;
 import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
@@ -12,9 +13,10 @@ import net.minecraft.client.multiplayer.ServerData;
 
 public class MCPVPServer {
 
+	/** A list of all MCPVP Servers, compiled via ServerJson */
 	public static ArrayList<MCPVPServer> servers = new ArrayList<MCPVPServer>();
 	
-	/** The unqiue server ID. Not really used. */
+	/** The unique server ID. Not really used. */
 	public String ID;
 	/** Whether the server is accepting new players. */
 	public boolean IsAcceptingPlayers;	
@@ -39,6 +41,10 @@ public class MCPVPServer {
 	/** The last time the server was online. */
 	public int LastOnline;
 	
+	/**
+	 * @param type The "type" or base IP of the server to return.
+	 * @return All servers with that type.
+	 */
 	public static ArrayList<MCPVPServer> getAllOfType(String type) {
 		ArrayList<MCPVPServer> returnServers = new ArrayList<MCPVPServer>();
 		
@@ -51,6 +57,11 @@ public class MCPVPServer {
 		return returnServers;
 	}
 	
+	/**
+	 * @param type The "type" or base IP of the server to return.
+	 * @param region The region of the servers to return.
+	 * @return All servers with that type and in the region.
+	 */
 	public static ArrayList<MCPVPServer> getAllOfType(String type, String region) {
 		ArrayList<MCPVPServer> returnServers = new ArrayList<MCPVPServer>();
 		
@@ -103,9 +114,22 @@ public class MCPVPServer {
 		toReturn.addAll(tier2);
 		toReturn.addAll(tier3);
 		toReturn.addAll(tier4);
+		
+		// Bolds the last server joined.
+		if (!ServerHelper.serverIP().equals("none")) {
+			for (MCPVPServer server : toReturn) {
+				if (server.Server.equals(ServerHelper.serverIP())) {
+					server.MOTD = Format.process("#bold#") + server.MOTD;
+				}
+			}
+		}
 		return toReturn;
 	}
 	
+	/**
+	 * Sorts the list of servers by the number of players.
+	 * @param servers The list to sort.
+	 */
 	public static void sortByPlayers(ArrayList<MCPVPServer> servers) {
 
 		Collections.sort(servers, new Comparator<MCPVPServer>() {
@@ -125,17 +149,17 @@ public class MCPVPServer {
 		}
 		return null;
 	}
-	
 	public static void connect(String ip, GuiScreen gui, Minecraft mc) {
 		mc.setServer(ip, 25565);
 		mc.setServerData(new ServerData("MCPVP", ip));
 		mc.displayGuiScreen(new GuiConnecting(gui, mc, ip, 25565));
 	}
 	
+	/**
+	 * Used to connect directly to a server.
+	 * @param server The server to connect to.
+	 */
 	public static void connect(MCPVPServer server) {
 		FMLClientHandler.instance().connectToServer(Main.mc.currentScreen, new ServerData(server.MOTD, server.Server));
-		//Main.mc.setServer(server.Server, 25565);
-		//Main.mc.setServerData(new ServerData(server.MOTD, server.Server));
-		//Main.mc.displayGuiScreen(new GuiConnecting(Main.mc.currentScreen, Main.mc, server.Server, 25565));
 	}
 }
