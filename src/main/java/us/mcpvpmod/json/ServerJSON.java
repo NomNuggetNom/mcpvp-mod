@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.zip.GZIPInputStream;
 
 import us.mcpvpmod.MCPVPServer;
-import us.mcpvpmod.gui.Format;
+import us.mcpvpmod.util.Format;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

@@ -2,8 +2,8 @@ package us.mcpvpmod.game.team;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.scoreboard.Scoreboard;
-import us.mcpvpmod.gui.Format;
 import us.mcpvpmod.util.BoardHelper;
+import us.mcpvpmod.util.Format;
 
 public enum TeamCTF implements Team {
 	BLUE, RED, NONE;

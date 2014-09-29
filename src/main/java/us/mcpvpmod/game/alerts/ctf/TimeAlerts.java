@@ -12,7 +12,7 @@ import us.mcpvpmod.game.info.InfoCTF;
 import us.mcpvpmod.game.state.StateCTF;
 import us.mcpvpmod.game.stats.StatsCTF;
 import us.mcpvpmod.game.team.TeamCTF;
-import us.mcpvpmod.gui.Format;
+import us.mcpvpmod.util.Format;
 
 public class TimeAlerts {
 	

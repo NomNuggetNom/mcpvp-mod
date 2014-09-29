@@ -16,6 +16,7 @@ public class CoreHG {
 	public static String msgFeastBegin = "§r§cThe Feast has begun!§r";
 	public static String msgBonusFeast = "§r§cA §r§c§nbonus§r§c feast has been spawned! It can be anywhere on the whole map.§r";
 	public static String reRemain = "§r§b(\\d*) players remaining.§r";
+	public static String reParticipating = "§r§cThere are (.*) players participating.§r";
 	public static String reWin = "§r§c(.*) wins!§r";
 	
 	public static void setup() {
@@ -29,6 +30,9 @@ public class CoreHG {
 				new String[]{"hg:feast.z", "$3"});
 		
 		new ChatTracker(reRemain, Server.HG,
+				new String[]{"hg:remain", "$1"});
+		
+		new ChatTracker(reParticipating, Server.HG,
 				new String[]{"hg:remain", "$1"});
 		
 		new ChatTrigger(reKit, "hg.kit", Server.HG,  

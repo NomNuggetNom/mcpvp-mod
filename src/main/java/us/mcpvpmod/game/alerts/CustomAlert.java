@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import us.mcpvpmod.game.kits.AllKits;
 import us.mcpvpmod.game.vars.Vars;
-import us.mcpvpmod.gui.Format;
+import us.mcpvpmod.util.Format;
 import cpw.mods.fml.common.registry.GameData;
 
 public class CustomAlert {

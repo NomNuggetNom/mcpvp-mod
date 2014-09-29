@@ -3,7 +3,7 @@ package us.mcpvpmod.game.vars;
 import java.util.HashMap;
 
 import us.mcpvpmod.game.info.InfoSab;
-import us.mcpvpmod.gui.Format;
+import us.mcpvpmod.util.Format;
 
 public class VarsSab {
 	

@@ -105,6 +105,10 @@ public class MCPVPServer {
 					tier4.add(server);
 				}
 			}
+			// Bolds the last server joined.
+			if (server.Server.equals(ServerHelper.serverIP())) {
+				server.MOTD = server.MOTD.replaceAll("\u00A7(.)", "\u00A7$1\u00A7l");
+			}
 		}
 		sortByPlayers(tier1);
 		sortByPlayers(tier2);
@@ -114,15 +118,7 @@ public class MCPVPServer {
 		toReturn.addAll(tier2);
 		toReturn.addAll(tier3);
 		toReturn.addAll(tier4);
-		
-		// Bolds the last server joined.
-		if (!ServerHelper.serverIP().equals("none")) {
-			for (MCPVPServer server : toReturn) {
-				if (server.Server.equals(ServerHelper.serverIP())) {
-					server.MOTD = Format.process("#bold#") + server.MOTD;
-				}
-			}
-		}
+
 		return toReturn;
 	}
 	

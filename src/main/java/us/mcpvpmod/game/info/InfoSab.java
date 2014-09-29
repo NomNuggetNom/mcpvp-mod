@@ -2,7 +2,7 @@ package us.mcpvpmod.game.info;
 
 import us.mcpvpmod.game.state.StateSab;
 import us.mcpvpmod.game.vars.Vars;
-import us.mcpvpmod.gui.Format;
+import us.mcpvpmod.util.Format;
 
 public class InfoSab {
 

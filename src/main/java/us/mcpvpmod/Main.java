@@ -2,15 +2,19 @@ package us.mcpvpmod;
 
 import java.util.Timer;
 
+import org.lwjgl.input.Keyboard;
+
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.common.MinecraftForge;
 import us.mcpvpmod.events.Events;
-import us.mcpvpmod.gui.Format;
 import us.mcpvpmod.gui.GuiSecondChat;
 import us.mcpvpmod.json.ServerJSON;
 import us.mcpvpmod.json.StreamJSON;
 import us.mcpvpmod.json.VersionJSON;
+import us.mcpvpmod.util.Format;
 import us.mcpvpmod.version.MCPVPVersion;
+import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
@@ -36,6 +40,7 @@ public class Main {
 	public static ServerJSON serverJson = new ServerJSON();
 	public static GuiSecondChat secondChat = new GuiSecondChat(mc);
 	public static MCPVPVersion mcpvpVersion = new MCPVPVersion();
+	public static KeyBinding openConfig;
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent e) {
@@ -50,7 +55,6 @@ public class Main {
 		
 		// Create timers.
 		Timer timer = new Timer();
-		// Update servers every 7 seconds.
 		timer.scheduleAtFixedRate(serverJson, 0, 5*1000L);
 		timer.scheduleAtFixedRate(new StreamJSON(), 0, 30*1000L);
 		timer.scheduleAtFixedRate(new VersionJSON(), 0, 60*60*1000L);
@@ -58,6 +62,8 @@ public class Main {
     	
     @EventHandler
 	public void init(FMLInitializationEvent e) {
+    	openConfig = new KeyBinding("key.openConfig", Keyboard.KEY_C, "MCPVP");
+        ClientRegistry.registerKeyBinding(openConfig);
 	}
     
 	@EventHandler

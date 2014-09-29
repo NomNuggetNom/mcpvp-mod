@@ -23,15 +23,11 @@ public class ServerHelper {
 	 * @return The last server IP connected to.
 	 */ 
 	public static String serverIP() {
-		if (currentIP.equals("") || !isMultiplayer()) {
+		if (currentIP.equals("")) {
 			return "none";
 		} else {
 			return currentIP;
 		}
-		/*
-		if (!isMultiplayer()) return "none";
-		return mc.func_147104_D().serverIP;
-		*/
 	}
 	
 	/**

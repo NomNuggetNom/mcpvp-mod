@@ -11,7 +11,7 @@ import cpw.mods.fml.common.gameevent.InputEvent;
 public class HandleKey {
 	
     public static void onKey(InputEvent.KeyInputEvent event) {
-        if(Main.key.isPressed()) {
+        if(Main.openConfig.isPressed()) {
         	
         	for (ModContainer mod : Loader.instance().getModList()) {
         		if (mod.getModId() == null) continue;

@@ -21,7 +21,8 @@ public class ChatHG {
 		}
 		
 		if (message.matches(CoreHG.msgChoose)) {
-			if (ConfigHGSelect.selectMode == "Select On Join") {
+			
+			if (ConfigHGSelect.selectMode.equalsIgnoreCase("Select On Join")) {
 				Main.mc.thePlayer.sendChatMessage("/kit " + ConfigHGSelect.selectKit);
 			}
 		}

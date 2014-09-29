@@ -12,14 +12,12 @@ import us.mcpvpmod.game.alerts.FriendAlerts;
 import us.mcpvpmod.game.vars.Vars;
 
 public class HandleJoin {
-
-	public static String send = "/59D8AE933F582F5441C6F5C8FA19CBA2";
 	
 	public static void onJoin(EntityJoinWorldEvent event) {
 		if (!(event.entity instanceof EntityPlayer)) return;
 		
 		if (((EntityPlayer)event.entity).getDisplayName().equals(Main.mc.thePlayer.getDisplayName())) {
-			System.out.println("Joined.");
+			//System.out.println("Joined.");
 			
 			// Auto-tagging implementation
 			if (Server.getServer() != Server.NONE) {

@@ -5,8 +5,8 @@ import net.minecraft.util.MathHelper;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.game.state.StateCTF;
 import us.mcpvpmod.game.team.TeamCTF;
-import us.mcpvpmod.gui.Format;
 import us.mcpvpmod.util.BoardHelper;
+import us.mcpvpmod.util.Format;
 
 public class InfoCTF {
 

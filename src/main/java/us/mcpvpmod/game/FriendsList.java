@@ -8,8 +8,8 @@ import net.minecraft.client.gui.GuiPlayerInfo;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.config.all.ConfigFriends;
 import us.mcpvpmod.game.team.TeamCTF;
-import us.mcpvpmod.gui.Format;
 import us.mcpvpmod.util.BoardHelper;
+import us.mcpvpmod.util.Format;
 
 public class FriendsList {
 

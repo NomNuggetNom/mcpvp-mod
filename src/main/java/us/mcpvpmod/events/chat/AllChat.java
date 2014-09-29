@@ -12,9 +12,10 @@ import us.mcpvpmod.ServerHelper;
 import us.mcpvpmod.config.all.ConfigChat;
 import us.mcpvpmod.config.all.ConfigVersion;
 import us.mcpvpmod.config.ctf.ConfigCTFChat;
-import us.mcpvpmod.gui.Format;
+import us.mcpvpmod.json.StreamJSON;
 import us.mcpvpmod.mgi.MGIEvent;
 import us.mcpvpmod.triggers.ChatTrigger;
+import us.mcpvpmod.util.Format;
 
 /**
  * Chat handling for all servers.
@@ -60,9 +61,9 @@ public class AllChat {
 			String msg = "";
 			
 			if (ConfigVersion.channel.equalsIgnoreCase("Main"))
-				msg = Format.s("update-msg").replaceAll("%VERSION%", Main.mcpvpVersion.main.mod).replaceAll("%MCVERSION%", Main.mcpvpVersion.main.mc);
+				msg = Format.s("update-msg").replace("<VERSION>", Main.mcpvpVersion.main.mod).replace("<MCVERSION>", Main.mcpvpVersion.main.mc);
 			 else if (ConfigVersion.channel.equalsIgnoreCase("Beta")) 
-				msg = Format.s("update-msg").replaceAll("%VERSION%", Main.mcpvpVersion.beta.mod).replaceAll("%MCVERSION%", Main.mcpvpVersion.beta.mc);
+				msg = Format.s("update-msg").replace("<VERSION>", Main.mcpvpVersion.beta.mod).replace("<MCVERSION>", Main.mcpvpVersion.beta.mc);
 			
 			IChatComponent send = new ChatComponentText(Format.process(msg));
 			send.getChatStyle().setChatClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, Format.s("update-url")));

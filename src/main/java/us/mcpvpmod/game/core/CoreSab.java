@@ -3,9 +3,9 @@ package us.mcpvpmod.game.core;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.game.info.InfoSab;
 import us.mcpvpmod.game.vars.Vars;
-import us.mcpvpmod.gui.Format;
 import us.mcpvpmod.trackers.ChatTracker;
 import us.mcpvpmod.triggers.ChatTrigger;
+import us.mcpvpmod.util.Format;
 
 public class CoreSab {
 

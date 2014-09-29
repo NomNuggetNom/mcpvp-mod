@@ -3,7 +3,7 @@ package us.mcpvpmod.config.all;
 import java.util.ArrayList;
 import java.util.List;
 
-import us.mcpvpmod.gui.Format;
+import us.mcpvpmod.util.Format;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;

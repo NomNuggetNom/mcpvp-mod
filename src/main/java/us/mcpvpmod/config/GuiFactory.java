@@ -15,7 +15,7 @@ import us.mcpvpmod.config.kit.ConfigKit;
 import us.mcpvpmod.config.maze.ConfigMaze;
 import us.mcpvpmod.config.raid.ConfigRaid;
 import us.mcpvpmod.config.sab.ConfigSab;
-import us.mcpvpmod.gui.Format;
+import us.mcpvpmod.util.Format;
 import cpw.mods.fml.client.IModGuiFactory;
 import cpw.mods.fml.client.config.DummyConfigElement.DummyCategoryElement;
 import cpw.mods.fml.client.config.GuiConfig;

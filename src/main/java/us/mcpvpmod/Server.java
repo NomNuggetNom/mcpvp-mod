@@ -53,7 +53,7 @@ import us.mcpvpmod.game.vars.VarsKit;
 import us.mcpvpmod.game.vars.VarsMaze;
 import us.mcpvpmod.game.vars.VarsRaid;
 import us.mcpvpmod.game.vars.VarsSab;
-import us.mcpvpmod.gui.Format;
+import us.mcpvpmod.util.Format;
 import cpw.mods.fml.common.gameevent.TickEvent;
 
 /**
