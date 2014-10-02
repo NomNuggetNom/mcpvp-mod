@@ -8,9 +8,12 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.common.MinecraftForge;
 import us.mcpvpmod.events.Events;
+import us.mcpvpmod.game.team.CTFTeam;
+import us.mcpvpmod.gui.FriendsBlock;
 import us.mcpvpmod.gui.GuiSecondChat;
 import us.mcpvpmod.json.ServerJSON;
 import us.mcpvpmod.json.StreamJSON;
+import us.mcpvpmod.json.TeamsJSON;
 import us.mcpvpmod.json.VersionJSON;
 import us.mcpvpmod.util.Format;
 import us.mcpvpmod.version.MCPVPVersion;
@@ -41,6 +44,8 @@ public class Main {
 	public static GuiSecondChat secondChat = new GuiSecondChat(mc);
 	public static MCPVPVersion mcpvpVersion = new MCPVPVersion();
 	public static KeyBinding openConfig;
+	public static KeyBinding whitelistPlayers;
+	public static FriendsBlock friendsList = new FriendsBlock();
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent e) {
@@ -50,6 +55,8 @@ public class Main {
 		MinecraftForge.EVENT_BUS.register(new Events());
 		FMLCommonHandler.instance().bus().register(new Events());
     	
+		Data.make();
+		
     	// Sync all files.
 		Sync.sync();
 		
@@ -64,11 +71,14 @@ public class Main {
 	public void init(FMLInitializationEvent e) {   	
     	openConfig = new KeyBinding("key.openConfig", Keyboard.KEY_C, "MCPVP");
         ClientRegistry.registerKeyBinding(openConfig);
+        whitelistPlayers = new KeyBinding("key.whitelistPlayers", Keyboard.KEY_P, "MCPVP");
+        ClientRegistry.registerKeyBinding(whitelistPlayers);
 	}
     
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent e) {
-
+		TeamsJSON.run();
+		System.out.println(Data.get("§l§nCTF.x"));
 	}
     
 

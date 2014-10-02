@@ -15,7 +15,7 @@ import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.Sync;
 import us.mcpvpmod.gui.menu.GuiEvent;
-import us.mcpvpmod.gui.menu.GuiMCPVP;
+import us.mcpvpmod.gui.server.GuiMCPVP;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.IModGuiFactory;
 import cpw.mods.fml.client.event.ConfigChangedEvent;
