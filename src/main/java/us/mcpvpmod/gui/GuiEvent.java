@@ -1,4 +1,4 @@
-package us.mcpvpmod.gui.menu;
+package us.mcpvpmod.gui;
 
 import us.mcpvpmod.Main;
 import us.mcpvpmod.gui.server.GuiChooseMultiplayer;

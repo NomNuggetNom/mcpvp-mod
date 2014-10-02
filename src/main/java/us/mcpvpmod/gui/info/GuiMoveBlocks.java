@@ -7,6 +7,7 @@ import org.lwjgl.input.Keyboard;
 import us.mcpvpmod.Data;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
+import us.mcpvpmod.gui.ArmorDisplay;
 import us.mcpvpmod.gui.FriendsBlock;
 import us.mcpvpmod.json.TeamsJSON;
 
@@ -50,6 +51,15 @@ public class GuiMoveBlocks extends GuiScreen {
 			Main.friendsList.click();
 			return true;
 		}
+		
+		System.out.println(ArmorDisplay.x + "," + ArmorDisplay.y);
+		System.out.println(ArmorDisplay.w + "," + ArmorDisplay.h);
+		System.out.println(x + "," + y);
+		if (ArmorDisplay.x <= x && ArmorDisplay.x + ArmorDisplay.w >= x && ArmorDisplay.y <= y && ArmorDisplay.y + ArmorDisplay.h >= y) {
+			Main.armorDisplay.click();
+			return true;
+		}
+		
 		return false;
 	}
 	

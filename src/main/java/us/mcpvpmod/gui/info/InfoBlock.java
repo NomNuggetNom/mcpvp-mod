@@ -611,7 +611,7 @@ public class InfoBlock implements ISelectable {
 		
 		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
 		
-		// Holding CTRL will snap the box to the edges.
+		// Holding CTRL will snap the box to the edges of the screen.
 		if (ctrl) {
 			if (direction == 'l') baseX = 0 + padding*2;
 			
@@ -633,6 +633,18 @@ public class InfoBlock implements ISelectable {
 		
 		Data.put(this.title + ".x", "" + this.baseX);
 		Data.put(this.title + ".y", "" + this.baseY);
+	}
+
+	@Override
+	public void loadX() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void loadY() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

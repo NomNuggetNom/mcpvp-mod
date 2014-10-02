@@ -1,5 +1,7 @@
 package us.mcpvpmod.gui;
 
+import java.util.ArrayList;
+
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.RenderHelper;
@@ -12,63 +14,100 @@ import us.mcpvpmod.gui.info.Selectable;
 
 public class ArmorDisplay implements ISelectable {
 
+	public static ArrayList<ItemStack> items = new ArrayList<ItemStack>();
+	
 	public static RenderItem renderItem = new RenderItem();	
 	public static int x;
 	public static int y;
 	public static String text;
+	public static int itemSize = 16;
+	public static int padding = 3;
+	
+	public static int w;
+	public static int h;
+	
+	public static void getArmor() {
+		if (Main.mc.thePlayer == null || Main.mc.thePlayer.inventory == null) return;
+		
+		EntityClientPlayerMP player = Main.mc.thePlayer;
+
+		items.clear();
+		if (player.inventory.armorInventory[3] != null) items.add(player.inventory.armorInventory[3]);
+		if (player.inventory.armorInventory[2] != null) items.add(player.inventory.armorInventory[2]);
+		if (player.inventory.armorInventory[1] != null) items.add(player.inventory.armorInventory[1]);
+		if (player.inventory.armorInventory[0] != null) items.add(player.inventory.armorInventory[0]);
+		if (player.getCurrentEquippedItem()	   != null 
+				&& !player.getCurrentEquippedItem().isStackable()) items.add(player.getCurrentEquippedItem());
+		
+		w = itemSize + getStringWidth() + 2;
+		h = itemSize * items.size();
+	}
 	
 	public static void renderArmor() {
-		if (Main.mc.thePlayer == null) return;
+		if (Main.mc.thePlayer == null || items == null) return;
+		getArmor();
 		EntityClientPlayerMP player = Main.mc.thePlayer;
+
+
 		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
-		y = FriendsBlock.h + 20;
-
+		y = 10;
+		int dispY = y;
+		x = res.getScaledWidth() - 20;
+		
 		// Cycle through "backwards" so that the helm is rendered first and the boots last.
-		for (int i = 3; i > -1; i--) {
-			
-			// Define the item and make sure it's valid.
-			ItemStack item = player.inventory.armorInventory[i];
-			if (item == null) continue;
-
-			// Draw the item.
-			Draw.item(item, res.getScaledWidth() - 20, y);
-			
-			// Draw the durability.
-			if (ConfigHUD.armorMode.equals("Show Durability Remaining")) {
-				text = "" + (item.getMaxDamage() - item.getItemDamageForDisplay());
-			} else if (ConfigHUD.armorMode.equals("Show Durability Remaining out of Total")) {
-				text = (item.getMaxDamage() - item.getItemDamageForDisplay()) + "/" + item.getMaxDamage();
-			} else {
-				text = "";
-			}
-
-			Draw.string(text, res.getScaledWidth() - Main.mc.fontRenderer.getStringWidth(text) - 22, y+5, 0xFFFFFF, true);
-			y += 16;
-			
+		for (ItemStack item : items) {
+			dispItem(item, x, dispY);
+			dispY += itemSize;
 		}
-		
-		ItemStack weapon = Main.mc.thePlayer.getCurrentEquippedItem();
-		if (weapon == null) return;
-		if (weapon.isStackable()) return;
-		
-		// Enable lighting to reduce rendering bugs.
-        RenderHelper.enableGUIStandardItemLighting();
-        
-        // Render the weapon.
-		Draw.item(weapon, res.getScaledWidth() - 20, y);
-		
-		// Disable lighting to reduce rendering bugs.
-		RenderHelper.disableStandardItemLighting();
+	}
+	
+	public static void dispItem(ItemStack item, int x, int y) {
 		
 		// Draw the durability.
 		if (ConfigHUD.armorMode.equals("Show Durability Remaining")) {
-			text = "" + (weapon.getMaxDamage() - weapon.getItemDamageForDisplay());
+			text = "" + (item.getMaxDamage() - item.getItemDamageForDisplay());
 		} else if (ConfigHUD.armorMode.equals("Show Durability Remaining out of Total")) {
-			text = (weapon.getMaxDamage() - weapon.getItemDamageForDisplay()) + "/" + weapon.getMaxDamage();
+			text = (item.getMaxDamage() - item.getItemDamageForDisplay()) + "/" + item.getMaxDamage();
 		} else {
 			text = "";
 		}
-		Draw.string(text, res.getScaledWidth() - Main.mc.fontRenderer.getStringWidth(text) - 22, y+5, 0xFFFFFF, true);
+		
+		/*
+		Draw.rect(x - Main.mc.fontRenderer.getStringWidth(text) - 2, 
+				y+2, 
+				Main.mc.fontRenderer.getStringWidth(text) + itemSize + padding*2, 
+				itemSize, 
+				0, 0, 0, (float) 0.42/2);
+		*/
+		
+		// Draw the item.
+		Draw.item(item, x, y);
+		
+		// Draw the durability.
+		Draw.string(text, x - Main.mc.fontRenderer.getStringWidth(text) - 2, y+5, 0xFFFFFF, true);
+		
+	}
+	
+	public static String getText(ItemStack item) {
+		// Draw the durability.
+		if (ConfigHUD.armorMode.equals("Show Durability Remaining")) {
+			text = "" + (item.getMaxDamage() - item.getItemDamageForDisplay());
+		} else if (ConfigHUD.armorMode.equals("Show Durability Remaining out of Total")) {
+			text = (item.getMaxDamage() - item.getItemDamageForDisplay()) + "/" + item.getMaxDamage();
+		} else {
+			text = "";
+		}
+		return text;
+	}
+	
+	public static int getStringWidth() {
+		int max = 0;
+		for (ItemStack item : items) {
+			if (Main.mc.fontRenderer.getStringWidth(getText(item)) > max) {
+				max = Main.mc.fontRenderer.getStringWidth(getText(item));
+			}
+		}
+		return max;
 	}
 	
 	@Override
@@ -82,11 +121,27 @@ public class ArmorDisplay implements ISelectable {
 	
 	@Override
 	public void drawOutline() {
-		
+		Draw.rect(x - Main.mc.fontRenderer.getStringWidth(text) - 2, 
+				y+2, 
+				Main.mc.fontRenderer.getStringWidth(text) + itemSize + padding*2, 
+				itemSize, 
+				0, 0, 0, (float) 0.42/2);
 	}
 
 	@Override
 	public void move(char direction, int pixels, boolean ctrl) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void loadX() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void loadY() {
 		// TODO Auto-generated method stub
 		
 	}

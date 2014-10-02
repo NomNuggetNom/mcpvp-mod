@@ -9,6 +9,7 @@ import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.common.MinecraftForge;
 import us.mcpvpmod.events.Events;
 import us.mcpvpmod.game.team.CTFTeam;
+import us.mcpvpmod.gui.ArmorDisplay;
 import us.mcpvpmod.gui.FriendsBlock;
 import us.mcpvpmod.gui.GuiSecondChat;
 import us.mcpvpmod.json.ServerJSON;
@@ -46,6 +47,7 @@ public class Main {
 	public static KeyBinding openConfig;
 	public static KeyBinding whitelistPlayers;
 	public static FriendsBlock friendsList = new FriendsBlock();
+	public static ArmorDisplay armorDisplay = new ArmorDisplay();
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent e) {
