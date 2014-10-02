@@ -3,12 +3,47 @@
 <!-- = GENERAL = -->
 <!-- ===-----=== -->
 <!-- =========== -->
+<!-- DEBUG -->
 startup=[MCPVP] Mod starting up!
 sync=[MCPVP] Syncing configurations!
-color-code=#
-update-url=http://google.com/
-update-msg=#bold##underline#v%VERSION% is available for MC %MCVERSION%! Click to download.
 error.json.server=[MCPVP] Unable to get JSON for servers!
+
+<!-- UPDATE -->
+update-url=http://google.com/
+update-msg=#b##u#v#green##b##u#<VERSION>#white##b##u# is available for MC #cyan##b##u#<MCVERSION>#white##b##u#! Click to download.
+
+stream-url=http://www.twitch.tv/mcpvp
+stream-msg=#gold##i##u#The #red##i##u#MCPVP Stream #gold##i##u#is now live! Click to watch.
+
+<!-- COLORS -->
+color-code=#
+color-0=black
+color-1=dark_blue
+color-2=dark_green
+color-3=dark_aqua
+color-4=dark_red
+color-5=dark_purple
+color-6=gold
+color-7=gray
+color-8=dark_gray
+color-9=blue
+color-a=green
+color-b=aqua
+color-c=red
+color-d=purple
+color-e=yellow
+color-f=white
+
+<!-- GUI -->
+gui.choose=Choose your server menu:
+gui.choose.mcpvp=MCPVP Server Menu
+gui.choose.vanilla=Vanilla Server Menu
+gui.join.region=Region: 
+
+key.categories.mcpvp=MCPVP
+key.openConfig=Open Config
+
+
 
 <!-- =========== -->
 <!-- ===-----=== -->
