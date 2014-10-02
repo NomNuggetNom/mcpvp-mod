@@ -3,7 +3,7 @@ package us.mcpvpmod.events.render;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.game.state.DummyState;
-import us.mcpvpmod.gui.InfoBlock;
+import us.mcpvpmod.gui.info.InfoBlock;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
 public class RenderRaid {

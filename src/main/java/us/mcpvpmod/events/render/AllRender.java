@@ -12,6 +12,7 @@ import us.mcpvpmod.Main;
 import us.mcpvpmod.gui.ArmorDisplay;
 import us.mcpvpmod.gui.Draw;
 import us.mcpvpmod.gui.FriendsBlock;
+import us.mcpvpmod.gui.info.Selectable;
 
 /**
  * Render handling for all servers.
@@ -34,6 +35,10 @@ public class AllRender {
 		
 		// Render our armor display.
 		ArmorDisplay.renderArmor();
+		
+		if (Selectable.selected != null) {
+			Selectable.selected.drawOutline();
+		}
 
 	}
 	

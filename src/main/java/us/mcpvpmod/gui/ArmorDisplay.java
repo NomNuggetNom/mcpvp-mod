@@ -1,23 +1,21 @@
 package us.mcpvpmod.gui;
 
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
-
-import us.mcpvpmod.Main;
-import us.mcpvpmod.config.all.ConfigHUD;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import us.mcpvpmod.Main;
+import us.mcpvpmod.config.all.ConfigHUD;
+import us.mcpvpmod.gui.info.ISelectable;
+import us.mcpvpmod.gui.info.Selectable;
 
-public class ArmorDisplay {
+public class ArmorDisplay implements ISelectable {
 
 	public static RenderItem renderItem = new RenderItem();	
 	public static int x;
 	public static int y;
-	public static String draw;
+	public static String text;
 	
 	public static void renderArmor() {
 		if (Main.mc.thePlayer == null) return;
@@ -37,14 +35,14 @@ public class ArmorDisplay {
 			
 			// Draw the durability.
 			if (ConfigHUD.armorMode.equals("Show Durability Remaining")) {
-				draw = "" + (item.getMaxDamage() - item.getItemDamageForDisplay());
+				text = "" + (item.getMaxDamage() - item.getItemDamageForDisplay());
 			} else if (ConfigHUD.armorMode.equals("Show Durability Remaining out of Total")) {
-				draw = (item.getMaxDamage() - item.getItemDamageForDisplay()) + "/" + item.getMaxDamage();
+				text = (item.getMaxDamage() - item.getItemDamageForDisplay()) + "/" + item.getMaxDamage();
 			} else {
-				draw = "";
+				text = "";
 			}
 
-			Draw.string(draw, res.getScaledWidth() - Main.mc.fontRenderer.getStringWidth(draw) - 22, y+5, 0xFFFFFF, true);
+			Draw.string(text, res.getScaledWidth() - Main.mc.fontRenderer.getStringWidth(text) - 22, y+5, 0xFFFFFF, true);
 			y += 16;
 			
 		}
@@ -64,13 +62,33 @@ public class ArmorDisplay {
 		
 		// Draw the durability.
 		if (ConfigHUD.armorMode.equals("Show Durability Remaining")) {
-			draw = "" + (weapon.getMaxDamage() - weapon.getItemDamageForDisplay());
+			text = "" + (weapon.getMaxDamage() - weapon.getItemDamageForDisplay());
 		} else if (ConfigHUD.armorMode.equals("Show Durability Remaining out of Total")) {
-			draw = (weapon.getMaxDamage() - weapon.getItemDamageForDisplay()) + "/" + weapon.getMaxDamage();
+			text = (weapon.getMaxDamage() - weapon.getItemDamageForDisplay()) + "/" + weapon.getMaxDamage();
 		} else {
-			draw = "";
+			text = "";
 		}
-		Draw.string(draw, res.getScaledWidth() - Main.mc.fontRenderer.getStringWidth(draw) - 22, y+5, 0xFFFFFF, true);
+		Draw.string(text, res.getScaledWidth() - Main.mc.fontRenderer.getStringWidth(text) - 22, y+5, 0xFFFFFF, true);
+	}
+	
+	@Override
+	public void click() {
+		if (Selectable.selected == this) {
+			Selectable.selected = null;
+		} else {
+			Selectable.selected = this;
+		}
+	}
+	
+	@Override
+	public void drawOutline() {
+		
+	}
+
+	@Override
+	public void move(char direction, int pixels, boolean ctrl) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

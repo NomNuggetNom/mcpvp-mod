@@ -148,7 +148,6 @@ public class CustomAlert {
 			this.image = new ResourceLocation("mcpvp", "textures/" + this.template.split("\\s*\\|\\|\\|\\s*")[2]);
 			this.mode = "image";
 		} else if (this.template.split("\\s*\\|\\|\\|\\s*")[2].startsWith("http:")) {
-			System.out.println("custom texture mode");
 			this.item  = null;
 			this.image = CustomTexture.get(this.id, this.template.split("\\s*\\|\\|\\|\\s*")[2]);
 			this.mode  = "image";

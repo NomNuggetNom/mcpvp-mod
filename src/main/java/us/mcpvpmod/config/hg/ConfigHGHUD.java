@@ -48,12 +48,23 @@ public class ConfigHGHUD extends DummyModContainer {
         
         Property prop;
         
-    	prop = config.get(CATEGORY_GENERAL, "renderPre", new String[]{"---#bold#HG", "Players: {players}", "Kit: {kit}", "Time: {time}"});
+    	prop = config.get(CATEGORY_GENERAL, "renderPre", new String[]{
+    			"---#b##u#HG", 
+    			"#green##i#X #gray#>> #r##bold#{x}", 
+    			"#green##i#Y #gray#>> #r##bold#{y}", 
+    			"#green##i#Z #gray#>> #r##bold#{z}",
+    			"#green##i#F #gray#>> #r##bold#{f}"
+    			});
         prop.setLanguageKey("hg.config.hud.renderPre");
     	renderPre = prop.getStringList();
     	propOrder.add(prop.getName());
     	
-    	prop = config.get(CATEGORY_GENERAL, "renderPlay", new String[]{"---#bold#HG", "Players: {players}", "Kit: {kit}"});
+    	prop = config.get(CATEGORY_GENERAL, "renderPlay", new String[]{   			
+    			"---#b##u#HG", 
+    			"#green##i#X #gray#>> #r##bold#{x}", 
+    			"#green##i#Y #gray#>> #r##bold#{y}", 
+    			"#green##i#Z #gray#>> #r##bold#{z}",
+    			"#green##i#F #gray#>> #r##bold#{f}"});
     	prop.setLanguageKey("hg.config.hud.renderPlay");
     	renderPlay = prop.getStringList();
     	propOrder.add(prop.getName());

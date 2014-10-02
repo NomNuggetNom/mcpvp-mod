@@ -11,7 +11,7 @@ import cpw.mods.fml.common.FMLLog;
 public class Format {
 
 	static HashMap<String, String> formatCodes = new HashMap();
-	static String formatSymbol = Format.s("color-code");
+	static String formatSymbol = "#";
 	static String reFormat = formatSymbol + "(\\w+?)" + formatSymbol;
 	
 	/**

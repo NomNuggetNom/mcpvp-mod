@@ -31,13 +31,25 @@ public class Medal {
 	/**
 	 * The basic constructor for a medal, a small graphic that appears on screen for a few seconds. 
 	 * Used to symbolize headshots, killstreaks, and kill medals (double kill, triple kill, etc).
-	 * @param id The unique identifier for the medal; 
-	 * usually related to the reason for showing the medal, e.g. "headshot." 
-	 * MUST MATCH TEXTURE NAME!
+	 * @param id The unique identifier for the medal; usually related to the reason for showing the medal, 
+	 * e.g. "headshot." MUST MATCH TEXTURE NAME!
 	 */
 	public Medal(String id) {
 		this.id = id;
 		this.img = new ResourceLocation("mcpvp", "textures/" + id + ".png");
+		this.medals.put(id, this);
+	}
+	
+	/**
+	 * The basic constructor for a medal, a small graphic that appears on screen for a few seconds. 
+	 * Used to symbolize headshots, killstreaks, and kill medals (double kill, triple kill, etc).
+	 * @param id The unique identifier for the medal; usually related to the reason for showing the medal, 
+	 * e.g. "headshot." 
+	 * @param imageURL The image URL to use when displaying the medal.
+	 */
+	public Medal(String id, String imageURL) {
+		this.id = id;
+		this.img = CustomTexture.get(id, imageURL);
 		this.medals.put(id, this);
 	}
 

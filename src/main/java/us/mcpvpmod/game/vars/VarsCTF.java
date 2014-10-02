@@ -31,9 +31,9 @@ public class VarsCTF {
 		vars.put("net kd", "" + StatsCTF.netKD());
 		vars.put("assists", "" + StatsCTF.assists);
 		vars.put("streak name", StatsCTF.streakName);
-		vars.put("class", InfoCTF.chosenClass);
+		vars.put("class", Vars.get("ctf:class"));
 		vars.put("time", InfoCTF.getTimeString());
-		vars.put("map", InfoCTF.getMap());
+		vars.put("map", Vars.get("ctf:map"));
 		vars.put("game", InfoCTF.getGameNum());
 		vars.put("free day", InfoCTF.getFreeDay());
 		vars.put("blue wins", Vars.get("ctf:team.blue.wins"));
