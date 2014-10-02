@@ -1,6 +1,7 @@
 package us.mcpvpmod.gui.menu;
 
 import us.mcpvpmod.Main;
+import us.mcpvpmod.gui.server.GuiChooseMultiplayer;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiMultiplayer;

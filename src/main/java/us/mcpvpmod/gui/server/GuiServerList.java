@@ -1,4 +1,4 @@
-package us.mcpvpmod.gui.menu;
+package us.mcpvpmod.gui.server;
 
 import java.util.ArrayList;
 
