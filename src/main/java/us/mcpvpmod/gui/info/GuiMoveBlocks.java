@@ -1,15 +1,18 @@
 package us.mcpvpmod.gui.info;
 
+import java.awt.Rectangle;
+import java.awt.geom.Area;
+
 import net.minecraft.client.gui.GuiScreen;
 
 import org.lwjgl.input.Keyboard;
 
-import us.mcpvpmod.Data;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.gui.ArmorDisplay;
 import us.mcpvpmod.gui.FriendsBlock;
 import us.mcpvpmod.json.TeamsJSON;
+import us.mcpvpmod.util.Data;
 
 public class GuiMoveBlocks extends GuiScreen {
 
@@ -39,33 +42,34 @@ public class GuiMoveBlocks extends GuiScreen {
 		super.mouseClicked(x, y, p_73864_3_);
 	}
 	
-	public boolean clickedBlock(int x, int y) {
+	public boolean clickedBlock(int clickX, int clickY) {
 		for (InfoBlock block : InfoBlock.get(Server.getServer(), Server.getState())) {
-			if (block.baseX <= x && block.baseX+block.w >= x && block.baseY <= y && block.baseY+block.h >= y) {
+			if (new Rectangle(block.baseX, block.baseY, block.w, block.h).contains(clickX, clickY)) {
 				block.click();
 				return true;
 			}
 		}
+
 		
-		if (FriendsBlock.baseX <= x && FriendsBlock.baseX+FriendsBlock.w >= x && FriendsBlock.baseY <= y && FriendsBlock.baseY+FriendsBlock.h >= y) {
-			Main.friendsList.click();
-			return true;
-		}
-		
-		System.out.println(ArmorDisplay.x + "," + ArmorDisplay.y);
-		System.out.println(ArmorDisplay.w + "," + ArmorDisplay.h);
-		System.out.println(x + "," + y);
-		if (ArmorDisplay.x <= x && ArmorDisplay.x + ArmorDisplay.w >= x && ArmorDisplay.y <= y && ArmorDisplay.y + ArmorDisplay.h >= y) {
+		if (new Rectangle(ArmorDisplay.x - ArmorDisplay.getStringWidth(), ArmorDisplay.y, ArmorDisplay.w, ArmorDisplay.h).contains(clickX, clickY)) {
 			Main.armorDisplay.click();
 			return true;
 		}
-		
+		/*
+		if (ArmorDisplay.x <= clickX && ArmorDisplay.x + ArmorDisplay.w >= clickX && ArmorDisplay.y <= clickY && ArmorDisplay.y + ArmorDisplay.h >= clickY) {
+			Main.armorDisplay.click();
+			return true;
+		}
+		*/
 		return false;
 	}
 	
 	@Override
 	protected void keyTyped(char key, int keyNum) {
 
+		// Hide the menu.
+		if (key == 'p') Main.mc.displayGuiScreen(null);
+		
 		// Holding the shift key amplifies the movement by 10.
 		int moveBy = (GuiScreen.isShiftKeyDown()) ? 10 : 1;
 		
@@ -78,8 +82,7 @@ public class GuiMoveBlocks extends GuiScreen {
 		// Move down
 		if (keyNum == 208) Selectable.selected.move('d', moveBy, GuiScreen.isCtrlKeyDown());
 
-		if (key == 'p') Main.mc.displayGuiScreen(null);
-		
+
 		super.keyTyped(key, keyNum);
 	}
 	

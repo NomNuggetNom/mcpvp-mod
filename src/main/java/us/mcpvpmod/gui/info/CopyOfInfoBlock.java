@@ -7,8 +7,6 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.typesafe.config.Config;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
@@ -28,16 +26,22 @@ import cpw.mods.fml.common.FMLLog;
  * Contains information relevant to games and the player.
  * @author NomNuggetNom
  */
-public class InfoBlock implements ISelectable {
+public class CopyOfInfoBlock implements ISelectable {
 	
 	/** An array of all InfoBlocks, not just ones that are visible! */
-	public static ArrayList<InfoBlock> blocks = new ArrayList<InfoBlock>();
+	public static ArrayList<CopyOfInfoBlock> blocks = new ArrayList<CopyOfInfoBlock>();
 	
-	/** The original information - straight from the config - to process. **/
+	/** The original information to process. **/
 	ArrayList<String> toDisplay = new ArrayList<String>();
 	/** The processed information to display. **/
 	ArrayList<String> display = new ArrayList<String>();
 	
+	/** Used to test for position arguments in a string. */
+	static String rePos = ".*\\((\".*\")*(\\+|-)*(\\d+)(%)*, (\".*\")*(\\+|-)*(\\d+)(%)*\\).*";
+	/** Used to get the position arguments. */
+	static String rePosNoCapture = "\\((\".*\")*(\\+|-)*(\\d+)(%)*, (\".*\")*(\\+|-)*(\\d+)(%)*\\)";
+	/** Used to remove all of the position arguments. */
+	static String rePosCapture = "(\\((\".*\")*(\\+|-)*(\\d+)(%)*, (\".*\")*(\\+|-)*(\\d+)(%)*\\))";
 	/** The unique divider separates strings when processing. */
 	static String uniqueString = "=:::=";
 	/** Used to identify title strings, both in config and in processing. */
@@ -59,7 +63,7 @@ public class InfoBlock implements ISelectable {
 	boolean matchW = ConfigHUD.alignWidths;
 	boolean matchH = ConfigHUD.alignHeights;
 	boolean selected = false;
-	public static InfoBlock selectedBlock;
+	public static CopyOfInfoBlock selectedBlock;
 	
 	static Minecraft mc = Minecraft.getMinecraft();
 	static FontRenderer fR = mc.fontRenderer;
@@ -71,15 +75,16 @@ public class InfoBlock implements ISelectable {
 	 * @param server The server to render the block on.
 	 * @param state The state to render the block on.
 	 */
-	public InfoBlock(String title, ArrayList<String> info, Server server, State state) {
-		this.title = title;
+	public CopyOfInfoBlock(String title, ArrayList<String> info, Server server, State state) {
+		this.coords = title.replaceAll(rePosCapture, "$1");
+		this.setTitle(title.replaceAll(rePosNoCapture, "").replaceAll("^\\s\\s*", "").replaceAll("\\s\\s*$", ""));
 		this.toDisplay = info;
 		this.state = state;
 		this.server = server;
-		setX();
-		setY();
+		
 		blocks.add(this);
-
+		
+		//infoBlocks.put(Format.process(title), this);
 		FMLLog.info("[MCPVP] Registered new InfoBlock %s", this.getTitle());
 	}
 	
@@ -88,8 +93,8 @@ public class InfoBlock implements ISelectable {
 	 * @param getTitle
 	 * @return
 	 */
-	public static InfoBlock get(String getTitle) {		
-		for (InfoBlock block : blocks) {
+	public static CopyOfInfoBlock get(String getTitle) {		
+		for (CopyOfInfoBlock block : blocks) {
 			if (block.getTitle().equals(getTitle)) {
 				return block;
 			}
@@ -103,9 +108,9 @@ public class InfoBlock implements ISelectable {
 	 * @param server
 	 * @return
 	 */
-	public static ArrayList<InfoBlock> get(Server server, State state) {
-		ArrayList<InfoBlock> toReturn = new ArrayList<InfoBlock>();
-		for (InfoBlock block : blocks) {
+	public static ArrayList<CopyOfInfoBlock> get(Server server, State state) {
+		ArrayList<CopyOfInfoBlock> toReturn = new ArrayList<CopyOfInfoBlock>();
+		for (CopyOfInfoBlock block : blocks) {
 			if (block.server == server && block.state == state) {
 				toReturn.add(block);
 			}
@@ -142,7 +147,7 @@ public class InfoBlock implements ISelectable {
 			lines.remove(0);
 
 			if (lines.size() > 0) {
-				InfoBlock block = new InfoBlock(Format.process(title), lines, server, state);
+				CopyOfInfoBlock block = new CopyOfInfoBlock(Format.process(title), lines, server, state);
 			} else {
 				FMLLog.info("[MCPVP] Not enough lines for InfoBlock " + title);
 			}
@@ -159,8 +164,8 @@ public class InfoBlock implements ISelectable {
 		this.update();
 		this.setW();
 		this.setH();
-		//this.setX();
-		//this.setY();
+		this.setX();
+		this.setY();
 		this.draw();
 	}
 	
@@ -227,14 +232,14 @@ public class InfoBlock implements ISelectable {
 		int newW = this.calcW();
 		
 		// Cycle through all the blocks being displayed.
-		for (InfoBlock block : this.get(this.server, this.state)) {
+		for (CopyOfInfoBlock block : this.get(this.server, this.state)) {
 			
 			// Don't take the current block into account.
 			if (block.getTitle() == this.getTitle()) continue;
 			
 			// Make sure we have the same X coordinates.
 			if (block.baseX == this.baseX) {
-				if (block.w > newW && this.matchW && block.matchW) {
+				if (block.w > newW && this.matchW) {
 					newW = block.w;
 				}
 			}
@@ -263,14 +268,14 @@ public class InfoBlock implements ISelectable {
 		int newH = this.calcH();
 		
 		// Cycle through all the blocks being displayed.
-		for (InfoBlock block : this.get(this.server, this.state)) {
+		for (CopyOfInfoBlock block : this.get(this.server, this.state)) {
 			
 			// Don't take the current block into account.
 			if (block.getTitle() == this.getTitle()) continue;
 			
 			// Make sure we have the same X coordinates.
 			if (block.baseY == this.baseY) {
-				if (block.h > newH && this.matchH && block.matchH && this.matchH) {
+				if (block.h > newH && this.matchH) {
 					newH = block.h;
 				}
 			}
@@ -285,12 +290,12 @@ public class InfoBlock implements ISelectable {
 				
 		if (Data.get(this.title + ".x") != null) {
 			this.baseX = Integer.parseInt((String) Data.get(this.title + ".x"));
+			System.out.println("Found a stored X coordinate for " + this.title);
 			return;
 		} else {
-			this.baseX = ConfigHUD.margin;
+			System.out.println("Didn't find a stored X coordinate for " + this.title);
 		}
 		
-		/*
 		ScaledResolution res = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
 
 		// Check if there is a request for coordinate moving
@@ -321,7 +326,6 @@ public class InfoBlock implements ISelectable {
 				shiftX = ((double)res.getScaledWidth() * (double)1/100);
 			}
 			*/
-		/*
 			shiftX = ((double)res.getScaledWidth() * (double)moveX/100);
 			
 			// Check if we are moving off of a block
@@ -330,14 +334,14 @@ public class InfoBlock implements ISelectable {
 				// Check our symbol
 				if (symbolX.equals("+") || symbolX.equals("")) {
 					// Move to the right.
-					InfoBlock oldBlock = this.get(titleX);
+					CopyOfInfoBlock oldBlock = this.get(titleX);
 					if (oldBlock != null) {
 						this.baseX = (int) (oldBlock.baseX + oldBlock.w + shiftX + padding*2);
 					}
 				
 				} else if (symbolX.equals("-")) {
 					// Move to the left.
-					InfoBlock oldBlock = this.get(titleX);
+					CopyOfInfoBlock oldBlock = this.get(titleX);
 					if (oldBlock != null) {
 						this.baseX =  oldBlock.baseX - (int) shiftX - this.w;
 					}
@@ -354,7 +358,6 @@ public class InfoBlock implements ISelectable {
 				}
 			}
 		}
-					*/
 	}
 	
 	/**
@@ -364,12 +367,12 @@ public class InfoBlock implements ISelectable {
 		
 		if (Data.get(this.title + ".y") != null) {
 			this.baseY = Integer.parseInt((String) Data.get(this.title + ".y"));
+			System.out.println("Found a stored X coordinate for " + this.title);
 			return;
 		} else {
-			this.baseY = ConfigHUD.margin;
+			System.out.println("Didn't find a stored Y coordinate for " + this.title);
 		}
 		
-		/*
 		ScaledResolution res = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
 
 		// Check if there is a request for coordinate moving
@@ -398,14 +401,13 @@ public class InfoBlock implements ISelectable {
 				shiftY = ((double)res.getScaledWidth() * (double)moveY/100);
 			}
 			*/
-		/*
 			shiftY = ((double)res.getScaledHeight() * (double)moveY/100);
 			
 			if (!titleY.equals("")) {
 
 				if (symbolY.equals("+") || symbolY.equals("")) {
 					// Move up.
-					InfoBlock oldBlock = this.get(titleY);
+					CopyOfInfoBlock oldBlock = this.get(titleY);
 
 					if (oldBlock != null) {
 						this.baseY = (int) (oldBlock.baseY + oldBlock.h + shiftY + padding*2);
@@ -413,7 +415,7 @@ public class InfoBlock implements ISelectable {
 
 				} else if (symbolY.equals("-")) {
 					// Move down.
-					InfoBlock oldBlock = this.get(titleY);
+					CopyOfInfoBlock oldBlock = this.get(titleY);
 					
 					if (oldBlock != null) {
 						this.baseY = oldBlock.baseY - this.h - padding*2 - 1;
@@ -432,7 +434,6 @@ public class InfoBlock implements ISelectable {
 				}
 			}
 		}
-		*/
 	}
 	
 	public int align(String line) {
@@ -552,7 +553,7 @@ public class InfoBlock implements ISelectable {
 	 * @param match
 	 * @return
 	 */
-	public InfoBlock setMatch(boolean match) {
+	public CopyOfInfoBlock setMatch(boolean match) {
 		this.matchW = match;
 		return this;
 	}

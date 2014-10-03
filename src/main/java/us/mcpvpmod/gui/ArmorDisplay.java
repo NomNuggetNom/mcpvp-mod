@@ -37,7 +37,8 @@ public class ArmorDisplay implements ISelectable {
 		if (player.inventory.armorInventory[1] != null) items.add(player.inventory.armorInventory[1]);
 		if (player.inventory.armorInventory[0] != null) items.add(player.inventory.armorInventory[0]);
 		if (player.getCurrentEquippedItem()	   != null 
-				&& !player.getCurrentEquippedItem().isStackable()) items.add(player.getCurrentEquippedItem());
+				&& !player.getCurrentEquippedItem().isStackable() 
+				&& player.getCurrentEquippedItem().isItemStackDamageable()) items.add(player.getCurrentEquippedItem());
 		
 		w = itemSize + getStringWidth() + 2;
 		h = itemSize * items.size();
@@ -52,7 +53,7 @@ public class ArmorDisplay implements ISelectable {
 		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
 		y = 10;
 		int dispY = y;
-		x = res.getScaledWidth() - 20;
+		x = res.getScaledWidth() - 20; // getStringWidth()
 		
 		// Cycle through "backwards" so that the helm is rendered first and the boots last.
 		for (ItemStack item : items) {
@@ -83,21 +84,28 @@ public class ArmorDisplay implements ISelectable {
 		// Draw the item.
 		Draw.item(item, x, y);
 		
+		Draw.rect(x - getStringWidth() - 2, 
+				y+2,
+				Main.mc.fontRenderer.getStringWidth(text) + itemSize + padding*2, 
+				itemSize, 
+				0, 0, 0, (float) 0.42/2);
+		
 		// Draw the durability.
 		Draw.string(text, x - Main.mc.fontRenderer.getStringWidth(text) - 2, y+5, 0xFFFFFF, true);
+		
+
 		
 	}
 	
 	public static String getText(ItemStack item) {
 		// Draw the durability.
 		if (ConfigHUD.armorMode.equals("Show Durability Remaining")) {
-			text = "" + (item.getMaxDamage() - item.getItemDamageForDisplay());
+			return "" + (item.getMaxDamage() - item.getItemDamageForDisplay());
 		} else if (ConfigHUD.armorMode.equals("Show Durability Remaining out of Total")) {
-			text = (item.getMaxDamage() - item.getItemDamageForDisplay()) + "/" + item.getMaxDamage();
+			return (item.getMaxDamage() - item.getItemDamageForDisplay()) + "/" + item.getMaxDamage();
 		} else {
-			text = "";
+			return "";
 		}
-		return text;
 	}
 	
 	public static int getStringWidth() {
@@ -121,29 +129,31 @@ public class ArmorDisplay implements ISelectable {
 	
 	@Override
 	public void drawOutline() {
-		Draw.rect(x - Main.mc.fontRenderer.getStringWidth(text) - 2, 
-				y+2, 
-				Main.mc.fontRenderer.getStringWidth(text) + itemSize + padding*2, 
-				itemSize, 
-				0, 0, 0, (float) 0.42/2);
+		// Base box
+		/*
+		Draw.rect(x - getStringWidth() - 2, 
+				y + 2, 
+				w, 
+				h, 
+				1, 0, 0, 1);
+				*/
+		
+		Draw.rect(x - getStringWidth() - padding*2, 
+				y + 2, 
+				padding, 
+				h, 
+				1, 0, 0, 1);
+		
+		Draw.rect(x - getStringWidth() - 3 - padding, 
+				y - padding, 
+				w + padding*2, 
+				padding, 
+				1, 0, 0, 1);
 	}
 
 	@Override
 	public void move(char direction, int pixels, boolean ctrl) {
 		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void loadX() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void loadY() {
-		// TODO Auto-generated method stub
-		
 	}
 	
 }
