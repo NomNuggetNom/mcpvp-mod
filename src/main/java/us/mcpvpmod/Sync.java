@@ -138,6 +138,8 @@ public class Sync {
 		InfoBlock.createBlocks(ConfigHGHUD.renderPlay, Server.HG, StateHG.PLAY);
 		
 		InfoBlock.createBlocks(ConfigRaidHUD.render, Server.RAID, DummyState.NONE);
+		
+		InfoBlock.createBlocks(new String[]{"---Friends", "{friends}"}, Server.HUB, DummyState.NONE);
 	}
 	
 	public static void syncCores() {

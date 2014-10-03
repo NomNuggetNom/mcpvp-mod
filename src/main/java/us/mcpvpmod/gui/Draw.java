@@ -96,6 +96,7 @@ public class Draw {
 	
 	public static void item(final ItemStack itemStack, int x, int y) {
         RenderHelper.enableGUIStandardItemLighting();
+        RenderHelper.enableStandardItemLighting();
 		new RenderItem().renderItemAndEffectIntoGUI(Main.mc.fontRenderer, Main.mc.getTextureManager(), itemStack, x, y);
 		new RenderItem().renderItemOverlayIntoGUI(Main.mc.fontRenderer, Main.mc.getTextureManager(), itemStack, x, y);
 		RenderHelper.disableStandardItemLighting();
