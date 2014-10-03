@@ -31,7 +31,7 @@ public class AllRender {
 		if (Main.mc.gameSettings.showDebugInfo) return;
 		
 		// Display our FriendsBlock.
-		FriendsBlock.display();
+		//FriendsBlock.display();
 		
 		// Render our armor display.
 		ArmorDisplay.renderArmor();

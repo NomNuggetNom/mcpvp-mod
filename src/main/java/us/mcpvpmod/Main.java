@@ -16,6 +16,7 @@ import us.mcpvpmod.json.ServerJSON;
 import us.mcpvpmod.json.StreamJSON;
 import us.mcpvpmod.json.TeamsJSON;
 import us.mcpvpmod.json.VersionJSON;
+import us.mcpvpmod.util.Data;
 import us.mcpvpmod.util.Format;
 import us.mcpvpmod.version.MCPVPVersion;
 import cpw.mods.fml.client.registry.ClientRegistry;
@@ -80,7 +81,6 @@ public class Main {
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent e) {
 		TeamsJSON.run();
-		System.out.println(Data.get("§l§nCTF.x"));
 	}
     
 

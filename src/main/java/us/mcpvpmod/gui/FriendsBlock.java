@@ -7,7 +7,6 @@ import java.util.regex.Pattern;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
-import us.mcpvpmod.Data;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.config.all.ConfigFriends;
 import us.mcpvpmod.config.all.ConfigHUD;
@@ -15,6 +14,7 @@ import us.mcpvpmod.game.FriendsList;
 import us.mcpvpmod.game.vars.VarsCTF;
 import us.mcpvpmod.gui.info.ISelectable;
 import us.mcpvpmod.gui.info.Selectable;
+import us.mcpvpmod.util.Data;
 import us.mcpvpmod.util.Format;
 
 public class FriendsBlock implements ISelectable {
@@ -323,16 +323,4 @@ public class FriendsBlock implements ISelectable {
 
 	}
 
-	@Override
-	public void loadX() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void loadY() {
-		// TODO Auto-generated method stub
-		
-	}
-	
 }
