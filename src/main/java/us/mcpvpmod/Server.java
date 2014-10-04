@@ -127,7 +127,7 @@ public enum Server {
 	 * Dictates which render handler to re-direct to.
 	 * @param event The render event to handle.
 	 */
-	public void onRender(RenderGameOverlayEvent event) {
+	public void onRender(RenderGameOverlayEvent.Post event) {
 		AllRender.onRender(event);
 		
 		switch(this) {

@@ -12,6 +12,8 @@ import us.mcpvpmod.Main;
 import us.mcpvpmod.gui.ArmorDisplay;
 import us.mcpvpmod.gui.Draw;
 import us.mcpvpmod.gui.FriendsBlock;
+import us.mcpvpmod.gui.PotionDisplay;
+import us.mcpvpmod.gui.info.InfoBlock;
 import us.mcpvpmod.gui.info.Selectable;
 
 /**
@@ -33,8 +35,10 @@ public class AllRender {
 		// Display our FriendsBlock.
 		//FriendsBlock.display();
 		
-		// Render our armor display.
+		// Render our armor and potion display.
 		ArmorDisplay.renderArmor();
+		PotionDisplay.displayPotions(event);
+		PotionDisplay.displayStrings();
 		
 		if (Selectable.selected != null) {
 			Selectable.selected.drawOutline();

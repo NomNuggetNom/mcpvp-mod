@@ -11,6 +11,7 @@ import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.gui.ArmorDisplay;
 import us.mcpvpmod.gui.FriendsBlock;
+import us.mcpvpmod.gui.PotionDisplay;
 import us.mcpvpmod.json.TeamsJSON;
 import us.mcpvpmod.util.Data;
 
@@ -51,16 +52,16 @@ public class GuiMoveBlocks extends GuiScreen {
 		}
 
 		
-		if (new Rectangle(ArmorDisplay.x - ArmorDisplay.getStringWidth(), ArmorDisplay.y, ArmorDisplay.w, ArmorDisplay.h).contains(clickX, clickY)) {
+		if (new Rectangle(ArmorDisplay.x, ArmorDisplay.y, ArmorDisplay.w, ArmorDisplay.h).contains(clickX, clickY)) {
 			Main.armorDisplay.click();
 			return true;
 		}
-		/*
-		if (ArmorDisplay.x <= clickX && ArmorDisplay.x + ArmorDisplay.w >= clickX && ArmorDisplay.y <= clickY && ArmorDisplay.y + ArmorDisplay.h >= clickY) {
-			Main.armorDisplay.click();
+		
+		if (new Rectangle(PotionDisplay.baseX, PotionDisplay.baseY, PotionDisplay.w, PotionDisplay.h).contains(clickX, clickY)) {
+			Main.potionDisplay.click();
 			return true;
 		}
-		*/
+
 		return false;
 	}
 	

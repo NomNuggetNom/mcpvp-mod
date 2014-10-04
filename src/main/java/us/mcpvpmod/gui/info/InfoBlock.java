@@ -468,14 +468,14 @@ public class InfoBlock implements ISelectable {
 							   baseY-1-padding, 
 							   this.w+padding*2,
 							   titleHeight+padding*2, 
-							   0, 0, 0, (float) 0.42/2);
+							   0, 0, 0, (float) 0.42);
 				
 				// Render the bottom half.
 				Draw.rect((float) baseX-padding,
 						   (float) baseY+titleHeight+2, 
 						   (float) this.w+padding*2,
 						   (float) this.h + padding - titleHeight - 3, 
-						   0, 0, 0, (float) 0.32/2);
+						   0, 0, 0, (float) 0.32);
 				
 			} else {
 				// Render the bottom half, without a title.
@@ -483,7 +483,7 @@ public class InfoBlock implements ISelectable {
 						   (float) baseY+2, 
 						   (float) w+padding*2,
 						   (float) this.h + padding, 
-						   0, 0, 0, (float) 0.32/2);
+						   0, 0, 0, (float) 0.32);
 
 			}
 		}

@@ -35,7 +35,7 @@ public class Events {
 	}
 	
 	@SubscribeEvent
-	public void onRender(RenderGameOverlayEvent event) {
+	public void onRender(RenderGameOverlayEvent.Post event) {
 		if (Main.mc.isSingleplayer()) return;
 		Server.getServer().onRender(event);
 	}

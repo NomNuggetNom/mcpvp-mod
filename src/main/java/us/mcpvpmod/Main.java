@@ -2,16 +2,17 @@ package us.mcpvpmod;
 
 import java.util.Timer;
 
-import org.lwjgl.input.Keyboard;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.common.MinecraftForge;
+
+import org.lwjgl.input.Keyboard;
+
 import us.mcpvpmod.events.Events;
-import us.mcpvpmod.game.team.CTFTeam;
 import us.mcpvpmod.gui.ArmorDisplay;
 import us.mcpvpmod.gui.FriendsBlock;
 import us.mcpvpmod.gui.GuiSecondChat;
+import us.mcpvpmod.gui.PotionDisplay;
 import us.mcpvpmod.json.ServerJSON;
 import us.mcpvpmod.json.StreamJSON;
 import us.mcpvpmod.json.TeamsJSON;
@@ -49,6 +50,7 @@ public class Main {
 	public static KeyBinding whitelistPlayers;
 	public static FriendsBlock friendsList = new FriendsBlock();
 	public static ArmorDisplay armorDisplay = new ArmorDisplay();
+	public static PotionDisplay potionDisplay = new PotionDisplay();
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent e) {
