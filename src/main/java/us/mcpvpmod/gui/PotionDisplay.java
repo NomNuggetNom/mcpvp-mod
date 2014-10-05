@@ -81,11 +81,24 @@ public class PotionDisplay implements ISelectable {
 		   	  PotionEffect potioneffect = (PotionEffect) iterator.next();
 		   	  Potion potion = Potion.potionTypes[potioneffect.getPotionID()];
 		   	  String timeLeft = potion.getDurationString(potioneffect);
+
 		   	  
-	    	  if (potion.hasStatusIcon()) {
-	    		  int iconIndex = potion.getStatusIconIndex();
-	    		  Draw.string(timeLeft, x + BUFF_ICON_SIZE + 4, y + BUFF_ICON_SIZE/3, 0xFFFFFF, true);
-	    	  }	  
+		   	  String s1 = "";
+              if (potioneffect.getAmplifier() == 1)
+              {
+                  s1 = s1 + " " + I18n.format("enchantment.level.2", new Object[0]);
+              }
+              else if (potioneffect.getAmplifier() == 2)
+              {
+                  s1 = s1 + " " + I18n.format("enchantment.level.3", new Object[0]);
+              }
+              else if (potioneffect.getAmplifier() == 3)
+              {
+                  s1 = s1 + " " + I18n.format("enchantment.level.4", new Object[0]);
+              }
+              
+		   	  Draw.string(s1, x + BUFF_ICON_SIZE, y + BUFF_ICON_SIZE/3, 0xFFFFFF, true);
+		   	  Draw.string(timeLeft, x + BUFF_ICON_SIZE + Main.mc.fontRenderer.getStringWidth(s1) + 6, y + BUFF_ICON_SIZE/3, 0xFFFFFF, true);
 	  	  }
 	  	  x = baseX;
 	      y = baseY;

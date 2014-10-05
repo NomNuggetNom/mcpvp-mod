@@ -47,7 +47,7 @@ public class Main {
 	public static GuiSecondChat secondChat = new GuiSecondChat(mc);
 	public static MCPVPVersion mcpvpVersion = new MCPVPVersion();
 	public static KeyBinding openConfig;
-	public static KeyBinding whitelistPlayers;
+	public static KeyBinding moveBlocks;
 	public static FriendsBlock friendsList = new FriendsBlock();
 	public static ArmorDisplay armorDisplay = new ArmorDisplay();
 	public static PotionDisplay potionDisplay = new PotionDisplay();
@@ -76,8 +76,8 @@ public class Main {
 	public void init(FMLInitializationEvent e) {   	
     	openConfig = new KeyBinding("key.openConfig", Keyboard.KEY_C, "MCPVP");
         ClientRegistry.registerKeyBinding(openConfig);
-        whitelistPlayers = new KeyBinding("key.whitelistPlayers", Keyboard.KEY_P, "MCPVP");
-        ClientRegistry.registerKeyBinding(whitelistPlayers);
+        moveBlocks = new KeyBinding("key.moveBlocks", Keyboard.KEY_X, "MCPVP");
+        ClientRegistry.registerKeyBinding(moveBlocks);
 	}
     
 	@EventHandler
@@ -85,6 +85,4 @@ public class Main {
 		TeamsJSON.run();
 	}
     
-
-	
 }

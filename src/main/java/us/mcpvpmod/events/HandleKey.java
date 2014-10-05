@@ -2,6 +2,7 @@ package us.mcpvpmod.events;
 
 import net.minecraft.client.gui.GuiScreen;
 import us.mcpvpmod.Main;
+import us.mcpvpmod.gui.GuiStartup;
 import us.mcpvpmod.gui.info.GuiMoveBlocks;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.IModGuiFactory;
@@ -29,7 +30,7 @@ public class HandleKey {
         	}
         }
         
-        if (Main.whitelistPlayers.isPressed()) {
+        if (Main.moveBlocks.isPressed()) {
         	Main.mc.displayGuiScreen(new GuiMoveBlocks(Main.mc.currentScreen));
         }
     }

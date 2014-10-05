@@ -14,6 +14,7 @@ import us.mcpvpmod.gui.FriendsBlock;
 import us.mcpvpmod.gui.PotionDisplay;
 import us.mcpvpmod.json.TeamsJSON;
 import us.mcpvpmod.util.Data;
+import us.mcpvpmod.util.Format;
 
 public class GuiMoveBlocks extends GuiScreen {
 
@@ -51,6 +52,14 @@ public class GuiMoveBlocks extends GuiScreen {
 			}
 		}
 
+		if (new Rectangle(
+				InfoBlock.get(Format.process("#bold##u#Friends")).baseX, 
+				InfoBlock.get(Format.process("#bold##u#Friends")).baseY, 
+				InfoBlock.get(Format.process("#bold##u#Friends")).w, 
+				InfoBlock.get(Format.process("#bold##u#Friends")).h).contains(clickX, clickY)) {
+			InfoBlock.get(Format.process("#bold##u#Friends")).click();
+			return true;
+		}
 		
 		if (new Rectangle(ArmorDisplay.x, ArmorDisplay.y, ArmorDisplay.w, ArmorDisplay.h).contains(clickX, clickY)) {
 			Main.armorDisplay.click();
@@ -69,7 +78,7 @@ public class GuiMoveBlocks extends GuiScreen {
 	protected void keyTyped(char key, int keyNum) {
 
 		// Hide the menu.
-		if (key == 'p') Main.mc.displayGuiScreen(null);
+		if (key == 'x') Main.mc.displayGuiScreen(null);
 		
 		// Holding the shift key amplifies the movement by 10.
 		int moveBy = (GuiScreen.isShiftKeyDown()) ? 10 : 1;

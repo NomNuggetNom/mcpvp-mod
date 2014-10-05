@@ -70,12 +70,24 @@ public class InfoBlock implements ISelectable {
 	 * @param info The lines to render, which will be processed every render tick.
 	 * @param server The server to render the block on.
 	 * @param state The state to render the block on.
-	 */
+	 *///
 	public InfoBlock(String title, ArrayList<String> info, Server server, State state) {
-		this.title = title;
-		this.toDisplay = info;
-		this.state = state;
-		this.server = server;
+		this.title		= title;
+		this.toDisplay	= info;
+		this.state		= state;
+		this.server		= server;
+		setX();
+		setY();
+		blocks.add(this);
+
+		FMLLog.info("[MCPVP] Registered new InfoBlock %s", this.getTitle());
+	}
+	
+	public InfoBlock(String title, ArrayList<String> info) {
+		this.title		= Format.process(title);
+		this.toDisplay	= info;
+		this.state		= null;
+		this.server		= null;
 		setX();
 		setY();
 		blocks.add(this);
