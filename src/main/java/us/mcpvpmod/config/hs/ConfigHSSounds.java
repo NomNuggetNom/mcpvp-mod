@@ -1,27 +1,28 @@
-package us.mcpvpmod.config.kit;
+package us.mcpvpmod.config.hs;
 
 import static net.minecraftforge.common.config.Configuration.CATEGORY_GENERAL;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
-import us.mcpvpmod.game.alerts.CustomAlert;
-import us.mcpvpmod.util.Format;
+import us.mcpvpmod.game.alerts.SoundAlert;
 import cpw.mods.fml.common.DummyModContainer;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
 
-public class ConfigKitAlerts extends DummyModContainer {
+public class ConfigHSSounds extends DummyModContainer {
 
-    public static String fileName = "mcpvp_kit_alerts.cfg";
+	public static String soundStreakEnd;
+	public static String soundStreak;
+    
+    public static String fileName = "mcpvp_kit_sounds.cfg";
     
     private static Configuration config;
 
-    public ConfigKitAlerts() {
+    public ConfigHSSounds() {
         config = null;
         File cfgFile = new File(Loader.instance().getConfigDir(), fileName);
         config = new Configuration(cfgFile);
@@ -49,23 +50,17 @@ public class ConfigKitAlerts extends DummyModContainer {
         
         Property prop;
         
-    	prop = config.get(CATEGORY_GENERAL, "alertStreak", Format.s("kit.config.alerts.streak.default"));
-    	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-        prop.setLanguageKey("kit.config.alerts.streak");
+    	prop = config.get(CATEGORY_GENERAL, "soundStreak", "mob.enderdragon.growl");
+        prop.setLanguageKey("kit.config.sounds.soundStole");
+    	soundStreak = prop.getString();
     	propOrder.add(prop.getName());
-    	new CustomAlert("kit.streak.get", prop.getString());
-    	
-    	prop = config.get(CATEGORY_GENERAL, "alertStreakEnd", Format.s("kit.config.alerts.streakEnd.default"));
-    	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-        prop.setLanguageKey("kit.config.alerts.streakEnd");
+    	new SoundAlert("streak.get", prop.getString());
+
+    	prop = config.get(CATEGORY_GENERAL, "soundStreakEnd", "mob.skeleton.death");
+        prop.setLanguageKey("kit.config.sounds.soundStreak");
+    	soundStreakEnd = prop.getString();
     	propOrder.add(prop.getName());
-    	new CustomAlert("kit.streak.end", prop.getString());
-    	
-    	prop = config.get(CATEGORY_GENERAL, "alertRestart", Format.s("kit.config.alerts.restart.default"));
-    	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-        prop.setLanguageKey("kit.config.alerts.restart");
-    	propOrder.add(prop.getName());
-    	new CustomAlert("kit.restart", prop.getString());
+    	new SoundAlert("streak.end", prop.getString());
         
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
 

@@ -1,4 +1,4 @@
-package us.mcpvpmod.config.kit;
+package us.mcpvpmod.config.hs;
 
 import static net.minecraftforge.common.config.Configuration.CATEGORY_GENERAL;
 
@@ -15,13 +15,13 @@ import cpw.mods.fml.common.DummyModContainer;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
 
-public class ConfigKitAlerts extends DummyModContainer {
+public class ConfigHSAlerts extends DummyModContainer {
 
-    public static String fileName = "mcpvp_kit_alerts.cfg";
+    public static String fileName = "mcpvp_hs_alerts.cfg";
     
     private static Configuration config;
 
-    public ConfigKitAlerts() {
+    public ConfigHSAlerts() {
         config = null;
         File cfgFile = new File(Loader.instance().getConfigDir(), fileName);
         config = new Configuration(cfgFile);

@@ -15,6 +15,7 @@ import us.mcpvpmod.gui.FriendsBlock;
 import us.mcpvpmod.gui.PotionDisplay;
 import us.mcpvpmod.gui.info.InfoBlock;
 import us.mcpvpmod.gui.info.Selectable;
+import us.mcpvpmod.util.Format;
 
 /**
  * Render handling for all servers.
@@ -43,6 +44,8 @@ public class AllRender {
 		if (Selectable.selected != null) {
 			Selectable.selected.drawOutline();
 		}
+		
+		InfoBlock.get(Format.process("#bold##u#Friends")).display();
 
 	}
 	

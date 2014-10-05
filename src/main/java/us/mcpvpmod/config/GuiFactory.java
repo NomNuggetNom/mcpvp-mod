@@ -11,6 +11,7 @@ import us.mcpvpmod.config.all.ConfigAll;
 import us.mcpvpmod.config.build.ConfigBuild;
 import us.mcpvpmod.config.ctf.ConfigCTF;
 import us.mcpvpmod.config.hg.ConfigHG;
+import us.mcpvpmod.config.hs.ConfigHS;
 import us.mcpvpmod.config.kit.ConfigKit;
 import us.mcpvpmod.config.maze.ConfigMaze;
 import us.mcpvpmod.config.raid.ConfigRaid;
@@ -63,11 +64,17 @@ public class GuiFactory implements IModGuiFactory {
 	        list.add(new DummyCategoryElement(Server.KIT.getName(), "config.kit", ConfigKit.class));
 	        list.add(new DummyCategoryElement(Server.BUILD.getName(), "config.build", ConfigBuild.class));
 	        list.add(new DummyCategoryElement(Server.RAID.getName(), "config.raid", ConfigRaid.class));
-	        
+	        list.add(new DummyCategoryElement(Server.HS.getName(), "config.hs", ConfigHS.class));
+
 	        return list;
+
 		}
 		
 
+		@Override
+		public void drawDefaultBackground() {
+	        this.drawWorldBackground(0);
+		}
 		
 	}
 }

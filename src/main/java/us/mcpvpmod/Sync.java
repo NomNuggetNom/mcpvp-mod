@@ -1,9 +1,13 @@
 package us.mcpvpmod;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import us.mcpvpmod.config.all.ConfigAlerts;
 import us.mcpvpmod.config.all.ConfigChat;
 import us.mcpvpmod.config.all.ConfigFriends;
 import us.mcpvpmod.config.all.ConfigHUD;
+import us.mcpvpmod.config.all.ConfigSounds;
 import us.mcpvpmod.config.all.ConfigVersion;
 import us.mcpvpmod.config.build.ConfigBuildHUD;
 import us.mcpvpmod.config.ctf.ConfigCTFAlerts;
@@ -14,6 +18,8 @@ import us.mcpvpmod.config.hg.ConfigHGAlerts;
 import us.mcpvpmod.config.hg.ConfigHGHUD;
 import us.mcpvpmod.config.hg.ConfigHGSelect;
 import us.mcpvpmod.config.hg.ConfigHGSounds;
+import us.mcpvpmod.config.hs.ConfigHSAlerts;
+import us.mcpvpmod.config.hs.ConfigHSHUD;
 import us.mcpvpmod.config.kit.ConfigKitAlerts;
 import us.mcpvpmod.config.kit.ConfigKitHUD;
 import us.mcpvpmod.config.kit.ConfigKitSounds;
@@ -40,6 +46,7 @@ import us.mcpvpmod.game.kits.KitsHG;
 import us.mcpvpmod.game.state.DummyState;
 import us.mcpvpmod.game.state.StateCTF;
 import us.mcpvpmod.game.state.StateHG;
+import us.mcpvpmod.game.state.StateHS;
 import us.mcpvpmod.game.state.StateKit;
 import us.mcpvpmod.game.state.StateMaze;
 import us.mcpvpmod.game.state.StateSab;
@@ -80,6 +87,7 @@ public class Sync {
 		ConfigHUD.syncConfig();
 		ConfigAlerts.syncConfig();
 		ConfigVersion.syncConfig();
+		ConfigSounds.syncConfig();
 		
 		// Sync CTF Configs
 		ConfigCTFChat.syncConfig();
@@ -110,6 +118,8 @@ public class Sync {
 		
 		ConfigRaidHUD.syncConfig();
 		ConfigRaidAlerts.syncConfig();
+		
+		ConfigHSHUD.syncConfig();
 	}
 	
 	public static void syncBlocks() {
@@ -139,7 +149,10 @@ public class Sync {
 		
 		InfoBlock.createBlocks(ConfigRaidHUD.render, Server.RAID, DummyState.NONE);
 		
-		InfoBlock.createBlocks(new String[]{"---Friends", "{friends}"}, Server.HUB, DummyState.NONE);
+		InfoBlock.createBlocks(ConfigHSHUD.renderPlay, Server.HS, StateHS.PLAY);
+		
+		new InfoBlock("#bold##u#Friends", new ArrayList<String>(Arrays.asList("friends")));
+
 	}
 	
 	public static void syncCores() {
