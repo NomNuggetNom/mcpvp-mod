@@ -171,8 +171,8 @@ public class InfoBlock implements ISelectable {
 		this.update();
 		this.setW();
 		this.setH();
-		//this.setX();
-		//this.setY();
+		this.setX();
+		this.setY();
 		this.draw();
 	}
 	
@@ -294,9 +294,16 @@ public class InfoBlock implements ISelectable {
 	 * Responsible for setting the X coordinate of the block.
 	 */
 	public void setX() {
-				
+		
+		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
+		
 		if (Data.get(this.title + ".x") != null) {
-			this.baseX = Integer.parseInt((String) Data.get(this.title + ".x"));
+			int newX =  Integer.parseInt((String) Data.get(this.title + ".x"));
+			if (newX <= 0) {
+				this.baseX = res.getScaledWidth() - newX - this.w - padding*2;
+			} else {
+				this.baseX = newX;
+			}
 			return;
 		} else {
 			this.baseX = ConfigHUD.margin;
@@ -374,12 +381,29 @@ public class InfoBlock implements ISelectable {
 	 */
 	public void setY() {
 		
+		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
+		
+		if (Data.get(this.title + ".y") != null) {
+			int newY =  Integer.parseInt((String) Data.get(this.title + ".y"));
+			if (newY <= 0) {
+				this.baseY = res.getScaledHeight() - Math.abs(newY) - this.h;
+			} else {
+				this.baseY = newY;
+			}
+			return;
+		} else {
+			this.baseY = ConfigHUD.margin;
+		}
+
+		/*
 		if (Data.get(this.title + ".y") != null) {
 			this.baseY = Integer.parseInt((String) Data.get(this.title + ".y"));
 			return;
 		} else {
 			this.baseY = ConfigHUD.margin;
 		}
+		*/
+
 		
 		/*
 		ScaledResolution res = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
@@ -637,19 +661,41 @@ public class InfoBlock implements ISelectable {
 			if (direction == 'u') baseY = 0 + padding*2 + 1;
 			
 			if (direction == 'd') baseY = res.getScaledHeight() - this.h - padding*2 + 1;
+			
 		} else {
 			// Move left
-			if (direction == 'l') baseX -= moveBy;
+			if (direction == 'l')
+				baseX = baseX - moveBy - padding*2 < 0 ? 0 + padding*2 : baseX - moveBy;
+			
 			// Move right
-			if (direction == 'r') baseX += moveBy;
+			if (direction == 'r')
+				baseX = baseX + this.w + moveBy + padding*2 > res.getScaledWidth() ? res.getScaledWidth() - padding*2 - this.w : baseX + moveBy;
+
 			// Move up
-			if (direction == 'u') baseY -= moveBy;
+			if (direction == 'u')
+				baseY = baseY - moveBy - padding*2 - 1< 0 ? baseY : baseY - moveBy;
+
 			// Move down
-			if (direction == 'd') baseY += moveBy;
+			if (direction == 'd')
+				baseY = baseY + this.h + moveBy + padding*2 - 1 > res.getScaledHeight() ? baseY : baseY + moveBy;
+
 		}
 		
-		Data.put(this.title + ".x", "" + this.baseX);
-		Data.put(this.title + ".y", "" + this.baseY);
+		if (this.baseX > res.getScaledWidth()/2) {
+			// Distance from the edge.
+			int distanceFromEdge = 0 - this.w - this.baseX - padding*2 + res.getScaledWidth();
+			Data.put(this.title + ".x", "-" + distanceFromEdge);
+		} else {
+			Data.put(this.title + ".x", "" + this.baseX);
+		}
+		
+		if (this.baseY > res.getScaledHeight()/2) {
+			int distanceFromEdge = res.getScaledHeight() - this.h - this.baseY - padding*2 + 1;
+			System.out.println(distanceFromEdge);
+			Data.put(this.title + ".y", "-" + distanceFromEdge);
+		} else {
+			Data.put(this.title + ".y", "" + this.baseY);
+		}
 	}
 	
 }

@@ -27,7 +27,7 @@ public class GuiMoveBlocks extends GuiScreen {
 	}
 	
 	public void initGui() {
-		Keyboard.enableRepeatEvents(true);
+		//Keyboard.enableRepeatEvents(true);
 	}
 	
 	public void initGuiButtons() {
@@ -81,7 +81,7 @@ public class GuiMoveBlocks extends GuiScreen {
 		if (key == 'x') Main.mc.displayGuiScreen(null);
 		
 		// Holding the shift key amplifies the movement by 10.
-		int moveBy = (GuiScreen.isShiftKeyDown()) ? 10 : 1;
+		int moveBy = GuiScreen.isShiftKeyDown() ? 10 : 1;
 		
 		// Move left
 		if (keyNum == 203) Selectable.selected.move('l', moveBy, GuiScreen.isCtrlKeyDown());
@@ -91,7 +91,6 @@ public class GuiMoveBlocks extends GuiScreen {
 		if (keyNum == 200) Selectable.selected.move('u', moveBy, GuiScreen.isCtrlKeyDown());
 		// Move down
 		if (keyNum == 208) Selectable.selected.move('d', moveBy, GuiScreen.isCtrlKeyDown());
-
 
 		super.keyTyped(key, keyNum);
 	}
