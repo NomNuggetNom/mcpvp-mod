@@ -45,7 +45,7 @@ public class CoreSab {
 				new String[]{"remain", "$1"});
 		
 		new ChatTrigger(reWin, "sab.end", Server.SAB,
-				new String[]{"var:sab:winner", "winner"});
+				new String[]{"winner", "sab:winner"});
 		
 		new ChatTrigger(reChestWave, "sab.chest", Server.SAB,
 				new String[]{"wave", "$1"});
