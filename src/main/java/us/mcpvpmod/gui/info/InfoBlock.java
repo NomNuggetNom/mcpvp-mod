@@ -79,22 +79,8 @@ public class InfoBlock extends Selectable {
 		this.toDisplay	= info;
 		this.state		= state;
 		this.server		= server;
-		loadX();
-		loadY();
 		blocks.add(this);
 		Selectable.put(title, this);
-
-		FMLLog.info("[MCPVP] Registered new InfoBlock %s", this.getTitle());
-	}
-	
-	public InfoBlock(String title, ArrayList<String> info) {
-		this.title		= Format.process(title);
-		this.toDisplay	= info;
-		this.state		= null;
-		this.server		= null;
-		loadX();
-		loadY();
-		blocks.add(this);
 
 		FMLLog.info("[MCPVP] Registered new InfoBlock %s", this.getTitle());
 	}
@@ -191,8 +177,8 @@ public class InfoBlock extends Selectable {
 		this.update();
 		this.setW();
 		this.setH();
-		this.loadX();
-		this.loadY();
+		this.setX(this.loadX());
+		this.setY(this.loadY());
 		this.draw();
 	}
 	
@@ -478,7 +464,8 @@ public class InfoBlock extends Selectable {
 		
 		for (Selectable selectable : Selectable.getSelectables(this.getServer(), this.getState())) {
 			if (selectable.toString().equals(this.title)) continue;
-
+			if (anchorTop || anchorBottom || anchorRight || anchorLeft) continue;
+			
 			int distTop = this.getY() - selectable.getH() - selectable.getY();
 			int distBottom = Math.abs(this.getY() + this.getH() - selectable.getY());
 			int distRight = this.getX() - selectable.getW() - selectable.getX();
@@ -517,34 +504,7 @@ public class InfoBlock extends Selectable {
 
 		}
 		
-		/*
-		Draw.rect(this.getX(), 
-				this.getY() - padding, 
-				this.getW(), 
-				padding, 
-				1, 0, 0, 1);
-		
-		Draw.rect(this.getX(), 
-				this.getY() + this.getH(), 
-				this.getW(), 
-				padding, 
-				1, 0, 0, 1);
-		
-		Draw.rect(this.getX() - padding, 
-				this.getY() - padding, 
-				padding, 
-				this.getH() + padding*2, 
-				1, 0, 0, 1);
-		
-		Draw.rect(this.getX() + this.getW(), 
-				this.getY() - padding, 
-				padding, 
-				this.getH() + padding*2, 
-				1, 0, 0, 1);
-				*/
-		
 		// Draw the top bar.
-
 		Draw.rect(this.getX()-padding*2, 
 				   this.getY() -1-padding*2, 
 				   this.getW() + padding*2,
@@ -610,17 +570,17 @@ public class InfoBlock extends Selectable {
 		if (this.baseX > res.getScaledWidth()/2) {
 			// Distance from the edge.
 			int distanceFromEdge = 0 - this.baseX - this.getW() + res.getScaledWidth();
-			Data.put(this.title + ".x", "-" + distanceFromEdge);
+			Data.put(this.toString() + ".x", "-" + distanceFromEdge);
 		} else {
-			Data.put(this.title + ".x", "" + this.baseX);
+			Data.put(this.toString() + ".x", "" + this.baseX);
 		}
 		
 		if (this.baseY > res.getScaledHeight()/2) {
 			int distanceFromEdge = res.getScaledHeight() - this.h - this.baseY - padding*2 + 1;
 			System.out.println("dist: -" +distanceFromEdge);
-			Data.put(this.title + ".y", "-" + distanceFromEdge);
+			Data.put(this.toString() + ".y", "-" + distanceFromEdge);
 		} else {
-			Data.put(this.title + ".y", "" + this.baseY);
+			Data.put(this.toString() + ".y", "" + this.baseY);
 		}
 	}
 	

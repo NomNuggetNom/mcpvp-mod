@@ -80,8 +80,6 @@ public class Main {
         ClientRegistry.registerKeyBinding(openConfig);
         moveBlocks = new KeyBinding("key.moveBlocks", Keyboard.KEY_X, "MCPVP");
         ClientRegistry.registerKeyBinding(moveBlocks);
-        
-        potionDisplay.anchorTo(armorDisplay, 'd');
 	}
     
 	@EventHandler

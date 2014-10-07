@@ -15,5 +15,9 @@ public class DisplayAnchor {
 		this.child		= child;
 		this.direction	= direction;
 	}
+	
+	public static DisplayAnchor get(Selectable parent) {
+		return anchors.get(parent);
+	}
 
 }
