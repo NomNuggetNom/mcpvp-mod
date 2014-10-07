@@ -50,6 +50,7 @@ public class Main {
 	public static MCPVPVersion mcpvpVersion = new MCPVPVersion();
 	public static KeyBinding openConfig;
 	public static KeyBinding moveBlocks;
+	public static KeyBinding showHelp;
 	public static ArmorDisplay armorDisplay = new ArmorDisplay();
 	public static PotionDisplay potionDisplay = new PotionDisplay();
 	public static InfoBlock friendsList = null;
@@ -80,6 +81,8 @@ public class Main {
         ClientRegistry.registerKeyBinding(openConfig);
         moveBlocks = new KeyBinding("key.moveBlocks", Keyboard.KEY_X, "MCPVP");
         ClientRegistry.registerKeyBinding(moveBlocks);
+        showHelp = new KeyBinding("key.showHelp", Keyboard.KEY_H, "MCPVP");
+        ClientRegistry.registerKeyBinding(showHelp);
 	}
     
 	@EventHandler

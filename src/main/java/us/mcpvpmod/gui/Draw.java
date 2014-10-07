@@ -21,6 +21,10 @@ public class Draw {
 		Minecraft.getMinecraft().fontRenderer.drawString(string, x, y, color, shadow);
 	}
 	
+	public static void splitString(String string, int x, int y, int w, int color, boolean shadow) {
+		Minecraft.getMinecraft().fontRenderer.drawSplitString(string, x, y, w, color);
+	}
+	
 	/**
 	 * Used for drawing textured rectangles.
 	 * @param texture The texture to draw.

@@ -12,6 +12,7 @@ import us.mcpvpmod.ServerHelper;
 import us.mcpvpmod.config.all.ConfigChat;
 import us.mcpvpmod.config.all.ConfigVersion;
 import us.mcpvpmod.config.ctf.ConfigCTFChat;
+import us.mcpvpmod.events.HandleJoinMCPVP;
 import us.mcpvpmod.game.alerts.CustomAlert;
 import us.mcpvpmod.json.StreamJSON;
 import us.mcpvpmod.mgi.MGIEvent;
@@ -30,6 +31,7 @@ public class AllChat {
 
 	public static void handleChat(ClientChatReceivedEvent event) {
 		String message = event.message.getUnformattedText();
+		HandleJoinMCPVP.check();
 		
 		// Check for removal of chat.
 		if (removeChat(message)) {
@@ -41,9 +43,7 @@ public class AllChat {
 		
 		//FMLLog.info("message: \"%s\"", message);
 		if (message.equals(msgLogged)) {
-			System.out.println("Logged in.");
-			Main.mc.thePlayer.sendChatMessage("/ip");
-			getIP = true;
+			HandleJoinMCPVP.onJoin();
 			//Main.secondChat.clearChatMessages();
 		}
 		
