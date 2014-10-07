@@ -21,6 +21,7 @@ public class ConfigHUD extends DummyModContainer {
 	public static boolean alignHeights = false;
 	public static int medalTimer = 7;
 	public static String armorMode;
+	public static String potionMode;
 	public static boolean alignItems = true;
 	
     public static String fileName = "mcpvp_hud.cfg";
@@ -55,43 +56,48 @@ public class ConfigHUD extends DummyModContainer {
         
         Property prop;
 
-        prop = config.get(CATEGORY_GENERAL, "armorMode", "Show Durability Remaining", Format.s("config.HUD.armorMode"), new String[]{"Show Durability Remaining", "Show Durability Remaining out of Total", "Don't show Durability Remaining"});
-        prop.setLanguageKey("config.HUD.armorMode");
+        prop = config.get(CATEGORY_GENERAL, "armorMode", "Show Durability Remaining", Format.s("config.hud.armorMode"), new String[]{"Show Durability Remaining", "Show Durability Remaining out of Total", "Don't show Durability Remaining"});
+        prop.setLanguageKey("config.hud.armorMode");
     	armorMode = prop.getString();
+    	propOrder.add(prop.getName());
+    	
+        prop = config.get(CATEGORY_GENERAL, "potionMode", "Show Time Remaining", Format.s("config.hud.potionMode"), new String[]{"Show Time Remaining", "Don't Show Time Remaining"});
+        prop.setLanguageKey("config.hud.potionMode");
+    	potionMode = prop.getString();
     	propOrder.add(prop.getName());
         
     	prop = config.get(CATEGORY_GENERAL, "renderBG", true);
-        prop.setLanguageKey("config.HUD.renderBG");
+        prop.setLanguageKey("config.hud.renderBG");
     	renderBG = prop.getBoolean();
     	propOrder.add(prop.getName());
     	
     	prop = config.get(CATEGORY_GENERAL, "margin", 3, "The space between display blocks.", 0, 1000);
-        prop.setLanguageKey("config.HUD.margin");
+        prop.setLanguageKey("config.hud.margin");
     	margin = prop.getInt();
     	propOrder.add(prop.getName());
     	
     	prop = config.get(CATEGORY_GENERAL, "centerTitles", true);
-        prop.setLanguageKey("config.HUD.centerTitles");
+        prop.setLanguageKey("config.hud.centerTitles");
     	centerTitles = prop.getBoolean();
     	propOrder.add(prop.getName());
     	
     	prop = config.get(CATEGORY_GENERAL, "alignItems", true);
-        prop.setLanguageKey("config.HUD.alignItems");
+        prop.setLanguageKey("config.hud.alignItems");
     	alignItems = prop.getBoolean();
     	propOrder.add(prop.getName());
     	
     	prop = config.get(CATEGORY_GENERAL, "alignWidths", true);
-        prop.setLanguageKey("config.HUD.alignWidths");
+        prop.setLanguageKey("config.hud.alignWidths");
     	alignWidths = prop.getBoolean();
     	propOrder.add(prop.getName());
     	
     	prop = config.get(CATEGORY_GENERAL, "alignHeights", true);
-        prop.setLanguageKey("config.HUD.alignHeights");
+        prop.setLanguageKey("config.hud.alignHeights");
     	alignHeights = prop.getBoolean();
     	propOrder.add(prop.getName());
         
     	prop = config.get(CATEGORY_GENERAL, "medalTimer", 7, "The number of seconds to display a medal for.", 1, 1000);
-    	prop.setLanguageKey("config.HUD.medalTimer");
+    	prop.setLanguageKey("config.hud.medalTimer");
     	margin = prop.getInt();
     	propOrder.add(prop.getName());
     	

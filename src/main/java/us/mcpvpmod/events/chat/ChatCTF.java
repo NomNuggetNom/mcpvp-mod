@@ -6,7 +6,9 @@ import net.minecraft.client.gui.ChatLine;
 import net.minecraft.util.ChatComponentText;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import us.mcpvpmod.Main;
+import us.mcpvpmod.Server;
 import us.mcpvpmod.config.ctf.ConfigCTFChat;
+import us.mcpvpmod.game.alerts.CustomAlert;
 import us.mcpvpmod.game.info.InfoCTF;
 import us.mcpvpmod.game.kits.KitCTF;
 import us.mcpvpmod.game.state.StateCTF;
@@ -63,6 +65,7 @@ public class ChatCTF {
 				|| message.matches(reTeam)
 				|| message.matches(reVisit)) {
 			filterAlerts(event);
+			event.setCanceled(ConfigCTFChat.chatHistory);
 		} else {
 			
 			// The chat section has a number of lines depending on the state.
@@ -130,6 +133,13 @@ public class ChatCTF {
 			if (oldMessage.equals(event.message.getUnformattedText())) {
 				System.out.println("===");
 				event.setCanceled(true);
+			}
+		}
+		
+		String reYay = "§f\\[§7TW§f\\] §6NomNuggetNom§.> §f§r§6\\/a §fYay! @(.*)";
+		if (message.matches(reYay)) {
+			if (message.replaceAll(reYay, "$1").equals(Main.mc.thePlayer.getDisplayName())) {
+				CustomAlert.get("yay").show();
 			}
 		}
 	}

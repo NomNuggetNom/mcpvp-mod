@@ -63,6 +63,8 @@ public class ConfigAlerts extends DummyModContainer {
     	propOrder.add(prop.getName());
     	new CustomAlert("online", prop.getString());
     	
+    	new CustomAlert("yay", "Wooooo! ||| #gray#You're #red#a#orange#w#yellow#e#green#s#cyan#o#blue#m#purple#e#magenta#! ||| http://i.imgur.com/ojaZ4ig.png");
+    	
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
 
         if (config.hasChanged())

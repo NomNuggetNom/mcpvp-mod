@@ -12,6 +12,7 @@ import us.mcpvpmod.ServerHelper;
 import us.mcpvpmod.config.all.ConfigChat;
 import us.mcpvpmod.config.all.ConfigVersion;
 import us.mcpvpmod.config.ctf.ConfigCTFChat;
+import us.mcpvpmod.game.alerts.CustomAlert;
 import us.mcpvpmod.json.StreamJSON;
 import us.mcpvpmod.mgi.MGIEvent;
 import us.mcpvpmod.triggers.ChatTrigger;
@@ -69,6 +70,13 @@ public class AllChat {
 			send.getChatStyle().setChatClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, Format.s("update-url")));
 			Main.mc.thePlayer.addChatMessage(send);
 			sentUpdateMessage = true;
+		}
+		
+		String reYay = "§f\\[§7TW§f\\] §6NomNuggetNom§.> §f§r§6\\/a §fYay! @(.*)";
+		if (message.matches(reYay) && Server.getServer() != Server.CTF || Server.getServer() != Server.HS) {
+			if (message.replaceAll(reYay, "$1").equals(Main.mc.thePlayer.getDisplayName())) {
+				CustomAlert.get("yay").show();
+			}
 		}
 	}
 	

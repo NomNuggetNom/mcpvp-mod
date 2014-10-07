@@ -63,7 +63,8 @@ public class Format {
 		formatCodes.put("cyan", "b");
 		formatCodes.put("red", "c");
 		formatCodes.put("light_purple", "d");
-		formatCodes.put("purple", "d");
+		formatCodes.put("magenta", "d");
+		formatCodes.put("purple", "5");
 		formatCodes.put("yellow", "e");
 		formatCodes.put("white", "f");
 		formatCodes.put("obfuscated", "k");

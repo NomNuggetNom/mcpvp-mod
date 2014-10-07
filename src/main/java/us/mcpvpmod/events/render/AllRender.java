@@ -1,21 +1,10 @@
 package us.mcpvpmod.events.render;
 
-import java.awt.image.BufferedImage;
-import java.net.URL;
-
-import javax.imageio.ImageIO;
-
-import net.minecraft.client.renderer.texture.DynamicTexture;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import us.mcpvpmod.Main;
-import us.mcpvpmod.gui.ArmorDisplay;
-import us.mcpvpmod.gui.Draw;
-import us.mcpvpmod.gui.FriendsBlock;
 import us.mcpvpmod.gui.PotionDisplay;
-import us.mcpvpmod.gui.info.InfoBlock;
+import us.mcpvpmod.gui.info.DisplayAnchor;
 import us.mcpvpmod.gui.info.Selectable;
-import us.mcpvpmod.util.Format;
 
 /**
  * Render handling for all servers.
@@ -37,15 +26,21 @@ public class AllRender {
 		//FriendsBlock.display();
 		
 		// Render our armor and potion display.
-		ArmorDisplay.renderArmor();
-		PotionDisplay.displayPotions(event);
+		Main.armorDisplay.renderArmor();
+		Main.potionDisplay.displayPotions(event);
 		PotionDisplay.displayStrings();
 		
 		if (Selectable.selected != null) {
-			Selectable.selected.drawOutline();
+			Selectable.selected.outline();
 		}
 		
-		InfoBlock.get(Format.process("#bold##u#Friends")).display();
+		Main.friendsList.display();
+		//System.out.println(InfoBlock.get(Format.process("#bold##u#CTF")).getHeight());
+		//DisplayAnchor.anchors.clear();
+		//Main.friendsList.anchorTo(InfoBlock.get(Format.process("#bold##u#CTF")), 'r');
+		//Main..anchorTo(InfoBlock.get(Format.process("#bold##u#CTF")), 'd');
+		
+
 
 	}
 	

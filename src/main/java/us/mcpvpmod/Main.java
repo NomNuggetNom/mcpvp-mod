@@ -1,5 +1,7 @@
 package us.mcpvpmod;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Timer;
 
 import net.minecraft.client.Minecraft;
@@ -10,9 +12,9 @@ import org.lwjgl.input.Keyboard;
 
 import us.mcpvpmod.events.Events;
 import us.mcpvpmod.gui.ArmorDisplay;
-import us.mcpvpmod.gui.FriendsBlock;
 import us.mcpvpmod.gui.GuiSecondChat;
 import us.mcpvpmod.gui.PotionDisplay;
+import us.mcpvpmod.gui.info.InfoBlock;
 import us.mcpvpmod.json.ServerJSON;
 import us.mcpvpmod.json.StreamJSON;
 import us.mcpvpmod.json.TeamsJSON;
@@ -48,9 +50,9 @@ public class Main {
 	public static MCPVPVersion mcpvpVersion = new MCPVPVersion();
 	public static KeyBinding openConfig;
 	public static KeyBinding moveBlocks;
-	public static FriendsBlock friendsList = new FriendsBlock();
 	public static ArmorDisplay armorDisplay = new ArmorDisplay();
 	public static PotionDisplay potionDisplay = new PotionDisplay();
+	public static InfoBlock friendsList = null;
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent e) {
@@ -78,6 +80,8 @@ public class Main {
         ClientRegistry.registerKeyBinding(openConfig);
         moveBlocks = new KeyBinding("key.moveBlocks", Keyboard.KEY_X, "MCPVP");
         ClientRegistry.registerKeyBinding(moveBlocks);
+        
+        potionDisplay.anchorTo(armorDisplay, 'd');
 	}
     
 	@EventHandler

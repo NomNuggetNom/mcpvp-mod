@@ -1,5 +1,6 @@
 package us.mcpvpmod.gui.info;
 
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.regex.Matcher;
@@ -16,6 +17,7 @@ import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.config.all.ConfigHUD;
 import us.mcpvpmod.game.FriendsList;
+import us.mcpvpmod.game.state.DummyState;
 import us.mcpvpmod.game.state.State;
 import us.mcpvpmod.game.vars.AllVars;
 import us.mcpvpmod.gui.Draw;
@@ -28,7 +30,7 @@ import cpw.mods.fml.common.FMLLog;
  * Contains information relevant to games and the player.
  * @author NomNuggetNom
  */
-public class InfoBlock implements ISelectable {
+public class InfoBlock extends Selectable {
 	
 	/** An array of all InfoBlocks, not just ones that are visible! */
 	public static ArrayList<InfoBlock> blocks = new ArrayList<InfoBlock>();
@@ -63,6 +65,7 @@ public class InfoBlock implements ISelectable {
 	
 	static Minecraft mc = Minecraft.getMinecraft();
 	static FontRenderer fR = mc.fontRenderer;
+	static ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
 
 	/**
 	 * The backbone of the HUD.
@@ -76,9 +79,10 @@ public class InfoBlock implements ISelectable {
 		this.toDisplay	= info;
 		this.state		= state;
 		this.server		= server;
-		setX();
-		setY();
+		loadX();
+		loadY();
 		blocks.add(this);
+		Selectable.put(title, this);
 
 		FMLLog.info("[MCPVP] Registered new InfoBlock %s", this.getTitle());
 	}
@@ -88,8 +92,8 @@ public class InfoBlock implements ISelectable {
 		this.toDisplay	= info;
 		this.state		= null;
 		this.server		= null;
-		setX();
-		setY();
+		loadX();
+		loadY();
 		blocks.add(this);
 
 		FMLLog.info("[MCPVP] Registered new InfoBlock %s", this.getTitle());
@@ -101,6 +105,18 @@ public class InfoBlock implements ISelectable {
 	 * @return
 	 */
 	public static InfoBlock get(String getTitle) {		
+		for (InfoBlock block : blocks) {
+			if (block.getTitle().equals(getTitle) && block.server == Server.getServer() && block.state == Server.getState()) {
+				return block;
+			}
+		}
+		
+		for (InfoBlock block : blocks) {
+			if (block.getTitle().equals(getTitle) && block.server == Server.getServer()) {
+				return block;
+			}
+		}
+		
 		for (InfoBlock block : blocks) {
 			if (block.getTitle().equals(getTitle)) {
 				return block;
@@ -118,8 +134,11 @@ public class InfoBlock implements ISelectable {
 	public static ArrayList<InfoBlock> get(Server server, State state) {
 		ArrayList<InfoBlock> toReturn = new ArrayList<InfoBlock>();
 		for (InfoBlock block : blocks) {
-			if (block.server == server && block.state == state) {
+			if (block.server == server && block.state == state)  {
 				toReturn.add(block);
+			} else if (server == Server.ALL && state == DummyState.NONE) {
+				if (block.server.equals(Server.getServer()) && block.state.equals(Server.getState()))
+						toReturn.add(block);
 			}
 		}
 		return toReturn;
@@ -166,13 +185,14 @@ public class InfoBlock implements ISelectable {
 	 * Updates information and dimensions then draws.
 	 */
 	public void display() {
-		fR = mc.fontRenderer;
-
+		fR = Main.mc.fontRenderer;
+		res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
+		
 		this.update();
 		this.setW();
 		this.setH();
-		this.setX();
-		this.setY();
+		this.loadX();
+		this.loadY();
 		this.draw();
 	}
 	
@@ -209,6 +229,7 @@ public class InfoBlock implements ISelectable {
 	 * @return Width
 	 */
 	public int calcW() {
+		if (this.display.size() == 0) return -1;
 		int calcW = 0;
 		int lineW = 0;
 		
@@ -260,11 +281,14 @@ public class InfoBlock implements ISelectable {
 	 * @return Height
 	 */
 	public int calcH() {
+
+		if (this.display.size() == 0) return -1;
+
 		int calcH;
 		int stringHeight = this.display.size() * fR.FONT_HEIGHT;
 		int spacing = (this.display.size()-1) * 2;
 		calcH = 2 + stringHeight + spacing + 10;
-		
+
 		return calcH;
 	}
 	
@@ -288,187 +312,6 @@ public class InfoBlock implements ISelectable {
 			}
 		}
 		this.h = newH;
-	}
-	
-	/**
-	 * Responsible for setting the X coordinate of the block.
-	 */
-	public void setX() {
-		
-		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
-		
-		if (Data.get(this.title + ".x") != null) {
-			int newX =  Integer.parseInt((String) Data.get(this.title + ".x"));
-			if (newX <= 0) {
-				this.baseX = res.getScaledWidth() - newX - this.w - padding*2;
-			} else {
-				this.baseX = newX;
-			}
-			return;
-		} else {
-			this.baseX = ConfigHUD.margin;
-		}
-		
-		/*
-		ScaledResolution res = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
-
-		// Check if there is a request for coordinate moving
-		if (getTitle().matches(rePos) || !this.coords.equals("")) {
-			
-			// The title of the block we are moving off of
-			String titleX = coords.replaceAll(rePos, "$1").replaceAll("\"", "");
-			
-			// + or -
-			String symbolX = coords.replaceAll(rePos, "$2");
-			// Determine the mode
-			String modeX = coords.replaceAll(rePos, "$4");
-			// The number of units we want to move
-			double moveX = 0;
-			// The calculated offset based on the mode.
-			double shiftX = 0;
-			
-			if (coords.replaceAll(rePos, "$3").matches("\\d+")) {
-				moveX = Double.parseDouble(coords.replaceAll(rePos, "$3"));
-			}
-
-			/*
-			if (modeX.equals("%")) {
-				shiftX = ((double)res.getScaledWidth() * (double)moveX/100);
-			} else {
-				System.out.println("shiftX != %");
-				//shiftX = Math.sqrt(res.getScaledWidth()*res.getScaledHeight()/100);
-				shiftX = ((double)res.getScaledWidth() * (double)1/100);
-			}
-			*/
-		/*
-			shiftX = ((double)res.getScaledWidth() * (double)moveX/100);
-			
-			// Check if we are moving off of a block
-			if (!titleX.equals("")) {
-
-				// Check our symbol
-				if (symbolX.equals("+") || symbolX.equals("")) {
-					// Move to the right.
-					InfoBlock oldBlock = this.get(titleX);
-					if (oldBlock != null) {
-						this.baseX = (int) (oldBlock.baseX + oldBlock.w + shiftX + padding*2);
-					}
-				
-				} else if (symbolX.equals("-")) {
-					// Move to the left.
-					InfoBlock oldBlock = this.get(titleX);
-					if (oldBlock != null) {
-						this.baseX =  oldBlock.baseX - (int) shiftX - this.w;
-					}
-				}
-				
-			} else {
-				// If we're not moving off of a block, we're moving off the sides of the screen
-				if (symbolX.equals("+") || symbolX.equals("")) {
-					// Move to the right.
-					this.baseX = (int) shiftX + padding;
-				} else if (symbolX.equals("-")) {
-					// Move to the left.
-					this.baseX = res.getScaledWidth() - (int) shiftX - this.w - padding;
-				}
-			}
-		}
-					*/
-	}
-	
-	/**
-	 * Responsible for setting the Y coordinate of the block.
-	 */
-	public void setY() {
-		
-		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
-		
-		if (Data.get(this.title + ".y") != null) {
-			int newY =  Integer.parseInt((String) Data.get(this.title + ".y"));
-			if (newY <= 0) {
-				this.baseY = res.getScaledHeight() - Math.abs(newY) - this.h;
-			} else {
-				this.baseY = newY;
-			}
-			return;
-		} else {
-			this.baseY = ConfigHUD.margin;
-		}
-
-		/*
-		if (Data.get(this.title + ".y") != null) {
-			this.baseY = Integer.parseInt((String) Data.get(this.title + ".y"));
-			return;
-		} else {
-			this.baseY = ConfigHUD.margin;
-		}
-		*/
-
-		
-		/*
-		ScaledResolution res = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
-
-		// Check if there is a request for coordinate moving
-		if (getTitle().matches(rePos) || !this.coords.equals("")) {
-			
-			// The title of the block we are moving off of
-			String titleY = coords.replaceAll(rePos, "$5").replaceAll("\"", "");
-			// + or -
-			String symbolY = coords.replaceAll(rePos, "$6");
-			// Determine the mode
-			String modeY = coords.replaceAll(rePos, "$8");
-			// The number of units we want to move
-			double moveY = 0;
-			// The calculated offset based on the mode.
-			double shiftY = 0;
-			
-			if (coords.replaceAll(rePos, "$7").matches("\\d+")) {
-				moveY = Double.parseDouble(coords.replaceAll(rePos, "$7"));
-			}
-
-			/*
-			if (modeY.equals("%")) {
-				shiftY = ((double)res.getScaledHeight() * (double)moveY/100);
-			} else {
-				//shiftY = Math.sqrt(res.getScaledWidth()*res.getScaledHeight()/100);
-				shiftY = ((double)res.getScaledWidth() * (double)moveY/100);
-			}
-			*/
-		/*
-			shiftY = ((double)res.getScaledHeight() * (double)moveY/100);
-			
-			if (!titleY.equals("")) {
-
-				if (symbolY.equals("+") || symbolY.equals("")) {
-					// Move up.
-					InfoBlock oldBlock = this.get(titleY);
-
-					if (oldBlock != null) {
-						this.baseY = (int) (oldBlock.baseY + oldBlock.h + shiftY + padding*2);
-					}
-
-				} else if (symbolY.equals("-")) {
-					// Move down.
-					InfoBlock oldBlock = this.get(titleY);
-					
-					if (oldBlock != null) {
-						this.baseY = oldBlock.baseY - this.h - padding*2 - 1;
-					}
-				}
-				
-			} else {
-				if (symbolY.equals("+") || symbolY.equals("")) {
-					// Starts at 0 and increases
-					this.baseY = (int) (shiftY) + padding;
-					
-				} else if (symbolY.equals("-")) {
-					// Move down - make the value bigger.
-					//this.baseY = res.getScaledHeight() - ((int) ((double)res.getScaledHeight() * (double)moveY/100) + this.h);
-					this.baseY = res.getScaledHeight() - this.h - padding;
-				}
-			}
-		}
-		*/
 	}
 	
 	public int align(String line) {
@@ -520,6 +363,30 @@ public class InfoBlock implements ISelectable {
 						   (float) w+padding*2,
 						   (float) this.h + padding, 
 						   0, 0, 0, (float) 0.32);
+				
+				// Render the title area.
+				/*
+				Draw.rect(baseX-padding, 
+							   baseY-1-padding, 
+							   this.w+padding*2,
+							   titleHeight+padding*2, 
+							   0, 0, 0, (float) 0.42);
+				
+				// Render the bottom half.
+				Draw.rect((float) baseX-padding,
+						   (float) baseY+titleHeight+2, 
+						   (float) this.w+padding*2,
+						   (float) this.h + padding - titleHeight - 3, 
+						   0, 0, 0, (float) 0.32);
+				
+			} else {
+				// Render the bottom half, without a title.
+				Draw.rect((float) baseX-padding,
+						   (float) baseY+2, 
+						   (float) w+padding*2,
+						   (float) this.h + padding, 
+						   0, 0, 0, (float) 0.32);
+						   */
 
 			}
 		}
@@ -602,65 +469,124 @@ public class InfoBlock implements ISelectable {
 	}
 	
 	@Override
-	public void click() {
-		if (Selectable.selected == this) {
-			Selectable.selected = null;
-		} else {
-			Selectable.selected = this;
+	public void outline() {
+		
+		boolean anchorTop = false;
+		boolean anchorBottom = false;
+		boolean anchorRight = false;
+		boolean anchorLeft = false;
+		
+		for (Selectable selectable : Selectable.getSelectables(this.getServer(), this.getState())) {
+			if (selectable.toString().equals(this.title)) continue;
+
+			int distTop = this.getY() - selectable.getH() - selectable.getY();
+			int distBottom = Math.abs(this.getY() + this.getH() - selectable.getY());
+			int distRight = this.getX() - selectable.getW() - selectable.getX();
+			int distLeft = Math.abs(this.getX() + this.getW() - selectable.getX());
+
+			anchorTop = distTop <= ConfigHUD.margin 
+					&& distTop > -1 
+					&& selectable.getX() <= this.getX() 
+					&& selectable.getX() + selectable.getW() >= this.getX() + this.getW();
+					
+			anchorBottom = distBottom <= ConfigHUD.margin 
+					&& distBottom > -1 
+					&& selectable.getX() < this.getX() 
+					&& selectable.getX() + selectable.getW() > this.getX() + this.getW();
+					
+			anchorRight = distRight <= ConfigHUD.margin 
+					&& distRight > -1 
+					&& selectable.getY() <= this.getY() 
+					&& selectable.getY() + selectable.getH() >= this.getY() + this.getH();
+
+			anchorLeft = distLeft <= ConfigHUD.margin 
+					&& distLeft > -1 
+					&& selectable.getY() <= this.getY() 
+					&& selectable.getY() + selectable.getH() >= this.getY() + this.getH();
+			
+			if (anchorTop) 
+				GuiMoveBlocks.potentialAnchors.put(this, new DisplayAnchor(selectable, this, 'd'));
+			else if (anchorBottom)
+				GuiMoveBlocks.potentialAnchors.put(this, new DisplayAnchor(selectable, this, 'u'));
+			else if (anchorRight)
+				GuiMoveBlocks.potentialAnchors.put(this, new DisplayAnchor(selectable, this, 'r'));
+			else if (anchorLeft)
+				GuiMoveBlocks.potentialAnchors.put(this, new DisplayAnchor(selectable, this, 'l'));
+			else
+				GuiMoveBlocks.potentialAnchors.remove(this);
+
 		}
-	}
-	
-	@Override
-	public void drawOutline() {
+		
+		/*
+		Draw.rect(this.getX(), 
+				this.getY() - padding, 
+				this.getW(), 
+				padding, 
+				1, 0, 0, 1);
+		
+		Draw.rect(this.getX(), 
+				this.getY() + this.getH(), 
+				this.getW(), 
+				padding, 
+				1, 0, 0, 1);
+		
+		Draw.rect(this.getX() - padding, 
+				this.getY() - padding, 
+				padding, 
+				this.getH() + padding*2, 
+				1, 0, 0, 1);
+		
+		Draw.rect(this.getX() + this.getW(), 
+				this.getY() - padding, 
+				padding, 
+				this.getH() + padding*2, 
+				1, 0, 0, 1);
+				*/
 		
 		// Draw the top bar.
-		Draw.rect(baseX-padding*2, 
-				   baseY-1-padding*2, 
-				   this.w + padding*4,
+
+		Draw.rect(this.getX()-padding*2, 
+				   this.getY() -1-padding*2, 
+				   this.getW() + padding*2,
 				   padding, 
-				   1, 0, 0, 1);
+				   anchorTop?0:1, anchorTop?1:0, 0, 1);
 		
 		// Draw the bottom bar.
 		Draw.rect(baseX-padding*2, 
 				   baseY + this.h + padding-1, 
 				   this.w + padding*4,
 				   padding, 
-				   1, 0, 0, 0.5F);
+				   anchorBottom?0:1, anchorBottom?1:0, 0, 0.5F);
 		
 		// Draw the left bar.
 		Draw.rect(baseX-padding*2, 
 				   baseY-1-padding*2, 
 				   padding,
 				   this.h+padding*4, 
-				   1, 0, 0, 1);
+				   anchorRight?0:1, anchorRight?1:0, 0, 1);
 		
 		// Draw the right bar.
 		Draw.rect(this.baseX + this.w + padding, 
 				   baseY-1-padding*2, 
 				   padding,
 				   this.h+padding*4, 
-				   1, 0, 0, 1);
-		
-	}
-	
-	public int totalWidth() {
-		return this.w + padding*2;
+				   anchorLeft?0:1, anchorLeft?1:0, 0, 1);		
 	}
 	
 	@Override
 	public void move(char direction, int moveBy, boolean ctrl) {
 		
-		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
+		DisplayAnchor.anchors.remove(this);
 		
 		// Holding CTRL will snap the box to the edges of the screen.
 		if (ctrl) {
 			if (direction == 'l') baseX = 0 + padding*2;
 			
-			if (direction == 'r') baseX = res.getScaledWidth() - this.w - padding*2;
+			if (direction == 'r') baseX = res.getScaledWidth() - getW();
 			
 			if (direction == 'u') baseY = 0 + padding*2 + 1;
 			
-			if (direction == 'd') baseY = res.getScaledHeight() - this.h - padding*2 + 1;
+			if (direction == 'd') baseY = res.getScaledHeight() - getH() + 1;
 			
 		} else {
 			// Move left
@@ -669,7 +595,7 @@ public class InfoBlock implements ISelectable {
 			
 			// Move right
 			if (direction == 'r')
-				baseX = baseX + this.w + moveBy + padding*2 > res.getScaledWidth() ? res.getScaledWidth() - padding*2 - this.w : baseX + moveBy;
+				baseX = baseX + this.w + moveBy + padding*2 > res.getScaledWidth() ? res.getScaledWidth() - getW() : baseX + moveBy;
 
 			// Move up
 			if (direction == 'u')
@@ -677,13 +603,13 @@ public class InfoBlock implements ISelectable {
 
 			// Move down
 			if (direction == 'd')
-				baseY = baseY + this.h + moveBy + padding*2 - 1 > res.getScaledHeight() ? baseY : baseY + moveBy;
-
+				baseY = baseY + moveBy + getH() - 1 > res.getScaledHeight() ? baseY : baseY + moveBy;
 		}
+		
 		
 		if (this.baseX > res.getScaledWidth()/2) {
 			// Distance from the edge.
-			int distanceFromEdge = 0 - this.w - this.baseX - padding*2 + res.getScaledWidth();
+			int distanceFromEdge = 0 - this.baseX - this.getW() + res.getScaledWidth();
 			Data.put(this.title + ".x", "-" + distanceFromEdge);
 		} else {
 			Data.put(this.title + ".x", "" + this.baseX);
@@ -691,11 +617,58 @@ public class InfoBlock implements ISelectable {
 		
 		if (this.baseY > res.getScaledHeight()/2) {
 			int distanceFromEdge = res.getScaledHeight() - this.h - this.baseY - padding*2 + 1;
-			System.out.println(distanceFromEdge);
+			System.out.println("dist: -" +distanceFromEdge);
 			Data.put(this.title + ".y", "-" + distanceFromEdge);
 		} else {
 			Data.put(this.title + ".y", "" + this.baseY);
 		}
+	}
+	
+	@Override
+	public Server getServer() {
+		return this.server;
+	}
+	
+	@Override
+	public State getState() {
+		return this.state;
+	}
+
+	@Override
+	public int getX() {
+		return this.baseX;
+	}
+	
+	@Override
+	public void setX(int x) {
+		this.baseX = x;
+	}
+
+	@Override
+	public int getY() {
+		return this.baseY;
+	}
+	
+	@Override
+	public void setY(int y) {
+		this.baseY = y;
+	}
+
+	@Override
+	public int getW() {
+		calcW();
+		return this.w + padding*2;
+	}
+
+	@Override
+	public int getH() {
+		calcH();
+		return this.h + padding*2;
+	}
+	
+	@Override
+	public String toString() {
+		return this.title;
 	}
 	
 }

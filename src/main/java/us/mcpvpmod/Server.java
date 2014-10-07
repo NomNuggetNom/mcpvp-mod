@@ -61,7 +61,7 @@ import cpw.mods.fml.common.gameevent.TickEvent;
  * Provides a main class for getting server dependent information.
  */
 public enum Server {
-	HUB, KIT, HG, MAZE, SAB, CTF, HS, PARTY, BUILD, RAID, HG2, NONE;
+	HUB, KIT, HG, MAZE, SAB, CTF, HS, PARTY, BUILD, RAID, HG2, NONE, ALL;
 	
 	/**
 	 * @return The friendly name of the server from the lang file.

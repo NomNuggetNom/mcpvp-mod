@@ -1,24 +1,21 @@
 package us.mcpvpmod.gui.info;
 
 import java.awt.Rectangle;
-import java.awt.geom.Area;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import net.minecraft.client.gui.GuiScreen;
-
-import org.lwjgl.input.Keyboard;
-
 import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.gui.ArmorDisplay;
-import us.mcpvpmod.gui.FriendsBlock;
 import us.mcpvpmod.gui.PotionDisplay;
 import us.mcpvpmod.json.TeamsJSON;
-import us.mcpvpmod.util.Data;
 import us.mcpvpmod.util.Format;
 
 public class GuiMoveBlocks extends GuiScreen {
 
 	public GuiScreen parent;
+	public static HashMap<Selectable, DisplayAnchor> potentialAnchors = new HashMap<Selectable, DisplayAnchor>();
 	
 	public GuiMoveBlocks(GuiScreen parent) {
 		TeamsJSON.run();
@@ -26,21 +23,21 @@ public class GuiMoveBlocks extends GuiScreen {
 		initGui();
 	}
 	
+	/*
 	public void initGui() {
 		//Keyboard.enableRepeatEvents(true);
 	}
 	
-	public void initGuiButtons() {
-	}
-	
+	/*
 	@Override
 	public void drawScreen(int p_73863_1_, int p_73863_2_, float p_73863_3_) {
 		super.drawScreen(p_73863_1_, p_73863_2_, p_73863_3_);
 	}
+	*/
 	
 	@Override
     protected void mouseClicked(int x, int y, int p_73864_3_) {
-		System.out.println(clickedBlock(x, y));
+		clickedBlock(x, y);
 		super.mouseClicked(x, y, p_73864_3_);
 	}
 	
@@ -97,6 +94,11 @@ public class GuiMoveBlocks extends GuiScreen {
 	
 	@Override
     public void onGuiClosed() {
+
+		for (Selectable selectable : this.potentialAnchors.keySet()) {
+			this.potentialAnchors.get(selectable).child.anchorTo(this.potentialAnchors.get(selectable).parent, this.potentialAnchors.get(selectable).direction);
+		}
+		
 		Selectable.selected = null;
 		super.onGuiClosed();
     }

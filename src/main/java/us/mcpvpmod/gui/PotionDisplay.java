@@ -12,12 +12,16 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import org.lwjgl.opengl.GL11;
 
 import us.mcpvpmod.Main;
-import us.mcpvpmod.gui.info.ISelectable;
+import us.mcpvpmod.Server;
+import us.mcpvpmod.config.all.ConfigHUD;
+import us.mcpvpmod.game.state.DummyState;
+import us.mcpvpmod.game.state.State;
+import us.mcpvpmod.gui.info.DisplayAnchor;
 import us.mcpvpmod.gui.info.Selectable;
 import us.mcpvpmod.util.Data;
 
 
-public class PotionDisplay implements ISelectable {
+public class PotionDisplay extends Selectable {
 
 	//Thanks to http://www.minecraftforge.net/wiki/Gui_Overlay for tutorial on rendering potion items.
 	
@@ -35,19 +39,23 @@ public class PotionDisplay implements ISelectable {
 	private static final int BUFF_ICON_BASE_V_OFFSET = 198;
 	private static final int BUFF_ICONS_PER_ROW = 8;
 	
-	public static void displayPotions(RenderGameOverlayEvent event) {
+	public PotionDisplay() {
+		Selectable.put("PotionDisplay", this);
+	}
+	
+	@Override
+	public String toString() {
+		return "PotionDisplay";
+	}
+	
+	public void displayPotions(RenderGameOverlayEvent event) {
 		
   	  Main.mc.getTextureManager().bindTexture(new ResourceLocation("textures/gui/container/inventory.png"));
       GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
       GL11.glDisable(GL11.GL_LIGHTING);    
-      
-      if (Data.get("PotionDisplay.x") != null) {
-    	  baseX = Integer.parseInt(Data.get("PotionDisplay.x"));
-      }
-      
-      if (Data.get("PotionDisplay.y") != null) {
-    	  baseY = Integer.parseInt(Data.get("PotionDisplay.y"));
-      }
+
+      this.setX(this.loadX());
+      this.setY(this.loadY());
       
   	  for (Iterator iterator = Main.mc.thePlayer.getActivePotionEffects().iterator(); iterator.hasNext(); y += BUFF_ICON_SPACING) {
   		  
@@ -81,7 +89,7 @@ public class PotionDisplay implements ISelectable {
 		   	  PotionEffect potioneffect = (PotionEffect) iterator.next();
 		   	  Potion potion = Potion.potionTypes[potioneffect.getPotionID()];
 		   	  String timeLeft = potion.getDurationString(potioneffect);
-
+		   	  timeLeft = timeLeft.replace("0:", "");
 		   	  
 		   	  String s1 = "";
               if (potioneffect.getAmplifier() == 1)
@@ -98,7 +106,8 @@ public class PotionDisplay implements ISelectable {
               }
               
 		   	  Draw.string(s1, x + BUFF_ICON_SIZE, y + BUFF_ICON_SIZE/3, 0xFFFFFF, true);
-		   	  Draw.string(timeLeft, x + BUFF_ICON_SIZE + Main.mc.fontRenderer.getStringWidth(s1) + 6, y + BUFF_ICON_SIZE/3, 0xFFFFFF, true);
+		   	  if (ConfigHUD.potionMode.equals("Show Time Remaining"))
+		   		  Draw.string(timeLeft, x + BUFF_ICON_SIZE + Main.mc.fontRenderer.getStringWidth(s1) + 6, y + BUFF_ICON_SIZE/3, 0xFFFFFF, true);
 	  	  }
 	  	  x = baseX;
 	      y = baseY;
@@ -114,7 +123,10 @@ public class PotionDisplay implements ISelectable {
 			if (Main.mc.fontRenderer.getStringWidth(timeLeft) > max)
 				max = Main.mc.fontRenderer.getStringWidth(timeLeft);
 		}
-		return max;
+		
+	   	if (ConfigHUD.potionMode.equals("Show Time Remaining"))
+	   		return max;
+	   	else return 0;
 	}
 	
 	public static void setWidth() {
@@ -132,70 +144,95 @@ public class PotionDisplay implements ISelectable {
 	}
 	
 	@Override
-	public void click() {
-		// TODO Auto-generated method stub
-		if (Selectable.selected == this) {
-			Selectable.selected = null;
-		} else {
-			Selectable.selected = this;
-		}
-	}
-
-	@Override
-	public void drawOutline() {
-		// TODO Auto-generated method stub
-		Draw.rect(x, 
-				y - padding, 
-				w, 
-				padding, 
-				1, 0, 0, 1);
-		
-		Draw.rect(x, 
-				y + h, 
-				w, 
-				padding, 
-				1, 0, 0, 1);
-		
-		Draw.rect(x - padding, 
-				y - padding, 
-				padding, 
-				h + padding*2, 
-				1, 0, 0, 1);
-		
-		Draw.rect(x + w, 
-				y - padding, 
-				padding, 
-				h + padding*2, 
-				1, 0, 0, 1);
-	}
-
-	@Override
 	public void move(char direction, int moveBy, boolean ctrl) {
 		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
 		
+		DisplayAnchor.anchors.remove(this);
+		
 		// Holding CTRL will snap the box to the edges of the screen.
 		if (ctrl) {
-			if (direction == 'l') x = 0 + padding;
+			if (direction == 'l') baseX = 0 + padding*2;
 			
-			if (direction == 'r') x = res.getScaledWidth() - this.w - padding;
+			if (direction == 'r') baseX = res.getScaledWidth() - getW();
 			
-			if (direction == 'u') y = 0 + padding;
+			if (direction == 'u') baseY = 0 + padding*2 + 1;
 			
-			if (direction == 'd') y = res.getScaledHeight() - this.h - padding;
+			if (direction == 'd') baseY = res.getScaledHeight() - getH() + 1;
+			
 		} else {
 			// Move left
-			if (direction == 'l') x -= moveBy;
+			if (direction == 'l')
+				baseX = baseX - moveBy - padding*2 < 0 ? 0 + padding*2 : baseX - moveBy;
+			
 			// Move right
-			if (direction == 'r') x += moveBy;
+			if (direction == 'r')
+				baseX = baseX + this.w + moveBy + padding*2 > res.getScaledWidth() ? res.getScaledWidth() - getW() : baseX + moveBy;
+
 			// Move up
-			if (direction == 'u') y -= moveBy;
+			if (direction == 'u')
+				baseY = baseY - moveBy - padding*2 - 1< 0 ? baseY : baseY - moveBy;
+
 			// Move down
-			if (direction == 'd') y += moveBy;
+			if (direction == 'd')
+				baseY = baseY + moveBy + getH() - 1 > res.getScaledHeight() ? baseY : baseY + moveBy;
 		}
 		
-		Data.put("PotionDisplay.x", "" + x);
-		Data.put("PotionDisplay.y", "" + y);
+		
+		if (this.baseX > res.getScaledWidth()/2) {
+			// Distance from the edge.
+			int distanceFromEdge = 0 - this.baseX - this.getW() + res.getScaledWidth();
+			Data.put(this.toString() + ".x", "-" + distanceFromEdge);
+		} else {
+			Data.put(this.toString() + ".x", "" + this.baseX);
+		}
+		
+		if (this.baseY > res.getScaledHeight()/2) {
+			int distanceFromEdge = res.getScaledHeight() - this.h - this.baseY - padding*2 + 1;
+			Data.put(this.toString() + ".y", "-" + distanceFromEdge);
+		} else {
+			Data.put(this.toString() + ".y", "" + this.baseY);
+		}
 	}
 	
+	@Override
+	public Server getServer() {
+		return Server.getServer();
+	}
+	
+	@Override
+	public State getState() {
+		return Server.getState();
+	}
+
+	@Override
+	public int getX() {
+		return this.baseX;
+	}
+	
+	@Override
+	public void setX(int x) {
+		this.baseX = x;
+	}
+
+	@Override
+	public int getY() {
+		return this.baseY;
+	}
+	
+	@Override
+	public void setY(int y) {
+		this.baseY = y;
+	}
+
+	@Override
+	public int getW() {
+	    setWidth();
+		return this.w;
+	}
+
+	@Override
+	public int getH() {
+		return this.h;
+	}
 	
 }
