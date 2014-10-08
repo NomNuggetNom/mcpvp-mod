@@ -116,7 +116,8 @@ public class ArmorDisplay extends Selectable {
 		return max;
 	}
 
-	@Override
+	//@Override
+	/*
 	public void move(char direction, int moveBy, boolean ctrl) {
 		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
 		
@@ -192,7 +193,8 @@ public class ArmorDisplay extends Selectable {
 		Data.put("ArmorDisplay.x", "" + x);
 		Data.put("ArmorDisplay.y", "" + y);
 		*/
-	}
+	//}
+
 	
 	@Override
 	public Server getServer() {

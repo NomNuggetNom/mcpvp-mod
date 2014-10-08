@@ -8,7 +8,6 @@ import us.mcpvpmod.util.Data;
 public class HandleJoinMCPVP {
 
 	public static long lastLogin = 0;
-	public static boolean shown = false;
 	
 	/**
 	 * Fired when the "Now logged in!" message is received in chat.
@@ -22,11 +21,11 @@ public class HandleJoinMCPVP {
 	}
 	
 	public static void check() {
-		if (System.currentTimeMillis() - lastLogin >= 100 && !shown
+		if (System.currentTimeMillis() - lastLogin >= 100
 				&& Data.get("shownWelcome") == null
 				&& Main.mc.currentScreen == null) {
 			Main.mc.displayGuiScreen(new GuiWelcome(Main.mc.currentScreen));
-			shown = true;
+			Data.put("shownWelcome", "true");
 		}
 	}
 	

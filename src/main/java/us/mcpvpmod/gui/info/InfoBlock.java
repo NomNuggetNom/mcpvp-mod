@@ -1,6 +1,7 @@
 package us.mcpvpmod.gui.info;
 
 import java.awt.Rectangle;
+import java.awt.geom.Area;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.regex.Matcher;
@@ -533,8 +534,11 @@ public class InfoBlock extends Selectable {
 				   anchorLeft?0:1, anchorLeft?1:0, 0, 1);		
 	}
 	
+	/*
 	@Override
 	public void move(char direction, int moveBy, boolean ctrl) {
+		
+		Area dispArea = new Area(new Rectangle(res.getScaledWidth(), res.getScaledHeight()));
 		
 		DisplayAnchor.anchors.remove(this);
 		
@@ -583,6 +587,7 @@ public class InfoBlock extends Selectable {
 			Data.put(this.toString() + ".y", "" + this.baseY);
 		}
 	}
+	*/
 	
 	@Override
 	public Server getServer() {
@@ -603,6 +608,73 @@ public class InfoBlock extends Selectable {
 	public void setX(int x) {
 		this.baseX = x;
 	}
+	
+	/*
+	@Override
+	public int loadX() {
+		
+		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
+		
+		// This checks if there is a registered anchor.
+		// There could still be one saved as text in the file!
+		if (DisplayAnchor.anchors.get(this) != null) {
+			DisplayAnchor anchor = DisplayAnchor.anchors.get(this);
+			
+			// Directional support and adjustment.
+			if (anchor.direction == 'r') {
+				return anchor.parent.getX() + anchor.parent.getW() + ConfigHUD.margin;
+			} else if (anchor.direction == 'l') {
+				return anchor.parent.getX() - anchor.parent.getW() - ConfigHUD.margin;
+			}
+		}
+		
+		// This checks this text file for saved values.
+		if (Data.get(this.toString() + ".x") != null) {
+			
+			// The saved coordinate.
+			String savedX = Data.get(this.toString() + ".x");
+			
+			// Occasionally, a glitch in the matrix occurs and it saves as --#.
+			// This is just to prevent a terrible, horrible crash.
+			if (savedX.startsWith("--")) {
+				FMLLog.warning("[MCPVP] Force resetting X coord of block \"%s\" due to incorrect saved coordinate.", this);
+				Data.put(this.toString() + ".x", "" + 0);
+				return ConfigHUD.margin;
+			
+			// This supports saved anchors in the format of "a.ParentBlockName.AnchorDirectionChar"
+			} else if (savedX.startsWith("a.")) {
+				
+				// Establish an anchor.
+				this.anchorTo(
+						Selectable.getSelectable(savedX.split("\\.")[1]), // The parent selectable.
+						savedX.split("\\.")[2].charAt(0)); // The direction char.
+				
+				// Return ConfigHUD.margin because on the next tick, the first check for anchors will catch it anyway.
+				return ConfigHUD.margin;
+			}
+
+			// This is the "default" return value.
+			int newX = ConfigHUD.margin;
+			
+			// Use a regex check to make sure we don't parse a non-integer number.
+			if (savedX.matches("\\d")) 
+
+				// Parse the found value into an integer.
+				// The number could be negative, so it's not returned yet.
+				newX = Integer.parseInt((String) Data.get(this.toString() + ".x"));
+			
+				// Support for negative numbers, i.e. subtracting from the edges.
+			if (savedX.startsWith("-")) {
+					
+				// Subtract the total height and the found value from the height of the screen.
+				return res.getScaledWidth() - this.getW() + padding*2 - Math.abs(newX);
+			} else {
+				return newX;
+			}
+		}
+		return ConfigHUD.margin;
+	}
+*/
 
 	@Override
 	public int getY() {
@@ -613,17 +685,88 @@ public class InfoBlock extends Selectable {
 	public void setY(int y) {
 		this.baseY = y;
 	}
-
+	
+	/*
+	@Override
+	public int loadY() { 
+		
+		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
+		
+		// This checks if there is a registered anchor.
+		// There could still be one saved as text in the file!
+		if (DisplayAnchor.anchors.get(this) != null) {
+			DisplayAnchor anchor = DisplayAnchor.anchors.get(this);
+			
+			// Directional support and adjustment.
+			if (anchor.direction == 'd') {
+				return anchor.parent.getY() + anchor.parent.getH() + ConfigHUD.margin;
+			} else if (anchor.direction == 'u') {
+				return anchor.parent.getY() - anchor.parent.getH() - ConfigHUD.margin;
+			}
+		}
+		
+		// This checks this text file for saved values.
+		if (Data.get(this.toString() + ".y") != null) {
+			
+			// The saved coordinate.
+			String savedY = Data.get(this.toString() + ".y");
+			
+			// Occasionally, a glitch in the matrix occurs and it saves as --#.
+			// This is just to prevent a terrible, horrible crash.
+			if (savedY.startsWith("--")) {
+				FMLLog.warning("[MCPVP] Force resetting Y coord of block \"%s\" due to incorrect saved coordinate.", this);
+				Data.put(this.toString() + ".y", "" + 0);
+				return ConfigHUD.margin;
+			
+			// This supports saved anchors in the format of "a.ParentBlockName.AnchorDirectionChar"
+			} else if (savedY.startsWith("a.")) {
+				
+				// Establish an anchor.
+				this.anchorTo(
+						Selectable.getSelectable(savedY.split("\\.")[1]), // The parent selectable.
+						savedY.split("\\.")[2].charAt(0)); // The direction char.
+				
+				// Return ConfigHUD.margin because on the next tick, the first check for anchors will catch it anyway.
+				return ConfigHUD.margin;
+				
+			}
+			
+			// This is the "default" return value.
+			int newY = ConfigHUD.margin;
+			
+			// Use a regex check to make sure we don't parse a non-integer number.
+			if (savedY.matches("\\d+"))
+				
+				// Parse the found value into an integer.
+				// The number could be negative, so it's not returned yet.
+				newY =  Integer.parseInt(savedY);
+			
+			// Support for negative numbers, i.e. subtracting from the edges.
+			if (newY <= 0 || savedY.startsWith("-")) {
+				
+				// Subtract the total height and the found value from the height of the screen.
+				return res.getScaledHeight() - this.getH() + padding*2 - Math.abs(newY);
+			} else {
+				
+				// Return the positive (literal) stored Y.
+				return newY;
+			}
+		} else {
+			return ConfigHUD.margin;
+		}
+	}
+*/
+	
 	@Override
 	public int getW() {
 		calcW();
-		return this.w + padding*2;
+		return this.w + padding;
 	}
 
 	@Override
 	public int getH() {
 		calcH();
-		return this.h + padding*2;
+		return this.h + padding;
 	}
 	
 	@Override

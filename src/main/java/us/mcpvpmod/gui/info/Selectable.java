@@ -1,5 +1,6 @@
 package us.mcpvpmod.gui.info;
 
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -148,12 +149,187 @@ public class Selectable {
 		
 	}
 	
-	public void move(char direction, int pixels, boolean ctrl) {}
+	/*
+	public void move(char direction, int moveBy, boolean ctrl) {
+		
+		DisplayAnchor.anchors.remove(this);
+		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
+		
+		System.out.println(direction);
+		
+		// Move left
+		if (direction == 'l') 
+			this.setX(this.getX() - moveBy - padding < 0 ? 
+					0 + padding : 
+					this.getX() - moveBy);
+		
+		// Move right
+		if (direction == 'r')
+			this.setX(this.getX() + this.getW() + moveBy + padding > res.getScaledWidth() ? 
+					res.getScaledWidth() - getW() - padding : 
+					this.getX() + moveBy);
+
+		// Move up
+		if (direction == 'u')
+			this.setY(this.getY() - moveBy - padding < 0 ? 
+					padding : 
+					this.getY() - moveBy);
+
+		// Move down
+		if (direction == 'd')
+			this.setY(this.getY() + moveBy + padding + this.getH() > res.getScaledHeight() ? 
+					res.getScaledHeight() - this.getH() - padding : 
+					this.getY() + moveBy);
+		
+		Data.put(this.toString() + ".x", "" + this.getX());
+		Data.put(this.toString() + ".y", "" + this.getY());
+	}
+	*/
+	
+	public void move(char direction, int moveBy, boolean ctrl) {
+		
+		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
+		
+		DisplayAnchor.anchors.remove(this);
+		
+		int justifyLeft = this instanceof InfoBlock ? padding*2 : padding;
+		int justifyRight = res.getScaledWidth() - this.getW() - padding;
+		int justifyUp = this instanceof InfoBlock ? padding*2 : padding;
+		int justifyDown = res.getScaledHeight() - this.getH() - padding;
+		
+		// Holding CTRL will snap the box to the edges of the screen.
+		if (ctrl) {
+			if (direction == 'l') this.setX(justifyLeft);
+			
+			if (direction == 'r') this.setX(justifyRight);
+			
+			if (direction == 'u') this.setY(justifyUp);
+			
+			if (direction == 'd') this.setY(justifyDown);
+			
+		} else {
+			// Move left
+			if (direction == 'l') 
+				this.setX(this.getX() - moveBy - padding < 0 ? 
+						justifyLeft : 
+						this.getX() - moveBy);
+			
+			// Move right
+			if (direction == 'r')
+				this.setX(this.getX() + this.getW() + moveBy + padding > res.getScaledWidth() ? 
+						justifyRight : 
+						this.getX() + moveBy);
+
+			// Move up
+			if (direction == 'u')
+				this.setY(this.getY() - moveBy - padding < 0 ? 
+						justifyUp : 
+						this.getY() - moveBy);
+
+			// Move down
+			if (direction == 'd')
+				this.setY(this.getY() + moveBy + padding + this.getH() > res.getScaledHeight() ? 
+						justifyDown : 
+						this.getY() + moveBy);
+		}
+		
+		
+		if (this.getX() > res.getScaledWidth()/2) {
+			// Distance from the edge.
+			int distanceFromEdge = 0 - this.getX() - this.getW() + res.getScaledWidth();
+			Data.put(this.toString() + ".x", "-" + distanceFromEdge);
+		} else {
+			Data.put(this.toString() + ".x", "" + this.getX());
+		}
+		
+		if (this.getY() > res.getScaledHeight()/2) {
+			int distanceFromEdge = res.getScaledHeight() - this.getH() - this.getY() - padding;
+			Data.put(this.toString() + ".y", "-" + distanceFromEdge);
+		} else {
+			Data.put(this.toString() + ".y", "" + this.getY());
+		}
+		
+	}
 	
 	public int getX() { return -1; }
 	
 	public void setX(int x) { }
 	
+	public int loadX() {
+		
+		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
+		
+		// This checks if there is a registered anchor.
+		// There could still be one saved as text in the file!
+		/*
+		if (DisplayAnchor.anchors.get(this) != null) {
+			DisplayAnchor anchor = DisplayAnchor.anchors.get(this);
+			
+			// Directional support and adjustment.
+			if (anchor.direction == 'r') {
+				return anchor.parent.getX() + anchor.parent.getW() + ConfigHUD.margin;
+			} else if (anchor.direction == 'l') {
+				return anchor.parent.getX() - anchor.parent.getW() - ConfigHUD.margin;
+			}
+		}
+		*/
+		
+		// This checks this text file for saved values.
+		if (Data.get(this.toString() + ".x") != null) {
+			
+			// The saved coordinate.
+			String savedX = Data.get(this.toString() + ".x");
+			
+			// Occasionally, a glitch in the matrix occurs and it saves as --#.
+			// This is just to prevent a terrible, horrible crash.
+			/*
+			if (savedX.startsWith("--")) {
+				FMLLog.warning("[MCPVP] Force resetting X coord of block \"%s\" due to incorrect saved coordinate.", this);
+				Data.put(this.toString() + ".x", "" + 0);
+				return ConfigHUD.margin;
+			
+			// This supports saved anchors in the format of "a.ParentBlockName.AnchorDirectionChar"
+			} else if (savedX.startsWith("a.")) {
+				
+				// Establish an anchor.
+				this.anchorTo(
+						Selectable.getSelectable(savedX.split("\\.")[1]), // The parent selectable.
+						savedX.split("\\.")[2].charAt(0)); // The direction char.
+				
+				// Return ConfigHUD.margin because on the next tick, the first check for anchors will catch it anyway.
+				return ConfigHUD.margin;
+			}
+			*/
+
+			// Support for negative numbers, i.e. subtracting from the edges.
+			if (savedX.startsWith("-")) {
+					
+				// Subtract the height and the found value from the height of the screen.
+				return res.getScaledWidth() - this.getW() - Math.abs(Integer.parseInt(Data.get(this.toString() + ".x")));
+			} else {
+				return Integer.parseInt(savedX);
+			}
+		}
+		return ConfigHUD.margin;
+		
+		/*
+		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
+		
+		if (Data.get(this.toString() + ".x") != null) {
+			
+			if (Data.get(this.toString() + ".x").startsWith("-")) {
+				return res.getScaledWidth() - this.getW() - Math.abs(Integer.parseInt(Data.get(this.toString() + ".x")));
+			}
+			
+			return Integer.parseInt(Data.get(this.toString() + ".x"));
+		} else {
+			return ConfigHUD.margin;
+		}
+		*/
+		
+	}
+	
+	/*
 	public int loadX() { 
 		
 		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
@@ -181,6 +357,7 @@ public class Selectable {
 			// This is just to prevent a terrible, horrible crash.
 			if (savedX.startsWith("--")) {
 				FMLLog.warning("[MCPVP] Force resetting X coord of block \"%s\" due to incorrect saved coordinate.", this);
+				Data.put(this.toString() + ".x", "" + 0);
 				return ConfigHUD.margin;
 			
 			// This supports saved anchors in the format of "a.ParentBlockName.AnchorDirectionChar"
@@ -209,18 +386,95 @@ public class Selectable {
 			if (savedX.startsWith("-")) {
 					
 				// Subtract the total height and the found value from the height of the screen.
-				return res.getScaledWidth() - this.getW() - Math.abs(newX);
+				return res.getScaledWidth() - this.getW() - Math.abs(newX) + padding;
 			} else {
 				return newX;
 			}
 		}
 		return ConfigHUD.margin;
 	}
-	
+	*/
+
 	public int getY() { return -1; }
 	
 	public void setY(int y) { }
 	
+	public int loadY() {
+		/*
+		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
+		
+		if (Data.get(this.toString() + ".y") != null) {
+			
+			if (Data.get(this.toString() + ".y").startsWith("-")) {
+				return res.getScaledHeight() - this.getH() - Math.abs(Integer.parseInt(Data.get(this.toString() + ".y"))) - padding;
+			}
+			
+			return Integer.parseInt(Data.get(this.toString() + ".y"));
+		} else {
+			return ConfigHUD.margin;
+		}
+		*/
+		
+		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
+		
+		// This checks if there is a registered anchor.
+		// There could still be one saved as text in the file!
+		/*
+		if (DisplayAnchor.anchors.get(this) != null) {
+			DisplayAnchor anchor = DisplayAnchor.anchors.get(this);
+			
+			// Directional support and adjustment.
+			if (anchor.direction == 'd') {
+				return anchor.parent.getY() + anchor.parent.getH() + ConfigHUD.margin;
+			} else if (anchor.direction == 'u') {
+				return anchor.parent.getY() - anchor.parent.getH() - ConfigHUD.margin;
+			}
+		}
+		*/
+		// This checks this text file for saved values.
+		if (Data.get(this.toString() + ".y") != null) {
+			
+			// The saved coordinate.
+			String savedY = Data.get(this.toString() + ".y");
+			
+			// Occasionally, a glitch in the matrix occurs and it saves as --#.
+			// This is just to prevent a terrible, horrible crash.
+			/*
+			if (savedY.startsWith("--")) {
+				FMLLog.warning("[MCPVP] Force resetting Y coord of block \"%s\" due to incorrect saved coordinate.", this);
+				Data.put(this.toString() + ".y", "" + 0);
+				return ConfigHUD.margin;
+			
+			// This supports saved anchors in the format of "a.ParentBlockName.AnchorDirectionChar"
+			} else if (savedY.startsWith("a.")) {
+				
+				// Establish an anchor.
+				this.anchorTo(
+						Selectable.getSelectable(savedY.split("\\.")[1]), // The parent selectable.
+						savedY.split("\\.")[2].charAt(0)); // The direction char.
+				
+				// Return ConfigHUD.margin because on the next tick, the first check for anchors will catch it anyway.
+				return ConfigHUD.margin;
+				
+			}
+			*/
+			
+			// Support for negative numbers, i.e. subtracting from the edges.
+			if (savedY.startsWith("-")) {
+				
+				// Subtract the total height and the found value from the height of the screen.
+				return res.getScaledHeight() - this.getH() - Math.abs(Integer.parseInt(Data.get(this.toString() + ".y"))) - padding;
+			} else {
+				
+				// Return the positive (literal) stored Y.
+				return Integer.parseInt(savedY);
+			}
+		} else {
+			return ConfigHUD.margin;
+		}
+	}
+	
+	/*
 	public int loadY() { 
 		
 		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
@@ -248,6 +502,7 @@ public class Selectable {
 			// This is just to prevent a terrible, horrible crash.
 			if (savedY.startsWith("--")) {
 				FMLLog.warning("[MCPVP] Force resetting Y coord of block \"%s\" due to incorrect saved coordinate.", this);
+				Data.put(this.toString() + ".y", "" + 0);
 				return ConfigHUD.margin;
 			
 			// This supports saved anchors in the format of "a.ParentBlockName.AnchorDirectionChar"
@@ -277,7 +532,7 @@ public class Selectable {
 			if (newY <= 0 || savedY.startsWith("-")) {
 				
 				// Subtract the total height and the found value from the height of the screen.
-				return res.getScaledHeight() - this.getH() - Math.abs(newY);
+				return res.getScaledHeight() - this.getH() - padding - Math.abs(newY);
 			} else {
 				
 				// Return the positive (literal) stored Y.
@@ -288,6 +543,7 @@ public class Selectable {
 		}
 		
 	}
+	*/
 	
 	public int getW() { return -1; }
 	
@@ -306,4 +562,7 @@ public class Selectable {
 	public Server getServer() { return Server.ALL; }
 
 	public State getState() { return DummyState.NONE; }
+	
+	public Rectangle getRectangle() { return null; }
+
 }

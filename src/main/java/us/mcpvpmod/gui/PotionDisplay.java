@@ -143,6 +143,7 @@ public class PotionDisplay extends Selectable {
 		}
 	}
 	
+	/*
 	@Override
 	public void move(char direction, int moveBy, boolean ctrl) {
 		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
@@ -193,6 +194,7 @@ public class PotionDisplay extends Selectable {
 			Data.put(this.toString() + ".y", "" + this.baseY);
 		}
 	}
+	*/
 	
 	@Override
 	public Server getServer() {
