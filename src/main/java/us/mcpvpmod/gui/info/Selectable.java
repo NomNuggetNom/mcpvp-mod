@@ -110,6 +110,8 @@ public class Selectable {
 					&& selectable.getY() <= this.getY() 
 					&& selectable.getY() + selectable.getH() >= this.getY() + this.getH();
 			
+			//System.out.println("top: " + anchorTop + ", bottom: " + anchorBottom + ", right: " + anchorRight + ", left" + anchorLeft);
+					
 			if (anchorTop)
 				GuiMoveBlocks.potentialAnchors.put(this, new DisplayAnchor(selectable, this, 'd'));
 			else if (anchorBottom)
@@ -261,7 +263,6 @@ public class Selectable {
 		
 		// This checks if there is a registered anchor.
 		// There could still be one saved as text in the file!
-		/*
 		if (DisplayAnchor.anchors.get(this) != null) {
 			DisplayAnchor anchor = DisplayAnchor.anchors.get(this);
 			
@@ -272,7 +273,6 @@ public class Selectable {
 				return anchor.parent.getX() - anchor.parent.getW() - ConfigHUD.margin;
 			}
 		}
-		*/
 		
 		// This checks this text file for saved values.
 		if (Data.get(this.toString() + ".x") != null) {
@@ -282,7 +282,7 @@ public class Selectable {
 			
 			// Occasionally, a glitch in the matrix occurs and it saves as --#.
 			// This is just to prevent a terrible, horrible crash.
-			/*
+
 			if (savedX.startsWith("--")) {
 				FMLLog.warning("[MCPVP] Force resetting X coord of block \"%s\" due to incorrect saved coordinate.", this);
 				Data.put(this.toString() + ".x", "" + 0);
@@ -299,7 +299,7 @@ public class Selectable {
 				// Return ConfigHUD.margin because on the next tick, the first check for anchors will catch it anyway.
 				return ConfigHUD.margin;
 			}
-			*/
+
 
 			// Support for negative numbers, i.e. subtracting from the edges.
 			if (savedX.startsWith("-")) {
@@ -311,21 +311,6 @@ public class Selectable {
 			}
 		}
 		return ConfigHUD.margin;
-		
-		/*
-		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
-		
-		if (Data.get(this.toString() + ".x") != null) {
-			
-			if (Data.get(this.toString() + ".x").startsWith("-")) {
-				return res.getScaledWidth() - this.getW() - Math.abs(Integer.parseInt(Data.get(this.toString() + ".x")));
-			}
-			
-			return Integer.parseInt(Data.get(this.toString() + ".x"));
-		} else {
-			return ConfigHUD.margin;
-		}
-		*/
 		
 	}
 	
@@ -400,26 +385,11 @@ public class Selectable {
 	public void setY(int y) { }
 	
 	public int loadY() {
-		/*
-		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
-		
-		if (Data.get(this.toString() + ".y") != null) {
-			
-			if (Data.get(this.toString() + ".y").startsWith("-")) {
-				return res.getScaledHeight() - this.getH() - Math.abs(Integer.parseInt(Data.get(this.toString() + ".y"))) - padding;
-			}
-			
-			return Integer.parseInt(Data.get(this.toString() + ".y"));
-		} else {
-			return ConfigHUD.margin;
-		}
-		*/
-		
+
 		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
 		
 		// This checks if there is a registered anchor.
 		// There could still be one saved as text in the file!
-		/*
 		if (DisplayAnchor.anchors.get(this) != null) {
 			DisplayAnchor anchor = DisplayAnchor.anchors.get(this);
 			
@@ -430,7 +400,7 @@ public class Selectable {
 				return anchor.parent.getY() - anchor.parent.getH() - ConfigHUD.margin;
 			}
 		}
-		*/
+		
 		// This checks this text file for saved values.
 		if (Data.get(this.toString() + ".y") != null) {
 			
@@ -439,7 +409,6 @@ public class Selectable {
 			
 			// Occasionally, a glitch in the matrix occurs and it saves as --#.
 			// This is just to prevent a terrible, horrible crash.
-			/*
 			if (savedY.startsWith("--")) {
 				FMLLog.warning("[MCPVP] Force resetting Y coord of block \"%s\" due to incorrect saved coordinate.", this);
 				Data.put(this.toString() + ".y", "" + 0);
@@ -457,7 +426,7 @@ public class Selectable {
 				return ConfigHUD.margin;
 				
 			}
-			*/
+
 			
 			// Support for negative numbers, i.e. subtracting from the edges.
 			if (savedY.startsWith("-")) {
@@ -555,14 +524,12 @@ public class Selectable {
 		if (direction == 'u' || direction == 'd') {
 			Data.put(this.toString() + ".y", "a." + parent.toString() + "." + direction);
 		} else if (direction == 'l' || direction == 'r') {
-			Data.put(this.toString() + ".y", "a." + parent.toString() + "." + direction);
+			Data.put(this.toString() + ".x", "a." + parent.toString() + "." + direction);
 		}
 	}
 	
 	public Server getServer() { return Server.ALL; }
 
 	public State getState() { return DummyState.NONE; }
-	
-	public Rectangle getRectangle() { return null; }
 
 }

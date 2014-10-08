@@ -492,6 +492,8 @@ public class InfoBlock extends Selectable {
 					&& selectable.getY() <= this.getY() 
 					&& selectable.getY() + selectable.getH() >= this.getY() + this.getH();
 			
+			//System.out.println("top: " + anchorTop + ", bottom: " + anchorBottom + ", right: " + anchorRight + ", left: " + anchorLeft);
+					
 			if (anchorTop) 
 				GuiMoveBlocks.potentialAnchors.put(this, new DisplayAnchor(selectable, this, 'd'));
 			else if (anchorBottom)
@@ -533,7 +535,6 @@ public class InfoBlock extends Selectable {
 				   this.h+padding*4, 
 				   anchorLeft?0:1, anchorLeft?1:0, 0, 1);		
 	}
-	
 	/*
 	@Override
 	public void move(char direction, int moveBy, boolean ctrl) {
