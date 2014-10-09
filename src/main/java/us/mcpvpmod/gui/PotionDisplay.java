@@ -120,13 +120,15 @@ public class PotionDisplay extends Selectable {
 			PotionEffect potioneffect = (PotionEffect) obj;
 			Potion potion = Potion.potionTypes[potioneffect.getPotionID()];
 			String timeLeft = potion.getDurationString(potioneffect);
-			if (Main.mc.fontRenderer.getStringWidth(timeLeft) > max)
+			if (Main.mc.fontRenderer.getStringWidth(timeLeft) > max && ConfigHUD.potionMode.equals("Show Time Remaining"))
 				max = Main.mc.fontRenderer.getStringWidth(timeLeft);
+			if (potioneffect.getAmplifier() == 1 || potioneffect.getAmplifier() == 2 || potioneffect.getAmplifier() == 3) {
+				if (!(max > Main.mc.fontRenderer.getStringWidth(I18n.format("enchantment.level." + (potioneffect.getAmplifier() + 1)))))
+					max = Main.mc.fontRenderer.getStringWidth(I18n.format("enchantment.level." + (potioneffect.getAmplifier() + 1))) + 4;
+			}
 		}
 		
-	   	if (ConfigHUD.potionMode.equals("Show Time Remaining"))
-	   		return max;
-	   	else return 0;
+	    return max;
 	}
 	
 	public static void setWidth() {
