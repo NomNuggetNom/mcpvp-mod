@@ -1,4 +1,4 @@
-package us.mcpvpmod.gui;
+package us.mcpvpmod.events;
 
 import us.mcpvpmod.Main;
 import us.mcpvpmod.gui.server.GuiChooseMultiplayer;
@@ -7,7 +7,7 @@ import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.server.gui.MinecraftServerGui;
 
-public class GuiEvent {
+public class HandleGui {
 
 	public static void onOpen(GuiOpenEvent event) {
 		if (event.gui == null) return;

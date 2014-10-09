@@ -14,7 +14,6 @@ import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.Sync;
-import us.mcpvpmod.gui.GuiEvent;
 import us.mcpvpmod.gui.server.GuiMCPVP;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.IModGuiFactory;
@@ -79,7 +78,7 @@ public class Events {
 	
 	@SubscribeEvent
 	public void onOpen(GuiOpenEvent event) {
-		GuiEvent.onOpen(event);
+		HandleGui.onOpen(event);
 	}
 	
     @SubscribeEvent

@@ -1,5 +1,6 @@
 package us.mcpvpmod.events.tick;
 
+import net.minecraft.client.gui.GuiIngameMenu;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.config.all.ConfigVersion;
 import us.mcpvpmod.game.alerts.Alerts;
@@ -7,6 +8,7 @@ import us.mcpvpmod.game.checks.kills.KillTimerCTF;
 import us.mcpvpmod.game.vars.AllVars;
 import us.mcpvpmod.gui.ArmorDisplay;
 import us.mcpvpmod.gui.Draw;
+import us.mcpvpmod.gui.GuiIngameMCPVP;
 import us.mcpvpmod.gui.Medal;
 import us.mcpvpmod.trackers.BoardTracker;
 import us.mcpvpmod.version.MCPVPVersion;
@@ -25,7 +27,7 @@ public class AllTick {
 		for (BoardTracker tracker : BoardTracker.boardTrackers) {
 			tracker.update();
 		}
-
+		
 	}
 	
 }

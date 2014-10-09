@@ -39,4 +39,19 @@ public class HandleKey {
         }
     }
     
+    public static void openConfigScreen() {
+    	for (ModContainer mod : Loader.instance().getModList()) {
+    		if (mod.getModId() == null) continue;
+    		
+    		if (mod.getModId().equals(Main.modID)) {
+				try {
+    	            IModGuiFactory guiFactory = FMLClientHandler.instance().getGuiFactoryFor(mod);
+					GuiScreen newScreen = guiFactory.mainConfigGuiClass().getConstructor(GuiScreen.class).newInstance(Main.mc.currentScreen);
+    	            Main.mc.displayGuiScreen(newScreen);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+    		}
+    	}
+    }
 }

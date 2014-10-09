@@ -1,7 +1,9 @@
 package us.mcpvpmod.events.render;
 
+import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import us.mcpvpmod.Main;
+import us.mcpvpmod.gui.GuiIngameMCPVP;
 import us.mcpvpmod.gui.PotionDisplay;
 import us.mcpvpmod.gui.info.DisplayAnchor;
 import us.mcpvpmod.gui.info.Selectable;
@@ -40,7 +42,10 @@ public class AllRender {
 		//Main.friendsList.anchorTo(InfoBlock.get(Format.process("#bold##u#CTF")), 'r');
 		//Main..anchorTo(InfoBlock.get(Format.process("#bold##u#CTF")), 'd');
 		
-
+		if (Main.mc.currentScreen instanceof GuiIngameMenu) {
+			Main.mc.displayGuiScreen(new GuiIngameMCPVP());
+		}
+		//System.out.println(Main.mc.currentScreen instanceof GuiIngameMenu);
 
 	}
 	
