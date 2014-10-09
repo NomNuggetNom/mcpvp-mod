@@ -23,8 +23,9 @@ public class AllVars {
 		vars.put("z", "" + AllInfo.getZ());
 		vars.put("ip", AllInfo.getIP());
 		vars.put("fps", Main.mc.debug.split(",")[0].replaceAll("fps", ""));
-		vars.put("direction", AllInfo.getFacing());
-		vars.put("f", AllInfo.getFacing());
+		vars.put("direction", AllInfo.getDirection());
+		vars.put("dir", "" + AllInfo.getDirectionChar());
+		vars.put("f", "" + AllInfo.getF());
 		vars.put("players", "" + AllInfo.getPlayersOnline());
 		//Main.mc.s
 	}

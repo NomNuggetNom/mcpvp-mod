@@ -63,7 +63,7 @@ public class GuiServerList extends GuiScrollingList {
 		
 		MCPVPServer server = servers.get(i);
 		String ip = server.Server;
-		String motd = server.MOTD.replaceAll("Â", "");
+		String motd = server.MOTD.replaceAll("\u00C2", "").replaceAll("\u00AC\u00DF(.)", "$1");
 		int players = server.Players;
 		
 		String append = "#white#";

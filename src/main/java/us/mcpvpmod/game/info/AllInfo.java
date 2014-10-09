@@ -4,6 +4,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.MathHelper;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.ServerHelper;
+import us.mcpvpmod.util.MCPVPMath;
 
 /**
  * Information that is not dependent on the current server.
@@ -52,12 +53,28 @@ public class AllInfo {
 	}
 	
 	/**
-	 * @return The F direction that the player is facing.
+	 * @return The direction the player is facing, e.g. North, South, etc.
 	 */
-	public static String getFacing() {
+	public static String getDirection() {
 		if (Main.mc.thePlayer == null) return "";
 		int i4 = MathHelper.floor_double((double)(Main.mc.thePlayer.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 		return Direction.directions[i4];
+	}
+	
+	/**
+	 * @return A character based on the direction that the player is facing. N/S/E/W.
+	 */
+	public static char getDirectionChar() {
+		if (Main.mc.thePlayer == null) return '-';
+		return getDirection().charAt(0);
+	}
+	
+	/**
+	 * @return The F direction the player is facing.
+	 */
+	public static int getF() {
+		if (Main.mc.thePlayer == null) return -1;
+		return MathHelper.floor_double((double)(Main.mc.thePlayer.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 	}
 	
 	/**
