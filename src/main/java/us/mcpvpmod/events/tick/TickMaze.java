@@ -1,11 +1,11 @@
 package us.mcpvpmod.events.tick;
 
+import net.minecraft.client.gui.GuiPlayerInfo;
 import us.mcpvpmod.Main;
+import us.mcpvpmod.ServerHelper;
 import us.mcpvpmod.game.checks.CheckTimeMaze;
-import us.mcpvpmod.game.info.InfoMaze;
 import us.mcpvpmod.game.stats.StatsMaze;
 import us.mcpvpmod.game.vars.VarsMaze;
-import us.mcpvpmod.util.BoardHelper;
 import cpw.mods.fml.common.gameevent.TickEvent;
 
 public class TickMaze {
@@ -14,6 +14,8 @@ public class TickMaze {
 		VarsMaze.putVars();
 		StatsMaze.getStats();
 		CheckTimeMaze.updateTime();
+		//System.out.println(ServerHelper.getColorPrefix("Crowhart"));
 	}
+
 	
 }

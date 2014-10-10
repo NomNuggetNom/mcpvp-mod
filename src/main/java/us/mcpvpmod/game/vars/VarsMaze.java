@@ -2,8 +2,10 @@ package us.mcpvpmod.game.vars;
 
 import java.util.HashMap;
 
-import us.mcpvpmod.game.stats.StatsKit;
+import us.mcpvpmod.Main;
+import us.mcpvpmod.game.info.InfoMaze;
 import us.mcpvpmod.game.stats.StatsMaze;
+import us.mcpvpmod.game.team.AllTeam;
 
 public class VarsMaze {
 
@@ -28,7 +30,9 @@ public class VarsMaze {
 		vars.put("baseZ", Vars.get("maze:base.z"));
 		vars.put("base z", Vars.get("maze:base.z"));
 		vars.put("team", Vars.get("maze:team"));
+		vars.put("color", InfoMaze.getTeamColor());
 		vars.put("kit", Vars.get("maze:kit"));
+		vars.put("teams", "" + InfoMaze.getTeamsLeft());
 	}
 	
 	/**

@@ -48,5 +48,14 @@ public class ServerHelper {
 		}
 		return players;
 	}
+	
+	public static String getColorPrefix(String playerName) {
+		for (GuiPlayerInfo info : getPlayersGui()) {
+			if (info.name.endsWith(playerName) && info.name.startsWith("\u00A7")) {
+				return info.name.replaceAll("\u00A7(.).*", "$1");
+			}
+		}
+		return " ";
+	}
 
 }

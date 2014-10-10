@@ -20,6 +20,9 @@ public class CoreMaze {
 		new ChatTracker(reJoinTeam, Server.MAZE, 
 				new String[]{"maze:team", "$1"});
 		
+		new ChatTracker(reTeamOut, Server.MAZE,
+				new String[]{"maze:remain", "$1"});
+		
 		new ChatTrigger(reKit, "maze.kit", Server.MAZE,  
 				new String[]{"kit", "$1"});
 		
