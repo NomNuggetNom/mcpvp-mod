@@ -1,4 +1,4 @@
-package us.mcpvpmod.gui.info;
+package us.mcpvpmod.gui;
 
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import us.mcpvpmod.Server;
 import us.mcpvpmod.config.all.ConfigHUD;
 import us.mcpvpmod.game.state.DummyState;
 import us.mcpvpmod.game.state.State;
-import us.mcpvpmod.gui.Draw;
+import us.mcpvpmod.gui.screen.GuiMoveBlocks;
 import us.mcpvpmod.util.Data;
 
 public class Selectable {	

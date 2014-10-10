@@ -11,9 +11,7 @@ import us.mcpvpmod.Server;
 import us.mcpvpmod.config.all.ConfigHUD;
 import us.mcpvpmod.game.state.DummyState;
 import us.mcpvpmod.game.state.State;
-import us.mcpvpmod.gui.info.DisplayAnchor;
-import us.mcpvpmod.gui.info.GuiMoveBlocks;
-import us.mcpvpmod.gui.info.Selectable;
+import us.mcpvpmod.gui.screen.GuiMoveBlocks;
 import us.mcpvpmod.util.Data;
 
 public class ArmorDisplay extends Selectable {

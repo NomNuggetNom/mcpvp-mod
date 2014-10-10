@@ -74,7 +74,6 @@ public class GuiWelcome extends GuiScreen {
 	
 	@Override
 	public void onGuiClosed() {
-		System.out.println("Closed.");
 		//Data.put("shownWelcome", "true");
 	}
 	

@@ -2,7 +2,6 @@ package us.mcpvpmod.gui.screen;
 
 import us.mcpvpmod.Main;
 import us.mcpvpmod.events.HandleKey;
-import us.mcpvpmod.gui.server.GuiMCPVP;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraft.client.resources.I18n;

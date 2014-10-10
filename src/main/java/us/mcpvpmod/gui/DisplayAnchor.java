@@ -1,4 +1,4 @@
-package us.mcpvpmod.gui.info;
+package us.mcpvpmod.gui;
 
 import java.util.HashMap;
 

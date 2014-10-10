@@ -1,4 +1,4 @@
-package us.mcpvpmod.gui.info;
+package us.mcpvpmod.gui.screen;
 
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -8,7 +8,10 @@ import net.minecraft.client.gui.GuiScreen;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.gui.ArmorDisplay;
+import us.mcpvpmod.gui.DisplayAnchor;
+import us.mcpvpmod.gui.InfoBlock;
 import us.mcpvpmod.gui.PotionDisplay;
+import us.mcpvpmod.gui.Selectable;
 import us.mcpvpmod.json.TeamsJSON;
 import us.mcpvpmod.util.Format;
 

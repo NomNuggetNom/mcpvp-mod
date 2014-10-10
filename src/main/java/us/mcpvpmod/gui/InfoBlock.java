@@ -1,4 +1,4 @@
-package us.mcpvpmod.gui.info;
+package us.mcpvpmod.gui;
 
 import java.awt.Rectangle;
 import java.awt.geom.Area;
@@ -21,7 +21,7 @@ import us.mcpvpmod.game.FriendsList;
 import us.mcpvpmod.game.state.DummyState;
 import us.mcpvpmod.game.state.State;
 import us.mcpvpmod.game.vars.AllVars;
-import us.mcpvpmod.gui.Draw;
+import us.mcpvpmod.gui.screen.GuiMoveBlocks;
 import us.mcpvpmod.util.Data;
 import us.mcpvpmod.util.Format;
 import cpw.mods.fml.common.FMLLog;
