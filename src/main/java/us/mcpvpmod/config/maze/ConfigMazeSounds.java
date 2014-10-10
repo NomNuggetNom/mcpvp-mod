@@ -5,13 +5,10 @@ import static net.minecraftforge.common.config.Configuration.CATEGORY_GENERAL;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
-import us.mcpvpmod.game.alerts.CustomAlert;
 import us.mcpvpmod.game.alerts.SoundAlert;
-import us.mcpvpmod.util.Format;
 import cpw.mods.fml.common.DummyModContainer;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
@@ -42,6 +39,7 @@ public class ConfigMazeSounds extends DummyModContainer {
         syncConfig();
         return config;
     }
+    
     
     public static void syncConfig() {
         if (config == null) {

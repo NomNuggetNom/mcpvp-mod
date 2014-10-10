@@ -1,6 +1,5 @@
 package us.mcpvpmod.util;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -43,7 +42,7 @@ public class Format {
 	public static String s(String key) {
 		return I18n.format(key);
 	}
-	
+
 	public static void setCodes() {
 		formatCodes.put("black", "0");
 		formatCodes.put("dark_blue", "1");

@@ -3,12 +3,12 @@ package us.mcpvpmod.game.kits;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 
 public class KitsCTF {
 	
 	public static Item empty = Items.cookie;
+	
 	
 	public static void putKits() {
 		

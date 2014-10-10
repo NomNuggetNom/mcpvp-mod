@@ -18,7 +18,7 @@ public class CoreHG {
 	public static String reRemain = "§r§b(\\d*) players remaining.§r";
 	public static String reParticipating = "§r§cThere are (.*) players participating.§r";
 	public static String reWin = "§r§c(.*) wins!§r";
-	
+
 	public static void setup() {
 		
 		new ChatTracker(reKit, Server.HG,

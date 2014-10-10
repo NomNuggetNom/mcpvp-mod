@@ -37,6 +37,7 @@ public class ConfigKitHUD extends DummyModContainer {
         syncConfig();
     }
     
+    
     public static Configuration getConfig() {
         if (config == null) {
             File cfgFile = new File(Loader.instance().getConfigDir(), fileName);

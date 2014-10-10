@@ -1,13 +1,12 @@
 package us.mcpvpmod.game.kits;
 
-import java.util.ArrayList;
-
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class KitsHG {
+	
 	
 	public static void putKits() {
 		new KitHG("Flash", Blocks.redstone_torch);

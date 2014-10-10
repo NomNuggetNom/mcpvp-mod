@@ -18,7 +18,6 @@ import us.mcpvpmod.config.hg.ConfigHGAlerts;
 import us.mcpvpmod.config.hg.ConfigHGHUD;
 import us.mcpvpmod.config.hg.ConfigHGSelect;
 import us.mcpvpmod.config.hg.ConfigHGSounds;
-import us.mcpvpmod.config.hs.ConfigHSAlerts;
 import us.mcpvpmod.config.hs.ConfigHSHUD;
 import us.mcpvpmod.config.kit.ConfigKitAlerts;
 import us.mcpvpmod.config.kit.ConfigKitHUD;
@@ -60,6 +59,17 @@ public class Sync {
 	 * Fired during startup. Handles creation of formatting codes, InfoBlocks, ChatTriggers, and ChatTrackers.
 	 */ 
 	public static void sync() {
+
+		/*
+		for (Method syncMethod : new Reflections("us.mcpvpmod").getMethodsAnnotatedWith(Sync.class)) {
+			try {
+				syncMethod.invoke(syncMethod.getClass());
+			} catch (Exception e) {
+				continue;
+			}
+		}
+		*/
+		
 		FMLLog.info(Format.s("sync"));
 		syncGeneral();
 		syncKits();

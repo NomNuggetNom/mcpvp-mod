@@ -12,6 +12,7 @@ import us.mcpvpmod.util.Format;
 import cpw.mods.fml.common.DummyModContainer;
 import cpw.mods.fml.common.Loader;
 
+
 public class ConfigHUD extends DummyModContainer {
 
 	public static boolean renderBG = true;
@@ -45,6 +46,7 @@ public class ConfigHUD extends DummyModContainer {
         syncConfig();
         return config;
     }
+    
     
     public static void syncConfig() {
         if (config == null) {

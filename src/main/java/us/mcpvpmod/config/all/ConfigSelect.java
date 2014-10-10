@@ -8,10 +8,10 @@ import java.util.List;
 
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
-import us.mcpvpmod.game.alerts.SoundAlert;
 import cpw.mods.fml.common.DummyModContainer;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
+
 
 public class ConfigSelect extends DummyModContainer {
 
@@ -39,6 +39,7 @@ public class ConfigSelect extends DummyModContainer {
         syncConfig();
         return config;
     }
+    
     
     public static void syncConfig() {
         if (config == null) {

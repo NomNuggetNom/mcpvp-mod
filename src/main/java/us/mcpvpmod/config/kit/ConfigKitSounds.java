@@ -40,6 +40,7 @@ public class ConfigKitSounds extends DummyModContainer {
         return config;
     }
     
+    
     public static void syncConfig() {
         if (config == null) {
             File cfgFile = new File(Loader.instance().getConfigDir(), fileName);

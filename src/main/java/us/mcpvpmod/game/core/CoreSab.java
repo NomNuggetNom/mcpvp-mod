@@ -1,11 +1,8 @@
 package us.mcpvpmod.game.core;
 
 import us.mcpvpmod.Server;
-import us.mcpvpmod.game.info.InfoSab;
-import us.mcpvpmod.game.vars.Vars;
 import us.mcpvpmod.trackers.ChatTracker;
 import us.mcpvpmod.triggers.ChatTrigger;
-import us.mcpvpmod.util.Format;
 
 public class CoreSab {
 
@@ -23,7 +20,7 @@ public class CoreSab {
 	public static String reSpectate = "§r§6You are now spectating!§r";
 	public static String reWin = "§r§cThe (.*) wins*!§r";
 	public static String reChestWave = "§r§aChest Wave (.)/2 has hit! Better drops!§r";
-	
+
 	public static void setup() {
 
 		new ChatTracker(reRole, Server.SAB,

@@ -41,7 +41,9 @@ public class ChatCTF {
 	public static ArrayList<String> chatBlock = new ArrayList<String>();
 	
 	public static void onChat(ClientChatReceivedEvent event) {
-		String message = event.message.getUnformattedText();	
+		String message = event.message.getUnformattedText();
+		handleAll(event);
+		if (event.isCanceled()) return;
 
 		if (message.matches(reLine)) {
 			event.setCanceled(ConfigCTFChat.chatHistory);
@@ -79,7 +81,6 @@ public class ChatCTF {
 				// Does it contain our message?
 				if (!oldChat.contains(message)) {
 					// It's a new message!
-					// Process the possible alerts and index it.
 					handleMessages(event);
 					oldChat.add(message);
 				} else {
@@ -92,6 +93,10 @@ public class ChatCTF {
 		}
 	}
 	
+	/**
+	 * Handles repeated messages, i.e. where players talk.
+	 * @param event The chat event to handle.
+	 */
 	public static void handleMessages(ClientChatReceivedEvent event) {
 		String message = event.message.getUnformattedText();
 
@@ -107,7 +112,19 @@ public class ChatCTF {
 			StatsCTF.headshots++;
 			Medal.add("headshot");
 		}
-		 
+		
+		if (Main.secondChat.shouldSplit(event)) {
+			Main.secondChat.printChatMessage(event.message);
+			event.setCanceled(true);
+		}
+		
+		String reYay = "§f\\[§7TW§f\\] §6NomNuggetNom§.> §f§r§6\\/a §fYay! @(.*)";
+		if (message.matches(reYay)) {
+			if (message.replaceAll(reYay, "$1").equals(Main.mc.thePlayer.getDisplayName())) {
+				CustomAlert.get("yay").show();
+			}
+		}
+		
 		// Medic calling.
 		if (message.matches(reMedic)) {		
 			String needMedic = message.replaceAll(reMedic, "$1");
@@ -120,30 +137,12 @@ public class ChatCTF {
 				}
 			}
 		}
-		
-		if (Main.secondChat.shouldSplit(event)) {
-			Main.secondChat.printChatMessage(event.message);
-			event.setCanceled(true);
-		}
-		
-		// Removal of messages that appear in split chat.
-		for (Object chatLine : Main.secondChat.getMessages()) {
-			// The chat message in the second chat.
-			String oldMessage = ((ChatLine)chatLine).func_151461_a().getUnformattedText();
-			if (oldMessage.equals(event.message.getUnformattedText())) {
-				System.out.println("===");
-				event.setCanceled(true);
-			}
-		}
-		
-		String reYay = "§f\\[§7TW§f\\] §6NomNuggetNom§.> §f§r§6\\/a §fYay! @(.*)";
-		if (message.matches(reYay)) {
-			if (message.replaceAll(reYay, "$1").equals(Main.mc.thePlayer.getDisplayName())) {
-				CustomAlert.get("yay").show();
-			}
-		}
 	}
 	
+	/**
+	 * Handles in-game alerts, such as the flag being stolen.
+	 * @param event The chat event to handle.
+	 */
 	public static void filterAlerts(ClientChatReceivedEvent event) {
 		String message = event.message.getUnformattedText();
 		
@@ -176,6 +175,21 @@ public class ChatCTF {
 				|| message.matches(reCompass)) {
 				lastAlert = message;
 				//event.setCanceled(true);
+		}
+	}
+	
+	public static void handleAll(ClientChatReceivedEvent event) {
+		String message = event.message.getUnformattedText();
+
+		// Removal of messages that appear in split chat.
+		for (Object chatLine : Main.secondChat.getMessages()) {
+			
+			// The chat message in the second chat.
+			String oldMessage = ((ChatLine)chatLine).func_151461_a().getUnformattedText();
+			if (oldMessage.equals(event.message.getUnformattedText())) {
+				System.out.println("Found duplicate message!");
+				event.setCanceled(true);
+			}
 		}
 	}
 }

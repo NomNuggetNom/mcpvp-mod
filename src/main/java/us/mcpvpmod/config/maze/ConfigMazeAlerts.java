@@ -7,10 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import us.mcpvpmod.game.alerts.CustomAlert;
@@ -18,7 +14,6 @@ import us.mcpvpmod.util.Format;
 import cpw.mods.fml.common.DummyModContainer;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.registry.GameData;
 
 public class ConfigMazeAlerts extends DummyModContainer {
 	
@@ -43,6 +38,7 @@ public class ConfigMazeAlerts extends DummyModContainer {
         syncConfig();
         return config;
     }
+    
     
     public static void syncConfig() {
         if (config == null) {

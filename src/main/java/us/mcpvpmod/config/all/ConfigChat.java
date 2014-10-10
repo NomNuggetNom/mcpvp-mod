@@ -6,11 +6,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
 import cpw.mods.fml.common.DummyModContainer;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
-import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.common.config.Property;
 
 public class ConfigChat extends DummyModContainer {
 
@@ -40,6 +40,7 @@ public class ConfigChat extends DummyModContainer {
         syncConfig();
         return config;
     }
+    
     
     public static void syncConfig() {
         if (config == null) {
