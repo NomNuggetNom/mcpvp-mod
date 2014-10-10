@@ -1,8 +1,9 @@
-package us.mcpvpmod.gui;
+package us.mcpvpmod.gui.screen;
 
 import org.lwjgl.input.Keyboard;
 
 import us.mcpvpmod.Main;
+import us.mcpvpmod.gui.Draw;
 import us.mcpvpmod.json.TeamsJSON;
 import us.mcpvpmod.util.Data;
 import us.mcpvpmod.util.Format;

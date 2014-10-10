@@ -2,7 +2,7 @@ package us.mcpvpmod.events;
 
 import us.mcpvpmod.Main;
 import us.mcpvpmod.events.chat.AllChat;
-import us.mcpvpmod.gui.GuiWelcome;
+import us.mcpvpmod.gui.screen.GuiWelcome;
 import us.mcpvpmod.util.Data;
 
 public class HandleJoinMCPVP {

@@ -1,4 +1,4 @@
-package us.mcpvpmod.gui;
+package us.mcpvpmod.gui.screen;
 
 import java.util.ArrayList;
 import java.util.Iterator;

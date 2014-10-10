@@ -12,9 +12,9 @@ import org.lwjgl.input.Keyboard;
 
 import us.mcpvpmod.events.Events;
 import us.mcpvpmod.gui.ArmorDisplay;
-import us.mcpvpmod.gui.GuiSecondChat;
 import us.mcpvpmod.gui.PotionDisplay;
 import us.mcpvpmod.gui.info.InfoBlock;
+import us.mcpvpmod.gui.screen.GuiSecondChat;
 import us.mcpvpmod.json.ServerJSON;
 import us.mcpvpmod.json.StreamJSON;
 import us.mcpvpmod.json.TeamsJSON;

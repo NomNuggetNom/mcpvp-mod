@@ -1,4 +1,4 @@
-package us.mcpvpmod.gui;
+package us.mcpvpmod.gui.screen;
 
 import us.mcpvpmod.Main;
 import us.mcpvpmod.events.HandleKey;

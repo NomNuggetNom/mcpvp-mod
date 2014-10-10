@@ -3,10 +3,10 @@ package us.mcpvpmod.events.render;
 import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import us.mcpvpmod.Main;
-import us.mcpvpmod.gui.GuiIngameMCPVP;
 import us.mcpvpmod.gui.PotionDisplay;
 import us.mcpvpmod.gui.info.DisplayAnchor;
 import us.mcpvpmod.gui.info.Selectable;
+import us.mcpvpmod.gui.screen.GuiIngameMCPVP;
 
 /**
  * Render handling for all servers.
