@@ -1,7 +1,7 @@
 package us.mcpvpmod.game.state;
 
 import us.mcpvpmod.Server;
-import us.mcpvpmod.gui.info.InfoBlock;
+import us.mcpvpmod.gui.InfoBlock;
 import us.mcpvpmod.util.BoardHelper;
 
 public enum StateHG implements State {
@@ -10,12 +10,17 @@ public enum StateHG implements State {
 	public static StateHG state = NONE;
 	
 	public static StateHG getState() {
+		
+		// Force HG to render everything the same due to problems detecting the state of the game.
+		return PLAY;
+		/*
 		String boardTitle = BoardHelper.getBoardTitle();
 
 		if (boardTitle.contains("Starting In")) return PRE;
 		if (boardTitle.contains("Invincible for")) return PLAY;
 		
 		return state;
+		*/
 	}
 	
 	public void render() {

@@ -49,7 +49,7 @@ import us.mcpvpmod.game.state.StateHS;
 import us.mcpvpmod.game.state.StateKit;
 import us.mcpvpmod.game.state.StateMaze;
 import us.mcpvpmod.game.state.StateSab;
-import us.mcpvpmod.gui.info.InfoBlock;
+import us.mcpvpmod.gui.InfoBlock;
 import us.mcpvpmod.util.Format;
 import cpw.mods.fml.common.FMLLog;
 

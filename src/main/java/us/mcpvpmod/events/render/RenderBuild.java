@@ -4,7 +4,7 @@ import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.game.state.DummyState;
 import us.mcpvpmod.game.state.StateKit;
-import us.mcpvpmod.gui.info.InfoBlock;
+import us.mcpvpmod.gui.InfoBlock;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
 public class RenderBuild {

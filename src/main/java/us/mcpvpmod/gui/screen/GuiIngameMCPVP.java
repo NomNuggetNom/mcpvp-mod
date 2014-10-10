@@ -23,7 +23,7 @@ public class GuiIngameMCPVP extends GuiIngameMenu {
     protected void actionPerformed(GuiButton button) {
     	super.actionPerformed(button);
     	if (button.id == 100) HandleKey.openConfigScreen();
-    	if (button.id == 101) Main.mc.displayGuiScreen(new GuiMCPVP(this));
+    	if (button.id == 101) Main.mc.displayGuiScreen(new GuiServerList(this));
     }
 	
 	@Override

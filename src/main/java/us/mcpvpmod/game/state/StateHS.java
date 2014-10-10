@@ -1,7 +1,7 @@
 package us.mcpvpmod.game.state;
 
 import us.mcpvpmod.Server;
-import us.mcpvpmod.gui.info.InfoBlock;
+import us.mcpvpmod.gui.InfoBlock;
 import us.mcpvpmod.util.BoardHelper;
 
 public enum StateHS implements State {

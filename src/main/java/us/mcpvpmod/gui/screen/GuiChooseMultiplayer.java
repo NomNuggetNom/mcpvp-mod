@@ -51,7 +51,7 @@ public class GuiChooseMultiplayer extends GuiScreen {
 
 	@Override
 	protected void actionPerformed(GuiButton button) {
-		if (button.id == 100) this.mc.displayGuiScreen(new GuiMCPVP(this));
+		if (button.id == 100) this.mc.displayGuiScreen(new GuiServerList(this));
 		if (button.id == 101) this.mc.displayGuiScreen(new GuiMultiplayer(this));
 		if (button.id == 102) this.mc.displayGuiScreen(this.mainMenu);
 	}

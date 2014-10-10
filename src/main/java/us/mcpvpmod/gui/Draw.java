@@ -8,21 +8,21 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
 import us.mcpvpmod.Main;
+import us.mcpvpmod.util.Format;
 
 public class Draw {
 
 	public static void string(String string, int x, int y, int color, boolean shadow) {
-		Minecraft.getMinecraft().fontRenderer.drawString(string, x, y, color, shadow);
+		Minecraft.getMinecraft().fontRenderer.drawString(Format.process(string), x, y, color, shadow);
 	}
 	
 	public static void splitString(String string, int x, int y, int w, int color, boolean shadow) {
-		Minecraft.getMinecraft().fontRenderer.drawSplitString(string, x, y, w, color);
+		Minecraft.getMinecraft().fontRenderer.drawSplitString(Format.process(string), x, y, w, color);
 	}
 	
 	/**
@@ -106,7 +106,12 @@ public class Draw {
 		RenderHelper.disableStandardItemLighting();
 	}
 	
-	public static void centeredString(String string, int x, int y, int color, boolean shadow) {
-		
+	public static void centeredString(String string, int x, int y, int w, int color, boolean shadow) {
+		Minecraft.getMinecraft().fontRenderer.drawString(Format.process(string), x + w/2 - Main.mc.fontRenderer.getStringWidth(Format.process(string))/2, y, color, shadow);
+	}
+	
+	public static void centeredString(String string, int x, int y, int w, int color, boolean shadow, boolean background) {
+		Minecraft.getMinecraft().fontRenderer.drawString(Format.process(string), x + w/2 - Main.mc.fontRenderer.getStringWidth(Format.process(string))/2, y, color, shadow);
+
 	}
 }

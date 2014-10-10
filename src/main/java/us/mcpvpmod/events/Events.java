@@ -14,7 +14,7 @@ import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.Sync;
-import us.mcpvpmod.gui.server.GuiMCPVP;
+import us.mcpvpmod.gui.screen.GuiServerList;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.IModGuiFactory;
 import cpw.mods.fml.client.event.ConfigChangedEvent;

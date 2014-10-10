@@ -1,14 +1,20 @@
 package us.mcpvpmod.gui.screen;
 
 import java.awt.Rectangle;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import net.minecraft.client.gui.GuiScreen;
+
+import org.lwjgl.input.Keyboard;
+
 import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.gui.ArmorDisplay;
 import us.mcpvpmod.gui.DisplayAnchor;
+import us.mcpvpmod.gui.Draw;
 import us.mcpvpmod.gui.InfoBlock;
 import us.mcpvpmod.gui.PotionDisplay;
 import us.mcpvpmod.gui.Selectable;
@@ -26,9 +32,9 @@ public class GuiMoveBlocks extends GuiScreen {
 		initGui();
 	}
 	
-	/*
+
 	public void initGui() {
-		//Keyboard.enableRepeatEvents(true);
+		Keyboard.enableRepeatEvents(true);
 	}
 	
 	/*
@@ -105,5 +111,20 @@ public class GuiMoveBlocks extends GuiScreen {
 		Selectable.selected = null;
 		super.onGuiClosed();
     }
+	
+	long last = 0;
+	
+	@Override
+	public void drawScreen(int p_73863_1_, int p_73863_2_, float p_73863_3_) {
+		Draw.centeredString("      #i#Hit #gray#[#green##b#ESC#gray#]#white##i# to stop editing.", 0, this.height/4, this.width, 0xFFFFFF, true, true);
+		
+		if (Selectable.selected != null) {
+			Selectable current = Selectable.selected;
+			Draw.centeredString("#r#Selected: \"" + current + "#r#\" (" + current.getX() + ", " + current.getY() + ")",
+					0, this.height/4 + 15, this.width, 0xFFFFFF, true, true);
+		} else {
+			Draw.centeredString(Format.process("Click on something to select it!"), 0, this.height/4 + 15, this.width, 0xFFFFFF, true, true);
+		}
+	}
 	
 }

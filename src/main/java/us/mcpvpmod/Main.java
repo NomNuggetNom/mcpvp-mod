@@ -12,8 +12,8 @@ import org.lwjgl.input.Keyboard;
 
 import us.mcpvpmod.events.Events;
 import us.mcpvpmod.gui.ArmorDisplay;
+import us.mcpvpmod.gui.InfoBlock;
 import us.mcpvpmod.gui.PotionDisplay;
-import us.mcpvpmod.gui.info.InfoBlock;
 import us.mcpvpmod.gui.screen.GuiSecondChat;
 import us.mcpvpmod.json.ServerJSON;
 import us.mcpvpmod.json.StreamJSON;
@@ -70,6 +70,7 @@ public class Main {
 		
 		// Create timers.
 		Timer timer = new Timer();
+		// TODO: Should be as needed. No reason to have it repeating.
 		timer.scheduleAtFixedRate(serverJson, 0, 5*1000L);
 		timer.scheduleAtFixedRate(new StreamJSON(), 0, 30*1000L);
 		timer.scheduleAtFixedRate(new VersionJSON(), 0, 60*60*1000L);

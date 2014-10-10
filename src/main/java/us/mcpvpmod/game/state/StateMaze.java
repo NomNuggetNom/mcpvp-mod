@@ -3,7 +3,7 @@ package us.mcpvpmod.game.state;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.game.vars.VarsMaze;
-import us.mcpvpmod.gui.info.InfoBlock;
+import us.mcpvpmod.gui.InfoBlock;
 import us.mcpvpmod.util.BoardHelper;
 
 public enum StateMaze implements State {
