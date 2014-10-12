@@ -151,6 +151,7 @@ public class GuiServerList extends GuiScreen {
 		
 		// Connect
 		if (button.id == connectButton.id) {
+			if (serverList.servers.size() < selected) return;
 			MCPVPServer.connect(this.serverList.servers.get(selected));
 		}
 		

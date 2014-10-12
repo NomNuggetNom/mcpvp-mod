@@ -12,6 +12,7 @@ import org.lwjgl.input.Keyboard;
 
 import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
+import us.mcpvpmod.config.all.ConfigFriends;
 import us.mcpvpmod.gui.ArmorDisplay;
 import us.mcpvpmod.gui.DisplayAnchor;
 import us.mcpvpmod.gui.Draw;
@@ -59,11 +60,11 @@ public class GuiMoveBlocks extends GuiScreen {
 		}
 
 		if (new Rectangle(
-				InfoBlock.get(Format.process("#bold##u#Friends")).baseX, 
-				InfoBlock.get(Format.process("#bold##u#Friends")).baseY, 
-				InfoBlock.get(Format.process("#bold##u#Friends")).w, 
-				InfoBlock.get(Format.process("#bold##u#Friends")).h).contains(clickX, clickY)) {
-			InfoBlock.get(Format.process("#bold##u#Friends")).click();
+				InfoBlock.get(Format.process(ConfigFriends.onlineTitle)).baseX, 
+				InfoBlock.get(Format.process(ConfigFriends.onlineTitle)).baseY, 
+				InfoBlock.get(Format.process(ConfigFriends.onlineTitle)).w, 
+				InfoBlock.get(Format.process(ConfigFriends.onlineTitle)).h).contains(clickX, clickY)) {
+			InfoBlock.get(Format.process(ConfigFriends.onlineTitle)).click();
 			return true;
 		}
 		
