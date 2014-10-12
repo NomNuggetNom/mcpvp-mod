@@ -13,6 +13,8 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
+import us.mcpvpmod.config.all.ConfigAlerts;
+
 public class Alert extends GuiAchievement
 {
     private static final ResourceLocation background = new ResourceLocation("textures/gui/achievement/achievement_background.png");
@@ -110,6 +112,8 @@ public class Alert extends GuiAchievement
 
     public void showAlerts()
     {
+    	if (!ConfigAlerts.showAlerts) return;
+    	
         ScaledResolution res = new ScaledResolution(this.mc, this.mc.displayWidth, this.mc.displayHeight);
         if (this.field_146263_l != 0L && Minecraft.getMinecraft().thePlayer != null)
         {
