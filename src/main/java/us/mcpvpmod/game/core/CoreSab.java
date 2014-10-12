@@ -36,7 +36,7 @@ public class CoreSab {
 				new String[]{"sab:winner", "$1"});
 		
 		new ChatTrigger(reRole, "sab.start", Server.SAB,
-				new String[]{"role", "$1"});
+				new String[]{"role", "sab:role"});
 		
 		new ChatTrigger(reRemain, "sab.death", Server.SAB,
 				new String[]{"remain", "$1"});

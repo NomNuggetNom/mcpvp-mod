@@ -9,8 +9,10 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import us.mcpvpmod.Main;
+import us.mcpvpmod.game.info.InfoSab;
 import us.mcpvpmod.game.kits.AllKits;
 import us.mcpvpmod.game.vars.Vars;
+import us.mcpvpmod.game.vars.VarsSab;
 import us.mcpvpmod.gui.CustomTexture;
 import us.mcpvpmod.util.Format;
 import cpw.mods.fml.common.FMLLog;
@@ -72,7 +74,7 @@ public class CustomAlert {
 	 */
 	public String replaceInfo(String string) {	
 		String reVar = "\\{(.+?)\\}";
-
+		
 		// Form our matcher for variables.
 		Matcher varMatch = Pattern.compile(reVar).matcher(string);
 		while (varMatch.find()) {
@@ -84,13 +86,10 @@ public class CustomAlert {
 
 			} else {
 				// Return "null" to prevent the string from being rendered.
-				string = "null";
+				//string = "null";
 			}
 		}
 		string = Format.process(string);
-		// TODO: return original if string is null?
-		// Establish handle to avoid changing string given
-
 		return string;
 	}
 	
@@ -181,6 +180,8 @@ public class CustomAlert {
 				return new ItemStack(Items.skull, 1, 2);
 			} else if (name.matches("creeper.*head")) {
 				return new ItemStack(Items.skull, 1, 3);
+			} else if (name.matches("sab.winner")) {
+				return InfoSab.getWinnerIcon();
 			}
 			return new ItemStack(Blocks.air);
 		}

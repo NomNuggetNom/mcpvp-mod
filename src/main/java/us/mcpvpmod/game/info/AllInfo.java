@@ -16,8 +16,7 @@ public class AllInfo {
 	 * @return The IP address of the current server.
 	 */
 	public static String getIP() {
-		if (Main.mc.func_147104_D() == null) return "";
-		return Main.mc.func_147104_D().serverIP;
+		return ServerHelper.currentIP;
 	}
 	
 	/**

@@ -1,5 +1,8 @@
 package us.mcpvpmod.game.info;
 
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import us.mcpvpmod.game.state.StateSab;
 import us.mcpvpmod.game.vars.Vars;
 import us.mcpvpmod.util.Format;
@@ -23,6 +26,19 @@ public class InfoSab {
 		return "";
 	}
 	
+	public static ItemStack getWinnerIcon() {
+		String winner = Vars.get("sab:winner");
+		if (winner == "") return new ItemStack(Blocks.air);
+		
+		if (winner.toLowerCase().contains("innocents")) {
+			return new ItemStack(Items.slime_ball);
+		} else if (winner.toLowerCase().contains("saboteurs")) {
+			return new ItemStack(Items.magma_cream);
+		}
+		
+		return new ItemStack(Blocks.air);
+	}
+	
 	/**
 	 * @return A properly formatted version of the user's role.
 	 */
@@ -35,11 +51,11 @@ public class InfoSab {
 		}
 		
 		if (role.toLowerCase().contains("innocent")) {
-			return Format.process("#green#Innocent");
+			return Format.process("#green#Innocent#r#");
 		} else if (role.toLowerCase().contains("detective")) {
-			return Format.process("#blue#Detective");
+			return Format.process("#blue#Detective#r#");
 		} else if (role.toLowerCase().contains("saboteur")) {
-			return Format.process("#red#Saboteur");
+			return Format.process("#red#Saboteur#r#");
 		}
 		
 		return "None";
