@@ -47,5 +47,12 @@ public class VarsMaze {
 			return "";
 		}
 	}
-
+	
+	/**
+	 * Resets the variable storage by clearing it. 
+	 */
+	public static void reset() {
+		vars.clear();
+	}
+	
 }

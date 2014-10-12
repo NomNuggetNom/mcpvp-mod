@@ -33,4 +33,11 @@ public class VarsSab {
 		}
 	}
 	
+	/**
+	 * Resets the variable storage by clearing it. 
+	 */
+	public static void reset() {
+		vars.clear();
+	}
+	
 }

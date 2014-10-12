@@ -8,6 +8,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
@@ -84,5 +85,9 @@ public class Events {
     @SubscribeEvent
     public void onKey(InputEvent.KeyInputEvent event) {
     	HandleKey.onKey(event);
+    }
+    
+    @SubscribeEvent
+    public void onRenderLiving(RenderLivingEvent event) {
     }
 }

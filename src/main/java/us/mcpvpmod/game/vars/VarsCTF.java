@@ -62,5 +62,13 @@ public class VarsCTF {
 		} else {
 			return "";
 		}
+	}	
+	
+	/**
+	 * Resets the variable storage by clearing it. 
+	 */
+	public static void reset() {
+		vars.clear();
 	}
+	
 }
