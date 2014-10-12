@@ -50,9 +50,19 @@ public class ServerHelper {
 	}
 	
 	public static String getColorPrefix(String playerName) {
-		for (GuiPlayerInfo info : getPlayersGui()) {
-			if (info.name.endsWith(playerName) && info.name.startsWith("\u00A7")) {
-				return info.name.replaceAll("\u00A7(.).*", "$1");
+		
+		// Cycle through each online player.
+		for (GuiPlayerInfo player : getPlayersGui()) {
+			
+			if (player.name.startsWith("\u00A7")) {
+				String realName = player.name.replaceAll("\u00A7.(.*)", "$1");
+
+				if (playerName.startsWith(realName))
+					return player.name.replaceAll("\u00A7(.).*", "$1");
+			}
+
+			if (player.name.endsWith(playerName) && player.name.startsWith("\u00A7")) {
+				return player.name.replaceAll("\u00A7(.).*", "$1");
 			}
 		}
 		return " ";

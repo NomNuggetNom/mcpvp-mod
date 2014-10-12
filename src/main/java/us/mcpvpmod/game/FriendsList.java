@@ -6,6 +6,7 @@ import java.util.List;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiPlayerInfo;
 import us.mcpvpmod.Server;
+import us.mcpvpmod.ServerHelper;
 import us.mcpvpmod.config.all.ConfigFriends;
 import us.mcpvpmod.game.team.TeamCTF;
 import us.mcpvpmod.util.BoardHelper;
@@ -65,7 +66,7 @@ public class FriendsList {
 	public static ArrayList<String> getFriends() {
 		renderPlayers.clear();
 		
-		if (BoardHelper.hasTeams() && Server.hasTeams()) {
+		if (Server.hasTeams()) {
 			for (String player : onlineInListOnTeam(group1, TeamCTF.usersTeam())) {
 				renderPlayers.add(BoardHelper.getTeamColor(player) + dot + " " + reset + Format.process(ConfigFriends.group1Format) + player);
 			}
@@ -93,20 +94,20 @@ public class FriendsList {
 		} else {
 
 			for (String player : onlineInList(group1)) {
-				renderPlayers.add(dot + " " + reset + Format.process(ConfigFriends.group1Format) + player);
+				renderPlayers.add("\u00A7" + ServerHelper.getColorPrefix(player) + dot + " " + reset + Format.process(ConfigFriends.group1Format) + player);
 			}
 			
 			for (String player : onlineInList(group2)) {
-				renderPlayers.add(dot + " " + reset + Format.process(ConfigFriends.group2Format) + player);
+				renderPlayers.add("\u00A7" + ServerHelper.getColorPrefix(player) + dot + " " + reset + Format.process(ConfigFriends.group2Format) + player);
 			}
 			
 			for (String player : onlineInList(group3)) {
-				renderPlayers.add(dot + " " + reset + Format.process(ConfigFriends.group3Format) + player);
+				renderPlayers.add("\u00A7" + ServerHelper.getColorPrefix(player) + dot + " " + reset + Format.process(ConfigFriends.group3Format) + player);
 			}
 		}
 
 		// Fall-back for if nobody is online. 
-		// I cry.
+		// Cry.
 		if (renderPlayers.size() == 0) {
 			renderPlayers.add("Nobody :(");
 		}
@@ -140,14 +141,23 @@ public class FriendsList {
 		group3.clear();
 	}
 	
-	public static ArrayList<String> onlineInList(ArrayList checkPlayers) {
+	public static ArrayList<String> onlineInList(ArrayList<String> playersToFind) {
 		ArrayList<String> returnPlayers = new ArrayList<String>();
 		List<GuiPlayerInfo> onlinePlayers = mc.thePlayer.sendQueue.playerInfoList;
 		
+		// Cycle through every player that's online.
 		for (GuiPlayerInfo player : onlinePlayers) {
 			String playerName = player.name.replaceAll("\u00A7.", "");
-			if (checkPlayers.contains(playerName)) {
-				returnPlayers.add(playerName);
+			
+			// Cycle through all the players in the specified list (friends).
+			for (String friend : playersToFind) {
+				
+				// Use startsWith because names are sometimes cut off in tab.
+				if (friend.startsWith(playerName)) {
+					
+					// Add the whole friend's name instead of the potentiall cut-off version.
+					returnPlayers.add(friend);
+				}
 			}
 		}
 		return returnPlayers;
