@@ -291,6 +291,9 @@ public class Selectable {
 			// This supports saved anchors in the format of "a.ParentBlockName.AnchorDirectionChar"
 			} else if (savedX.startsWith("a.")) {
 				
+				if (Selectable.getSelectable(savedX.split("\\.")[1]) == null)
+					return ConfigHUD.margin;
+				
 				// Establish an anchor.
 				this.anchorTo(
 						Selectable.getSelectable(savedX.split("\\.")[1]), // The parent selectable.
@@ -395,9 +398,9 @@ public class Selectable {
 			
 			// Directional support and adjustment.
 			if (anchor.direction == 'd') {
-				return anchor.parent.getY() + anchor.parent.getH() + ConfigHUD.margin;
+				return anchor.parent.getY() + anchor.parent.getH() + padding;
 			} else if (anchor.direction == 'u') {
-				return anchor.parent.getY() - anchor.parent.getH() - ConfigHUD.margin;
+				return anchor.parent.getY() - anchor.parent.getH() - padding;
 			}
 		}
 		
@@ -416,6 +419,9 @@ public class Selectable {
 			
 			// This supports saved anchors in the format of "a.ParentBlockName.AnchorDirectionChar"
 			} else if (savedY.startsWith("a.")) {
+				
+				if (Selectable.getSelectable(savedY.split("\\.")[1]) == null)
+					return ConfigHUD.margin;
 				
 				// Establish an anchor.
 				this.anchorTo(
@@ -519,9 +525,11 @@ public class Selectable {
 	public int getH() { return -1; }
 	
 	public void anchorTo(Selectable parent, char direction) {
+		if (parent == null) return;
 		DisplayAnchor.anchors.put(this, new DisplayAnchor(parent, this, direction));
 		
 		if (direction == 'u' || direction == 'd') {
+			System.out.println(parent == null);
 			Data.put(this.toString() + ".y", "a." + parent.toString() + "." + direction);
 		} else if (direction == 'l' || direction == 'r') {
 			Data.put(this.toString() + ".x", "a." + parent.toString() + "." + direction);

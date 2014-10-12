@@ -140,6 +140,8 @@ public class PotionDisplay extends Selectable {
 	public static void setHeight() {
 		if (Main.mc.thePlayer.getActivePotionEffects().size() > 0) {
 			h = Main.mc.thePlayer.getActivePotionEffects().size() * BUFF_ICON_SIZE;
+		} else {
+			h = 0;
 		}
 	}
 	
