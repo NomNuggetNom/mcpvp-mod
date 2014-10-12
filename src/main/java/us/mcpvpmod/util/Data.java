@@ -2,13 +2,16 @@ package us.mcpvpmod.util;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Properties;
 
+import net.minecraft.client.gui.ScaledResolution;
 import us.mcpvpmod.Main;
+import us.mcpvpmod.config.all.ConfigFriends;
+import us.mcpvpmod.config.all.ConfigHUD;
+import us.mcpvpmod.gui.Selectable;
 
 public class Data {
 	
@@ -17,6 +20,7 @@ public class Data {
 	public static HashMap<String, String> entries = new HashMap();
 	public static Properties prop = new Properties();
 	public static boolean made = false;
+	public static boolean shouldSetDefaults = false;
 	
 	public static void make() {
 		if (!directory.exists()) {
@@ -33,8 +37,10 @@ public class Data {
 			try {
 				if (!dataFile.createNewFile())
 					System.out.println("Can't create MCPVP Data file!");
-				else
+				else {
 					System.out.println("Created MCPVP Data file!");
+					shouldSetDefaults = true;
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -76,6 +82,18 @@ public class Data {
 	public static boolean contains(String key) {
 		if (!made) make();
 		return prop.contains(key);
+	}
+	
+	public static void setDefaults() {
+		if (!shouldSetDefaults) return;
+		System.out.println("Setting defaults!");
+		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
+		Data.put(Main.friendsList + ".x", "-" + ConfigHUD.margin);
+		Data.put(Main.friendsList + ".y", "" + ConfigHUD.margin);
+		Data.put(Main.potionDisplay + ".y", "a." + Format.process(ConfigFriends.onlineTitle) + ".d");
+		Data.put(Main.potionDisplay + ".x", "-" + ConfigHUD.margin);
+		Data.put(Main.armorDisplay + ".x", "-" + ConfigHUD.margin);
+		Data.put(Main.armorDisplay + ".y", "a.PotionDisplay.d");
 	}
 	
 }

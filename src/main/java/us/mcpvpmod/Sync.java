@@ -161,8 +161,7 @@ public class Sync {
 		
 		InfoBlock.createBlocks(ConfigHSHUD.renderPlay, Server.HS, StateHS.PLAY);
 		
-		Main.friendsList = new InfoBlock(Format.process("#bold##u#Friends"), new ArrayList<String>(Arrays.asList("friends")), Server.ALL, DummyState.NONE);
-
+		Main.friendsList = new InfoBlock(Format.process(ConfigFriends.onlineTitle), new ArrayList<String>(Arrays.asList("friends")), Server.ALL, DummyState.NONE);
 	}
 	
 	public static void syncCores() {
