@@ -50,17 +50,34 @@ public class ConfigMazeHUD extends DummyModContainer {
         
         Property prop;
         
-    	prop = config.get(CATEGORY_GENERAL, "renderPre", new String[]{"---#bold#Pre-Game Info", "Kit: {kit}", "Team: {team}"});
+    	prop = config.get(CATEGORY_GENERAL, "renderPre", new String[]{
+    			
+    			"---#b##u#Maze Pre", 
+    			"#blue##i#Kit #gray#>> #r##bold#{kit}", 
+    			"#blue##i#Team #gray#>> #gray#\"#r##bold#{team}#r##gray#\"",
+    			"#blue##i#Players #gray#>> #r##bold#{players}#r#"
+    			
+    	});
         prop.setLanguageKey("maze.config.hud.renderPre");
     	renderPre = prop.getStringList();
     	propOrder.add(prop.getName());
     	
-    	prop = config.get(CATEGORY_GENERAL, "renderPlay", new String[]{"---#bold#Yay", "play"});
+    	prop = config.get(CATEGORY_GENERAL, "renderPlay", new String[]{
+    			
+    			"---#bold#Yay", 
+    			"play"
+    			
+    	});
         prop.setLanguageKey("maze.config.hud.renderPlay");
     	renderPlay = prop.getStringList();
     	propOrder.add(prop.getName());
     	
-    	prop = config.get(CATEGORY_GENERAL, "renderPost", new String[]{"---#bold#Yay", "post"});
+    	prop = config.get(CATEGORY_GENERAL, "renderPost", new String[]{
+    			
+    			"---#bold#Yay",
+    			"post"
+    			
+    	});
         prop.setLanguageKey("maze.config.hud.renderPost");
     	renderPost = prop.getStringList();
     	propOrder.add(prop.getName());

@@ -16,7 +16,7 @@ import cpw.mods.fml.common.Loader;
 
 public class ConfigFriends extends DummyModContainer {
 
-    public static String onlineTitle = "";
+    public static String onlineTitle;
     public static String[] group1 = new String[1000];
     public static String[] group2 = new String[1000];
     public static String[] group3 = new String[1000];
@@ -60,7 +60,7 @@ public class ConfigFriends extends DummyModContainer {
         
         Property prop;
         
-    	prop = config.get(CATEGORY_GENERAL, "onlineTitle", "#bold#Friends");
+    	prop = config.get(CATEGORY_GENERAL, "onlineTitle", "#b##u#Friends");
         prop.setLanguageKey("config.friends.onlineTitle");
     	onlineTitle = prop.getString();
     	propOrder.add(prop.getName());
