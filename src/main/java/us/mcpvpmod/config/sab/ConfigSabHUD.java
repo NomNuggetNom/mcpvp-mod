@@ -50,17 +50,34 @@ public class ConfigSabHUD extends DummyModContainer {
         
         Property prop;
         
-    	prop = config.get(CATEGORY_GENERAL, "renderPre", new String[]{"---#bold#Sab", "Players: {players}", "abc"});
+    	prop = config.get(CATEGORY_GENERAL, "renderPre", new String[]{
+    			
+    			"---#b##u#Sab", 
+    			"#red##i#Players #gray#>> #r##bold#{players}", 
+    			
+    	});
         prop.setLanguageKey("mcpvp.sab.configHUD.renderPre");
     	renderPre = prop.getStringList();
     	propOrder.add(prop.getName());
     	
-    	prop = config.get(CATEGORY_GENERAL, "renderPlay", new String[]{"---#bold#Sab", "Role: {role}", "Players: {remain}", "Detective: {detective}"});
+    	prop = config.get(CATEGORY_GENERAL, "renderPlay", new String[]{
+    			
+    			"---#b##u#Sab", 
+    			"#red##i#Role #gray#>> #r##bold#{role}", 
+    			"#red##i#Detective #gray#>> #r##bold#{detective}", 
+    			"#red##i#Players #gray#>> #r##bold#{players}"
+    			
+    	});
     	prop.setLanguageKey("mcpvp.sab.configHUD.renderPlay");
     	renderPlay = prop.getStringList();
     	propOrder.add(prop.getName());
     	
-    	prop = config.get(CATEGORY_GENERAL, "renderPost", new String[]{"---#bold#Sab", "Role: {role}", "Players: {players}", "Winner: {winner}"});
+    	prop = config.get(CATEGORY_GENERAL, "renderPost", new String[]{
+    			
+    			"---#b##u#Sab", 
+    			"#red##i#Winner #gray#>> #r##bold#{winner}"
+    			
+    	});
     	prop.setLanguageKey("mcpvp.sab.configHUD.renderPost");
     	renderPost = prop.getStringList();
     	propOrder.add(prop.getName());

@@ -51,48 +51,40 @@ public class ConfigCTFHUD extends DummyModContainer {
         Property prop;
         
     	prop = config.get(CATEGORY_GENERAL, "renderPre", new String[]{
+    			
     			"---#b##u#CTF",
     			"#gold##i#Class #gray#>> #white##b#{class}",
     			"#gold##i#Map #gray#>> #white##b#{map}"
     			
-    			/*
-    			"---#bold#Pre-Game Info (1%, 1%)", 
-    			"#gold#Class: #r#{class}", 
-    			"#gold#Map: #r#{map}"*/});
+    	});
         prop.setLanguageKey("ctf.config.hud.renderPre");
     	renderPre = prop.getStringList();
     	propOrder.add(prop.getName());
     	
     	prop = config.get(CATEGORY_GENERAL, "renderPlay", new String[]{
+    			
     			"---#b##u#CTF",
     			"#gold##i#Kills #gray#>> #white##bold#{kills} #r#({assists})",
     			"#gold##i#Streak #gray#>> #white##bold#{streak}",
     			"#gold##i#Deaths #gray#>> #white##bold#{deaths}",
     			"#gold##i#Caps #gray#>> #white##bold#{caps} #r#({steals})",
     			"#gold##i#Recovs #gray#>> #white##bold#{recovers}"
-    			/*
-    			"---#bold#Your Stats (1%, 1%)", 
-    			"#gold#Kills: #reset#{kills} ({streak})", 
-    			"#gold#Deaths: #reset#{deaths}", 
-    			"#gold#Caps: #reset#{caps} ({steals})", 
-    			"#gold#Recovers: #reset#{recovers}", 
-    			"", 
-    			"---#bold#Game Info (1%, \"#bold#Your Stats\"+1%)", 
-    			"{time}", "#r#Game #underline#{game}#r#/#underline#3", 
-    			"#red#Red wins: #r#{red wins}", 
-    			"#blue#Blue wins: #r#{blue wins}", 
-    			"{free day}"*/});
+
+    	});
         prop.setLanguageKey("ctf.config.hud.renderPlay");
     	renderPlay = prop.getStringList();
     	propOrder.add(prop.getName());
     	
     	prop = config.get(CATEGORY_GENERAL, "renderPost", new String[]{
+    			
     			"---#b##u#CTF",
     			"#gold##i#Kills #gray#>> #white##bold#{kills} #r#({assists})",
     			"#gold##i#Streak #gray#>> #white##bold#{streak}",
     			"#gold##i#Deaths #gray#>> #white##bold#{deaths}",
     			"#gold##i#Caps #gray#>> #white##bold#{caps} #r#({steals})",
-    			"#gold##i#Recovs #gray#>> #white##bold#{recovers}"});
+    			"#gold##i#Recovs #gray#>> #white##bold#{recovers}"
+    			
+    	});
         prop.setLanguageKey("ctf.config.hud.renderPost");
     	renderPost = prop.getStringList();
     	propOrder.add(prop.getName());

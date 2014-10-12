@@ -17,7 +17,8 @@ import cpw.mods.fml.common.Loader;
 
 public class ConfigAlerts extends DummyModContainer {
 
-    public static String alertOnline = "";
+    public static boolean showAlerts;
+    public static String alertOnline;
     
     public static String fileName = "mcpvp_alerts.cfg";
     
@@ -52,6 +53,11 @@ public class ConfigAlerts extends DummyModContainer {
         
         Property prop;
 		 	
+    	prop = config.get(CATEGORY_GENERAL, "showAlerts", true);
+        prop.setLanguageKey("config.Alerts.showAlerts");
+    	showAlerts = prop.getBoolean();
+    	propOrder.add(prop.getName());
+        
     	prop = config.get(CATEGORY_GENERAL, "alertOnline", Format.s("config.alerts.online.default"));
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
         prop.setLanguageKey("config.Alerts.online");
