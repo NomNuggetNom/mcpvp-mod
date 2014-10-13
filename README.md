@@ -1,4 +1,4 @@
-mcpvp-mod
+The MCPVP Mod
 =========
 
 The official MCPVP Mod
