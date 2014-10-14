@@ -56,26 +56,14 @@ public class AllRender {
 		}
 		
 		Main.friendsList.display();
-		//System.out.println(InfoBlock.get(Format.process("#bold##u#CTF")).getHeight());
-		//DisplayAnchor.anchors.clear();
-		//Main.friendsList.anchorTo(InfoBlock.get(Format.process("#bold##u#CTF")), 'r');
-		//Main..anchorTo(InfoBlock.get(Format.process("#bold##u#CTF")), 'd');
 		
 		if (Main.mc.currentScreen instanceof GuiIngameMenu) {
 			Main.mc.displayGuiScreen(new GuiIngameMCPVP());
 		}
-		//System.out.println(Main.mc.currentScreen instanceof GuiIngameMenu);
-
-
-		/*
-		Minecraft.getMinecraft().renderEngine.loadTexture(new ResourceLocation("cloaks/NomNuggetNom"), 
-				Minecraft.getMinecraft().renderEngine.getTexture(CustomTexture.get("NomNuggetNom.cape", "http://i.imgur.com/IMM9TR5.png")));
-		*/
-		//renderCapes();
 	}
 	
 	public static void renderCapes() {
-		renderCape("NomNuggetNom");
+		//renderCape("NomNuggetNom");
 	}
 	
 	public static void renderCape(String name) {
