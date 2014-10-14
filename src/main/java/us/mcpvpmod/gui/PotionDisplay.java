@@ -31,11 +31,10 @@ public class PotionDisplay extends Selectable {
 	public static int h;
 	public static int padding = 3;
 	
-	private static final int BUFF_ICON_SIZE = 18;
-	private static final int BUFF_ICON_SPACING = BUFF_ICON_SIZE + 0; // 2 pixels between buff icons
-	private static final int BUFF_ICON_BASE_U_OFFSET = 0;
-	private static final int BUFF_ICON_BASE_V_OFFSET = 198;
-	private static final int BUFF_ICONS_PER_ROW = 8;
+	private static final int iconSize = 18;
+	private static final int baseU = 0;
+	private static final int baseV = 198;
+	private static final int iconsPerRow = 8;
 	
 	public PotionDisplay() {
 		Selectable.put("PotionDisplay", this);
@@ -55,7 +54,7 @@ public class PotionDisplay extends Selectable {
       this.setX(this.loadX());
       this.setY(this.loadY());
       
-  	  for (Iterator iterator = Main.mc.thePlayer.getActivePotionEffects().iterator(); iterator.hasNext(); y += BUFF_ICON_SPACING) {
+  	  for (Iterator iterator = Main.mc.thePlayer.getActivePotionEffects().iterator(); iterator.hasNext(); y += iconSize) {
   		  
 	   	  PotionEffect potioneffect = (PotionEffect) iterator.next();
 	   	  Potion potion = Potion.potionTypes[potioneffect.getPotionID()];
@@ -66,11 +65,20 @@ public class PotionDisplay extends Selectable {
     		  int iconIndex = potion.getStatusIconIndex();
 
     		  if (event.type == RenderGameOverlayEvent.ElementType.TEXT) {
-        		  Main.mc.ingameGUI.drawTexturedModalRect(
-        				  x, y, 
-        				  BUFF_ICON_BASE_U_OFFSET + iconIndex % BUFF_ICONS_PER_ROW * BUFF_ICON_SIZE, 
-        				  BUFF_ICON_BASE_V_OFFSET + iconIndex / BUFF_ICONS_PER_ROW * BUFF_ICON_SIZE,
-        				  BUFF_ICON_SIZE, BUFF_ICON_SIZE);
+    			  
+		   		  if (ConfigHUD.potionPosition.startsWith("Right"))
+	        		  Main.mc.ingameGUI.drawTexturedModalRect(
+	        				  x + maxStringWidths() + 4, y, 
+	        				  baseU + iconIndex % iconsPerRow * iconSize, 
+	        				  baseV + iconIndex / iconsPerRow * iconSize,
+	        				  iconSize, iconSize);
+		   		  
+		   		  else if (ConfigHUD.potionPosition.startsWith("Left"))
+	        		  Main.mc.ingameGUI.drawTexturedModalRect(
+	        				  x, y, 
+	        				  baseU + iconIndex % iconsPerRow * iconSize, 
+	        				  baseV + iconIndex / iconsPerRow * iconSize,
+	        				  iconSize, iconSize);
     		  }
     	  }	  
   	  }
@@ -82,24 +90,43 @@ public class PotionDisplay extends Selectable {
 	}
 	
 	public static void displayStrings() {
-	  	  for (Iterator iterator = Main.mc.thePlayer.getActivePotionEffects().iterator(); iterator.hasNext(); y += BUFF_ICON_SPACING) {
+		
+		for (Iterator iterator = Main.mc.thePlayer.getActivePotionEffects().iterator(); iterator.hasNext(); y += iconSize) {
 	  		  
 		   	  PotionEffect potioneffect = (PotionEffect) iterator.next();
 		   	  Potion potion = Potion.potionTypes[potioneffect.getPotionID()];
 		   	  String timeLeft = potion.getDurationString(potioneffect);
 		   	  timeLeft = timeLeft.replace("0:", "");
 		   	  
-		   	  String s1 = "";
+		   	  String strength = "";
               if (potioneffect.getAmplifier() == 1)
-                  s1 = s1 + " " + I18n.format("enchantment.level.2", new Object[0]);
+                  strength = strength + " " + I18n.format("enchantment.level.2", new Object[0]);
               else if (potioneffect.getAmplifier() == 2)
-                  s1 = s1 + " " + I18n.format("enchantment.level.3", new Object[0]);
+                  strength = strength + " " + I18n.format("enchantment.level.3", new Object[0]);
               else if (potioneffect.getAmplifier() == 3)
-                  s1 = s1 + " " + I18n.format("enchantment.level.4", new Object[0]);
+                  strength = strength + " " + I18n.format("enchantment.level.4", new Object[0]);
 
-		   	  Draw.string(s1, x + BUFF_ICON_SIZE, y + BUFF_ICON_SIZE/3, 0xFFFFFF, true);
-		   	  if (ConfigHUD.potionMode.equals("Show Time Remaining"))
-		   		  Draw.string(timeLeft, x + BUFF_ICON_SIZE + Main.mc.fontRenderer.getStringWidth(s1) + 6, y + BUFF_ICON_SIZE/3, 0xFFFFFF, true);
+
+		   	  if (ConfigHUD.potionMode.equals("Show Time Remaining")) {
+		   		  
+		   		  if (ConfigHUD.potionPosition.startsWith("Right")) {
+		   			  if (strength.equals("")) {
+			   			  Draw.string(timeLeft, x + iconSize - Main.mc.fontRenderer.getStringWidth(timeLeft) + 6, y + iconSize/3, 0xFFFFFF, true);
+		   			  } else {
+			   			  Draw.string(timeLeft, x + iconSize - Main.mc.fontRenderer.getStringWidth(timeLeft) + 6, y + iconSize/2, 0xFFFFFF, true);
+					   	  Draw.string(strength, x + iconSize - Main.mc.fontRenderer.getStringWidth(strength) + 6, y, 0xFFFFFF, true);
+		   			  }
+		   		  }
+		   		  
+		   		  else if (ConfigHUD.potionPosition.startsWith("Left")) {
+		   			  if (strength.equals("")) {
+			   			  Draw.string(timeLeft, x + iconSize, y + iconSize/3, 0xFFFFFF, true);
+		   			  } else {
+			   			  Draw.string(timeLeft, x + iconSize + 4, y + iconSize/2, 0xFFFFFF, true);
+			   			  Draw.string(strength, x + iconSize, y, 0xFFFFFF, true);
+		   			  }
+		   		  }
+		   	  }
 	  	  }
 	  	  x = baseX;
 	      y = baseY;
@@ -125,7 +152,7 @@ public class PotionDisplay extends Selectable {
 	
 	public static void setWidth() {
 		if (Main.mc.thePlayer.getActivePotionEffects().size() > 0) {
-			w = BUFF_ICON_SIZE + maxStringWidths() + 4;
+			w = iconSize + maxStringWidths() + 4;
 		} else {
 			w = 0;
 		}
@@ -133,7 +160,7 @@ public class PotionDisplay extends Selectable {
 	
 	public static void setHeight() {
 		if (Main.mc.thePlayer.getActivePotionEffects().size() > 0) {
-			h = Main.mc.thePlayer.getActivePotionEffects().size() * BUFF_ICON_SIZE;
+			h = Main.mc.thePlayer.getActivePotionEffects().size() * iconSize;
 		} else {
 			h = 0;
 		}
