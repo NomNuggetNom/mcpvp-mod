@@ -2,6 +2,7 @@ package us.mcpvpmod.triggers;
 
 import java.util.ArrayList;
 
+import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.game.alerts.CustomAlert;
 import us.mcpvpmod.game.alerts.SoundAlert;
@@ -25,13 +26,16 @@ public class ChatTrigger {
 	public Server server;
 	
 	/**
-	 * An alert that is triggered when a message is received.
-	 * @param message The message to look for.
+	 * An alert that is triggered when a message is received that results in the setting of a variable.
+	 * @param message The message to match.
 	 * @param alertID The ID of the alert to trigger, specified in the relevant config class.
 	 * @param server The server to trigger this alert on. Used to prevent conflicts.
-	 * @param regex Pair of a position in the regular expression to match, and the variable name to assign the value 
-	 * OR a custom value and the variable name 
-	 * OR a variable name and a new value in the alert,e.g. {"var:sab:winner", "winner"} sets the value of "winner" to the variable "sab:winner"
+	 * @param regex Can be any of the following:
+	 * <ul>
+	 * <li>Pair of a position in the regular expression to match, and the variable name to assign the value, e.g. {"killer", "$1"} assigns the variable "killer" to the value of "$1" in the message.
+	 * <li>A custom value and the variable name, e.g. {"killer", "noob"} assigns the variable "killer" to the value of "noob."
+	 * <li>OR a variable name and a new value in the alert,e.g. {"sab:winner", "winner"} assigns the value of "winner" to the variable "sab:winner"
+	 * </ul>
 	 */
 	public ChatTrigger(String message, String alertID, Server server, String[] regex) {
 		this.pattern = message;
@@ -48,13 +52,16 @@ public class ChatTrigger {
 	}
 	
 	/**
-	 * An alert that is triggered when a message is received.
-	 * @param message The message to look for.
+	 * An alert that is triggered when a message is received that results in the setting of a variable.
+	 * @param message The message to match.
 	 * @param alertID The ID of the alert to trigger, specified in the relevant config class.
 	 * @param server The server to trigger this alert on. Used to prevent conflicts.
-	 * @param regex Pair of a position in the regular expression to match, and the variable name to assign the value 
-	 * OR a custom value and the variable name 
-	 * OR a variable name and a new value in the alert,e.g. {"var:sab:winner", "winner"} sets the value of "winner" to the variable "sab:winner"
+	 * @param regex Can be any of the following:
+	 * <ul>
+	 * <li>Pair of a position in the regular expression to match, and the variable name to assign the value, e.g. {"killer", "$1"} assigns the variable "killer" to the value of "$1" in the message.
+	 * <li>A custom value and the variable name, e.g. {"killer", "noob"} assigns the variable "killer" to the value of "noob."
+	 * <li>OR a variable name and a new value in the alert,e.g. {"sab:winner", "winner"} assigns the value of "winner" to the variable "sab:winner"
+	 * </ul>
 	 */
 	public ChatTrigger(String message, String alertID, Server server, String[]... regex) {
 		for (String[] string : regex) {
@@ -63,8 +70,8 @@ public class ChatTrigger {
 	}
 	
 	/**
-	 * An alert that is triggered when a message is received.
-	 * @param message The message to look for.
+	 * An alert that is triggered when a message is received, and does not set any special variables.
+	 * @param message The message to match.
 	 * @param alertID The ID of the alert to trigger, specified in the relevant config class.
 	 * @param server The server to trigger this alert on. Used to prevent conflicts.
 	 */
@@ -77,6 +84,10 @@ public class ChatTrigger {
 		triggers.add(this);
 	}
 	
+	public String toString() {
+		return "id:" + this.alertID + ", trigger: " + this.pattern + ", key: " + key + ", value: " + value;
+	}
+	
 	/**
 	 * Checks if the message fits the pattern. If so, update the value and show the alerts.
 	 * @param message The message to check.
@@ -86,25 +97,32 @@ public class ChatTrigger {
 		
 		if (message.matches(this.pattern)) {
 
+			// Some ChatTriggers have no value or key, instead using a raw pre-determined value.
+			// Rarely used, but avoids errors.
 			if (value != null && key != null) {
-	
+				
+				// Most ChatTriggers use a regex pattern and assign a value to the first index in the expression.
 				if (value.startsWith("$")) {
 					String val = message.replaceAll(pattern, value);
 					Vars.put(key, val);
-				} else if (value.startsWith("var:")) {
-					FMLLog.info("Unusual ChatTrigger deteceted. Key: %s --- Val: %s", key, value);
-					Vars.put(key, Vars.get(value.split("var:")[1]));
+					
+				// Some ChatTriggers reference a variable (e.g. "hg:feast.x") in order to relay information
+				// from other messages or sources (such as ChatTrackers).
 				} else if (value.matches("\\w+:.+")){
-					FMLLog.info("Unusual ChatTrigger deteceted. Key: %s --- Val: %s", key, value);
+					Main.l("Unusual ChatTrigger: %s", this);
 					Vars.put(key, Vars.get(value));
 				}
 			}
 			
+			// Trigger the specified CustomAlert, if it isn't null.
 			if (CustomAlert.get(this.alertID) != null) {
+				Main.l("Message \"%s\" resulted in CustomAlert \"%s\" via ChatTrigger \"%s\"", message, this.alertID, this);
 				CustomAlert.get(this.alertID).show();
 			}
 			
+			// Trigger the specified SoundAlert, if it isn't null.
 			if (SoundAlert.get(this.alertID) != null) {
+				Main.l("Message \"%s\" resulted in SoundAlert \"%s\" via ChatTrigger \"%s\"", message, this.alertID, this);
 				SoundAlert.get(this.alertID).play();
 			}
 		}

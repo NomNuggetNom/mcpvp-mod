@@ -35,37 +35,56 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 @Mod(modid = Main.modID, name = Main.name, version = Main.mcVersion + "-" + Main.modVersion, guiFactory = Main.guiFactory)
 public class Main {
 	
+	/** The ID of the mod. Used in detecting configuration changes and for building the mod. */
 	public static final String modID = "mcpvp";
+	/** The name of the mod is displayed on the configuration screen. */
 	public static final String name = "MCPVP Mod";
-	public static final String mcVersion = "1.7.10";
+	/** The version of the mod. */
 	public static final String modVersion = "2.0";
+	/** The version of MC that the mod was compiled for. */
+	public static final String mcVersion = "1.7.10";
+	/** The version of Forge that the mod was compiled for. */
 	public static final String forgeVersion = "10.13.0.1180";
+	/** A reference to the GuiFactory. Necessary for loading the configuration screen. */
 	public static final String guiFactory = "us.mcpvpmod.config.GuiFactory";
 	
 	@Instance
+	/** Used by Forge to recognize this as a Forge mod. */
 	public static Main instance = new Main();
+	/** A reference to Minecraft. */
 	public static Minecraft mc = Minecraft.getMinecraft();
+	/** A reference to the ServerJSON so it can be called as needed. */
 	public static ServerJSON serverJson = new ServerJSON();
-	public static GuiSecondChat secondChat = new GuiSecondChat(mc);
+	/** The MCPVPVersion used for version checking. Loaded via ServerJSON. */
 	public static MCPVPVersion mcpvpVersion = new MCPVPVersion();
+	/** The second chat box. TODO: Move somewhere else. */
+	public static GuiSecondChat secondChat = new GuiSecondChat(mc);
+	/** The key used to open the configuration screen. */
 	public static KeyBinding openConfig;
+	/** The key used to open the move blocks GUI. */
 	public static KeyBinding moveBlocks;
+	/** The key used to open the help screen, which is also shown once before. */
 	public static KeyBinding showHelp;
+	/** A reference to the on-screen ArmorDisplay. */
 	public static ArmorDisplay armorDisplay = new ArmorDisplay();
+	/** A reference to the on-screen PotionDisplay. */
 	public static PotionDisplay potionDisplay = new PotionDisplay();
+	/** A reference to the InfoBlock that will become the FriendsList during Sync. */
 	public static InfoBlock friendsList = null;
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent e) {
-		FMLLog.info(Format.s("startup"));
+		Main.l(Format.s("startup"));
     	
-    	// Register all events in the Events class
+    	// Register all events in the Events class.
+		// This allows all Events to be caught and processed later on.
 		MinecraftForge.EVENT_BUS.register(new Events());
 		FMLCommonHandler.instance().bus().register(new Events());
     	
+		// Create the directories and files for saving data.
 		Data.make();
 		
-    	// Sync all files.
+    	// Sync all files and configurations.
 		Sync.sync();
 		
 		// Create timers.
@@ -90,7 +109,10 @@ public class Main {
     
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent e) {
-		TeamsJSON.run();
+	}
+	
+	public static void l(String string, Object... data) {
+		FMLLog.info("[MCPVP] " + string, data);
 	}
     
 }

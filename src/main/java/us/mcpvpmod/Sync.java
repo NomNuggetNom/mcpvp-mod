@@ -7,6 +7,7 @@ import us.mcpvpmod.config.all.ConfigAlerts;
 import us.mcpvpmod.config.all.ConfigChat;
 import us.mcpvpmod.config.all.ConfigFriends;
 import us.mcpvpmod.config.all.ConfigHUD;
+import us.mcpvpmod.config.all.ConfigSelect;
 import us.mcpvpmod.config.all.ConfigSounds;
 import us.mcpvpmod.config.all.ConfigVersion;
 import us.mcpvpmod.config.build.ConfigBuildHUD;
@@ -56,7 +57,7 @@ import cpw.mods.fml.common.FMLLog;
 public class Sync {
 
 	/**
-	 * Fired during startup. Handles creation of formatting codes, InfoBlocks, ChatTriggers, and ChatTrackers.
+	 * Fired during startup. Handles creation of formatting codes, InfoBlocks, ChatTriggers, and ChatTrackers, and more.
 	 */ 
 	public static void sync() {
 
@@ -78,94 +79,152 @@ public class Sync {
 		syncCores();
 	}
 	
+	/**
+	 * Syncs general configuration items, 
+	 * or anything that needs to happen before Syncing takes place.
+	 */
 	public static void syncGeneral() {
+		
 		// Set formatting codes.
 		Format.setCodes();
 		// Clear the friends list.
 		FriendsList.clearList();
+		
 	}
 	
+	/**
+	 * Syncs kits to be used later in kit detection.
+	 */
 	public static void syncKits() {
 		KitsHG.putKits();
 		KitsCTF.putKits();
 	}
 
+	/**
+	 * Syncs all configuration files. Through this, all settings are defined, notably:
+	 * <ul>
+	 * <li>CustomAlerts
+	 * <li>SoundAlerts
+	 * <li>String[]s to be processed into InfoBlocks
+	 * </ul>
+	 */
 	public static void syncConfig() {
+		
 		// Sync MCPVP Configs
+		ConfigAlerts.syncConfig();
 		ConfigChat.syncConfig();
 		ConfigFriends.syncConfig();
 		ConfigHUD.syncConfig();
-		ConfigAlerts.syncConfig();
+		ConfigSelect.syncConfig();
 		ConfigVersion.syncConfig();
 		ConfigSounds.syncConfig();
 		
-		// Sync CTF Configs
-		ConfigCTFChat.syncConfig();
-		ConfigCTFAlerts.syncConfig();
-		ConfigCTFHUD.syncConfig();
-		ConfigCTFSounds.syncConfig();
-		// Sync Kit Configs
-		ConfigKitHUD.syncConfig();
-		ConfigKitAlerts.syncConfig();
-		ConfigKitSounds.syncConfig();
-		// Sync Maze Configs
-		ConfigMazeHUD.syncConfig();
-		ConfigMazeAlerts.syncConfig();
-		ConfigMazeSounds.syncConfig();
-		ConfigMazeSelect.syncConfig();
 		// Sync Build Configs
 		ConfigBuildHUD.syncConfig();
-	
-		ConfigSabHUD.syncConfig();
-		ConfigSabAlerts.syncConfig();
-		ConfigSabSounds.syncConfig();
-		ConfigSabSelect.syncConfig();
 		
-		ConfigHGHUD.syncConfig();
+		// Sync CTF Configs
+		ConfigCTFAlerts.syncConfig();
+		ConfigCTFChat.syncConfig();
+		ConfigCTFHUD.syncConfig();
+		ConfigCTFSounds.syncConfig();
+		
+		// Sync HG Configs
 		ConfigHGAlerts.syncConfig();
-		ConfigHGSounds.syncConfig();
+		ConfigHGHUD.syncConfig();
 		ConfigHGSelect.syncConfig();
+		ConfigHGSounds.syncConfig();
 		
+		// Sync HS Configs
+		ConfigHSHUD.syncConfig();
+		
+		// Sync Kit Configs
+		ConfigKitAlerts.syncConfig();
+		ConfigKitHUD.syncConfig();
+		ConfigKitSounds.syncConfig();
+				
+		// Sync Maze Configs
+		ConfigMazeAlerts.syncConfig();
+		ConfigMazeHUD.syncConfig();
+		ConfigMazeSelect.syncConfig();
+		ConfigMazeSounds.syncConfig();
+
+		// Sync Raid Configs
 		ConfigRaidHUD.syncConfig();
 		ConfigRaidAlerts.syncConfig();
 		
-		ConfigHSHUD.syncConfig();
+		// Sync Sab Configs
+		ConfigSabAlerts.syncConfig();
+		ConfigSabHUD.syncConfig();
+		ConfigSabSounds.syncConfig();
+		ConfigSabSelect.syncConfig();
+
 	}
 	
+	/**
+	 * Create InfoBlocks from the configuration. This dictates which information to
+	 * show on screen and when, based on the String[] from the Configuration to load
+	 * and the assigned Server and State.
+	 * 
+	 * Requires syncConfig() to be run first in order to account for updated configuration.
+	 */
 	public static void syncBlocks() {
-		// Sync all InfoBlocks
-		InfoBlock.blocks.clear();
-		InfoBlock.createBlocks(ConfigKitHUD.render, Server.KIT, StateKit.PLAY);
 		
+		// Clear any previous blocks. This is necessary because config changes
+		// can happen mid-game, not just on init.
+		InfoBlock.blocks.clear();
+		
+		// The FriendsList is a unique InfoBlock that displays regardless of server.
+		// This is created directly, instead of using a creatBlocks method.
+		// From here on out, the FriendsList is referenced using Main.friendsList.
+		Main.friendsList = new InfoBlock(Format.process(ConfigFriends.onlineTitle), new ArrayList<String>(Arrays.asList("friends")), Server.ALL, DummyState.NONE);
+		
+		// Create blocks for Build
+		InfoBlock.createBlocks(ConfigBuildHUD.render, Server.BUILD, DummyState.NONE);
+		
+		// Create blocks for CTF
 		InfoBlock.createBlocks(ConfigCTFHUD.renderPre, Server.CTF, StateCTF.WAIT);
 		InfoBlock.createBlocks(ConfigCTFHUD.renderPre, Server.CTF, StateCTF.PRE);
 		InfoBlock.createBlocks(ConfigCTFHUD.renderPlay, Server.CTF,StateCTF.PLAY);
 		InfoBlock.createBlocks(ConfigCTFHUD.renderPost, Server.CTF,StateCTF.POST);
 		
+		// Create blocks for HG
+		InfoBlock.createBlocks(ConfigHGHUD.renderPre, Server.HG, StateHG.PRE);
+		InfoBlock.createBlocks(ConfigHGHUD.renderPlay, Server.HG, StateHG.PLAY);
+		
+		// Create blocks for HS
+		InfoBlock.createBlocks(ConfigHSHUD.renderPlay, Server.HS, StateHS.PLAY);
+		
+		// Create blocks for Kit
+		InfoBlock.createBlocks(ConfigKitHUD.render, Server.KIT, StateKit.PLAY);
+		
+		// Create blocks for Maze
 		InfoBlock.createBlocks(ConfigMazeHUD.renderPre, Server.MAZE,StateMaze.WAIT);
 		InfoBlock.createBlocks(ConfigMazeHUD.renderPre, Server.MAZE,StateMaze.PRE);
 		InfoBlock.createBlocks(ConfigMazeHUD.renderPlay, Server.MAZE,StateMaze.PLAY);
 		InfoBlock.createBlocks(ConfigMazeHUD.renderPost, Server.MAZE,StateMaze.DEAD);
 		
-		InfoBlock.createBlocks(ConfigBuildHUD.render, Server.BUILD, DummyState.NONE);
+		// Create blocks for Raid
+		InfoBlock.createBlocks(ConfigRaidHUD.render, Server.RAID, DummyState.NONE);
 		
+		// Create blocks for Sab
 		InfoBlock.createBlocks(ConfigSabHUD.renderPre, Server.SAB, StateSab.PRE);
 		InfoBlock.createBlocks(ConfigSabHUD.renderPlay, Server.SAB, StateSab.PLAY);
 		InfoBlock.createBlocks(ConfigSabHUD.renderPost, Server.SAB, StateSab.DEAD);
 		InfoBlock.createBlocks(ConfigSabHUD.renderPost, Server.SAB, StateSab.POST);
 		
-		InfoBlock.createBlocks(ConfigHGHUD.renderPre, Server.HG, StateHG.PRE);
-		InfoBlock.createBlocks(ConfigHGHUD.renderPlay, Server.HG, StateHG.PLAY);
-		
-		InfoBlock.createBlocks(ConfigRaidHUD.render, Server.RAID, DummyState.NONE);
-		
-		InfoBlock.createBlocks(ConfigHSHUD.renderPlay, Server.HS, StateHS.PLAY);
-		
-		Main.friendsList = new InfoBlock(Format.process(ConfigFriends.onlineTitle), new ArrayList<String>(Arrays.asList("friends")), Server.ALL, DummyState.NONE);
 	}
 	
+	/**
+	 * Sync the cores, which are responsible for creating:
+	 * <ul>
+	 * <li>ChatTriggers
+	 * <li>ChatTrackers
+	 * <li>BoardTrackers
+	 * </ul>
+	 * 
+	 * Core files also contain Strings relevant to the server's triggers and trackers.
+	 */
 	public static void syncCores() {
-		// Sync cores, which are responsible for setting triggers and trackers.
 		CoreCTF.setup();
 		CoreKit.setup();
 		CoreMaze.setup();

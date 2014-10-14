@@ -2,19 +2,23 @@ package us.mcpvpmod.trackers;
 
 import java.util.ArrayList;
 
-import scala.reflect.internal.Mode;
+import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.game.vars.Vars;
-import us.mcpvpmod.triggers.ChatTrigger;
 import cpw.mods.fml.common.FMLLog;
 
 public class ChatTracker {
 
+	/** An array of all registered ChatTrackers. */
 	public static ArrayList<ChatTracker> chatTrackers = new ArrayList<ChatTracker>();
 	
+	/** The pattern of the message to match. Checked every time a message comes in. */
 	public String pattern;
-	public String value;
+	/** The key that the value will be registered to. Used in replacing the custom alert constructs, e.g. {player}. */
 	public String key;
+	/** The value of the variable to assign in Vars. Usually a position in the message ($1, $2, etc), which will be evaluated. */
+	public String value;
+	/** The server to track on. Used to prevent conflicts. */
 	public Server server;
 	
 	/**
@@ -44,6 +48,10 @@ public class ChatTracker {
 		}
 	}
 	
+	public String toString() {
+		return "pattern: " + this.pattern + ", key: " + key + ", value: " + value;
+	}
+	
 	/**
 	 * Checks if the message fits the pattern. If so, update the value.
 	 * @param message The message to check.
@@ -52,8 +60,11 @@ public class ChatTracker {
 		if (Server.getServer() != this.server) return;
 		
 		if (message.matches(this.pattern)) {
+			
+			// Most ChatTrackers use a regex pattern and assign a value to the first index in the expression.
 			if (value.startsWith("$")) {
 				String val = message.replaceAll(pattern, value);
+				Main.l("Message \"%s\" resulted in the variable \"%s\" being stored with a value of \"%s\"", message, this.key, val);
 				Vars.put(key, val);
 			} else {
 				FMLLog.info("Unusual tracker. varName: %s - replace: %s", key, value);
