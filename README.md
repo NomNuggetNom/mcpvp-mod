@@ -1,10 +1,12 @@
 ##The MCPVP Mod
 
-####Version
+#### Version
 
-- Forge: 1180
-- MC: 1.7.10
-
+              | Main          | Beta         |
+------------- | ------------- | ------------ |
+Mod           | N/A           | 2.0 beta     |
+Forge         | N/A           | 10.13.0.1180 |
+Minecraft     | N/A           | 1.7.10       |
 
 #### Install
 
@@ -13,7 +15,7 @@
 2. Move the downloaded mod file to `.minecraft\mods\`
  - Optional: move OptiFine to the same location.
 
-####Credits
+#### Credits
 
 - Coder: NomNuggetNom
 - Assistant: TISSIN
