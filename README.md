@@ -1,7 +1,6 @@
-The MCPVP Mod
-=========
+##The MCPVP Mod
 
-The official MCPVP Mod
+####Credits
 
 - Coder: NomNuggetNom
 - Assistant: TISSIN
