@@ -4,8 +4,8 @@
 
               | Main          | Beta         |
 ------------- | ------------- | ------------ |
-Mod           | N/A           | 2.0 beta     |
-Forge         | N/A           | 10.13.0.1180 |
+Mod           | N/A           | 2.0          |
+Forge         | N/A           | [10.13.0.1180](http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.7.10-10.13.0.1180/forge-1.7.10-10.13.0.1180-installer.jar) |
 Minecraft     | N/A           | 1.7.10       |
 
 #### Install
