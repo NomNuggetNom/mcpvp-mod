@@ -414,7 +414,7 @@ maze.config.select.selectTeam.tooltip=The team to automatically join.
 <!-- ALERTS -->
 sab.config.alerts.start=Game Start
 sab.config.alerts.start.tooltip=The alert triggered when the game starts.
-sab.config.alerts.start.default=#white#The game has begun! ||| You are {role}. Good luck! ||| nether_star
+sab.config.alerts.start.default=#white#The game has begun! ||| #gray#You are {role}#gray#. Good luck! ||| nether_star
 
 sab.config.alerts.death=Death
 sab.config.alerts.death.tooltip=The alert triggered when a player dies.
@@ -426,6 +426,6 @@ sab.config.alerts.chest.default=#white#Ooooo, goodies! ||| #gray#Chest wave #gre
 
 sab.config.alerts.end=Game End
 sab.config.alerts.end.tooltip=The alert triggered when the game ends.
-sab.config.alerts.end.default=#white#Game Over! ||| #gray#Winner: {winner} ||| web
+sab.config.alerts.end.default=#white#Game Over! ||| #gray#Winner: {winner} ||| sab.winner
 
 
