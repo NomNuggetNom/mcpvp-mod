@@ -27,6 +27,7 @@ public class GuiMoveBlocks extends GuiScreen {
 
 	public GuiScreen parent;
 	public static HashMap<Selectable, DisplayAnchor> potentialAnchors = new HashMap<Selectable, DisplayAnchor>();
+	public static int lastKey;
 	
 	public GuiMoveBlocks(GuiScreen parent) {
 		TeamsJSON.run();

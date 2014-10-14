@@ -24,7 +24,9 @@ public class ConfigHUD extends DummyModContainer {
 	public static boolean showArmor;
 	public static boolean showPotion;
 	public static String armorMode;
+	public static String armorPosition;
 	public static String potionMode;
+	public static String potionPosition;
 	public static boolean alignItems = true;
 	
     public static String fileName = "mcpvp_hud.cfg";
@@ -70,14 +72,24 @@ public class ConfigHUD extends DummyModContainer {
     	armorMode = prop.getString();
     	propOrder.add(prop.getName());
     	
+        prop = config.get(CATEGORY_GENERAL, "armorPosition", "Left of the Armor", Format.s("config.hud.armorPosition"), new String[]{"Left of the Armor", "Right of the Armor"});
+        prop.setLanguageKey("config.hud.armorPosition");
+    	armorPosition = prop.getString();
+    	propOrder.add(prop.getName());
+    	
         prop = config.get(CATEGORY_GENERAL, "showPotion", true);
         prop.setLanguageKey("config.hud.showPotion");
-    	showArmor = prop.getBoolean();
+    	showPotion = prop.getBoolean();
     	propOrder.add(prop.getName());
     	
         prop = config.get(CATEGORY_GENERAL, "potionMode", "Show Time Remaining", Format.s("config.hud.potionMode"), new String[]{"Show Time Remaining", "Don't Show Time Remaining"});
         prop.setLanguageKey("config.hud.potionMode");
     	potionMode = prop.getString();
+    	propOrder.add(prop.getName());
+    	
+        prop = config.get(CATEGORY_GENERAL, "potionPosition", "Left of the Potions", Format.s("config.hud.armorPosition"), new String[]{"Left of the Potions", "Left of the Armor"});
+        prop.setLanguageKey("config.hud.potionPosition");
+    	potionPosition = prop.getString();
     	propOrder.add(prop.getName());
         
     	prop = config.get(CATEGORY_GENERAL, "renderBG", true);
