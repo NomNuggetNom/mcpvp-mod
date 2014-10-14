@@ -30,6 +30,14 @@ public class ServerHelper {
 		}
 	}
 	
+	public static String shortServerIP() {
+		if (currentIP.equals("")) {
+			return "none";
+		} else {
+			return currentIP.replaceAll("(\\w+\\d+\\.\\w{2}).*", "$1");
+		}
+	}
+	
 	/**
 	 * @return A list of all GuiPlayerInfo
 	 */

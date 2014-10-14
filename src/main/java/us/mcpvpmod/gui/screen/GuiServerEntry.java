@@ -3,10 +3,13 @@ package us.mcpvpmod.gui.screen;
 import java.util.ArrayList;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.Tessellator;
 import us.mcpvpmod.MCPVPServer;
 import us.mcpvpmod.Main;
+import us.mcpvpmod.gui.CustomTexture;
+import us.mcpvpmod.gui.Draw;
 import us.mcpvpmod.util.Format;
 import cpw.mods.fml.client.GuiScrollingList;
 import cpw.mods.fml.common.FMLLog;
@@ -82,6 +85,63 @@ public class GuiServerEntry extends GuiScrollingList {
 						 parent.width - 10), 
 				parent.width/2 - Main.mc.fontRenderer.getStringWidth(Format.process("#gray#") + motd.replaceAll("\\s+", "\\s"))/2, 
 				 var3 + 12, 0xF);
+		/*
+		String draw;
+		FontRenderer f = Main.mc.fontRenderer;
+		MCPVPServer server = servers.get(i);
+		String ip = server.Server;
+		String motd = server.MOTD.replaceAll("\u00C2", "").replaceAll("\u00AC\u00DF(.)", "$1");
+		int players = server.Players;
+		String time = "";
+		
+		if (motd.contains("Starts in")) {
+			if (motd.matches(".*minutes*.*")) {
+				time = Format.process("#green#" + motd.replaceAll("\\.", "").replaceAll(".* (\\d+) minutes*", "$1") + "m");
+			} else if (motd.contains("seconds")) {
+				time = Format.process("#green#" + motd.replaceAll("\\.", "").replaceAll(".* (\\d+) seconds", "$1") + "s");
+			}
+		}
+		
+		String append = "#white#";
+		if (!servers.get(i).IsAcceptingPlayers) append += "#gray#";
+		
+		// Draws the IP of the server.
+		draw = Format.process(append + ip);
+		f.drawString(f.trimStringToWidth(draw, parent.width - 10), 
+				 parent.width/2 - f.getStringWidth(draw)/2, 
+				 var3 + 2, 0xF);
+		
+		// Draw the number of players and the time till start.
+		draw = Format.process(append + players + "/" + server.MaxPlayers + "  |     " + time);
+		f.drawString(f.trimStringToWidth(draw, parent.width - 10), 
+				 parent.width/2 - f.getStringWidth(draw)/2, 
+				 var3 + 12, 0xF);
+		
+		Draw.texturedRect(CustomTexture.get("players2", "http://i.imgur.com/HsNS0pq.png"), parent.width/2 - f.getStringWidth(draw)/2 - 12, var3 + 12 - 1, 0, 0, 32, 32, 32, 32, 0.25D, 1, 1, 1, 1);
+		Draw.texturedRect(CustomTexture.get("clock", "http://i.imgur.com/F60NjJM.png"),	   parent.width/2 + f.getStringWidth(draw)/2 - f.getStringWidth(draw.split("\\|")[1]) + 6, var3 + 12 - 0.5, 0, 0, 32, 32, 32, 32, 0.25D, 0, 1, 0, 1);
+		 // Remove spaces.
+		 motd = motd.replaceAll("\\s\\s+", " - ");
+		 
+		 // Draw the clock icon.
+		 if (motd.contains("Starts in"))
+				Draw.texturedRect(CustomTexture.get("clock", "http://i.imgur.com/F60NjJM.png"), 
+						parent.width/2 - f.getStringWidth(Format.process("#gray#") + motd.replaceAll("\\s+", "\\s"))/2 - 12, var3 + 12 + 12 - 0.5, 0, 0, 32, 32, 32, 32, 0.25D, 0, 1, 0, 1);
+		 
+		 // Draw the MOTD.
+		 /*
+		 f.drawString(f.trimStringToWidth(Format.process("#gray#") + motd, parent.width - 10), 
+				parent.width/2 - f.getStringWidth(Format.process("#gray#") + motd.replaceAll("\\s+", "\\s"))/2, 
+				var3 + 12+12, 0xF);
+				*/
+		 
+			
+			/*
+			Main.mc.fontRenderer.drawString(
+					 Main.mc.fontRenderer.trimStringToWidth(Format.process(append + "[" + server.Players + "/" + server.MaxPlayers + "] "+ ip), 
+							 parent.width - 10), 
+					 parent.width/2 - Main.mc.fontRenderer.getStringWidth(Format.process(append + "[" + server.Players + "/" + server.MaxPlayers + "] "+ ip))/2, 
+					 var3 + 2, 0xF);
+					 */
 	}
 
 }

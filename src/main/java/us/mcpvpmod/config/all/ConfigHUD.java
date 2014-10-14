@@ -21,6 +21,8 @@ public class ConfigHUD extends DummyModContainer {
 	public static boolean alignWidths = false;
 	public static boolean alignHeights = false;
 	public static int medalTimer = 7;
+	public static boolean showArmor;
+	public static boolean showPotion;
 	public static String armorMode;
 	public static String potionMode;
 	public static boolean alignItems = true;
@@ -58,9 +60,19 @@ public class ConfigHUD extends DummyModContainer {
         
         Property prop;
 
+        prop = config.get(CATEGORY_GENERAL, "showArmor", true);
+        prop.setLanguageKey("config.hud.showArmor");
+    	showArmor = prop.getBoolean();
+    	propOrder.add(prop.getName());
+        
         prop = config.get(CATEGORY_GENERAL, "armorMode", "Show Durability Remaining", Format.s("config.hud.armorMode"), new String[]{"Show Durability Remaining", "Show Durability Remaining out of Total", "Don't show Durability Remaining"});
         prop.setLanguageKey("config.hud.armorMode");
     	armorMode = prop.getString();
+    	propOrder.add(prop.getName());
+    	
+        prop = config.get(CATEGORY_GENERAL, "showPotion", true);
+        prop.setLanguageKey("config.hud.showPotion");
+    	showArmor = prop.getBoolean();
     	propOrder.add(prop.getName());
     	
         prop = config.get(CATEGORY_GENERAL, "potionMode", "Show Time Remaining", Format.s("config.hud.potionMode"), new String[]{"Show Time Remaining", "Don't Show Time Remaining"});

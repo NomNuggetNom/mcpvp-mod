@@ -3,6 +3,7 @@ package us.mcpvpmod.events;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.events.chat.AllChat;
 import us.mcpvpmod.game.vars.AllVars;
+import us.mcpvpmod.game.vars.Vars;
 import us.mcpvpmod.game.vars.VarsBuild;
 import us.mcpvpmod.game.vars.VarsCTF;
 import us.mcpvpmod.game.vars.VarsHG;
@@ -27,6 +28,7 @@ public class HandleJoinMCPVP {
 		AllChat.getIP = true;
 		Data.setDefaults();
 		
+		Vars.reset();
 		AllVars.reset();
 		VarsBuild.reset();
 		VarsCTF.reset();

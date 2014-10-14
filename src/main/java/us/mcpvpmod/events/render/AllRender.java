@@ -4,10 +4,13 @@ import java.net.URL;
 
 import org.lwjgl.opengl.GL11;
 
+import com.mojang.authlib.minecraft.MinecraftProfileTexture;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraft.client.model.ModelBiped;
+import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.ThreadDownloadImageData;
 import net.minecraft.client.renderer.texture.ITextureObject;
 import net.minecraft.client.renderer.texture.TextureManager;
@@ -15,6 +18,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import us.mcpvpmod.Main;
+import us.mcpvpmod.config.all.ConfigHUD;
 import us.mcpvpmod.gui.CustomTexture;
 import us.mcpvpmod.gui.PotionDisplay;
 import us.mcpvpmod.gui.Selectable;
@@ -40,10 +44,13 @@ public class AllRender {
 		//FriendsBlock.display();
 		
 		// Render our armor and potion display.
-		Main.armorDisplay.renderArmor();
-		Main.potionDisplay.displayPotions(event);
-		PotionDisplay.displayStrings();
-		
+		if (ConfigHUD.showArmor)
+			Main.armorDisplay.renderArmor();
+		if (ConfigHUD.showPotion) {
+			Main.potionDisplay.displayPotions(event);
+			PotionDisplay.displayStrings();
+		}
+
 		if (Selectable.selected != null) {
 			Selectable.selected.outline();
 		}
@@ -59,18 +66,21 @@ public class AllRender {
 		}
 		//System.out.println(Main.mc.currentScreen instanceof GuiIngameMenu);
 
+
 		/*
 		Minecraft.getMinecraft().renderEngine.loadTexture(new ResourceLocation("cloaks/NomNuggetNom"), 
 				Minecraft.getMinecraft().renderEngine.getTexture(CustomTexture.get("NomNuggetNom.cape", "http://i.imgur.com/IMM9TR5.png")));
-				*/
+		*/
 		//renderCapes();
 	}
 	
 	public static void renderCapes() {
-		//renderCape("NomNuggetNom");
+		renderCape("NomNuggetNom");
 	}
 	
 	public static void renderCape(String name) {
+
+		
 		/*
 		AbstractClientPlayer player = (AbstractClientPlayer) Main.mc.theWorld.getPlayerEntityByName(name);
 		TextureManager tex = Main.mc.getTextureManager();
@@ -79,7 +89,7 @@ public class AllRender {
 		
         if (!player.isInvisible() && !player.getHideCape())
         {
-            tex.bindTexture(CustomTexture.get(player + ".cape", "http://i.imgur.com/IMM9TR5.png"));
+            tex.bindTexture(CustomTexture.get(name + ".cape", "http://i.imgur.com/IMM9TR5.png"));
             GL11.glPushMatrix();
             GL11.glTranslatef(0.0F, 0.0F, 0.125F);
             double d3 = player.field_71091_bM + (player.field_71094_bP - player.field_71091_bM) * (double)p_77029_2_ - (player.prevPosX + (player.posX - player.prevPosX) * (double)p_77029_2_);
@@ -123,7 +133,7 @@ public class AllRender {
             new ModelBiped(0.0F).renderCloak(0.0625F);
             GL11.glPopMatrix();
         }
-	*/
+        */
 	}
 	
 }

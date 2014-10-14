@@ -18,6 +18,7 @@ public class VarsHG {
 		vars.put("time", InfoHG.getFormattedTime());
 		vars.put("kit", Vars.get("hg:kit"));
 		vars.put("remain", Vars.get("hg:remain"));
+		vars.put("tracking", Vars.get("hg:tracking"));
 	}
 	
 	/**

@@ -3,6 +3,7 @@ package us.mcpvpmod.game.vars;
 import java.util.HashMap;
 
 import us.mcpvpmod.Main;
+import us.mcpvpmod.ServerHelper;
 import us.mcpvpmod.game.info.AllInfo;
 import us.mcpvpmod.game.info.InfoCTF;
 
@@ -22,7 +23,7 @@ public class AllVars {
 		vars.put("y", "" + AllInfo.getY());
 		vars.put("z", "" + AllInfo.getZ());
 		vars.put("ip", AllInfo.getIP());
-		vars.put("short-ip", AllInfo.getIP());
+		vars.put("short ip", ServerHelper.shortServerIP());
 		vars.put("fps", Main.mc.debug.split(",")[0].replaceAll("fps", ""));
 		vars.put("direction", AllInfo.getDirection());
 		vars.put("dir", "" + AllInfo.getDirectionChar());

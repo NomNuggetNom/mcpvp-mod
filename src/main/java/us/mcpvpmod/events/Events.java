@@ -15,6 +15,7 @@ import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.Sync;
+import us.mcpvpmod.events.render.AllRender;
 import us.mcpvpmod.gui.screen.GuiServerList;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.IModGuiFactory;
@@ -89,5 +90,6 @@ public class Events {
     
     @SubscribeEvent
     public void onRenderLiving(RenderLivingEvent event) {
+    	AllRender.renderCapes();
     }
 }

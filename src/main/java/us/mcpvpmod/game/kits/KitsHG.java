@@ -27,7 +27,7 @@ public class KitsHG {
 		new KitHG("Monster", new ItemStack(Items.skull, 1, 2));
 		new KitHG("Phantom", Items.feather);
 		new KitHG("Thermo", Blocks.daylight_detector);
-		new KitHG("Shapehshifter", Blocks.redstone_block);
+		new KitHG("Shapeshifter", Blocks.redstone_block);
 		new KitHG("Fireman", Items.water_bucket);
 		new KitHG("Summoner", Items.egg);
 		new KitHG("Snail", new ItemStack(Items.potionitem, 1, 10)); // slowness potion

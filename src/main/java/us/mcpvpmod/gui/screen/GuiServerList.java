@@ -179,7 +179,6 @@ public class GuiServerList extends GuiScreen {
 		reconnectButton.enabled = ServerHelper.serverIP() != "none";
 		this.drawDefaultBackground();
 		this.serverList.drawScreen(p_73863_1_, p_73863_2_, p_73863_3_);
-		Draw.texturedRect(CustomTexture.get("test2", "http://i.imgur.com/SIpPVTj.png"), 0, 0, 0, 0, 32, 32, 32, 32, 0.5D);
 		super.drawScreen(p_73863_1_, p_73863_2_, p_73863_3_);
 	}
 	

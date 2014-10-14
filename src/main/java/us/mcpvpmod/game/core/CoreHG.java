@@ -18,6 +18,7 @@ public class CoreHG {
 	public static String reRemain = "§r§b(\\d*) players remaining.§r";
 	public static String reParticipating = "§r§cThere are (.*) players participating.§r";
 	public static String reWin = "§r§c(.*) wins!§r";
+	public static String reCompass = "§r§eCompass pointing at (.*)§r";
 
 	public static void setup() {
 		
@@ -34,6 +35,9 @@ public class CoreHG {
 		
 		new ChatTracker(reParticipating, Server.HG,
 				new String[]{"hg:remain", "$1"});
+		
+		new ChatTracker(reCompass, Server.HG,
+				new String[]{"hg:tracking", "$1"});
 		
 		new ChatTrigger(reKit, "hg.kit", Server.HG,  
 				new String[]{"kit", "$1"});

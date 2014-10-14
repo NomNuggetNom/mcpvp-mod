@@ -13,6 +13,7 @@ import org.lwjgl.input.Keyboard;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.config.all.ConfigFriends;
+import us.mcpvpmod.config.all.ConfigHUD;
 import us.mcpvpmod.gui.ArmorDisplay;
 import us.mcpvpmod.gui.DisplayAnchor;
 import us.mcpvpmod.gui.Draw;
@@ -83,7 +84,7 @@ public class GuiMoveBlocks extends GuiScreen {
 	
 	@Override
 	protected void keyTyped(char key, int keyNum) {
-
+		
 		// Hide the menu.
 		if (key == 'x') Main.mc.displayGuiScreen(null);
 		
@@ -99,6 +100,20 @@ public class GuiMoveBlocks extends GuiScreen {
 		// Move down
 		if (keyNum == 208) Selectable.selected.move('d', moveBy, GuiScreen.isCtrlKeyDown());
 
+		// Del key
+		if (keyNum == 211) {
+			
+			if (Selectable.selected instanceof ArmorDisplay) {
+				ConfigHUD.showArmor = false;
+				Selectable.selected = null;
+			}
+			
+			if (Selectable.selected instanceof PotionDisplay) {
+				ConfigHUD.showPotion = false;
+				Selectable.selected = null;
+			}
+		}
+		
 		super.keyTyped(key, keyNum);
 	}
 	

@@ -48,4 +48,11 @@ public class Vars {
 		}
 	}
 	
+	/**
+	 * Resets the variable storage by clearing it. 
+	 */
+	public static void reset() {
+		vars.clear();
+	}
+	
 }

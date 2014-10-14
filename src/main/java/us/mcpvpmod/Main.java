@@ -1,7 +1,5 @@
 package us.mcpvpmod;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Timer;
 
 import net.minecraft.client.Minecraft;
@@ -9,6 +7,8 @@ import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.common.MinecraftForge;
 
 import org.lwjgl.input.Keyboard;
+
+import com.jadarstudios.developercapes.DevCapes;
 
 import us.mcpvpmod.events.Events;
 import us.mcpvpmod.gui.ArmorDisplay;
@@ -84,6 +84,8 @@ public class Main {
         ClientRegistry.registerKeyBinding(moveBlocks);
         showHelp = new KeyBinding("key.showHelp", Keyboard.KEY_H, "MCPVP");
         ClientRegistry.registerKeyBinding(showHelp);
+        
+        DevCapes.getInstance().registerConfig("https://raw.githubusercontent.com/NomNuggetNom/mcpvp-mod/nom/capes.json");
 	}
     
 	@EventHandler
