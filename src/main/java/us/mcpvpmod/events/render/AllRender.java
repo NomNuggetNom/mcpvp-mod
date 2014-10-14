@@ -80,6 +80,7 @@ public class AllRender {
 	
 	public static void renderCape(String name) {
 		
+		
 		/*
 		AbstractClientPlayer player = (AbstractClientPlayer) Main.mc.theWorld.getPlayerEntityByName(name);
 		TextureManager tex = Main.mc.getTextureManager();
