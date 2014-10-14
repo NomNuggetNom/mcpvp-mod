@@ -87,7 +87,7 @@ public class ConfigHUD extends DummyModContainer {
     	potionMode = prop.getString();
     	propOrder.add(prop.getName());
     	
-        prop = config.get(CATEGORY_GENERAL, "potionPosition", "Left of the Potions", Format.s("config.hud.armorPosition"), new String[]{"Left of the Potions", "Left of the Armor"});
+        prop = config.get(CATEGORY_GENERAL, "potionPosition", "Left of the Potions", Format.s("config.hud.armorPosition"), new String[]{"Left of the Potions", "Right of Potions"});
         prop.setLanguageKey("config.hud.potionPosition");
     	potionPosition = prop.getString();
     	propOrder.add(prop.getName());
