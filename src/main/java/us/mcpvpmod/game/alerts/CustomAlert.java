@@ -20,17 +20,15 @@ import cpw.mods.fml.common.registry.GameData;
 
 public class CustomAlert {
 	
+	public static HashMap<String, CustomAlert> alerts = new HashMap<String, CustomAlert>();
+	
 	public String id;
 	public String template;
 	public String title;
 	public String desc;
 	public ItemStack item;
 	public ResourceLocation image;
-	public String mode;
-	
-	// All possible values.
-	
-	public static HashMap<String, CustomAlert> messageAlerts = new HashMap<String, CustomAlert>();
+	public Mode mode;
 	
 	/**
 	 * A custom alert processes text from the Config and display the appropriate information.
@@ -40,9 +38,11 @@ public class CustomAlert {
 	public CustomAlert(String id, String template) {
 		this.id = id;
 		this.template = template;
-		//setStrings();
-		//setMode();
-		messageAlerts.put(id, this);
+		alerts.put(id, this);
+	}
+	
+	public String toString() {
+		return this.id + " : " + this.template;
 	}
 	
 	/**
@@ -51,7 +51,7 @@ public class CustomAlert {
 	 * @return The Alert with the ID. Could be null.
 	 */
 	public static CustomAlert get(String id) {
-		return (messageAlerts.get(id));
+		return alerts.get(id);
 	}
 	
 	/**
@@ -68,7 +68,7 @@ public class CustomAlert {
 	}
 	
 	/**
-	 * Replaces the necessary information from the alert in the config file.
+	 * Replaces the variables in the given string. Ex {kills} -> 0.
 	 * @param string The string that contains variables.
 	 * @return The string with all variables replaced with information.
 	 */
@@ -84,9 +84,6 @@ public class CustomAlert {
 				// Replace the occurance of the var with the actual info.
 				string = string.replaceAll("\\{" + var + "\\}", Vars.get(var));
 
-			} else {
-				// Return "null" to prevent the string from being rendered.
-				//string = "null";
 			}
 		}
 		string = Format.process(string);
@@ -94,7 +91,7 @@ public class CustomAlert {
 	}
 	
 	/**
-	 * Processes the ItemStack to make it either a blue flag or a red flag.
+	 * Processes the ItemStack to make it either a blue flag or a red flag for CTF.
 	 * @param item The item to check.
 	 * @return The processed item.
 	 */
@@ -120,7 +117,7 @@ public class CustomAlert {
 	 * @return The image file.
 	 */
 	public ResourceLocation setFlag(ResourceLocation resource) {
-		// TODO: Fix!
+		// TODO: Dynamic icon system.
 		/*
 		String team = Vars.get("team");
 		String action = Vars.get("action");
@@ -137,24 +134,10 @@ public class CustomAlert {
 	}
 	
 	/**
-	 * Sets the display mode to either "image" or "item"
+	 * Sets the display mode to either IMAGE or ITEM.
 	 */
 	public void setMode() {
-		//FMLLog.info("Split: \"%s\"", this.template.split("\\s*\\|\\|\\|\\s*")[2]);
-		//System.out.println(this.template.split("\\s*\\|\\|\\|\\s*")[2].startsWith("http:"));
-		if (this.template.split("\\s*\\|\\|\\|\\s*")[2].endsWith(".png") && !this.template.split("\\s*\\|\\|\\|\\s*")[2].startsWith("http:")) {
-			this.item  = null;
-			this.image = new ResourceLocation("mcpvp", "textures/" + this.template.split("\\s*\\|\\|\\|\\s*")[2]);
-			this.mode = "image";
-		} else if (this.template.split("\\s*\\|\\|\\|\\s*")[2].startsWith("http:")) {
-			this.item  = null;
-			this.image = CustomTexture.get(this.id, this.template.split("\\s*\\|\\|\\|\\s*")[2]);
-			this.mode  = "image";
-		} else {
-			this.item  = getItem(this.template.split("\\s*\\|\\|\\|\\s*")[2]);
-			this.image = null;
-			this.mode = "item";
-		}
+		this.mode = Mode.getMode(this);
 	}
 	
 	/**
@@ -162,7 +145,7 @@ public class CustomAlert {
 	 * @param name The name of the item to get.
 	 * @return The item with the name, or an item that is bound to that name.
 	 */
-	public ItemStack getItem(String name) {
+	public static ItemStack getItem(String name) {
 		if (GameData.getBlockRegistry().containsKey(name)) {
 			return new ItemStack(GameData.getBlockRegistry().getObject(name));
 		} else if (GameData.getItemRegistry().containsKey(name)) {
@@ -192,20 +175,71 @@ public class CustomAlert {
 	 */
 	public void show() {
 		// Update information.
+		// TODO: Strings and mode should be set on creation.
 		setStrings();
 		setMode();
 		title = replaceInfo(title);
 		desc  = replaceInfo(desc);
 		
-		// Avoid showing alerts that should be "cancelled"
-		if (desc.startsWith("-X-") || title.startsWith("-X-")) return;
+		// Avoid showing alerts that should be cancelled
+		if (desc.startsWith("-X-") || title.startsWith("-X-")) {
+			Main.l("Alert \"%s\" was cancelled.", this);
+			return;
+		}
 
-		if (this.mode == "item") {
+		if (this.mode == Mode.ITEM) {
 			item = setWool(item);
 			Alerts.alert.sendAlertWithItem(title, desc, -1, item);
-		} else if (this.mode == "image") {
+			Main.l("Alert \"%s\" was shown (mode:item)", this);
+		} else if (this.mode == Mode.IMAGE) {
 			image = setFlag(image);
 			Alerts.alert.sendAlertWithImage(title, desc, -1, image);
+			Main.l("Alert \"%s\" was shown (mode:image)", this);
+		} else {
+			Main.l("Alert \"%s\" has an unrecognized mode: %s", this, this.mode);
+		}
+	}
+	
+	/**
+	 * The mode of the image dictates how the alert will be displayed.
+	 * <br>
+	 * <br>
+	 * ITEM uses in-game items as the thumbnail on the alert.
+	 * <br>
+	 * IMAGE uses images: either included in the mod as a resource,
+	 * or downloaded using a CustomTexture.
+	 */
+	public enum Mode {
+		ITEM, IMAGE;
+		
+		/**
+		 * Determines which mode the alert is using. This is determined using
+		 * information straight from the config and the strcuture of the third
+		 * argument of the alert, which can be a link.
+		 * <br>
+		 * Ex ITEM construct: bread
+		 * <br>
+		 * Ex IMAGE construct: image.png (must end with .png)
+		 * <br>
+		 * Ex IMAGE construct: http://google.com/image.png (must start with http:)
+		 * 
+		 * @param alert The alert to evaluate.
+		 * @return The MODE of the alert.
+		 */
+		public static Mode getMode(CustomAlert alert) {
+			if (alert.template.split("\\s*\\|\\|\\|\\s*")[2].endsWith(".png") && !alert.template.split("\\s*\\|\\|\\|\\s*")[2].startsWith("http:")) {
+				alert.item  = null;
+				alert.image = new ResourceLocation("mcpvp", "textures/" + alert.template.split("\\s*\\|\\|\\|\\s*")[2]);
+				return IMAGE;
+			} else if (alert.template.split("\\s*\\|\\|\\|\\s*")[2].startsWith("http:")) {
+				alert.item  = null;
+				alert.image = CustomTexture.get(alert.id, alert.template.split("\\s*\\|\\|\\|\\s*")[2]);
+				return IMAGE;
+			} else {
+				alert.item  = getItem(alert.template.split("\\s*\\|\\|\\|\\s*")[2]);
+				alert.image = null;
+				return ITEM;
+			}
 		}
 	}
 }
