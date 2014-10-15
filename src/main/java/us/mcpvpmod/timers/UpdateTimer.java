@@ -18,6 +18,7 @@ public class UpdateTimer extends TimerTask {
 		if (Main.mc.thePlayer != null && Main.mc.theWorld != null && ConfigVersion.updateNotifications) {
 			String msg = "";
 			
+			// Send update message.
 			if (ConfigVersion.channel.equalsIgnoreCase("Main"))
 				msg = Format.s("update-msg").replace("<VERSION>", Main.mcpvpVersion.main.mod).replace("<MCVERSION>", Main.mcpvpVersion.main.mc);
 			 else if (ConfigVersion.channel.equalsIgnoreCase("Beta")) 
