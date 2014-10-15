@@ -39,9 +39,12 @@ gui.choose=Choose your server menu:
 gui.choose.mcpvp=MCPVP Server Menu
 gui.choose.vanilla=Vanilla Server Menu
 gui.join.region=Region: 
+gui.join.rejoin=Re-Join Last
 
 key.categories.mcpvp=MCPVP
 key.openConfig=Open Config
+key.moveBlocks=Edit GUI
+key.showHelp=View Help
 
 
 
