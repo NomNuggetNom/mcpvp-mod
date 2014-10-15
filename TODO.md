@@ -1,5 +1,5 @@
 ### Features
-- [ ] Staff capes
+- [x] Staff capes
 - [ ] Improve server menu
 - [ ] German translation
 - [ ] CTF Moderator tools
