@@ -53,22 +53,22 @@ public class ConfigChat extends DummyModContainer {
         Property prop;
         
     	prop = config.get(CATEGORY_GENERAL, "filterWords", new String[]{"toot", "shucks"});
-        prop.setLanguageKey("config.Chat.filterWords");
+        prop.setLanguageKey("config.chat.filterWords");
     	filterWords = prop.getStringList();
     	propOrder.add(prop.getName());
     	
     	prop = config.get(CATEGORY_GENERAL, "removeWords", new String[]{"You are on team", "Visit mcpvp.com for more info"});
-        prop.setLanguageKey("config.Chat.removeWords");
+        prop.setLanguageKey("config.chat.removeWords");
     	removeWords = prop.getStringList();
     	propOrder.add(prop.getName());
     	
     	prop = config.get(CATEGORY_GENERAL, "splitChat", new String[]{"->"});
-        prop.setLanguageKey("config.Chat.splitChat");
+        prop.setLanguageKey("config.chat.splitChat");
     	sendToSecondChat = prop.getStringList();
     	propOrder.add(prop.getName());
     	
     	prop = config.get(CATEGORY_GENERAL, "movekNoHax", true);
-        prop.setLanguageKey("config.Chat.movekNoHax");
+        prop.setLanguageKey("config.chat.movekNoHax");
     	movekNoHax = prop.getBoolean();
     	propOrder.add(prop.getName());
         
