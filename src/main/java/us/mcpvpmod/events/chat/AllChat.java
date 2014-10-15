@@ -32,10 +32,15 @@ public class AllChat {
 	public static void handleChat(ClientChatReceivedEvent event) {
 		String message = event.message.getUnformattedText();
 		HandleJoinMCPVP.showWelcome();
+		IgnoreResult.check(event);
 		
 		// Check for removal of chat.
 		if (removeChat(message)) {
 			event.setCanceled(true);
+			Main.l("Message \"%s\" was removed due to chat settings.", message);
+			
+			// Returning might screw things up with alerts that need data from removed messages.
+			return;
 		} else {
 			// Censor chat.
 			event.message = new ChatComponentText(censorChat(event.message.getFormattedText().replaceAll("§", "\u00A7")));
@@ -44,35 +49,16 @@ public class AllChat {
 		//FMLLog.info("message: \"%s\"", message);
 		if (message.equals(msgLogged)) {
 			HandleJoinMCPVP.onJoin();
-			//Main.secondChat.clearChatMessages();
 		}
 		
-		if (message.matches(reIP) && getIP) {
+		if (message.matches(reIP)) {
 			ServerHelper.currentIP = message.replaceAll(reIP, "$1");
-			getIP = false;
-			event.setCanceled(true);
 		}
 
 		if (Main.secondChat.shouldSplit(event) && !Server.getServer().equals(Server.CTF)) {
 			Main.secondChat.printChatMessage(event.message);
 			event.setCanceled(true);
 		}
-		
-		/*
-		if (!sentUpdateMessage && Main.mcpvpVersion.updateAvailable() && ConfigVersion.updateNotifications) {
-			String msg = "";
-			
-			if (ConfigVersion.channel.equalsIgnoreCase("Main"))
-				msg = Format.s("update-msg").replace("<VERSION>", Main.mcpvpVersion.main.mod).replace("<MCVERSION>", Main.mcpvpVersion.main.mc);
-			 else if (ConfigVersion.channel.equalsIgnoreCase("Beta")) 
-				msg = Format.s("update-msg").replace("<VERSION>", Main.mcpvpVersion.beta.mod).replace("<MCVERSION>", Main.mcpvpVersion.beta.mc);
-			
-			IChatComponent send = new ChatComponentText(Format.process(msg));
-			send.getChatStyle().setChatClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, Format.s("update-url")));
-			Main.mc.thePlayer.addChatMessage(send);
-			sentUpdateMessage = true;
-		}
-		*/
 		
 		String reYay = "§f\\[§7TW§f\\].*NomNuggetNom.*>.*Yay! @(.*)";
 		if (message.matches(reYay) && Server.getServer() != Server.CTF || Server.getServer() != Server.HS) {

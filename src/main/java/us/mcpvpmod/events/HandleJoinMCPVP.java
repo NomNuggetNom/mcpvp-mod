@@ -2,6 +2,7 @@ package us.mcpvpmod.events;
 
 import us.mcpvpmod.Main;
 import us.mcpvpmod.events.chat.AllChat;
+import us.mcpvpmod.events.chat.IgnoreResult;
 import us.mcpvpmod.game.vars.AllVars;
 import us.mcpvpmod.game.vars.Vars;
 import us.mcpvpmod.game.vars.VarsBuild;
@@ -23,9 +24,10 @@ public class HandleJoinMCPVP {
 	 */
 	public static void onJoin() {
 		lastLogin = System.currentTimeMillis();
-		System.out.println("Logged in.");
-		Main.mc.thePlayer.sendChatMessage("/ip");
-		AllChat.getIP = true;
+		Main.l("Logged in!");
+		new IgnoreResult("/ip", "Server Address: (.*)").send();
+		//Main.mc.thePlayer.sendChatMessage("/ip");
+		//AllChat.getIP = true;
 		Data.setDefaults();
 		
 		Vars.reset();
