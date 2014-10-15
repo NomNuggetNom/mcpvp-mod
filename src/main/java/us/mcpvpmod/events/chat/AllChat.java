@@ -31,7 +31,7 @@ public class AllChat {
 
 	public static void handleChat(ClientChatReceivedEvent event) {
 		String message = event.message.getUnformattedText();
-		HandleJoinMCPVP.check();
+		HandleJoinMCPVP.showWelcome();
 		
 		// Check for removal of chat.
 		if (removeChat(message)) {
@@ -74,7 +74,7 @@ public class AllChat {
 		}
 		*/
 		
-		String reYay = "§f\\[§7TW§f\\] §6NomNuggetNom§.> §f§r§6\\/a §fYay! @(.*)";
+		String reYay = "§f\\[§7TW§f\\].*NomNuggetNom.*>.*Yay! @(.*)";
 		if (message.matches(reYay) && Server.getServer() != Server.CTF || Server.getServer() != Server.HS) {
 			if (message.replaceAll(reYay, "$1").equals(Main.mc.thePlayer.getDisplayName())) {
 				CustomAlert.get("yay").show();
