@@ -75,7 +75,7 @@ public class GuiSecondChat extends Gui
                 int i1 = MathHelper.ceiling_float_int((float)this.func_146228_f() / f1);
                 GL11.glPushMatrix();
                 GL11.glTranslatef(2.0F, 20.0F, 0.0F);
-                GL11.glScalef(f1, f1, 1.0F);
+                //GL11.glScalef(f1, f1, 1.0F);
                 int j1;
                 int k1;
                 int i2;
@@ -124,19 +124,24 @@ public class GuiSecondChat extends Gui
                                 //drawRect(b0, j2 - 9, b0 + i1 + 4, j2, i2 / 2 << 24);
 
                                 // Draw ONE BOX for the line of chat.
-                                drawRect(res.getScaledWidth(), //x1 
-                                		res.getScaledHeight() + j2 - 9 - 56 + 8, //y1
-                                		res.getScaledWidth() - i1 - 4, //x2
-                                		res.getScaledHeight() + j2 - 56 + 8,  //y2
-                                		i2 / 4 << 24);   
+
+                                //int xOff = (int) (res.getScaledWidth() - (res.getScaledWidth() * f1));
+                                int xOff = 0;
+                                //int yOff = (int) (res.getScaledHeight() - (res.getScaledHeight() * f1));
+                                int yOff = 0;
+                                drawRect(res.getScaledWidth() + xOff, //x1 
+                                		res.getScaledHeight() + j2 - 9 - 56 + 8 + yOff, //y1
+                                		res.getScaledWidth() - i1 - 4 + xOff, //x2
+                                		res.getScaledHeight() + j2 - 56 + 8 + yOff,  //y2
+                                		i2 / 4 << 24);
                             
                                 String chatString = chatline.func_151461_a().getFormattedText();
                                 
                                 // Draw the chatString.
                                 this.mc.fontRenderer.drawStringWithShadow(
                                 		chatString, 
-                                		x - this.mc.fontRenderer.getStringWidth(chatString) - 4, 
-                                		res.getScaledHeight() + j2 - 56,
+                                		x - this.mc.fontRenderer.getStringWidth(chatString) - 4 + xOff, 
+                                		res.getScaledHeight() + j2 - 56 + yOff,
                                 		16777215 + (i2 << 24));
                                 
                                 GL11.glDisable(GL11.GL_ALPHA_TEST);
