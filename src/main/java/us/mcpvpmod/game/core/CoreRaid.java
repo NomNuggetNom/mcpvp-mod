@@ -6,8 +6,8 @@ import us.mcpvpmod.triggers.ChatTrigger;
 
 public class CoreRaid {
 	
-	public static String reDeposit = "§r§7You now have (.*) gold in your bank account.§r";
-	public static String reBalance = "§r§7You have (.*) gold in your bank account.§r";
+	public static String reDeposit = "\u00A7r\u00A77You now have (.*) gold in your bank account.\u00A7r";
+	public static String reBalance = "\u00A7r\u00A77You have (.*) gold in your bank account.\u00A7r";
 
 	public static void setup() {
 		

@@ -49,7 +49,7 @@ public class MCPVPServer {
 		ArrayList<MCPVPServer> returnServers = new ArrayList<MCPVPServer>();
 		
 		for (MCPVPServer server : servers) {
-			if (server.ServerType.equals(type)) {
+			if (server.ServerType.equals(type) || server.ServerType.startsWith(type)) {
 				returnServers.add(server);
 			}
 		}
@@ -87,19 +87,19 @@ public class MCPVPServer {
 		ArrayList<MCPVPServer> tier4 = new ArrayList<MCPVPServer>();
 		
 		for (MCPVPServer server : servers) {
-			if (server.ServerType.equals(type) && server.Region.equals(region)) {
+			if ((server.ServerType.equals(type) || server.ServerType.endsWith(type)) && server.Region.equals(region)) {
 				String motd = server.MOTD.replaceAll("Â", "");
-				if (motd.startsWith("§aStarts in") 
-						|| motd.startsWith("§6[")) {
+				if (motd.startsWith("\u00A7aStarts in") 
+						|| motd.startsWith("\u00A76[")) {
 					tier1.add(server);
-				} else if (motd.startsWith("§aWaiting") 
-						|| motd.startsWith("§eWaiting")
-						|| motd.startsWith("§6Game starting soon!")) {
+				} else if (motd.startsWith("\u00A7aWaiting") 
+						|| motd.startsWith("\u00A7eWaiting")
+						|| motd.startsWith("\u00A76Game starting soon!")) {
 					tier2.add(server);
-				} else if (motd.startsWith("§cIn progress")) {
+				} else if (motd.startsWith("\u00A7cIn progress")) {
 					tier3.add(server);
 				} else if (motd.startsWith("Server Offline") 
-						|| motd.startsWith("§cGame over!")) {
+						|| motd.startsWith("\u00A7cGame over!")) {
 					tier4.add(server);
 				} else {
 					tier4.add(server);

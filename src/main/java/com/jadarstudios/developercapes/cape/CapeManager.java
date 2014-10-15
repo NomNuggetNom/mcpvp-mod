@@ -43,9 +43,6 @@ public enum CapeManager {
 
     public ICape parse(String name, Object object) {
         ICape cape = null;
-        if(object instanceof ICape)
-            return (ICape) object;
-
         if (!(object instanceof String)) {
             DevCapes.logger.error(String.format("Cape, %s, could not be parsed because it is not a String!", object));
             return cape;
@@ -59,21 +56,5 @@ public enum CapeManager {
         } finally {
             return cape;
         }
-    	/*
-        ICape cape = null;
-        if (!(object instanceof String)) {
-            DevCapes.logger.error(String.format("Cape, %s, could not be parsed because it is not a String!", object));
-            return cape;
-        }
-
-        try {
-            cape = new StaticCape(name, new URL((String) object));
-        } catch (MalformedURLException e) {
-            DevCapes.logger.error(String.format("Are you crazy?? %s is not a valid URL!", (String) object));
-            e.printStackTrace();
-        } finally {
-            return cape;
-        }
-        */
     }
 }

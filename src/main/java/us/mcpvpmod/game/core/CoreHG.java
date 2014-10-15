@@ -6,18 +6,18 @@ import us.mcpvpmod.triggers.ChatTrigger;
 
 public class CoreHG {
 	
-	public static String msgWelcome = "§r§cWelcome to the Hardcore Games!§r";
-	public static String msgChoose = "§r§cChoose your kit now!§r";
+	public static String msgWelcome = "\u00A7r\u00A7cWelcome to the Hardcore Games!\u00A7r";
+	public static String msgChoose = "\u00A7r\u00A7cChoose your kit now!\u00A7r";
 	public static String reKit = "\u00A7.\u00A7.You are now a (.*)\u00A7.";
-	public static String msgBegin = "§r§cThe Tournament has begun!§r";
-	public static String msgVulernable = "§r§cYou are no longer invincible.§r";
-	public static String reMiniFeast = "§r§cA mini feast has appeared between \\( x: (.*) and x: (.*) \\) and \\( z: (.*) and z: (.*) \\)§r";
-	public static String reFeast = "§r§cFeast will begin at \\((.*), (.*), (.*)\\).*";
-	public static String msgFeastBegin = "§r§cThe Feast has begun!§r";
-	public static String msgBonusFeast = "§r§cA §r§c§nbonus§r§c feast has been spawned! It can be anywhere on the whole map.§r";
-	public static String reRemain = "§r§b(\\d*) players remaining.§r";
-	public static String reParticipating = "§r§cThere are (.*) players participating.§r";
-	public static String reWin = "§r§c(.*) wins!§r";
+	public static String msgBegin = "\u00A7r\u00A7cThe Tournament has begun!\u00A7r";
+	public static String msgVulernable = "\u00A7r\u00A7cYou are no longer invincible.\u00A7r";
+	public static String reMiniFeast = "\u00A7r\u00A7cA mini feast has appeared between \\( x: (.*) and x: (.*) \\) and \\( z: (.*) and z: (.*) \\)\u00A7r";
+	public static String reFeast = "\u00A7r\u00A7cFeast will begin at \\((.*), (.*), (.*)\\).*";
+	public static String msgFeastBegin = "\u00A7r\u00A7cThe Feast has begun!\u00A7r";
+	public static String msgBonusFeast = "\u00A7r\u00A7cA \u00A7r\u00A7c\u00A7nbonus\u00A7r\u00A7c feast has been spawned! It can be anywhere on the whole map.\u00A7r";
+	public static String reRemain = "\u00A7r\u00A7b(\\d*) players remaining.\u00A7r";
+	public static String reParticipating = "\u00A7r\u00A7cThere are (.*) players participating.\u00A7r";
+	public static String reWin = "\u00A7r\u00A7c(.*) wins!\u00A7r";
 	public static String reCompass = "\u00A7r\u00A7eCompass pointing at (.*)\u00A7r";
 
 	public static void setup() {

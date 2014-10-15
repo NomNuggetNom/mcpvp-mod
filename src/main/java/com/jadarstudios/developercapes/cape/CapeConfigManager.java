@@ -1,6 +1,7 @@
 package com.jadarstudios.developercapes.cape;
 
 import com.google.common.collect.HashBiMap;
+import com.google.common.io.ByteStreams;
 import com.google.common.primitives.UnsignedBytes;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
@@ -122,11 +123,7 @@ public enum CapeConfigManager {
         }
         CapeConfig instance = null;
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-            String json = "";
-            while (reader.ready()) {
-                json += reader.readLine();
-            }
+            String json = new String(ByteStreams.toByteArray(is));
             instance = CapeConfigManager.INSTANCE.parse(json);
         } catch (IOException e) {
             e.printStackTrace();

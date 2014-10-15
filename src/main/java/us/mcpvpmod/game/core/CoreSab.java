@@ -6,20 +6,20 @@ import us.mcpvpmod.triggers.ChatTrigger;
 
 public class CoreSab {
 
-	public static String reJoin = "Now Logged in!§r";
-	public static String reWait = "§r§cWaiting for more Players...§r";
-	public static String reWelcome = "§r§cWelcome to Sabotage!§r";
-	public static String reVoting = "§r§6Currently voting for: §r";
-	public static String reStarting = "§.§.Sabotage will start in 1 minute§.";
-	public static String reStart = "§r§6Sabotage... Begins!§r";
-	public static String reRole = "§.§.§.You are (?:a|the)*\\s*(§.§.§..*§.§.§.) this game!§.";
-	public static String reDetective = "§r§6The detective is: §r(§.*)§r";
-	public static String reMurdered = "§r§bA player just got murdered...§r";
-	public static String reRemain = "§r§3(\\d*) players remaining.§r";
-	public static String reInspector = "§rSaboteur Inspecter for another §r§315 seconds§r";
-	public static String reSpectate = "§r§6You are now spectating!§r";
-	public static String reWin = "§r§cThe (.*) wins*!§r";
-	public static String reChestWave = "§r§aChest Wave (.)/2 has hit! Better drops!§r";
+	public static String reJoin = "Now Logged in!\u00A7r";
+	public static String reWait = "\u00A7r\u00A7cWaiting for more Players...\u00A7r";
+	public static String reWelcome = "\u00A7r\u00A7cWelcome to Sabotage!\u00A7r";
+	public static String reVoting = "\u00A7r\u00A76Currently voting for: \u00A7r";
+	public static String reStarting = "\u00A7.\u00A7.Sabotage will start in 1 minute\u00A7.";
+	public static String reStart = "\u00A7r\u00A76Sabotage... Begins!\u00A7r";
+	public static String reRole = "\u00A7.\u00A7.\u00A7.You are (?:a|the)*\\s*(\u00A7.\u00A7.\u00A7..*\u00A7.\u00A7.\u00A7.) this game!\u00A7.";
+	public static String reDetective = "\u00A7r\u00A76The detective is: \u00A7r(\u00A7.*)\u00A7r";
+	public static String reMurdered = "\u00A7r\u00A7bA player just got murdered...\u00A7r";
+	public static String reRemain = "\u00A7r\u00A73(\\d*) players remaining.\u00A7r";
+	public static String reInspector = "\u00A7rSaboteur Inspecter for another \u00A7r\u00A7315 seconds\u00A7r";
+	public static String reSpectate = "\u00A7r\u00A76You are now spectating!\u00A7r";
+	public static String reWin = "\u00A7r\u00A7cThe (.*) wins*!\u00A7r";
+	public static String reChestWave = "\u00A7r\u00A7aChest Wave (.)/2 has hit! Better drops!\u00A7r";
 
 	public static void setup() {
 
