@@ -40,7 +40,7 @@ public class HandleJoinMCPVP {
 		Main.secondChat.clearChatMessages();
 	}
 	
-	public static void check() {
+	public static void showWelcome() {
 		if (System.currentTimeMillis() - lastLogin >= 100
 				&& Data.get("shownWelcome") == null
 				&& Main.mc.currentScreen == null) {
