@@ -20,3 +20,4 @@ Minecraft     | N/A           | 1.7.10       |
 - Coder: NomNuggetNom
 - Assistant: TISSIN
 - Other person: Pluto
+- Capes thanks to [DevCapes](https://github.com/jadar/DeveloperCapes) by jadar
