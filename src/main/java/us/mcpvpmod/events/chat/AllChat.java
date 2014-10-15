@@ -58,6 +58,7 @@ public class AllChat {
 			event.setCanceled(true);
 		}
 		
+		/*
 		if (!sentUpdateMessage && Main.mcpvpVersion.updateAvailable() && ConfigVersion.updateNotifications) {
 			String msg = "";
 			
@@ -71,6 +72,7 @@ public class AllChat {
 			Main.mc.thePlayer.addChatMessage(send);
 			sentUpdateMessage = true;
 		}
+		*/
 		
 		String reYay = "§f\\[§7TW§f\\] §6NomNuggetNom§.> §f§r§6\\/a §fYay! @(.*)";
 		if (message.matches(reYay) && Server.getServer() != Server.CTF || Server.getServer() != Server.HS) {

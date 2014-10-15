@@ -19,6 +19,7 @@ import us.mcpvpmod.json.ServerJSON;
 import us.mcpvpmod.json.StreamJSON;
 import us.mcpvpmod.json.TeamsJSON;
 import us.mcpvpmod.json.VersionJSON;
+import us.mcpvpmod.timers.UpdateTimer;
 import us.mcpvpmod.util.Data;
 import us.mcpvpmod.util.Format;
 import us.mcpvpmod.version.MCPVPVersion;
@@ -40,7 +41,7 @@ public class Main {
 	/** The name of the mod is displayed on the configuration screen. */
 	public static final String name = "MCPVP Mod";
 	/** The version of the mod. */
-	public static final String modVersion = "2.0";
+	public static final String modVersion = "2.0.0";
 	/** The version of MC that the mod was compiled for. */
 	public static final String mcVersion = "1.7.10";
 	/** The version of Forge that the mod was compiled for. */
@@ -93,6 +94,7 @@ public class Main {
 		timer.scheduleAtFixedRate(serverJson, 0, 5*1000L);
 		timer.scheduleAtFixedRate(new StreamJSON(), 0, 30*1000L);
 		timer.scheduleAtFixedRate(new VersionJSON(), 0, 60*60*1000L);
+		timer.scheduleAtFixedRate(new UpdateTimer(), 15*1000, 5*60*1000L);
     }
     	
     @EventHandler
