@@ -21,6 +21,7 @@ import us.mcpvpmod.Server;
 import us.mcpvpmod.ServerHelper;
 import us.mcpvpmod.gui.CustomTexture;
 import us.mcpvpmod.gui.Draw;
+import us.mcpvpmod.util.Data;
 import us.mcpvpmod.util.Format;
 
 public class GuiServerList extends GuiScreen {
@@ -168,7 +169,10 @@ public class GuiServerList extends GuiScreen {
 			Main.mc.displayGuiScreen(new GuiMultiplayer(this));
 		
 		if (button.id == reconnectButton.id) {
-			FMLClientHandler.instance().connectToServer(Main.mc.currentScreen, new ServerData(ServerHelper.serverIP(), ServerHelper.serverIP()));
+			if (ServerHelper.serverIP().equals("none"))
+				FMLClientHandler.instance().connectToServer(Main.mc.currentScreen, new ServerData(Data.get("lastServer"), Data.get("lastServer")));
+			else
+				FMLClientHandler.instance().connectToServer(Main.mc.currentScreen, new ServerData(ServerHelper.serverIP(), ServerHelper.serverIP()));
 		}
 	}
 	
@@ -176,7 +180,7 @@ public class GuiServerList extends GuiScreen {
 	public void drawScreen(int p_73863_1_, int p_73863_2_, float p_73863_3_) {
 		connectButton.enabled = (this.selected != -1);
 		regionButton.displayString = Format.s("gui.join.region") + serverRegion.toUpperCase();
-		reconnectButton.enabled = ServerHelper.serverIP() != "none";
+		reconnectButton.enabled = ServerHelper.serverIP() != "none" || Data.get("lastServer") != null;
 		this.drawDefaultBackground();
 		this.serverList.drawScreen(p_73863_1_, p_73863_2_, p_73863_3_);
 		super.drawScreen(p_73863_1_, p_73863_2_, p_73863_3_);

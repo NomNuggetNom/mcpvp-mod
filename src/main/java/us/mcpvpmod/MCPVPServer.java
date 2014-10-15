@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import us.mcpvpmod.util.Data;
 import us.mcpvpmod.util.Format;
 import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.Minecraft;
@@ -157,5 +158,6 @@ public class MCPVPServer {
 	 */
 	public static void connect(MCPVPServer server) {
 		FMLClientHandler.instance().connectToServer(Main.mc.currentScreen, new ServerData(server.MOTD, server.Server));
+		Data.put("lastServer", server.Server);
 	}
 }
