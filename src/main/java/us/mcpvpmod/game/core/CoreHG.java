@@ -18,7 +18,7 @@ public class CoreHG {
 	public static String reRemain = "§r§b(\\d*) players remaining.§r";
 	public static String reParticipating = "§r§cThere are (.*) players participating.§r";
 	public static String reWin = "§r§c(.*) wins!§r";
-	public static String reCompass = "§r§eCompass pointing at (.*)§r";
+	public static String reCompass = "\u00A7r\u00A7eCompass pointing at (.*)\u00A7r";
 
 	public static void setup() {
 		
