@@ -87,9 +87,4 @@ public class Events {
     public void onKey(InputEvent.KeyInputEvent event) {
     	HandleKey.onKey(event);
     }
-    
-    @SubscribeEvent
-    public void onRenderLiving(RenderLivingEvent event) {
-    	AllRender.renderCapes();
-    }
 }

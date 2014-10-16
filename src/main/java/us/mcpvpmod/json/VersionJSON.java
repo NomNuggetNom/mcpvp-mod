@@ -34,7 +34,7 @@ public class VersionJSON extends TimerTask {
 		
 		try {
 			// Open the connection to the ping API.
-			URLConnection connection = new URL("https://raw.githubusercontent.com/NomNuggetNom/mcpvp-mod/nom/version.json").openConnection();                        
+			URLConnection connection = new URL("https://raw.githubusercontent.com/NomNuggetNom/mcpvp-mod-installer/master/version.json").openConnection();                        
 			connection.setReadTimeout(10 * 1000);
 			
 			// Handle the formatting of the page and establish the BufferedReader.

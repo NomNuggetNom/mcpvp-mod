@@ -17,7 +17,9 @@ public class ConfigSelect extends DummyModContainer {
 
 	public static boolean autoTagB;
 	public static String autoTag;
-    
+	public static boolean autoDespawn;
+    public static boolean autoSilent;
+	
     public static String fileName = "mcpvp_select.cfg";
     
     private static Configuration config;
@@ -59,6 +61,16 @@ public class ConfigSelect extends DummyModContainer {
     	prop = config.get(CATEGORY_GENERAL, "autoTag", "default", "This will automatically set your tag when you join.", new String[]{"default", "normal", "vip", "mvp", "pro"});
         prop.setLanguageKey("config.Select.autoTag");
     	autoTag = prop.getString();
+    	propOrder.add(prop.getName());
+    	
+    	prop = config.get(CATEGORY_GENERAL, "autoDespawn", false);
+        prop.setLanguageKey("config.Select.autoDespawn");
+    	autoDespawn = prop.getBoolean();
+    	propOrder.add(prop.getName());
+    	
+    	prop = config.get(CATEGORY_GENERAL, "autoSilent", false);
+        prop.setLanguageKey("config.Select.autoSilent");
+    	autoSilent = prop.getBoolean();
     	propOrder.add(prop.getName());
         
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);

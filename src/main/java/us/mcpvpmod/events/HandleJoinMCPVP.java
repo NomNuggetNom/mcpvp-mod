@@ -1,6 +1,8 @@
 package us.mcpvpmod.events;
 
 import us.mcpvpmod.Main;
+import us.mcpvpmod.Server;
+import us.mcpvpmod.config.all.ConfigSelect;
 import us.mcpvpmod.events.chat.AllChat;
 import us.mcpvpmod.events.chat.IgnoreResult;
 import us.mcpvpmod.game.vars.AllVars;
@@ -25,9 +27,10 @@ public class HandleJoinMCPVP {
 	public static void onJoin() {
 		lastLogin = System.currentTimeMillis();
 		Main.l("Logged in!");
-		new IgnoreResult("/ip", "Server Address: (.*)").send();
-		//Main.mc.thePlayer.sendChatMessage("/ip");
-		//AllChat.getIP = true;
+		
+		new IgnoreResult("/ip", "Server Address: (.*)");
+		autoTag();
+		
 		Data.setDefaults();
 		
 		Vars.reset();
@@ -40,6 +43,21 @@ public class HandleJoinMCPVP {
 		VarsRaid.reset();
 		VarsSab.reset();
 		Main.secondChat.clearChatMessages();
+	}
+	
+	public static void autoTag() {
+		if (!ConfigSelect.autoTagB) {
+			new IgnoreResult("/tag " + ConfigSelect.autoTag, ".*Success! You now look like.*");
+			Main.l("Automatically tagged to \"%s\"", ConfigSelect.autoTag);
+		}
+		
+		if (ConfigSelect.autoDespawn) {
+			new IgnoreResult("/pet despawn", ".*Your pet has been spawned!.*", ".*Your pet is not spawned.*");
+		}
+		
+		if (ConfigSelect.autoSilent) {
+			new IgnoreResult("/silent", "\00A7r\00A7cAll alerts are now hidden for you.\00A7r");
+		}
 	}
 	
 	public static void showWelcome() {

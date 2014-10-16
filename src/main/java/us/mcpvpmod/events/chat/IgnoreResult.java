@@ -24,6 +24,13 @@ public class IgnoreResult {
 	public IgnoreResult(String messageToSend, String resultToIgnore) {
 		this.messageToSend = messageToSend;
 		this.resultToIgnore = resultToIgnore;
+		this.send();
+	}
+	
+	public IgnoreResult(String messageToSend, String... resultToIgnore) {
+		for (String string : resultToIgnore) {
+			new IgnoreResult(messageToSend, string);
+		}
 	}
 	
 	/**
@@ -43,6 +50,7 @@ public class IgnoreResult {
 		for (String string : toIgnore) {
 			if (event.message.getUnformattedText().equals(string) || event.message.getUnformattedText().matches(string)) {
 				event.setCanceled(true);
+				Main.l("Auto-removed \"%s\" via IgnoreResult \"%s\"", event.message.getUnformattedText(), string);
 				toIgnore.remove(string);
 				return;
 			}

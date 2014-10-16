@@ -31,6 +31,7 @@ public class AllChat {
 
 	public static void handleChat(ClientChatReceivedEvent event) {
 		String message = event.message.getUnformattedText();
+		
 		HandleJoinMCPVP.showWelcome();
 		IgnoreResult.check(event);
 		
@@ -38,7 +39,6 @@ public class AllChat {
 		if (removeChat(message)) {
 			event.setCanceled(true);
 			Main.l("Message \"%s\" was removed due to chat settings.", message);
-			
 			// Returning might screw things up with alerts that need data from removed messages.
 			return;
 		} else {
