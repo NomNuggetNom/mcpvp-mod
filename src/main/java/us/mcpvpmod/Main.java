@@ -106,7 +106,7 @@ public class Main {
         showHelp = new KeyBinding("key.showHelp", Keyboard.KEY_H, "MCPVP");
         ClientRegistry.registerKeyBinding(showHelp);
         
-        DevCapes.getInstance().registerConfig("https://raw.githubusercontent.com/NomNuggetNom/mcpvp-mod/nom/capes.json");
+        DevCapes.getInstance().registerConfig("https://raw.githubusercontent.com/NomNuggetNom/mcpvp-mod/master/capes.json");
 	}
     
 	@EventHandler
