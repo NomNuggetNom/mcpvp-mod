@@ -14,6 +14,7 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
+import us.mcpvpmod.ServerHelper;
 import us.mcpvpmod.Sync;
 import us.mcpvpmod.events.render.AllRender;
 import us.mcpvpmod.gui.screen.GuiServerList;
@@ -75,7 +76,7 @@ public class Events {
 	
 	@SubscribeEvent
 	public void onConnect(ClientConnectedToServerEvent event) {
-		//HandleConnect.onConnect(event);
+		ServerHelper.currentIP = "";
 	}
 	
 	@SubscribeEvent

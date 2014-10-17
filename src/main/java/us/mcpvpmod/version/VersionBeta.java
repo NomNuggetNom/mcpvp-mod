@@ -15,6 +15,12 @@ public class VersionBeta {
 	public String forgeUrl;
 	
 	/** The compatible version of OpenEye */
+	public String optifine;
+	
+	/** The direct link to download OpenEye*/
+	public String optifineUrl;
+	
+	/** The compatible version of OpenEye */
 	public String openeye;
 	
 	/** The direct link to download OpenEye*/

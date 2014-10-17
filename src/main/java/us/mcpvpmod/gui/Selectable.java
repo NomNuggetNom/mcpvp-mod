@@ -40,25 +40,13 @@ public class Selectable {
 	
 	public static ArrayList<Selectable> getSelectables(Server server, State state) {
 		ArrayList<Selectable> toReturn = new ArrayList<Selectable>();
-		
-		toReturn.addAll(getShowing());
-		
-		for (Selectable selectable : selectables.values()) {
-			
 
-			// If the server and state specified are all, then we can return all selectables that are currently showing.
-			/*
-			if (server == Server.ALL && state == DummyState.NONE 
-					&& selectable.getServer() == Server.getServer() 
-					&& selectable.getState() == Server.getawState())
-
-			else if (selectable.getServer() == server && selectable.getState() == state)
+		for (Selectable selectable : getShowing()) {
+			if (selectable.getServer() != Server.NONE && selectable.getState() != DummyState.NONE) {
 				toReturn.add(selectable);
-			else if (selectable.getServer() == Server.ALL && selectable.getState() == DummyState.NONE)
-				toReturn.add(selectable);
-			*/
+			}
 		}
-		
+
 		return toReturn;
 	}
 	
