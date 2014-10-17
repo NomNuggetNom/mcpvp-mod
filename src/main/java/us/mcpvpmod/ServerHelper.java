@@ -38,6 +38,10 @@ public class ServerHelper {
 		}
 	}
 	
+	public static boolean onMCPVP() {
+		return !currentIP.equals("") && Server.getServer() != Server.NONE;
+	}
+	
 	/**
 	 * @return A list of all GuiPlayerInfo
 	 */

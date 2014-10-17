@@ -29,13 +29,13 @@ color-b=azul_marinho
 color-c=vermelho
 color-d=roxo
 color-e=amarelo
-color-f=branxo
+color-f=branco
  
 <!-- GUI -->
 gui.choose=Escolha o seu menu de server:
 gui.choose.mcpvp=Menu de servers MCPVP
 gui.choose.vanilla=Menu de server Vanilla
-gui.join.region=Region:
+gui.join.region=Região:
  
  
 <!-- =========== -->

@@ -18,6 +18,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import us.mcpvpmod.Main;
+import us.mcpvpmod.ServerHelper;
 import us.mcpvpmod.config.all.ConfigHUD;
 import us.mcpvpmod.gui.CustomTexture;
 import us.mcpvpmod.gui.PotionDisplay;
@@ -55,7 +56,8 @@ public class AllRender {
 			Selectable.selected.outline();
 		}
 		
-		Main.friendsList.display();
+		if (ServerHelper.onMCPVP())
+			Main.friendsList.display();
 		
 		if (Main.mc.currentScreen instanceof GuiIngameMenu) {
 			Main.mc.displayGuiScreen(new GuiIngameMCPVP());

@@ -142,7 +142,8 @@ public class PotionDisplay extends Selectable {
 			if (Main.mc.fontRenderer.getStringWidth(timeLeft) > max && ConfigHUD.potionMode.equals("Show Time Remaining"))
 				max = Main.mc.fontRenderer.getStringWidth(timeLeft);
 			if (potioneffect.getAmplifier() == 1 || potioneffect.getAmplifier() == 2 || potioneffect.getAmplifier() == 3) {
-				if (!(max > Main.mc.fontRenderer.getStringWidth(I18n.format("enchantment.level." + (potioneffect.getAmplifier() + 1)))))
+				if (!(max > Main.mc.fontRenderer.getStringWidth(I18n.format("enchantment.level." + (potioneffect.getAmplifier() + 1))))
+						&& ConfigHUD.potionMode.equals("Show Time Remaining"))
 					max = Main.mc.fontRenderer.getStringWidth(I18n.format("enchantment.level." + (potioneffect.getAmplifier() + 1))) + 4;
 			}
 		}

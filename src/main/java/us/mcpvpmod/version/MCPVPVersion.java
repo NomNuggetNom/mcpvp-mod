@@ -12,9 +12,9 @@ public class MCPVPVersion {
 	
 	public static boolean updateAvailable() {
 		if (ConfigVersion.channel.equalsIgnoreCase("Main"))
-			return !Main.modVersion.equals(Main.mcpvpVersion.main.mod);
+			return Main.mcpvpVersion.main!=null && !Main.modVersion.equals(Main.mcpvpVersion.main.mod);
 		else if (ConfigVersion.channel.equalsIgnoreCase("Beta"))
-			return !Main.modVersion.equals(Main.mcpvpVersion.main.mod);
+			return Main.mcpvpVersion.beta!=null &&!Main.modVersion.equals(Main.mcpvpVersion.beta.mod);
 		return false;
 	}
 }
