@@ -55,7 +55,9 @@ public class AllChat {
 			ServerHelper.currentIP = message.replaceAll(reIP, "$1");
 		}
 
-		if (Main.secondChat.shouldSplit(event) && !Server.getServer().equals(Server.CTF)) {
+		if (Main.secondChat.shouldSplit(event) 
+				&& !Server.getServer().equals(Server.CTF)
+				&& !Server.getServer().equals(Server.HS)) {
 			Main.secondChat.printChatMessage(event.message);
 			event.setCanceled(true);
 		}
