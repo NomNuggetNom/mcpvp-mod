@@ -1,5 +1,6 @@
 ### Variables
 To use a variable, place it in curly brackets, like so: `{variable}`.
+
 **All Servers**
 - `x`
 - `y`
@@ -11,10 +12,12 @@ To use a variable, place it in curly brackets, like so: `{variable}`.
 - `dir`
 - `f`
 - `players`
+
 **Build**
 - `map`
 - `id`
 - `rank`
+
 **CTF**
 - `kills`
 - `streak`
