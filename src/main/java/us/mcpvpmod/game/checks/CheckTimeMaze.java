@@ -5,6 +5,7 @@ import us.mcpvpmod.config.maze.ConfigMazeSelect;
 import us.mcpvpmod.game.info.InfoMaze;
 import us.mcpvpmod.game.state.StateMaze;
 import us.mcpvpmod.game.vars.Vars;
+import us.mcpvpmod.util.Format;
 
 public class CheckTimeMaze {
 	
@@ -23,7 +24,7 @@ public class CheckTimeMaze {
 		if (oldTime <= 5 
 				&& oldTime != -1 
 				&& StateMaze.getState().equals(StateMaze.PRE)
-				&& ConfigMazeSelect.selectMode.equals("Select Before Start")) {
+				&& ConfigMazeSelect.selectMode.equals(Format.s("maze.config.select.selectMode.m.before"))) {
 			
 			if (Vars.get("maze:kit").equals("")) {
 				Main.mc.thePlayer.sendChatMessage("/kit " + ConfigMazeSelect.selectClass);

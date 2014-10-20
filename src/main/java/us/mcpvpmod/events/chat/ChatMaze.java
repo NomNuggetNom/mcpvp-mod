@@ -6,6 +6,7 @@ import us.mcpvpmod.config.maze.ConfigMazeSelect;
 import us.mcpvpmod.game.vars.Vars;
 import us.mcpvpmod.trackers.ChatTracker;
 import us.mcpvpmod.triggers.ChatTrigger;
+import us.mcpvpmod.util.Format;
 
 public class ChatMaze {
 
@@ -17,7 +18,7 @@ public class ChatMaze {
 		
 		// Auto-Select support
 		if (message.equals("§r§aClick on or type the kit name to pick a kit:§r")
-				&& ConfigMazeSelect.selectMode.equals("Select On Join")) {
+				&& ConfigMazeSelect.selectMode.equals(Format.s("maze.config.select.selectMode.m.join"))) {
 
 			// Select kit
 			if (Vars.get("maze:kit").equals("")) {

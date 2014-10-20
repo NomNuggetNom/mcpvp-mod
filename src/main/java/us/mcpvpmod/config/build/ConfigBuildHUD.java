@@ -67,7 +67,7 @@ public class ConfigBuildHUD extends DummyModContainer {
     			"#purple##i#IP #gray#>> #white##b#{ip}", 
     			
     			});
-        prop.setLanguageKey("build.config.HUD.render");
+        prop.setLanguageKey("build.config.hud.render");
     	render = prop.getStringList();
     	propOrder.add(prop.getName());
     	

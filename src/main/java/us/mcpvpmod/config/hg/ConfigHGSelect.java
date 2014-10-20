@@ -8,6 +8,7 @@ import java.util.List;
 
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
+import us.mcpvpmod.util.Format;
 import cpw.mods.fml.common.DummyModContainer;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
@@ -50,7 +51,8 @@ public class ConfigHGSelect extends DummyModContainer {
         
         Property prop;
 
-        prop = config.get(CATEGORY_GENERAL, "selectMode", "Select Before Start", "Comment", new String[]{"Select On Join", "Select Before Start", "Don't Select"});
+        prop = config.get(CATEGORY_GENERAL, "selectMode", "Select Before Start", Format.s("hg.config.select.selectMode.tooltip"), 
+        		new String[]{Format.s("hg.config.select.selectMode.m.join"), Format.s("hg.config.select.selectMode.m.start"), Format.s("hg.config.select.selectMode.m.dont")});
         prop.setLanguageKey("hg.config.select.selectMode");
     	selectMode = prop.getString();
     	propOrder.add(prop.getName());

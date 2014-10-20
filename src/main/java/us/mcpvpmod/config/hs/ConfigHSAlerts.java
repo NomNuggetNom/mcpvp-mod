@@ -52,19 +52,19 @@ public class ConfigHSAlerts extends DummyModContainer {
         
     	prop = config.get(CATEGORY_GENERAL, "alertStreak", Format.s("kit.config.alerts.streak.default"));
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-        prop.setLanguageKey("kit.config.alerts.streak");
+        prop.setLanguageKey("hs.config.alerts.streak");
     	propOrder.add(prop.getName());
     	new CustomAlert("kit.streak.get", prop.getString());
     	
     	prop = config.get(CATEGORY_GENERAL, "alertStreakEnd", Format.s("kit.config.alerts.streakEnd.default"));
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-        prop.setLanguageKey("kit.config.alerts.streakEnd");
+        prop.setLanguageKey("hs.config.alerts.streakEnd");
     	propOrder.add(prop.getName());
     	new CustomAlert("kit.streak.end", prop.getString());
     	
     	prop = config.get(CATEGORY_GENERAL, "alertRestart", Format.s("kit.config.alerts.restart.default"));
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-        prop.setLanguageKey("kit.config.alerts.restart");
+        prop.setLanguageKey("hs.config.alerts.restart");
     	propOrder.add(prop.getName());
     	new CustomAlert("kit.restart", prop.getString());
         

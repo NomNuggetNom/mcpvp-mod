@@ -7,6 +7,7 @@ import us.mcpvpmod.game.core.CoreHG;
 import us.mcpvpmod.game.state.StateHG;
 import us.mcpvpmod.trackers.ChatTracker;
 import us.mcpvpmod.triggers.ChatTrigger;
+import us.mcpvpmod.util.Format;
 
 public class ChatHG {
 
@@ -22,7 +23,7 @@ public class ChatHG {
 		
 		if (message.matches(CoreHG.msgChoose)) {
 			
-			if (ConfigHGSelect.selectMode.equalsIgnoreCase("Select On Join")) {
+			if (ConfigHGSelect.selectMode.equals(Format.s("hg.config.select.selectMode.m.join"))) {
 				Main.mc.thePlayer.sendChatMessage("/kit " + ConfigHGSelect.selectKit);
 			}
 		}

@@ -24,14 +24,14 @@ public class ConfigHS extends CategoryEntry {
         List<IConfigElement> list = new ArrayList<IConfigElement>();
         
         list.add(new DummyCategoryElement(Format.s("config.hud.title"), "config.hs.HUD", HSHud.class));
-        list.add(new DummyCategoryElement(Format.s("config.alerts.title"), "config.hs.Alerts", HSAlerts.class));
-        list.add(new DummyCategoryElement(Format.s("config.sounds.title"), "config.hs.Sounds", HSSounds.class));
+        //list.add(new DummyCategoryElement(Format.s("config.alerts.title"), "config.hs.Alerts", HSAlerts.class));
+        //list.add(new DummyCategoryElement(Format.s("config.sounds.title"), "config.hs.Sounds", HSSounds.class));
         
         return new GuiConfig(this.owningScreen,
         		list, 
         		this.owningScreen.modID, Configuration.CATEGORY_GENERAL, this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart, 
         		this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart,
-        		Format.s("config.kit.title"));
+        		Format.s("config.hs.title"));
     }
     
 	public static class HSHud extends CategoryEntry {

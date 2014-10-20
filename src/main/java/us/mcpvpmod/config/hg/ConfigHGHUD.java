@@ -49,6 +49,7 @@ public class ConfigHGHUD extends DummyModContainer {
         
         Property prop;
         
+        /*
     	prop = config.get(CATEGORY_GENERAL, "renderPre", new String[]{
     			
     			"---#b##u#HG", 
@@ -61,6 +62,7 @@ public class ConfigHGHUD extends DummyModContainer {
         prop.setLanguageKey("hg.config.hud.renderPre");
     	renderPre = prop.getStringList();
     	propOrder.add(prop.getName());
+    	*/
     	
     	prop = config.get(CATEGORY_GENERAL, "renderPlay", new String[]{   
     			

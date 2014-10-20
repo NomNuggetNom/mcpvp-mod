@@ -54,22 +54,22 @@ public class ConfigSelect extends DummyModContainer {
         Property prop;
 
     	prop = config.get(CATEGORY_GENERAL, "autoTagB", false);
-        prop.setLanguageKey("config.Select.autoTagB");
+        prop.setLanguageKey("config.select.autoTagB");
     	autoTagB = prop.getBoolean();
     	propOrder.add(prop.getName());
         
     	prop = config.get(CATEGORY_GENERAL, "autoTag", "default", "This will automatically set your tag when you join.", new String[]{"default", "normal", "vip", "mvp", "pro"});
-        prop.setLanguageKey("config.Select.autoTag");
+        prop.setLanguageKey("config.select.autoTag");
     	autoTag = prop.getString();
     	propOrder.add(prop.getName());
     	
     	prop = config.get(CATEGORY_GENERAL, "autoDespawn", false);
-        prop.setLanguageKey("config.Select.autoDespawn");
+        prop.setLanguageKey("config.select.autoDespawn");
     	autoDespawn = prop.getBoolean();
     	propOrder.add(prop.getName());
     	
     	prop = config.get(CATEGORY_GENERAL, "autoSilent", false);
-        prop.setLanguageKey("config.Select.autoSilent");
+        prop.setLanguageKey("config.select.autoSilent");
     	autoSilent = prop.getBoolean();
     	propOrder.add(prop.getName());
         
