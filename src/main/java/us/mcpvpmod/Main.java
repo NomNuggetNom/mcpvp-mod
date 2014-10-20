@@ -10,6 +10,7 @@ import org.lwjgl.input.Keyboard;
 
 import com.jadarstudios.developercapes.DevCapes;
 
+import us.mcpvpmod.config.RawConfig;
 import us.mcpvpmod.events.Events;
 import us.mcpvpmod.gui.ArmorDisplay;
 import us.mcpvpmod.gui.InfoBlock;
@@ -87,6 +88,9 @@ public class Main {
 		
     	// Sync all files and configurations.
 		Sync.sync();
+		
+		// Load up some external settings.
+		RawConfig.load();
 		
 		// Create timers.
 		Timer timer = new Timer();
