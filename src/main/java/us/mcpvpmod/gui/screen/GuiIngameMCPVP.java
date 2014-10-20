@@ -17,7 +17,7 @@ public class GuiIngameMCPVP extends GuiIngameMenu {
         super.initGui();
         baseY = this.height / 4 + 120 + -16;
         baseY += 30;
-        this.buttonList.add(new GuiButton(100, this.width / 2 + 2, this.height / 4 + 96 - 16, 98, 20, Format.s("gui.ingame.button")));
+        this.buttonList.add(new GuiButton(100, this.width / 2 + 2, this.height / 4 + 96 - 16, 98, 20, Format.process(Format.s("gui.ingame.button"))));
         //this.buttonList.add(new GuiButton(101, this.width / 2 + 2, baseY + 50, 98, 20, I18n.format("Connect")));
 	}
 	
