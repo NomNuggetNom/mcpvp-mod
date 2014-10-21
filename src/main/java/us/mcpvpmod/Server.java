@@ -78,7 +78,8 @@ public enum Server {
 	}
 		
 	/**
-	 * @return The Server currently connected to. 
+	 * @param ip The IP to check.
+	 * @return The Server based on the IP given. 
 	 * Returns NONE if on an un-recognized server.
 	 */
 	public static Server getServer(String ip) {	
@@ -104,8 +105,6 @@ public enum Server {
 	 * Returns NONE if on an un-recognized server.
 	 */
 	public static Server getServer() {	
-		if (Main.mc.isSingleplayer()) return NONE;
-
 		return getServer(ServerHelper.serverIP());
 	}
 	
