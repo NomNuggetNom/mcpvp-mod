@@ -40,6 +40,7 @@ gui.choose.mcpvp=MCPVP Server Menu
 gui.choose.vanilla=Vanilla Server Menu
 gui.join.region=Region: 
 gui.join.rejoin=Re-Join Last
+gui.join.vanilla=Vanilla
 gui.ingame=MCPVP Menu
 gui.ingame.button=#b#MCPVP Options
 gui.ingame.connect=Connect to a Server
