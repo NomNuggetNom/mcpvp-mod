@@ -32,18 +32,22 @@ public class GuiChooseMultiplayer extends GuiScreen {
 	}
 
 	public void initGuiButtons() {
+		
 		GuiButton connectMCPVP = new GuiButton(100, 
 				this.width/2 - 100, 
 				this.height/2 - 20, 
 				Format.s("gui.choose.mcpvp"));
+		
 		GuiButton connectVanilla = new GuiButton(101, 
 				this.width/2 - 100, 
 				this.height / 2 - 20 + 25, 
 				Format.s("gui.choose.vanilla"));
+		
 		GuiButton backButton = new GuiButton(102, 
 				this.width/2 - 100, 
 				this.height / 2 - 20 + 25 + 25, 
 				Format.s("gui.cancel"));
+		
 		this.buttonList.add(connectMCPVP);
 		this.buttonList.add(connectVanilla);
 		this.buttonList.add(backButton);

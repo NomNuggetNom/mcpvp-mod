@@ -1,26 +1,11 @@
 package us.mcpvpmod.events.render;
 
-import java.net.URL;
-
-import org.lwjgl.opengl.GL11;
-
-import com.mojang.authlib.minecraft.MinecraftProfileTexture;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.gui.GuiIngameMenu;
-import net.minecraft.client.model.ModelBiped;
-import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.client.renderer.ThreadDownloadImageData;
-import net.minecraft.client.renderer.texture.ITextureObject;
-import net.minecraft.client.renderer.texture.TextureManager;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.ServerHelper;
 import us.mcpvpmod.config.all.ConfigHUD;
-import us.mcpvpmod.gui.CustomTexture;
 import us.mcpvpmod.gui.PotionDisplay;
 import us.mcpvpmod.gui.Selectable;
 import us.mcpvpmod.gui.screen.GuiIngameMCPVP;

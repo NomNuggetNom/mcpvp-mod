@@ -27,7 +27,7 @@ import us.mcpvpmod.util.Format;
 public class GuiServerList extends GuiScreen {
 
 	public GuiScreen mainMenu;
-    public GuiServerEntry serverList;
+    public GuiServerCategory serverList;
 
     /** The Integer is the ID of the button, the String is the resulting serverType */
 	public static HashMap<Integer, String> serverTypes = new HashMap<Integer, String>();
@@ -53,7 +53,7 @@ public class GuiServerList extends GuiScreen {
 		Keyboard.enableRepeatEvents(true);
 		initGuiButtons();
 		Main.serverJson.run();
-		this.serverList = new GuiServerEntry(this, MCPVPServer.getSortedOfType(serverType, serverRegion));
+		this.serverList = new GuiServerCategory(this, MCPVPServer.getSortedOfType(serverType, serverRegion));
         this.serverList.registerScrollButtons(this.buttonList, 7, 8);
 
 	}
@@ -61,7 +61,7 @@ public class GuiServerList extends GuiScreen {
 	public void initGuiButtons() {
 
 		// GuiButton(int ID, x, y, w, h, text);
-
+		
 		int y = 5;
 		int x = 5;
 		int id = 1;
@@ -69,38 +69,35 @@ public class GuiServerList extends GuiScreen {
 		
 		// Create buttons and register server IDs.
 		for (Server server : Server.serverList()) {
+			
+			// The number of buttons per row.
+			// Once this is reached, the coordinates are incremented to start a new row.
 			if (count == 3) {
 				x=5;
 				y+=25;
 				count=0;
 			}
-			this.buttonList.add(new GuiButton(id, this.width/2 - 150 + x, y, 100, 20, server.toString()));
+			
+			// Add the button and register the serverType.
+			this.buttonList.add(new GuiButton(id, this.width/2 - 150 + x, y, 100, 20, server.getName()));
 			serverTypes.put(id, server.baseIP());
+			
+			// Increment the numbers.
 			x+= 105;
 			id++;
 			count++;
 		}
 		
-		y+=25;
 		
+		y+=25;
 		
 		regionButton = new GuiButton(102, this.width/2 - 145, this.height - 50, 70, 20, Format.s("gui.join.region") + serverRegion.toUpperCase());
 		connectButton = new GuiButton(100, this.width/2 - 140/2, this.height - 50, 140, 20, Format.s("selectServer.select"));
 		refreshButton = new GuiButton(101, this.width/2 + 75, this.height - 50, 70, 20, Format.s("selectServer.refresh"));
 		
-		vanillaButton = new GuiButton(105, this.width/2 - 145, this.height - 25, 70, 20, "Vanilla");
-		reconnectButton = new GuiButton(104, this.width/2 - 140/2, this.height - 25, 140, 20, "Re-Join Last");
+		vanillaButton = new GuiButton(105, this.width/2 - 145, this.height - 25, 70, 20, Format.s("gui.join.vanilla"));
+		reconnectButton = new GuiButton(104, this.width/2 - 140/2, this.height - 25, 140, 20, Format.s("gui.join.rejoin"));
 		cancelButton = new GuiButton(103, this.width/2 + 75, this.height - 25, 70, 20, Format.s("gui.cancel"));
-		
-		/*
-				regionButton = new GuiButton(102, this.width/2 - 145, this.height - 50, 70, 20, Format.s("gui.join.region") + serverRegion.toUpperCase());
-		connectButton = new GuiButton(100, this.width/2 - 140/2, this.height - 50, 140, 20, Format.s("selectServer.select"));
-		refreshButton = new GuiButton(101, this.width/2 + 75, this.height - 50, 70, 20, Format.s("selectServer.refresh"));
-		
-		directButton = new GuiButton(105, this.width/2 - 145, this.height - 25, 110, 20, "Direct Connect");
-		reconnectButton = new GuiButton(104, this.width/2 - 25, this.height - 25, 110, 20, "Re-Join Last");
-		cancelButton = new GuiButton(103, this.width/2 + 95, this.height - 25, 50, 20, Format.s("gui.cancel"));
-		 */
 		
 		// Set the connection button to disabled by default.
 		connectButton.enabled = false;
@@ -142,7 +139,8 @@ public class GuiServerList extends GuiScreen {
 			}
 			regionButton.displayString = Format.s("gui.join.region") + serverRegion.toUpperCase();
 		}
-		this.serverList = new GuiServerEntry(this, MCPVPServer.getSortedOfType(serverType, serverRegion));
+		this.setServerCategory(serverType, serverRegion);
+		//this.serverList = new GuiServerCategory(this, MCPVPServer.getSortedOfType(serverType, serverRegion));
 		
 		// Update the region button by removing it and re-adding it.
 		this.buttonList.remove(regionButton);
@@ -161,7 +159,7 @@ public class GuiServerList extends GuiScreen {
 		// Refresh
 		if (button.id == refreshButton.id) {
 			Main.serverJson.run();
-			new GuiServerEntry(this, MCPVPServer.getSortedOfType(serverType, serverRegion));
+			this.setServerCategory(serverType, serverRegion);
 		}
 		
 		// Vanilla menu
@@ -174,6 +172,12 @@ public class GuiServerList extends GuiScreen {
 			else
 				FMLClientHandler.instance().connectToServer(Main.mc.currentScreen, new ServerData(ServerHelper.serverIP(), ServerHelper.serverIP()));
 		}
+	}
+	
+	public void setServerCategory(String serverType, String serverRegion) {
+		this.serverList = new GuiServerCategory(this, 
+				MCPVPServer.getSortedOfType(serverType, serverRegion), 
+				(Server.getServer(serverType).guiLines()+1)*10 + 5);
 	}
 	
 	@Override
@@ -195,8 +199,8 @@ public class GuiServerList extends GuiScreen {
     }
 
     public void selectServer(int index) {
-    	System.out.println(index);
-    	if (!serverList.servers.get(index).MOTD.contains("Server Offline :'(")) this.selected = index;
+    	if (!serverList.servers.get(index).MOTD.contains("Server Offline :'(")) 
+    		this.selected = index;
     }
     
 	public boolean isServerSelected(int index) {
