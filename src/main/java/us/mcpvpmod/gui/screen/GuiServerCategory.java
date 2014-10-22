@@ -163,6 +163,7 @@ public class GuiServerCategory extends GuiScrollingList {
 		else if (server.IsAcceptingPlayers)
 			color = "#green#";
 		
+		if (numBars < 0 || bars-numBars < 0) return "";
 		return new String(new char[numBars]).replaceAll("\0", Format.process(color + "|#r#")) 
 			 + new String(new char[bars-numBars]).replaceAll("\0", Format.process("#dark_gray#|#r#"));
 	}

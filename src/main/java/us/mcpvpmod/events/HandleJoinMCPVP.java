@@ -1,9 +1,7 @@
 package us.mcpvpmod.events;
 
 import us.mcpvpmod.Main;
-import us.mcpvpmod.Server;
 import us.mcpvpmod.config.all.ConfigSelect;
-import us.mcpvpmod.events.chat.AllChat;
 import us.mcpvpmod.events.chat.IgnoreResult;
 import us.mcpvpmod.game.vars.AllVars;
 import us.mcpvpmod.game.vars.Vars;
@@ -15,6 +13,8 @@ import us.mcpvpmod.game.vars.VarsMaze;
 import us.mcpvpmod.game.vars.VarsRaid;
 import us.mcpvpmod.game.vars.VarsSab;
 import us.mcpvpmod.gui.screen.GuiWelcome;
+import us.mcpvpmod.gui.tutorial.Tutorial;
+import us.mcpvpmod.gui.tutorial.TutorialScreen;
 import us.mcpvpmod.util.Data;
 
 public class HandleJoinMCPVP {
@@ -64,8 +64,10 @@ public class HandleJoinMCPVP {
 		if (System.currentTimeMillis() - lastLogin >= 100
 				&& Data.get("shownWelcome") == null
 				&& Main.mc.currentScreen == null) {
-			Main.mc.displayGuiScreen(new GuiWelcome(Main.mc.currentScreen));
-			Data.put("shownWelcome", "true");
+			Tutorial.build();
+			//Main.mc.displayGuiScreen(new TutorialScreen("Testing", "Content", null, null));
+			//Main.mc.displayGuiScreen(new GuiWelcome(Main.mc.currentScreen));
+			//Data.put("shownWelcome", "true");
 		}
 	}
 	

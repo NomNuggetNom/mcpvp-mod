@@ -91,7 +91,8 @@ public class InfoBlock extends Selectable {
 	 * @param getTitle
 	 * @return
 	 */
-	public static InfoBlock get(String getTitle) {		
+	public static InfoBlock get(String getTitle) {
+		getTitle = Format.process(getTitle);
 		for (InfoBlock block : blocks) {
 			if (block.getTitle().equals(getTitle) && block.server == Server.getServer() && block.state == Server.getState()) {
 				return block;

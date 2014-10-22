@@ -3,7 +3,7 @@
 - [ ] Maze Runner sounds
 - [ ] KitPVP sounds
 - [ ] Improve welcome screen or add a tutorial
-- [ ] Improve server menu
+- [x] Improve server menu
 - [ ] German translation
 - [ ] CTF Moderator tools
 - [ ] Auto-updater

@@ -18,7 +18,7 @@ public class ConfigMazeSounds extends DummyModContainer {
 	public static String soundStreakEnd;
 	public static String soundStreak;
     
-    public static String fileName = "mcpvp_kit_sounds.cfg";
+    public static String fileName = "mcpvp_maze_sounds.cfg";
     
     private static Configuration config;
 
@@ -57,12 +57,12 @@ public class ConfigMazeSounds extends DummyModContainer {
     	new SoundAlert("maze.kit", prop.getString());
     	
     	prop = config.get(CATEGORY_GENERAL, "soundPlayerKilled", "mob.villager.yes");
-        prop.setLanguageKey("maze.config.sounds.kit");
+        prop.setLanguageKey("maze.config.sounds.playerKilled");
     	propOrder.add(prop.getName());
     	new SoundAlert("maze.playerKilled", prop.getString());
     	
     	prop = config.get(CATEGORY_GENERAL, "soundTeamOut", "mob.wither.death");
-        prop.setLanguageKey("maze.config.sounds.kit");
+        prop.setLanguageKey("maze.config.sounds.teamOut");
     	propOrder.add(prop.getName());
     	new SoundAlert("maze.team.out", prop.getString());
     
