@@ -96,7 +96,8 @@ public class GuiServerList extends GuiScreen {
 		refreshButton = new GuiButton(101, this.width/2 + 75, this.height - 50, 70, 20, Format.s("selectServer.refresh"));
 		
 		vanillaButton = new GuiButton(105, this.width/2 - 145, this.height - 25, 70, 20, Format.s("gui.join.vanilla"));
-		reconnectButton = new GuiButton(104, this.width/2 - 140/2, this.height - 25, 140, 20, Format.s("gui.join.rejoin"));
+		reconnectButton = new GuiButton(104, this.width/2 - 140/2, this.height - 25, 140, 20, Format.s(ServerHelper.lastIP() 
+				!= null ? ServerHelper.lastIP() : Format.s("gui.join.rejoin")));
 		cancelButton = new GuiButton(103, this.width/2 + 75, this.height - 25, 70, 20, Format.s("gui.cancel"));
 		
 		// Set the connection button to disabled by default.
@@ -184,7 +185,7 @@ public class GuiServerList extends GuiScreen {
 	public void drawScreen(int p_73863_1_, int p_73863_2_, float p_73863_3_) {
 		connectButton.enabled = (this.selected != -1);
 		regionButton.displayString = Format.s("gui.join.region") + serverRegion.toUpperCase();
-		reconnectButton.enabled = ServerHelper.serverIP() != "none" || Data.get("lastServer") != null;
+		reconnectButton.enabled = !reconnectButton.displayString.equals(Format.s("gui.join.rejoin"));
 		this.drawDefaultBackground();
 		this.serverList.drawScreen(p_73863_1_, p_73863_2_, p_73863_3_);
 		super.drawScreen(p_73863_1_, p_73863_2_, p_73863_3_);
