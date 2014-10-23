@@ -51,10 +51,6 @@ public class HandleJoinMCPVP {
 			Main.l("Automatically tagged to \"%s\"", ConfigSelect.autoTag);
 		}
 		
-		if (ConfigSelect.autoDespawn) {
-			new IgnoreResult("/pet despawn", ".*Your pet has been spawned!.*", ".*Your pet is not spawned.*");
-		}
-		
 		if (ConfigSelect.autoSilent) {
 			new IgnoreResult("/silent", "\00A7r\00A7cAll alerts are now hidden for you.\00A7r");
 		}
