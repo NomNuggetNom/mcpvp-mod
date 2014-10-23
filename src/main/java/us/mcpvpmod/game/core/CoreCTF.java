@@ -7,6 +7,7 @@ import us.mcpvpmod.triggers.ChatTrigger;
 
 public class CoreCTF {
 
+	public static String reAction = "\u00A7.(.*)\u00A7. (stole|dropped|picked up|recovered|captured) \u00A7.(.*)\u00A7.'s flag!.*";
 	public static String reStole = "(\u00A7..*)\u00A7. stole (\u00A7..*)\u00A7.'s flag!.*";
 	public static String reDropped = "(\u00A7..*)\u00A7. dropped (\u00A7..*)\u00A7.'s flag!.*";
 	public static String rePickedUp = "(\u00A7..*)\u00A7. picked up (\u00A7..*)\u00A7.'s flag!.*";
@@ -56,6 +57,9 @@ public class CoreCTF {
 		
 		new ChatTracker(reGameOver, Server.CTF,
 				new String[]{"ctf:winner", "$1"});
+		
+		new ChatTracker(reAction, Server.CTF,
+				new String[]{"action", "$2"});
 		
 		new ChatTrigger(reStole, "flag.stolen", Server.CTF, 
 				new String[]{"player", "$1"}, 

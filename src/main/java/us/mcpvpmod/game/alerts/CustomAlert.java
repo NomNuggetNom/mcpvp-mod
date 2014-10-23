@@ -1,6 +1,7 @@
 package us.mcpvpmod.game.alerts;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -95,16 +96,17 @@ public class CustomAlert {
 	 * @param item The item to check.
 	 * @return The processed item.
 	 */
-	public ItemStack setWool(ItemStack item) {
+	public ItemStack setCustomItem(ItemStack item) {
 		String team = Vars.get("team");
 		
 		if (item.getItem() == null) return new ItemStack(Blocks.web);
 		
 		if (item.toString().equals(getItem("wool").toString())) {
-			System.out.println("Attempting to replace wool : " + team);
 			if (team.contains("Blue")) {
+				Main.l("Replaced white wool with blue wool in an alert.");
 				return new ItemStack(Blocks.wool, 1, 11);
 			} else if (team.contains("Red")) {
+				Main.l("Replaced white wool with red wool in an alert.");
 				return new ItemStack(Blocks.wool, 1, 14);
 			}
 		}
@@ -116,8 +118,17 @@ public class CustomAlert {
 	 * @param resource The resource location?
 	 * @return The image file.
 	 */
-	public ResourceLocation setFlag(ResourceLocation resource) {
+	public ResourceLocation setCustomImage(ResourceLocation resource) {
 		// TODO: Dynamic icon system.
+		if (Vars.get("icon") == null) return resource;
+		
+		String imgName = resource.getResourcePath().replaceAll("textures/(.*)\\.png", "$1");
+		System.out.println(imgName);
+		
+		if (imgName.equals("flag")) {
+			return new ResourceLocation("mcpvp", "textures/flag_" + Vars.get("team").replaceAll("\u00A7.", "").toLowerCase(Locale.ENGLISH) + "_" + Vars.get("action") + ".png");
+		}
+		
 		/*
 		String team = Vars.get("team");
 		String action = Vars.get("action");
@@ -188,11 +199,11 @@ public class CustomAlert {
 		}
 
 		if (this.mode == Mode.ITEM) {
-			item = setWool(item);
+			item = setCustomItem(item);
 			Alerts.alert.sendAlertWithItem(title, desc, -1, item);
 			Main.l("Alert \"%s\" was shown (mode:item)", this);
 		} else if (this.mode == Mode.IMAGE) {
-			image = setFlag(image);
+			image = setCustomImage(image);
 			Alerts.alert.sendAlertWithImage(title, desc, -1, image);
 			Main.l("Alert \"%s\" was shown (mode:image)", this);
 		} else {
