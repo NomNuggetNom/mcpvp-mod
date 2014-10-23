@@ -8,6 +8,8 @@ import java.util.List;
 
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
+import us.mcpvpmod.config.RawConfig;
+import us.mcpvpmod.util.Data;
 import us.mcpvpmod.util.Format;
 import cpw.mods.fml.common.DummyModContainer;
 import cpw.mods.fml.common.Loader;
@@ -133,9 +135,11 @@ public class ConfigHUD extends DummyModContainer {
     	
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
 
-        if (config.hasChanged())
-        {
+        if (config.hasChanged()) {
+        	Data.put("showArmor", "" + showPotion);
+        	Data.put("showPotion", "" + showPotion);
             config.save();
+        	//RawConfig.load();
         }
     }
     

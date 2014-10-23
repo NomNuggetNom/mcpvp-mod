@@ -14,6 +14,7 @@ import us.mcpvpmod.gui.CustomTexture;
 import us.mcpvpmod.gui.PotionDisplay;
 import us.mcpvpmod.gui.Selectable;
 import us.mcpvpmod.gui.screen.GuiIngameMCPVP;
+import us.mcpvpmod.util.Data;
 
 /**
  * Render handling for all servers.
@@ -35,9 +36,9 @@ public class AllRender {
 		//FriendsBlock.display();
 		
 		// Render our armor and potion display.
-		if (ConfigHUD.showArmor)
+		if (ConfigHUD.showArmor || (Data.get("showArmor") != null && Boolean.valueOf(Data.get("showArmor"))))
 			Main.armorDisplay.renderArmor();
-		if (ConfigHUD.showPotion) {
+		if (ConfigHUD.showPotion || (Data.get("showPotion") != null && Boolean.valueOf(Data.get("showPotion")))) {
 			Main.potionDisplay.displayPotions(event);
 			PotionDisplay.displayStrings();
 		}

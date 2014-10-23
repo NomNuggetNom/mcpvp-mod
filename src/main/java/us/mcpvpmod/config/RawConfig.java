@@ -10,11 +10,12 @@ public class RawConfig {
 	 * Used for saving deletion of Armor & Potion display.
 	 */
 	public static void load() {
-		if (Data.get("showArmor") != null && Data.get("showArmor").equals("false"))
-			ConfigHUD.showArmor = false;
 		
-		if (Data.get("showPotion") != null && Data.get("showPotion").equals("false"))
-			ConfigHUD.showPotion = false;
+		if (Data.get("showArmor") != null)
+			ConfigHUD.showArmor = Boolean.valueOf(Data.get("showArmor"));
+		
+		if (Data.get("showPotion") != null)
+			ConfigHUD.showPotion = Boolean.valueOf(Data.get("showPotion"));
 	}
 	
 }
