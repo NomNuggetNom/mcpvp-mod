@@ -256,22 +256,22 @@ ctf.config.title=Capture the Flag Configuration
 <!-- ALERTS -->
 ctf.config.alerts.stole=Flag Stolen
 ctf.config.alerts.stole.tooltip=The alert triggered when the flag is stolen.
-ctf.config.alerts.stole.default=#white#Flag stolen! ||| {player} #gray#stole {team}#gray#'s #gray#flag! ||| wool
+ctf.config.alerts.stole.default=#white#Flag stolen! ||| {player} #gray#stole {team}#gray#'s #gray#flag! ||| flag.png
 ctf.config.alerts.dropped=Flag Dropped
 ctf.config.alerts.dropped.tooltip=The alert triggered when the flag is dropped.
-ctf.config.alerts.dropped.default=#white#Flag dropped! ||| {player} #gray#dropped {team}#gray#'s flag! ||| wool
+ctf.config.alerts.dropped.default=#white#Flag dropped! ||| {player} #gray#dropped {team}#gray#'s flag! ||| flag.png
 ctf.config.alerts.pickedUp=Flag Picked Up
 ctf.config.alerts.pickedUp.tooltip=The alert triggered when the flag is picked up.
-ctf.config.alerts.pickedUp.default=#white#Flag picked up! ||| {player} #gray#picked up {team}#gray#'s flag! ||| wool
+ctf.config.alerts.pickedUp.default=#white#Flag picked up! ||| {player} #gray#picked up {team}#gray#'s flag! ||| flag.png
 ctf.config.alerts.recovered=Flag Recovered
 ctf.config.alerts.recovered.tooltip=The alert triggered when the flag is recovered.
-ctf.config.alerts.recovered.default=#white#Flag recovered! ||| {player} #gray#recovered {team}#gray#'s flag! ||| wool
+ctf.config.alerts.recovered.default=#white#Flag recovered! ||| {player} #gray#recovered {team}#gray#'s flag! ||| flag.png
 ctf.config.alerts.restored=Flag Restored
 ctf.config.alerts.restored.tooltip=The alert triggered when the flag is restored.
-ctf.config.alerts.restored.default=#white#Flag restored! ||| {team}#gray#'s flag has been restored ||| wool
+ctf.config.alerts.restored.default=#white#Flag restored! ||| {team}#gray#'s flag has been restored ||| flag.png
 ctf.config.alerts.captured=Flag Captured
 ctf.config.alerts.captured.tooltip=The alert triggered when the flag is captured.
-ctf.config.alerts.captured.default=#white#Flag captured! ||| {player} #gray#captured {team}#gray#'s flag! ||| wool
+ctf.config.alerts.captured.default=#white#Flag captured! ||| {player} #gray#captured {team}#gray#'s flag! ||| flag.png
 ctf.config.alerts.streak=Streak Ended
 ctf.config.alerts.streak.tooltip=The alert triggered when the flag a kill streak is ended.
 ctf.config.alerts.streak.default=#white#Streak ended! ||| {killer} #gray#ended {killed}#gray#'s #cyan#{streak} #gray#streak ||| bone
@@ -295,7 +295,7 @@ ctf.config.alerts.one.tooltip=The alert triggered when five minutes are remainin
 ctf.config.alerts.one.default=Warning! ||| #red#1:00 #gray#remaining! ||| clock
 ctf.config.alerts.end=Game End
 ctf.config.alerts.end.tooltip=The alert triggered when the game ends.
-ctf.config.alerts.end.default=Game over! ||| {team} #gray#won the game! ||| wool
+ctf.config.alerts.end.default=Game over! ||| {team} #gray#won the game! ||| flag.png
 
 <!-- CHAT -->
 ctf.config.chat.removeTips=Remove Tips
