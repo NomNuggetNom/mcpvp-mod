@@ -11,6 +11,7 @@ To use a variable, place it in curly brackets, like so: `{variable}`.
 - `direction`The direction you're facing, e.g. NORTH/EAST/SOUTH/WEST.
 - `dir` The first letter of the direction you're facing, e.g. N/E/S/W.
 - `f` The numerical value of the F diretion you're facing, e.g. 0/1/2/3.
+- `fdec` The numerical value of the F direction you're facing with one decimal point, e.g. 0.1/1.2/2.3/3.4.
 - `players` The number of players on your current server.
 
 **Build**

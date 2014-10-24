@@ -28,6 +28,7 @@ public class AllVars {
 		vars.put("direction", AllInfo.getDirection());
 		vars.put("dir", "" + AllInfo.getDirectionChar());
 		vars.put("f", "" + AllInfo.getF());
+		vars.put("fdec", "" + AllInfo.getFDecimal());
 		vars.put("players", "" + AllInfo.getPlayersOnline());
 	}
 	

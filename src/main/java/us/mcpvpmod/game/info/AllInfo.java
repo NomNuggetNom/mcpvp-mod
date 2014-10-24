@@ -77,6 +77,18 @@ public class AllInfo {
 	}
 	
 	/**
+	 * @return The F direction the player is facing to an accuracy of one decimal.
+	 */
+	public static String getFDecimal() {
+		if (Main.mc.thePlayer == null) return "-1";
+		int firstNum = getF();
+		double fullNum = ((double)(Main.mc.thePlayer.rotationYaw * 4.0F / 360.0F) + 0.5D);
+		String newNum = ("" + fullNum).replaceAll(".*\\.", "");
+		String newRoundedNum = "" + newNum.charAt(0);
+		return firstNum + "." + newRoundedNum;
+	}
+	
+	/**
 	 * @return The number of players on the current server.
 	 */
 	public static int getPlayersOnline() {
