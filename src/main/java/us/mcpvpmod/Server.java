@@ -61,7 +61,7 @@ import cpw.mods.fml.common.gameevent.TickEvent;
  * Provides a main class for getting server dependent information.
  */
 public enum Server {
-	HUB, KIT, HG, MAZE, SAB, CTF, HS, PARTY, BUILD, RAID, HG2, NONE, ALL;
+	HUB, KIT, HG, MAZE, SAB, CTF, HS, PARTY, BUILD, RAID, HG2, SMASH, NONE, ALL;
 	
 	/**
 	 * @return The friendly name of the server from the lang file.
@@ -76,27 +76,36 @@ public enum Server {
 	public String baseIP() {
 		return Format.s("server." + this.toString().toLowerCase() + ".ip");
 	}
+		
+	/**
+	 * @param ip The IP to check.
+	 * @return The Server based on the IP given. 
+	 * Returns NONE if on an un-recognized server.
+	 */
+	public static Server getServer(String ip) {	
+		if (Main.mc.isSingleplayer()) return NONE;
+
+		if (ip.endsWith("hub.mcpvp.com"))		return HUB;
+		if (ip.endsWith("kitpvp.us"))			return KIT;
+		if (ip.endsWith("mc-maze.com"))			return MAZE;
+		if (ip.endsWith("mc-sabotage.com"))		return SAB;
+		if (ip.endsWith("mcctf.com"))			return CTF;
+		if (ip.endsWith("mcheadshot.com"))		return HS;
+		if (ip.endsWith("party.mcpvp.com"))		return PARTY;
+		if (ip.endsWith("minecraftbuild.com"))	return BUILD;
+		if (ip.endsWith("raid.mcpvp.com"))		return RAID;
+		if (ip.endsWith("v2.mc-hg.com"))		return HG2;
+		if (ip.endsWith("mc-hg.com"))			return HG;
+
+		return NONE;
+	}
 	
 	/**
 	 * @return The Server currently connected to. 
 	 * Returns NONE if on an un-recognized server.
 	 */
 	public static Server getServer() {	
-		if (Main.mc.isSingleplayer()) return NONE;
-
-		if (ServerHelper.serverIP().endsWith("hub.mcpvp.com"))		return HUB;
-		if (ServerHelper.serverIP().endsWith("kitpvp.us"))			return KIT;
-		if (ServerHelper.serverIP().endsWith("mc-maze.com"))			return MAZE;
-		if (ServerHelper.serverIP().endsWith("mc-sabotage.com"))		return SAB;
-		if (ServerHelper.serverIP().endsWith("mcctf.com"))			return CTF;
-		if (ServerHelper.serverIP().endsWith("mcheadshot.com"))		return HS;
-		if (ServerHelper.serverIP().endsWith("party.mcpvp.com"))		return PARTY;
-		if (ServerHelper.serverIP().endsWith("minecraftbuild.com"))	return BUILD;
-		if (ServerHelper.serverIP().endsWith("raid.mcpvp.com"))		return RAID;
-		if (ServerHelper.serverIP().endsWith("v2.mc-hg.com"))			return HG2;
-		if (ServerHelper.serverIP().endsWith("mc-hg.com"))			return HG;
-
-		return NONE;
+		return getServer(ServerHelper.serverIP());
 	}
 	
 	/**
@@ -279,6 +288,28 @@ public enum Server {
 		case HG2:	return false;
 		case PARTY: return false;
 		default: 	return false;
+		}
+	}
+	
+	/**
+	 * @return The number of lines this server needs in the server GUI. 
+	 * Corresponds to the number of properties, e.g. CTF is 2: Players and map name.
+	 */
+	public int guiLines() {
+		switch (this) {
+		case HG: 	return 2;
+		case CTF: 	return 2;
+		case RAID:	return 1;
+		case KIT: 	return 1;
+		case MAZE:	return 2;
+		case SAB:	return 2;
+		case BUILD:	return 1;
+		case HS: 	return 2;
+		case HUB: 	return 1;
+		case NONE: 	return 1;
+		case HG2:	return 1;
+		case PARTY: return 1;
+		default: 	return 1;
 		}
 	}
 	

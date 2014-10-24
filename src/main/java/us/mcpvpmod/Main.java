@@ -8,8 +8,7 @@ import net.minecraftforge.common.MinecraftForge;
 
 import org.lwjgl.input.Keyboard;
 
-import com.jadarstudios.developercapes.DevCapes;
-
+import us.mcpvpmod.config.RawConfig;
 import us.mcpvpmod.events.Events;
 import us.mcpvpmod.gui.ArmorDisplay;
 import us.mcpvpmod.gui.InfoBlock;
@@ -17,12 +16,15 @@ import us.mcpvpmod.gui.PotionDisplay;
 import us.mcpvpmod.gui.screen.GuiSecondChat;
 import us.mcpvpmod.json.ServerJSON;
 import us.mcpvpmod.json.StreamJSON;
-import us.mcpvpmod.json.TeamsJSON;
 import us.mcpvpmod.json.VersionJSON;
+import us.mcpvpmod.timers.SimpleTimer;
 import us.mcpvpmod.timers.UpdateTimer;
 import us.mcpvpmod.util.Data;
 import us.mcpvpmod.util.Format;
 import us.mcpvpmod.version.MCPVPVersion;
+
+import com.jadarstudios.developercapes.DevCapes;
+
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.FMLLog;
@@ -41,7 +43,7 @@ public class Main {
 	/** The name of the mod is displayed on the configuration screen. */
 	public static final String name = "MCPVP Mod";
 	/** The version of the mod. */
-	public static final String modVersion = "2.0.0";
+	public static final String modVersion = "2.0.1";
 	/** The version of MC that the mod was compiled for. */
 	public static final String mcVersion = "1.7.10";
 	/** The version of Forge that the mod was compiled for. */
@@ -88,6 +90,9 @@ public class Main {
     	// Sync all files and configurations.
 		Sync.sync();
 		
+		// Load up some external settings.
+		RawConfig.load();
+		
 		// Create timers.
 		Timer timer = new Timer();
 		// TODO: Should be as needed. No reason to have it repeating.
@@ -95,6 +100,7 @@ public class Main {
 		timer.scheduleAtFixedRate(new StreamJSON(), 0, 30*1000L);
 		timer.scheduleAtFixedRate(new VersionJSON(), 0, 60*60*1000L);
 		timer.scheduleAtFixedRate(new UpdateTimer(), 15*1000, 5*60*1000L);
+		timer.scheduleAtFixedRate(new SimpleTimer(), 0, 1*1000L);
     }
     	
     @EventHandler

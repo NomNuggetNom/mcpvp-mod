@@ -11,8 +11,7 @@ import us.mcpvpmod.Server;
 import us.mcpvpmod.config.all.ConfigHUD;
 import us.mcpvpmod.game.state.DummyState;
 import us.mcpvpmod.game.state.State;
-import us.mcpvpmod.gui.screen.GuiMoveBlocks;
-import us.mcpvpmod.util.Data;
+import us.mcpvpmod.util.Format;
 
 public class ArmorDisplay extends Selectable {
 
@@ -78,15 +77,15 @@ public class ArmorDisplay extends Selectable {
 	public void dispItem(ItemStack item, int x, int y) {
 
 		// Draw the durability.
-		if (ConfigHUD.armorPosition.startsWith("Left")) {
-			
+		if (ConfigHUD.armorPosition.equals(Format.s("config.hud.armorPosition.m.l"))) {
+			// Left.
 			// Draw the item.
 			Draw.item(item, x + 2 + getStringWidth(), y);
 			// Draw the durability.
 			Draw.string(getText(item), x, y+5, 0xFFFFFF, true);
 			
-		} else if (ConfigHUD.armorPosition.startsWith("Right")) {
-			
+		} else if (ConfigHUD.armorPosition.equals(Format.s("config.hud.armorPosition.m.r"))) {
+			// Right.
 			// Draw the item.
 			Draw.item(item, x, y);
 			// Draw the durability.
@@ -97,9 +96,9 @@ public class ArmorDisplay extends Selectable {
 	}
 	
 	public static String getText(ItemStack item) {
-		if (ConfigHUD.armorMode.equals("Show Durability Remaining")) {
+		if (ConfigHUD.armorMode.equals(Format.s("config.hud.armorMode.m.show"))) {
 			return "" + (item.getMaxDamage() - item.getItemDamageForDisplay());
-		} else if (ConfigHUD.armorMode.equals("Show Durability Remaining out of Total")) {
+		} else if (ConfigHUD.armorMode.equals(Format.s("config.hud.armorMode.m.total"))) {
 			return (item.getMaxDamage() - item.getItemDamageForDisplay()) + "/" + item.getMaxDamage();
 		} else {
 			return "";

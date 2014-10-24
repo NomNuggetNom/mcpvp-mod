@@ -1,21 +1,11 @@
 package us.mcpvpmod.events.render;
 
-import java.net.URL;
-
-import org.lwjgl.opengl.GL11;
-
 import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.gui.GuiIngameMenu;
-import net.minecraft.client.model.ModelBiped;
-import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.client.renderer.ThreadDownloadImageData;
-import net.minecraft.client.renderer.texture.ITextureObject;
-import net.minecraft.client.renderer.texture.TextureManager;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.ServerHelper;
@@ -24,6 +14,7 @@ import us.mcpvpmod.gui.CustomTexture;
 import us.mcpvpmod.gui.PotionDisplay;
 import us.mcpvpmod.gui.Selectable;
 import us.mcpvpmod.gui.screen.GuiIngameMCPVP;
+import us.mcpvpmod.util.Data;
 
 /**
  * Render handling for all servers.
@@ -45,9 +36,9 @@ public class AllRender {
 		//FriendsBlock.display();
 		
 		// Render our armor and potion display.
-		if (ConfigHUD.showArmor)
+		if (ConfigHUD.showArmor || (Data.get("showArmor") != null && Boolean.valueOf(Data.get("showArmor"))))
 			Main.armorDisplay.renderArmor();
-		if (ConfigHUD.showPotion) {
+		if (ConfigHUD.showPotion || (Data.get("showPotion") != null && Boolean.valueOf(Data.get("showPotion")))) {
 			Main.potionDisplay.displayPotions(event);
 			PotionDisplay.displayStrings();
 		}
@@ -62,6 +53,30 @@ public class AllRender {
 		if (Main.mc.currentScreen instanceof GuiIngameMenu) {
 			Main.mc.displayGuiScreen(new GuiIngameMCPVP());
 		}
+		
+		/*
+		for (EntityPlayer player : ServerHelper.getPlayers()) {
+			if (player == null || player.getDisplayName() == null) return;
+			if (((AbstractClientPlayer)player).getLocationSkin() != null) {
+		        ((AbstractClientPlayer)player).func_152121_a(MinecraftProfileTexture.Type.SKIN, 
+		        		CustomTexture.get(player.getDisplayName() + ".skin", "http://skins.minecraft.net/MinecraftSkins/" + player.getDisplayName() + ".png"));
+			} else {
+				System.out.println(player.getDisplayName() + " has no skin!");
+			}
+
+			/*
+	        ((AbstractClientPlayer)player).func_152121_a(MinecraftProfileTexture.Type.SKIN, 
+	        		CustomTexture.get(player.getDisplayName() + ".skin", "http://skins.minecraft.net/MinecraftSkins/" + player.getDisplayName() + ".png"));
+	        */
+			/*
+	        ((AbstractClientPlayer)player).func_152121_a(MinecraftProfileTexture.Type.SKIN, 
+	        		((AbstractClientPlayer)player).getLocationSkin());
+	        		*/
+		//}
+	
+
+
+        //Minecraft.getMinecraft().renderEngine.loadTexture(location, this.getTexture());
 	}
 	
 }

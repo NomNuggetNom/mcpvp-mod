@@ -299,21 +299,38 @@ public class GuiSecondChat extends Gui
         }
     }
     
+    /**
+     * Used to determine if a chat message should be sent to the second chat GUI. 
+     * Determined based on configuration settings. Does not actually send the chat
+     * message to the second GUI!
+     * @param event The event to potentially send.
+     * @return Whether or not the event should be split.
+     */
     public boolean shouldSplit(ClientChatReceivedEvent event) {
-    	if (ConfigChat.sendToSecondChat == null) return false;
-    	if (event.isCanceled()) return false;
+    	if (ConfigChat.sendToSecondChat == null 
+    			|| event.isCanceled()) return false;
+    	
+    	String message = event.message.getUnformattedText();
     	
     	for (String string : ConfigChat.sendToSecondChat) {
-    		if (event.message.toString().contains(string)) return true;
+    		if (message.contains(string)) return true;
     	}
     	
     	if (ConfigChat.movekNoHax) {
     		for (String string : this.k) {
-        		if (event.message.getUnformattedText().matches(string)) {
+        		if (message.matches(string)) {
         			return true;
         		}
     		}
     	}
+    	
+    	if (ConfigChat.movePMs) {
+    		if (message.contains(Main.mc.thePlayer.getDisplayName() + " -> ")
+    				|| message.contains(" -> " + Main.mc.thePlayer.getDisplayName())) {
+    			return true;
+    		}
+    	}
+    	
     	return false;
     }
 

@@ -21,6 +21,7 @@ import us.mcpvpmod.gui.InfoBlock;
 import us.mcpvpmod.gui.PotionDisplay;
 import us.mcpvpmod.gui.Selectable;
 import us.mcpvpmod.json.TeamsJSON;
+import us.mcpvpmod.util.Data;
 import us.mcpvpmod.util.Format;
 
 public class GuiMoveBlocks extends GuiScreen {
@@ -106,11 +107,13 @@ public class GuiMoveBlocks extends GuiScreen {
 			
 			if (Selectable.selected instanceof ArmorDisplay) {
 				ConfigHUD.showArmor = false;
+				Data.put("showArmor", "false");
 				Selectable.selected = null;
 			}
 			
 			if (Selectable.selected instanceof PotionDisplay) {
 				ConfigHUD.showPotion = false;
+				Data.put("showPotion", "false");
 				Selectable.selected = null;
 			}
 		}

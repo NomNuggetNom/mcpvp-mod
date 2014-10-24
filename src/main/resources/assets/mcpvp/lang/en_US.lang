@@ -40,13 +40,19 @@ gui.choose.mcpvp=MCPVP Server Menu
 gui.choose.vanilla=Vanilla Server Menu
 gui.join.region=Region: 
 gui.join.rejoin=Re-Join Last
+gui.join.vanilla=Vanilla
+gui.ingame=MCPVP Menu
+gui.ingame.button=#b#MCPVP Options
+gui.ingame.connect=Connect to a Server
+gui.ingame.settings=Edit Settings
+gui.ingame.hud=Edit Heads up Display
+gui.ingame.help=View Help
+gui.tut.finish=Finish Tutorial
 
 key.categories.mcpvp=MCPVP
 key.openConfig=Open Config
 key.moveBlocks=Edit GUI
 key.showHelp=View Help
-
-
 
 <!-- =========== -->
 <!-- ===-----=== -->
@@ -110,10 +116,15 @@ config.sab.title=Sabotage Configuration
 config.hg=Hardcore Games
 config.hg.tooltip=Configuration options for Hardcore Games.
 config.hg.title=Hardcore Games Configuration
+config.hs=Headshot
+config.hs.tooltip=Configuration options for Headshot.
+config.hs.title=Headshot Configuration
 
 <!-- ALERTS -->
 config.alerts.title=Alerts
 config.alerts.tooltip=Here you can customize all alerts include the title, description and item shown on the alert.
+config.alerts.showAlerts=Show Alerts
+config.alerts.showAlerts.tooltip=A global switch for showing all alerts.
 config.alerts.online=Friend Online
 config.alerts.online.tooltip=The alert triggered when a friend comes online.
 config.alerts.online.default=#white#Party time! ||| {player}#gray# is now online. ||| head
@@ -121,6 +132,8 @@ config.alerts.online.default=#white#Party time! ||| {player}#gray# is now online
 <!-- CHAT -->
 config.chat.title=Chat Controls
 config.chat.tooltip=Options for chat.
+config.chat.movePMs=Send PMs to Second Chat
+config.chat.movePMs.tooltip=This controls whether or not private messages are automatically sent to the second chat.
 config.chat.filterWords=Filtered Words
 config.chat.filterWords.tooltip=These words will appear censored in chat. E.g. "toot" -> "****"
 config.chat.removeWords=Remove Messages Containing
@@ -157,6 +170,27 @@ config.friends.cooldownTime.tooltip=The amount of time that must pass before you
 <!-- HUD -->
 config.hud.title=Heads up Display
 config.hud.tooltip=Options for the Heads Up Display.
+config.hud.showArmor=Display Armor
+config.hud.showArmor.tooltip=Whether or not to show a nifty armor display that contains armor icons and durability count (which can be adjusted base on Armor Display mode).
+config.hud.armorMode=Armor Display Mode
+config.hud.armorMode.tooltip=The mode of the armor display. "Show Durability Remaining" will show "123"; "Show Durability Remaining out of Total" will show "123/456"; "Don't show Durability Remaining" will show only the item.
+config.hud.armorMode.m.show=Show Durability Remaining
+config.hud.armorMode.m.total=Show Durability Remaining out of Total
+config.hud.armorMode.m.dont=Don't show Durability Remaining
+config.hud.armorPosition=Armor Stats Position
+config.hud.armorPosition.tooltip=This dictates where the durability count will be shown. If you have Armor Display Mode set to "Don't Show" then you don't need to worry about this.
+config.hud.armorPosition.m.l=Left of the Armor
+config.hud.armorPosition.m.r=Right of the Armor
+config.hud.showPotion=Display Potion Effects
+config.hud.showPotion.tooltip=Whether or not to show a sweet potion effect displayer. It will show the effect's icon, the strength, and the time remaining (depending on your Potion Display Mode settings).
+config.hud.potionMode=Potion Display Mode
+config.hud.potionMode.tooltip=The mode of the potion display. "Show Time Remaining" will show the time remaining and the strength of the potion; "Don't show Time Remaining" only shows the potion icon.
+config.hud.potionMode.m.show=Show Time & Strength
+config.hud.potionMode.m.dont=Don't Show Time & Strength
+config.hud.potionPosition=Potion Info Position
+config.hud.portionPosition=This dictates where the potion's strength and time will be shown, relevant to the potion effect icon.
+config.hud.potionPosition.m.l=Left of the Potions
+config.hud.potionPosition.m.r=Right of the Potions
 config.hud.renderBG=Render Backgrounds
 config.hud.renderBG.tooltip=Whether or not to render the black background behind info blocks.
 config.hud.margin=Margin
@@ -171,9 +205,7 @@ config.hud.alignHeights=Align Heights
 config.hud.alignHeights.tooltip=Whether or not to align the heights of info blocks that have the same y coordinates.
 config.hud.medalTimer=Medal Timer
 config.hud.medalTimer.tooltip=The number of seconds that a Medal will show for.
-config.hud.armorMode=Armor Display Mode
-config.hud.armorMode.tooltip=The mode of the armor display. Show Durability Remaining will show "123"; Show Durability Remaining out of Total will show "123/456"; Don't show Durability Remaining will show only the item. 
-
+ 
 <!-- SELECT -->
 config.select.title=Auto-Selection
 config.select.tooltip=Options for Auto-Selection.
@@ -181,6 +213,10 @@ config.select.autoTagB=Auto Tag
 config.select.autoTagB.tooltip=If this is true, you will automatically be tagged to whatever you specify below.
 config.select.autoTag=Select Tag
 config.select.autoTag.tooltip=The tag that will be automatically applied if Auto Tag is set to true.
+config.select.autoDespawn=Auto Despawn Pet
+config.select.autoDespawn.tooltip=If this is true, your pet will be despawned when you join a game.
+config.select.autoSilent=Auto /silent
+config.select.autoSilent.tooltip=Automatically silent those pesky hacker alerts.
 
 <!-- VERSION -->
 config.version.title=Version Checking
@@ -220,22 +256,22 @@ ctf.config.title=Capture the Flag Configuration
 <!-- ALERTS -->
 ctf.config.alerts.stole=Flag Stolen
 ctf.config.alerts.stole.tooltip=The alert triggered when the flag is stolen.
-ctf.config.alerts.stole.default=#white#Flag stolen! ||| {player} #gray#stole {team}#gray#'s #gray#flag! ||| wool
+ctf.config.alerts.stole.default=#white#Flag stolen! ||| {player} #gray#stole {team}#gray#'s #gray#flag! ||| flag.png
 ctf.config.alerts.dropped=Flag Dropped
 ctf.config.alerts.dropped.tooltip=The alert triggered when the flag is dropped.
-ctf.config.alerts.dropped.default=#white#Flag dropped! ||| {player} #gray#dropped {team}#gray#'s flag! ||| wool
+ctf.config.alerts.dropped.default=#white#Flag dropped! ||| {player} #gray#dropped {team}#gray#'s flag! ||| flag.png
 ctf.config.alerts.pickedUp=Flag Picked Up
 ctf.config.alerts.pickedUp.tooltip=The alert triggered when the flag is picked up.
-ctf.config.alerts.pickedUp.default=#white#Flag picked up! ||| {player} #gray#picked up {team}#gray#'s flag! ||| wool
+ctf.config.alerts.pickedUp.default=#white#Flag picked up! ||| {player} #gray#picked up {team}#gray#'s flag! ||| flag.png
 ctf.config.alerts.recovered=Flag Recovered
 ctf.config.alerts.recovered.tooltip=The alert triggered when the flag is recovered.
-ctf.config.alerts.recovered.default=#white#Flag recovered! ||| {player} #gray#recovered {team}#gray#'s flag! ||| wool
+ctf.config.alerts.recovered.default=#white#Flag recovered! ||| {player} #gray#recovered {team}#gray#'s flag! ||| flag.png
 ctf.config.alerts.restored=Flag Restored
 ctf.config.alerts.restored.tooltip=The alert triggered when the flag is restored.
-ctf.config.alerts.restored.default=#white#Flag restored! ||| {team}#gray#'s flag has been restored ||| wool
+ctf.config.alerts.restored.default=#white#Flag restored! ||| {team}#gray#'s flag has been restored ||| flag.png
 ctf.config.alerts.captured=Flag Captured
 ctf.config.alerts.captured.tooltip=The alert triggered when the flag is captured.
-ctf.config.alerts.captured.default=#white#Flag captured! ||| {player} #gray#captured {team}#gray#'s flag! ||| wool
+ctf.config.alerts.captured.default=#white#Flag captured! ||| {player} #gray#captured {team}#gray#'s flag! ||| flag.png
 ctf.config.alerts.streak=Streak Ended
 ctf.config.alerts.streak.tooltip=The alert triggered when the flag a kill streak is ended.
 ctf.config.alerts.streak.default=#white#Streak ended! ||| {killer} #gray#ended {killed}#gray#'s #cyan#{streak} #gray#streak ||| bone
@@ -259,7 +295,7 @@ ctf.config.alerts.one.tooltip=The alert triggered when five minutes are remainin
 ctf.config.alerts.one.default=Warning! ||| #red#1:00 #gray#remaining! ||| clock
 ctf.config.alerts.end=Game End
 ctf.config.alerts.end.tooltip=The alert triggered when the game ends.
-ctf.config.alerts.end.default=Game over! ||| {team} #gray#won the game! ||| wool
+ctf.config.alerts.end.default=Game over! ||| {team} #gray#won the game! ||| flag.png
 
 <!-- CHAT -->
 ctf.config.chat.removeTips=Remove Tips
@@ -337,9 +373,12 @@ hg.config.hud.renderPre.tooltip=Information to be rendered before the game begin
 hg.config.hud.renderPlay=Render Play
 hg.config.hud.renderPlay.tooltip=Information to be rendered while the game is in progress.
 
-<!-- CONFIG -->
+<!-- SELECT -->
 hg.config.select.selectMode=Selection Mode
 hg.config.select.selectMode.tooltip=This changes when your kit is automatically selected. "Select On Join" selects it right when you join the server; "Select Before Start" selects it 5 seconds before the game starts; "Don't Select" never selects.
+hg.config.select.selectMode.m.join=Select On Join
+hg.config.select.selectMode.m.start=Select Before Start
+hg.config.select.selectMode.m.dont=Don't Select
 hg.config.select.selectKit=Select Kit
 hg.config.select.selectKit.tooltip=The kit to automatically selected.
 
@@ -406,6 +445,9 @@ maze.config.hud.renderPost.tooltip=Information to be rendered after the game end
 <!-- SELECT -->
 maze.config.select.selectMode=Selection Mode
 maze.config.select.selectMode.tooltip=This changes when your kit is automatically selected. "Select On Join" selects it right when you join the server; "Select Before Start" selects it 5 seconds before the game starts; "Don't Select" never selects.
+maze.config.select.selectMode.m.join=Select On Join
+maze.config.select.selectMode.m.start=Select Before Start
+maze.config.select.selectMode.m.dont=Don't Select
 maze.config.select.selectKit=Select Kit
 maze.config.select.selectKit.tooltip=The kit to automatically selected.
 maze.config.select.selectTeam=Join Team
@@ -418,17 +460,39 @@ maze.config.select.selectTeam.tooltip=The team to automatically join.
 sab.config.alerts.start=Game Start
 sab.config.alerts.start.tooltip=The alert triggered when the game starts.
 sab.config.alerts.start.default=#white#The game has begun! ||| #gray#You are {role}#gray#. Good luck! ||| nether_star
-
 sab.config.alerts.death=Death
 sab.config.alerts.death.tooltip=The alert triggered when a player dies.
 sab.config.alerts.death.default=#white#Hold on to your seats, folks... ||| #gray#Someone just died. Only #cyan#{remain} #gray#players left. ||| bone
-
 sab.config.alerts.chest=Chest Wave
 sab.config.alerts.chest.tooltip=The alert triggered when a chest wave spawns.
 sab.config.alerts.chest.default=#white#Ooooo, goodies! ||| #gray#Chest wave #green#{wave} #gray#has spawned. ||| chest
-
 sab.config.alerts.end=Game End
 sab.config.alerts.end.tooltip=The alert triggered when the game ends.
 sab.config.alerts.end.default=#white#Game Over! ||| #gray#Winner: {winner} ||| sab.winner
 
+<!-- HUD -->
+sab.config.hud.renderPre=Render Pre
+sab.config.hud.renderPre.tooltip=Information to be rendered before the game begins.
+sab.config.hud.renderPlay=Render Play
+sab.config.hud.renderPlay.tooltip=Information to be rendered while the game is in progress.
+sab.config.hud.renderPost=Render Post
+sab.config.hud.renderPost.tooltip=Information to be rendered after the game ends.
 
+<!-- SOUNDS -->
+sab.config.sounds.start=Game Start
+sab.config.sounds.start.tooltip=The sound triggered when the game starts.
+sab.config.sounds.death=Death
+sab.config.sounds.death.tooltip=The sound triggered when a player dies.
+sab.config.sounds.end=Game End
+sab.config.sounds.end.tooltip=The sound triggered when the game ends.
+
+<!-- SELECT -->
+sab.config.select.autoSab=Auto Sab
+sab.config.select.autoSab.tooltip=If enabled, you will automatically /sab when you join a sab game.
+
+<!-- ===------=== -->
+<!-- = HEADSHOT = -->
+<!-- ===------=== -->
+<!-- RENDER -->
+hs.config.hud.render=Render
+hs.config.hud.render.tootlip=Information to be rendered while playing Headshot.

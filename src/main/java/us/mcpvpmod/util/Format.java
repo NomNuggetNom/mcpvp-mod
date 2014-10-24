@@ -32,6 +32,7 @@ public class Format {
 				FMLLog.warning("[MCPVP] Color code \"%s\" not found.", colorCode);
 			}
 		}
+		line = line.replaceAll("\\\\" + formatSymbol, "\u00A7z" + formatSymbol);
 		return line;
 	}
 	

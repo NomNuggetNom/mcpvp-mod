@@ -3,6 +3,7 @@ package us.mcpvpmod;
 import java.util.ArrayList;
 import java.util.List;
 
+import us.mcpvpmod.util.Data;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiPlayerInfo;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,13 +21,24 @@ public class ServerHelper {
 	}
 	
 	/**
-	 * @return The last server IP connected to.
+	 * @return The last server IP connected to: relies only on a variable, not saved Data.
 	 */ 
 	public static String serverIP() {
 		if (currentIP.equals("")) {
 			return "none";
 		} else {
 			return currentIP;
+		}
+	}
+	
+	/**
+	 * @return The last server IP connected to: relies on both serverIP() and saved Data.
+	 */ 
+	public static String lastIP() {
+		if (ServerHelper.serverIP().equals("none")) {
+			return Data.get("lastServer");
+		} else {
+			return ServerHelper.serverIP();
 		}
 	}
 	

@@ -2,7 +2,6 @@ package us.mcpvpmod.gui;
 
 import java.util.Iterator;
 
-import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -14,9 +13,8 @@ import org.lwjgl.opengl.GL11;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.config.all.ConfigHUD;
-import us.mcpvpmod.game.state.DummyState;
 import us.mcpvpmod.game.state.State;
-import us.mcpvpmod.util.Data;
+import us.mcpvpmod.util.Format;
 
 
 public class PotionDisplay extends Selectable {
@@ -66,14 +64,14 @@ public class PotionDisplay extends Selectable {
 
     		  if (event.type == RenderGameOverlayEvent.ElementType.TEXT) {
     			  
-		   		  if (ConfigHUD.potionPosition.startsWith("Right"))
+		   		  if (ConfigHUD.potionPosition.equals(Format.s("config.hud.potionPosition.m.r")))
 	        		  Main.mc.ingameGUI.drawTexturedModalRect(
 	        				  x + maxStringWidths() + 4, y, 
 	        				  baseU + iconIndex % iconsPerRow * iconSize, 
 	        				  baseV + iconIndex / iconsPerRow * iconSize,
 	        				  iconSize, iconSize);
 		   		  
-		   		  else if (ConfigHUD.potionPosition.startsWith("Left"))
+		   		  else if (ConfigHUD.potionPosition.equals(Format.s("config.hud.potionPosition.m.l")))
 	        		  Main.mc.ingameGUI.drawTexturedModalRect(
 	        				  x, y, 
 	        				  baseU + iconIndex % iconsPerRow * iconSize, 
@@ -107,9 +105,9 @@ public class PotionDisplay extends Selectable {
                   strength = strength + " " + I18n.format("enchantment.level.4", new Object[0]);
 
 
-		   	  if (ConfigHUD.potionMode.equals("Show Time Remaining")) {
+		   	  if (ConfigHUD.potionMode.equals(Format.s("config.hud.potionMode.m.show"))) {
 		   		  
-		   		  if (ConfigHUD.potionPosition.startsWith("Right")) {
+		   		  if (ConfigHUD.potionPosition.equals(Format.s("config.hud.potionPosition.m.r"))) {
 		   			  if (strength.equals("")) {
 			   			  Draw.string(timeLeft, x + iconSize - Main.mc.fontRenderer.getStringWidth(timeLeft) + 6, y + iconSize/3, 0xFFFFFF, true);
 		   			  } else {
@@ -118,7 +116,7 @@ public class PotionDisplay extends Selectable {
 		   			  }
 		   		  }
 		   		  
-		   		  else if (ConfigHUD.potionPosition.startsWith("Left")) {
+		   		  else if (ConfigHUD.potionPosition.equals(Format.s("config.hud.potionPosition.m.l"))) {
 		   			  if (strength.equals("")) {
 			   			  Draw.string(timeLeft, x + iconSize, y + iconSize/3, 0xFFFFFF, true);
 		   			  } else {
@@ -139,11 +137,11 @@ public class PotionDisplay extends Selectable {
 			PotionEffect potioneffect = (PotionEffect) obj;
 			Potion potion = Potion.potionTypes[potioneffect.getPotionID()];
 			String timeLeft = potion.getDurationString(potioneffect);
-			if (Main.mc.fontRenderer.getStringWidth(timeLeft) > max && ConfigHUD.potionMode.equals("Show Time Remaining"))
+			if (Main.mc.fontRenderer.getStringWidth(timeLeft) > max && ConfigHUD.potionMode.equals(Format.s("config.hud.potionMode.m.show")))
 				max = Main.mc.fontRenderer.getStringWidth(timeLeft);
 			if (potioneffect.getAmplifier() == 1 || potioneffect.getAmplifier() == 2 || potioneffect.getAmplifier() == 3) {
 				if (!(max > Main.mc.fontRenderer.getStringWidth(I18n.format("enchantment.level." + (potioneffect.getAmplifier() + 1))))
-						&& ConfigHUD.potionMode.equals("Show Time Remaining"))
+						&& ConfigHUD.potionMode.equals(Format.s("config.hud.potionMode.m.show")))
 					max = Main.mc.fontRenderer.getStringWidth(I18n.format("enchantment.level." + (potioneffect.getAmplifier() + 1))) + 4;
 			}
 		}

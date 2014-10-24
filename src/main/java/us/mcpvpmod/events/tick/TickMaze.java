@@ -14,7 +14,6 @@ public class TickMaze {
 		VarsMaze.putVars();
 		StatsMaze.getStats();
 		CheckTimeMaze.updateTime();
-		//System.out.println(ServerHelper.getColorPrefix("Crowhart"));
 	}
 
 	

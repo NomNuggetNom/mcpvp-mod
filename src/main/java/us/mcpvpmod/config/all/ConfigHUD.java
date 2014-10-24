@@ -8,6 +8,8 @@ import java.util.List;
 
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
+import us.mcpvpmod.config.RawConfig;
+import us.mcpvpmod.util.Data;
 import us.mcpvpmod.util.Format;
 import cpw.mods.fml.common.DummyModContainer;
 import cpw.mods.fml.common.Loader;
@@ -67,12 +69,14 @@ public class ConfigHUD extends DummyModContainer {
     	showArmor = prop.getBoolean();
     	propOrder.add(prop.getName());
         
-        prop = config.get(CATEGORY_GENERAL, "armorMode", "Show Durability Remaining", Format.s("config.hud.armorMode"), new String[]{"Show Durability Remaining", "Show Durability Remaining out of Total", "Don't show Durability Remaining"});
+        prop = config.get(CATEGORY_GENERAL, "armorMode", Format.s("config.hud.armorMode.m.show"), Format.s("config.hud.armorMode"), 
+        		new String[]{Format.s("config.hud.armorMode.m.show"), Format.s("config.hud.armorMode.m.total"), Format.s("config.hud.armorMode.m.dont")});
         prop.setLanguageKey("config.hud.armorMode");
     	armorMode = prop.getString();
     	propOrder.add(prop.getName());
     	
-        prop = config.get(CATEGORY_GENERAL, "armorPosition", "Left of the Armor", Format.s("config.hud.armorPosition"), new String[]{"Left of the Armor", "Right of the Armor"});
+        prop = config.get(CATEGORY_GENERAL, "armorPosition", Format.s("config.hud.armorPosition.m.l"), Format.s("config.hud.armorPosition"), 
+        		new String[]{Format.s("config.hud.armorPosition.m.r"), Format.s("config.hud.armorPosition.m.l")});
         prop.setLanguageKey("config.hud.armorPosition");
     	armorPosition = prop.getString();
     	propOrder.add(prop.getName());
@@ -82,12 +86,14 @@ public class ConfigHUD extends DummyModContainer {
     	showPotion = prop.getBoolean();
     	propOrder.add(prop.getName());
     	
-        prop = config.get(CATEGORY_GENERAL, "potionMode", "Show Time Remaining", Format.s("config.hud.potionMode"), new String[]{"Show Time Remaining", "Don't Show Time Remaining"});
+        prop = config.get(CATEGORY_GENERAL, "potionMode", Format.s("config.hud.potionMode.m.show"), Format.s("config.hud.potionMode"), 
+        		new String[]{Format.s("config.hud.potionMode.m.show"), Format.s("config.hud.potionMode.m.dont")});
         prop.setLanguageKey("config.hud.potionMode");
     	potionMode = prop.getString();
     	propOrder.add(prop.getName());
     	
-        prop = config.get(CATEGORY_GENERAL, "potionPosition", "Left of the Potions", Format.s("config.hud.armorPosition"), new String[]{"Left of the Potions", "Right of Potions"});
+        prop = config.get(CATEGORY_GENERAL, "potionPosition",  Format.s("config.hud.potionPosition.m.l"), Format.s("config.hud.armorPosition"), 
+        		new String[]{Format.s("config.hud.potionPosition.m.l"), Format.s("config.hud.potionPosition.m.r")});
         prop.setLanguageKey("config.hud.potionPosition");
     	potionPosition = prop.getString();
     	propOrder.add(prop.getName());
@@ -97,7 +103,7 @@ public class ConfigHUD extends DummyModContainer {
     	renderBG = prop.getBoolean();
     	propOrder.add(prop.getName());
     	
-    	prop = config.get(CATEGORY_GENERAL, "margin", 3, "The space between display blocks.", 0, 1000);
+    	prop = config.get(CATEGORY_GENERAL, "margin", 3, Format.s("config.hud.margin.tooltip"), 0, 1000);
         prop.setLanguageKey("config.hud.margin");
     	margin = prop.getInt();
     	propOrder.add(prop.getName());
@@ -122,16 +128,18 @@ public class ConfigHUD extends DummyModContainer {
     	alignHeights = prop.getBoolean();
     	propOrder.add(prop.getName());
         
-    	prop = config.get(CATEGORY_GENERAL, "medalTimer", 7, "The number of seconds to display a medal for.", 1, 1000);
+    	prop = config.get(CATEGORY_GENERAL, "medalTimer", 7, Format.s("config.hud.medalTimer.tooltip"), 1, 1000);
     	prop.setLanguageKey("config.hud.medalTimer");
     	margin = prop.getInt();
     	propOrder.add(prop.getName());
     	
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
 
-        if (config.hasChanged())
-        {
+        if (config.hasChanged()) {
+        	Data.put("showArmor", "" + showPotion);
+        	Data.put("showPotion", "" + showPotion);
             config.save();
+        	//RawConfig.load();
         }
     }
     

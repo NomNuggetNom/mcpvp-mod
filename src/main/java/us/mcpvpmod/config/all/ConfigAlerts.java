@@ -54,13 +54,13 @@ public class ConfigAlerts extends DummyModContainer {
         Property prop;
 		 	
     	prop = config.get(CATEGORY_GENERAL, "showAlerts", true);
-        prop.setLanguageKey("config.Alerts.showAlerts");
+        prop.setLanguageKey("config.alerts.showAlerts");
     	showAlerts = prop.getBoolean();
     	propOrder.add(prop.getName());
         
     	prop = config.get(CATEGORY_GENERAL, "alertOnline", Format.s("config.alerts.online.default"));
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-        prop.setLanguageKey("config.Alerts.online");
+        prop.setLanguageKey("config.alerts.online");
     	alertOnline = prop.getString();
     	propOrder.add(prop.getName());
     	new CustomAlert("online", prop.getString());

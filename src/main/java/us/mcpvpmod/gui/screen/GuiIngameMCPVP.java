@@ -17,7 +17,7 @@ public class GuiIngameMCPVP extends GuiIngameMenu {
         super.initGui();
         baseY = this.height / 4 + 120 + -16;
         baseY += 30;
-        this.buttonList.add(new GuiButton(100, this.width / 2 + 2, this.height / 4 + 96 - 16, 98, 20, Format.process("#b#MCPVP Options")));
+        this.buttonList.add(new GuiButton(100, this.width / 2 + 2, this.height / 4 + 96 - 16, 98, 20, Format.process(Format.s("gui.ingame.button"))));
         //this.buttonList.add(new GuiButton(101, this.width / 2 + 2, baseY + 50, 98, 20, I18n.format("Connect")));
 	}
 	
@@ -38,15 +38,15 @@ public class GuiIngameMCPVP extends GuiIngameMenu {
 		
 		public void initGui() {
 			int y = this.height/5;
-			this.buttonList.add(new GuiButton(1, this.width / 2 - 100, y, "Connect to a Server"));
+			this.buttonList.add(new GuiButton(1, this.width / 2 - 100, y, Format.s("gui.ingame.connect")));
 			y += 25;
-			this.buttonList.add(new GuiButton(2, this.width / 2 - 100, y, "Edit Settings"));
+			this.buttonList.add(new GuiButton(2, this.width / 2 - 100, y, Format.s("gui.ingame.settings")));
 			y += 25;
-			this.buttonList.add(new GuiButton(3, this.width / 2 - 100, y, "Edit GUI"));
+			this.buttonList.add(new GuiButton(3, this.width / 2 - 100, y, Format.s("gui.ingame.hud")));
 			y += 25;
-			this.buttonList.add(new GuiButton(4, this.width / 2 - 100, y, "View Help"));
+			this.buttonList.add(new GuiButton(4, this.width / 2 - 100, y, Format.s("gui.ingame.help")));
 			
-			this.buttonList.add(new GuiButton(100, this.width / 2 - 100, this.height - this.height/4, "Back to Game"));
+			this.buttonList.add(new GuiButton(100, this.width / 2 - 100, this.height - this.height/4, I18n.format("menu.returnToGame")));
 		}
 		
 		@Override
@@ -62,7 +62,7 @@ public class GuiIngameMCPVP extends GuiIngameMenu {
 		@Override
 		public void drawScreen(int p_73863_1_, int p_73863_2_, float p_73863_3_) {
 	        this.drawDefaultBackground();
-			this.drawCenteredString(this.fontRendererObj, I18n.format("MCPVP Menu"), this.width / 2, this.height / 5 - 15, 16777215);
+			this.drawCenteredString(this.fontRendererObj, Format.s("gui.ingame"), this.width / 2, this.height / 5 - 15, 16777215);
 			super.drawScreen(p_73863_1_, p_73863_2_, p_73863_3_);
 		}
 		

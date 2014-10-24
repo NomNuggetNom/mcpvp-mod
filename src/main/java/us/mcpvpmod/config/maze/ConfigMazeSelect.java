@@ -6,6 +6,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import us.mcpvpmod.util.Format;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import cpw.mods.fml.common.DummyModContainer;
@@ -52,7 +53,8 @@ public class ConfigMazeSelect extends DummyModContainer {
         
         Property prop;
         
-        prop = config.get(CATEGORY_GENERAL, "selectMode", "Select On Join", "Comment", new String[]{"Select On Join", "Select Before Start", "Don't Select"});
+        prop = config.get(CATEGORY_GENERAL, "selectMode", "Select On Join", Format.s("maze.config.select.selectMode.tooltip"), 
+        		new String[]{Format.s("maze.config.select.selectMode.m.join"), Format.s("maze.config.select.selectMode.m.start"), Format.s("maze.config.select.selectMode.m.dont")});
         prop.setLanguageKey("maze.config.select.selectMode");
     	selectMode = prop.getString();
     	propOrder.add(prop.getName());
