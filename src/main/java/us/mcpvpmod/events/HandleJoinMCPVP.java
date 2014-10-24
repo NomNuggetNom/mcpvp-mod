@@ -12,9 +12,7 @@ import us.mcpvpmod.game.vars.VarsKit;
 import us.mcpvpmod.game.vars.VarsMaze;
 import us.mcpvpmod.game.vars.VarsRaid;
 import us.mcpvpmod.game.vars.VarsSab;
-import us.mcpvpmod.gui.screen.GuiWelcome;
 import us.mcpvpmod.gui.tutorial.Tutorial;
-import us.mcpvpmod.gui.tutorial.TutorialScreen;
 import us.mcpvpmod.util.Data;
 
 public class HandleJoinMCPVP {

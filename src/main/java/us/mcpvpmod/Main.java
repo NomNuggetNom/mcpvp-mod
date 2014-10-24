@@ -13,6 +13,7 @@ import us.mcpvpmod.events.Events;
 import us.mcpvpmod.gui.ArmorDisplay;
 import us.mcpvpmod.gui.InfoBlock;
 import us.mcpvpmod.gui.PotionDisplay;
+import us.mcpvpmod.gui.screen.GuiCodes;
 import us.mcpvpmod.gui.screen.GuiSecondChat;
 import us.mcpvpmod.json.ServerJSON;
 import us.mcpvpmod.json.StreamJSON;
@@ -74,6 +75,7 @@ public class Main {
 	public static PotionDisplay potionDisplay = new PotionDisplay();
 	/** A reference to the InfoBlock that will become the FriendsList during Sync. */
 	public static InfoBlock friendsList = null;
+	public static GuiCodes guiCodes = null;
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent e) {

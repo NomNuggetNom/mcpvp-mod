@@ -63,7 +63,7 @@ public class AllChat {
 		}
 		
 		String reYay = "\u00A7f\\[\u00A77TW\u00A7f\\].*NomNuggetNom.*>.*Yay! @(.*)";
-		if (message.matches(reYay) && Server.getServer() != Server.CTF || Server.getServer() != Server.HS) {
+		if (message.matches(reYay) && Server.getServer() != Server.CTF && Server.getServer() != Server.HS) {
 			if (message.replaceAll(reYay, "$1").equals(Main.mc.thePlayer.getDisplayName())) {
 				CustomAlert.get("yay").show();
 			}

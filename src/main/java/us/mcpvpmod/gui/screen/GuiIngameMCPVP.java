@@ -1,12 +1,16 @@
 package us.mcpvpmod.gui.screen;
 
-import us.mcpvpmod.Main;
-import us.mcpvpmod.events.HandleKey;
-import us.mcpvpmod.util.Format;
+import java.awt.Desktop;
+import java.net.URI;
+
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
+import us.mcpvpmod.Main;
+import us.mcpvpmod.events.HandleKey;
+import us.mcpvpmod.gui.tutorial.Tutorial;
+import us.mcpvpmod.util.Format;
 
 public class GuiIngameMCPVP extends GuiIngameMenu {
 
@@ -45,6 +49,8 @@ public class GuiIngameMCPVP extends GuiIngameMenu {
 			this.buttonList.add(new GuiButton(3, this.width / 2 - 100, y, Format.s("gui.ingame.hud")));
 			y += 25;
 			this.buttonList.add(new GuiButton(4, this.width / 2 - 100, y, Format.s("gui.ingame.help")));
+			y += 25;
+			this.buttonList.add(new GuiButton(5, this.width / 2 - 100, y, Format.s("gui.ingame.codes")));
 			
 			this.buttonList.add(new GuiButton(100, this.width / 2 - 100, this.height - this.height/4, I18n.format("menu.returnToGame")));
 		}
@@ -55,7 +61,15 @@ public class GuiIngameMCPVP extends GuiIngameMenu {
 			if (button.id == 1) Main.mc.displayGuiScreen(new GuiServerList(this));
 			if (button.id == 2) HandleKey.openConfigScreen();
 			if (button.id == 3) Main.mc.displayGuiScreen(new GuiMoveBlocks(this));
-			if (button.id == 4) Main.mc.displayGuiScreen(new GuiWelcome(this));
+			if (button.id == 4) Tutorial.build();
+			if (button.id == 5) {
+				try { 
+					Desktop.getDesktop().browse(new URI("https://github.com/NomNuggetNom/mcpvp-mod/blob/master/codes.md")); 
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+				//Main.mc.displayGuiScreen(new GuiCodes());
 	    	super.actionPerformed(button);
 		}
 		
