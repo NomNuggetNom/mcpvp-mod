@@ -2,6 +2,7 @@ package us.mcpvpmod.game.alerts;
 
 import java.util.HashMap;
 
+import us.mcpvpmod.Main;
 import cpw.mods.fml.common.FMLLog;
 import net.minecraft.client.Minecraft;
 
@@ -45,7 +46,7 @@ public class SoundAlert {
 		// Support for cancelling.
 		if (!this.sound.startsWith("-X-")) {
 			mc.thePlayer.playSound(this.sound, this.volume/2, 1.0F);
-			FMLLog.info("[MCPVP] Playing sound: %s", sound);
+			Main.l("SoundAlert triggered with the sound: \"%s\"", this.sound);
 		}
 	}
 }
