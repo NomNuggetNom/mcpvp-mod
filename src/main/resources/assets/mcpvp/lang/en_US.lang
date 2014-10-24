@@ -47,6 +47,7 @@ gui.ingame.connect=Connect to a Server
 gui.ingame.settings=Edit Settings
 gui.ingame.hud=Edit Heads up Display
 gui.ingame.help=View Help
+gui.ingame.codes=Codes
 gui.tut.finish=Finish Tutorial
 
 key.categories.mcpvp=MCPVP
