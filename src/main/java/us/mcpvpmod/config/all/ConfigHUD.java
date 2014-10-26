@@ -30,6 +30,7 @@ public class ConfigHUD extends DummyModContainer {
 	public static String potionMode;
 	public static String potionPosition;
 	public static boolean alignItems = true;
+	public static boolean fixSkins;
 	
     public static String fileName = "mcpvp_hud.cfg";
     
@@ -96,6 +97,11 @@ public class ConfigHUD extends DummyModContainer {
         		new String[]{Format.s("config.hud.potionPosition.m.l"), Format.s("config.hud.potionPosition.m.r")});
         prop.setLanguageKey("config.hud.potionPosition");
     	potionPosition = prop.getString();
+    	propOrder.add(prop.getName());
+    	
+        prop = config.get(CATEGORY_GENERAL, "fixSkins", true);
+        prop.setLanguageKey("config.hud.fixSkins");
+    	fixSkins = prop.getBoolean();
     	propOrder.add(prop.getName());
         
     	prop = config.get(CATEGORY_GENERAL, "renderBG", true);

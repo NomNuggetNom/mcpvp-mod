@@ -1,20 +1,20 @@
 package us.mcpvpmod.events.render;
 
-import com.mojang.authlib.minecraft.MinecraftProfileTexture;
-
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.ServerHelper;
 import us.mcpvpmod.config.all.ConfigHUD;
-import us.mcpvpmod.gui.CustomTexture;
+import us.mcpvpmod.gui.CustomTextureAsync;
 import us.mcpvpmod.gui.PotionDisplay;
 import us.mcpvpmod.gui.Selectable;
 import us.mcpvpmod.gui.screen.GuiIngameMCPVP;
 import us.mcpvpmod.util.Data;
+
+import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 
 /**
  * Render handling for all servers.
@@ -54,29 +54,33 @@ public class AllRender {
 			Main.mc.displayGuiScreen(new GuiIngameMCPVP());
 		}
 		
-		/*
-		for (EntityPlayer player : ServerHelper.getPlayers()) {
-			if (player == null || player.getDisplayName() == null) return;
-			if (((AbstractClientPlayer)player).getLocationSkin() != null) {
-		        ((AbstractClientPlayer)player).func_152121_a(MinecraftProfileTexture.Type.SKIN, 
-		        		CustomTexture.get(player.getDisplayName() + ".skin", "http://skins.minecraft.net/MinecraftSkins/" + player.getDisplayName() + ".png"));
-			} else {
-				System.out.println(player.getDisplayName() + " has no skin!");
-			}
-
-			/*
-	        ((AbstractClientPlayer)player).func_152121_a(MinecraftProfileTexture.Type.SKIN, 
-	        		CustomTexture.get(player.getDisplayName() + ".skin", "http://skins.minecraft.net/MinecraftSkins/" + player.getDisplayName() + ".png"));
-	        */
-			/*
-	        ((AbstractClientPlayer)player).func_152121_a(MinecraftProfileTexture.Type.SKIN, 
-	        		((AbstractClientPlayer)player).getLocationSkin());
-	        		*/
-		//}
-	
-
-
-        //Minecraft.getMinecraft().renderEngine.loadTexture(location, this.getTexture());
+		// Checking the time imposes a limit to the frequency of the event.
+		if (ConfigHUD.fixSkins && System.currentTimeMillis() % 10 == 0) 
+			fixSkins();
 	}
 	
+	/**
+	 * Cycles through each player, downloads their skin, and assigns it to the location
+	 * in their profile. The downloading is performed asynchronously, but can still
+	 * cause lag due to the creation & reading of files. 
+	 * 
+	 * Called every render tick because the image has to download.
+	 */
+	public static void fixSkins() {
+		// Cycle through every player on the server.
+		for (EntityPlayer player : ServerHelper.getPlayersFromWorld()) {
+			// Safeguard becomes players are sometimes null...
+			if (player == null) continue;
+			
+			String name = player.getDisplayName().replaceAll("\u00A7.", "");
+			ResourceLocation skin = CustomTextureAsync.get(name + ".skin", // Store it as "username.skin"
+					"http://skins.minecraft.net/MinecraftSkins/" + name + ".png", // The URL to download from.
+					((AbstractClientPlayer) player).locationStevePng); // The Steve skin is the backup.
+			
+			// Assign the location of the skin.
+			((AbstractClientPlayer) player).func_152121_a(MinecraftProfileTexture.Type.SKIN, skin);
+		}
+	}
+	
+
 }

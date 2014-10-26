@@ -63,7 +63,8 @@ public class IgnoreResult {
 	 */
 	public void check(ClientChatReceivedEvent event) {
 		for (String string : this.ignore) {
-			if (event.message.getUnformattedText().equals(string) || event.message.getUnformattedText().matches(string)) {
+			if (event.message.getUnformattedText().equals(string) 
+					|| event.message.getUnformattedText().matches(string)) {
 				event.setCanceled(true);
 				Main.l("Auto-removed \"%s\" via IgnoreResult \"%s\"", event.message.getUnformattedText(), this);
 				this.ignore.remove(string);
@@ -72,8 +73,14 @@ public class IgnoreResult {
 		}
 	}
 	
+	@Override
+	public String toString() {
+		return "IgnoreResult [messageToSend=" + messageToSend + ", ignore="
+				+ ignore + "]";
+	}
+
 	/**
-	 * Cycles through every IgnoreResult and runs .check(event) on it.
+	 * Cycles through every IgnoreResult and runs check(event).
 	 * @param event The event to check.
 	 */
 	public static void checkAll(ClientChatReceivedEvent event) {

@@ -5,6 +5,8 @@ import java.util.List;
 
 import us.mcpvpmod.util.Data;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityClientPlayerMP;
+import net.minecraft.client.entity.EntityOtherPlayerMP;
 import net.minecraft.client.gui.GuiPlayerInfo;
 import net.minecraft.entity.player.EntityPlayer;
 
@@ -69,6 +71,15 @@ public class ServerHelper {
 		List<EntityPlayer> players = new ArrayList<EntityPlayer>();
 		for (GuiPlayerInfo player : getPlayersGui()) {
 			players.add(Main.mc.theWorld.getPlayerEntityByName(player.name));
+		}
+		return players;
+	}
+	
+	public static List<EntityPlayer> getPlayersFromWorld() {
+		ArrayList<EntityPlayer> players = new ArrayList<EntityPlayer>();
+		for (Object player : Main.mc.theWorld.playerEntities) {
+			if (player instanceof EntityClientPlayerMP) continue;
+			players.add(Main.mc.theWorld.getPlayerEntityByName(((EntityOtherPlayerMP)player).getDisplayName().replaceAll("\u00A7.(.*)", "$1")));
 		}
 		return players;
 	}

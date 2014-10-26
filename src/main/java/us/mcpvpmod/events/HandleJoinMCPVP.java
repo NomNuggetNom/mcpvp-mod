@@ -41,6 +41,7 @@ public class HandleJoinMCPVP {
 		VarsRaid.reset();
 		VarsSab.reset();
 		Main.secondChat.clearChatMessages();
+		//Skins.fixSkins();
 	}
 	
 	public static void autoTag() {
