@@ -18,6 +18,7 @@ import us.mcpvpmod.gui.screen.GuiSecondChat;
 import us.mcpvpmod.json.ServerJSON;
 import us.mcpvpmod.json.StreamJSON;
 import us.mcpvpmod.json.VersionJSON;
+import us.mcpvpmod.timers.PingTimer;
 import us.mcpvpmod.timers.SimpleTimer;
 import us.mcpvpmod.timers.UpdateTimer;
 import us.mcpvpmod.util.Data;
@@ -103,6 +104,7 @@ public class Main {
 		timer.scheduleAtFixedRate(new VersionJSON(), 0, 60*60*1000L);
 		timer.scheduleAtFixedRate(new UpdateTimer(), 15*1000, 5*60*1000L);
 		timer.scheduleAtFixedRate(new SimpleTimer(), 0, 1*1000L);
+		timer.scheduleAtFixedRate(new PingTimer(), 15*1000L, 5*1000L);
     }
     	
     @EventHandler
