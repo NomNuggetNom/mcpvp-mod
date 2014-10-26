@@ -33,7 +33,7 @@ public class AllChat {
 		String message = event.message.getUnformattedText();
 		
 		HandleJoinMCPVP.showWelcome();
-		IgnoreResult.check(event);
+		IgnoreResult.checkAll(event);
 		
 		// Check for removal of chat.
 		if (removeChat(message)) {

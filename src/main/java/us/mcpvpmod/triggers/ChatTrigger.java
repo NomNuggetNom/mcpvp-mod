@@ -84,10 +84,13 @@ public class ChatTrigger {
 		triggers.add(this);
 	}
 	
+	@Override
 	public String toString() {
-		return "id:" + this.alertID + ", trigger: " + this.pattern + ", key: " + key + ", value: " + value;
+		return "ChatTrigger [pattern=" + pattern + ", alertID=" + alertID
+				+ ", key=" + key + ", value=" + value + ", server=" + server
+				+ "]";
 	}
-	
+
 	/**
 	 * Checks if the message fits the pattern. If so, update the value and show the alerts.
 	 * @param message The message to check.
