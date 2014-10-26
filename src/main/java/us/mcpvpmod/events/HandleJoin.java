@@ -13,7 +13,7 @@ public class HandleJoin {
 		
 		if (((EntityPlayer)event.entity).getDisplayName().equals(Main.mc.thePlayer.getDisplayName())) {
 			//System.out.println("Joined.");
-			
+			Main.secondChat.clearChatMessages();
 		}
 		
 		if (ConfigFriends.onlineNotifications) {
