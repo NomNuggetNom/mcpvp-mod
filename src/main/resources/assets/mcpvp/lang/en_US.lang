@@ -301,12 +301,12 @@ build.config.hud.render.tooltip=Information that is rendered on the screen while
 raid.config.hud.render=Render
 raid.config.hud.render.tooltip=Information that is rendered on the screen while playing Raid.
 
-raid.config.alerts.deposit=Deposit
-raid.config.alerts.deposit.tooltip=The alert triggered when you deposit gold.
-raid.config.alerts.deposit.default=#white#Deposit succesful ||| #gray#You now have #green#{balance} #gray#gold in the bank ||| gold_ingot
+raid.config.alerts.balance=Balance Changed
+raid.config.alerts.balance.tooltip=The alert triggered when you deposit or withdraw gold.
+raid.config.alerts.balance.default=Balance changed ||| #gray#You now have #green#{balance} #gray#gold in the bank ||| gold_ingot
 raid.config.alerts.raid=Getting Raided
-raid.config.alerts.raid=The alert triggered when someone is raiding your base.
-raid.config.alerts.default=#white#Defend yourself! ||| #red#You're being raided by {player}! ||| iron_sword
+raid.config.alerts.raid.tooltip=The alert triggered when someone is raiding your base.
+raid.config.alerts.raid.default=#white#Defend yourself! ||| #red#You're being raided by {player}! ||| iron_sword
 
 <!-- ===-=== -->
 <!-- = CTF = -->

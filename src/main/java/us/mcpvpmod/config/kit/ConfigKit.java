@@ -23,9 +23,9 @@ public class ConfigKit extends CategoryEntry {
     protected GuiScreen buildChildScreen() {
         List<IConfigElement> list = new ArrayList<IConfigElement>();
         
-        list.add(new DummyCategoryElement(Format.s("config.hud.title"), "config.kit.HUD", KitHUD.class));
-        list.add(new DummyCategoryElement(Format.s("config.alerts.title"), "config.kit.Alerts", KitAlerts.class));
-        list.add(new DummyCategoryElement(Format.s("config.sounds.title"), "config.kit.Sounds", KitSounds.class));
+        list.add(new DummyCategoryElement(Format.s("config.hud.title"), "config.kit.hud", KitHUD.class));
+        list.add(new DummyCategoryElement(Format.s("config.alerts.title"), "config.kit.alerts", KitAlerts.class));
+        list.add(new DummyCategoryElement(Format.s("config.sounds.title"), "config.kit.sounds", KitSounds.class));
         
         return new GuiConfig(this.owningScreen,
         		list, 

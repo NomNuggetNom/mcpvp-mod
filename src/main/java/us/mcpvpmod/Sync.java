@@ -29,6 +29,7 @@ import us.mcpvpmod.config.maze.ConfigMazeSelect;
 import us.mcpvpmod.config.maze.ConfigMazeSounds;
 import us.mcpvpmod.config.raid.ConfigRaidAlerts;
 import us.mcpvpmod.config.raid.ConfigRaidHUD;
+import us.mcpvpmod.config.raid.ConfigRaidSounds;
 import us.mcpvpmod.config.sab.ConfigSabAlerts;
 import us.mcpvpmod.config.sab.ConfigSabHUD;
 import us.mcpvpmod.config.sab.ConfigSabSelect;
@@ -152,6 +153,7 @@ public class Sync {
 		// Sync Raid Configs
 		ConfigRaidHUD.syncConfig();
 		ConfigRaidAlerts.syncConfig();
+		ConfigRaidSounds.syncConfig();
 		
 		// Sync Sab Configs
 		ConfigSabAlerts.syncConfig();

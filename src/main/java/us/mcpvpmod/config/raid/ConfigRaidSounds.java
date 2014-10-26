@@ -5,23 +5,21 @@ import static net.minecraftforge.common.config.Configuration.CATEGORY_GENERAL;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
-import us.mcpvpmod.game.alerts.CustomAlert;
-import us.mcpvpmod.util.Format;
+import us.mcpvpmod.game.alerts.SoundAlert;
 import cpw.mods.fml.common.DummyModContainer;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
 
-public class ConfigRaidAlerts extends DummyModContainer {
+public class ConfigRaidSounds extends DummyModContainer {
 
-    public static String fileName = "mcpvp_raid_alerts.cfg";
+    public static String fileName = "mcpvp_raid_sounds.cfg";
     
     private static Configuration config;
 
-    public ConfigRaidAlerts() {
+    public ConfigRaidSounds() {
         config = null;
         File cfgFile = new File(Loader.instance().getConfigDir(), fileName);
         config = new Configuration(cfgFile);
@@ -50,17 +48,15 @@ public class ConfigRaidAlerts extends DummyModContainer {
         
         Property prop;
         
-    	prop = config.get(CATEGORY_GENERAL, "alertBalance", Format.s("raid.config.alerts.balance.default"));
-    	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-        prop.setLanguageKey("raid.config.alerts.balance");
+    	prop = config.get(CATEGORY_GENERAL, "soundDespoit", "mob.villager.yes");
+        prop.setLanguageKey("raid.config.sounds.soundStole");
     	propOrder.add(prop.getName());
-    	new CustomAlert("raid.balance", prop.getString());
-    	
-    	prop = config.get(CATEGORY_GENERAL, "alertRaid", Format.s("raid.config.alerts.raid.default"));
-    	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-        prop.setLanguageKey("raid.config.alerts.raid");
+    	new SoundAlert("raid.deposit", prop.getString());
+
+    	prop = config.get(CATEGORY_GENERAL, "soundRaid", "mob.wolf.growl");
+        prop.setLanguageKey("raid.config.sounds.soundStreak");
     	propOrder.add(prop.getName());
-    	new CustomAlert("raid.raid", prop.getString());
+    	new SoundAlert("raid.raid", prop.getString());
         
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
 
