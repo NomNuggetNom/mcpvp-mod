@@ -55,6 +55,12 @@ public class ConfigRaidAlerts extends DummyModContainer {
         prop.setLanguageKey("raid.config.alerts.deposit");
     	propOrder.add(prop.getName());
     	new CustomAlert("raid.deposit", prop.getString());
+    	
+    	prop = config.get(CATEGORY_GENERAL, "alertRaid", Format.s("raid.config.alerts.raid.default"));
+    	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
+        prop.setLanguageKey("raid.config.alerts.raid");
+    	propOrder.add(prop.getName());
+    	new CustomAlert("raid.raid", prop.getString());
         
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
 
