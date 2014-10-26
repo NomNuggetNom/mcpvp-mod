@@ -2,14 +2,15 @@ package us.mcpvpmod.game.alerts;
 
 import java.util.HashMap;
 
+import us.mcpvpmod.Main;
 import cpw.mods.fml.common.FMLLog;
 import net.minecraft.client.Minecraft;
 
 public class SoundAlert {
 	
-	public static Minecraft mc = Minecraft.getMinecraft();
 	public static HashMap<String, SoundAlert> soundAlerts = new HashMap<String, SoundAlert>();
 	
+	public String id;
 	public String sound;
 	public float volume;
 
@@ -27,9 +28,16 @@ public class SoundAlert {
 			this.sound	= sound;
 			this.volume	= 1.0F;
 		}
+		this.id = id;
+		//Main.l("Created new SoundAlert \"%s\"", this);
 		soundAlerts.put(id, this);
 	}
 	
+	@Override
+	public String toString() {
+		return "[id=" + id + ", sound=" + sound + ", volume=" + volume + "]";
+	}
+
 	/**
 	 * @param id The ID of the alert to get.
 	 * @return The SoundAlert with the ID.
@@ -44,8 +52,8 @@ public class SoundAlert {
 	public void play() {
 		// Support for cancelling.
 		if (!this.sound.startsWith("-X-")) {
-			mc.thePlayer.playSound(this.sound, this.volume/2, 1.0F);
-			FMLLog.info("[MCPVP] Playing sound: %s", sound);
+			Main.mc.thePlayer.playSound(this.sound, this.volume/2, 1.0F);
+			Main.l("SoundAlert triggered: \"%s\"", this);
 		}
 	}
 }

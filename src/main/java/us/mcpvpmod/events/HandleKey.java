@@ -3,7 +3,7 @@ package us.mcpvpmod.events;
 import net.minecraft.client.gui.GuiScreen;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.gui.screen.GuiMoveBlocks;
-import us.mcpvpmod.gui.screen.GuiWelcome;
+import us.mcpvpmod.gui.tutorial.Tutorial;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.IModGuiFactory;
 import cpw.mods.fml.common.Loader;
@@ -35,7 +35,7 @@ public class HandleKey {
         }
         
         if (Main.showHelp.isPressed()) {
-        	Main.mc.displayGuiScreen(new GuiWelcome(Main.mc.currentScreen));
+        	Tutorial.build();
         }
     }
     

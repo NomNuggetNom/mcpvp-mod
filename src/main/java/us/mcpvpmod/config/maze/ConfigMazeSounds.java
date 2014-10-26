@@ -61,7 +61,7 @@ public class ConfigMazeSounds extends DummyModContainer {
     	propOrder.add(prop.getName());
     	new SoundAlert("maze.playerKilled", prop.getString());
     	
-    	prop = config.get(CATEGORY_GENERAL, "soundTeamOut", "mob.wither.death");
+    	prop = config.get(CATEGORY_GENERAL, "soundTeamOut", "mob.wither.death, 0.2F");
         prop.setLanguageKey("maze.config.sounds.teamOut");
     	propOrder.add(prop.getName());
     	new SoundAlert("maze.team.out", prop.getString());

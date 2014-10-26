@@ -29,6 +29,7 @@ import us.mcpvpmod.config.maze.ConfigMazeSelect;
 import us.mcpvpmod.config.maze.ConfigMazeSounds;
 import us.mcpvpmod.config.raid.ConfigRaidAlerts;
 import us.mcpvpmod.config.raid.ConfigRaidHUD;
+import us.mcpvpmod.config.raid.ConfigRaidSounds;
 import us.mcpvpmod.config.sab.ConfigSabAlerts;
 import us.mcpvpmod.config.sab.ConfigSabHUD;
 import us.mcpvpmod.config.sab.ConfigSabSelect;
@@ -51,6 +52,7 @@ import us.mcpvpmod.game.state.StateKit;
 import us.mcpvpmod.game.state.StateMaze;
 import us.mcpvpmod.game.state.StateSab;
 import us.mcpvpmod.gui.InfoBlock;
+import us.mcpvpmod.gui.screen.GuiCodes;
 import us.mcpvpmod.util.Format;
 import cpw.mods.fml.common.FMLLog;
 
@@ -151,6 +153,7 @@ public class Sync {
 		// Sync Raid Configs
 		ConfigRaidHUD.syncConfig();
 		ConfigRaidAlerts.syncConfig();
+		ConfigRaidSounds.syncConfig();
 		
 		// Sync Sab Configs
 		ConfigSabAlerts.syncConfig();

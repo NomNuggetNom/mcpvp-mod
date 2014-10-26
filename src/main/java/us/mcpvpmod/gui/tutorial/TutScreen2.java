@@ -42,32 +42,26 @@ public class TutScreen2 extends TutorialScreen {
 		if (!Selectable.selectables.containsValue(InfoBlock.get("#b##u#Move me!"))) {
 			Selectable.selectables.put("#b##u#Move me!", InfoBlock.get("#b##u#Move me!"));
 		}
+		
 		strings.clear();
-		strings.add("#i#Moving and editing the Heads up Display");
-		strings.add("#cyan##s#                                                                         ");
-		strings.add("You can edit the Heads up Display by hitting #gray#[#green##b#X#gray#]#r# on your keyboard.");
-		strings.add("This key can be configured in the normal Minecraft Controls menu.");
-		strings.add("When you enter editing mode, you will see this text on your screen:");
-		strings.add("");
-		strings.add("      #i#Hit #gray#[#green##b#ESC#gray#]#white##i# to stop editing.");
-		strings.add("Click on something to select it!");
-		strings.add("");
-		strings.add("To select an item on the display, just click it. To move an item, use your");
-		strings.add("arrow keys. You can hold #gray#[#green##b#SHIFT#gray#]#r# to move something 10 pixels, or hold");
-		strings.add("#gray#[#green##b#CTRL#gray#]#r# to snap the item to the edge of the screen. Give it a try:");
+		int i = 1;
+		while (!Format.s("gui.tut.2." + i).equals("gui.tut.2." + i)) {
+			strings.add(Format.s("gui.tut.2." + i));
+			i++;
+		}
 	}
 	
 	@Override
 	public void drawScreen(int p_73863_1_, int p_73863_2_, float p_73863_3_) {
 		setStrings();
-		int y = this.height/6;
+		int y = this.height/7;
 		for (String string : this.strings) {
 			Draw.centeredString(Format.process(string), 0, y, this.width, 0xFFFFFF, true);
 			y += 11;
 		}
 		InfoBlock.get(Format.process("#b##u#Move me!")).display();
-		String color = SimpleTimer.value ? "#red#" : "#orange#";
-		Draw.centeredString(Format.process(color + toProgress), 0, this.height - 100, this.width, 0xFFFFF, true);
+		//String color = SimpleTimer.value ? "#red#" : "#orange#";
+		//Draw.centeredString(Format.process(color + toProgress), 0, this.height - 100, this.width, 0xFFFFF, true);
 		super.drawScreen(p_73863_1_, p_73863_2_, p_73863_3_);
 	}
 	

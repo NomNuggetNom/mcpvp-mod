@@ -14,6 +14,8 @@ import us.mcpvpmod.config.all.ConfigVersion;
 import us.mcpvpmod.config.ctf.ConfigCTFChat;
 import us.mcpvpmod.events.HandleJoinMCPVP;
 import us.mcpvpmod.game.alerts.CustomAlert;
+import us.mcpvpmod.game.vars.AllVars;
+import us.mcpvpmod.game.vars.Vars;
 import us.mcpvpmod.json.StreamJSON;
 import us.mcpvpmod.mgi.MGIEvent;
 import us.mcpvpmod.triggers.ChatTrigger;
@@ -26,6 +28,7 @@ public class AllChat {
 	
 	public static String msgLogged = "Now Logged in!";
 	public static String reIP = "Server Address: (.*)";
+	public static String rePing = "\u00A7aPing: (.*)ms";
 	public static boolean getIP = false;
 	public static boolean sentUpdateMessage = false;
 
@@ -33,7 +36,11 @@ public class AllChat {
 		String message = event.message.getUnformattedText();
 		
 		HandleJoinMCPVP.showWelcome();
-		IgnoreResult.check(event);
+		IgnoreResult.checkAll(event);
+		
+		if (message.matches(rePing)) {
+			AllVars.vars.put("ping", message.replaceAll(rePing, "$1"));
+		}
 		
 		// Check for removal of chat.
 		if (removeChat(message)) {
@@ -63,11 +70,12 @@ public class AllChat {
 		}
 		
 		String reYay = "\u00A7f\\[\u00A77TW\u00A7f\\].*NomNuggetNom.*>.*Yay! @(.*)";
-		if (message.matches(reYay) && Server.getServer() != Server.CTF || Server.getServer() != Server.HS) {
+		if (message.matches(reYay) && Server.getServer() != Server.CTF && Server.getServer() != Server.HS) {
 			if (message.replaceAll(reYay, "$1").equals(Main.mc.thePlayer.getDisplayName())) {
 				CustomAlert.get("yay").show();
 			}
 		}
+
 	}
 	
 	/**

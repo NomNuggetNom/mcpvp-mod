@@ -14,7 +14,7 @@ public class PingTimer extends TimerTask {
 				|| Server.getServer() == Server.NONE) 
 			return;
 		
-		new IgnoreResult("/pingtest", "\u00A7aTesting Ping...\u00A7r", "\u00A7aPing: .*");
+		new IgnoreResult("/pingtest", ".*Testing Ping.*", "\u00A7aPing: .*");
 	}
 	
 }

@@ -123,24 +123,10 @@ public class CustomAlert {
 		if (Vars.get("icon") == null) return resource;
 		
 		String imgName = resource.getResourcePath().replaceAll("textures/(.*)\\.png", "$1");
-		System.out.println(imgName);
 		
 		if (imgName.equals("flag")) {
 			return new ResourceLocation("mcpvp", "textures/flag_" + Vars.get("team").replaceAll("\u00A7.", "").toLowerCase(Locale.ENGLISH) + "_" + Vars.get("action") + ".png");
 		}
-		
-		/*
-		String team = Vars.get("team");
-		String action = Vars.get("action");
-		if (team.equals("Blue")) {
-			System.out.println("textures/flag_blue_" + action.replaceAll(" ", "") + ".png");
-			return new ResourceLocation("mcpvp", "textures/flag_blue_" + action.replaceAll(" ", "") + ".png");
-		}  else if (team.equals("Red")) {
-			System.out.println("textures/flag_blue_" + action.replaceAll(" ", "") + ".png");
-			return new ResourceLocation("mcpvp", "textures/flag_red_" + action.replaceAll(" ", "") + ".png");
-		}
-		System.out.println(resource);
-		*/
 		return resource;
 	}
 	
