@@ -51,7 +51,7 @@ public class ConfigRaidSounds extends DummyModContainer {
     	prop = config.get(CATEGORY_GENERAL, "soundDespoit", "mob.villager.yes");
         prop.setLanguageKey("raid.config.sounds.soundStole");
     	propOrder.add(prop.getName());
-    	new SoundAlert("raid.deposit", prop.getString());
+    	new SoundAlert("raid.balance", prop.getString());
 
     	prop = config.get(CATEGORY_GENERAL, "soundRaid", "mob.wolf.growl");
         prop.setLanguageKey("raid.config.sounds.soundStreak");
