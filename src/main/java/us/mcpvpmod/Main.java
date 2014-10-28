@@ -123,8 +123,12 @@ public class Main {
 	public void postInit(FMLPostInitializationEvent e) {
 	}
 	
-	public static void l(String string, Object... data) {
+	public static void l(Object string, Object... data) {
 		FMLLog.info("[MCPVP] " + string, data);
+	}
+	
+	public static void w(Object string, Object... data) {
+		FMLLog.warning("[MCPVP] " + string, data);
 	}
     
 }

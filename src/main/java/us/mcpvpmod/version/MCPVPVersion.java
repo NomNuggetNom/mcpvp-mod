@@ -13,7 +13,6 @@ public class MCPVPVersion {
 	public VersionOld old;
 	
 	public static boolean updateAvailable() {
-		System.out.println("");
 		if (ConfigVersion.channel.equalsIgnoreCase("Main"))
 			return Main.mcpvpVersion.main!=null && !Main.modVersion.equals(Main.mcpvpVersion.main.mod);
 		else if (ConfigVersion.channel.equalsIgnoreCase("Beta"))

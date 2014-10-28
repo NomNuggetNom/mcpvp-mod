@@ -44,7 +44,6 @@ public class ChatSab {
 		}
 		
 		if (message.matches(CoreSab.reRole) || message.matches(CoreSab.reStart)) {
-			System.out.println("Game Started!");
 			StateSab.state = StateSab.PLAY;
 		}
 		

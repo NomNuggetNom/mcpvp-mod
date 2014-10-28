@@ -124,7 +124,6 @@ public class CustomTexture {
 					URL url = new URL(imageURL);
 					BufferedImage image = ImageIO.read(url);
 					ct.raw = image;
-					System.out.println("set image");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
