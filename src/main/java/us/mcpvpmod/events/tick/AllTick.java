@@ -38,11 +38,10 @@ public class AllTick {
 		for (BoardTracker tracker : BoardTracker.boardTrackers) {
 			tracker.update();
 		}
-		//System.out.println(Main.mc.currentScreen);
 		
 		if (Main.mc.currentScreen instanceof GuiDisconnected
 				&& !(Main.mc.currentScreen instanceof GuiDisconnectedMCPVP)) {
-			Main.mc.displayGuiScreen(new GuiDisconnectedMCPVP(Main.mc.currentScreen, "a", new ChatComponentText("Hi")));
+			//Main.mc.displayGuiScreen(new GuiDisconnectedMCPVP(Main.mc.currentScreen, "a", new ChatComponentText("Hi")));
 		}
 	}
 	
