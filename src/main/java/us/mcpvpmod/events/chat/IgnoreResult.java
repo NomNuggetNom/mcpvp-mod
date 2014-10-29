@@ -84,9 +84,15 @@ public class IgnoreResult {
 	 * @param event The event to check.
 	 */
 	public static void checkAll(ClientChatReceivedEvent event) {
+		for (int i = ignoreResults.size()-1; i > 0; i--) {
+			ignoreResults.get(i).check(event);
+		}
+		
+		/*
 		for (IgnoreResult ignoreResult : ignoreResults) {
 			ignoreResult.check(event);
 		}
+		*/
 	}
 	
 }
