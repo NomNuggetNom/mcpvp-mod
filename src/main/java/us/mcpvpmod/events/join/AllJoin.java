@@ -1,4 +1,4 @@
-package us.mcpvpmod.events;
+package us.mcpvpmod.events.join;
 
 import us.mcpvpmod.Main;
 import us.mcpvpmod.config.all.ConfigSelect;
@@ -15,13 +15,10 @@ import us.mcpvpmod.game.vars.VarsSab;
 import us.mcpvpmod.gui.tutorial.Tutorial;
 import us.mcpvpmod.util.Data;
 
-public class HandleJoinMCPVP {
+public class AllJoin {
 
 	public static long lastLogin = 0;
 	
-	/**
-	 * Fired when the "Now logged in!" message is received in chat.
-	 */
 	public static void onJoin() {
 		lastLogin = System.currentTimeMillis();
 		Main.l("Logged in!");
@@ -41,8 +38,8 @@ public class HandleJoinMCPVP {
 		VarsRaid.reset();
 		VarsSab.reset();
 		Main.secondChat.clearChatMessages();
-		//Skins.fixSkins();
 	}
+	
 	
 	public static void autoTag() {
 		if (!ConfigSelect.autoTagB) {
