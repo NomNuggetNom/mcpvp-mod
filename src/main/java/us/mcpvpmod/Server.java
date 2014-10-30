@@ -17,6 +17,8 @@ import us.mcpvpmod.events.chat.ChatKit;
 import us.mcpvpmod.events.chat.ChatMaze;
 import us.mcpvpmod.events.chat.ChatRaid;
 import us.mcpvpmod.events.chat.ChatSab;
+import us.mcpvpmod.events.join.AllJoin;
+import us.mcpvpmod.events.join.JoinHG;
 import us.mcpvpmod.events.render.AllRender;
 import us.mcpvpmod.events.render.RenderBuild;
 import us.mcpvpmod.events.render.RenderCTF;
@@ -173,6 +175,29 @@ public enum Server {
 		case BUILD:	TickBuild.onTick(event);	return;
 		case HS: 	TickHS.onTick(event); 		return;
 		case HUB: 	TickHub.onTick(event); 		return;
+		case HG2:	return;
+		case PARTY:	return;
+		case NONE: 	return;
+		default:	return;
+		}
+	}
+	
+	/**
+	 * Dictates which join handler to re-direct to.
+	 */
+	public static void onJoin(String ip) {
+		AllJoin.onJoin();
+		
+		switch(getServer(ip)) {
+		case HG: 	JoinHG.onJoin();
+		case CTF: 	return;
+		case RAID: 	return;
+		case KIT: 	return;
+		case MAZE: 	return;
+		case SAB: 	return;
+		case BUILD:	return;
+		case HS: 	return;
+		case HUB: 	return;
 		case HG2:	return;
 		case PARTY:	return;
 		case NONE: 	return;

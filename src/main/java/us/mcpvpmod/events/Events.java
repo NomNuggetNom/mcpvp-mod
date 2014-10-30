@@ -27,6 +27,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.common.network.FMLNetworkEvent.ClientConnectedToServerEvent;
+import cpw.mods.fml.common.network.FMLNetworkEvent.ClientDisconnectionFromServerEvent;
 
 public class Events {
 
@@ -77,6 +78,11 @@ public class Events {
 	@SubscribeEvent
 	public void onConnect(ClientConnectedToServerEvent event) {
 		ServerHelper.currentIP = "";
+	}
+	
+	@SubscribeEvent
+	public void onDisconnect(ClientDisconnectionFromServerEvent event) {
+		HandleDisconnect.onDisconnect(event);
 	}
 	
 	@SubscribeEvent

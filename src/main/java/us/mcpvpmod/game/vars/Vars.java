@@ -2,6 +2,8 @@ package us.mcpvpmod.game.vars;
 
 import java.util.HashMap;
 
+import us.mcpvpmod.Main;
+
 public class Vars {
 
 	public static HashMap<String, String> vars = new HashMap<String, String>();
@@ -44,7 +46,7 @@ public class Vars {
 	 */
 	public static void print() {
 		for (String key : vars.keySet()) {
-			System.out.println(key + "=" + vars.get(key));
+			Main.l("Variable \"%s\" has value \"%s\"", key, vars.get(key));
 		}
 	}
 	

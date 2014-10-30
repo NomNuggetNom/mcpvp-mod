@@ -20,13 +20,11 @@ public class ChatRaid {
 		ChatTrigger.checkAll(message);
 		
 		if (message.equals(AllChat.msgLogged + "§r")) {
-			System.out.println("logged in");
 			Main.mc.thePlayer.sendChatMessage("/balance");
 			getBalance = true;
 		}
 		
 		if (message.matches(AllChat.msgLogged) && getBalance) {
-			System.out.println("get");
 			event.setCanceled(true);
 			getBalance = false;
 		}

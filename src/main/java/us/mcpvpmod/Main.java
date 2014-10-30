@@ -45,7 +45,7 @@ public class Main {
 	/** The name of the mod is displayed on the configuration screen. */
 	public static final String name = "MCPVP Mod";
 	/** The version of the mod. */
-	public static final String modVersion = "2.0.3";
+	public static final String modVersion = "2.0.4";
 	/** The version of MC that the mod was compiled for. */
 	public static final String mcVersion = "1.7.10";
 	/** The version of Forge that the mod was compiled for. */
@@ -123,8 +123,12 @@ public class Main {
 	public void postInit(FMLPostInitializationEvent e) {
 	}
 	
-	public static void l(String string, Object... data) {
+	public static void l(Object string, Object... data) {
 		FMLLog.info("[MCPVP] " + string, data);
+	}
+	
+	public static void w(Object string, Object... data) {
+		FMLLog.warning("[MCPVP] " + string, data);
 	}
     
 }

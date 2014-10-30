@@ -1,25 +1,15 @@
 package us.mcpvpmod.events.chat;
 
-import cpw.mods.fml.common.FMLLog;
-import net.minecraft.client.multiplayer.ServerData;
-import net.minecraft.event.ClickEvent;
 import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.IChatComponent;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.ServerHelper;
 import us.mcpvpmod.config.all.ConfigChat;
-import us.mcpvpmod.config.all.ConfigVersion;
 import us.mcpvpmod.config.ctf.ConfigCTFChat;
-import us.mcpvpmod.events.HandleJoinMCPVP;
+import us.mcpvpmod.events.join.AllJoin;
 import us.mcpvpmod.game.alerts.CustomAlert;
 import us.mcpvpmod.game.vars.AllVars;
-import us.mcpvpmod.game.vars.Vars;
-import us.mcpvpmod.json.StreamJSON;
-import us.mcpvpmod.mgi.MGIEvent;
-import us.mcpvpmod.triggers.ChatTrigger;
-import us.mcpvpmod.util.Format;
 
 /**
  * Chat handling for all servers.
@@ -35,11 +25,17 @@ public class AllChat {
 	public static void handleChat(ClientChatReceivedEvent event) {
 		String message = event.message.getUnformattedText();
 		
-		HandleJoinMCPVP.showWelcome();
+		AllJoin.showWelcome();
 		IgnoreResult.checkAll(event);
 		
 		if (message.matches(rePing)) {
 			AllVars.vars.put("ping", message.replaceAll(rePing, "$1"));
+		}
+		
+		//FMLLog.info("message: \"%s\"", message);
+		if (message.equals(msgLogged)) {
+			Server.onJoin(Main.mc.func_147104_D().serverIP);
+			//HandleJoinMCPVP.onJoin();
 		}
 		
 		// Check for removal of chat.
@@ -51,11 +47,6 @@ public class AllChat {
 		} else {
 			// Censor chat.
 			event.message = new ChatComponentText(censorChat(event.message.getFormattedText().replaceAll("§", "\u00A7")));
-		}
-		
-		//FMLLog.info("message: \"%s\"", message);
-		if (message.equals(msgLogged)) {
-			HandleJoinMCPVP.onJoin();
 		}
 		
 		if (message.matches(reIP)) {

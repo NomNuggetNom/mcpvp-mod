@@ -29,6 +29,7 @@ public class TutScreen4 extends TutorialScreen {
 		setStrings();
 		int y = this.height/7;
 		for (String string : this.strings) {
+			if (string == null) continue;
 			Draw.centeredString(Format.process(string), 0, y, this.width, 0xFFFFFF, true);
 			y += 11;
 		}

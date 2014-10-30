@@ -187,7 +187,7 @@ public class ChatCTF {
 			// The chat message in the second chat.
 			String oldMessage = ((ChatLine)chatLine).func_151461_a().getUnformattedText();
 			if (oldMessage.equals(event.message.getUnformattedText())) {
-				System.out.println("Found duplicate message!");
+				Main.l("Found a duplicate: \"%s\"", event.message.getUnformattedText());
 				event.setCanceled(true);
 			}
 		}

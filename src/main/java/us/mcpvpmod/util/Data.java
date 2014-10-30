@@ -25,27 +25,26 @@ public class Data {
 	public static void make() {
 		if (!directory.exists()) {
 			if (!directory.mkdir())
-				System.out.println("Can't create MCPVP Data directory!");
+				Main.w("Can't create MCPVP Data directory!");
 			else
-				System.out.println("Created the MCPVP Data directory!");
+				Main.l("Created the MCPVP Data directory!");
 		} else {
-			System.out.println("Found the MCPVP Data directory!");
+			Main.l("Found the MCPVP Data directory!");
 		}
-			
 		
 		if (!dataFile.exists()) {
 			try {
 				if (!dataFile.createNewFile())
-					System.out.println("Can't create MCPVP Data file!");
+					Main.w("Can't create MCPVP Data file!");
 				else {
-					System.out.println("Created MCPVP Data file!");
+					Main.l("Created MCPVP Data file!");
 					shouldSetDefaults = true;
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else {
-			System.out.println("Found the MCPVP Data file!");
+			Main.l("Found the MCPVP Data file!");
 		}
 		
 		Properties storedProps = new Properties();
@@ -56,9 +55,9 @@ public class Data {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(storedProps.values());
+		Main.l(storedProps.values());
 		prop = storedProps;
-		System.out.println(prop.values());
+		Main.l(prop.values());
 		made = true;
 	}
 	
@@ -86,7 +85,7 @@ public class Data {
 	
 	public static void setDefaults() {
 		if (!shouldSetDefaults) return;
-		System.out.println("Setting defaults!");
+		Main.l("Setting defaults!");
 		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
 		Data.put(Main.friendsList + ".x", "-" + ConfigHUD.margin);
 		Data.put(Main.friendsList + ".y", "" + ConfigHUD.margin);

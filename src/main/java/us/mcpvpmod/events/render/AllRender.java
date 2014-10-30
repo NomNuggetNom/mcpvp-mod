@@ -1,8 +1,12 @@
 package us.mcpvpmod.events.render;
 
+import java.util.ArrayList;
+
 import net.minecraft.client.entity.AbstractClientPlayer;
+import net.minecraft.client.gui.GuiDisconnected;
 import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import us.mcpvpmod.Main;
@@ -11,6 +15,7 @@ import us.mcpvpmod.config.all.ConfigHUD;
 import us.mcpvpmod.gui.CustomTextureAsync;
 import us.mcpvpmod.gui.PotionDisplay;
 import us.mcpvpmod.gui.Selectable;
+import us.mcpvpmod.gui.screen.GuiDisconnectedMCPVP;
 import us.mcpvpmod.gui.screen.GuiIngameMCPVP;
 import us.mcpvpmod.util.Data;
 
@@ -57,6 +62,7 @@ public class AllRender {
 		// Checking the time imposes a limit to the frequency of the event.
 		if (ConfigHUD.fixSkins && System.currentTimeMillis() % 10 == 0) 
 			fixSkins();
+		
 	}
 	
 	/**
@@ -82,5 +88,23 @@ public class AllRender {
 		}
 	}
 	
+	static ArrayList<EntityPlayer> fixed = new ArrayList<EntityPlayer>();
+	public static void fixASkin() {
+		for (EntityPlayer player : ServerHelper.getPlayersFromWorld()) {
+			// Safeguard becomes players are sometimes null...
+			if (player == null || fixed.contains(player)) continue;
+			
+			
+			String name = player.getDisplayName().replaceAll("\u00A7.", "");
+			ResourceLocation skin = CustomTextureAsync.get(name + ".skin", // Store it as "username.skin"
+					"http://skins.minecraft.net/MinecraftSkins/" + name + ".png", // The URL to download from.
+					((AbstractClientPlayer) player).locationStevePng); // The Steve skin is the backup.
+			
+			// Assign the location of the skin.
+			((AbstractClientPlayer) player).func_152121_a(MinecraftProfileTexture.Type.SKIN, skin);
+			fixed.add(player);
+			return;
+		}
+	}
 
 }
