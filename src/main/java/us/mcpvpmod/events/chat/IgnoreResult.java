@@ -3,6 +3,7 @@ package us.mcpvpmod.events.chat;
 import java.util.ArrayList;
 
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
+import scala.reflect.internal.Trees.This;
 import us.mcpvpmod.Main;
 
 public class IgnoreResult {
@@ -78,20 +79,24 @@ public class IgnoreResult {
 				+ ignore + "]";
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		return o instanceof IgnoreResult && ((IgnoreResult)o).ignore.equals(this.ignore);
+	}
+	
 	/**
 	 * Cycles through every IgnoreResult and runs check(event).
 	 * @param event The event to check.
 	 */
 	public static void checkAll(ClientChatReceivedEvent event) {
+
 		for (int i = ignoreResults.size()-1; i > 0; i--) {
 			ignoreResults.get(i).check(event);
+			
+			// Remove empty additions to prevent lag.
+			if (ignoreResults.get(i).ignore.size() == 0)
+				ignoreResults.remove(i);
 		}
-		
-		/*
-		for (IgnoreResult ignoreResult : ignoreResults) {
-			ignoreResult.check(event);
-		}
-		*/
 	}
 	
 }

@@ -13,7 +13,6 @@ import us.mcpvpmod.events.Events;
 import us.mcpvpmod.gui.ArmorDisplay;
 import us.mcpvpmod.gui.InfoBlock;
 import us.mcpvpmod.gui.PotionDisplay;
-import us.mcpvpmod.gui.screen.GuiCodes;
 import us.mcpvpmod.gui.screen.GuiSecondChat;
 import us.mcpvpmod.json.ServerJSON;
 import us.mcpvpmod.json.StreamJSON;
@@ -45,7 +44,7 @@ public class Main {
 	/** The name of the mod is displayed on the configuration screen. */
 	public static final String name = "MCPVP Mod";
 	/** The version of the mod. */
-	public static final String modVersion = "2.0.4";
+	public static final String modVersion = "2.0.5";
 	/** The version of MC that the mod was compiled for. */
 	public static final String mcVersion = "1.7.10";
 	/** The version of Forge that the mod was compiled for. */
@@ -76,7 +75,6 @@ public class Main {
 	public static PotionDisplay potionDisplay = new PotionDisplay();
 	/** A reference to the InfoBlock that will become the FriendsList during Sync. */
 	public static InfoBlock friendsList = null;
-	public static GuiCodes guiCodes = null;
 	
 	@EventHandler
 	public void preInit(@SuppressWarnings("unused") FMLPreInitializationEvent e) {
@@ -109,11 +107,11 @@ public class Main {
     	
     @EventHandler
 	public void init(@SuppressWarnings("unused") FMLInitializationEvent e) {   	
-    	openConfig = new KeyBinding("key.openConfig", Keyboard.KEY_C, "MCPVP");
+    	openConfig = new KeyBinding("key.openConfig", Keyboard.CHAR_NONE, "MCPVP");
         ClientRegistry.registerKeyBinding(openConfig);
-        moveBlocks = new KeyBinding("key.moveBlocks", Keyboard.KEY_X, "MCPVP");
+        moveBlocks = new KeyBinding("key.moveBlocks", Keyboard.CHAR_NONE, "MCPVP");
         ClientRegistry.registerKeyBinding(moveBlocks);
-        showHelp = new KeyBinding("key.showHelp", Keyboard.KEY_H, "MCPVP");
+        showHelp = new KeyBinding("key.showHelp", Keyboard.CHAR_NONE, "MCPVP");
         ClientRegistry.registerKeyBinding(showHelp);
         
         DevCapes.getInstance().registerConfig("https://raw.githubusercontent.com/NomNuggetNom/mcpvp-mod/master/capes.json");

@@ -1,7 +1,6 @@
 package us.mcpvpmod.events.chat;
 
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
-import us.mcpvpmod.Main;
 import us.mcpvpmod.trackers.ChatTracker;
 import us.mcpvpmod.triggers.ChatTrigger;
 
@@ -14,17 +13,6 @@ public class ChatRaid {
 
 		ChatTracker.checkAll(message);
 		ChatTrigger.checkAll(message);
-		
-		if (message.equals(AllChat.msgLogged + "§r")) {
-			Main.mc.thePlayer.sendChatMessage("/balance");
-			getBalance = true;
-		}
-		
-		if (message.matches(AllChat.msgLogged) && getBalance) {
-			event.setCanceled(true);
-			getBalance = false;
-		}
-
 	}
 	
 }

@@ -48,6 +48,8 @@ public class CustomAlert {
 	public CustomAlert(String id, String template) {
 		this.id = id;
 		this.template = template;
+		setStrings();
+		this.mode = Mode.NONE;
 		alerts.put(id, this);
 	}
 	
@@ -180,8 +182,6 @@ public class CustomAlert {
 	 */
 	public void show() {
 		// Update information.
-		// TODO: Strings and mode should be set on creation.
-		setStrings();
 		setMode();
 		title = replaceInfo(title);
 		desc  = replaceInfo(desc);
@@ -215,7 +215,7 @@ public class CustomAlert {
 	 * or downloaded using a CustomTexture.
 	 */
 	public enum Mode {
-		ITEM, IMAGE;
+		ITEM, IMAGE, NONE;
 		
 		/**
 		 * Determines which mode the alert is using. This is determined using

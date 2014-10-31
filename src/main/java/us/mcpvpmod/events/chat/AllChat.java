@@ -16,12 +16,17 @@ import us.mcpvpmod.game.vars.AllVars;
  */ 
 public class AllChat {
 	
-	public static String msgLogged = "Now Logged in!";
-	public static String reIP = "Server Address: (.*)";
-	public static String rePing = "\u00A7aPing: (.*)ms";
-	public static boolean getIP = false;
-	public static boolean sentUpdateMessage = false;
-
+	/** The message received when any MCPVP server is joined. */
+	static final String msgLogged = "Now Logged in!";
+	/** Used to parse results from /ip. */
+	static final String reIP = "Server Address: (.*)";
+	/** Used to parse results from /pingtest. */
+	static final String rePing = "\u00A7aPing: (.*)ms";
+	
+	/**
+	 * All chat for all MCPVP servers passes through here.
+	 * @param event The chat event to check.
+	 */
 	public static void handleChat(ClientChatReceivedEvent event) {
 		String message = event.message.getUnformattedText();
 		

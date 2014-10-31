@@ -17,7 +17,6 @@ import us.mcpvpmod.gui.Draw;
 import us.mcpvpmod.gui.InfoBlock;
 import us.mcpvpmod.gui.PotionDisplay;
 import us.mcpvpmod.gui.Selectable;
-import us.mcpvpmod.json.TeamsJSON;
 import us.mcpvpmod.util.Data;
 import us.mcpvpmod.util.Format;
 
@@ -28,12 +27,10 @@ public class GuiMoveBlocks extends GuiScreen {
 	public static int lastKey;
 	
 	public GuiMoveBlocks(GuiScreen parent) {
-		TeamsJSON.run();
 		this.parent = parent;
 		initGui();
 	}
 	
-
 	public void initGui() {
 		Keyboard.enableRepeatEvents(true);
 	}
