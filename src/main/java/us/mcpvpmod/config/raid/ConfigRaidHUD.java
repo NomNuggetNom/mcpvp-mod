@@ -49,11 +49,15 @@ public class ConfigRaidHUD extends DummyModContainer {
         Property prop;
         
     	prop = config.get(CATEGORY_GENERAL, "render", new String[]{
-    			"#bold##underline#Raid", 
-    			"#green##italic#X#gray# >> #r##bold#{x}",
-    			"#green##italic#Y#gray# >> #r##bold#{y}",
-    			"#green##italic#Z#gray# >> #r##bold#{z}",
-    			"#green##italic#F#gray# >> #r##bold#{f}",});
+    			
+    			"#b##u#Raid", 
+    			"#black##italic#X#gray# >> #r#{x}",
+    			"#black##italic#Y#gray# >> #r#{y}",
+    			"#black##italic#Z#gray# >> #r#{z}",
+    			"#black##italic#F#gray# >> #r#{dir} ({f})",
+    			"#black##italic#$#gray# >> #r#{balance}"
+    			
+    	});
         prop.setLanguageKey("raid.config.hud.render");
     	render = prop.getStringList();
     	propOrder.add(prop.getName());

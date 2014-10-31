@@ -53,8 +53,8 @@ public class ConfigCTFHUD extends DummyModContainer {
     	prop = config.get(CATEGORY_GENERAL, "renderPre", new String[]{
     			
     			"---#b##u#CTF",
-    			"#gold##i#Class #gray#>> #white##b#{class}",
-    			"#gold##i#Map #gray#>> #white##b#{map}"
+    			"#gold##i#Class #gray#>> #white#{class}",
+    			"#gold##i#Map #gray#>> #white#{map}"
     			
     	});
         prop.setLanguageKey("ctf.config.hud.renderPre");
@@ -64,11 +64,11 @@ public class ConfigCTFHUD extends DummyModContainer {
     	prop = config.get(CATEGORY_GENERAL, "renderPlay", new String[]{
     			
     			"---#b##u#CTF",
-    			"#gold##i#Kills #gray#>> #white##bold#{kills} #r#({assists})",
-    			"#gold##i#Streak #gray#>> #white##bold#{streak}",
-    			"#gold##i#Deaths #gray#>> #white##bold#{deaths}",
-    			"#gold##i#Caps #gray#>> #white##bold#{caps} #r#({steals})",
-    			"#gold##i#Recovs #gray#>> #white##bold#{recovers}"
+    			"#gold##i#Kills #gray#>> #white#{kills} #r#({assists})",
+    			"#gold##i#Streak #gray#>> #white#{streak}",
+    			"#gold##i#Deaths #gray#>> #white#{deaths}",
+    			"#gold##i#Caps #gray#>> #white#{caps} #r#({steals})",
+    			"#gold##i#Recovs #gray#>> #white#{recovers}"
 
     	});
         prop.setLanguageKey("ctf.config.hud.renderPlay");
@@ -78,11 +78,11 @@ public class ConfigCTFHUD extends DummyModContainer {
     	prop = config.get(CATEGORY_GENERAL, "renderPost", new String[]{
     			
     			"---#b##u#CTF",
-    			"#gold##i#Kills #gray#>> #white##bold#{kills} #r#({assists})",
-    			"#gold##i#Streak #gray#>> #white##bold#{streak}",
-    			"#gold##i#Deaths #gray#>> #white##bold#{deaths}",
-    			"#gold##i#Caps #gray#>> #white##bold#{caps} #r#({steals})",
-    			"#gold##i#Recovs #gray#>> #white##bold#{recovers}"
+    			"#gold##i#Kills #gray#>> #white#{kills} #r#({assists})",
+    			"#gold##i#Streak #gray#>> #white#{streak}",
+    			"#gold##i#Deaths #gray#>> #white#{deaths}",
+    			"#gold##i#Caps #gray#>> #white#{caps} #r#({steals})",
+    			"#gold##i#Recovs #gray#>> #white#{recovers}"
     			
     	});
         prop.setLanguageKey("ctf.config.hud.renderPost");
