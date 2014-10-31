@@ -9,7 +9,7 @@ sync=[MCPVP] Syncing configurations!
 error.json.server=[MCPVP] Unable to get JSON for servers!
 
 <!-- UPDATE -->
-update-url=http://google.com/
+update-url=https://github.com/NomNuggetNom/mcpvp-mod/releases
 update-msg=#b##u#v#green##b##u#<VERSION>#white##b##u# is available for MC #cyan##b##u#<MCVERSION>#white##b##u#! Click to download.
 
 stream-url=http://www.twitch.tv/mcpvp
@@ -248,6 +248,8 @@ config.hud.potionPosition=Potion Info Position
 config.hud.portionPosition=This dictates where the potion's strength and time will be shown, relevant to the potion effect icon.
 config.hud.potionPosition.m.l=Left of the Potions
 config.hud.potionPosition.m.r=Right of the Potions
+config.hud.fixSkins=Fix Skins (laggy)
+config.hud.fixSkins.tooltip=WARNING: THIS CAUSES LAG. This forces skins to be fixed on MCPVP Servers. Expect frame drops.
 config.hud.renderBG=Render Backgrounds
 config.hud.renderBG.tooltip=Whether or not to render the black background behind info blocks.
 config.hud.margin=Margin
