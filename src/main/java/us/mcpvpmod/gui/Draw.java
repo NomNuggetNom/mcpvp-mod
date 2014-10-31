@@ -21,7 +21,7 @@ public class Draw {
 		Minecraft.getMinecraft().fontRenderer.drawString(Format.process(string), x, y, color, shadow);
 	}
 	
-	public static void splitString(String string, int x, int y, int w, int color, boolean shadow) {
+	public static void splitString(String string, int x, int y, int w, int color) {
 		Minecraft.getMinecraft().fontRenderer.drawSplitString(Format.process(string), x, y, w, color);
 	}
 	
@@ -52,10 +52,10 @@ public class Draw {
         double maxV = (double)(v + height) / (double)imageHeight;
         Tessellator tessellator = Tessellator.instance;
         tessellator.startDrawingQuads();
-        tessellator.addVertexWithUV(x + scale*(double)width, y + scale*(double)height, 0, maxU, maxV);
-        tessellator.addVertexWithUV(x + scale*(double)width, y, 0, maxU, minV);
+        tessellator.addVertexWithUV(x + scale*width, y + scale*height, 0, maxU, maxV);
+        tessellator.addVertexWithUV(x + scale*width, y, 0, maxU, minV);
         tessellator.addVertexWithUV(x, y, 0, minU, minV);
-        tessellator.addVertexWithUV(x, y + scale*(double)height, 0, minU, maxV);
+        tessellator.addVertexWithUV(x, y + scale*height, 0, minU, maxV);
         tessellator.draw();
         GL11.glDisable(GL11.GL_BLEND);
         GL11.glEnable(GL11.GL_DEPTH_TEST);
@@ -75,7 +75,10 @@ public class Draw {
 	 * @param imageHeight The height of the texture being drawn.
 	 * @param scale The scale of the image.
 	 */
-	public static void texturedRect(ResourceLocation texture, double x, double y, int u, int v, int width, int height, int imageWidth, int imageHeight, double scale, float red, float green, float blue, float alpha) {
+	public static void texturedRect(ResourceLocation texture, double x,
+			double y, int u, int v, int width, int height, int imageWidth,
+			int imageHeight, double scale, float red, float green, float blue,
+			float alpha) {
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		GL11.glDepthMask(false);
@@ -89,10 +92,10 @@ public class Draw {
         double maxV = (double)(v + height) / (double)imageHeight;
         Tessellator tessellator = Tessellator.instance;
         tessellator.startDrawingQuads();
-        tessellator.addVertexWithUV(x + scale*(double)width, y + scale*(double)height, 0, maxU, maxV);
-        tessellator.addVertexWithUV(x + scale*(double)width, y, 0, maxU, minV);
+        tessellator.addVertexWithUV(x + scale*width, y + scale*height, 0, maxU, maxV);
+        tessellator.addVertexWithUV(x + scale*width, y, 0, maxU, minV);
         tessellator.addVertexWithUV(x, y, 0, minU, minV);
-        tessellator.addVertexWithUV(x, y + scale*(double)height, 0, minU, maxV);
+        tessellator.addVertexWithUV(x, y + scale*height, 0, minU, maxV);
         tessellator.draw();
         GL11.glDisable(GL11.GL_BLEND);
         GL11.glEnable(GL11.GL_DEPTH_TEST);
@@ -122,10 +125,10 @@ public class Draw {
         OpenGlHelper.glBlendFunc(770, 771, 1, 0);
         GL11.glColor4f(red, green, blue, alpha);
         tessellator.startDrawingQuads();
-        tessellator.addVertex((double)startX, (double)endY, 0.0D);
-        tessellator.addVertex((double)endX, (double)endY, 0.0D);
-        tessellator.addVertex((double)endX, (double)startY, 0.0D);
-        tessellator.addVertex((double)startX, (double)startY, 0.0D);
+        tessellator.addVertex(startX, endY, 0.0D);
+        tessellator.addVertex(endX, endY, 0.0D);
+        tessellator.addVertex(endX, startY, 0.0D);
+        tessellator.addVertex(startX, startY, 0.0D);
         tessellator.draw();
         GL11.glEnable(GL11.GL_TEXTURE_2D);
         GL11.glDisable(GL11.GL_BLEND);
@@ -145,10 +148,5 @@ public class Draw {
 	
 	public static void centeredString(String string, int x, int y, int w, int color, boolean shadow) {
 		Minecraft.getMinecraft().fontRenderer.drawString(Format.process(string), x + w/2 - Main.mc.fontRenderer.getStringWidth(Format.process(string))/2, y, color, shadow);
-	}
-	
-	public static void centeredString(String string, int x, int y, int w, int color, boolean shadow, boolean background) {
-		Minecraft.getMinecraft().fontRenderer.drawString(Format.process(string), x + w/2 - Main.mc.fontRenderer.getStringWidth(Format.process(string))/2, y, color, shadow);
-
 	}
 }

@@ -2,7 +2,6 @@ package us.mcpvpmod.game.vars;
 
 import java.util.HashMap;
 
-import us.mcpvpmod.Main;
 import us.mcpvpmod.game.info.InfoCTF;
 import us.mcpvpmod.game.state.StateCTF;
 import us.mcpvpmod.game.stats.StatsCTF;
@@ -57,11 +56,9 @@ public class VarsCTF {
 	 * @return The value of the stored variable.
 	 */
 	public static String get(String string) {
-		if (vars.keySet().contains(string)) {
+		if (vars.keySet().contains(string))
 			return vars.get(string);
-		} else {
-			return "";
-		}
+		return "";
 	}	
 	
 	/**

@@ -3,18 +3,12 @@ package us.mcpvpmod.gui.screen;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.Tessellator;
 import us.mcpvpmod.MCPVPServer;
 import us.mcpvpmod.Main;
-import us.mcpvpmod.gui.CustomTexture;
-import us.mcpvpmod.gui.Draw;
 import us.mcpvpmod.util.Format;
 import cpw.mods.fml.client.GuiScrollingList;
-import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.common.ModContainer;
 
 public class GuiServerCategory extends GuiScrollingList {
 	
@@ -73,17 +67,10 @@ public class GuiServerCategory extends GuiScrollingList {
 		MCPVPServer server = servers.get(i);
 		String ip = server.Server;
 		String motd = server.MOTD.replaceAll("\u00C2", "").replaceAll("\u00AC\u00DF(.)", "$1");
-		int players = server.Players;
 		
+		@SuppressWarnings("unused")
 		String append = "#white#";
 		if (!servers.get(i).IsAcceptingPlayers) append += "#gray#";
-		
-		/*
-		f.drawString(f.trimStringToWidth(Format.process(append + "[" + server.Players + "/" + server.MaxPlayers + "] "+ ip), 
-				parent.width - 10), 
-				parent.width/2 - f.getStringWidth(Format.process(append + "[" + server.Players + "/" + server.MaxPlayers + "] "+ ip))/2, 
-				var3 + 2, 0xF);
-				*/
 		 
 		f.drawString(f.trimStringToWidth(Format.process("#white#" + ip), 
 				parent.width - 10), 
@@ -91,14 +78,7 @@ public class GuiServerCategory extends GuiScrollingList {
 				var3 + 2, 0xFFFFFF);
 		
 		motd = motd.replaceAll("\\s\\s+", " - ");
-		
-/*
-		f.drawString(f.trimStringToWidth(Format.process("#gray#") + motd, parent.width - 10), 
-				parent.width/2 - f.getStringWidth(Format.process("#gray#") + motd.replaceAll("\\s+", "\\s"))/2, 
-				var3 + 12, 0xF);
-				*/
 
-		
 		int y = 0;
 		for (String string : getToDisplay(server)) {
 			f.drawString(f.trimStringToWidth(Format.process("#gray#") + string, parent.width - 10), 

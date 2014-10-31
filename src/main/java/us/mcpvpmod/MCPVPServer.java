@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import us.mcpvpmod.util.Data;
-import us.mcpvpmod.util.Format;
-import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.multiplayer.GuiConnecting;
 import net.minecraft.client.multiplayer.ServerData;
+import us.mcpvpmod.util.Data;
+import cpw.mods.fml.client.FMLClientHandler;
 
 public class MCPVPServer {
 
@@ -132,7 +131,7 @@ public class MCPVPServer {
 		Collections.sort(servers, new Comparator<MCPVPServer>() {
 			@Override
 			public int compare(MCPVPServer server1, MCPVPServer server2) {
-				return ((Integer)server2.Players).compareTo((Integer)server1.Players);
+				return ((Integer)server2.Players).compareTo(server1.Players);
 			}
 		});
 

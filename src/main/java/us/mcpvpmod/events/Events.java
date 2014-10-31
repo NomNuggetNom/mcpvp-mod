@@ -1,14 +1,8 @@
 package us.mcpvpmod.events;
 
-import java.lang.reflect.InvocationTargetException;
-
-import com.google.common.base.Strings;
-
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
@@ -16,13 +10,7 @@ import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.ServerHelper;
 import us.mcpvpmod.Sync;
-import us.mcpvpmod.events.render.AllRender;
-import us.mcpvpmod.gui.screen.GuiServerList;
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.client.IModGuiFactory;
 import cpw.mods.fml.client.event.ConfigChangedEvent;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.ModContainer;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
@@ -76,7 +64,7 @@ public class Events {
 	}
 	
 	@SubscribeEvent
-	public void onConnect(ClientConnectedToServerEvent event) {
+	public void onConnect(@SuppressWarnings("unused") ClientConnectedToServerEvent event) {
 		ServerHelper.currentIP = "";
 	}
 	

@@ -2,13 +2,12 @@ package us.mcpvpmod.gui.screen;
 
 import java.util.ArrayList;
 
-import cpw.mods.fml.client.GuiScrollingList;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.Tessellator;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.gui.Draw;
+import cpw.mods.fml.client.GuiScrollingList;
 
 public class GuiCodes extends GuiScreen {
 	
@@ -148,7 +147,6 @@ public class GuiCodes extends GuiScreen {
 	@Override
     public void drawScreen(int p_73863_1_, int p_73863_2_, float p_73863_3_) {
 		if (shouldSetup) setup();
-		FontRenderer f = Main.mc.fontRenderer;
 		this.list.drawScreen(p_73863_1_, p_73863_2_, p_73863_3_);
 		super.drawScreen(p_73863_1_, p_73863_2_, p_73863_3_);
 	}

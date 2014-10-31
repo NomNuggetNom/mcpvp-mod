@@ -1,9 +1,8 @@
 package us.mcpvpmod.events.render;
 
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.game.state.StateHG;
-import net.minecraftforge.client.event.ClientChatReceivedEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
 public class RenderHG {
 

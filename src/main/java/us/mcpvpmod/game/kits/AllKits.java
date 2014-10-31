@@ -1,10 +1,8 @@
 package us.mcpvpmod.game.kits;
 
-import us.mcpvpmod.Server;
-import us.mcpvpmod.game.vars.VarsCTF;
-import us.mcpvpmod.game.vars.VarsKit;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import us.mcpvpmod.Server;
 
 public class AllKits {
 

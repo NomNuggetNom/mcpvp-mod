@@ -42,12 +42,13 @@ public class AllChat {
 		if (removeChat(message)) {
 			event.setCanceled(true);
 			Main.l("Message \"%s\" was removed due to chat settings.", message);
+			
 			// Returning might screw things up with alerts that need data from removed messages.
 			return;
-		} else {
-			// Censor chat.
-			event.message = new ChatComponentText(censorChat(event.message.getFormattedText().replaceAll("§", "\u00A7")));
 		}
+		
+		// Censor chat.
+		event.message = new ChatComponentText(censorChat(event.message.getFormattedText().replaceAll("§", "\u00A7")));
 		
 		if (message.matches(reIP)) {
 			ServerHelper.currentIP = message.replaceAll(reIP, "$1");

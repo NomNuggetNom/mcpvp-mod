@@ -66,11 +66,14 @@ public class ConfigHGHUD extends DummyModContainer {
     	
     	prop = config.get(CATEGORY_GENERAL, "renderPlay", new String[]{   
     			
-    			"---#b##u#HG", 
-    			"#green##i#X #gray#>> #r##bold#{x}", 
-    			"#green##i#Y #gray#>> #r##bold#{y}", 
-    			"#green##i#Z #gray#>> #r##bold#{z}",
-    			"#green##i#F #gray#>> #r##bold#{f}"
+    			"#bold##underline#HG", 
+    			"#green##italic#X#gray# >> #r#{x}",
+    			"#green##italic#Y#gray# >> #r#{y}",
+    			"#green##italic#Z#gray# >> #r#{z}",
+    			"#green##italic#F#gray# >> #r#{dir} ({f})",
+    			"#green##italic#FPS#gray# >> #r#{fps}",
+    			"#green##italic#Ping#gray# >> #r#{ping}",
+    			"#green##italic#IP#gray# >> #r#{short ip}"
     			
     	});
     	prop.setLanguageKey("hg.config.hud.renderPlay");

@@ -3,16 +3,20 @@ package us.mcpvpmod.game.alerts;
 import java.util.HashMap;
 
 import us.mcpvpmod.Main;
-import cpw.mods.fml.common.FMLLog;
-import net.minecraft.client.Minecraft;
 
 public class SoundAlert {
 	
 	public static HashMap<String, SoundAlert> soundAlerts = new HashMap<String, SoundAlert>();
 	
-	public String id;
-	public String sound;
-	public float volume;
+	/** The ID that the SoundAlert can be referenced from. 
+	 * Usually related to when it is triggered, e.g. "flag.captured"
+	 * Used in conjunction with {@link CustomAlert}. Any alerts that
+	 * have the same ID are triggered at the same time.  */
+	private final String id;
+	/** The sound to play, e.g. "fireworks.twinkle" */
+	private final String sound;
+	/** The volume to play the sound at. */
+	private final float volume;
 
 	/**
 	 * The constructor for a SoundAlert.
@@ -20,7 +24,6 @@ public class SoundAlert {
 	 * @param sound The sound file to be played
 	 */
 	public SoundAlert(String id, String sound) {
-		// TODO: add options for volume.
 		if (sound.contains(",")) {
 			this.sound	= sound.split(",")[0];
 			this.volume	= Float.valueOf(sound.split(",")[1]);
@@ -29,7 +32,6 @@ public class SoundAlert {
 			this.volume	= 1.0F;
 		}
 		this.id = id;
-		//Main.l("Created new SoundAlert \"%s\"", this);
 		soundAlerts.put(id, this);
 	}
 	

@@ -2,8 +2,6 @@ package us.mcpvpmod.game.vars;
 
 import java.util.HashMap;
 
-import us.mcpvpmod.game.stats.StatsKit;
-
 public class VarsRaid {
 	
 	public static HashMap<String, String> vars = new HashMap<String, String>();
@@ -21,11 +19,9 @@ public class VarsRaid {
 	 * @return The value of the stored variable.
 	 */
 	public static String get(String string) {
-		if (vars.keySet().contains(string)) {
+		if (vars.keySet().contains(string))
 			return vars.get(string);
-		} else {
-			return "";
-		}
+		return "";
 	}
 	
 	/**

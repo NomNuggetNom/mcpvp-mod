@@ -59,11 +59,16 @@ public class ConfigKitHUD extends DummyModContainer {
         Property prop;
         
     	prop = config.get(CATEGORY_GENERAL, "render", new String[]{
+    			
     			"#bold##underline#KitPVP", 
-    			"#green##italic#X#gray# >> #r##bold#{x}",
-    			"#green##italic#Y#gray# >> #r##bold#{y}",
-    			"#green##italic#Z#gray# >> #r##bold#{z}",
-    			"#green##italic#F#gray# >> #r##bold#{f}",});
+    			"#cyan##italic#X#gray# >> #r#{x}",
+    			"#cyan##italic#Y#gray# >> #r#{y}",
+    			"#cyan##italic#Z#gray# >> #r#{z}",
+    			"#cyan##italic#F#gray# >> #r#{dir} ({f})",
+    			"#cyan##italic#FPS#gray# >> #r#{fps}",
+    			"#cyan##italic#Ping#gray# >> #r#{ping}"
+    			
+    	});
         prop.setLanguageKey("kit.config.hud.render");
     	render = prop.getStringList();
     	propOrder.add(prop.getName());

@@ -1,8 +1,7 @@
 package us.mcpvpmod.game.stats;
 
-import us.mcpvpmod.util.MCPVPMath;
 
-public class StatsHG extends Stats {
+public class StatsHG extends AllStats {
 
 	public static int kills = 0;
 	public static int timeLeft = 0;

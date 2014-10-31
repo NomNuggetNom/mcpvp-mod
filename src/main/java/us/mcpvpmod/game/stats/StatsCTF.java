@@ -7,7 +7,7 @@ import us.mcpvpmod.util.MCPVPMath;
 /**
  * Contains all statistics for CTF.
  */ 
-public class StatsCTF extends Stats {
+public class StatsCTF extends AllStats {
 
 	public static int kills = 0;
 	public static int streak = 0;
@@ -55,11 +55,9 @@ public class StatsCTF extends Stats {
 	}
 	
 	public static double getKD() {
-		if (deaths != 0) {
+		if (deaths != 0)
 			return MCPVPMath.round((double)kills/(double)deaths, 3);
-		} else {
-			return 0;
-		}
+		return 0;
 	}
 	
 	public static float netKD() {

@@ -7,7 +7,6 @@ import us.mcpvpmod.Server;
 import us.mcpvpmod.game.alerts.CustomAlert;
 import us.mcpvpmod.game.alerts.SoundAlert;
 import us.mcpvpmod.game.vars.Vars;
-import cpw.mods.fml.common.FMLLog;
 
 public class ChatTrigger {
 

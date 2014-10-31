@@ -1,11 +1,9 @@
 package us.mcpvpmod.gui;
 
-import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import net.minecraft.client.gui.ScaledResolution;
-import cpw.mods.fml.common.FMLLog;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.config.all.ConfigHUD;
@@ -13,6 +11,7 @@ import us.mcpvpmod.game.state.DummyState;
 import us.mcpvpmod.game.state.State;
 import us.mcpvpmod.gui.screen.GuiMoveBlocks;
 import us.mcpvpmod.util.Data;
+import cpw.mods.fml.common.FMLLog;
 
 public class Selectable {	
 	
@@ -38,7 +37,7 @@ public class Selectable {
 		return toReturn;
 	}
 	
-	public static ArrayList<Selectable> getSelectables(Server server, State state) {
+	public static ArrayList<Selectable> getSelectables(@SuppressWarnings("unused") Server server, @SuppressWarnings("unused") State state) {
 		ArrayList<Selectable> toReturn = new ArrayList<Selectable>();
 
 		for (Selectable selectable : getShowing()) {
@@ -243,6 +242,7 @@ public class Selectable {
 	
 	public int getX() { return -1; }
 	
+	@SuppressWarnings("unused")
 	public void setX(int x) { }
 	
 	public int loadX() {
@@ -297,9 +297,8 @@ public class Selectable {
 					
 				// Subtract the height and the found value from the height of the screen.
 				return res.getScaledWidth() - this.getW() - Math.abs(Integer.parseInt(Data.get(this.toString() + ".x")));
-			} else {
-				return Integer.parseInt(savedX);
 			}
+			return Integer.parseInt(savedX);
 		}
 		return ConfigHUD.margin;
 		
@@ -373,6 +372,7 @@ public class Selectable {
 
 	public int getY() { return -1; }
 	
+	@SuppressWarnings("unused")
 	public void setY(int y) { }
 	
 	public int loadY() {
@@ -427,14 +427,11 @@ public class Selectable {
 				
 				// Subtract the total height and the found value from the height of the screen.
 				return res.getScaledHeight() - this.getH() - Math.abs(Integer.parseInt(Data.get(this.toString() + ".y"))) - padding;
-			} else {
-				
-				// Return the positive (literal) stored Y.
-				return Integer.parseInt(savedY);
 			}
-		} else {
-			return ConfigHUD.margin;
+			// Return the positive (literal) stored Y.
+			return Integer.parseInt(savedY);
 		}
+		return ConfigHUD.margin;
 	}
 	
 	/*

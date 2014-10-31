@@ -1,8 +1,7 @@
 package us.mcpvpmod.game.stats;
 
-import us.mcpvpmod.util.MCPVPMath;
 
-public class StatsBuild extends Stats {
+public class StatsBuild extends AllStats {
 
 	public static int mapNumber;
 	public static int playersOnMap;

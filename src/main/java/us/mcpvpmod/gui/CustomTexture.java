@@ -21,7 +21,6 @@ public class CustomTexture {
 	
 	/** The unique ID of the CustomTexture. */
 	public String id;
-	public BufferedImage raw;
 	/** The downloaded image linked to the CustomTexture. */
 	public ResourceLocation img;
 	
@@ -32,14 +31,9 @@ public class CustomTexture {
 	 * @param imageURL The URL to download the image from.
 	 */
 	public CustomTexture(String id, String imageURL) {
-		this(id, imageURL, false);
-	}
-	
-	public CustomTexture(String id, String imageURL, boolean async) {
 		this.id  = id;
 		long start = System.currentTimeMillis();
-		if (async) this.downloadAsync(this, imageURL);
-		this.img = async ? loadResourceAsync(imageURL, new ResourceLocation("textures/entity/steve.png")) : loadResource(imageURL);
+		this.img = loadResource(imageURL);
 		Main.l("Downloading resource \"%s\" took %s milliseconds", this, (System.currentTimeMillis() - start));
 		textures.put(this.id, this.img);
 	}
@@ -53,21 +47,6 @@ public class CustomTexture {
 		if (downloadImage(imageURL) == null) return null;
 		
 		DynamicTexture texture = new DynamicTexture(downloadImage(imageURL));
-		return Main.mc.getTextureManager().getDynamicTextureLocation("", texture);
-	}
-	
-	/**
-	 * Calls the asynchronous download method {@link CustomTexture#downloadImageAsync} 
-	 * to perform downloading of the image. The process of creating the DynamicTexture is performed
-	 * on the main thread.
-	 * @param imageURL The URL to download the image from. 
-	 * @return The location of the DynamicTexture.
-	 */
-	public ResourceLocation loadResourceAsync(final String imageURL, ResourceLocation fallback) {
-		if (downloadImage(imageURL) == null) return null;
-		
-		if (this.raw == null) return fallback;
-		DynamicTexture texture = new DynamicTexture(this.raw);
 		return Main.mc.getTextureManager().getDynamicTextureLocation("", texture);
 	}
 	
@@ -116,22 +95,6 @@ public class CustomTexture {
 		}
 	}
 	
-	public void downloadAsync(final CustomTexture ct, final String imageURL) {
-		Thread dl = new Thread("Download " + imageURL) {
-			@Override
-			public void run() {
-				try {
-					URL url = new URL(imageURL);
-					BufferedImage image = ImageIO.read(url);
-					ct.raw = image;
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		};
-		dl.start();
-	}
-	
 	@Override
 	public String toString() {
 		return "CustomTexture [id=" + id + ", img=" + img + "]";
@@ -145,8 +108,7 @@ public class CustomTexture {
 	public static ResourceLocation get(String id) {
 		if (textures.containsKey(id))
 			return textures.get(id);
-		else 
-			return null;
+		return null;
 	}
 	
 	/**
@@ -157,15 +119,10 @@ public class CustomTexture {
 	 * @return The ResourceLocation of the image from the given URL or from the given ID.
 	 */
 	public static ResourceLocation get(String id, String url) {
-		return get(id, url, false);
-	}
-	
-	public static ResourceLocation get(String id, String url, boolean async) {
 		if (textures.containsKey(id))
 			return textures.get(id);
-		else {
-			new CustomTexture(id, url, async);
-			return textures.get(id);
-		}
+		new CustomTexture(id, url);
+		return textures.get(id);
 	}
+	
 }

@@ -28,7 +28,7 @@ public class TutorialScreen extends GuiScreen {
 	public void drawScreen(int p_73863_1_, int p_73863_2_, float p_73863_3_) {
 		this.buttonList.clear();
 		addButtons();
-		Draw.splitString(content, 25, 25, this.width, 0xFFFFFF, true);
+		Draw.splitString(content, 25, 25, this.width, 0xFFFFFF);
 		//this.drawGradientRect(0, 0, this.width, this.height, 0xFFFFFF, 0xFFFFFF);
 		super.drawScreen(p_73863_1_, p_73863_2_, p_73863_3_);
 	}

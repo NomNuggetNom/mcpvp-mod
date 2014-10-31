@@ -1,10 +1,7 @@
 package us.mcpvpmod.game.info;
 
-import net.minecraft.util.Direction;
-import net.minecraft.util.MathHelper;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.game.state.StateCTF;
-import us.mcpvpmod.game.team.TeamCTF;
 import us.mcpvpmod.util.BoardHelper;
 import us.mcpvpmod.util.Format;
 
@@ -107,10 +104,9 @@ public class InfoCTF {
 	public static String getFreeDay() {
 		if (freeDay) {
 			return Format.process("#green#Free day!");
-		} else {
-			// Return null so it isn't rStateCTF.ENDered.
-			return null;
 		}
+		// Return null so it isn't rendered.
+		return null;
 	}
 	
 	public static String getIP() {

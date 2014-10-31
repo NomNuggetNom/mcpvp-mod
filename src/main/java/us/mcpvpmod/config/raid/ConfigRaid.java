@@ -6,8 +6,6 @@ import java.util.List;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;
-import us.mcpvpmod.config.kit.ConfigKitSounds;
-import us.mcpvpmod.config.kit.ConfigKit.KitSounds;
 import us.mcpvpmod.util.Format;
 import cpw.mods.fml.client.config.DummyConfigElement.DummyCategoryElement;
 import cpw.mods.fml.client.config.GuiConfig;

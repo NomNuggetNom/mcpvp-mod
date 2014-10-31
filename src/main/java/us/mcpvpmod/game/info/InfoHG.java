@@ -1,6 +1,5 @@
 package us.mcpvpmod.game.info;
 
-import us.mcpvpmod.game.state.StateCTF;
 import us.mcpvpmod.util.BoardHelper;
 import us.mcpvpmod.util.Format;
 

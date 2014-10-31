@@ -5,7 +5,6 @@ import java.util.HashMap;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.ServerHelper;
 import us.mcpvpmod.game.info.AllInfo;
-import us.mcpvpmod.game.info.InfoCTF;
 
 /**
  * Variables for every server.
@@ -38,11 +37,9 @@ public class AllVars {
 	 * @return The value of the stored variable.
 	 */
 	public static String get(String string) {
-		if (vars.keySet().contains(string)) {
+		if (vars.keySet().contains(string))
 			return vars.get(string);
-		} else {
-			return "";
-		}
+		return "";
 	}
 	
 	/**

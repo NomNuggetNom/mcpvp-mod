@@ -56,8 +56,6 @@ public class PotionDisplay extends Selectable {
   		  
 	   	  PotionEffect potioneffect = (PotionEffect) iterator.next();
 	   	  Potion potion = Potion.potionTypes[potioneffect.getPotionID()];
-	   	  String potionTitle = I18n.format(potion.getName(), new Object[0]);
-	   	  String timeLeft = potion.getDurationString(potioneffect);
 	   	  
     	  if (potion.hasStatusIcon()) {
     		  int iconIndex = potion.getStatusIconIndex();

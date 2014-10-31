@@ -22,7 +22,6 @@ import org.lwjgl.opengl.GL11;
 
 import us.mcpvpmod.Main;
 import us.mcpvpmod.config.all.ConfigChat;
-import us.mcpvpmod.events.chat.AllChat;
 
 import com.google.common.collect.Lists;
 
@@ -41,14 +40,11 @@ public class GuiSecondChat extends Gui
     private final List field_146253_i = new ArrayList();
     private int field_146250_j;
     private boolean field_146251_k;
-    private static final String __OBFID = "CL_00000669";
-
+    
     public GuiSecondChat(Minecraft p_i1022_1_)
     {
         this.mc = p_i1022_1_;
     }
-
-
     
     public List getMessages() {
     	return this.chatLines;
@@ -72,7 +68,7 @@ public class GuiSecondChat extends Gui
                 }
 
                 float f1 = this.func_146244_h();
-                int i1 = MathHelper.ceiling_float_int((float)this.func_146228_f() / f1);
+                int i1 = MathHelper.ceiling_float_int(this.func_146228_f() / f1);
                 GL11.glPushMatrix();
                 GL11.glTranslatef(2.0F, 20.0F, 0.0F);
                 //GL11.glScalef(f1, f1, 1.0F);
@@ -90,7 +86,7 @@ public class GuiSecondChat extends Gui
 
                         if (k1 < 200 || chatOpen)
                         {
-                            double d0 = (double)k1 / 200.0D;
+                            double d0 = k1 / 200.0D;
                             d0 = 1.0D - d0;
                             d0 *= 10.0D;
 
@@ -112,12 +108,11 @@ public class GuiSecondChat extends Gui
                                 i2 = 255;
                             }
 
-                            i2 = (int)((float)i2 * chatOpacity);
+                            i2 = (int)(i2 * chatOpacity);
                             ++k;
 
                             if (i2 > 3)
                             {
-                                byte b0 = 0;
                                 int j2 = -j1 * 9;
                                 ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
                                 int x = res.getScaledWidth();
@@ -209,7 +204,7 @@ public class GuiSecondChat extends Gui
             this.deleteChatLine(p_146237_2_);
         }
 
-        int k = MathHelper.floor_float((float)this.func_146228_f() / this.func_146244_h());
+        int k = MathHelper.floor_float(this.func_146228_f() / this.func_146244_h());
         int l = 0;
         ChatComponentText chatcomponenttext = new ChatComponentText("");
         ArrayList arraylist = Lists.newArrayList();
@@ -400,58 +395,50 @@ public class GuiSecondChat extends Gui
         {
             return null;
         }
-        else
-        {
-            ScaledResolution scaledresolution = new ScaledResolution(this.mc, this.mc.displayWidth, this.mc.displayHeight);
-            int k = scaledresolution.getScaleFactor();
-            float f = this.func_146244_h();
-            int l = p_146236_1_ / k - 3;
-            int i1 = p_146236_2_ / k - 27;
-            l = MathHelper.floor_float((float)l / f);
-            i1 = MathHelper.floor_float((float)i1 / f);
+        
+		ScaledResolution scaledresolution = new ScaledResolution(this.mc, this.mc.displayWidth, this.mc.displayHeight);
+		int k = scaledresolution.getScaleFactor();
+		float f = this.func_146244_h();
+		int l = p_146236_1_ / k - 3;
+		int i1 = p_146236_2_ / k - 27;
+		l = MathHelper.floor_float(l / f);
+		i1 = MathHelper.floor_float(i1 / f);
 
-            if (l >= 0 && i1 >= 0)
-            {
-                int j1 = Math.min(this.func_146232_i(), this.field_146253_i.size());
+		if (l >= 0 && i1 >= 0)
+		{
+		    int j1 = Math.min(this.func_146232_i(), this.field_146253_i.size());
 
-                if (l <= MathHelper.floor_float((float)this.func_146228_f() / this.func_146244_h()) && i1 < this.mc.fontRenderer.FONT_HEIGHT * j1 + j1)
-                {
-                    int k1 = i1 / this.mc.fontRenderer.FONT_HEIGHT + this.field_146250_j;
+		    if (l <= MathHelper.floor_float(this.func_146228_f() / this.func_146244_h()) && i1 < this.mc.fontRenderer.FONT_HEIGHT * j1 + j1)
+		    {
+		        int k1 = i1 / this.mc.fontRenderer.FONT_HEIGHT + this.field_146250_j;
 
-                    if (k1 >= 0 && k1 < this.field_146253_i.size())
-                    {
-                        ChatLine chatline = (ChatLine)this.field_146253_i.get(k1);
-                        int l1 = 0;
-                        Iterator iterator = chatline.func_151461_a().iterator();
+		        if (k1 >= 0 && k1 < this.field_146253_i.size())
+		        {
+		            ChatLine chatline = (ChatLine)this.field_146253_i.get(k1);
+		            int l1 = 0;
+		            Iterator iterator = chatline.func_151461_a().iterator();
 
-                        while (iterator.hasNext())
-                        {
-                            IChatComponent ichatcomponent = (IChatComponent)iterator.next();
+		            while (iterator.hasNext())
+		            {
+		                IChatComponent ichatcomponent = (IChatComponent)iterator.next();
 
-                            if (ichatcomponent instanceof ChatComponentText)
-                            {
-                                l1 += this.mc.fontRenderer.getStringWidth(this.func_146235_b(((ChatComponentText)ichatcomponent).getChatComponentText_TextValue()));
+		                if (ichatcomponent instanceof ChatComponentText)
+		                {
+		                    l1 += this.mc.fontRenderer.getStringWidth(this.func_146235_b(((ChatComponentText)ichatcomponent).getChatComponentText_TextValue()));
 
-                                if (l1 > l)
-                                {
-                                    return ichatcomponent;
-                                }
-                            }
-                        }
-                    }
+		                    if (l1 > l)
+		                    {
+		                        return ichatcomponent;
+		                    }
+		                }
+		            }
+		        }
 
-                    return null;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            else
-            {
-                return null;
-            }
-        }
+		        return null;
+		    }
+			return null;
+		}
+		return null;
     }
 
     /**
@@ -521,14 +508,14 @@ public class GuiSecondChat extends Gui
     {
         short short1 = 320;
         byte b0 = 40;
-        return MathHelper.floor_float(p_146233_0_ * (float)(short1 - b0) + (float)b0);
+        return MathHelper.floor_float(p_146233_0_ * (short1 - b0) + b0);
     }
 
     public static int func_146243_b(float p_146243_0_)
     {
         short short1 = 180;
         byte b0 = 20;
-        return MathHelper.floor_float(p_146243_0_ * (float)(short1 - b0) + (float)b0);
+        return MathHelper.floor_float(p_146243_0_ * (short1 - b0) + b0);
     }
 
     public int func_146232_i()

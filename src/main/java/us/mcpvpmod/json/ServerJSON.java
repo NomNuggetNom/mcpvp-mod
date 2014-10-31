@@ -1,48 +1,31 @@
 package us.mcpvpmod.json;
 
 import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.net.URL;
 import java.net.URLConnection;
-import java.net.UnknownHostException;
-import java.nio.ByteBuffer;
-import java.nio.channels.Channels;
-import java.nio.channels.ReadableByteChannel;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 import java.util.TimerTask;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
 import java.util.zip.GZIPInputStream;
 
 import us.mcpvpmod.MCPVPServer;
 import us.mcpvpmod.util.Format;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
-import com.typesafe.config.ConfigException.Parse;
 
 import cpw.mods.fml.common.FMLLog;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.multiplayer.ServerData;
-import net.minecraft.client.network.OldServerPinger;
 
 public class ServerJSON extends TimerTask {
 
 	/**
-	 * Code by TISSIN.
+	 * Original code by TISSIN.
+	 * 
+	 * Parses MCPVP's Server JSON and forms MCPVPServers out of it
+	 * to be used in the server menu.
 	 */
 	@Override
 	public void run() {

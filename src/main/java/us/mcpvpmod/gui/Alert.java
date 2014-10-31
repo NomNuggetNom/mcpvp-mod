@@ -7,7 +7,6 @@ import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.stats.Achievement;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
@@ -22,20 +21,15 @@ public class Alert extends GuiAchievement
     private int width;
     private int height;
     private int imgWidth = 32;
-    private int imgHeight = 32;
     private int u = 0;
     private int v = 0;
-    private int textWidth = 32;
-    private int textHeight = 32;
     private double scale = 0.5;
     private String title;
     private String description;
-    private Achievement achievement;
     private RenderItem item = new RenderItem();
     private ItemStack itemStack;
     private long field_146263_l;
     private boolean field_146262_n;
-    private static final String __OBFID = "CL_00000721";
     public static int alertWidth;
     public ResourceLocation image;
 
@@ -104,7 +98,7 @@ public class Alert extends GuiAchievement
         GL11.glClear(GL11.GL_DEPTH_BUFFER_BIT);
         GL11.glMatrixMode(GL11.GL_PROJECTION);
         GL11.glLoadIdentity();
-        GL11.glOrtho(0.0D, (double)this.width, (double)this.height, 0.0D, 1000.0D, 3000.0D);
+        GL11.glOrtho(0.0D, this.width, this.height, 0.0D, 1000.0D, 3000.0D);
         GL11.glMatrixMode(GL11.GL_MODELVIEW);
         GL11.glLoadIdentity();
         GL11.glTranslatef(0.0F, 0.0F, -2000.0F);
@@ -117,7 +111,7 @@ public class Alert extends GuiAchievement
         ScaledResolution res = new ScaledResolution(this.mc, this.mc.displayWidth, this.mc.displayHeight);
         if (this.field_146263_l != 0L && Minecraft.getMinecraft().thePlayer != null)
         {
-            double var1 = (double)(Minecraft.getSystemTime() - this.field_146263_l) / 3000.0D;
+            double var1 = (Minecraft.getSystemTime() - this.field_146263_l) / 3000.0D;
 
             if (!this.field_146262_n)
             {
@@ -173,7 +167,7 @@ public class Alert extends GuiAchievement
             
             // Extra middle
             if (alertWidth % 100 > 0) {
-                this.drawTexturedModalRect(var5+5+(int)(alertWidth/100)*100, var6, 106, 202, alertWidth % 100, 32);
+                this.drawTexturedModalRect(var5+5+alertWidth/100*100, var6, 106, 202, alertWidth % 100, 32);
             }
             
             // Right Edge
@@ -185,9 +179,7 @@ public class Alert extends GuiAchievement
             }
             else
             {
-            	int titleX = width/2-(this.mc.fontRenderer.getStringWidth(this.title)/2);
-            	int descX = width/2-(this.mc.fontRenderer.getStringWidth(this.description)/2);
-                this.mc.fontRenderer.drawString(this.title, var5 + 30, var6 + 7, -256); // -256
+            	this.mc.fontRenderer.drawString(this.title, var5 + 30, var6 + 7, -256); // -256
                 /*
             	if (ConfigNotifications.replaceColors) {
                     this.mc.fontRenderer.drawString(this.description.
@@ -222,17 +214,6 @@ public class Alert extends GuiAchievement
                 Draw.texturedRect(this.image, var5+8, var6+8, this.u, this.v, this.imgWidth, this.imgWidth, 32, 32, this.scale);
             }
         }
-    }
-    
-    public Alert setDim(int u, int v, int imgW, int imgH, int textW, int textH, double s) {
-    	this.u = u;
-    	this.v = v;
-    	this.imgWidth = imgW;
-    	this.imgHeight = imgH;
-    	this.textWidth = textW;
-    	this.textHeight = textH;
-    	this.scale = s;
-    	return this;
     }
 
     public void func_146257_b()

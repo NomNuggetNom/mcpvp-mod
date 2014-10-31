@@ -11,22 +11,16 @@ import java.util.List;
 import java.util.zip.GZIPInputStream;
 
 import us.mcpvpmod.MCPVPServer;
-import us.mcpvpmod.Main;
 import us.mcpvpmod.game.team.CTFTeam;
 import us.mcpvpmod.util.Format;
-import us.mcpvpmod.version.MCPVPVersion;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import cpw.mods.fml.common.FMLLog;
 
 public class TeamsJSON {
-	
-	/**
-	 * Code by TISSIN.
-	 */
+
 	public static void run() {
 		String json = getJson();
 		Gson gson = new Gson();
@@ -41,10 +35,6 @@ public class TeamsJSON {
 		CTFTeam.teams = gson.fromJson(json, type);
 	}
 
-	/**
-	 * Code by TISSIN.
-	 * @return A string of the ping.json MCPVP API.
-	 */
 	public static String getJson() {
 		
 		String json = "";

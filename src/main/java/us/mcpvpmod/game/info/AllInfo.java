@@ -4,7 +4,6 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.MathHelper;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.ServerHelper;
-import us.mcpvpmod.util.MCPVPMath;
 
 /**
  * Information that is not dependent on the current server.
@@ -56,7 +55,7 @@ public class AllInfo {
 	 */
 	public static String getDirection() {
 		if (Main.mc.thePlayer == null) return "";
-		int i4 = MathHelper.floor_double((double)(Main.mc.thePlayer.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+		int i4 = MathHelper.floor_double(Main.mc.thePlayer.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
 		return Direction.directions[i4];
 	}
 	
@@ -73,7 +72,7 @@ public class AllInfo {
 	 */
 	public static int getF() {
 		if (Main.mc.thePlayer == null) return -1;
-		return MathHelper.floor_double((double)(Main.mc.thePlayer.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+		return MathHelper.floor_double(Main.mc.thePlayer.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
 	}
 	
 	/**
@@ -82,7 +81,7 @@ public class AllInfo {
 	public static String getFDecimal() {
 		if (Main.mc.thePlayer == null) return "-1";
 		int firstNum = getF();
-		double fullNum = ((double)(Main.mc.thePlayer.rotationYaw * 4.0F / 360.0F) + 0.5D);
+		double fullNum = (Main.mc.thePlayer.rotationYaw * 4.0F / 360.0F + 0.5D);
 		String newNum = ("" + fullNum).replaceAll(".*\\.", "");
 		String newRoundedNum = "" + newNum.charAt(0);
 		return firstNum + "." + newRoundedNum;

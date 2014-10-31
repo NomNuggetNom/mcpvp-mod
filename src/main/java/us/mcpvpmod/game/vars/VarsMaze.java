@@ -2,10 +2,8 @@ package us.mcpvpmod.game.vars;
 
 import java.util.HashMap;
 
-import us.mcpvpmod.Main;
 import us.mcpvpmod.game.info.InfoMaze;
 import us.mcpvpmod.game.stats.StatsMaze;
-import us.mcpvpmod.game.team.AllTeam;
 
 public class VarsMaze {
 
@@ -41,11 +39,9 @@ public class VarsMaze {
 	 * @return The value of the stored variable.
 	 */
 	public static String get(String string) {
-		if (vars.keySet().contains(string)) {
+		if (vars.keySet().contains(string))
 			return vars.get(string);
-		} else {
-			return "";
-		}
+		return "";
 	}
 	
 	/**

@@ -4,7 +4,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
 public class RenderHub {
 
-	public static void onRender(RenderGameOverlayEvent event) {
+	public static void onRender(@SuppressWarnings("unused") RenderGameOverlayEvent event) {
 		
 	}
 	

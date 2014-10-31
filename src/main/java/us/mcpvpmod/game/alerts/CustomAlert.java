@@ -13,23 +13,32 @@ import us.mcpvpmod.Main;
 import us.mcpvpmod.game.info.InfoSab;
 import us.mcpvpmod.game.kits.AllKits;
 import us.mcpvpmod.game.vars.Vars;
-import us.mcpvpmod.game.vars.VarsSab;
 import us.mcpvpmod.gui.CustomTexture;
 import us.mcpvpmod.util.Format;
-import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.registry.GameData;
 
 public class CustomAlert {
 	
+	/** An map of all created alerts. <Alert ID, Alert> */
 	public static HashMap<String, CustomAlert> alerts = new HashMap<String, CustomAlert>();
 	
-	public String id;
-	public String template;
-	public String title;
-	public String desc;
-	public ItemStack item;
-	public ResourceLocation image;
-	public Mode mode;
+	/** The ID that the CustomAlert can be referenced from. 
+	 * Usually related to when it is triggered, e.g. "flag.captured"
+	 * Used in conjunction with {@link SoundAlert}. Any alerts that
+	 * have the same ID are triggered at the same time.   */
+	private final String id;
+	/** The raw input from the config. */
+	private final String template;
+	/** The title determined from the template. */
+	private String title;
+	/** The unprocessed description from the template. */
+	private String desc;
+	/** The ItemStack that will show if the alert's Mode is ITEM. */
+	private ItemStack item;
+	/** The image that will show if the alert's Mode is IMAGE. */
+	private ResourceLocation image;
+	/** The mode of the alert. Determines how the alert is displayed. */
+	private Mode mode;
 	
 	/**
 	 * A custom alert processes text from the Config and display the appropriate information.
@@ -119,13 +128,12 @@ public class CustomAlert {
 	 * @return The image file.
 	 */
 	public ResourceLocation setCustomImage(ResourceLocation resource) {
-		// TODO: Dynamic icon system.
 		if (Vars.get("icon") == null) return resource;
 		
 		String imgName = resource.getResourcePath().replaceAll("textures/(.*)\\.png", "$1");
 		
 		if (imgName.equals("flag")) {
-			return new ResourceLocation("mcpvp", "textures/flag_" + Vars.get("team").replaceAll("\u00A7.", "").toLowerCase(Locale.ENGLISH) + "_" + Vars.get("action") + ".png");
+			return new ResourceLocation("mcpvp", ("textures/flag_" + Vars.get("team").replaceAll("\u00A7.", "").toLowerCase(Locale.ENGLISH) + "_" + Vars.get("action") + ".png").replaceAll(" ", "_"));
 		}
 		return resource;
 	}

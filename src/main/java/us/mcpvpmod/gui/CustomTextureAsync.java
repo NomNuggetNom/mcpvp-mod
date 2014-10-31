@@ -50,19 +50,18 @@ public class CustomTextureAsync {
 	public void download(final CustomTextureAsync customTexture, final String imageURL) {
 		
 		// Form the thread to download the image.
-		Thread dl = new Thread("Download " + imageURL) {
+		Thread dl = new Thread("CustomTextureAsync") {
 			@Override
 			public void run() {
 				try {
-					// Perform the actual downloading.
-					URL url = new URL(imageURL);
-					BufferedImage image = ImageIO.read(url);
-					// Set the CT's img to what was downloaded.
-					customTexture.img = image;
-					Main.l("Downloaded the image for %s", this);
+					long startTime = System.currentTimeMillis();
+					// Perform the actual downloading and
+					// set the CT's img to what was downloaded.
+					customTexture.img = ImageIO.read(new URL(imageURL));
+					Main.l("Downloaded the image for %s. Took %s ms", customTexture, (System.currentTimeMillis() - startTime));
 
 				} catch (Exception e) {
-					Main.l("Error downloading the image for %s: %s", this, e.getMessage());
+					Main.l("Error downloading the image for %s: %s", customTexture, e.getMessage());
 				}
 			}
 		};
@@ -96,10 +95,10 @@ public class CustomTextureAsync {
 	public static ResourceLocation get(String id, String url, ResourceLocation fallback) {
 		if (textures.containsKey(id))
 			return textures.get(id).getResource();
-		else {
-			new CustomTextureAsync(id, url, fallback);
-			return textures.get(id).getResource();
-		}
+		
+		// Initialize a new instance and return it's resource location.
+		new CustomTextureAsync(id, url, fallback);
+		return textures.get(id).getResource();
 	}
 	
 }

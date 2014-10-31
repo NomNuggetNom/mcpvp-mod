@@ -1,23 +1,18 @@
 package us.mcpvpmod.game.checks.assists;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
-import us.mcpvpmod.Server;
 import us.mcpvpmod.game.alerts.CustomAlert;
 import us.mcpvpmod.game.alerts.SoundAlert;
 import us.mcpvpmod.game.stats.StatsCTF;
 import us.mcpvpmod.game.team.TeamCTF;
 import us.mcpvpmod.game.vars.Vars;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-public class AssistTrackerCTF extends AssistTracker {
+public class AssistTrackerCTF {
 
 	public static HashMap<String, Long> playersHit = new HashMap<String, Long>();
 	public static int assistTime = 1000*20;

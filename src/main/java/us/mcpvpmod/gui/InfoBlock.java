@@ -1,15 +1,9 @@
 package us.mcpvpmod.gui;
 
-import java.awt.Rectangle;
-import java.awt.geom.Area;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import org.apache.commons.lang3.StringUtils;
-
-import com.typesafe.config.Config;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -22,9 +16,7 @@ import us.mcpvpmod.game.state.DummyState;
 import us.mcpvpmod.game.state.State;
 import us.mcpvpmod.game.vars.AllVars;
 import us.mcpvpmod.gui.screen.GuiMoveBlocks;
-import us.mcpvpmod.util.Data;
 import us.mcpvpmod.util.Format;
-import cpw.mods.fml.common.FMLLog;
 
 /**
  * The core item on the HUD. 
@@ -36,36 +28,42 @@ public class InfoBlock extends Selectable {
 	/** An array of all InfoBlocks, not just ones that are visible! */
 	public static ArrayList<InfoBlock> blocks = new ArrayList<InfoBlock>();
 	
-	/** The original information - straight from the config - to process. **/
-	ArrayList<String> toDisplay = new ArrayList<String>();
-	/** The processed information to display. **/
-	ArrayList<String> display = new ArrayList<String>();
-	
 	/** The unique divider separates strings when processing. */
-	static String uniqueString = "=:::=";
+	private static String uniqueString = "=:::=";
 	/** Used to identify title strings, both in config and in processing. */
-	static String titleString = "---";
+	private static String titleString = "---";
 	/** The number of pixels between text and the edge of the drawn box. */
-	static int padding = 3;
+	private static int padding = 3;
 	/** Whether or not to render BGs */
-	static boolean bg = ConfigHUD.renderBG;
+	private static boolean bg = ConfigHUD.renderBG;
+	/** Whether or not to match widths of blocks that have the same baseX. */
+	private static boolean matchW = ConfigHUD.alignWidths;
+	/** Whether or not to match heights of blocks that have the same baseY. */
+	private static boolean matchH = ConfigHUD.alignHeights;
 	
-	public String title;
-	public State state;
-	public Server server;
-	public String coords;
-	public int baseX;
-	public int baseY;
-	public int w;
-	public int h;
-	
-	boolean matchW = ConfigHUD.alignWidths;
-	boolean matchH = ConfigHUD.alignHeights;
-	boolean selected = false;
-	public static InfoBlock selectedBlock;
+	/** The original information - straight from the config - to process. **/
+	private ArrayList<String> toDisplay = new ArrayList<String>();
+	/** The processed information to display. **/
+	private ArrayList<String> display = new ArrayList<String>();
+	/** The title of the block. */
+	private final String title;
+	/** The State to render the block in. 
+	 * Could be DummyState.NONE, which is rendered in all States. */
+	private final State state;
+	/** The Server to render the block in.
+	 * Could be Server.ALL, which is rendered in all Servers. */
+	private final Server server;
+	/** The starting X coordinate. */
+	private int baseX;
+	/** The starting Y coordinate. */
+	private int baseY;
+	/** The calculated width of the block. */
+	private int w;
+	/** The calculated height of the block. */
+	private int h;
 	
 	static Minecraft mc = Minecraft.getMinecraft();
-	static FontRenderer fR = mc.fontRenderer;
+	static FontRenderer f = mc.fontRenderer;
 	static ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
 
 	/**
@@ -74,7 +72,7 @@ public class InfoBlock extends Selectable {
 	 * @param info The lines to render, which will be processed every render tick.
 	 * @param server The server to render the block on.
 	 * @param state The state to render the block on.
-	 *///
+	 */
 	public InfoBlock(String title, ArrayList<String> info, Server server, State state) {
 		this.title		= title;
 		this.toDisplay	= info;
@@ -83,51 +81,62 @@ public class InfoBlock extends Selectable {
 		blocks.add(this);
 		Selectable.put(title, this);
 
-		FMLLog.info("[MCPVP] Registered new InfoBlock %s", this.getTitle());
+		Main.l("Registered new InfoBlock: %s", this);
 	}
 	
 	/**
-	 * Returns an InfoBlock that has the specified id (title)
-	 * @param getTitle
-	 * @return
+	 * Returns an InfoBlock that has the specified title.
+	 * @param getTitle The title to find.
+	 * @return An InfoBlock that has the same title, or null if no block with the title exists. 
+	 * It could be that the returned block is not being displayed due to differences in Server or State.
 	 */
 	public static InfoBlock get(String getTitle) {
 		getTitle = Format.process(getTitle);
+		
+		// Prioritize sending back the most logical matches, just in case
+		// another block exists in a different Server/State with the same
+		// title as getTitle.
 		for (InfoBlock block : blocks) {
-			if (block.getTitle().equals(getTitle) && block.server == Server.getServer() && block.state == Server.getState()) {
+			
+			// Strongest match is equal title, Server, and State.
+			if (block.getTitle().equals(getTitle) && block.server == Server.getServer() && block.state == Server.getState())
 				return block;
-			}
+			
+			// Second strongest is equal title and Server.
+			else if (block.getTitle().equals(getTitle) && block.server == Server.getServer())
+				return block;
+				
+			// Weakest is just the same title.
+			else if (block.getTitle().equals(getTitle))
+				return block;
 		}
 		
-		for (InfoBlock block : blocks) {
-			if (block.getTitle().equals(getTitle) && block.server == Server.getServer()) {
-				return block;
-			}
-		}
-		
-		for (InfoBlock block : blocks) {
-			if (block.getTitle().equals(getTitle)) {
-				return block;
-			}
-		}
-		FMLLog.info("[MCPVP] Couldn't find an InfoBlock with the title \"%s\"", getTitle);
+		Main.l("Couldn't find an InfoBlock with the title \"%s\"", getTitle);
 		return null;
 	}
 	
 	/**
-	 * Returns all InfoBlocks in the specified Server.
-	 * @param server
-	 * @return
+	 * Mainly used to get the blocks that are displaying on the screen at the moment.
+	 * @param server The Server to filter by.
+	 * @param state The State to filter by.
+	 * @return All blocks that are in the Server and State specified.
 	 */
 	public static ArrayList<InfoBlock> get(Server server, State state) {
 		ArrayList<InfoBlock> toReturn = new ArrayList<InfoBlock>();
+		
+		// Cycle through all blocks.
 		for (InfoBlock block : blocks) {
-			if (block.server == server && block.state == state)  {
+			
+			// A straightforward check.
+			if (block.server == server && block.state == state)
 				toReturn.add(block);
-			} else if (server == Server.ALL && state == DummyState.NONE) {
+			
+			// This supports the use of Server.ALL and DummyState.NONE.
+			// Basically this returns all blocks that are currently showing
+			// if the specified Server/State is a catch-all.
+			else if (server == Server.ALL && state == DummyState.NONE)
 				if (block.server.equals(Server.getServer()) && block.state.equals(Server.getState()))
 						toReturn.add(block);
-			}
 		}
 		return toReturn;
 	}
@@ -135,10 +144,13 @@ public class InfoBlock extends Selectable {
 	/**
 	 * Cycles through the given String[] and breaks it up into blocks.
 	 * Information is NOT processed here.
-	 * @param configList
+	 * @param configList The configuration list to process. Each String entry is
+	 * a line in the config. 
+	 * @param server The server to register the blocks in.
+	 * @param state The state to register the blocks in.
 	 */
 	public static void createBlocks(String[] configList, Server server, State state) {
-		FMLLog.info("[MCPVP] Creating info blocks for server %s and state %s", server, state);
+		Main.l("Creating info blocks for server %s and state %s", server, state);
 		
 		String finalString = "";
 		
@@ -161,9 +173,10 @@ public class InfoBlock extends Selectable {
 			lines.remove(0);
 
 			if (lines.size() > 0) {
+				@SuppressWarnings("unused")
 				InfoBlock block = new InfoBlock(Format.process(title), lines, server, state);
 			} else {
-				FMLLog.info("[MCPVP] Not enough lines for InfoBlock " + title);
+				Main.l("Not enough lines for InfoBlock ", title);
 			}
 		}
 	}
@@ -173,7 +186,7 @@ public class InfoBlock extends Selectable {
 	 * Updates information and dimensions then draws.
 	 */
 	public void display() {
-		fR = Main.mc.fontRenderer;
+		f = Main.mc.fontRenderer;
 		res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
 		
 		this.update();
@@ -224,8 +237,8 @@ public class InfoBlock extends Selectable {
 		// Cycle through our information and calculate the length.
 		for (String line : this.display) {		
 			if (ConfigHUD.alignItems) 	
-				lineW = fR.getStringWidth(line) + align(line);
-			else lineW = fR.getStringWidth(line);
+				lineW = f.getStringWidth(line) + align(line);
+			else lineW = f.getStringWidth(line);
 			
 			// Check if it's the longest yet.
 			if (lineW > calcW) {
@@ -234,8 +247,8 @@ public class InfoBlock extends Selectable {
 		}
 		
 		// Include our title in the check.
-		if (fR.getStringWidth(this.getTitle()) > calcW) {
-			calcW = fR.getStringWidth(this.getTitle());
+		if (f.getStringWidth(this.getTitle()) > calcW) {
+			calcW = f.getStringWidth(this.getTitle());
 		}
 		return calcW;
 	}
@@ -273,7 +286,7 @@ public class InfoBlock extends Selectable {
 		if (this.display.size() == 0) return -1;
 
 		int calcH;
-		int stringHeight = this.display.size() * fR.FONT_HEIGHT;
+		int stringHeight = this.display.size() * f.FONT_HEIGHT;
 		int spacing = (this.display.size()-1) * 2;
 		calcH = 2 + stringHeight + spacing + 10;
 
@@ -310,13 +323,13 @@ public class InfoBlock extends Selectable {
 		// Get the maximum width of any string.
 		for (String string : this.display) {
 			if (!string.contains(">>")) continue;
-			if (fR.getStringWidth(string.replaceAll(">>.*", "")) > toMiddle) {
-				toMiddle = fR.getStringWidth(string.replaceAll(">>.*", ""));
+			if (f.getStringWidth(string.replaceAll(">>.*", "")) > toMiddle) {
+				toMiddle = f.getStringWidth(string.replaceAll(">>.*", ""));
 			}
 		}
 
 		String adjusted = line.replaceAll(">>.*", "");
-		int needed = toMiddle - fR.getStringWidth(adjusted);
+		int needed = toMiddle - f.getStringWidth(adjusted);
 		return needed;
 	}
 	
@@ -324,7 +337,7 @@ public class InfoBlock extends Selectable {
 	 * Draw the block!
 	 */
 	public void draw() {
-		int titleHeight = fR.FONT_HEIGHT-1;
+		int titleHeight = f.FONT_HEIGHT-1;
 		bg = ConfigHUD.renderBG;
 		
 		if (bg) {
@@ -384,9 +397,9 @@ public class InfoBlock extends Selectable {
 		if (getTitle() != "") {
 			// Check our config for centering titles.
 			if (ConfigHUD.centerTitles) {
-				fR.drawStringWithShadow(getTitle(), baseX + centerPos(w, getTitle()), baseY-1, 0xFFFFFF);
+				f.drawStringWithShadow(getTitle(), baseX + centerPos(w, getTitle()), baseY-1, 0xFFFFFF);
 			} else {
-				fR.drawStringWithShadow(getTitle(), baseX, baseY-1, 0xFFFFFF);
+				f.drawStringWithShadow(getTitle(), baseX, baseY-1, 0xFFFFFF);
 			}
 			// Set our offset. All titles result in an offset of 12.
 			offset = 12;
@@ -394,8 +407,8 @@ public class InfoBlock extends Selectable {
 
 		// Render all other strings under the title.
 		for (String string : display) {
-			fR.drawStringWithShadow(string, baseX + align(string), baseY+offset, 0xFFFFFF);
-			offset = offset + fR.FONT_HEIGHT+2;
+			f.drawStringWithShadow(string, baseX + align(string), baseY+offset, 0xFFFFFF);
+			offset = offset + f.FONT_HEIGHT+2;
 		}
 	}
 	
@@ -435,7 +448,7 @@ public class InfoBlock extends Selectable {
 	 * @return
 	 */
 	public static int centerPos(int area, String string) {
-		return ((area/2) - (fR.getStringWidth(string)/2));
+		return ((area/2) - (f.getStringWidth(string)/2));
 	}
 	
 	/**
@@ -450,10 +463,6 @@ public class InfoBlock extends Selectable {
 
 	public String getTitle() {
 		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
 	}
 	
 	@Override

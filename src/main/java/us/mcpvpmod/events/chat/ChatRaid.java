@@ -1,11 +1,7 @@
 package us.mcpvpmod.events.chat;
 
-import net.minecraft.util.ChatComponentText;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import us.mcpvpmod.Main;
-import us.mcpvpmod.game.core.CoreRaid;
-import us.mcpvpmod.game.vars.Vars;
-import us.mcpvpmod.game.vars.VarsRaid;
 import us.mcpvpmod.trackers.ChatTracker;
 import us.mcpvpmod.triggers.ChatTrigger;
 
@@ -28,8 +24,7 @@ public class ChatRaid {
 			event.setCanceled(true);
 			getBalance = false;
 		}
-		
-		//System.out.println(VarsRaid.get("balance"));
+
 	}
 	
 }

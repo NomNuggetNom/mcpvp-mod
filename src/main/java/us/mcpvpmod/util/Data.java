@@ -7,11 +7,9 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Properties;
 
-import net.minecraft.client.gui.ScaledResolution;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.config.all.ConfigFriends;
 import us.mcpvpmod.config.all.ConfigHUD;
-import us.mcpvpmod.gui.Selectable;
 
 public class Data {
 	
@@ -86,7 +84,6 @@ public class Data {
 	public static void setDefaults() {
 		if (!shouldSetDefaults) return;
 		Main.l("Setting defaults!");
-		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
 		Data.put(Main.friendsList + ".x", "-" + ConfigHUD.margin);
 		Data.put(Main.friendsList + ".y", "" + ConfigHUD.margin);
 		Data.put(Main.potionDisplay + ".y", "a." + Format.process(ConfigFriends.onlineTitle) + ".d");

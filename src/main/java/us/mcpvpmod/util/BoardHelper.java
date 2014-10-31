@@ -3,11 +3,11 @@ package us.mcpvpmod.util;
 import java.util.Collection;
 import java.util.Iterator;
 
-import us.mcpvpmod.Main;
 import net.minecraft.client.Minecraft;
 import net.minecraft.scoreboard.Score;
 import net.minecraft.scoreboard.ScoreObjective;
 import net.minecraft.scoreboard.Scoreboard;
+import us.mcpvpmod.Main;
 
 public class BoardHelper {
 
@@ -20,8 +20,6 @@ public class BoardHelper {
 		
 		Scoreboard board = Minecraft.getMinecraft().theWorld.getScoreboard();
 		if (board != null) {
-			// Grab the main objective of the scoreboard.
-	        ScoreObjective titleObjective = board.func_96539_a(1);
 	        
 	        // Null check. For some reason, sometimes _a(0) works and other times _a(1) works.
 	        if (board.func_96539_a(0) != null) {

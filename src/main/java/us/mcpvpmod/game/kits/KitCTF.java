@@ -1,6 +1,5 @@
 package us.mcpvpmod.game.kits;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import net.minecraft.block.Block;
@@ -13,12 +12,18 @@ public class KitCTF {
 
 	public static HashMap<String, KitCTF> kits = new HashMap<String, KitCTF>();
 	
-	public String name;
-	public Item icon;
-	public ItemStack helm;
-	public ItemStack chest;
-	public ItemStack legs;
-	public ItemStack boots;
+	/** The name of the class. */
+	private String name;
+	/** The icon of the class to be used in alerts. */
+	private Item icon;
+	/** The expected helm of the class. Can be null to signify no helm. */
+	private ItemStack helm;
+	/** The expected chestplate of the class. Can be null to signify no chestplate. */
+	private ItemStack chest;
+	/** The expected legs of the class. Can be null to signify no legs. */
+	private ItemStack legs;
+	/** The expected boots of the class. Can be null to signify no boots. */
+	private ItemStack boots;
 	
 	public KitCTF(String name, Item icon, Item helm, Item chest, Item legs, Item boots) {
 		this.name  = name;
@@ -55,15 +60,15 @@ public class KitCTF {
 		
 		for (KitCTF kit : kits.values()) {
 			
-			Item pHelm	= player.inventory.armorInventory[3] == null ? KitsCTF.empty : player.inventory.armorInventory[3].getItem();
-			Item pChest	= player.inventory.armorInventory[2] == null ? KitsCTF.empty : player.inventory.armorInventory[2].getItem();
-			Item pLegs	= player.inventory.armorInventory[1] == null ? KitsCTF.empty : player.inventory.armorInventory[1].getItem();
-			Item pBoots	= player.inventory.armorInventory[0] == null ? KitsCTF.empty : player.inventory.armorInventory[0].getItem();
+			Item helm	= player.inventory.armorInventory[3] == null ? KitsCTF.empty : player.inventory.armorInventory[3].getItem();
+			Item chest	= player.inventory.armorInventory[2] == null ? KitsCTF.empty : player.inventory.armorInventory[2].getItem();
+			Item legs	= player.inventory.armorInventory[1] == null ? KitsCTF.empty : player.inventory.armorInventory[1].getItem();
+			Item boots	= player.inventory.armorInventory[0] == null ? KitsCTF.empty : player.inventory.armorInventory[0].getItem();
 			
-			if (pHelm	!= kit.helm.getItem())	continue;
-			if (pChest	!= kit.chest.getItem())	continue;
-			if (pLegs	!= kit.legs.getItem())	continue;
-			if (pBoots	!= kit.boots.getItem())	continue;
+			if (helm	!= kit.helm.getItem())	continue;
+			if (chest	!= kit.chest.getItem())	continue;
+			if (legs	!= kit.legs.getItem())	continue;
+			if (boots	!= kit.boots.getItem())	continue;
 
 			return kit;
 		}

@@ -2,7 +2,6 @@ package us.mcpvpmod.game.state;
 
 import us.mcpvpmod.Server;
 import us.mcpvpmod.gui.InfoBlock;
-import us.mcpvpmod.util.BoardHelper;
 
 public enum StateHS implements State {
 	WAIT, PRE, PLAY, POST, END, NONE;
@@ -26,6 +25,8 @@ public enum StateHS implements State {
 			for (InfoBlock block : InfoBlock.get(Server.HS, StateHS.PLAY)) {
 				block.display();
 			}
+		default:
+			break;
 		}
 	}
 }

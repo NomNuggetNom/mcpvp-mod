@@ -1,12 +1,9 @@
 package us.mcpvpmod.events;
 
+import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraftforge.client.event.GuiOpenEvent;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.gui.screen.GuiChooseMultiplayer;
-import net.minecraftforge.client.event.GuiOpenEvent;
-import net.minecraft.client.gui.GuiDisconnected;
-import net.minecraft.client.gui.GuiMainMenu;
-import net.minecraft.client.gui.GuiMultiplayer;
-import net.minecraft.server.gui.MinecraftServerGui;
 
 public class HandleGui {
 

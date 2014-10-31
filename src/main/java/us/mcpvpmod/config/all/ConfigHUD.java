@@ -8,12 +8,10 @@ import java.util.List;
 
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
-import us.mcpvpmod.config.RawConfig;
 import us.mcpvpmod.util.Data;
 import us.mcpvpmod.util.Format;
 import cpw.mods.fml.common.DummyModContainer;
 import cpw.mods.fml.common.Loader;
-
 
 public class ConfigHUD extends DummyModContainer {
 
@@ -99,7 +97,7 @@ public class ConfigHUD extends DummyModContainer {
     	potionPosition = prop.getString();
     	propOrder.add(prop.getName());
     	
-        prop = config.get(CATEGORY_GENERAL, "fixSkins", true);
+        prop = config.get(CATEGORY_GENERAL, "fixSkins", false);
         prop.setLanguageKey("config.hud.fixSkins");
     	fixSkins = prop.getBoolean();
     	propOrder.add(prop.getName());

@@ -1,14 +1,10 @@
 package us.mcpvpmod.events.chat;
 
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
-import us.mcpvpmod.Main;
-import us.mcpvpmod.config.hg.ConfigHGSelect;
 import us.mcpvpmod.game.core.CoreHG;
 import us.mcpvpmod.game.state.StateHG;
-import us.mcpvpmod.game.vars.VarsHG;
 import us.mcpvpmod.trackers.ChatTracker;
 import us.mcpvpmod.triggers.ChatTrigger;
-import us.mcpvpmod.util.Format;
 
 public class ChatHG {
 

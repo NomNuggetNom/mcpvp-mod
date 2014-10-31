@@ -2,9 +2,6 @@ package us.mcpvpmod.gui.screen;
 
 import java.awt.Rectangle;
 import java.util.HashMap;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 import net.minecraft.client.gui.GuiScreen;
 
@@ -56,17 +53,17 @@ public class GuiMoveBlocks extends GuiScreen {
 	
 	public boolean clickedBlock(int clickX, int clickY) {
 		for (InfoBlock block : InfoBlock.get(Server.getServer(), Server.getState())) {
-			if (new Rectangle(block.baseX, block.baseY, block.w, block.h).contains(clickX, clickY)) {
+			if (new Rectangle(block.getX(), block.getY(), block.getW(), block.getH()).contains(clickX, clickY)) {
 				block.click();
 				return true;
 			}
 		}
 
 		if (new Rectangle(
-				InfoBlock.get(Format.process(ConfigFriends.onlineTitle)).baseX, 
-				InfoBlock.get(Format.process(ConfigFriends.onlineTitle)).baseY, 
-				InfoBlock.get(Format.process(ConfigFriends.onlineTitle)).w, 
-				InfoBlock.get(Format.process(ConfigFriends.onlineTitle)).h).contains(clickX, clickY)) {
+				InfoBlock.get(Format.process(ConfigFriends.onlineTitle)).getX(), 
+				InfoBlock.get(Format.process(ConfigFriends.onlineTitle)).getY(), 
+				InfoBlock.get(Format.process(ConfigFriends.onlineTitle)).getW(), 
+				InfoBlock.get(Format.process(ConfigFriends.onlineTitle)).getH()).contains(clickX, clickY)) {
 			InfoBlock.get(Format.process(ConfigFriends.onlineTitle)).click();
 			return true;
 		}
@@ -136,14 +133,14 @@ public class GuiMoveBlocks extends GuiScreen {
 	
 	@Override
 	public void drawScreen(int p_73863_1_, int p_73863_2_, float p_73863_3_) {
-		Draw.centeredString("      #i#Hit #gray#[#green##b#ESC#gray#]#white##i# to stop editing.", 0, this.height/4, this.width, 0xFFFFFF, true, true);
+		Draw.centeredString("      #i#Hit #gray#[#green##b#ESC#gray#]#white##i# to stop editing.", 0, this.height/4, this.width, 0xFFFFFF, true);
 		
 		if (Selectable.selected != null) {
 			Selectable current = Selectable.selected;
 			Draw.centeredString("#r#Selected: \"" + current + "#r#\" (" + current.getX() + ", " + current.getY() + ")",
-					0, this.height/4 + 15, this.width, 0xFFFFFF, true, true);
+					0, this.height/4 + 15, this.width, 0xFFFFFF, true);
 		} else {
-			Draw.centeredString(Format.process("Click on something to select it!"), 0, this.height/4 + 15, this.width, 0xFFFFFF, true, true);
+			Draw.centeredString(Format.process("Click on something to select it!"), 0, this.height/4 + 15, this.width, 0xFFFFFF, true);
 		}
 	}
 	

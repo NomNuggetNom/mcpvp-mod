@@ -3,6 +3,7 @@ package us.mcpvpmod.events.join;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.config.all.ConfigSelect;
 import us.mcpvpmod.events.chat.IgnoreResult;
+import us.mcpvpmod.game.state.StateSab;
 import us.mcpvpmod.game.vars.AllVars;
 import us.mcpvpmod.game.vars.Vars;
 import us.mcpvpmod.game.vars.VarsBuild;
@@ -38,6 +39,8 @@ public class AllJoin {
 		VarsRaid.reset();
 		VarsSab.reset();
 		Main.secondChat.clearChatMessages();
+		
+		StateSab.state = StateSab.PRE;
 	}
 	
 	

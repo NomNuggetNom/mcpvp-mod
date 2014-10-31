@@ -3,7 +3,6 @@ package us.mcpvpmod.gui;
 import java.util.ArrayList;
 
 import net.minecraft.client.entity.EntityClientPlayerMP;
-import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.item.ItemStack;
 import us.mcpvpmod.Main;
@@ -60,9 +59,6 @@ public class ArmorDisplay extends Selectable {
 	public void renderArmor() {
 		if (Main.mc.thePlayer == null || items == null) return;
 		getArmor();
-		EntityClientPlayerMP player = Main.mc.thePlayer;
-
-		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
 
 		this.setX(this.loadX());
 		this.setY(this.loadY());

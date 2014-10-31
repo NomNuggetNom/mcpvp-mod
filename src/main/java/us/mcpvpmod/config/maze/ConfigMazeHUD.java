@@ -53,9 +53,9 @@ public class ConfigMazeHUD extends DummyModContainer {
     	prop = config.get(CATEGORY_GENERAL, "renderPre", new String[]{
     			
     			"---#b##u#Maze Pre", 
-    			"#blue##i#Kit #gray#>> #r##bold#{kit}", 
-    			"#blue##i#Team #gray#>> #gray#\"#r##bold#{team}#r##gray#\"",
-    			"#blue##i#Players #gray#>> #r##bold#{players}#r#"
+    			"#dark_aqua##i#Kit #gray#>> #r##bold#{kit}", 
+    			"#dark_aqua##i#Team #gray#>> #gray#\"#r##bold#{team}#r##gray#\"",
+    			"#dark_aqua##i#Players #gray#>> #r##bold#{players}#r#"
     			
     	});
         prop.setLanguageKey("maze.config.hud.renderPre");
@@ -64,8 +64,10 @@ public class ConfigMazeHUD extends DummyModContainer {
     	
     	prop = config.get(CATEGORY_GENERAL, "renderPlay", new String[]{
     			
-    			"---#bold#Yay", 
-    			"play"
+    			"---#b##u#Maze Play", 
+    			"#dark_aqua##i#Kit #gray#>> #r##bold#{kit}", 
+    			"#dark_aqua##i#Team #gray#>> #gray#\"#r##bold#{color}#r##gray#\"",
+    			"#dark_aqua##i#Players #gray#>> #r##bold#{players}#r#"
     			
     	});
         prop.setLanguageKey("maze.config.hud.renderPlay");
@@ -74,8 +76,10 @@ public class ConfigMazeHUD extends DummyModContainer {
     	
     	prop = config.get(CATEGORY_GENERAL, "renderPost", new String[]{
     			
-    			"---#bold#Yay",
-    			"post"
+    			"---#b##u#Maze Post", 
+    			"#dark_aqua##i#Kit #gray#>> #r##bold#{kit}", 
+    			"#dark_aqua##i#Team #gray#>> #gray#\"#r##bold#{color}#r##gray#\"",
+    			"#dark_aqua##i#Players #gray#>> #r##bold#{players}#r#"
     			
     	});
         prop.setLanguageKey("maze.config.hud.renderPost");

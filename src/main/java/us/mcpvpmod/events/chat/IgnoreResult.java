@@ -2,7 +2,6 @@ package us.mcpvpmod.events.chat;
 
 import java.util.ArrayList;
 
-import net.minecraft.util.ChatComponentText;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import us.mcpvpmod.Main;
 

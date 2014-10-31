@@ -3,7 +3,7 @@ package us.mcpvpmod.game.stats;
 import us.mcpvpmod.util.BoardHelper;
 import us.mcpvpmod.util.MCPVPMath;
 
-public class StatsKit extends Stats {
+public class StatsKit extends AllStats {
 
 	public static int credits;
 	public static int kills;
@@ -31,10 +31,8 @@ public class StatsKit extends Stats {
 	}
 	
 	public static double getKD() {
-		if (deaths != 0) {
+		if (deaths != 0)
 			return MCPVPMath.round((double)kills/(double)deaths, 3);
-		} else {
-			return 0;
-		}
+		return 0;
 	}
 }

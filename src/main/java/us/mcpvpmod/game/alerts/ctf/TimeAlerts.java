@@ -1,17 +1,14 @@
 package us.mcpvpmod.game.alerts.ctf;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import us.mcpvpmod.events.Events;
-import us.mcpvpmod.game.alerts.CustomAlert;
 import us.mcpvpmod.game.alerts.Alerts;
+import us.mcpvpmod.game.alerts.CustomAlert;
 import us.mcpvpmod.game.alerts.SoundAlert;
 import us.mcpvpmod.game.info.InfoCTF;
 import us.mcpvpmod.game.state.StateCTF;
 import us.mcpvpmod.game.stats.StatsCTF;
-import us.mcpvpmod.game.team.TeamCTF;
 import us.mcpvpmod.util.Format;
 
 public class TimeAlerts {
@@ -48,8 +45,8 @@ public class TimeAlerts {
 	
 		if (StateCTF.getState().equals(StateCTF.POST) || StateCTF.getState().equals(StateCTF.END)) {
 			if (oldTime == 15) {
-				CustomAlert.get("game.end").show();
-				SoundAlert.get("game.end").play();
+				//CustomAlert.get("game.end").show();
+				//SoundAlert.get("game.end").play();
 			} else if (oldTime == 10) {
 				if ((StatsCTF.kills > 15 && StatsCTF.deaths == 0)) {
 					Alerts.alert.sendAlertWithItem("Perfection!", Format.process("#gray#Kill #white#15 #gray#opponents without dying in one game."), -1, new ItemStack(Items.dye, 1, 15));

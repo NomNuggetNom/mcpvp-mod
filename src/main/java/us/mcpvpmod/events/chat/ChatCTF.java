@@ -6,7 +6,6 @@ import net.minecraft.client.gui.ChatLine;
 import net.minecraft.util.ChatComponentText;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import us.mcpvpmod.Main;
-import us.mcpvpmod.Server;
 import us.mcpvpmod.config.ctf.ConfigCTFChat;
 import us.mcpvpmod.game.alerts.CustomAlert;
 import us.mcpvpmod.game.info.InfoCTF;
@@ -16,7 +15,6 @@ import us.mcpvpmod.game.stats.StatsCTF;
 import us.mcpvpmod.gui.Medal;
 import us.mcpvpmod.trackers.ChatTracker;
 import us.mcpvpmod.triggers.ChatTrigger;
-import cpw.mods.fml.common.FMLLog;
 
 public class ChatCTF {
 
@@ -127,7 +125,6 @@ public class ChatCTF {
 		
 		// Medic calling.
 		if (message.matches(reMedic)) {		
-			String needMedic = message.replaceAll(reMedic, "$1");
 			if (StateCTF.getState() == StateCTF.PLAY) {
 				for (String string : ConfigCTFChat.medicClasses) {
 					if (KitCTF.getKit(Main.mc.thePlayer).toString().toLowerCase().equals(string.toLowerCase()) || InfoCTF.chosenClass.toLowerCase().equals(string.toLowerCase())) {
@@ -179,8 +176,6 @@ public class ChatCTF {
 	}
 	
 	public static void handleAll(ClientChatReceivedEvent event) {
-		String message = event.message.getUnformattedText();
-
 		// Removal of messages that appear in split chat.
 		for (Object chatLine : Main.secondChat.getMessages()) {
 			

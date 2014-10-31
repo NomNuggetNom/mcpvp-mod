@@ -79,7 +79,7 @@ public class Main {
 	public static GuiCodes guiCodes = null;
 	
 	@EventHandler
-	public void preInit(FMLPreInitializationEvent e) {
+	public void preInit(@SuppressWarnings("unused") FMLPreInitializationEvent e) {
 		Main.l(Format.s("startup"));
     	
     	// Register all events in the Events class.
@@ -108,7 +108,7 @@ public class Main {
     }
     	
     @EventHandler
-	public void init(FMLInitializationEvent e) {   	
+	public void init(@SuppressWarnings("unused") FMLInitializationEvent e) {   	
     	openConfig = new KeyBinding("key.openConfig", Keyboard.KEY_C, "MCPVP");
         ClientRegistry.registerKeyBinding(openConfig);
         moveBlocks = new KeyBinding("key.moveBlocks", Keyboard.KEY_X, "MCPVP");
@@ -120,7 +120,7 @@ public class Main {
 	}
     
 	@EventHandler
-	public void postInit(FMLPostInitializationEvent e) {
+	public void postInit(@SuppressWarnings("unused") FMLPostInitializationEvent e) {
 	}
 	
 	public static void l(Object string, Object... data) {

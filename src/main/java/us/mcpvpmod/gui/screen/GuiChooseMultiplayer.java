@@ -1,20 +1,9 @@
 package us.mcpvpmod.gui.screen;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.util.EnumChatFormatting;
-
-import org.lwjgl.input.Keyboard;
-
-import us.mcpvpmod.MCPVPServer;
 import us.mcpvpmod.Main;
-import us.mcpvpmod.Server;
 import us.mcpvpmod.gui.Draw;
 import us.mcpvpmod.util.Format;
 

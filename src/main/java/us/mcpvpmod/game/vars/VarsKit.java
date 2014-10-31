@@ -2,9 +2,7 @@ package us.mcpvpmod.game.vars;
 
 import java.util.HashMap;
 
-import us.mcpvpmod.game.stats.StatsCTF;
 import us.mcpvpmod.game.stats.StatsKit;
-import us.mcpvpmod.util.MCPVPMath;
 
 public class VarsKit {
 
@@ -30,11 +28,9 @@ public class VarsKit {
 	 * @return The value of the stored variable.
 	 */
 	public static String get(String string) {
-		if (vars.keySet().contains(string)) {
+		if (vars.keySet().contains(string))
 			return vars.get(string);
-		} else {
-			return "";
-		}
+		return "";
 	}
 	
 	/**

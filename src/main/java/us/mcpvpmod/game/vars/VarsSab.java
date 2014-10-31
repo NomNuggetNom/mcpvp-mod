@@ -3,7 +3,6 @@ package us.mcpvpmod.game.vars;
 import java.util.HashMap;
 
 import us.mcpvpmod.game.info.InfoSab;
-import us.mcpvpmod.util.Format;
 
 public class VarsSab {
 	
@@ -26,11 +25,9 @@ public class VarsSab {
 	 * @return The value of the stored variable.
 	 */
 	public static String get(String string) {
-		if (vars.keySet().contains(string)) {
+		if (vars.keySet().contains(string))
 			return vars.get(string);
-		} else {
-			return "";
-		}
+		return "";
 	}
 	
 	/**

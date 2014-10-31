@@ -52,7 +52,6 @@ import us.mcpvpmod.game.state.StateKit;
 import us.mcpvpmod.game.state.StateMaze;
 import us.mcpvpmod.game.state.StateSab;
 import us.mcpvpmod.gui.InfoBlock;
-import us.mcpvpmod.gui.screen.GuiCodes;
 import us.mcpvpmod.util.Format;
 import cpw.mods.fml.common.FMLLog;
 
@@ -62,17 +61,6 @@ public class Sync {
 	 * Fired during startup. Handles creation of formatting codes, InfoBlocks, ChatTriggers, and ChatTrackers, and more.
 	 */ 
 	public static void sync() {
-
-		/*
-		for (Method syncMethod : new Reflections("us.mcpvpmod").getMethodsAnnotatedWith(Sync.class)) {
-			try {
-				syncMethod.invoke(syncMethod.getClass());
-			} catch (Exception e) {
-				continue;
-			}
-		}
-		*/
-		
 		FMLLog.info(Format.s("sync"));
 		syncGeneral();
 		syncKits();

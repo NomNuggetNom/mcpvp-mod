@@ -5,18 +5,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import net.minecraft.client.gui.GuiScreen;
-import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
-import us.mcpvpmod.config.all.ConfigFriends;
-import us.mcpvpmod.config.all.ConfigHUD;
 import us.mcpvpmod.game.state.DummyState;
-import us.mcpvpmod.gui.ArmorDisplay;
 import us.mcpvpmod.gui.Draw;
 import us.mcpvpmod.gui.InfoBlock;
-import us.mcpvpmod.gui.PotionDisplay;
 import us.mcpvpmod.gui.Selectable;
-import us.mcpvpmod.gui.screen.GuiMoveBlocks;
-import us.mcpvpmod.timers.SimpleTimer;
 import us.mcpvpmod.util.Data;
 import us.mcpvpmod.util.Format;
 
@@ -68,10 +61,10 @@ public class TutScreen2 extends TutorialScreen {
 	@Override
     protected void mouseClicked(int clickX, int clickY, int p_73864_3_) {
 		if (new Rectangle(
-				InfoBlock.get("#b##u#Move me!").baseX, 
-				InfoBlock.get("#b##u#Move me!").baseY, 
-				InfoBlock.get("#b##u#Move me!").w, 
-				InfoBlock.get("#b##u#Move me!").h).contains(clickX, clickY)) {
+				InfoBlock.get("#b##u#Move me!").getX(), 
+				InfoBlock.get("#b##u#Move me!").getY(), 
+				InfoBlock.get("#b##u#Move me!").getW(), 
+				InfoBlock.get("#b##u#Move me!").getH()).contains(clickX, clickY)) {
 			InfoBlock.get("#b##u#Move me!").click();
 		}
 		

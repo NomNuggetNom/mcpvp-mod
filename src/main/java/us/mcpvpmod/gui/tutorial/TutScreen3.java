@@ -3,7 +3,6 @@ package us.mcpvpmod.gui.tutorial;
 import java.util.ArrayList;
 
 import us.mcpvpmod.gui.Draw;
-import us.mcpvpmod.timers.SimpleTimer;
 import us.mcpvpmod.util.Format;
 
 public class TutScreen3 extends TutorialScreen {

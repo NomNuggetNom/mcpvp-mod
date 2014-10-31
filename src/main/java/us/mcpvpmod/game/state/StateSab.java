@@ -2,7 +2,6 @@ package us.mcpvpmod.game.state;
 
 import us.mcpvpmod.Server;
 import us.mcpvpmod.game.stats.StatsSab;
-import us.mcpvpmod.game.vars.Vars;
 import us.mcpvpmod.gui.InfoBlock;
 
 public enum StateSab implements State {

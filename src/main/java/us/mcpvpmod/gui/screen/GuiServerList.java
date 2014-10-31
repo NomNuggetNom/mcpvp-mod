@@ -1,28 +1,21 @@
 package us.mcpvpmod.gui.screen;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.GuiScreenServerList;
 import net.minecraft.client.multiplayer.ServerData;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.util.EnumChatFormatting;
 
 import org.lwjgl.input.Keyboard;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import us.mcpvpmod.MCPVPServer;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.ServerHelper;
-import us.mcpvpmod.gui.CustomTexture;
-import us.mcpvpmod.gui.Draw;
 import us.mcpvpmod.util.Data;
 import us.mcpvpmod.util.Format;
+import cpw.mods.fml.client.FMLClientHandler;
 
 public class GuiServerList extends GuiScreen {
 

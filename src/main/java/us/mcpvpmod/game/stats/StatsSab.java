@@ -2,7 +2,7 @@ package us.mcpvpmod.game.stats;
 
 import us.mcpvpmod.game.vars.Vars;
 
-public class StatsSab extends Stats {
+public class StatsSab extends AllStats {
 
 	public static String role = "Innocent";
 	public static String map = "";
