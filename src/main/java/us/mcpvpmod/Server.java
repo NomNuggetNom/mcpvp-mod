@@ -19,6 +19,9 @@ import us.mcpvpmod.events.chat.ChatRaid;
 import us.mcpvpmod.events.chat.ChatSab;
 import us.mcpvpmod.events.join.AllJoin;
 import us.mcpvpmod.events.join.JoinHG;
+import us.mcpvpmod.events.join.JoinMaze;
+import us.mcpvpmod.events.join.JoinRaid;
+import us.mcpvpmod.events.join.JoinSab;
 import us.mcpvpmod.events.render.AllRender;
 import us.mcpvpmod.events.render.RenderBuild;
 import us.mcpvpmod.events.render.RenderCTF;
@@ -191,10 +194,10 @@ public enum Server {
 		switch(getServer(ip)) {
 		case HG: 	JoinHG.onJoin();
 		case CTF: 	return;
-		case RAID: 	return;
+		case RAID: 	JoinRaid.onJoin();
 		case KIT: 	return;
-		case MAZE: 	return;
-		case SAB: 	return;
+		case MAZE: 	JoinMaze.onJoin();
+		case SAB: 	JoinSab.onJoin();
 		case BUILD:	return;
 		case HS: 	return;
 		case HUB: 	return;

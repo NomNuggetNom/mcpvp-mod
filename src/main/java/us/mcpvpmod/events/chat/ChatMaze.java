@@ -15,22 +15,7 @@ public class ChatMaze {
 
 		ChatTrigger.checkAll(message);
 		ChatTracker.checkAll(message);
-		
-		// Auto-Select support
-		if (message.equals("§r§aClick on or type the kit name to pick a kit:§r")
-				&& ConfigMazeSelect.selectMode.equals(Format.s("maze.config.select.selectMode.m.join"))) {
 
-			// Select kit
-			if (Vars.get("maze:kit").equals("")) {
-				Main.mc.thePlayer.sendChatMessage("/kit " + ConfigMazeSelect.selectClass);
-			}
-			
-			// Select team
-			if (Vars.get("maze:team").equals("")) {
-				Main.mc.thePlayer.sendChatMessage("/team " + ConfigMazeSelect.selectTeam);
-			}
-			
-		}
 	}
 	
 }

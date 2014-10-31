@@ -182,6 +182,7 @@ public class CustomAlert {
 	 */
 	public void show() {
 		// Update information.
+		setStrings();
 		setMode();
 		title = replaceInfo(title);
 		desc  = replaceInfo(desc);
