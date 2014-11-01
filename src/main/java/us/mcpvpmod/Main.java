@@ -107,11 +107,11 @@ public class Main {
     	
     @EventHandler
 	public void init(@SuppressWarnings("unused") FMLInitializationEvent e) {   	
-    	openConfig = new KeyBinding("key.openConfig", Keyboard.CHAR_NONE, "MCPVP");
+    	openConfig = new KeyBinding("key.openConfig", Keyboard.KEY_C, "MCPVP");
         ClientRegistry.registerKeyBinding(openConfig);
-        moveBlocks = new KeyBinding("key.moveBlocks", Keyboard.CHAR_NONE, "MCPVP");
+        moveBlocks = new KeyBinding("key.moveBlocks", Keyboard.KEY_X, "MCPVP");
         ClientRegistry.registerKeyBinding(moveBlocks);
-        showHelp = new KeyBinding("key.showHelp", Keyboard.CHAR_NONE, "MCPVP");
+        showHelp = new KeyBinding("key.showHelp", Keyboard.KEY_H, "MCPVP");
         ClientRegistry.registerKeyBinding(showHelp);
         
         DevCapes.getInstance().registerConfig("https://raw.githubusercontent.com/NomNuggetNom/mcpvp-mod/master/capes.json");
