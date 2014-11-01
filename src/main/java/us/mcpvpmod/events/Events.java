@@ -22,20 +22,23 @@ public class Events {
 	@SubscribeEvent
 	public void onChat(ClientChatReceivedEvent event) {
 		if (Main.mc.isSingleplayer()) return;
+		Main.start();
 		Server.getServer().onChat(event);
+		Main.end();
 	}
 	
 	@SubscribeEvent
 	public void onRender(RenderGameOverlayEvent.Post event) {
 		if (Main.mc.isSingleplayer()) return;
+		Main.start();
 		Server.getServer().onRender(event);
+		Main.end();
 	}
 	
 	@SubscribeEvent
 	public void onTick(TickEvent event) {
 		if (Main.mc.isSingleplayer()) return;
 		Server.getServer().onTick(event);
-		Server.getServer().drawOnScreen();
 	}
 	
 	@SubscribeEvent

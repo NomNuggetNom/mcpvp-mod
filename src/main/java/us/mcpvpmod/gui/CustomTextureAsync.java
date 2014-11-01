@@ -53,6 +53,7 @@ public class CustomTextureAsync {
 		Thread dl = new Thread("CustomTextureAsync") {
 			@Override
 			public void run() {
+				Main.start("mcpvp", "textureasync", "dl");
 				try {
 					long startTime = System.currentTimeMillis();
 					// Perform the actual downloading and
@@ -63,6 +64,7 @@ public class CustomTextureAsync {
 				} catch (Exception e) {
 					Main.l("Error downloading the image for %s: %s", customTexture, e.getMessage());
 				}
+				Main.end(3);
 			}
 		};
 		
@@ -80,8 +82,15 @@ public class CustomTextureAsync {
 	 */
 	public ResourceLocation getResource() {
 		if (this.img == null) return this.fallback;
+		Main.start("mcpvp");
+		Main.start("textasync");
+		Main.start("get");
 		DynamicTexture texture = new DynamicTexture(this.img);
-		return Main.mc.getTextureManager().getDynamicTextureLocation("", texture);
+		ResourceLocation toReturn = Main.mc.getTextureManager().getDynamicTextureLocation("", texture);
+		Main.end();
+		Main.end();
+		Main.end();
+		return toReturn;
 	}
 	
 	/**

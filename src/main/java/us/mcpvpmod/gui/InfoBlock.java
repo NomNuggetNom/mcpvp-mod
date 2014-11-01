@@ -186,7 +186,7 @@ public class InfoBlock extends Selectable {
 	 * Updates information and dimensions then draws.
 	 */
 	public void display() {
-		Main.section("ib");
+		Main.start("ib");
 		f = Main.mc.fontRenderer;
 		res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
 		

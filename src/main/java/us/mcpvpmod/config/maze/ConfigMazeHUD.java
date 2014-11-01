@@ -53,9 +53,9 @@ public class ConfigMazeHUD extends DummyModContainer {
     	prop = config.get(CATEGORY_GENERAL, "renderPre", new String[]{
     			
     			"---#b##u#Maze Pre", 
-    			"#dark_aqua##i#Kit #gray#>> #r##bold#{kit}", 
-    			"#dark_aqua##i#Team #gray#>> #gray#\"#r##bold#{team}#r##gray#\"",
-    			"#dark_aqua##i#Players #gray#>> #r##bold#{players}#r#"
+    			"#dark_aqua##i#Kit #gray#>> #r#{kit}", 
+    			"#dark_aqua##i#Team #gray#>> #gray#\"#r#{team}#r##gray#\"",
+    			"#dark_aqua##i#Players #gray#>> #r#{players}#r#"
     			
     	});
         prop.setLanguageKey("maze.config.hud.renderPre");
@@ -65,9 +65,9 @@ public class ConfigMazeHUD extends DummyModContainer {
     	prop = config.get(CATEGORY_GENERAL, "renderPlay", new String[]{
     			
     			"---#b##u#Maze Play", 
-    			"#dark_aqua##i#Kit #gray#>> #r##bold#{kit}", 
-    			"#dark_aqua##i#Team #gray#>> #gray#\"#r##bold#{color}#r##gray#\"",
-    			"#dark_aqua##i#Players #gray#>> #r##bold#{players}#r#"
+    			"#dark_aqua##i#Kit #gray#>> #r#{kit}", 
+    			"#dark_aqua##i#Team #gray#>> #gray#\"#r#{color}#r##gray#\"",
+    			"#dark_aqua##i#Players #gray#>> #r#{players}#r#"
     			
     	});
         prop.setLanguageKey("maze.config.hud.renderPlay");
@@ -77,9 +77,9 @@ public class ConfigMazeHUD extends DummyModContainer {
     	prop = config.get(CATEGORY_GENERAL, "renderPost", new String[]{
     			
     			"---#b##u#Maze Post", 
-    			"#dark_aqua##i#Kit #gray#>> #r##bold#{kit}", 
-    			"#dark_aqua##i#Team #gray#>> #gray#\"#r##bold#{color}#r##gray#\"",
-    			"#dark_aqua##i#Players #gray#>> #r##bold#{players}#r#"
+    			"#dark_aqua##i#Kit #gray#>> #r#{kit}", 
+    			"#dark_aqua##i#Team #gray#>> #gray#\"#r#{color}#r##gray#\"",
+    			"#dark_aqua##i#Players #gray#>> #r#{players}#r#"
     			
     	});
         prop.setLanguageKey("maze.config.hud.renderPost");

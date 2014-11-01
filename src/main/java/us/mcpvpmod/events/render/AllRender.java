@@ -1,5 +1,7 @@
 package us.mcpvpmod.events.render;
 
+import java.util.ArrayList;
+
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,31 +32,45 @@ public class AllRender {
 		Main.secondChat.drawChat(Main.mc.ingameGUI.getUpdateCounter());
 		
 		// Prevent everything else from being rendered when debug is showing.
-		if (Main.mc.gameSettings.showDebugInfo) return;
+		if (Main.mc.gameSettings.showDebugInfo)
+			return;
 		
-		// Render the armor and potion display.
-		if (ConfigHUD.showArmor || (Data.get("showArmor") != null && Boolean.valueOf(Data.get("showArmor"))))
+		// Render the armor display.
+		if (ConfigHUD.showArmor || (Data.get("showArmor") != null && Boolean.valueOf(Data.get("showArmor")))) {
+			Main.start("mcpvp", "armorDisplay");
 			Main.armorDisplay.renderArmor();
+			Main.end(2);
+		}
+		
+		// Render the potion display.
 		if (ConfigHUD.showPotion || (Data.get("showPotion") != null && Boolean.valueOf(Data.get("showPotion")))) {
+			Main.start("mcpvp", "potionDisplay");
 			Main.potionDisplay.displayPotions(event);
 			PotionDisplay.displayStrings();
+			Main.end(2);
 		}
-
+		
 		// Outline the current selectable.
 		if (Selectable.selected != null)
 			Selectable.selected.outline();
 		
 		// Display the friend's list.
-		if (ServerHelper.onMCPVP())
+		if (ServerHelper.onMCPVP()) {
+			Main.start("mcpvp", "friendsList");
 			Main.friendsList.display();
-		
+			Main.end(2);
+		}
+
 		// Hi-jack the GuiIngameMenu and inject a new one.
 		if (Main.mc.currentScreen instanceof GuiIngameMenu)
 			Main.mc.displayGuiScreen(new GuiIngameMCPVP());
-		
+
 		// Checking the time imposes a limit to the frequency of the event.
-		if (ConfigHUD.fixSkins && System.currentTimeMillis() % 10 == 0) 
+		if (ConfigHUD.fixSkins && System.currentTimeMillis() % 10 == 0)  {
+			Main.start("mcpvp", "skinFixer");
 			fixSkins();
+			Main.end(2);
+		}
 		
 	}
 	
@@ -62,7 +78,7 @@ public class AllRender {
 	 * Cycles through each player, downloads their skin, and assigns it to the location
 	 * in their profile. The downloading is performed asynchronously, but can still
 	 * cause lag due to the creation & reading of files. 
-	 * 
+	 * <br><br>
 	 * Called every render tick because the image has to download, and because Minecraft
 	 * resets the location of the skin every tick.
 	 */
@@ -70,16 +86,22 @@ public class AllRender {
 
 		// Cycle through every player on the server.
 		for (EntityPlayer player : ServerHelper.getPlayersFromWorld()) {
-			// Safeguard becomes players are sometimes null...
+			// Safeguard because players are sometimes null...
 			if (player == null) continue;
 			
+			// The name of the player without colors.
 			String name = player.getDisplayName().replaceAll("\u00A7.", "");
-			ResourceLocation skin = CustomTextureAsync.get(name + ".skin", // Store it as "username.skin"
-					"http://skins.minecraft.net/MinecraftSkins/" + name + ".png", // The URL to download from.
-					((AbstractClientPlayer) player).locationStevePng); // The Steve skin is the backup.
+			// The URL to download from.
+			String url = "http://skins.minecraft.net/MinecraftSkins/" + name + ".png";
+			// The Steve skin is the backup.
+			ResourceLocation steve = ((AbstractClientPlayer) player).locationStevePng;
+			
+			 // Store it as "username.skin"
+			ResourceLocation skin = CustomTextureAsync.get(name + ".skin", url, steve); 
 			
 			// Assign the location of the skin.
 			((AbstractClientPlayer) player).func_152121_a(MinecraftProfileTexture.Type.SKIN, skin);
+			
 		}
 	}
 }

@@ -53,7 +53,7 @@ public class ConfigSabHUD extends DummyModContainer {
     	prop = config.get(CATEGORY_GENERAL, "renderPre", new String[]{
     			
     			"---#b##u#Sab Pre", 
-    			"#red##i#Players #gray#>> #r##bold#{players}", 
+    			"#red##i#Players #gray#>> #r#{players}", 
     			
     	});
         prop.setLanguageKey("mcpvp.sab.configHUD.renderPre");
@@ -63,9 +63,9 @@ public class ConfigSabHUD extends DummyModContainer {
     	prop = config.get(CATEGORY_GENERAL, "renderPlay", new String[]{
     			
     			"---#b##u#Sab Play", 
-    			"#red##i#Role #gray#>> #r##bold#{role}", 
-    			"#red##i#Detective #gray#>> #r##bold#{detective}", 
-    			"#red##i#Players #gray#>> #r##bold#{players}"
+    			"#red##i#Role #gray#>> #r#{role}", 
+    			"#red##i#Detective #gray#>> #r#{detective}", 
+    			"#red##i#Players #gray#>> #r#{remain}"
     			
     	});
     	prop.setLanguageKey("mcpvp.sab.configHUD.renderPlay");
@@ -75,10 +75,10 @@ public class ConfigSabHUD extends DummyModContainer {
     	prop = config.get(CATEGORY_GENERAL, "renderPost", new String[]{
     			
     			"---#b##u#Sab Post", 
-    			"#red##i#Role #gray#>> #r##bold#{role}", 
-    			"#red##i#Detective #gray#>> #r##bold#{detective}", 
-    			"#red##i#Players #gray#>> #r##bold#{players}",
-    			"#red##i#Winner #gray#>> #r##bold#{winner}"
+    			"#red##i#Role #gray#>> #r#{role}", 
+    			"#red##i#Detective #gray#>> #r#{detective}", 
+    			"#red##i#Players #gray#>> #r#{remain}",
+    			"#red##i#Winner #gray#>> #r#{winner}"
     			
     	});
     	prop.setLanguageKey("mcpvp.sab.configHUD.renderPost");

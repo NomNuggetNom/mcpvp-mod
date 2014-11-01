@@ -15,14 +15,24 @@ import cpw.mods.fml.common.FMLLog;
 
 public class Selectable {	
 	
+	/** A map of all selectables that exist, not just the ones rendering! */
 	public static HashMap<String, Selectable> selectables = new HashMap<String, Selectable>();
+	/** The selected selectable. Null if nothing is selected. */
 	public static Selectable selected;
+	/** The padding between selections. */
 	public static int padding = 3;
 
 	public static Selectable getSelectable(String id) {
 		return selectables.get(id);
 	}
 	
+	public static void put(String id, Selectable selectable) {
+		selectables.put(id, selectable);
+	}
+	
+	/** 
+	 *@return An array of all selectables that are showing on the screen. 
+	 */
 	public static ArrayList<Selectable> getShowing() {
 		ArrayList<Selectable> toReturn = new ArrayList<Selectable>();
 		
@@ -37,10 +47,9 @@ public class Selectable {
 		return toReturn;
 	}
 	
-	public static void put(String id, Selectable selectable) {
-		selectables.put(id, selectable);
-	}
-	
+	/**
+	 * Clicks a selectable. This could either unselect or select it.
+	 */
 	public void click() {
 		if (Selectable.selected == this) {
 			Selectable.selected = null;
@@ -49,6 +58,10 @@ public class Selectable {
 		}
 	}
 	
+	/**
+	 * Draws an outline around the current selectable.
+	 * Also runs calculations for anchoring.
+	 */
 	public void outline() {
 		
 		boolean anchorTop = false;
@@ -126,6 +139,13 @@ public class Selectable {
 		
 	}
 	
+	/**
+	 * Used to move a block. Fired from the GUI when keys are pressed.
+	 * @param direction Either 'l', 'r', 'u', or 'd' to indicate which direction it should move.
+	 * @param moveBy The number of pixels to move it by. This could be too many, so a check
+	 * is performed to make sure it will stay on the screen.
+	 * @param ctrl Whether or not CTRL is being held. This snaps the selection to the edge of the screen.
+	 */
 	public void move(char direction, int moveBy, boolean ctrl) {
 		
 		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
@@ -191,11 +211,25 @@ public class Selectable {
 		
 	}
 	
+	/**
+	 * @return The base X coordinate of the selectable.
+	 */
 	public int getX() { return -1; }
 	
 	@SuppressWarnings("unused")
+	/**
+	 * Used to set the X coordinate of the selectable.
+	 * @param x The coordinate to set.
+	 */
 	public void setX(int x) { }
 	
+	/**
+	 * Performs the loading on the X coordinate that the selectable
+	 * should be at. Checks for anchors (both in data and in DisplayAnchor.anchors)
+	 * and saved coordinates in Data. Defaults to ConfigHUD.margin if no
+	 * saved value is found.
+	 * @return The X coordinate the selectable should be set to.
+	 */
 	public int loadX() {
 		
 		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
@@ -253,78 +287,26 @@ public class Selectable {
 		return ConfigHUD.margin;
 		
 	}
-	
-	/*
-	public int loadX() { 
-		
-		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
-		
-		// This checks if there is a registered anchor.
-		// There could still be one saved as text in the file!
-		if (DisplayAnchor.anchors.get(this) != null) {
-			DisplayAnchor anchor = DisplayAnchor.anchors.get(this);
-			
-			// Directional support and adjustment.
-			if (anchor.direction == 'r') {
-				return anchor.parent.getX() + anchor.parent.getW() + ConfigHUD.margin;
-			} else if (anchor.direction == 'l') {
-				return anchor.parent.getX() - anchor.parent.getW() - ConfigHUD.margin;
-			}
-		}
-		
-		// This checks this text file for saved values.
-		if (Data.get(this.toString() + ".x") != null) {
-			
-			// The saved coordinate.
-			String savedX = Data.get(this.toString() + ".x");
-			
-			// Occasionally, a glitch in the matrix occurs and it saves as --#.
-			// This is just to prevent a terrible, horrible crash.
-			if (savedX.startsWith("--")) {
-				FMLLog.warning("[MCPVP] Force resetting X coord of block \"%s\" due to incorrect saved coordinate.", this);
-				Data.put(this.toString() + ".x", "" + 0);
-				return ConfigHUD.margin;
-			
-			// This supports saved anchors in the format of "a.ParentBlockName.AnchorDirectionChar"
-			} else if (savedX.startsWith("a.")) {
-				
-				// Establish an anchor.
-				this.anchorTo(
-						Selectable.getSelectable(savedX.split("\\.")[1]), // The parent selectable.
-						savedX.split("\\.")[2].charAt(0)); // The direction char.
-				
-				// Return ConfigHUD.margin because on the next tick, the first check for anchors will catch it anyway.
-				return ConfigHUD.margin;
-			}
 
-			// This is the "default" return value.
-			int newX = ConfigHUD.margin;
-			
-			// Use a regex check to make sure we don't parse a non-integer number.
-			if (savedX.matches("\\d")) 
-
-				// Parse the found value into an integer.
-				// The number could be negative, so it's not returned yet.
-				newX = Integer.parseInt((String) Data.get(this.toString() + ".x"));
-			
-				// Support for negative numbers, i.e. subtracting from the edges.
-			if (savedX.startsWith("-")) {
-					
-				// Subtract the total height and the found value from the height of the screen.
-				return res.getScaledWidth() - this.getW() - Math.abs(newX) + padding;
-			} else {
-				return newX;
-			}
-		}
-		return ConfigHUD.margin;
-	}
-	*/
-
+	/**
+	 * @return The base Y coordinate of the selectable.
+	 */
 	public int getY() { return -1; }
 	
 	@SuppressWarnings("unused")
+	/**
+	 * Used to set the Y coordinate of the selectable.
+	 * @param y The coordinate to set.
+	 */
 	public void setY(int y) { }
 	
+	/**
+	 * Performs the loading on the Y coordinate that the selectable
+	 * should be at. Checks for anchors (both in data and in DisplayAnchor.anchors)
+	 * and saved coordinates in Data. Defaults to ConfigHUD.margin if no
+	 * saved value is found.
+	 * @return The Y coordinate the selectable should be set to.
+	 */
 	public int loadY() {
 
 		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
@@ -383,82 +365,22 @@ public class Selectable {
 		}
 		return ConfigHUD.margin;
 	}
-	
-	/*
-	public int loadY() { 
-		
-		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
-		
-		// This checks if there is a registered anchor.
-		// There could still be one saved as text in the file!
-		if (DisplayAnchor.anchors.get(this) != null) {
-			DisplayAnchor anchor = DisplayAnchor.anchors.get(this);
-			
-			// Directional support and adjustment.
-			if (anchor.direction == 'd') {
-				return anchor.parent.getY() + anchor.parent.getH() + ConfigHUD.margin;
-			} else if (anchor.direction == 'u') {
-				return anchor.parent.getY() - anchor.parent.getH() - ConfigHUD.margin;
-			}
-		}
-		
-		// This checks this text file for saved values.
-		if (Data.get(this.toString() + ".y") != null) {
-			
-			// The saved coordinate.
-			String savedY = Data.get(this.toString() + ".y");
-			
-			// Occasionally, a glitch in the matrix occurs and it saves as --#.
-			// This is just to prevent a terrible, horrible crash.
-			if (savedY.startsWith("--")) {
-				FMLLog.warning("[MCPVP] Force resetting Y coord of block \"%s\" due to incorrect saved coordinate.", this);
-				Data.put(this.toString() + ".y", "" + 0);
-				return ConfigHUD.margin;
-			
-			// This supports saved anchors in the format of "a.ParentBlockName.AnchorDirectionChar"
-			} else if (savedY.startsWith("a.")) {
-				
-				// Establish an anchor.
-				this.anchorTo(
-						Selectable.getSelectable(savedY.split("\\.")[1]), // The parent selectable.
-						savedY.split("\\.")[2].charAt(0)); // The direction char.
-				
-				// Return ConfigHUD.margin because on the next tick, the first check for anchors will catch it anyway.
-				return ConfigHUD.margin;
-				
-			}
-			
-			// This is the "default" return value.
-			int newY = ConfigHUD.margin;
-			
-			// Use a regex check to make sure we don't parse a non-integer number.
-			if (savedY.matches("\\d+"))
-				
-				// Parse the found value into an integer.
-				// The number could be negative, so it's not returned yet.
-				newY =  Integer.parseInt(savedY);
-			
-			// Support for negative numbers, i.e. subtracting from the edges.
-			if (newY <= 0 || savedY.startsWith("-")) {
-				
-				// Subtract the total height and the found value from the height of the screen.
-				return res.getScaledHeight() - this.getH() - padding - Math.abs(newY);
-			} else {
-				
-				// Return the positive (literal) stored Y.
-				return newY;
-			}
-		} else {
-			return ConfigHUD.margin;
-		}
-		
-	}
-	*/
-	
+
+	/**
+	 * @return The calculated width of the selectable.
+	 */
 	public int getW() { return -1; }
 	
+	/**
+	 * @return The calculated height of the selectable.
+	 */
 	public int getH() { return -1; }
 	
+	/**
+	 * Creates a {@link DisplayAnchor} between two selectables.
+	 * @param parent The selectable to anchor this to.
+	 * @param direction The direction of the anchor. 
+	 */
 	public void anchorTo(Selectable parent, char direction) {
 		if (parent == null) return;
 		DisplayAnchor.anchors.put(this, new DisplayAnchor(parent, this, direction));
@@ -471,8 +393,14 @@ public class Selectable {
 		}
 	}
 	
+	/**
+	 * @return The server that this selectable should show during.
+	 */
 	public Server getServer() { return Server.ALL; }
 
+	/**
+	 * @return The state that this selectable should show during.
+	 */
 	public State getState() { return DummyState.NONE; }
 
 }

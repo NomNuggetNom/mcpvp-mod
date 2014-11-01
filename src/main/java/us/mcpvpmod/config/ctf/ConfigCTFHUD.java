@@ -52,7 +52,7 @@ public class ConfigCTFHUD extends DummyModContainer {
         
     	prop = config.get(CATEGORY_GENERAL, "renderPre", new String[]{
     			
-    			"---#b##u#CTF",
+    			"---#b##u#CTF Pre",
     			"#gold##i#Class #gray#>> #white#{class}",
     			"#gold##i#Map #gray#>> #white#{map}"
     			
@@ -63,7 +63,7 @@ public class ConfigCTFHUD extends DummyModContainer {
     	
     	prop = config.get(CATEGORY_GENERAL, "renderPlay", new String[]{
     			
-    			"---#b##u#CTF",
+    			"---#b##u#CTF Play",
     			"#gold##i#Kills #gray#>> #white#{kills} #r#({assists})",
     			"#gold##i#Streak #gray#>> #white#{streak}",
     			"#gold##i#Deaths #gray#>> #white#{deaths}",
@@ -77,7 +77,7 @@ public class ConfigCTFHUD extends DummyModContainer {
     	
     	prop = config.get(CATEGORY_GENERAL, "renderPost", new String[]{
     			
-    			"---#b##u#CTF",
+    			"---#b##u#CTF Post",
     			"#gold##i#Kills #gray#>> #white#{kills} #r#({assists})",
     			"#gold##i#Streak #gray#>> #white#{streak}",
     			"#gold##i#Deaths #gray#>> #white#{deaths}",

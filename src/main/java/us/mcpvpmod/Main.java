@@ -129,4 +129,28 @@ public class Main {
 		FMLLog.warning("[MCPVP] " + string, data);
 	}
     
+	public static void start(String section) {
+		Main.mc.mcProfiler.startSection(section);
+	}
+	
+	public static void start(String... section) {
+		for (String string : section) {
+			start(string);
+		}
+	}
+	
+	public static void start() {
+		start("mcpvp");
+	}
+	
+	public static void end() {
+		Main.mc.mcProfiler.endSection();
+	}
+	
+	public static void end(int n) {
+		for (int i = 0; i < n; i++) {
+			end();
+		}
+	}
+	
 }

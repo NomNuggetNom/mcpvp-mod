@@ -53,10 +53,10 @@ public class ConfigHSHUD extends DummyModContainer {
     	prop = config.get(CATEGORY_GENERAL, "renderPlay", new String[]{
     			
     			"#bold##underline#Headshot", 
-    			"#green##italic#X#gray# >> #r##bold#{x}",
-    			"#green##italic#Y#gray# >> #r##bold#{y}",
-    			"#green##italic#Z#gray# >> #r##bold#{z}",
-    			"#green##italic#F#gray# >> #r##bold#{f}",});
+    			"#green##italic#X#gray# >> #r#{x}",
+    			"#green##italic#Y#gray# >> #r#{y}",
+    			"#green##italic#Z#gray# >> #r#{z}",
+    			"#green##italic#F#gray# >> #r#{f}",});
     	
         prop.setLanguageKey("hs.config.hud.render");
     	renderPlay = prop.getStringList();

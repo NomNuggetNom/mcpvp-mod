@@ -3,10 +3,6 @@ package us.mcpvpmod.gui;
 import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.util.HashMap;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 import javax.imageio.ImageIO;
 
@@ -58,37 +54,11 @@ public class CustomTexture {
 	 */
 	public BufferedImage downloadImage(String imageURL) {
 		try {
+			Main.start("mcpvp", "texture", "dl");
 			URL url = new URL(imageURL);
 			BufferedImage image = ImageIO.read(url);
+			Main.end(3);
 			return image;
-		} catch (Exception e) {
-			Main.l("Unable to download image from %s: %s", imageURL, e.getMessage());
-			return null;
-		}
-	}
-	
-	/**
-	 * Asynchronously downloads the image from the the given URL.
-	 * This method creates a new {@link Callable} to download the image, but execuses the creation of the 
-	 * {@link DynamicTexture} on the main thread.
-	 * @param imageURL The URL to download the image from. 
-	 * @return The location of the DynamicTexture.
-	 */
-	public BufferedImage downloadImageAsync(final String imageURL) {
-		ExecutorService executor = Executors.newSingleThreadExecutor();
-		Callable dl = new Callable() {
-			@Override
-			public Object call() throws Exception {
-				URL url = new URL(imageURL);
-				BufferedImage image = ImageIO.read(url);
-				return image;
-			}
-		};
-		
-		Future future = executor.submit(dl);
-		
-		try {
-			return (BufferedImage)future.get();
 		} catch (Exception e) {
 			Main.l("Unable to download image from %s: %s", imageURL, e.getMessage());
 			return null;

@@ -89,7 +89,7 @@ public class IgnoreResult {
 	 * @param event The event to check.
 	 */
 	public static void checkAll(ClientChatReceivedEvent event) {
-
+		Main.start("ignore");
 		for (int i = ignoreResults.size()-1; i > 0; i--) {
 			ignoreResults.get(i).check(event);
 			
@@ -97,6 +97,7 @@ public class IgnoreResult {
 			if (ignoreResults.get(i).ignore.size() == 0)
 				ignoreResults.remove(i);
 		}
+		Main.end();
 	}
 	
 }
