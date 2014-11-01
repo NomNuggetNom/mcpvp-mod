@@ -17,7 +17,9 @@ Minecraft     | N/A           | 1.7.10       |
 
 #### Credits
 
-- Coder: NomNuggetNom
-- Assistant: TISSIN
-- Other person: Pluto
-- Capes thanks to [DevCapes](https://github.com/jadar/DeveloperCapes) by jadar
+1. NomNuggetNom lead developer
+2. TISSIN, DrPluto, and alexmack929 for coding advice
+3. IanSzot, ImThatGuyPT, and klopapierrolle for translations
+4. Taizzz for giving me temporary mod when needed
+6. ThaRedstoner for the first version of the MCPVP Mod, way back when
+7. jadar for his [DevCapes](https://github.com/jadar/DeveloperCapes) library

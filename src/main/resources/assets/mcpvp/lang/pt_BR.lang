@@ -39,6 +39,78 @@ gui.choose=Escolha o seu menu de server:
 gui.choose.mcpvp=Menu de servers MCPVP
 gui.choose.vanilla=Menu de server Vanilla
 gui.join.region=RegiÃ£o:
+gui.join.rejoin=Re-entrar no útlimo
+gui.join.vanilla=Vanilla
+gui.ingame=Menu da MCPVP
+gui.ingame.button=#b#Opções da MCPVP
+gui.ingame.connect=Conecte-se a um server
+gui.ingame.settings=Editar Configurações
+gui.ingame.hud=Editar Display de Informações
+gui.ingame.help=Ver ajuda
+gui.ingame.codes=Codigos
+gui.tut.finish=Terminar tutorial
+gui.tut.1.1=#i#Bem vindo ao Mod da MCPVP!
+gui.tut.1.2=#green##s#                                                                        
+gui.tut.1.3=Esse é um tutorial bem rápido para te ensinar o básico do mod.
+gui.tut.1.4=Para progredir no tutorial, aperte o botão à sua direita.
+gui.tut.1.5=Você pode voltar apertando o botão à sua esquerda.
+gui.tut.1.6=Você também pode sair a qualquer hora apertando ESC.
+gui.tut.1.7=Não que você iria fazer isso, certo?
+gui.tut.1.8=
+gui.tut.1.9=#b#É altamente recomendado que você use uma GUI pequena
+gui.tut.1.10=#b#e uma janela grande! #r#De outro modo, talvez você não verá tudo.
+gui.tut.1.11=Mude a configuração e re-entre em um server para ver como ficou
+ 
+gui.tut.2.1=#i#Movendo e editando o Display de Informações
+gui.tut.2.2=#cyan##s#                                                                        
+gui.tut.2.3=Você pode editar o Display de Informações apertando #gray#[#green##b#X#gray#]#r# no seu teclado.
+gui.tut.2.4=Essa tecla pode ser alterada no menu de Controles do proprio Minecraft
+gui.tut.2.5=Quando você entrar no modo de edição, você verá isso:
+gui.tut.2.6=
+gui.tut.2.7=      #i#Aperte #gray#[#green##b#ESC#gray#]#white##i# para parar de editar.
+gui.tut.2.8=Clique em algo para selecionar.
+gui.tut.2.9=
+gui.tut.2.10=Para selecionar um item, clique nele. Para mover use 
+gui.tut.2.11=as setas do seu teclado. Você pode segurar #gray#[#green##b#SHIFT#gray#]#r# para mover uma coisa 10 pixels, ou
+gui.tut.2.12=#gray#[#green##b#CTRL#gray#]#r# para mover o item para o canto da tela. Tente você mesmo:
+ 
+gui.tut.3.1=#i#Configuração
+gui.tut.3.2=#purple##s#                                                                        
+gui.tut.3.3=Uma das melhores coisas desse mod é a habilidade de
+gui.tut.3.4=poder mudar TUDO. Você pode editar suas configs. de vários modos
+gui.tut.3.5=
+gui.tut.3.6=1. Aperte #gray#[#green##b#C#gray#]#r# em jogo (não agora).      
+ 
+gui.tut.3.7=2. Aprte #gray#[#green##b#ESC#gray#]#r#, seleciona Opções da MCPVP, e clique Editar Configurações
+gui.tut.3.8=3. Do menu principal aperte Mods > MCPVP > Config    
+gui.tut.3.9=
+gui.tut.3.10=Quando você chegar lá, você irá pode mudar tudo! Você pode percerber
+gui.tut.3.11=algumas coisas estranhas, tipo "\#red\#" ou "{ip}".
+gui.tut.3.12=Esses são argumentos especiais
+gui.tut.3.13=e eles variam.
+gui.tut.3.14=
+gui.tut.3.15=#b##u#PROTIP: Para ter mais informações sobre algo nas configurações,
+gui.tut.3.16=#b##u#deixe seu mouse em cima da coisa para ver mais!
+ 
+gui.tut.4.1=#i#Formatação com os argumentos
+gui.tut.4.2=#gold##s#                                                                        
+gui.tut.4.3=Os argumentos são coisas que vão ser mostradas na tela
+gui.tut.4.4=Por exemplo, {x} iria
+gui.tut.4.5=mostrar sua coordenada X. O mesmo para {z} e {y}.
+gui.tut.4.6=Os argumentos podem ser achados em: #gray#[#green##b#ESC#gray#]#r# > Opções da MCPVP > Codigos.
+gui.tut.4.7=
+gui.tut.4.8=Os códigos de cores servem para fazer a vida ser mais bonita
+gui.tut.4.9=e fazer o texto colorido, sublilhado ou riscado.
+gui.tut.4.10=Para fazer isso, escreva: \#nome_da_cor\#.
+gui.tut.4.11=Os argumentos podem ser achados em: #gray#[#green##b#ESC#gray#]#r# > Opções da MCPVP > Codigos.
+gui.tut.4.12=
+gui.tut.4.13=Exemplo:
+gui.tut.4.14=\\#green\\#FPS: \\#b\\#{fps} #gray#==>#r# #green#FPS: #b#{{fps}}
+ 
+key.categories.mcpvp=MCPVP
+key.openConfigAbrir config
+key.moveBlocks=Editar GUI
+key.showHelp=Ver ajuda
  
  
 <!-- =========== -->
@@ -103,6 +175,9 @@ config.sab.title=Sabotage Configuration
 config.hg=Hardcore Games
 config.hg.tooltip=Opcoes de configuracÃ£o para Hardcore Games
 config.hg.title=ConfiguracÃ£o Hardcore Games
+ config.hs=Headshot
+config.hs.tooltip=Opções de configuração para o Headshot
+config.hs.title=Configuração do Headshot
  
 <!-- ALERTS -->
 config.alerts.title=Alertas

@@ -48,6 +48,7 @@ gui.ingame.settings=Edit Settings
 gui.ingame.hud=Edit Heads up Display
 gui.ingame.help=View Help
 gui.ingame.codes=Codes
+
 gui.tut.finish=Finish Tutorial
 gui.tut.1.1=#i#Welcome to the MCPVP Mod!
 gui.tut.1.2=#green##s#                                                                         
@@ -249,7 +250,7 @@ config.hud.portionPosition=This dictates where the potion's strength and time wi
 config.hud.potionPosition.m.l=Right of the Potions
 config.hud.potionPosition.m.r=Left of the Potions
 config.hud.fixSkins=Fix Skins (laggy)
-config.hud.fixSkins.tooltip=WARNING: THIS CAUSES LAG. This forces skins to be fixed on MCPVP Servers. Expect frame drops.
+config.hud.fixSkins.tooltip=WARNING: THIS CAUSES LAG. This forces skins to be fixed on MCPVP Servers. Expect frame drops and stuttering. There's nothing I can do about this :(.
 config.hud.renderBG=Render Backgrounds
 config.hud.renderBG.tooltip=Whether or not to render the black background behind info blocks.
 config.hud.margin=Margin
