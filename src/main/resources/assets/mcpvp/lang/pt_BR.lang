@@ -39,70 +39,70 @@ gui.choose=Escolha o seu menu de server:
 gui.choose.mcpvp=Menu de servers MCPVP
 gui.choose.vanilla=Menu de server Vanilla
 gui.join.region=Região:
-gui.join.rejoin=Re-entrar no �tlimo
+gui.join.rejoin=Re-entrar no útlimo
 gui.join.vanilla=Vanilla
 gui.ingame=Menu da MCPVP
-gui.ingame.button=#b#Op��es da MCPVP
+gui.ingame.button=#b#Opções da MCPVP
 gui.ingame.connect=Conecte-se a um server
-gui.ingame.settings=Editar Configura��es
-gui.ingame.hud=Editar Display de Informa��es
+gui.ingame.settings=Editar Configurações
+gui.ingame.hud=Editar Display de Informações
 gui.ingame.help=Ver ajuda
 gui.ingame.codes=Codigos
 gui.tut.finish=Terminar tutorial
 gui.tut.1.1=#i#Bem vindo ao Mod da MCPVP!
 gui.tut.1.2=#green##s#                                                                        
-gui.tut.1.3=Esse � um tutorial bem r�pido para te ensinar o b�sico do mod.
-gui.tut.1.4=Para progredir no tutorial, aperte o bot�o � sua direita.
-gui.tut.1.5=Voc� pode voltar apertando o bot�o � sua esquerda.
-gui.tut.1.6=Voc� tamb�m pode sair a qualquer hora apertando ESC.
-gui.tut.1.7=N�o que voc� iria fazer isso, certo?
+gui.tut.1.3=Esse é um tutorial bem rápido para te ensinar o básico do mod.
+gui.tut.1.4=Para progredir no tutorial, aperte o botão à sua direita.
+gui.tut.1.5=Você pode voltar apertando o botão à sua esquerda.
+gui.tut.1.6=Você também pode sair a qualquer hora apertando ESC.
+gui.tut.1.7=Não que você iria fazer isso, certo?
 gui.tut.1.8=
-gui.tut.1.9=#b#� altamente recomendado que voc� use uma GUI pequena
-gui.tut.1.10=#b#e uma janela grande! #r#De outro modo, talvez voc� n�o ver� tudo.
-gui.tut.1.11=Mude a configura��o e re-entre em um server para ver como ficou
+gui.tut.1.9=#b#É altamente recomendado que você use uma GUI pequena
+gui.tut.1.10=#b#e uma janela grande! #r#De outro modo, talvez você não verá tudo.
+gui.tut.1.11=Mude a configuração e re-entre em um server para ver como ficou
  
-gui.tut.2.1=#i#Movendo e editando o Display de Informa��es
+gui.tut.2.1=#i#Movendo e editando o Display de Informações
 gui.tut.2.2=#cyan##s#                                                                        
-gui.tut.2.3=Voc� pode editar o Display de Informa��es apertando #gray#[#green##b#X#gray#]#r# no seu teclado.
+gui.tut.2.3=Você pode editar o Display de Informações apertando #gray#[#green##b#X#gray#]#r# no seu teclado.
 gui.tut.2.4=Essa tecla pode ser alterada no menu de Controles do proprio Minecraft
-gui.tut.2.5=Quando voc� entrar no modo de edi��o, voc� ver� isso:
+gui.tut.2.5=Quando você entrar no modo de edição, você verá isso:
 gui.tut.2.6=
 gui.tut.2.7=      #i#Aperte #gray#[#green##b#ESC#gray#]#white##i# para parar de editar.
 gui.tut.2.8=Clique em algo para selecionar.
 gui.tut.2.9=
-gui.tut.2.10=Para selecionar um item, clique nele. Para mover use 
-gui.tut.2.11=as setas do seu teclado. Voc� pode segurar #gray#[#green##b#SHIFT#gray#]#r# para mover uma coisa 10 pixels, ou
-gui.tut.2.12=#gray#[#green##b#CTRL#gray#]#r# para mover o item para o canto da tela. Tente voc� mesmo:
+gui.tut.2.10=Para selecionar um item, clique nele. Para mover use
+gui.tut.2.11=as setas do seu teclado. Você pode segurar #gray#[#green##b#SHIFT#gray#]#r# para mover uma coisa 10 pixels, ou
+gui.tut.2.12=#gray#[#green##b#CTRL#gray#]#r# para mover o item para o canto da tela. Tente você mesmo:
  
-gui.tut.3.1=#i#Configura��o
+gui.tut.3.1=#i#Configuração
 gui.tut.3.2=#purple##s#                                                                        
-gui.tut.3.3=Uma das melhores coisas desse mod � a habilidade de
-gui.tut.3.4=poder mudar TUDO. Voc� pode editar suas configs. de v�rios modos
+gui.tut.3.3=Uma das melhores coisas desse mod é a habilidade de
+gui.tut.3.4=poder mudar TUDO. Você pode editar suas configs. de vários modos
 gui.tut.3.5=
-gui.tut.3.6=1. Aperte #gray#[#green##b#C#gray#]#r# em jogo (n�o agora).      
+gui.tut.3.6=1. Aperte #gray#[#green##b#C#gray#]#r# em jogo (não agora).      
  
-gui.tut.3.7=2. Aprte #gray#[#green##b#ESC#gray#]#r#, seleciona Op��es da MCPVP, e clique Editar Configura��es
+gui.tut.3.7=2. Aprte #gray#[#green##b#ESC#gray#]#r#, seleciona Opções da MCPVP, e clique Editar Configurações
 gui.tut.3.8=3. Do menu principal aperte Mods > MCPVP > Config    
 gui.tut.3.9=
-gui.tut.3.10=Quando voc� chegar l�, voc� ir� pode mudar tudo! Voc� pode percerber
+gui.tut.3.10=Quando você chegar lá, você irá pode mudar tudo! Você pode percerber
 gui.tut.3.11=algumas coisas estranhas, tipo "\#red\#" ou "{ip}".
-gui.tut.3.12=Esses s�o argumentos especiais
+gui.tut.3.12=Esses são argumentos especiais
 gui.tut.3.13=e eles variam.
 gui.tut.3.14=
-gui.tut.3.15=#b##u#PROTIP: Para ter mais informa��es sobre algo nas configura��es,
+gui.tut.3.15=#b##u#PROTIP: Para ter mais informações sobre algo nas configurações,
 gui.tut.3.16=#b##u#deixe seu mouse em cima da coisa para ver mais!
  
-gui.tut.4.1=#i#Formata��o com os argumentos
+gui.tut.4.1=#i#Formatação com os argumentos
 gui.tut.4.2=#gold##s#                                                                        
-gui.tut.4.3=Os argumentos s�o coisas que v�o ser mostradas na tela
+gui.tut.4.3=Os argumentos são coisas que vão ser mostradas na tela
 gui.tut.4.4=Por exemplo, {x} iria
 gui.tut.4.5=mostrar sua coordenada X. O mesmo para {z} e {y}.
-gui.tut.4.6=Os argumentos podem ser achados em: #gray#[#green##b#ESC#gray#]#r# > Op��es da MCPVP > Codigos.
+gui.tut.4.6=Os argumentos podem ser achados em: #gray#[#green##b#ESC#gray#]#r# > Opções da MCPVP > Codigos.
 gui.tut.4.7=
-gui.tut.4.8=Os c�digos de cores servem para fazer a vida ser mais bonita
+gui.tut.4.8=Os códigos de cores servem para fazer a vida ser mais bonita
 gui.tut.4.9=e fazer o texto colorido, sublilhado ou riscado.
 gui.tut.4.10=Para fazer isso, escreva: \#nome_da_cor\#.
-gui.tut.4.11=Os argumentos podem ser achados em: #gray#[#green##b#ESC#gray#]#r# > Op��es da MCPVP > Codigos.
+gui.tut.4.11=Os argumentos podem ser achados em: #gray#[#green##b#ESC#gray#]#r# > Opções da MCPVP > Codigos.
 gui.tut.4.12=
 gui.tut.4.13=Exemplo:
 gui.tut.4.14=\\#green\\#FPS: \\#b\\#{fps} #gray#==>#r# #green#FPS: #b#{{fps}}
@@ -111,7 +111,6 @@ key.categories.mcpvp=MCPVP
 key.openConfigAbrir config
 key.moveBlocks=Editar GUI
 key.showHelp=Ver ajuda
- 
  
 <!-- =========== -->
 <!-- ===-----=== -->
@@ -141,6 +140,9 @@ server.raid.name=Raid
 server.raid.ip=raid.mcpvp.com
 server.hg2.name=Phoenix Hunger Games
 server.hg2.ip=Phoenix Hunger Games
+config.hs=Headshot
+config.hs.tooltip=Opções de configuração para o Headshot
+config.hs.title=Configuração do Headshot
 server.none.name=None
 server.none.ip=None
  
@@ -175,9 +177,6 @@ config.sab.title=Sabotage Configuration
 config.hg=Hardcore Games
 config.hg.tooltip=Opcoes de configuracão para Hardcore Games
 config.hg.title=Configuracão Hardcore Games
- config.hs=Headshot
-config.hs.tooltip=Op��es de configura��o para o Headshot
-config.hs.title=Configura��o do Headshot
  
 <!-- ALERTS -->
 config.alerts.title=Alertas
@@ -185,7 +184,9 @@ config.alerts.tooltip=Aqui você pode configurar todos os alertas, incluindo o t
 config.alerts.online=Amigos Online
 config.alerts.online.tooltip=O alerta mostrado quando um amigo está online
 config.alerts.online.default=#white#Hora da Festa! ||| {player}#gray# agora está online. ||| head
- 
+config.alerts.showAlerts=Mostrar alertar
+config.alerts.showAlerts.tooltip=Um switch global para mostar alertas
+
 <!-- CHAT -->
 config.chat.title=Controles do Chat
 config.chat.tooltip=Opcoes para o chat
@@ -197,7 +198,9 @@ config.chat.splitChat=Enviar para o segundo chat
 config.chat.splitChat.tooltip=Se uma mensagem tem uma palavra desta lista, ela será mandada para o segundo chat
 config.chat.movekNoHax=Mover mensagens de deteccão de hack
 config.chat.movekNoHax.tooltip=Move as mensagens de deteccão de hack para o segundo chat
- 
+config.chat.movePMs=Mostar PMs no segundo chat
+config.chat.movePMs.tooltip=Isso controla se as PMs devem ser mandadas para o segundo chat
+
 <!-- FRIENDS -->
 config.friends.title=Lista de Amigos
 config.friends.tooltip=Opcoes sobre a lista de amigos. É aqui que você adiciona amigos
@@ -239,9 +242,30 @@ config.hud.alignHeights=Alinhar altura
 config.hud.alignHeights.tooltip=Se deve ou não alinhar a altura das caixas de informacoes
 config.hud.medalTimer=Cronômetro para Medalha
 config.hud.medalTimer.tooltip=O tempo em segundos que uma medalha será mostrada
-config.hud.armorMode=Display de Armadura
-config.hud.armorMode.tooltip=O modo que o display da armadura será. Mostrar Durabilidade restante irá  mostrar"123"; Mostrar Durabilidade Restante do Total irá mostrar "123/456"; Não Mostrar Durabilidade irá fazer apenas o item aparecer
- 
+config.hud.showArmor=Mostar Armadura
+config.hud.showArmor.tooltip=Mostar ou não o display com a durabilidade da sua armadura
+config.hud.armorMode=Modo do Display de Armadura
+config.hud.armorMode.tooltip=O modo de como é mostrado. "Mostrar Durabilidade restante" irá mostrar "123"; "Mostar Durabilidade Restante do Total" irá mostrar "123/456"; "Não mostar durabilidade" irá apenas mostar o item.
+config.hud.armorMode.m.show=Mostrar Durabilidade restante
+config.hud.armorMode.m.total=Mostrar Durabilidade Restante do Total
+config.hud.armorMode.m.dont=Não mostrar durabilidade
+config.hud.armorPosition=Posição da Durabilidade
+config.hud.armorPosition.tooltip=Isso dita onde os números irão aparecer. Se você usa "Não mostrar durabilidade" então nem se preocupe sobre isso.
+config.hud.armorPosition.m.l=Esquerda
+config.hud.armorPosition.m.r=Direita
+config.hud.showPotion=Mostrar Efeitos de Poções
+config.hud.showPotion.tooltip=Se deve ou não mostrar os efeitos de poção. Irá mostrar o ícone da poção, a força, e o tempo restante.
+config.hud.potionMode=Modo de Display da Poção
+config.hud.potionMode.tooltip=O modo de como deve ser mostado o display de poção. "Mostrar Tempo Restante" irá mostrar o tempo restante para a poção acabar e a força dela; "Não mostar tempo restante" somente mosta o ícone da poção.
+config.hud.potionMode.m.show=Mostrar Tempo Restante
+config.hud.potionMode.m.dont=Não mostrar tempo restante
+config.hud.potionPosition=Posição das Poções
+config.hud.portionPosition=Isso indica onde deve ser mostrado os números das poções
+config.hud.potionPosition.m.l=Esqueda
+config.hud.potionPosition.m.r=Direita
+config.hud.fixSkins=Arrumar skins (pode causa lag)
+config.hud.fixSkins.tooltip=AVISO: ISSO CAUSA LAG. Isso força as skins a serem arrumadas nos servers da MCPVP. Você terá quedas de FPS.
+
 <!-- SELECT -->
 config.select.title=Auto-selecão
 config.select.tooltip=Opcoes para auto-selecão.
@@ -279,7 +303,13 @@ raid.config.hud.render.tooltip=A informacão é mostrada na tela enquanto joga R
 raid.config.alerts.deposit=Deposito
 raid.config.alerts.deposit.tooltip=O alerta ativaod quando você deposita gold
 raid.config.alerts.deposit.default=#white#Deposito concluído ||| #gray#Você agora tem #green#{balance} #gray#ouro(s) no banco ||| gold_ingot
- 
+raid.config.alerts.balance=Mudança no Salso
+raid.config.alerts.balance.tooltip=O alerta mostrado quando você deposita ou saca dinheiro
+raid.config.alerts.balance.default=Saldo mudado ||| #gray#Você agora tem #green#{balance} #gray#ouro no banco ||| gold_ingot
+raid.config.alerts.raid=Sendo Roubado
+raid.config.alerts.raid.tooltip=O alerta mostrado quando alguém está roubando sua base
+raid.config.alerts.raid.default=#white#Se defenda! ||| #red#Você está sendo roubado pelo {player}! ||| iron_sword
+
 <!-- ===-=== -->
 <!-- = CTF = -->
 <!-- ===-=== -->
