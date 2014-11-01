@@ -186,6 +186,7 @@ public class InfoBlock extends Selectable {
 	 * Updates information and dimensions then draws.
 	 */
 	public void display() {
+		Main.section("ib");
 		f = Main.mc.fontRenderer;
 		res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
 		
@@ -195,6 +196,7 @@ public class InfoBlock extends Selectable {
 		this.setX(this.loadX());
 		this.setY(this.loadY());
 		this.draw();
+		Main.end();
 	}
 	
 	/**
@@ -473,7 +475,7 @@ public class InfoBlock extends Selectable {
 		boolean anchorRight = false;
 		boolean anchorLeft = false;
 		
-		for (Selectable selectable : Selectable.getSelectables(this.getServer(), this.getState())) {
+		for (Selectable selectable : this.getShowing()) {
 			if (selectable.toString().equals(this.title)) continue;
 			if (anchorTop || anchorBottom || anchorRight || anchorLeft) continue;
 			

@@ -37,18 +37,6 @@ public class Selectable {
 		return toReturn;
 	}
 	
-	public static ArrayList<Selectable> getSelectables(@SuppressWarnings("unused") Server server, @SuppressWarnings("unused") State state) {
-		ArrayList<Selectable> toReturn = new ArrayList<Selectable>();
-
-		for (Selectable selectable : getShowing()) {
-			if (selectable.getServer() != Server.NONE && selectable.getState() != DummyState.NONE) {
-				toReturn.add(selectable);
-			}
-		}
-
-		return toReturn;
-	}
-	
 	public static void put(String id, Selectable selectable) {
 		selectables.put(id, selectable);
 	}
@@ -68,7 +56,7 @@ public class Selectable {
 		boolean anchorRight = false;
 		boolean anchorLeft = false;
 		
-		for (Selectable selectable : this.getSelectables(this.getServer(), this.getState())) {
+		for (Selectable selectable : this.getShowing()) {
 			if (selectable.toString().equals(this.toString())) continue;
 			if (anchorTop || anchorBottom || anchorRight || anchorLeft) continue;
 			
@@ -137,43 +125,6 @@ public class Selectable {
 				anchorLeft?0:1, anchorLeft?1:0, 0, 1);
 		
 	}
-	
-	/*
-	public void move(char direction, int moveBy, boolean ctrl) {
-		
-		DisplayAnchor.anchors.remove(this);
-		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
-		
-		System.out.println(direction);
-		
-		// Move left
-		if (direction == 'l') 
-			this.setX(this.getX() - moveBy - padding < 0 ? 
-					0 + padding : 
-					this.getX() - moveBy);
-		
-		// Move right
-		if (direction == 'r')
-			this.setX(this.getX() + this.getW() + moveBy + padding > res.getScaledWidth() ? 
-					res.getScaledWidth() - getW() - padding : 
-					this.getX() + moveBy);
-
-		// Move up
-		if (direction == 'u')
-			this.setY(this.getY() - moveBy - padding < 0 ? 
-					padding : 
-					this.getY() - moveBy);
-
-		// Move down
-		if (direction == 'd')
-			this.setY(this.getY() + moveBy + padding + this.getH() > res.getScaledHeight() ? 
-					res.getScaledHeight() - this.getH() - padding : 
-					this.getY() + moveBy);
-		
-		Data.put(this.toString() + ".x", "" + this.getX());
-		Data.put(this.toString() + ".y", "" + this.getY());
-	}
-	*/
 	
 	public void move(char direction, int moveBy, boolean ctrl) {
 		
@@ -270,7 +221,6 @@ public class Selectable {
 			
 			// Occasionally, a glitch in the matrix occurs and it saves as --#.
 			// This is just to prevent a terrible, horrible crash.
-
 			if (savedX.startsWith("--")) {
 				FMLLog.warning("[MCPVP] Force resetting X coord of block \"%s\" due to incorrect saved coordinate.", this);
 				Data.put(this.toString() + ".x", "" + 0);
