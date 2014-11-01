@@ -307,21 +307,29 @@ public class GuiSecondChat extends Gui
     	
     	String message = event.message.getUnformattedText();
     	
+    	// Support for the config.
     	for (String string : ConfigChat.sendToSecondChat) {
+    		if (string.equals("")) continue;
+    		
+    		Main.l("\"%s\" was sent to second chat based on config", string);
     		if (message.contains(string)) return true;
     	}
     	
+    	// Move hack detection.
     	if (ConfigChat.movekNoHax) {
     		for (String string : this.k) {
         		if (message.matches(string)) {
+            		Main.l("\"%s\" was sent to second chat based on config (hack detection)", string);
         			return true;
         		}
     		}
     	}
     	
+    	// Move PMs.
     	if (ConfigChat.movePMs) {
     		if (message.contains(Main.mc.thePlayer.getDisplayName() + " -> ")
     				|| message.contains(" -> " + Main.mc.thePlayer.getDisplayName())) {
+    			Main.l("\"%s\" was sent to second chat based on config (move pms)", message);
     			return true;
     		}
     	}

@@ -68,7 +68,7 @@ public class ConfigChat extends DummyModContainer {
     	removeWords = prop.getStringList();
     	propOrder.add(prop.getName());
     	
-    	prop = config.get(CATEGORY_GENERAL, "splitChat", new String[]{"->"});
+    	prop = config.get(CATEGORY_GENERAL, "splitChat", new String[]{""});
         prop.setLanguageKey("config.chat.splitChat");
     	sendToSecondChat = prop.getStringList();
     	propOrder.add(prop.getName());

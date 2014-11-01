@@ -53,7 +53,7 @@ public class ConfigMazeSelect extends DummyModContainer {
         
         Property prop;
         
-        prop = config.get(CATEGORY_GENERAL, "selectMode", "Select On Join", Format.s("maze.config.select.selectMode.tooltip"), 
+        prop = config.get(CATEGORY_GENERAL, "selectMode", Format.s("maze.config.select.selectMode.m.dont"), Format.s("maze.config.select.selectMode.tooltip"), 
         		new String[]{Format.s("maze.config.select.selectMode.m.join"), Format.s("maze.config.select.selectMode.m.start"), Format.s("maze.config.select.selectMode.m.dont")});
         prop.setLanguageKey("maze.config.select.selectMode");
     	selectMode = prop.getString();

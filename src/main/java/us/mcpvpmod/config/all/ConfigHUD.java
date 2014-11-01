@@ -68,7 +68,7 @@ public class ConfigHUD extends DummyModContainer {
     	showArmor = prop.getBoolean();
     	propOrder.add(prop.getName());
         
-        prop = config.get(CATEGORY_GENERAL, "armorMode", Format.s("config.hud.armorMode.m.show"), Format.s("config.hud.armorMode"), 
+        prop = config.get(CATEGORY_GENERAL, "armorMode", Format.s("config.hud.armorMode.m.dont"), Format.s("config.hud.armorMode"), 
         		new String[]{Format.s("config.hud.armorMode.m.show"), Format.s("config.hud.armorMode.m.total"), Format.s("config.hud.armorMode.m.dont")});
         prop.setLanguageKey("config.hud.armorMode");
     	armorMode = prop.getString();
@@ -91,8 +91,8 @@ public class ConfigHUD extends DummyModContainer {
     	potionMode = prop.getString();
     	propOrder.add(prop.getName());
     	
-        prop = config.get(CATEGORY_GENERAL, "potionPosition",  Format.s("config.hud.potionPosition.m.l"), Format.s("config.hud.armorPosition"), 
-        		new String[]{Format.s("config.hud.potionPosition.m.l"), Format.s("config.hud.potionPosition.m.r")});
+        prop = config.get(CATEGORY_GENERAL, "potionPosition",  Format.s("config.hud.potionPosition.m.r"), Format.s("config.hud.armorPosition"), 
+        		new String[]{Format.s("config.hud.potionPosition.m.r"), Format.s("config.hud.potionPosition.m.l")});
         prop.setLanguageKey("config.hud.potionPosition");
     	potionPosition = prop.getString();
     	propOrder.add(prop.getName());
