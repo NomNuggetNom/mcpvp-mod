@@ -26,6 +26,7 @@ public class TutScreen4 extends TutorialScreen {
 	
 	@Override
 	public void drawScreen(int p_73863_1_, int p_73863_2_, float p_73863_3_) {
+		super.drawDefaultBackground();
 		setStrings();
 		int y = this.height/7;
 		for (String string : this.strings) {

@@ -25,6 +25,7 @@ public class TutScreen1 extends TutorialScreen {
 	
 	@Override
 	public void drawScreen(int p_73863_1_, int p_73863_2_, float p_73863_3_) {
+		super.drawDefaultBackground();
 		setStrings();
 		int y = this.height/7;
 		for (String string : this.strings) {
@@ -32,8 +33,6 @@ public class TutScreen1 extends TutorialScreen {
 			Draw.centeredString(Format.process(string), 0, y, this.width, 0xFFFFFF, true);
 			y += 11;
 		}
-		//String color = SimpleTimer.value ? "#red#" : "#orange#";
-		//Draw.centeredString(Format.process(color + toProgress), 0, this.height - 100, this.width, 0xFFFFF, true);
 		super.drawScreen(p_73863_1_, p_73863_2_, p_73863_3_);
 	}
 	
