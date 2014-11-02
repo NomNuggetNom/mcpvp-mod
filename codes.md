@@ -35,14 +35,22 @@ To use a variable, place it in curly brackets, like so: `{variable}`.
 - `map` - The map you're playing on.
 - `game` - The game number out of the three game tournament.
 - `free day` - Will render "It's free day!" on free day.
-- `blue wins` - Number of blue wins in the three game tournament.
-- `blue caps` - Number of captures that blue team has.
-- `blue flag` - The location of blue team's flag.
-- `blue players` - The number of players on blue team.
-- `red wins` - Number of red wins in the three game tournament.
-- `red caps` - Number of captures that red team has.
-- `red flag` - The location of red team's flag.
-- `red players` - The number of players on red team.
+- `blue-wins` - Number of blue wins in the three game tournament.
+- `blue_wins` - Number of blue wins in the three game tournament.
+- `blue-caps` - Number of captures that blue team has.
+- `blue_caps` - Number of captures that blue team has.
+- `blue-flag` - The location of blue team's flag.
+- `blue_flag` - The location of blue team's flag.
+- `blue-players` - The number of players on blue team.
+- `blue_players` - The number of players on blue team.
+- `red-wins` - Number of red wins in the three game tournament.
+- `red_wins` - Number of red wins in the three game tournament.
+- `red-caps` - Number of captures that red team has.
+- `red_caps` - Number of captures that red team has.
+- `red-flag` - The location of red team's flag.
+- `red_flag` - The location of red team's flag.
+- `red-players` - The number of players on red team.
+- `red_players` - The number of players on red team.
 - `team` - The team you're on.
 - `winner` - The winner of the last game.
 
