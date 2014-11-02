@@ -22,6 +22,10 @@ public class TutScreen2 extends TutorialScreen {
 	
 	public TutScreen2(String name, String content, TutorialScreen previous, TutorialScreen next) {
 		super(name, content, previous, next);
+		moveable = new InfoBlock(Format.process("#b##u#Move me!"),
+				new ArrayList<String>(Arrays.asList("I can be moved anywhere on your screen!", "#b#Don't hit ESC or you'll exit the tutorial!", "Click again to de-select.")), 
+				Server.ALL, 
+				DummyState.NONE);
 		Data.put(Format.process("#b##u#Move me!.x"), "" + (this.width/2 - InfoBlock.get("#b##u#Move me!").getW()/2));
 		Data.put(Format.process("#b##u#Move me!.y"), "" + (this.height - 235));
 	}
