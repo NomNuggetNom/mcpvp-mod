@@ -9,7 +9,6 @@ import net.minecraftforge.common.MinecraftForge;
 import org.lwjgl.input.Keyboard;
 
 import us.mcpvpmod.config.RawConfig;
-import us.mcpvpmod.config.all.ConfigMisc;
 import us.mcpvpmod.events.Events;
 import us.mcpvpmod.gui.ArmorDisplay;
 import us.mcpvpmod.gui.InfoBlock;
@@ -18,7 +17,6 @@ import us.mcpvpmod.gui.screen.GuiSecondChat;
 import us.mcpvpmod.json.ServerJSON;
 import us.mcpvpmod.json.StreamJSON;
 import us.mcpvpmod.json.VersionJSON;
-import us.mcpvpmod.timers.PingTimer;
 import us.mcpvpmod.timers.SimpleTimer;
 import us.mcpvpmod.timers.UpdateTimer;
 import us.mcpvpmod.util.Data;
@@ -45,13 +43,15 @@ public class Main {
 	/** The name of the mod is displayed on the configuration screen. */
 	public static final String name = "MCPVP Mod";
 	/** The version of the mod. */
-	public static final String modVersion = "2.0.0";
+	public static final String modVersion = "2.0.1";
 	/** The version of MC that the mod was compiled for. */
 	public static final String mcVersion = "1.7.10";
 	/** The version of Forge that the mod was compiled for. */
 	public static final String forgeVersion = "10.13.0.1180";
 	/** A reference to the GuiFactory. Necessary for loading the configuration screen. */
 	public static final String guiFactory = "us.mcpvpmod.config.GuiFactory";
+	/** Whether or not this mod is a beta release. */
+	public static final boolean isBeta = true;
 	
 	@Instance
 	/** Used by Forge to recognize this as a Forge mod. */
