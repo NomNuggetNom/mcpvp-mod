@@ -17,7 +17,7 @@ public class ConfigMazeHUD extends DummyModContainer {
 	public static String[] renderPlay = new String[1000];
 	public static String[] renderPost = new String[1000];
 
-    public static String fileName = "mcpvp_kit_hud.cfg";
+    public static String fileName = "mcpvp_maze_hud.cfg";
     
     private static Configuration config;
 
