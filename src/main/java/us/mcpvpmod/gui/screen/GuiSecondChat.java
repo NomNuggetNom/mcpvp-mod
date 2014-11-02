@@ -67,11 +67,12 @@ public class GuiSecondChat extends Gui
                     chatOpen = true;
                 }
 
-                float f1 = this.func_146244_h();
-                int i1 = MathHelper.ceiling_float_int(this.func_146228_f() / f1);
+                float scale = this.func_146244_h();
+                //int i1 = MathHelper.ceiling_float_int(this.func_146228_f() / scale);
+                int i1 = this.func_146228_f();
                 GL11.glPushMatrix();
                 GL11.glTranslatef(2.0F, 20.0F, 0.0F);
-                //GL11.glScalef(f1, f1, 1.0F);
+                //GL11.glScalef(scale, scale, 1.0F);
                 int j1;
                 int k1;
                 int i2;
@@ -120,8 +121,10 @@ public class GuiSecondChat extends Gui
 
                                 // Draw ONE BOX for the line of chat.
 
-                                //int xOff = (int) (res.getScaledWidth() - (res.getScaledWidth() * f1));
+                                //System.out.println(scale);
+                                //System.out.println(res.getScaledWidth() * scale);
                                 int xOff = 0;
+                                //int xOff = (int) (res.getScaledWidth() - this.func_146228_f() / scale);
                                 //int yOff = (int) (res.getScaledHeight() - (res.getScaledHeight() * f1));
                                 int yOff = 0;
                                 drawRect(res.getScaledWidth() + xOff, //x1 
