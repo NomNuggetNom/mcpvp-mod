@@ -50,7 +50,7 @@ public class ConfigMisc extends DummyModContainer {
         
         Property prop;
         
-    	prop = config.get(CATEGORY_GENERAL, "pingVar", true);
+    	prop = config.get(CATEGORY_GENERAL, "pingVar", false);
         prop.setLanguageKey("config.misc.pingVar");
     	pingVar = prop.getBoolean();
     	propOrder.add(prop.getName());
