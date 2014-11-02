@@ -14,7 +14,7 @@ public class VarsSab {
 	public static void putVars() {
 		vars.put("karma", "");
 		vars.put("role", InfoSab.formatRole());
-		vars.put("remain", AllVars.get("players"));
+		vars.put("remain", Vars.get("sab:remain"));
 		vars.put("detective", Vars.get("sab:detective"));
 		vars.put("winner", InfoSab.formatWinners());
 	}
