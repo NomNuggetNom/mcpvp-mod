@@ -46,7 +46,9 @@ public class GuiServerList extends GuiScreen {
 		Keyboard.enableRepeatEvents(true);
 		initGuiButtons();
 		Main.serverJson.run();
-		this.serverList = new GuiServerCategory(this, MCPVPServer.getSortedOfType(serverType, serverRegion));
+		this.serverList = new GuiServerCategory(this, 
+				MCPVPServer.getSortedOfType(serverType, serverRegion), 
+				(Server.getServer(serverType).guiLines()+1)*10 + 5);
         this.serverList.registerScrollButtons(this.buttonList, 7, 8);
 
 	}
