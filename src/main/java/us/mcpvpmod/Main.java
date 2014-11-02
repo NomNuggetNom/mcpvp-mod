@@ -9,6 +9,7 @@ import net.minecraftforge.common.MinecraftForge;
 import org.lwjgl.input.Keyboard;
 
 import us.mcpvpmod.config.RawConfig;
+import us.mcpvpmod.config.all.ConfigMisc;
 import us.mcpvpmod.events.Events;
 import us.mcpvpmod.gui.ArmorDisplay;
 import us.mcpvpmod.gui.InfoBlock;
@@ -44,7 +45,7 @@ public class Main {
 	/** The name of the mod is displayed on the configuration screen. */
 	public static final String name = "MCPVP Mod";
 	/** The version of the mod. */
-	public static final String modVersion = "2.0.5";
+	public static final String modVersion = "2.0.0";
 	/** The version of MC that the mod was compiled for. */
 	public static final String mcVersion = "1.7.10";
 	/** The version of Forge that the mod was compiled for. */
@@ -93,16 +94,6 @@ public class Main {
 		
 		// Load up some external settings.
 		RawConfig.load();
-		
-		// Create timers.
-		Timer timer = new Timer();
-		// TODO: Should be as needed. No reason to have it repeating.
-		timer.scheduleAtFixedRate(serverJson, 0, 5*1000L);
-		timer.scheduleAtFixedRate(new StreamJSON(), 0, 30*1000L);
-		timer.scheduleAtFixedRate(new VersionJSON(), 0, 60*60*1000L);
-		timer.scheduleAtFixedRate(new UpdateTimer(), 15*1000, 5*60*1000L);
-		timer.scheduleAtFixedRate(new SimpleTimer(), 0, 1*1000L);
-		timer.scheduleAtFixedRate(new PingTimer(), 15*1000L, 5*1000L);
     }
     	
     @EventHandler
@@ -119,6 +110,16 @@ public class Main {
     
 	@EventHandler
 	public void postInit(@SuppressWarnings("unused") FMLPostInitializationEvent e) {
+
+		// Create timers.
+		Timer timer = new Timer();
+		// TODO: Should be as needed. No reason to have it repeating.
+		timer.scheduleAtFixedRate(serverJson, 0, 5*1000L);
+		timer.scheduleAtFixedRate(new StreamJSON(), 0, 30*1000L);
+		timer.scheduleAtFixedRate(new VersionJSON(), 0, 60*60*1000L);
+		timer.scheduleAtFixedRate(new UpdateTimer(), 15*1000, 5*60*1000L);
+		timer.scheduleAtFixedRate(new SimpleTimer(), 0, 1*1000L);
+		
 	}
 	
 	public static void l(Object string, Object... data) {

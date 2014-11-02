@@ -30,6 +30,7 @@ public class ConfigAll extends CategoryEntry {
         list.add(new DummyCategoryElement(Format.s("config.select.title"), "config.select", AllSelect.class));
         list.add(new DummyCategoryElement(Format.s("config.version.title"), "config.version", AllVersion.class));
         list.add(new DummyCategoryElement(Format.s("config.sounds.title"), "config.sounds", AllSounds.class));
+        list.add(new DummyCategoryElement(Format.s("config.misc.title"), "config.misc", AllMisc.class));
         
         return new GuiConfig(this.owningScreen,
         		list, 
@@ -138,6 +139,21 @@ public class ConfigAll extends CategoryEntry {
 	    protected GuiScreen buildChildScreen() {
 	        return new GuiConfig(this.owningScreen, 
 	                (new ConfigElement(ConfigSounds.getConfig().getCategory(Configuration.CATEGORY_GENERAL))).getChildElements(), 
+	                this.owningScreen.modID, Configuration.CATEGORY_GENERAL, this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart, 
+	                this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart, 
+	                Format.s("config.sounds.title"));
+	    }
+	}
+	
+	public static class AllMisc extends CategoryEntry {
+	    public AllMisc(GuiConfig owningScreen, GuiConfigEntries owningEntryList, IConfigElement prop) {
+	        super(owningScreen, owningEntryList, prop);
+	    }
+	    
+	    @Override
+	    protected GuiScreen buildChildScreen() {
+	        return new GuiConfig(this.owningScreen, 
+	                (new ConfigElement(ConfigMisc.getConfig().getCategory(Configuration.CATEGORY_GENERAL))).getChildElements(), 
 	                this.owningScreen.modID, Configuration.CATEGORY_GENERAL, this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart, 
 	                this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart, 
 	                Format.s("config.sounds.title"));

@@ -2,11 +2,13 @@ package us.mcpvpmod;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Timer;
 
 import us.mcpvpmod.config.all.ConfigAlerts;
 import us.mcpvpmod.config.all.ConfigChat;
 import us.mcpvpmod.config.all.ConfigFriends;
 import us.mcpvpmod.config.all.ConfigHUD;
+import us.mcpvpmod.config.all.ConfigMisc;
 import us.mcpvpmod.config.all.ConfigSelect;
 import us.mcpvpmod.config.all.ConfigSounds;
 import us.mcpvpmod.config.all.ConfigVersion;
@@ -52,6 +54,7 @@ import us.mcpvpmod.game.state.StateKit;
 import us.mcpvpmod.game.state.StateMaze;
 import us.mcpvpmod.game.state.StateSab;
 import us.mcpvpmod.gui.InfoBlock;
+import us.mcpvpmod.timers.PingTimer;
 import us.mcpvpmod.util.Format;
 import cpw.mods.fml.common.FMLLog;
 
@@ -108,6 +111,8 @@ public class Sync {
 		ConfigSelect.syncConfig();
 		ConfigVersion.syncConfig();
 		ConfigSounds.syncConfig();
+		ConfigMisc.syncConfig();
+		new Timer().scheduleAtFixedRate(new PingTimer(), 15*1000L, ConfigMisc.pingFreq*1000L);
 		
 		// Sync Build Configs
 		ConfigBuildHUD.syncConfig();

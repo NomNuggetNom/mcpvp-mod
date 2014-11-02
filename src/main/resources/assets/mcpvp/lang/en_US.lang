@@ -292,6 +292,14 @@ config.sounds.tooltip=Options for Sounds.
 config.sounds.online=Friend Online
 config.sounds.online.tooltip=The sound triggered when a friend comes online.
 
+<!-- MISC -->
+config.misc.title=Miscellaneous
+config.misc.tooltip=Other settings.
+config.misc.pingVar=Ping Variable
+config.misc.pingVar.tooltip=This enables the {ping} variable, but sometimes it can spam your chat. Disable this if you are getting lots of repeated messages about testing ping.
+config.misc.pingFreq=Ping Frequency (sec)
+config.misc.pingFreq.tooltip=How often the {ping} variable updates in seconds. Requires a restart to beomcome applied.
+
 <!-- ===---=== -->
 <!-- = BUILD = -->
 <!-- ===---=== -->
