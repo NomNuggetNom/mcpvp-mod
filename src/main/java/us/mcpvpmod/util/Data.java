@@ -3,6 +3,7 @@ package us.mcpvpmod.util;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Properties;
@@ -47,7 +48,7 @@ public class Data {
 		
 		Properties storedProps = new Properties();
 		try {
-			FileInputStream in = new FileInputStream(dataFile);
+			InputStreamReader in = new InputStreamReader(new FileInputStream(dataFile), "UTF-8");
 			storedProps.load(in);
 			in.close();
 		} catch (Exception e) {
@@ -62,10 +63,10 @@ public class Data {
 	public static void put(String key, String value) {
 		if (!made) make();
 		try {
-			FileReader fr = new FileReader(dataFile);
+			InputStreamReader fr = new InputStreamReader(new FileInputStream(dataFile), "UTF-8");
 			prop.setProperty(key, value);
 			fr.close();
-			prop.store(new PrintWriter(dataFile), "");
+			prop.store(new PrintWriter(dataFile, "UTF-8"), "");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
