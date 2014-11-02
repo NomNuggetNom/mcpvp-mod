@@ -10,7 +10,6 @@ public class TickCTF {
 		KillTimerCTF.check();
 		//KillSpree.check();
 		StatsCTF.getStats();
-
 	}
 	
 }
