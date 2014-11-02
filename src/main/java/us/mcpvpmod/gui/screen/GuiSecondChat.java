@@ -330,7 +330,8 @@ public class GuiSecondChat extends Gui
     	
     	// Move PMs.
     	if (ConfigChat.movePMs) {
-    		if (message.contains(Main.mc.thePlayer.getDisplayName() + " -> ")
+    		if (Main.mc.thePlayer != null && Main.mc.thePlayer.getDisplayName() != null &&
+    				message.contains(Main.mc.thePlayer.getDisplayName() + " -> ")
     				|| message.contains(" -> " + Main.mc.thePlayer.getDisplayName())) {
     			Main.l("\"%s\" was sent to second chat based on config (move pms)", message);
     			return true;
