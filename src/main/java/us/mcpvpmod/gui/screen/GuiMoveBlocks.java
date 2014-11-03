@@ -87,6 +87,11 @@ public class GuiMoveBlocks extends GuiScreen {
 		// Holding the shift key amplifies the movement by 10.
 		int moveBy = GuiScreen.isShiftKeyDown() ? 10 : 1;
 		
+		if (Selectable.selected == null) {
+			super.keyTyped(key, keyNum);
+			return;
+		}
+		
 		// Move left
 		if (keyNum == 203) Selectable.selected.move('l', moveBy, GuiScreen.isCtrlKeyDown());
 		// Move right
