@@ -156,7 +156,7 @@ public class ConfigAll extends CategoryEntry {
 	                (new ConfigElement(ConfigMisc.getConfig().getCategory(Configuration.CATEGORY_GENERAL))).getChildElements(), 
 	                this.owningScreen.modID, Configuration.CATEGORY_GENERAL, this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart, 
 	                this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart, 
-	                Format.s("config.sounds.title"));
+	                Format.s("config.misc.title"));
 	    }
 	}
 }
