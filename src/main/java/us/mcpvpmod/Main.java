@@ -8,7 +8,7 @@ import net.minecraftforge.common.MinecraftForge;
 
 import org.lwjgl.input.Keyboard;
 
-import us.mcpvpmod.config.RawConfig;
+import us.mcpvpmod.config.all.ConfigMisc;
 import us.mcpvpmod.events.Events;
 import us.mcpvpmod.gui.ArmorDisplay;
 import us.mcpvpmod.gui.InfoBlock;
@@ -17,6 +17,7 @@ import us.mcpvpmod.gui.screen.GuiSecondChat;
 import us.mcpvpmod.json.ServerJSON;
 import us.mcpvpmod.json.StreamJSON;
 import us.mcpvpmod.json.VersionJSON;
+import us.mcpvpmod.timers.PingTimer;
 import us.mcpvpmod.timers.SimpleTimer;
 import us.mcpvpmod.timers.UpdateTimer;
 import us.mcpvpmod.util.Data;
@@ -51,7 +52,7 @@ public class Main {
 	/** A reference to the GuiFactory. Necessary for loading the configuration screen. */
 	public static final String guiFactory = "us.mcpvpmod.config.GuiFactory";
 	/** Whether or not this mod is a beta release. */
-	public static final boolean isBeta = true;
+	public static final boolean isBeta = false;
 	
 	@Instance
 	/** Used by Forge to recognize this as a Forge mod. */
@@ -91,9 +92,6 @@ public class Main {
 		
     	// Sync all files and configurations.
 		Sync.sync();
-		
-		// Load up some external settings.
-		RawConfig.load();
     }
     	
     @EventHandler
@@ -119,7 +117,7 @@ public class Main {
 		timer.scheduleAtFixedRate(new VersionJSON(), 0, 60*60*1000L);
 		timer.scheduleAtFixedRate(new UpdateTimer(), 15*1000, 5*60*1000L);
 		timer.scheduleAtFixedRate(new SimpleTimer(), 0, 1*1000L);
-		
+		timer.scheduleAtFixedRate(new PingTimer(), 0, ConfigMisc.pingFreq*1000L);
 	}
 	
 	public static void l(Object string, Object... data) {

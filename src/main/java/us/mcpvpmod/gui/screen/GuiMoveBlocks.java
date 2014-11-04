@@ -1,9 +1,12 @@
 package us.mcpvpmod.gui.screen;
 
+import static net.minecraftforge.common.config.Configuration.CATEGORY_GENERAL;
+
 import java.awt.Rectangle;
 import java.util.HashMap;
 
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraftforge.common.config.Property;
 
 import org.lwjgl.input.Keyboard;
 
@@ -17,7 +20,6 @@ import us.mcpvpmod.gui.Draw;
 import us.mcpvpmod.gui.InfoBlock;
 import us.mcpvpmod.gui.PotionDisplay;
 import us.mcpvpmod.gui.Selectable;
-import us.mcpvpmod.util.Data;
 import us.mcpvpmod.util.Format;
 
 public class GuiMoveBlocks extends GuiScreen {
@@ -105,14 +107,14 @@ public class GuiMoveBlocks extends GuiScreen {
 		if (keyNum == 211) {
 			
 			if (Selectable.selected instanceof ArmorDisplay) {
-				ConfigHUD.showArmor = false;
-				Data.put("showArmor", "false");
+				Property prop = ConfigHUD.getConfig().get(CATEGORY_GENERAL, "showPotion", true);
+				prop.set(false);
 				Selectable.selected = null;
 			}
 			
 			if (Selectable.selected instanceof PotionDisplay) {
-				ConfigHUD.showPotion = false;
-				Data.put("showPotion", "false");
+				Property prop = ConfigHUD.getConfig().get(CATEGORY_GENERAL, "showArmor", true);
+				prop.set(false);
 				Selectable.selected = null;
 			}
 		}

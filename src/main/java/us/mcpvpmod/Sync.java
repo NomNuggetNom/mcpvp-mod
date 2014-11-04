@@ -112,7 +112,6 @@ public class Sync {
 		ConfigVersion.syncConfig();
 		ConfigSounds.syncConfig();
 		ConfigMisc.syncConfig();
-		new Timer().scheduleAtFixedRate(new PingTimer(), 15*1000L, ConfigMisc.pingFreq*1000L);
 		
 		// Sync Build Configs
 		ConfigBuildHUD.syncConfig();
