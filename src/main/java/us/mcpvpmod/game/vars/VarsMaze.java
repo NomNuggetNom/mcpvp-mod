@@ -3,7 +3,6 @@ package us.mcpvpmod.game.vars;
 import java.util.HashMap;
 
 import us.mcpvpmod.game.info.InfoMaze;
-import us.mcpvpmod.game.stats.StatsMaze;
 
 public class VarsMaze {
 
@@ -14,7 +13,6 @@ public class VarsMaze {
 	 * Called every tick to update information.
 	 */
 	public static void putVars() {
-		vars.put("kills", "" + StatsMaze.kills);
 		vars.put("hunger", Vars.get("maze:princess.hunger"));
 		vars.put("princesshunger", Vars.get("maze:princess.hunger"));
 		vars.put("princess_hunger", Vars.get("maze:princess.hunger"));

@@ -9,6 +9,7 @@ import us.mcpvpmod.game.alerts.SoundAlert;
 import us.mcpvpmod.game.info.InfoCTF;
 import us.mcpvpmod.game.state.StateCTF;
 import us.mcpvpmod.game.stats.StatsCTF;
+import us.mcpvpmod.game.vars.Vars;
 import us.mcpvpmod.util.Format;
 
 public class TimeAlerts {
@@ -48,7 +49,7 @@ public class TimeAlerts {
 				//CustomAlert.get("game.end").show();
 				//SoundAlert.get("game.end").play();
 			} else if (oldTime == 10) {
-				if ((StatsCTF.kills > 15 && StatsCTF.deaths == 0)) {
+				if ((Vars.getInt("ctf:i.kills") > 15 && Vars.getInt("ctf:i.deaths") == 0)) {
 					Alerts.alert.sendAlertWithItem("Perfection!", Format.process("#gray#Kill #white#15 #gray#opponents without dying in one game."), -1, new ItemStack(Items.dye, 1, 15));
 				}
 			}

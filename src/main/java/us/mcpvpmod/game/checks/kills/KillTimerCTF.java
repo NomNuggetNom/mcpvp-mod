@@ -3,6 +3,7 @@ package us.mcpvpmod.game.checks.kills;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.game.state.StateCTF;
 import us.mcpvpmod.game.stats.StatsCTF;
+import us.mcpvpmod.game.vars.Vars;
 import us.mcpvpmod.gui.Medal;
 import cpw.mods.fml.common.FMLLog;
 
@@ -22,7 +23,7 @@ public class KillTimerCTF {
 		if (StateCTF.getState() == StateCTF.WAIT) return;
 		if (StateCTF.getState() == StateCTF.PRE) return;
 		
-		if (StatsCTF.kills == 0) {
+		if (Vars.getInt("ctf:i.kills") == 0) {
 			lastKillTime = System.currentTimeMillis();
 			killsOld = 0;
 			killsInARow = 0;
@@ -35,8 +36,8 @@ public class KillTimerCTF {
 		}
 		
 		// There is a difference in kills, so we have killed someone since the last check.
-		if (killsOld != StatsCTF.kills) {
-			if ((killsInARow == 0 && StatsCTF.kills != 0) || System.currentTimeMillis() - lastKillTime <= resetTime) {
+		if (killsOld != Vars.getInt("ctf:i.kills")) {
+			if ((killsInARow == 0 && Vars.getInt("ctf:i.kills") != 0) || System.currentTimeMillis() - lastKillTime <= resetTime) {
 				// Killed a player within the window of time required for achievements!
 				FMLLog.info("Killed someone at %s", System.currentTimeMillis());
 				killsInARow++;
@@ -69,7 +70,7 @@ public class KillTimerCTF {
 
 				}
 			}
-			killsOld = StatsCTF.kills;			
+			killsOld = Vars.getInt("ctf:i.kills");			
 			lastKillTime = System.currentTimeMillis();
 		}
 	}

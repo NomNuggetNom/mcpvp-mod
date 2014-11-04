@@ -36,5 +36,4 @@ public class VarsSab {
 	public static void reset() {
 		vars.clear();
 	}
-	
 }
