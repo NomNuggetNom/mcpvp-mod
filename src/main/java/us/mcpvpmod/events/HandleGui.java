@@ -1,9 +1,10 @@
 package us.mcpvpmod.events;
 
 import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import us.mcpvpmod.Main;
-import us.mcpvpmod.gui.screen.GuiChooseMultiplayer;
+import us.mcpvpmod.gui.screen.GuiMultiplayerMCPVP;
 
 public class HandleGui {
 
@@ -11,11 +12,11 @@ public class HandleGui {
 		if (event.gui == null) return;
 		if (Main.mc.currentScreen == null) return;
 		
-		if (event.gui.toString().contains("GuiMultiplayer") 
-				&& Main.mc.currentScreen.getClass() == GuiMainMenu.class) {
-			// Opened the Multiplayer GUI from the main menu.
-			event.gui = new GuiChooseMultiplayer(Main.mc.currentScreen);
+		if (event.gui instanceof GuiMultiplayer 
+				&& Main.mc.currentScreen instanceof GuiMainMenu) {
+			event.gui = new GuiMultiplayerMCPVP(Main.mc.currentScreen);
 		}
+	
 	}
 	
 }
