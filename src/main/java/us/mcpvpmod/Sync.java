@@ -2,7 +2,6 @@ package us.mcpvpmod;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Timer;
 
 import us.mcpvpmod.config.all.ConfigAlerts;
 import us.mcpvpmod.config.all.ConfigChat;
@@ -54,7 +53,6 @@ import us.mcpvpmod.game.state.StateKit;
 import us.mcpvpmod.game.state.StateMaze;
 import us.mcpvpmod.game.state.StateSab;
 import us.mcpvpmod.gui.InfoBlock;
-import us.mcpvpmod.timers.PingTimer;
 import us.mcpvpmod.util.Format;
 import cpw.mods.fml.common.FMLLog;
 

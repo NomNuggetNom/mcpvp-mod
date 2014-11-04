@@ -16,6 +16,7 @@ public class ConfigMisc extends DummyModContainer {
 
 	public static boolean pingVar;
 	public static int pingFreq = 5;
+	public static String defaultMenu;
 	
     public static String fileName = "mcpvp_misc.cfg";
     
@@ -58,6 +59,12 @@ public class ConfigMisc extends DummyModContainer {
     	prop = config.get(CATEGORY_GENERAL, "pingFreq", 5, Format.s("config.misc.pingFreq.tooltip"), 1, 600);
         prop.setLanguageKey("config.misc.pingFreq");
     	pingFreq = prop.getInt();
+    	propOrder.add(prop.getName());
+    	
+        prop = config.get(CATEGORY_GENERAL, "defaultMenu", "Vanilla", "", 
+        		new String[]{"Vanilla", "MCPVP"});
+        prop.setLanguageKey("config.misc.defaultMenu");
+    	defaultMenu = prop.getString();
     	propOrder.add(prop.getName());
     	
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);

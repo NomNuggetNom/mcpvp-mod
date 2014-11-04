@@ -1,7 +1,5 @@
 package us.mcpvpmod.events.render;
 
-import java.util.ArrayList;
-
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraft.entity.player.EntityPlayer;

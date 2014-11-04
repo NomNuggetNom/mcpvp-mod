@@ -8,7 +8,6 @@ import us.mcpvpmod.game.alerts.CustomAlert;
 import us.mcpvpmod.game.alerts.SoundAlert;
 import us.mcpvpmod.game.info.InfoCTF;
 import us.mcpvpmod.game.state.StateCTF;
-import us.mcpvpmod.game.stats.StatsCTF;
 import us.mcpvpmod.game.vars.Vars;
 import us.mcpvpmod.util.Format;
 

@@ -4,7 +4,9 @@ import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import us.mcpvpmod.Main;
+import us.mcpvpmod.config.all.ConfigMisc;
 import us.mcpvpmod.gui.screen.GuiMultiplayerMCPVP;
+import us.mcpvpmod.gui.screen.GuiServerList;
 
 public class HandleGui {
 
@@ -14,7 +16,10 @@ public class HandleGui {
 		
 		if (event.gui instanceof GuiMultiplayer 
 				&& Main.mc.currentScreen instanceof GuiMainMenu) {
-			event.gui = new GuiMultiplayerMCPVP(Main.mc.currentScreen);
+			if (ConfigMisc.defaultMenu.equalsIgnoreCase("vanilla"))
+				event.gui = new GuiMultiplayerMCPVP(Main.mc.currentScreen);
+			else
+				event.gui = new GuiServerList(Main.mc.currentScreen);
 		}
 	
 	}

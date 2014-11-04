@@ -3,7 +3,6 @@ package us.mcpvpmod.events.chat;
 import java.util.ArrayList;
 
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
-import scala.reflect.internal.Trees.This;
 import us.mcpvpmod.Main;
 
 public class IgnoreResult {
