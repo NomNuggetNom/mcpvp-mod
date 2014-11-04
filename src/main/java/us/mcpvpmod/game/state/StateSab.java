@@ -17,7 +17,6 @@ public enum StateSab implements State {
 		switch (StateSab.getState()) {
 		case WAIT: 
 			
-			// Render our InfoBlocks.
 			for (InfoBlock block : InfoBlock.get(Server.SAB, PRE)) {
 				block.display();
 			}
@@ -28,7 +27,6 @@ public enum StateSab implements State {
 		
 		case PRE: 			
 			
-			// Render our InfoBlocks.
 			for (InfoBlock block : InfoBlock.get(Server.SAB, PRE)) {
 				block.display();
 			}
@@ -45,7 +43,7 @@ public enum StateSab implements State {
 			break;
 		
 		case DEAD: 
-			for (InfoBlock block : InfoBlock.get(Server.SAB, DEAD)) {
+			for (InfoBlock block : InfoBlock.get(Server.SAB, PLAY)) {
 				block.display();
 			}
 			

@@ -20,6 +20,7 @@ public class CoreSab {
 	public static String reSpectate = "\u00A7r\u00A76You are now spectating!\u00A7r";
 	public static String reWin = "\u00A7r\u00A7cThe (.*) wins*!\u00A7r";
 	public static String reChestWave = "\u00A7r\u00A7aChest Wave (.)/2 has hit! Better drops!\u00A7r";
+	public static String reTime = "\u00A7r\u00A7cSabotage will start in (\\d+) seconds.\u00A7r";
 
 	public static void setup() {
 
