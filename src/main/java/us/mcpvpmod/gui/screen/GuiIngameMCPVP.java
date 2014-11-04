@@ -44,14 +44,15 @@ public class GuiIngameMCPVP extends GuiIngameMenu {
 			int y = this.height/5;
 			this.buttonList.add(new GuiButton(1, this.width / 2 - 100, y, Format.s("gui.ingame.connect")));
 			y += 25;
-			this.buttonList.add(new GuiButton(2, this.width / 2 - 100, y, Format.s("gui.ingame.settings")));
-			y += 25;
-			this.buttonList.add(new GuiButton(3, this.width / 2 - 100, y, Format.s("gui.ingame.hud")));
+			this.buttonList.add(new GuiButton(2, this.width / 2 - 100, y, 98, 20, Format.s("gui.ingame.settings")));
+			//y += 25;
+			this.buttonList.add(new GuiButton(3, this.width / 2 + 2, y, 98, 20, Format.s("gui.ingame.hud")));
 			y += 25;
 			this.buttonList.add(new GuiButton(4, this.width / 2 - 100, y, Format.s("gui.ingame.help")));
 			y += 25;
 			this.buttonList.add(new GuiButton(5, this.width / 2 - 100, y, Format.s("gui.ingame.codes")));
-			
+			y += 25;
+			this.buttonList.add(new GuiButton(6, this.width / 2 - 100, y, "Add a Friend"));
 			this.buttonList.add(new GuiButton(100, this.width / 2 - 100, this.height - this.height/4, I18n.format("menu.returnToGame")));
 		}
 		
@@ -69,6 +70,7 @@ public class GuiIngameMCPVP extends GuiIngameMenu {
 					e.printStackTrace();
 				}
 			}
+			if (button.id == 6) Main.mc.displayGuiScreen(new GuiAddFriends());
 				//Main.mc.displayGuiScreen(new GuiCodes());
 	    	super.actionPerformed(button);
 		}
