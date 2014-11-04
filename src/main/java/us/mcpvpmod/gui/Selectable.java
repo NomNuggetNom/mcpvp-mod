@@ -239,6 +239,9 @@ public class Selectable {
 		if (DisplayAnchor.anchors.get(this) != null) {
 			DisplayAnchor anchor = DisplayAnchor.anchors.get(this);
 			
+			// Update the information about the parent by re-getting it.
+			anchor.parent = Selectable.getSelectable(anchor.parent.toString());		
+			
 			// Directional support and adjustment.
 			if (anchor.direction == 'r') {
 				return anchor.parent.getX() + anchor.parent.getW() + ConfigHUD.margin;
@@ -308,7 +311,7 @@ public class Selectable {
 	 * @return The Y coordinate the selectable should be set to.
 	 */
 	public int loadY() {
-
+		
 		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
 		
 		// This checks if there is a registered anchor.
@@ -316,6 +319,9 @@ public class Selectable {
 		if (DisplayAnchor.anchors.get(this) != null) {
 			DisplayAnchor anchor = DisplayAnchor.anchors.get(this);
 			
+			// Update the information about the parent by re-getting it.
+			anchor.parent = Selectable.getSelectable(anchor.parent.toString());			
+
 			// Directional support and adjustment.
 			if (anchor.direction == 'd') {
 				return anchor.parent.getY() + anchor.parent.getH() + padding;
@@ -352,7 +358,6 @@ public class Selectable {
 				return ConfigHUD.margin;
 				
 			}
-
 			
 			// Support for negative numbers, i.e. subtracting from the edges.
 			if (savedY.startsWith("-")) {
