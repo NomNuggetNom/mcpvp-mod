@@ -21,6 +21,7 @@ public class HandleKey {
         
         if (Main.showHelp.isPressed())
         	Tutorial.build();
+        
     }
     
     public static void openConfigScreen() {
