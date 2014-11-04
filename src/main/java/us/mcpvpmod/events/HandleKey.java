@@ -1,6 +1,5 @@
 package us.mcpvpmod.events;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.gui.screen.GuiMoveBlocks;

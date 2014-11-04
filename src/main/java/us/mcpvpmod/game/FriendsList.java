@@ -1,6 +1,7 @@
 package us.mcpvpmod.game;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import net.minecraft.client.Minecraft;
@@ -131,14 +132,31 @@ public class FriendsList {
 		}
 	}
 	
+	/**
+	 * Clear the list of players currently being rendered.
+	 */
 	public static void clearList() {
 		renderPlayers.clear();
 	}
 	
+	/**
+	 * Clears each group, but doesn't clear renderPlayers.
+	 */
 	public static void resetList() {
 		group1.clear();
 		group2.clear();
 		group3.clear();
+	}
+	
+	/*
+	 * Clears, resets, and re-adds all friends from config.
+	 */
+	public static void refreshList() {
+		clearList();
+		resetList();
+    	Collections.addAll(FriendsList.group1, ConfigFriends.group1);
+    	Collections.addAll(FriendsList.group2, ConfigFriends.group2);
+    	Collections.addAll(FriendsList.group3, ConfigFriends.group3);
 	}
 	
 	public static ArrayList<String> onlineInList(ArrayList<String> playersToFind) {
