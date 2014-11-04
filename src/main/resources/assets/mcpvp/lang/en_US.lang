@@ -45,7 +45,7 @@ gui.ingame=MCPVP Menu
 gui.ingame.button=#b#MCPVP Options
 gui.ingame.connect=Connect to a Server
 gui.ingame.settings=Edit Settings
-gui.ingame.hud=Edit Heads up Display
+gui.ingame.hud=Edit HUD
 gui.ingame.help=View Help
 gui.ingame.codes=Codes
 
@@ -111,6 +111,7 @@ key.categories.mcpvp=MCPVP
 key.openConfig=Open Config
 key.moveBlocks=Edit GUI
 key.showHelp=View Help
+key.cmdMac=Mac Drop Stack
 
 <!-- =========== -->
 <!-- ===-----=== -->
@@ -299,6 +300,8 @@ config.misc.pingVar=Ping Variable
 config.misc.pingVar.tooltip=This enables the {ping} variable, but sometimes it can spam your chat. Disable this if you are getting lots of repeated messages about testing ping.
 config.misc.pingFreq=Ping Frequency (sec)
 config.misc.pingFreq.tooltip=How often the {ping} variable updates in seconds. Requires a restart to beomcome applied.
+config.misc.defaultMenu=Default Server Menu
+config.misc.defaultMenu.tooltip=Which server menu to open when "Multiplayer" is hit on the main MC screen.
 
 <!-- ===---=== -->
 <!-- = BUILD = -->
