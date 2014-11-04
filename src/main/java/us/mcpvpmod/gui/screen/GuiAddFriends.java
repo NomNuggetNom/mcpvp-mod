@@ -1,13 +1,16 @@
 package us.mcpvpmod.gui.screen;
 
 import static net.minecraftforge.common.config.Configuration.CATEGORY_GENERAL;
+
+import java.util.Arrays;
+
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraftforge.common.config.Property;
-import scala.actors.threadpool.Arrays;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.config.all.ConfigFriends;
+import us.mcpvpmod.game.FriendsList;
 
 public class GuiAddFriends extends GuiScreen {
 	
@@ -43,8 +46,10 @@ public class GuiAddFriends extends GuiScreen {
 	
 	@Override
     protected void actionPerformed(GuiButton button) {
-		if (textField.getText().matches("\\w+"))
+		if (textField.getText().matches("\\w+")) {
 			addFriend(button.id, textField.getText());
+			textField.setText("");
+		}
 	}
 	
 	@Override
@@ -90,6 +95,12 @@ public class GuiAddFriends extends GuiScreen {
 
         // Set the property.
         prop.set(friends);
+        
+        // Save the config.
+        ConfigFriends.getConfig().save();
+        
+        // Refresh the friends list to reflect changes.
+        FriendsList.refreshList();
 	}
 	
 }
