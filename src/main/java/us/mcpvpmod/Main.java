@@ -71,6 +71,7 @@ public class Main {
 	public static KeyBinding moveBlocks;
 	/** The key used to open the help screen, which is also shown once before. */
 	public static KeyBinding showHelp;
+	public static KeyBinding cmdMac;
 	/** A reference to the on-screen ArmorDisplay. */
 	public static ArmorDisplay armorDisplay = new ArmorDisplay();
 	/** A reference to the on-screen PotionDisplay. */
@@ -102,6 +103,8 @@ public class Main {
         ClientRegistry.registerKeyBinding(moveBlocks);
         showHelp = new KeyBinding("key.showHelp", Keyboard.KEY_H, "MCPVP");
         ClientRegistry.registerKeyBinding(showHelp);
+        cmdMac = new KeyBinding("key.cmdMac", 29, "MCPVP");
+        ClientRegistry.registerKeyBinding(cmdMac);
         
         DevCapes.getInstance().registerConfig("https://raw.githubusercontent.com/NomNuggetNom/mcpvp-mod/master/capes.json");
 	}

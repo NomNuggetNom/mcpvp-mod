@@ -1,5 +1,6 @@
 package us.mcpvpmod.events;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.gui.screen.GuiMoveBlocks;
@@ -12,7 +13,15 @@ import cpw.mods.fml.common.gameevent.InputEvent;
 
 public class HandleKey {
 	
+	static boolean lastKeyIsCMD = false;
+	
     public static void onKey(@SuppressWarnings("unused") InputEvent.KeyInputEvent event) {
+
+        // Support for dropping stacks of items on a Mac.
+        if (Main.mc.gameSettings.keyBindDrop.isPressed() && Minecraft.isRunningOnMac)
+        	Main.mc.thePlayer.dropOneItem(lastKeyIsCMD);
+    	lastKeyIsCMD = Main.cmdMac.isPressed();
+
         if(Main.openConfig.isPressed())	
         	openConfigScreen();
         
