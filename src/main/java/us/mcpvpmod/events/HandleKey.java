@@ -18,7 +18,7 @@ public class HandleKey {
     public static void onKey(@SuppressWarnings("unused") InputEvent.KeyInputEvent event) {
 
         // Support for dropping stacks of items on a Mac.
-        if (Main.mc.gameSettings.keyBindDrop.isPressed() && Minecraft.isRunningOnMac)
+        if (Main.mc.gameSettings.keyBindDrop.isPressed())
         	Main.mc.thePlayer.dropOneItem(lastKeyIsCMD);
     	lastKeyIsCMD = Main.cmdMac.isPressed();
 
