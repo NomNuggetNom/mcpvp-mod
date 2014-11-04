@@ -19,6 +19,7 @@ public class ConfigChat extends DummyModContainer {
     public static String[] sendToSecondChat = new String[1000];
     public static boolean movekNoHax;
     public static boolean movePMs;
+    public static String align;
     
     public static String fileName = "mcpvp_chat.cfg";
     
@@ -71,6 +72,11 @@ public class ConfigChat extends DummyModContainer {
     	prop = config.get(CATEGORY_GENERAL, "splitChat", new String[]{""});
         prop.setLanguageKey("config.chat.splitChat");
     	sendToSecondChat = prop.getStringList();
+    	propOrder.add(prop.getName());
+    	
+    	prop = config.get(CATEGORY_GENERAL, "alignChat", "", "", new String[]{"Left", "Right"});
+        prop.setLanguageKey("config.chat.alignChat");
+    	align = prop.getString();
     	propOrder.add(prop.getName());
     	
     	prop = config.get(CATEGORY_GENERAL, "movekNoHax", true);

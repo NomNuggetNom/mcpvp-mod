@@ -67,12 +67,11 @@ public class GuiSecondChat extends Gui
                     chatOpen = true;
                 }
 
-                float scale = this.func_146244_h();
-                //int i1 = MathHelper.ceiling_float_int(this.func_146228_f() / scale);
-                int i1 = this.func_146228_f();
+                float f1 = this.func_146244_h();
+                int i1 = MathHelper.ceiling_float_int(this.func_146228_f() / f1);
                 GL11.glPushMatrix();
                 GL11.glTranslatef(2.0F, 20.0F, 0.0F);
-                //GL11.glScalef(scale, scale, 1.0F);
+                GL11.glScalef(f1, f1, 1.0F);
                 int j1;
                 int k1;
                 int i2;
@@ -117,16 +116,17 @@ public class GuiSecondChat extends Gui
                                 int j2 = -j1 * 9;
                                 ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
                                 int x = res.getScaledWidth();
-                                //drawRect(b0, j2 - 9, b0 + i1 + 4, j2, i2 / 2 << 24);
-
                                 // Draw ONE BOX for the line of chat.
 
-                                //System.out.println(scale);
-                                //System.out.println(res.getScaledWidth() * scale);
-                                int xOff = 0;
-                                //int xOff = (int) (res.getScaledWidth() - this.func_146228_f() / scale);
-                                //int yOff = (int) (res.getScaledHeight() - (res.getScaledHeight() * f1));
+                                //int xOff = (int)(res.getScaledWidth() - res.getScaledWidth() * f1);
+                                //int yOff = (int)(res.getScaledHeight() * f1);
+                                int xOff = (int)(res.getScaledHeight() * (1 - f1));
                                 int yOff = 0;
+                                //System.out.println(res.getScaledWidth() * (1 - f1) * 2);
+                                
+                                //System.out.println(res.getScaledWidth());
+                                //System.out.println(res.getScaledWidth() * f1);
+                                
                                 drawRect(res.getScaledWidth() + xOff, //x1 
                                 		res.getScaledHeight() + j2 - 9 - 56 + 8 + yOff, //y1
                                 		res.getScaledWidth() - i1 - 4 + xOff, //x2
@@ -136,11 +136,19 @@ public class GuiSecondChat extends Gui
                                 String chatString = chatline.func_151461_a().getFormattedText();
                                 
                                 // Draw the chatString.
+                                if (ConfigChat.align.startsWith("R")) {
                                 this.mc.fontRenderer.drawStringWithShadow(
                                 		chatString, 
                                 		x - this.mc.fontRenderer.getStringWidth(chatString) - 4 + xOff, 
                                 		res.getScaledHeight() + j2 - 56 + yOff,
                                 		16777215 + (i2 << 24));
+                                } else {
+	                                this.mc.fontRenderer.drawStringWithShadow(
+	                                		chatString, 
+	                                		x - func_146228_f() + xOff, 
+	                                		res.getScaledHeight() + j2 - 56 + yOff,
+	                                		16777215 + (i2 << 24));
+                                }
                                 
                                 GL11.glDisable(GL11.GL_ALPHA_TEST);
                             }
