@@ -2,7 +2,6 @@ package us.mcpvpmod.events.chat;
 
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import us.mcpvpmod.Main;
-import us.mcpvpmod.config.sab.ConfigSabSelect;
 import us.mcpvpmod.game.core.CoreSab;
 import us.mcpvpmod.game.info.InfoSab;
 import us.mcpvpmod.game.state.StateSab;
@@ -23,6 +22,12 @@ public class ChatSab {
 		
 		if (message.matches(CoreSab.reRole)) {
 			Vars.put("sab:role", InfoSab.formatRole());
+			
+			// If the user is the detective, set the detective variable
+			// to reflect it.
+			if (message.contains("Detective")) {
+				Vars.put("sab:detective", "You!");
+			}
 		}
 		
 		ChatTrigger.checkAll(message);
@@ -47,6 +52,16 @@ public class ChatSab {
 		if (message.matches(CoreSab.reWin)) {
 			StateSab.state = StateSab.POST;
 		}
+		
+		// Dinging noises before the game starts.
+		if (message.matches(CoreSab.reTime)) {
+			int time = Integer.valueOf(message.replaceAll(CoreSab.reTime, "$1"));
+			if (time <= 5 && time != 1)
+				Main.mc.thePlayer.playSound("note.pling", 1.0F, 0.5F);
+			else if (time == 1)
+				Main.mc.thePlayer.playSound("note.pling", 1.0F, 0.9F);
+		}
+
  	}
 	
 }
