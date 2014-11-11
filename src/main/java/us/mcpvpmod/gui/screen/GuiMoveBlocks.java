@@ -6,7 +6,6 @@ import java.awt.Rectangle;
 import java.util.HashMap;
 
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraftforge.common.config.Property;
 
 import org.lwjgl.input.Keyboard;
 
@@ -36,13 +35,6 @@ public class GuiMoveBlocks extends GuiScreen {
 	public void initGui() {
 		Keyboard.enableRepeatEvents(true);
 	}
-	
-	/*
-	@Override
-	public void drawScreen(int p_73863_1_, int p_73863_2_, float p_73863_3_) {
-		super.drawScreen(p_73863_1_, p_73863_2_, p_73863_3_);
-	}
-	*/
 	
 	@Override
     protected void mouseClicked(int x, int y, int p_73864_3_) {
@@ -95,28 +87,38 @@ public class GuiMoveBlocks extends GuiScreen {
 		}
 		
 		// Move left
-		if (keyNum == 203) Selectable.selected.move('l', moveBy, GuiScreen.isCtrlKeyDown());
+		if (keyNum == Keyboard.KEY_LEFT)	Selectable.selected.move('l', moveBy, GuiScreen.isCtrlKeyDown());
 		// Move right
-		if (keyNum == 205) Selectable.selected.move('r', moveBy, GuiScreen.isCtrlKeyDown());
+		if (keyNum == Keyboard.KEY_RIGHT)	Selectable.selected.move('r', moveBy, GuiScreen.isCtrlKeyDown());
 		// Move up
-		if (keyNum == 200) Selectable.selected.move('u', moveBy, GuiScreen.isCtrlKeyDown());
+		if (keyNum == Keyboard.KEY_UP)		Selectable.selected.move('u', moveBy, GuiScreen.isCtrlKeyDown());
 		// Move down
-		if (keyNum == 208) Selectable.selected.move('d', moveBy, GuiScreen.isCtrlKeyDown());
+		if (keyNum == Keyboard.KEY_DOWN)	Selectable.selected.move('d', moveBy, GuiScreen.isCtrlKeyDown());
 
 		// Del key
-		if (keyNum == 211) {
+		if (keyNum == Keyboard.KEY_DELETE) {
 			
 			if (Selectable.selected instanceof ArmorDisplay) {
-				Property prop = ConfigHUD.getConfig().get(CATEGORY_GENERAL, "showPotion", true);
-				prop.set(false);
+				ConfigHUD.getConfig().get(CATEGORY_GENERAL, "showPotion", true).set(false);
 				Selectable.selected = null;
 			}
 			
 			if (Selectable.selected instanceof PotionDisplay) {
-				Property prop = ConfigHUD.getConfig().get(CATEGORY_GENERAL, "showArmor", true);
-				prop.set(false);
+				ConfigHUD.getConfig().get(CATEGORY_GENERAL, "showArmor", true).set(false);
 				Selectable.selected = null;
 			}
+		}
+		
+		// Enter the editor screen.
+		if (keyNum == Keyboard.KEY_E 
+				&& Selectable.selected != null 
+				&& Selectable.selected instanceof InfoBlock) {
+			
+			if (Selectable.selected == Main.friendsList)
+				Main.mc.displayGuiScreen(new GuiAddFriends());
+			else
+				Main.mc.displayGuiScreen(new GuiEditBlock(this, (InfoBlock) Selectable.selected));
+			
 		}
 		
 		super.keyTyped(key, keyNum);
@@ -143,6 +145,12 @@ public class GuiMoveBlocks extends GuiScreen {
 			Selectable current = Selectable.selected;
 			Draw.centeredString("#r#Selected: \"" + current + "#r#\" (" + current.getX() + ", " + current.getY() + ")",
 					0, this.height/4 + 15, this.width, 0xFFFFFF, true);
+			
+			if (Selectable.selected instanceof InfoBlock) {
+				Draw.centeredString("      #i#Hit #gray#[#green##b#E#gray#]#white##i# to edit the info.",
+						0, this.height/4 + 15 + 15, this.width, 0xFFFFFF, true);
+			}
+			
 		} else {
 			Draw.centeredString(Format.process("Click on something to select it!"), 0, this.height/4 + 15, this.width, 0xFFFFFF, true);
 		}
