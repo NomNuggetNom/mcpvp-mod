@@ -4,6 +4,13 @@ import java.util.HashMap;
 
 import us.mcpvpmod.Main;
 
+/**
+ * General purpose variables that are assigned
+ * via: {@link ChatTrigger}, {@link ChatTracker},
+ * and other such utilities. Differ from {@link AllVars} in
+ * that they are not considered when processing an {@link InfoBlock}.
+ * The only visible use of these variables is in a {@link CustomAlert}.
+ */
 public class Vars {
 
 	public static HashMap<String, String> vars = new HashMap<String, String>();
