@@ -1,6 +1,7 @@
 package us.mcpvpmod.events.chat;
 
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.ChatStyle;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
@@ -29,7 +30,7 @@ public class AllChat {
 	 */
 	public static void handleChat(ClientChatReceivedEvent event) {
 		String message = event.message.getUnformattedText();
-		
+
 		AllJoin.showWelcome();
 		IgnoreResult.checkAll(event);
 		
@@ -53,7 +54,9 @@ public class AllChat {
 		}
 		
 		// Censor chat.
-		event.message = new ChatComponentText(censorChat(event.message.getFormattedText().replaceAll("§", "\u00A7")));
+		ChatStyle old = event.message.getChatStyle();
+		event.message = new ChatComponentText(censorChat(event.message.getUnformattedText()));
+		event.message.setChatStyle(old);
 		
 		if (message.matches(reIP)) {
 			ServerHelper.currentIP = message.replaceAll(reIP, "$1");
@@ -107,6 +110,10 @@ public class AllChat {
 			text = text.replaceAll("(?i)" + string, "*****");
 		}
 		return text;
+	}
+	
+	public void preserveFormatting(ClientChatReceivedEvent event) {
+		
 	}
 	
 }
