@@ -44,7 +44,7 @@ public class Main {
 	/** The name of the mod is displayed on the configuration screen. */
 	public static final String name = "MCPVP Mod";
 	/** The version of the mod. */
-	public static final String modVersion = "2.0.2";
+	public static final String modVersion = "2.0.3";
 	/** The version of MC that the mod was compiled for. */
 	public static final String mcVersion = "1.7.10";
 	/** The version of Forge that the mod was compiled for. */
@@ -52,7 +52,7 @@ public class Main {
 	/** A reference to the GuiFactory. Necessary for loading the configuration screen. */
 	public static final String guiFactory = "us.mcpvpmod.config.GuiFactory";
 	/** Whether or not this mod is a beta release. */
-	public static final boolean isBeta = false;
+	public static final boolean isBeta = true;
 	
 	@Instance
 	/** Used by Forge to recognize this as a Forge mod. */
@@ -80,7 +80,7 @@ public class Main {
 	public static InfoBlock friendsList = null;
 	
 	@EventHandler
-	public void preInit(@SuppressWarnings("unused") FMLPreInitializationEvent e) {
+	public void preInit(@SuppressWarnings("unused") FMLPreInitializationEvent e) {	
 		Main.l(Format.s("startup"));
     	
     	// Register all events in the Events class.

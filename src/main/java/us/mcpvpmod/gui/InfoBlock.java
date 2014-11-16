@@ -51,7 +51,7 @@ public class InfoBlock extends Selectable {
 	 * Could be DummyState.NONE, which is rendered in all States. */
 	private final State state;
 	/** The Server to render the block in.
-	 * Could be Server.ALL, which is rendered in all Servers. */
+	 *  Could be {@link Server#ALL}, which is rendered in all Servers. */
 	private final Server server;
 	/** The starting X coordinate. */
 	private int baseX;
@@ -465,6 +465,13 @@ public class InfoBlock extends Selectable {
 
 	public String getTitle() {
 		return title;
+	}
+	
+	/**
+	 * @param toDisplay the toDisplay to set
+	 */
+	public void setToDisplay(ArrayList<String> toDisplay) {
+		this.toDisplay = toDisplay;
 	}
 	
 	@Override
