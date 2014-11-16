@@ -38,7 +38,7 @@ public class AllChat {
 			AllVars.vars.put("ping", message.replaceAll(rePing, "$1"));
 		}
 		
-		//FMLLog.info("message: \"%s\"", message);
+		Main.l("message: \"%s\"", event.message.getFormattedText());
 		if (message.equals(msgLogged)) {
 			Server.onJoin(Main.mc.func_147104_D().serverIP);
 			//HandleJoinMCPVP.onJoin();
@@ -53,9 +53,9 @@ public class AllChat {
 			return;
 		}
 		
-		// Censor chat.
+		// Censor chat. 
 		ChatStyle old = event.message.getChatStyle();
-		event.message = new ChatComponentText(censorChat(event.message.getUnformattedText()));
+		event.message = new ChatComponentText(censorChat(event.message.getFormattedText()));
 		event.message.setChatStyle(old);
 		
 		if (message.matches(reIP)) {
@@ -106,14 +106,14 @@ public class AllChat {
 	public static String censorChat(String message) {
 		String text = message;
 		for (String string : ConfigChat.filterWords) {
+			
+			// <3
+			if (string.equals("toot") && message.contains("redmantooth")) continue;
+			
 			// Use (?i) to ignore case. A little bit hacky.
 			text = text.replaceAll("(?i)" + string, "*****");
 		}
 		return text;
-	}
-	
-	public void preserveFormatting(ClientChatReceivedEvent event) {
-		
 	}
 	
 }
