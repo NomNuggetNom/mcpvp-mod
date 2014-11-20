@@ -16,6 +16,9 @@ public class VarsHG {
 		vars.put("kit", Vars.get("hg:kit"));
 		vars.put("remain", Vars.get("hg:remain"));
 		vars.put("tracking", Vars.get("hg:tracking"));
+		vars.put("kills", Vars.get("hg:kills"));
+		vars.put("feast", Vars.get("hg:feast"));
+		vars.put("minifeast", Vars.get("hg:feast.mini"));
 	}
 	
 	/**

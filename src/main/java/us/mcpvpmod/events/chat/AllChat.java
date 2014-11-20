@@ -38,7 +38,7 @@ public class AllChat {
 			AllVars.vars.put("ping", message.replaceAll(rePing, "$1"));
 		}
 		
-		Main.l("message: \"%s\"", event.message.getFormattedText());
+		//Main.l("message: \"%s\"", event.message.getFormattedText());
 		if (message.equals(msgLogged)) {
 			Server.onJoin(Main.mc.func_147104_D().serverIP);
 			//HandleJoinMCPVP.onJoin();

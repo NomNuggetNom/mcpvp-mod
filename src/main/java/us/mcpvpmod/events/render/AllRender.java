@@ -1,5 +1,7 @@
 package us.mcpvpmod.events.render;
 
+import java.util.ArrayList;
+
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraft.entity.player.EntityPlayer;
@@ -100,6 +102,39 @@ public class AllRender {
 			// Assign the location of the skin.
 			((AbstractClientPlayer) player).func_152121_a(MinecraftProfileTexture.Type.SKIN, skin);
 			
+		}
+	}
+	
+	public void removeSkins() {
+		
+		// All these textures will be removed because they aren't needed.
+		ArrayList<CustomTextureAsync> texturesToRemove = new ArrayList<CustomTextureAsync>();
+		
+		// A list of all the usernames; used to check if a player is online.
+		ArrayList<String> players = new ArrayList<String>(ServerHelper.getPlayerUsernames());
+		
+		// Cycle through each texture.
+		for (CustomTextureAsync texture : CustomTextureAsync.textures.values()) {
+			
+			// Check if it's a skin texture.
+			if (texture.id.endsWith(".skin")) {
+				
+				// If it is, check if the player is online.
+				String username = texture.id.replaceAll(".skin", "");
+				if (!players.contains(username)) {
+					
+					// Cue the texture for deletion.
+					texturesToRemove.add(texture);
+
+				}
+			}
+		}
+		
+		// Cycle through each texture that was cued for deletion and delete it.
+		for (CustomTextureAsync texture : texturesToRemove) {
+			Main.l("Removing %s", texture);
+			Main.mc.getTextureManager().deleteTexture(texture.getResource());
+			CustomTextureAsync.textures.remove(texture.id);
 		}
 	}
 }

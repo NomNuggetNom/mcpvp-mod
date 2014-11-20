@@ -13,8 +13,10 @@ import us.mcpvpmod.game.vars.VarsKit;
 import us.mcpvpmod.game.vars.VarsMaze;
 import us.mcpvpmod.game.vars.VarsRaid;
 import us.mcpvpmod.game.vars.VarsSab;
+import us.mcpvpmod.gui.CustomTextureAsync;
 import us.mcpvpmod.gui.tutorial.Tutorial;
 import us.mcpvpmod.html.HTMLStats;
+import us.mcpvpmod.radio.MCPVPRadio;
 import us.mcpvpmod.util.Data;
 
 public class AllJoin {
@@ -46,6 +48,8 @@ public class AllJoin {
 		Main.secondChat.clearChatMessages();
 		
 		new HTMLStats("NomNuggetNom").establish(true);
+		MCPVPRadio.establish();
+
 	}
 	
 	/**

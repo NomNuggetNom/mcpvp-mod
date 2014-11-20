@@ -58,7 +58,7 @@ public class Main {
 	/** Used by Forge to recognize this as a Forge mod. */
 	public static Main instance = new Main();
 	/** A reference to Minecraft. */
-	public static Minecraft mc = Minecraft.getMinecraft();
+	public static final Minecraft mc = Minecraft.getMinecraft();
 	/** A reference to the ServerJSON so it can be called as needed. */
 	public static ServerJSON serverJson = new ServerJSON();
 	/** The MCPVPVersion used for version checking. Loaded via ServerJSON. */

@@ -2,6 +2,7 @@ package us.mcpvpmod.game.info;
 
 import us.mcpvpmod.Main;
 import us.mcpvpmod.game.state.StateCTF;
+import us.mcpvpmod.game.vars.VarsCTF;
 import us.mcpvpmod.util.BoardHelper;
 import us.mcpvpmod.util.Format;
 
@@ -119,17 +120,20 @@ public class InfoCTF {
 	
 	public static String getMap() {
 		return currentMap;
-		/*
-		if (mc.func_147104_D() != null) {
-			if (mc.func_147104_D().serverMOTD != null && mc.func_147104_D().serverMOTD.contains("")) {
-				return (mc.func_147104_D().serverMOTD.replaceAll(reMap, "$1").replaceAll("\n§eVisit §9www.mcpvp.com§r", ""));
-			} else {
-				return GameState.currentMap;
-			}
-		} else {
-			return GameState.currentMap;
+	}
+	
+	public static String getRedTimer() {
+		if (VarsCTF.get("red-flag").contains("s")) {
+			return VarsCTF.get("red-flag").replaceAll(".* (\\d+)s.*", "$1");
 		}
-		*/
+		return "";
+	}
+	
+	public static String getBlueTimer() {
+		if (VarsCTF.get("blue-flag").contains("s")) {
+			return VarsCTF.get("blue-flag").replaceAll(".* (\\d+)s.*", "$1");
+		}
+		return "";
 	}
 	
 }
