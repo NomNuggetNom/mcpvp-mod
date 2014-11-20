@@ -43,11 +43,13 @@ public class CoreCTF {
 		
 		new ChatTracker(reBlueTeam, Server.CTF, 
 				new String[]{"ctf:team.blue.caps", "$1"}, 
+				new String[]{"ctf:totalcaps", "$2"},
 				new String[]{"ctf:team.blue.flag", "$3"}, 
 				new String[]{"ctf:team.blue.players", "$4"});
 		
 		new ChatTracker(reRedTeam, Server.CTF, 
 				new String[]{"ctf:team.red.caps", "$1"}, 
+				new String[]{"ctf:totalcaps", "$2"},
 				new String[]{"ctf:team.red.flag", "$3"}, 
 				new String[]{"ctf:team.red.players", "$4"});
 		

@@ -35,6 +35,8 @@ public class VarsCTF {
 		vars.put("map", Vars.get("ctf:map"));
 		vars.put("game", InfoCTF.getGameNum());
 		vars.put("free day", InfoCTF.getFreeDay());
+		vars.put("total-caps", Vars.get("ctf:totalcaps"));
+		vars.put("total_caps", Vars.get("ctf:totalcaps"));
 		vars.put("blue-wins", Vars.get("ctf:team.blue.wins"));
 		vars.put("blue_wins", Vars.get("ctf:team.blue.wins"));
 		vars.put("blue-caps", Vars.get("ctf:team.blue.caps"));
