@@ -3,6 +3,7 @@ package us.mcpvpmod.gui.screen;
 import static net.minecraftforge.common.config.Configuration.CATEGORY_GENERAL;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -10,7 +11,6 @@ import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
-import scala.actors.threadpool.Arrays;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.config.build.ConfigBuildHUD;
 import us.mcpvpmod.config.ctf.ConfigCTFHUD;
@@ -184,7 +184,7 @@ public class GuiEditBlock extends GuiScreen {
 		
 		String[] save = new String[this.info.size()];
 		ArrayList<String> toSave = new ArrayList<String>(this.info);
-		toSave.remove(0);
+		if (toSave.size() != 0) toSave.remove(0);
 		save = this.info.toArray(save);
 		
 		this.getProperty().set(save);
@@ -193,7 +193,11 @@ public class GuiEditBlock extends GuiScreen {
 		//String oldTitle = Format.process(this.stringsFromGui()[0]).replaceAll("---", "");
 		//String newTitle = this.block.getTitle();
 		
-		this.block.setToDisplay(toSave);
+		for (InfoBlock block : InfoBlock.get(this.block.getServer(), this.block.getState())) {
+			InfoBlock.blocks.remove(block);
+		}
+		InfoBlock.createBlocks(this.getProperty().getStringList(), this.block.getServer(), this.block.getState());
+		//this.block.setToDisplay(toSave);
 	}
 	
 	@Override
@@ -235,7 +239,7 @@ public class GuiEditBlock extends GuiScreen {
 	protected void mouseClicked(int clickX, int clickY, int clicked) {
 		
 		// This will either become the text field that was clicked,
-		// or remain as null if none was clicked.
+		// or remain as null if none were clicked.
 		GuiTextField selected = null;
 		
 		// Cycle through each text field and check if the click was inside

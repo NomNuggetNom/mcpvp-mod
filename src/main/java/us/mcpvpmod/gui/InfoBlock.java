@@ -149,9 +149,10 @@ public class InfoBlock extends Selectable {
 	 * @param server The server to register the blocks in.
 	 * @param state The state to register the blocks in.
 	 */
-	public static void createBlocks(String[] configList, Server server, State state) {
+	public static ArrayList<InfoBlock> createBlocks(String[] configList, Server server, State state) {
 		Main.l("Creating info blocks for server %s and state %s", server, state);
 		
+		ArrayList<InfoBlock> made = new ArrayList<InfoBlock>();
 		String finalString = "";
 		
 		for (String string : configList) {
@@ -169,16 +170,17 @@ public class InfoBlock extends Selectable {
 			// Cover the rest of the words
 			String theRest = blockText.replace(title, "");
 			ArrayList<String> lines = new ArrayList<String>(Arrays.asList(theRest.split(uniqueString)));
-			if (lines.size() == 0) return;
+			if (lines.size() == 0) return null;
 			lines.remove(0);
 
 			if (lines.size() > 0) {
-				@SuppressWarnings("unused")
 				InfoBlock block = new InfoBlock(Format.process(title), lines, server, state);
+				made.add(block);
 			} else {
 				Main.l("Not enough lines for InfoBlock ", title);
 			}
 		}
+		return made;
 	}
 	
 	/**
@@ -339,6 +341,8 @@ public class InfoBlock extends Selectable {
 	 * Draw the block!
 	 */
 	public void draw() {
+		if (this.display.size() == 0) return;
+		
 		int titleHeight = f.FONT_HEIGHT-1;
 		bg = ConfigHUD.renderBG;
 		
@@ -366,30 +370,6 @@ public class InfoBlock extends Selectable {
 						   (float) w+padding*2,
 						   (float) this.h + padding, 
 						   0, 0, 0, (float) 0.32);
-				
-				// Render the title area.
-				/*
-				Draw.rect(baseX-padding, 
-							   baseY-1-padding, 
-							   this.w+padding*2,
-							   titleHeight+padding*2, 
-							   0, 0, 0, (float) 0.42);
-				
-				// Render the bottom half.
-				Draw.rect((float) baseX-padding,
-						   (float) baseY+titleHeight+2, 
-						   (float) this.w+padding*2,
-						   (float) this.h + padding - titleHeight - 3, 
-						   0, 0, 0, (float) 0.32);
-				
-			} else {
-				// Render the bottom half, without a title.
-				Draw.rect((float) baseX-padding,
-						   (float) baseY+2, 
-						   (float) w+padding*2,
-						   (float) this.h + padding, 
-						   0, 0, 0, (float) 0.32);
-						   */
 
 			}
 		}
@@ -399,7 +379,7 @@ public class InfoBlock extends Selectable {
 		if (getTitle() != "") {
 			// Check our config for centering titles.
 			if (ConfigHUD.centerTitles) {
-				f.drawStringWithShadow(getTitle(), baseX + centerPos(w, getTitle()), baseY-1, 0xFFFFFF);
+				Draw.centeredString(getTitle(), baseX, baseY-1, w, 0xFFFFFF, true);
 			} else {
 				f.drawStringWithShadow(getTitle(), baseX, baseY-1, 0xFFFFFF);
 			}
@@ -442,27 +422,10 @@ public class InfoBlock extends Selectable {
 		}
 		return line;
 	}
-
-	/**
-	 * Calculate the center position of text.
-	 * @param area
-	 * @param string
-	 * @return
-	 */
-	public static int centerPos(int area, String string) {
-		return ((area/2) - (f.getStringWidth(string)/2));
-	}
 	
 	/**
-	 * Sets whether or not to match width.
-	 * @param match
-	 * @return
+	 * @return The title of the InfoBlock.
 	 */
-	public InfoBlock setMatch(boolean match) {
-		this.matchW = match;
-		return this;
-	}
-
 	public String getTitle() {
 		return title;
 	}
@@ -554,61 +517,7 @@ public class InfoBlock extends Selectable {
 				   this.h+padding*4, 
 				   anchorLeft?0:1, anchorLeft?1:0, 0, 1);		
 	}
-	/*
-	@Override
-	public void move(char direction, int moveBy, boolean ctrl) {
-		
-		Area dispArea = new Area(new Rectangle(res.getScaledWidth(), res.getScaledHeight()));
-		
-		DisplayAnchor.anchors.remove(this);
-		
-		// Holding CTRL will snap the box to the edges of the screen.
-		if (ctrl) {
-			if (direction == 'l') baseX = 0 + padding*2;
-			
-			if (direction == 'r') baseX = res.getScaledWidth() - getW();
-			
-			if (direction == 'u') baseY = 0 + padding*2 + 1;
-			
-			if (direction == 'd') baseY = res.getScaledHeight() - getH() + 1;
-			
-		} else {
-			// Move left
-			if (direction == 'l')
-				baseX = baseX - moveBy - padding*2 < 0 ? 0 + padding*2 : baseX - moveBy;
-			
-			// Move right
-			if (direction == 'r')
-				baseX = baseX + this.w + moveBy + padding*2 > res.getScaledWidth() ? res.getScaledWidth() - getW() : baseX + moveBy;
 
-			// Move up
-			if (direction == 'u')
-				baseY = baseY - moveBy - padding*2 - 1< 0 ? baseY : baseY - moveBy;
-
-			// Move down
-			if (direction == 'd')
-				baseY = baseY + moveBy + getH() - 1 > res.getScaledHeight() ? baseY : baseY + moveBy;
-		}
-		
-		
-		if (this.baseX > res.getScaledWidth()/2) {
-			// Distance from the edge.
-			int distanceFromEdge = 0 - this.baseX - this.getW() + res.getScaledWidth();
-			Data.put(this.toString() + ".x", "-" + distanceFromEdge);
-		} else {
-			Data.put(this.toString() + ".x", "" + this.baseX);
-		}
-		
-		if (this.baseY > res.getScaledHeight()/2) {
-			int distanceFromEdge = res.getScaledHeight() - this.h - this.baseY - padding*2 + 1;
-			System.out.println("dist: -" +distanceFromEdge);
-			Data.put(this.toString() + ".y", "-" + distanceFromEdge);
-		} else {
-			Data.put(this.toString() + ".y", "" + this.baseY);
-		}
-	}
-	*/
-	
 	@Override
 	public Server getServer() {
 		return this.server;
@@ -628,73 +537,6 @@ public class InfoBlock extends Selectable {
 	public void setX(int x) {
 		this.baseX = x;
 	}
-	
-	/*
-	@Override
-	public int loadX() {
-		
-		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
-		
-		// This checks if there is a registered anchor.
-		// There could still be one saved as text in the file!
-		if (DisplayAnchor.anchors.get(this) != null) {
-			DisplayAnchor anchor = DisplayAnchor.anchors.get(this);
-			
-			// Directional support and adjustment.
-			if (anchor.direction == 'r') {
-				return anchor.parent.getX() + anchor.parent.getW() + ConfigHUD.margin;
-			} else if (anchor.direction == 'l') {
-				return anchor.parent.getX() - anchor.parent.getW() - ConfigHUD.margin;
-			}
-		}
-		
-		// This checks this text file for saved values.
-		if (Data.get(this.toString() + ".x") != null) {
-			
-			// The saved coordinate.
-			String savedX = Data.get(this.toString() + ".x");
-			
-			// Occasionally, a glitch in the matrix occurs and it saves as --#.
-			// This is just to prevent a terrible, horrible crash.
-			if (savedX.startsWith("--")) {
-				FMLLog.warning("[MCPVP] Force resetting X coord of block \"%s\" due to incorrect saved coordinate.", this);
-				Data.put(this.toString() + ".x", "" + 0);
-				return ConfigHUD.margin;
-			
-			// This supports saved anchors in the format of "a.ParentBlockName.AnchorDirectionChar"
-			} else if (savedX.startsWith("a.")) {
-				
-				// Establish an anchor.
-				this.anchorTo(
-						Selectable.getSelectable(savedX.split("\\.")[1]), // The parent selectable.
-						savedX.split("\\.")[2].charAt(0)); // The direction char.
-				
-				// Return ConfigHUD.margin because on the next tick, the first check for anchors will catch it anyway.
-				return ConfigHUD.margin;
-			}
-
-			// This is the "default" return value.
-			int newX = ConfigHUD.margin;
-			
-			// Use a regex check to make sure we don't parse a non-integer number.
-			if (savedX.matches("\\d")) 
-
-				// Parse the found value into an integer.
-				// The number could be negative, so it's not returned yet.
-				newX = Integer.parseInt((String) Data.get(this.toString() + ".x"));
-			
-				// Support for negative numbers, i.e. subtracting from the edges.
-			if (savedX.startsWith("-")) {
-					
-				// Subtract the total height and the found value from the height of the screen.
-				return res.getScaledWidth() - this.getW() + padding*2 - Math.abs(newX);
-			} else {
-				return newX;
-			}
-		}
-		return ConfigHUD.margin;
-	}
-*/
 
 	@Override
 	public int getY() {
@@ -705,77 +547,6 @@ public class InfoBlock extends Selectable {
 	public void setY(int y) {
 		this.baseY = y;
 	}
-	
-	/*
-	@Override
-	public int loadY() { 
-		
-		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
-		
-		// This checks if there is a registered anchor.
-		// There could still be one saved as text in the file!
-		if (DisplayAnchor.anchors.get(this) != null) {
-			DisplayAnchor anchor = DisplayAnchor.anchors.get(this);
-			
-			// Directional support and adjustment.
-			if (anchor.direction == 'd') {
-				return anchor.parent.getY() + anchor.parent.getH() + ConfigHUD.margin;
-			} else if (anchor.direction == 'u') {
-				return anchor.parent.getY() - anchor.parent.getH() - ConfigHUD.margin;
-			}
-		}
-		
-		// This checks this text file for saved values.
-		if (Data.get(this.toString() + ".y") != null) {
-			
-			// The saved coordinate.
-			String savedY = Data.get(this.toString() + ".y");
-			
-			// Occasionally, a glitch in the matrix occurs and it saves as --#.
-			// This is just to prevent a terrible, horrible crash.
-			if (savedY.startsWith("--")) {
-				FMLLog.warning("[MCPVP] Force resetting Y coord of block \"%s\" due to incorrect saved coordinate.", this);
-				Data.put(this.toString() + ".y", "" + 0);
-				return ConfigHUD.margin;
-			
-			// This supports saved anchors in the format of "a.ParentBlockName.AnchorDirectionChar"
-			} else if (savedY.startsWith("a.")) {
-				
-				// Establish an anchor.
-				this.anchorTo(
-						Selectable.getSelectable(savedY.split("\\.")[1]), // The parent selectable.
-						savedY.split("\\.")[2].charAt(0)); // The direction char.
-				
-				// Return ConfigHUD.margin because on the next tick, the first check for anchors will catch it anyway.
-				return ConfigHUD.margin;
-				
-			}
-			
-			// This is the "default" return value.
-			int newY = ConfigHUD.margin;
-			
-			// Use a regex check to make sure we don't parse a non-integer number.
-			if (savedY.matches("\\d+"))
-				
-				// Parse the found value into an integer.
-				// The number could be negative, so it's not returned yet.
-				newY =  Integer.parseInt(savedY);
-			
-			// Support for negative numbers, i.e. subtracting from the edges.
-			if (newY <= 0 || savedY.startsWith("-")) {
-				
-				// Subtract the total height and the found value from the height of the screen.
-				return res.getScaledHeight() - this.getH() + padding*2 - Math.abs(newY);
-			} else {
-				
-				// Return the positive (literal) stored Y.
-				return newY;
-			}
-		} else {
-			return ConfigHUD.margin;
-		}
-	}
-*/
 	
 	@Override
 	public int getW() {
