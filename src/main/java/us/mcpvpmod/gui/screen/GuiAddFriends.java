@@ -2,6 +2,7 @@ package us.mcpvpmod.gui.screen;
 
 import static net.minecraftforge.common.config.Configuration.CATEGORY_GENERAL;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import net.minecraft.client.gui.GuiButton;
@@ -15,17 +16,35 @@ import us.mcpvpmod.game.FriendsList;
 public class GuiAddFriends extends GuiScreen {
 	
 	static GuiTextField textField = new GuiTextField(Main.mc.fontRenderer, 200, 200, 100, 20);
-	static GuiButton addList1 = new GuiButton(1, 10, 10, "Add to List One");
-	static GuiButton addList2 = new GuiButton(1, 10, 10, "Add to List One");
-	static GuiButton addList3 = new GuiButton(2, 10, 10, "Add to List One");
+	static GuiButton list1 = new GuiButton(1, 10, 10, "Add to List One");
+	static GuiButton list2 = new GuiButton(1, 10, 10, "Add to List One");
+	static GuiButton list3 = new GuiButton(2, 10, 10, "Add to List One");
+	static boolean add = true;
+	static ArrayList<Integer> removeFrom = new ArrayList<Integer>();
+	
+	public GuiAddFriends() {
+		this.add = true;
+		this.removeFrom.clear();
+	}
 	
 	@Override
     public void drawScreen(int p_73863_1_, int p_73863_2_, float p_73863_3_) {
 		this.drawDefaultBackground();
 		
-		addList1.enabled = textField.getText().matches("\\w+");
-		addList2.enabled = textField.getText().matches("\\w+");
-		addList3.enabled = textField.getText().matches("\\w+");
+		if (add) {
+			list1.enabled = textField.getText().matches("\\w+");
+			list2.enabled = textField.getText().matches("\\w+");
+			list3.enabled = textField.getText().matches("\\w+");
+		} else {
+			list1.enabled = textField.getText().matches("\\w+") && this.removeFrom.contains(1);
+			list2.enabled = textField.getText().matches("\\w+") && this.removeFrom.contains(2);
+			list3.enabled = textField.getText().matches("\\w+") && this.removeFrom.contains(3);
+		}
+
+		String text = add ? "Add to" : "Remove from";
+		list1.displayString = text + " List One";
+		list2.displayString = text + " List Two";
+		list3.displayString = text + " List Three";
 		
 		textField.drawTextBox();
 		super.drawScreen(p_73863_1_, p_73863_2_, p_73863_3_);
@@ -36,18 +55,22 @@ public class GuiAddFriends extends GuiScreen {
 		textField = new GuiTextField(Main.mc.fontRenderer, this.width/2 - this.width/2/2, this.height/2 - 75, this.width/2, 20);
 		textField.setFocused(true);
 		
-		addList1 = new GuiButton(1, this.width/2 - 100, this.height/3 + 40, "Add to List One");
-		addList2 = new GuiButton(2, this.width/2 - 100, this.height/3 + 40 + 25, "Add to List Two");
-		addList3 = new GuiButton(3, this.width/2 - 100, this.height/3 + 40 + 25*2, "Add to List Three");
-		this.buttonList.add(addList1);
-		this.buttonList.add(addList2);
-		this.buttonList.add(addList3);
+		String text = add ? "Add to" : "Remove from";
+		list1 = new GuiButton(1, this.width/2 - 100, this.height/3 + 40, text + " List One");
+		list2 = new GuiButton(2, this.width/2 - 100, this.height/3 + 40 + 25,  text + " List Two");
+		list3 = new GuiButton(3, this.width/2 - 100, this.height/3 + 40 + 25*2,  text + " List Three");
+		this.buttonList.add(list1);
+		this.buttonList.add(list2);
+		this.buttonList.add(list3);
 	}
 	
 	@Override
     protected void actionPerformed(GuiButton button) {
 		if (textField.getText().matches("\\w+")) {
-			addFriend(button.id, textField.getText());
+			if (add)
+				addFriend(button.id, textField.getText());
+			else 
+				removeFriend(button.id, textField.getText());
 			textField.setText("");
 		}
 	}
@@ -70,6 +93,35 @@ public class GuiAddFriends extends GuiScreen {
 	protected void keyTyped(char p_73869_1_, int p_73869_2_) {
 		super.keyTyped(p_73869_1_, p_73869_2_);
 		this.textField.textboxKeyTyped(p_73869_1_, p_73869_2_);
+		if (this.textField.getText().matches("\\w+")) {
+			
+			this.add = true;
+			this.removeFrom.clear();
+			
+			for (String s : ConfigFriends.getConfig().get(CATEGORY_GENERAL, "group1", new String[]{""}).getStringList()) {
+				if (s.equals(this.textField.getText())) {
+					this.add = false;
+					this.removeFrom.add(1);
+					this.list1.enabled = true;
+				}
+			}
+			
+			for (String s : ConfigFriends.getConfig().get(CATEGORY_GENERAL, "group2", new String[]{}).getStringList()) {
+				if (s.equals(this.textField.getText())) {
+					this.add = false;
+					this.removeFrom.add(2);
+					this.list2.enabled = true;
+				}
+			}
+			
+			for (String s : ConfigFriends.getConfig().get(CATEGORY_GENERAL, "group3", new String[]{}).getStringList()) {
+				if (s.equals(this.textField.getText())) {
+					this.add = false;
+					this.removeFrom.add(3);
+					this.list3.enabled = true;
+				}
+			}
+		}
 	}
 	
 	/**
@@ -92,6 +144,30 @@ public class GuiAddFriends extends GuiScreen {
         
         // Set the last list item.
         friends[friends.length-1] = name;
+
+        // Set the property.
+        prop.set(friends);
+        
+        // Save the config.
+        ConfigFriends.getConfig().save();
+        
+        // Refresh the friends list to reflect changes.
+        FriendsList.refreshList();
+	}
+	
+	public static void removeFriend(int group, String name) {
+		
+		// Get the property reference.
+        Property prop = ConfigFriends.getConfig().get(CATEGORY_GENERAL, "group" + group, new String[]{"NomNuggetNom"});
+        
+        ArrayList<String> old = new ArrayList<String>(Arrays.asList(prop.getStringList()));
+        old.remove(name);
+        
+        // Form the String[] array using the old values.
+        String[] friends = new String[old.size()-1];
+        for (int i = 0; i < old.size()-1; i++) {
+        	friends[i] = old.get(i);
+        }
 
         // Set the property.
         prop.set(friends);
