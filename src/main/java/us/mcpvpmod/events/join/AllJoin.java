@@ -1,6 +1,8 @@
 package us.mcpvpmod.events.join;
 
+import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import us.mcpvpmod.Main;
+import us.mcpvpmod.Server;
 import us.mcpvpmod.config.all.ConfigSelect;
 import us.mcpvpmod.events.chat.AllChat;
 import us.mcpvpmod.events.chat.IgnoreResult;
@@ -13,7 +15,7 @@ import us.mcpvpmod.game.vars.VarsKit;
 import us.mcpvpmod.game.vars.VarsMaze;
 import us.mcpvpmod.game.vars.VarsRaid;
 import us.mcpvpmod.game.vars.VarsSab;
-import us.mcpvpmod.gui.CustomTextureAsync;
+import us.mcpvpmod.game.vars.VarsSmash;
 import us.mcpvpmod.gui.tutorial.Tutorial;
 import us.mcpvpmod.html.HTMLStats;
 import us.mcpvpmod.radio.MCPVPRadio;
@@ -24,8 +26,10 @@ public class AllJoin {
 	public static long lastLogin = 0;
 	
 	/**
-	 * Fired when an MCPVP server is joined.
+	 * Fired when any MCPVP server is joined.
 	 * Relies on {@link AllChat} catching the "Now logged in!" message.
+	 * <br><br>
+	 * {@link Server#getServer()} will still return {@link Server#NONE}.
 	 */
 	public static void onJoin() {
 		lastLogin = System.currentTimeMillis();
@@ -41,7 +45,7 @@ public class AllJoin {
 		autoTag();
 		
 		// Set defaults of display.
-		// Only does anything once.
+		// Only does something once.
 		Data.setDefaults();
 
 		// Clear the second chat.
@@ -49,7 +53,28 @@ public class AllJoin {
 		
 		new HTMLStats("NomNuggetNom").establish(true);
 		MCPVPRadio.establish();
-
+	}
+	
+	/**
+	 * Fired when the IP message is picked up and
+	 * {@link Server#getServer()} returns {@link Server#NONE},
+	 * meaning a server has been joined and the server is identified.
+	 * 
+	 * @param server The server joined.
+	 */
+	public static void trueJoin(Server server) {
+		if (AllChat.track) {
+			// Set to false to avoid comodification
+			AllChat.track = false;
+			
+			// Cycle through each tracked event and feed it
+			// back to the server that was joined
+			for (ClientChatReceivedEvent event : AllChat.tracked) 
+				server.onChat(event);
+			
+			// Clear the tracked messages.
+			AllChat.tracked.clear();
+		}
 	}
 	
 	/**
@@ -65,6 +90,7 @@ public class AllJoin {
 		VarsMaze.reset();
 		VarsRaid.reset();
 		VarsSab.reset();
+		VarsSmash.reset();
 	}
 	
 	/**
