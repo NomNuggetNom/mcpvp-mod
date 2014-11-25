@@ -1,6 +1,7 @@
 package us.mcpvpmod.events.chat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import net.minecraft.client.gui.ChatLine;
 import net.minecraft.util.ChatComponentText;
@@ -18,8 +19,8 @@ import us.mcpvpmod.triggers.ChatTrigger;
 
 public class ChatCTF {
 
-	public static String reLine = "\u00A7c\u00A7m.*\u00A7r";
-	public static String reFreeDay = "\u00A7aIt's free-play day! Everyone can play all classes!\u00A7r";
+	public static String msgLine = "\u00A7c\u00A7m.*\u00A7r";
+	public static String msgFreeDay = "\u00A7aIt's free-play day! Everyone can play all classes!\u00A7r";
 	public static String reTip = "\u00A73.*\u00A7r";
 	public static String reTeams = ".*\u00A7(.)Captures: \u00A7r([0-9])/([0-9])\\s+\u00A7.Flag: \u00A7r\\[(.+)]\u00A7.\\s+Players: \u00A7r([0-9]+).*";
 	public static String reStats = ".*\u00A76Kills: \u00A7f([0-9]+)\\s+\\(([0-9]+) in a row\\)\\s+\u00A76Deaths: \u00A7f([0-9]+)\\s+\u00A76Steals:\\s+\u00A7f([0-9]+)\\s+\u00A76Captures: \u00A7f([0-9]+).*";
@@ -43,37 +44,17 @@ public class ChatCTF {
 		handleAll(event);
 		if (event.isCanceled()) return;
 
-		if (message.matches(reLine)) {
-			event.setCanceled(ConfigCTFChat.chatHistory);
-			
-		} else if (message.matches(reFreeDay)
-				|| message.matches(reTip)) {
-			handleMessages(event);
-			
-		} else if (message.matches(reTeams) || message.matches(reStats)) {
-			ChatTracker.checkAll(message);
-			
-			event.setCanceled(ConfigCTFChat.chatHistory);
-			
-		} else if (message.matches(reLine) 
-				|| message.matches(reTeams) 
-				|| message.matches(reStats) 
-				|| message.matches(reAction) 
-				|| message.matches(reRestore)
-				|| message.matches(reStreak)
-				|| message.matches(reCompass)
-				|| message.matches(reTeam)
-				|| message.matches(reVisit)) {
-			filterAlerts(event);
-			event.setCanceled(ConfigCTFChat.chatHistory);
-		} else {
+		switch (MessageType.getType(message)) {
+		case ALERT: filterAlerts(event);
+		case STATS: filterAlerts(event); event.setCanceled(ConfigCTFChat.chatHistory);
+		case NONE:		
 			
 			// The chat section has a number of lines depending on the state.
 			// If we have more than that number, remove the first.
 			if (chatBlock.size() == StateCTF.getState().chatLines()) {
 				chatBlock.remove(0);
 			}
-			
+
 			// Does our new chat equal the old?
 			if (!oldChat.equals(chatBlock)) {
 				// Does it contain our message?
@@ -88,11 +69,14 @@ public class ChatCTF {
 			}
 			// Index the chat message.
 			chatBlock.add(message);
+			
 		}
 	}
 	
 	/**
-	 * Handles repeated messages, i.e. where players talk.
+	 * Handles repeated messages, e.g. players talking,
+	 * class selected, kills, and more. Does NOT include
+	 * stats or team info.
 	 * @param event The chat event to handle.
 	 */
 	public static void handleMessages(ClientChatReceivedEvent event) {
@@ -102,7 +86,7 @@ public class ChatCTF {
 		ChatTrigger.checkAll(message);
 		
 		// TODO: Move to Var system.
-		if (message.matches(reFreeDay)) {
+		if (message.matches(msgFreeDay)) {
 			InfoCTF.freeDay = true;
 		}
 		
@@ -137,7 +121,8 @@ public class ChatCTF {
 	}
 	
 	/**
-	 * Handles in-game alerts, such as the flag being stolen.
+	 * Handles all in-game notifications, such as the
+	 * flag being stolen.
 	 * @param event The chat event to handle.
 	 */
 	public static void filterAlerts(ClientChatReceivedEvent event) {
@@ -186,5 +171,39 @@ public class ChatCTF {
 				event.setCanceled(true);
 			}
 		}
+	}
+	
+	public static enum MessageType {
+		/** All messages in the stats section. */
+		STATS(msgLine, reTeams, reStats, reTip, msgFreeDay),
+		/** Any in-game "alert": flag actions, team color, compass change, etc. */
+		ALERT(reAction, reRestore, reStreak, reCompass, reTeam),
+		/** All other messages. Usually repeating messages, like players talking. */
+		NONE;
+		
+		ArrayList<String> matches = new ArrayList<String>();
+		
+		MessageType(String... matches) {
+			this.matches.addAll(Arrays.asList(matches));
+		}
+		
+		/** 
+		 * Detects the type of the message given.
+		 * @param message The message to evaluate.
+		 * @return The type of message.
+		 */
+		public static MessageType getType(String message) {
+			
+			// Cycle through all values.
+			for (MessageType type : MessageType.values()) {
+				// Cycle through every string match of the value.
+				for (String string : type.matches) {
+					// Return the type if a match is found.
+					if (message.matches(string)) return type;
+				}
+			}
+			return NONE;
+		}
+		
 	}
 }

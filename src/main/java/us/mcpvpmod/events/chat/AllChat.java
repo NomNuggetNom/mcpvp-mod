@@ -1,5 +1,7 @@
 package us.mcpvpmod.events.chat;
 
+import java.util.ArrayList;
+
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatStyle;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
@@ -24,6 +26,9 @@ public class AllChat {
 	/** Used to parse results from /pingtest. */
 	static final String rePing = "\u00A7aPing: (.*)ms";
 	
+	public static boolean track = false;
+	public static ArrayList<ClientChatReceivedEvent> tracked = new ArrayList<ClientChatReceivedEvent>();
+	
 	/**
 	 * All chat for all MCPVP servers passes through here.
 	 * @param event The chat event to check.
@@ -34,14 +39,18 @@ public class AllChat {
 		AllJoin.showWelcome();
 		IgnoreResult.checkAll(event);
 		
-		if (message.matches(rePing)) {
-			AllVars.vars.put("ping", message.replaceAll(rePing, "$1"));
-		}
+		// Track chat messages so the server
+		// can catch up.
+		if (track) tracked.add(event);
+		
+		// Catch ping messages.
+		catchPing(message);
 		
 		//Main.l("message: \"%s\"", event.message.getFormattedText());
 		if (message.equals(msgLogged)) {
-			Server.onJoin(Main.mc.func_147104_D().serverIP);
-			//HandleJoinMCPVP.onJoin();
+			//Server.onJoin(Main.mc.func_147104_D().serverIP);
+			AllJoin.onJoin();
+			track = true;
 		}
 		
 		// Check for removal of chat.
@@ -53,29 +62,48 @@ public class AllChat {
 			return;
 		}
 		
+		catchIP(message);
+		catchYay(message);
+		
 		// Censor chat. 
 		ChatStyle old = event.message.getChatStyle();
 		event.message = new ChatComponentText(censorChat(event.message.getFormattedText()));
 		event.message.setChatStyle(old);
-		
-		if (message.matches(reIP)) {
-			ServerHelper.currentIP = message.replaceAll(reIP, "$1");
-		}
 
-		if (Main.secondChat.shouldSplit(event) 
-				&& !Server.getServer().equals(Server.CTF)
-				&& !Server.getServer().equals(Server.HS)) {
-			Main.secondChat.printChatMessage(event.message);
-			event.setCanceled(true);
+		checkSplit(event);
+	}
+	
+	public static void catchPing(String message) {
+		if (message.matches(rePing))
+			AllVars.vars.put("ping", message.replaceAll(rePing, "$1"));
+	}
+	
+	public static void catchIP(String message) {
+		if (message.matches(reIP)) {
+			Main.l("Received IP message! Current: %s, joined: %s", Server.getServer(), Server.getServer(message.replaceAll(reIP, "$1")));
+			if (Server.getServer() != Server.getServer(message.replaceAll(reIP, "$1"))) {
+				ServerHelper.currentIP = message.replaceAll(reIP, "$1");
+				AllJoin.trueJoin(Server.getServer(message.replaceAll(reIP, "$1")));
+			}
 		}
-		
+	}
+	
+	public static void catchYay(String message) {
 		String reYay = "(?:\u00A7r)*\u00A7f\\[\u00A77TW\u00A7f\\].*NomNuggetNom.*>.*Yay! @(.*)";
 		if (message.matches(reYay) && Server.getServer() != Server.CTF && Server.getServer() != Server.HS) {
 			if (message.replaceAll(reYay, "$1").equals(Main.mc.thePlayer.getDisplayName())) {
 				CustomAlert.get("yay").show();
 			}
 		}
-
+	}
+	
+	public static void checkSplit(ClientChatReceivedEvent event) {
+		if (Main.secondChat.shouldSplit(event) 
+				&& !Server.getServer().equals(Server.CTF)
+				&& !Server.getServer().equals(Server.HS)) {
+			Main.secondChat.printChatMessage(event.message);
+			event.setCanceled(true);
+		}
 	}
 	
 	/**
