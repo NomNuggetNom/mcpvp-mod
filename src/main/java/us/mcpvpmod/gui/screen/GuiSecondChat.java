@@ -71,7 +71,7 @@ public class GuiSecondChat extends Gui
                 int i1 = MathHelper.ceiling_float_int(this.func_146228_f() / f1);
                 GL11.glPushMatrix();
                 GL11.glTranslatef(2.0F, 20.0F, 0.0F);
-                GL11.glScalef(f1, f1, 1.0F);
+                //GL11.glScalef(f1, f1, 1.0F);
                 int j1;
                 int k1;
                 int i2;
@@ -137,15 +137,15 @@ public class GuiSecondChat extends Gui
                                 
                                 // Draw the chatString.
                                 if (ConfigChat.align.startsWith("R")) {
-                                this.mc.fontRenderer.drawStringWithShadow(
-                                		chatString, 
-                                		x - this.mc.fontRenderer.getStringWidth(chatString) - 4 + xOff, 
-                                		res.getScaledHeight() + j2 - 56 + yOff,
-                                		16777215 + (i2 << 24));
+	                                this.mc.fontRenderer.drawStringWithShadow(
+	                                		chatString, 
+	                                		x - this.mc.fontRenderer.getStringWidth(chatString) - 4 + xOff, 
+	                                		res.getScaledHeight() + j2 - 56 + yOff,
+	                                		16777215 + (i2 << 24));
                                 } else {
 	                                this.mc.fontRenderer.drawStringWithShadow(
 	                                		chatString, 
-	                                		x - func_146228_f() + xOff, 
+	                                		x - func_146228_f() + xOff - 2, 
 	                                		res.getScaledHeight() + j2 - 56 + yOff,
 	                                		16777215 + (i2 << 24));
                                 }
