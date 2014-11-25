@@ -26,6 +26,12 @@ public class Selectable {
 		return selectables.get(id);
 	}
 	
+	/**
+	 * Stores a Selectrable in {@link #selectables}. Automatically
+	 * called on the creation of an InfoBlock.
+	 * @param id The ID to reference it by, usually the toString result.
+	 * @param selectable The Selectable to store.
+	 */
 	public static void put(String id, Selectable selectable) {
 		selectables.put(id, selectable);
 	}
@@ -81,24 +87,23 @@ public class Selectable {
 			anchorTop = distTop <= ConfigHUD.margin 
 					&& distTop >= -1 
 					&& selectable.getX() <= this.getX() 
-					&& selectable.getX() + selectable.getW() >= this.getX() + this.getW();
+					&& (selectable.getX() + selectable.getW() >= this.getX() + this.getW());
 					
 			anchorBottom = distBottom <= ConfigHUD.margin 
 					&& distBottom >= -1 
 					&& selectable.getX() < this.getX() 
-					&& selectable.getX() + selectable.getW() > this.getX() + this.getW();
+					&& (selectable.getX() + selectable.getW() > this.getX() + this.getW());
 					
 			anchorRight = distRight <= ConfigHUD.margin 
 					&& distRight >= -1 
 					&& selectable.getY() <= this.getY() 
-					&& selectable.getY() + selectable.getH() >= this.getY() + this.getH();
+					&& (selectable.getY() + selectable.getH() >= this.getY() + this.getH()
+					|| this.getY() == selectable.getY());
 
 			anchorLeft = distLeft <= ConfigHUD.margin 
 					&& distLeft >= -1 
 					&& selectable.getY() <= this.getY() 
-					&& selectable.getY() + selectable.getH() >= this.getY() + this.getH();
-			
-			//System.out.println("top: " + anchorTop + ", bottom: " + anchorBottom + ", right: " + anchorRight + ", left" + anchorLeft);
+					&& (selectable.getY() + selectable.getH() >= this.getY() + this.getH());
 					
 			if (anchorTop)
 				GuiMoveBlocks.potentialAnchors.put(this, new DisplayAnchor(selectable, this, 'd'));
@@ -244,9 +249,9 @@ public class Selectable {
 			
 			// Directional support and adjustment.
 			if (anchor.direction == 'r') {
-				return anchor.parent.getX() + anchor.parent.getW() + ConfigHUD.margin;
+				return validateX(anchor.parent.getX() + anchor.parent.getW() + ConfigHUD.margin);
 			} else if (anchor.direction == 'l') {
-				return anchor.parent.getX() - anchor.parent.getW() - ConfigHUD.margin;
+				return validateX(anchor.parent.getX() - anchor.parent.getW() - ConfigHUD.margin);
 			}
 		}
 		
@@ -283,12 +288,22 @@ public class Selectable {
 			if (savedX.startsWith("-")) {
 					
 				// Subtract the height and the found value from the height of the screen.
-				return res.getScaledWidth() - this.getW() - Math.abs(Integer.parseInt(Data.get(this.toString() + ".x")));
+				return validateX(res.getScaledWidth() - this.getW() - Math.abs(Integer.parseInt(Data.get(this.toString() + ".x"))));
 			}
-			return Integer.parseInt(savedX);
+			return validateX(Integer.parseInt(savedX));
 		}
 		return ConfigHUD.margin;
 		
+	}
+	
+	/**
+	 * A safety method to ensure the X coordinate isn't off screen.
+	 * @param x The X coordinate to verify.
+	 * @return The X coordinate if it's on screen, or ConfigHUD.margin if it's off screen.
+	 */
+	public int validateX(int x) {	
+		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
+		return (0 <= x && x <= res.getScaledWidth()) ? x : ConfigHUD.margin;
 	}
 
 	/**
@@ -324,9 +339,9 @@ public class Selectable {
 
 			// Directional support and adjustment.
 			if (anchor.direction == 'd') {
-				return anchor.parent.getY() + anchor.parent.getH() + padding;
+				return validateY(anchor.parent.getY() + anchor.parent.getH() + padding);
 			} else if (anchor.direction == 'u') {
-				return anchor.parent.getY() - anchor.parent.getH() - padding;
+				return validateY(anchor.parent.getY() - anchor.parent.getH() - padding);
 			}
 		}
 		
@@ -363,12 +378,22 @@ public class Selectable {
 			if (savedY.startsWith("-")) {
 				
 				// Subtract the total height and the found value from the height of the screen.
-				return res.getScaledHeight() - this.getH() - Math.abs(Integer.parseInt(Data.get(this.toString() + ".y"))) - padding;
+				return validateY(res.getScaledHeight() - this.getH() - Math.abs(Integer.parseInt(Data.get(this.toString() + ".y"))) - padding);
 			}
 			// Return the positive (literal) stored Y.
-			return Integer.parseInt(savedY);
+			return validateY(Integer.parseInt(savedY));
 		}
 		return ConfigHUD.margin;
+	}
+	
+	/**
+	 * A safety method to ensure the Y coordinate isn't off screen.
+	 * @param y The Y coordinate to verify.
+	 * @return The Y coordinate if it's on screen, or ConfigHUD.margin if it's off screen.
+	 */
+	public int validateY(int y) {	
+		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
+		return (0 <= y && y <= res.getScaledHeight()) ? y : ConfigHUD.margin;
 	}
 
 	/**
@@ -390,8 +415,12 @@ public class Selectable {
 		if (parent == null) return;
 		DisplayAnchor.anchors.put(this, new DisplayAnchor(parent, this, direction));
 		
+		if (direction == 'u' && (DisplayAnchor.anchors.get(parent) != null && DisplayAnchor.anchors.get(parent).direction != 'd'));
+		if (direction == 'd' && (DisplayAnchor.anchors.get(parent) != null && DisplayAnchor.anchors.get(parent).direction != 'u'));
+		if (direction == 'l' && (DisplayAnchor.anchors.get(parent) != null && DisplayAnchor.anchors.get(parent).direction != 'r'));
+		if (direction == 'r' && (DisplayAnchor.anchors.get(parent) != null && DisplayAnchor.anchors.get(parent).direction != 'l'));
+		
 		if (direction == 'u' || direction == 'd') {
-			System.out.println(parent == null);
 			Data.put(this.toString() + ".y", "a." + parent.toString() + "." + direction);
 		} else if (direction == 'l' || direction == 'r') {
 			Data.put(this.toString() + ".x", "a." + parent.toString() + "." + direction);

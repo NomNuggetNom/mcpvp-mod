@@ -411,7 +411,7 @@ public class InfoBlock extends Selectable {
 			if (AllVars.get(var) != "") {
 				line = line.replaceAll("\\{" + var + "\\}", AllVars.get(var));
 				
-			} else if (Server.getVar(var) != null && !(Server.getVar(var).equals("")) && !Server.getVar(var).equals("-1")) {		
+			} else if (Server.getVar(var) != null && !(Server.getVar(var).equals("")) && !Server.getVar(var).equals("" + Integer.MIN_VALUE)) {		
 				// Replace the occurance of the var with the actual info.
 				line = line.replaceAll("\\{" + var + "\\}", Server.getVar(var));
 				
@@ -467,12 +467,14 @@ public class InfoBlock extends Selectable {
 			anchorRight = distRight <= ConfigHUD.margin 
 					&& distRight > -1 
 					&& selectable.getY() <= this.getY() 
-					&& selectable.getY() + selectable.getH() >= this.getY() + this.getH();
+					&& (selectable.getY() + selectable.getH() >= this.getY() + this.getH()
+					|| selectable.getY() == this.getY());
 
 			anchorLeft = distLeft <= ConfigHUD.margin 
 					&& distLeft > -1 
 					&& selectable.getY() <= this.getY() 
-					&& selectable.getY() + selectable.getH() >= this.getY() + this.getH();
+					&& (selectable.getY() + selectable.getH() >= this.getY() + this.getH()
+					|| selectable.getY() == this.getY());
 			
 			//System.out.println("top: " + anchorTop + ", bottom: " + anchorBottom + ", right: " + anchorRight + ", left: " + anchorLeft);
 					
