@@ -27,24 +27,25 @@ public class Vars {
 	/**
 	 * Returns a stored string value.
 	 * @param key The key of the value to return.
-	 * @return The stored value of the key.
+	 * @return The stored value of the key, or
+	 * <code>""</code> if no value is found.
 	 */
 	public static String get(String key) {
-		if (!vars.containsKey(key)) {
+		key = key.replaceAll("\\s+", "-");
+		if (!vars.containsKey(key))
 			return "";
-		}
 		return vars.get(key);
 	}
 	
 	/**
 	 * Returns a stored int value.
 	 * @param key The key of the value to return.
-	 * @return The stored value of the key.
+	 * @return The stored value of the key, or
+	 * {@link Integer#MIN_VALUE} if no value is found.
 	 */
 	public static int getInt(String key) {
-		if (!vars.containsKey(key)) {
-			return -1;
-		}
+		if (!vars.containsKey(key))
+			return Integer.MIN_VALUE;
 		return Integer.parseInt(vars.get(key));
 	}
 	

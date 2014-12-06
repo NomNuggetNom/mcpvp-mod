@@ -2,21 +2,22 @@ package us.mcpvpmod.gui.screen;
 
 import static net.minecraftforge.common.config.Configuration.CATEGORY_GENERAL;
 
-import java.awt.Rectangle;
+import java.util.ArrayList;
 import java.util.HashMap;
 
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 
 import org.lwjgl.input.Keyboard;
 
 import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
-import us.mcpvpmod.config.all.ConfigFriends;
 import us.mcpvpmod.config.all.ConfigHUD;
 import us.mcpvpmod.gui.ArmorDisplay;
 import us.mcpvpmod.gui.DisplayAnchor;
 import us.mcpvpmod.gui.Draw;
 import us.mcpvpmod.gui.InfoBlock;
+import us.mcpvpmod.gui.InfoBox;
 import us.mcpvpmod.gui.PotionDisplay;
 import us.mcpvpmod.gui.Selectable;
 import us.mcpvpmod.util.Format;
@@ -26,52 +27,32 @@ public class GuiMoveBlocks extends GuiScreen {
 	public GuiScreen parent;
 	public static HashMap<Selectable, DisplayAnchor> potentialAnchors = new HashMap<Selectable, DisplayAnchor>();
 	public static int lastKey;
+	public GuiButton add;
+	public GuiButton minus;
 	
 	public GuiMoveBlocks(GuiScreen parent) {
 		this.parent = parent;
-		initGui();
 	}
 	
+	@Override
 	public void initGui() {
 		Keyboard.enableRepeatEvents(true);
+		add		= new GuiButton(1000, width/2 - 12, this.height/4 - 25, 20, 20, Format.process("#green##b#+"));
+		minus	= new GuiButton(1001, width/2 + 12, this.height/4 - 25, 20, 20, Format.process("#red##b#-"));
+		this.buttonList.add(add);
+		this.buttonList.add(minus);
 	}
 	
 	@Override
     protected void mouseClicked(int x, int y, int p_73864_3_) {
-		clickedBlock(x, y);
+		
+		// If a Selectable was clicked, call it's click method.
+		if (Selectable.clicked(x, y) != null)
+			Selectable.clicked(x, y).click();
+		
 		super.mouseClicked(x, y, p_73864_3_);
 	}
-	
-	public boolean clickedBlock(int clickX, int clickY) {
-		for (InfoBlock block : InfoBlock.get(Server.getServer(), Server.getState())) {
-			if (new Rectangle(block.getX(), block.getY(), block.getW(), block.getH()).contains(clickX, clickY)) {
-				block.click();
-				return true;
-			}
-		}
 
-		if (new Rectangle(
-				InfoBlock.get(Format.process(ConfigFriends.onlineTitle)).getX(), 
-				InfoBlock.get(Format.process(ConfigFriends.onlineTitle)).getY(), 
-				InfoBlock.get(Format.process(ConfigFriends.onlineTitle)).getW(), 
-				InfoBlock.get(Format.process(ConfigFriends.onlineTitle)).getH()).contains(clickX, clickY)) {
-			InfoBlock.get(Format.process(ConfigFriends.onlineTitle)).click();
-			return true;
-		}
-		
-		if (new Rectangle(ArmorDisplay.x, ArmorDisplay.y, ArmorDisplay.w, ArmorDisplay.h).contains(clickX, clickY)) {
-			Main.armorDisplay.click();
-			return true;
-		}
-		
-		if (new Rectangle(PotionDisplay.baseX, PotionDisplay.baseY, PotionDisplay.w, PotionDisplay.h).contains(clickX, clickY)) {
-			Main.potionDisplay.click();
-			return true;
-		}
-
-		return false;
-	}
-	
 	@Override
 	protected void keyTyped(char key, int keyNum) {
 		
@@ -97,28 +78,23 @@ public class GuiMoveBlocks extends GuiScreen {
 
 		// Del key
 		if (keyNum == Keyboard.KEY_DELETE) {
-			
-			if (Selectable.selected instanceof ArmorDisplay) {
-				ConfigHUD.getConfig().get(CATEGORY_GENERAL, "showPotion", true).set(false);
-				Selectable.selected = null;
-			}
-			
-			if (Selectable.selected instanceof PotionDisplay) {
-				ConfigHUD.getConfig().get(CATEGORY_GENERAL, "showArmor", true).set(false);
-				Selectable.selected = null;
-			}
+			remove(Selectable.selected);
 		}
 		
 		// Enter the editor screen.
-		if (keyNum == Keyboard.KEY_E 
-				&& Selectable.selected != null 
-				&& Selectable.selected instanceof InfoBlock) {
+		if (keyNum == Keyboard.KEY_E && Selectable.selected != null) {
 			
-			if (Selectable.selected == Main.friendsList)
-				Main.mc.displayGuiScreen(new GuiAddFriends());
-			else
-				Main.mc.displayGuiScreen(new GuiEditBlock(this, (InfoBlock) Selectable.selected));
+			if (Selectable.selected instanceof InfoBlock) {
+				if (Selectable.selected == Main.friendsList)
+					Main.mc.displayGuiScreen(new GuiAddFriends());
+				else
+					Main.mc.displayGuiScreen(new GuiEditBlock(this, (InfoBlock) Selectable.selected));
+			}
 			
+			if (Selectable.selected instanceof InfoBox) {
+				Main.mc.displayGuiScreen(new GuiEditBox(this, (InfoBox) Selectable.selected));
+			}
+	
 		}
 		
 		super.keyTyped(key, keyNum);
@@ -134,8 +110,6 @@ public class GuiMoveBlocks extends GuiScreen {
 		Selectable.selected = null;
 		super.onGuiClosed();
     }
-	
-	long last = 0;
 	
 	@Override
 	public void drawScreen(int p_73863_1_, int p_73863_2_, float p_73863_3_) {
@@ -154,6 +128,43 @@ public class GuiMoveBlocks extends GuiScreen {
 		} else {
 			Draw.centeredString(Format.process("Click on something to select it!"), 0, this.height/4 + 15, this.width, 0xFFFFFF, true);
 		}
+		
+		this.minus.enabled = Selectable.selected != null;
+		super.drawScreen(p_73863_1_, p_73863_2_, p_73863_3_);
 	}
 	
-}
+	@Override
+    protected void actionPerformed(GuiButton button) {
+		if (button == this.add) {
+			InfoBox box = new InfoBox("New Box", new ArrayList<String>(), Server.getServer(), Server.getState());
+			Main.mc.displayGuiScreen(new GuiEditBox(this, box));
+		}
+		if (button == this.minus) {
+			remove(Selectable.selected);
+		}
+	}
+	
+	/**
+	 * Called when <code>DELETE</code> is pressed and
+	 * something is selected.
+	 * @param s The selected item to remove, never null.
+	 */
+	public void remove(Selectable s) {
+		
+		if (Selectable.selected instanceof ArmorDisplay) {
+			ConfigHUD.getConfig().get(CATEGORY_GENERAL, "showPotion", true).set(false);
+			Selectable.selected = null;
+		}
+		
+		if (Selectable.selected instanceof PotionDisplay) {
+			ConfigHUD.getConfig().get(CATEGORY_GENERAL, "showArmor", true).set(false);
+			Selectable.selected = null;
+		}
+		
+		if (Selectable.selected instanceof InfoBox) {
+			((InfoBox)Selectable.selected).delete();
+			Selectable.selected = null;
+		}
+		
+	}
+} 

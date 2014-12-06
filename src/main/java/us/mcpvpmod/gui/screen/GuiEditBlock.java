@@ -20,9 +20,11 @@ import us.mcpvpmod.config.kit.ConfigKitHUD;
 import us.mcpvpmod.config.maze.ConfigMazeHUD;
 import us.mcpvpmod.config.raid.ConfigRaidHUD;
 import us.mcpvpmod.config.sab.ConfigSabHUD;
+import us.mcpvpmod.config.smash.ConfigSmashHUD;
 import us.mcpvpmod.game.state.StateCTF;
 import us.mcpvpmod.game.state.StateMaze;
 import us.mcpvpmod.game.state.StateSab;
+import us.mcpvpmod.game.state.StateSmash;
 import us.mcpvpmod.gui.InfoBlock;
 import us.mcpvpmod.util.Format;
 
@@ -67,6 +69,7 @@ public class GuiEditBlock extends GuiScreen {
 		case SAB: 	return ConfigSabHUD.getConfig();
 		case BUILD:	return ConfigBuildHUD.getConfig();
 		case HS: 	return ConfigHSHUD.getConfig();
+		case SMASH: return ConfigSmashHUD.getConfig();
 		case HUB: 	break;
 		case NONE: 	break;
 		case HG2:	break;
@@ -113,6 +116,12 @@ public class GuiEditBlock extends GuiScreen {
 			}
 		case BUILD: return ConfigBuildHUD.getConfig().get(CATEGORY_GENERAL, "render", new String[]{});
 		case HS: 	return ConfigHSHUD.getConfig().get(CATEGORY_GENERAL, "renderPlay", new String[]{});
+		case SMASH:
+			switch(StateSmash.getState()) {
+			case PRE:	return ConfigSmashHUD.getConfig().get(CATEGORY_GENERAL, "renderPre", new String[]{});
+			case PLAY:	return ConfigSmashHUD.getConfig().get(CATEGORY_GENERAL, "renderPlay", new String[]{});
+			case POST:	return ConfigSmashHUD.getConfig().get(CATEGORY_GENERAL, "renderPost", new String[]{});
+			}
 		case HUB: 	break;
 		case NONE: 	break;
 		case HG2:	break;

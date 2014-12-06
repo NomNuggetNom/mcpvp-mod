@@ -12,14 +12,30 @@ public class VarsKit {
 	 * Called every tick to update information.
 	 */
 	public static void putVars() {
-		vars.put("kills", Vars.get("kit:kills"));
-		vars.put("deaths", Vars.get("kit:deaths"));
+		
+		/*
+		 * V2
+		 */
+		vars.put("kit", Vars.get("kit:kit"));
+		vars.put("elo", Vars.get("kit:elo"));
+		vars.put("credits", Vars.get("kit:elo"));
+
+		/*
+		 * V1 
+		 */
 		vars.put("worth", Vars.get("kit:worth"));
 		vars.put("credits", Vars.get("kit:credits"));
 		vars.put("streak", Vars.get("kit:ks"));
 		vars.put("killstreak", Vars.get("kit:ks"));
 		vars.put("ks", Vars.get("kit:ks"));
+		
+		/*
+		 * BOTH
+		 */
+		vars.put("kills", Vars.get("kit:kills"));
+		vars.put("deaths", Vars.get("kit:deaths"));
 		vars.put("kd", "" + StatsKit.getKD());
+		
 	}
 	
 	/**

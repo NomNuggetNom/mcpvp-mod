@@ -9,7 +9,7 @@ import us.mcpvpmod.trackers.BoardTracker;
 import cpw.mods.fml.common.gameevent.TickEvent;
 
 public class AllTick {
-	
+
 	public static void onTick(TickEvent event) {
 		
 		if (System.currentTimeMillis() % 10 == 0) {
@@ -32,7 +32,7 @@ public class AllTick {
 			tracker.update();
 			Main.end(2);
 		}
-
+		
 	}
 	
 }

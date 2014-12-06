@@ -2,8 +2,6 @@ package us.mcpvpmod.gui;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -14,7 +12,6 @@ import us.mcpvpmod.config.all.ConfigHUD;
 import us.mcpvpmod.game.FriendsList;
 import us.mcpvpmod.game.state.DummyState;
 import us.mcpvpmod.game.state.State;
-import us.mcpvpmod.game.vars.AllVars;
 import us.mcpvpmod.gui.screen.GuiMoveBlocks;
 import us.mcpvpmod.util.Format;
 
@@ -191,7 +188,6 @@ public class InfoBlock extends Selectable {
 		Main.start("ib");
 		f = Main.mc.fontRenderer;
 		res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
-		
 		this.update();
 		this.setW();
 		this.setH();
@@ -205,12 +201,12 @@ public class InfoBlock extends Selectable {
 	 * Replaces {variables} with their value.
 	 * Handles formatting codes.
 	 */
-	public void update() {
+	private void update() {
 		display.clear();
 		
 		for (String line : this.toDisplay) {
 			// Run the line through our processors.
-			line = processVars(line);
+			line = Format.vars(line);
 			line = Format.process(line);
 			
 			if (line.equals("friends")) {
@@ -230,10 +226,11 @@ public class InfoBlock extends Selectable {
 	}
 	
 	/**
-	 * Calculates the width of the block based only on the current block.
-	 * @return Width
+	 * Calculates the width of the block based only on the current block
+	 * (i.e. does not consider {@link #matchW}).
+	 * @return The calculated width of the block.
 	 */
-	public int calcW() {
+	private int calcW() {
 		if (this.display.size() == 0) return -1;
 		int calcW = 0;
 		int lineW = 0;
@@ -258,10 +255,10 @@ public class InfoBlock extends Selectable {
 	}
 	
 	/**
-	 * Sets the width of the block.
-	 * Accounts for matching widths.
+	 * Sets the width of the block. Considers
+	 * {@link #calcW} and support for matching widths.
 	 */
-	public void setW() {
+	private void setW() {
 		int newW = this.calcW();
 		
 		// Cycle through all the blocks being displayed.
@@ -282,10 +279,11 @@ public class InfoBlock extends Selectable {
 	}
 	
 	/**
-	 * Calculates the height of only this block.
-	 * @return Height
+	 * Calculates the height of the block based only on the current block
+	 * (i.e. does not consider {@link #matchH}).
+	 * @return The calculated height of the block.
 	 */
-	public int calcH() {
+	private int calcH() {
 
 		if (this.display.size() == 0) return -1;
 
@@ -298,9 +296,10 @@ public class InfoBlock extends Selectable {
 	}
 	
 	/**
-	 * Sets the height of the block.
+	 * Sets the height of the block. Considers
+	 * {@link #calcH} and support for matching widths.
 	 */
-	public void setH() {
+	private void setH() {
 		int newH = this.calcH();
 		
 		// Cycle through all the blocks being displayed.
@@ -319,7 +318,18 @@ public class InfoBlock extends Selectable {
 		this.h = newH;
 	}
 	
-	public int align(String line) {
+	/**
+	 * Used in aligning items on the block. Calculates the
+	 * number of pixels required to shift a line to make it
+	 * match all other lines. Used only when ">>" is present
+	 * in the line.
+	 * @param line The line to calculate the value for.
+	 * @return The number of pixels required to shift the
+	 * line to make it match all other lines (so
+	 * that all ">>" line up), or 0 if no
+	 * shift is required.
+	 */
+	private int align(String line) {
 		if (!ConfigHUD.alignItems) return 0;
 		if (!line.contains(">>")) return 0;
 		
@@ -340,7 +350,7 @@ public class InfoBlock extends Selectable {
 	/**
 	 * Draw the block!
 	 */
-	public void draw() {
+	private void draw() {
 		if (this.display.size() == 0) return;
 		
 		int titleHeight = f.FONT_HEIGHT-1;
@@ -392,35 +402,6 @@ public class InfoBlock extends Selectable {
 			f.drawStringWithShadow(string, baseX + align(string), baseY+offset, 0xFFFFFF);
 			offset = offset + f.FONT_HEIGHT+2;
 		}
-	}
-	
-	/**
-	 * Processes {variables} in text, e.g. {kills} -> 2
-	 * @param line The line to process.
-	 * @return The processed line.
-	 */
-	public static String processVars(String line) {
-		String reVar = "\\{(.+?)\\}";
-
-		// Form our matcher for variables.
-		Matcher varMatch = Pattern.compile(reVar).matcher(line);
-		while (varMatch.find()) {
-			String var = varMatch.group().replaceAll("\\{", "").replaceAll("\\}", "");
-
-			// Check AllVars first.
-			if (AllVars.get(var) != "") {
-				line = line.replaceAll("\\{" + var + "\\}", AllVars.get(var));
-				
-			} else if (Server.getVar(var) != null && !(Server.getVar(var).equals("")) && !Server.getVar(var).equals("" + Integer.MIN_VALUE)) {		
-				// Replace the occurance of the var with the actual info.
-				line = line.replaceAll("\\{" + var + "\\}", Server.getVar(var));
-				
-			} else {
-				// Return "null" to prevent the string from being rendered.
-				line = "null";
-			}
-		}
-		return line;
 	}
 	
 	/**

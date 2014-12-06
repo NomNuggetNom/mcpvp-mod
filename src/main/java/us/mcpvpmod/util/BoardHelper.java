@@ -10,7 +10,7 @@ import net.minecraft.scoreboard.Scoreboard;
 import us.mcpvpmod.Main;
 
 public class BoardHelper {
-
+	
 	/**
 	 * Returns the "title" of the scoreboard's display.
 	 */

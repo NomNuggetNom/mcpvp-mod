@@ -15,7 +15,6 @@ public class Data {
 	
 	public static final File directory = new File(Main.mc.mcDataDir.getPath() + "/mods/" + Main.modID);
 	public static final File dataFile = new File(directory, "data.cfg");
-	public static HashMap<String, String> entries = new HashMap();
 	public static Properties prop = new Properties();
 	public static boolean made = false;
 	public static boolean shouldSetDefaults = false;
@@ -91,5 +90,4 @@ public class Data {
 		Data.put(Main.armorDisplay + ".x", "-" + ConfigHUD.margin);
 		Data.put(Main.armorDisplay + ".y", "a.PotionDisplay.d");
 	}
-	
 }

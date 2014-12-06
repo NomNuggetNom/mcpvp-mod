@@ -8,9 +8,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import us.mcpvpmod.Main;
+import us.mcpvpmod.Server;
 import us.mcpvpmod.ServerHelper;
 import us.mcpvpmod.config.all.ConfigHUD;
 import us.mcpvpmod.gui.CustomTextureAsync;
+import us.mcpvpmod.gui.InfoBox;
 import us.mcpvpmod.gui.PotionDisplay;
 import us.mcpvpmod.gui.Selectable;
 import us.mcpvpmod.gui.screen.GuiIngameMCPVP;
@@ -72,6 +74,7 @@ public class AllRender {
 			Main.end(2);
 		}
 		
+		InfoBox.displayAll(Server.getServer(), Server.getState());
 	}
 	
 	/**

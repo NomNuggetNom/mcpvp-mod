@@ -21,7 +21,7 @@ public class GuiServerCategory extends GuiScrollingList {
         super(Main.mc.getMinecraft(), 
         		parent.width, // width
         		parent.height, // height
-        		80, // top
+        		105, // top
         		parent.height - 55, // bottom
         		0, // left
         		height // height of each entry

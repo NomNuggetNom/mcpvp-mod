@@ -9,7 +9,6 @@ public class KitsCTF {
 	
 	public static Item empty = Items.cookie;
 	
-	
 	public static void putKits() {
 		
 		ItemStack dwarfSword = new ItemStack(Items.diamond_sword);

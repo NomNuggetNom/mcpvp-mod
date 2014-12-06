@@ -35,6 +35,9 @@ import us.mcpvpmod.config.sab.ConfigSabAlerts;
 import us.mcpvpmod.config.sab.ConfigSabHUD;
 import us.mcpvpmod.config.sab.ConfigSabSelect;
 import us.mcpvpmod.config.sab.ConfigSabSounds;
+import us.mcpvpmod.config.smash.ConfigSmashAlerts;
+import us.mcpvpmod.config.smash.ConfigSmashHUD;
+import us.mcpvpmod.config.smash.ConfigSmashSelect;
 import us.mcpvpmod.game.FriendsList;
 import us.mcpvpmod.game.core.CoreBuild;
 import us.mcpvpmod.game.core.CoreCTF;
@@ -43,8 +46,11 @@ import us.mcpvpmod.game.core.CoreKit;
 import us.mcpvpmod.game.core.CoreMaze;
 import us.mcpvpmod.game.core.CoreRaid;
 import us.mcpvpmod.game.core.CoreSab;
+import us.mcpvpmod.game.core.CoreSmash;
 import us.mcpvpmod.game.kits.KitsCTF;
 import us.mcpvpmod.game.kits.KitsHG;
+import us.mcpvpmod.game.kits.KitsKit;
+import us.mcpvpmod.game.kits.KitsSmash;
 import us.mcpvpmod.game.state.DummyState;
 import us.mcpvpmod.game.state.StateCTF;
 import us.mcpvpmod.game.state.StateHG;
@@ -52,6 +58,7 @@ import us.mcpvpmod.game.state.StateHS;
 import us.mcpvpmod.game.state.StateKit;
 import us.mcpvpmod.game.state.StateMaze;
 import us.mcpvpmod.game.state.StateSab;
+import us.mcpvpmod.game.state.StateSmash;
 import us.mcpvpmod.gui.InfoBlock;
 import us.mcpvpmod.util.Format;
 import cpw.mods.fml.common.FMLLog;
@@ -89,6 +96,8 @@ public class Sync {
 	public static void syncKits() {
 		KitsHG.putKits();
 		KitsCTF.putKits();
+		KitsSmash.putKits();
+		KitsKit.putKits();
 	}
 
 	/**
@@ -150,7 +159,10 @@ public class Sync {
 		ConfigSabHUD.syncConfig();
 		ConfigSabSounds.syncConfig();
 		ConfigSabSelect.syncConfig();
-
+		
+		ConfigSmashAlerts.syncConfig();
+		ConfigSmashHUD.syncConfig();
+		ConfigSmashSelect.syncConfig();
 	}
 	
 	/**
@@ -173,7 +185,7 @@ public class Sync {
 		
 		// Create blocks for Build
 		InfoBlock.createBlocks(ConfigBuildHUD.render, Server.BUILD, DummyState.NONE);
-		
+
 		// Create blocks for CTF
 		InfoBlock.createBlocks(ConfigCTFHUD.renderPre, Server.CTF, StateCTF.WAIT);
 		InfoBlock.createBlocks(ConfigCTFHUD.renderPre, Server.CTF, StateCTF.PRE);
@@ -205,6 +217,8 @@ public class Sync {
 		InfoBlock.createBlocks(ConfigSabHUD.renderPost, Server.SAB, StateSab.DEAD);
 		InfoBlock.createBlocks(ConfigSabHUD.renderPost, Server.SAB, StateSab.POST);
 		
+		InfoBlock.createBlocks(ConfigSmashHUD.renderPre, Server.SMASH, StateSmash.PRE);
+		InfoBlock.createBlocks(ConfigSmashHUD.renderPlay, Server.SMASH, StateSmash.PLAY);
 	}
 	
 	/**
@@ -225,6 +239,7 @@ public class Sync {
 		CoreSab.setup();
 		CoreHG.setup();
 		CoreRaid.setup();
+		CoreSmash.setup();
 	}
 	
 }

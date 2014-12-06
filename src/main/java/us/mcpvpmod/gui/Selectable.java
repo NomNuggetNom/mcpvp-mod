@@ -1,5 +1,6 @@
 package us.mcpvpmod.gui;
 
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -19,15 +20,15 @@ public class Selectable {
 	public static HashMap<String, Selectable> selectables = new HashMap<String, Selectable>();
 	/** The selected selectable. Null if nothing is selected. */
 	public static Selectable selected;
-	/** The padding between selections. */
-	public static int padding = 3;
+	/** A general padding value. */
+	public static final int PADDING = 3;
 
 	public static Selectable getSelectable(String id) {
 		return selectables.get(id);
 	}
 	
 	/**
-	 * Stores a Selectrable in {@link #selectables}. Automatically
+	 * Stores a Selectable in {@link #selectables}. Automatically
 	 * called on the creation of an InfoBlock.
 	 * @param id The ID to reference it by, usually the toString result.
 	 * @param selectable The Selectable to store.
@@ -119,27 +120,27 @@ public class Selectable {
 		}
 		
 		Draw.rect(this.getX(), 
-				this.getY() - padding, 
+				this.getY() - PADDING, 
 				this.getW(), 
-				padding, 
+				PADDING, 
 				anchorTop?0:1, anchorTop?1:0, 0, 1);
 		
 		Draw.rect(this.getX(), 
 				this.getY() + this.getH(), 
 				this.getW(), 
-				padding, 
+				PADDING, 
 				anchorBottom?0:1, anchorBottom?1:0, 0, 1);
 		
-		Draw.rect(this.getX() - padding, 
-				this.getY() - padding, 
-				padding, 
-				this.getH() + padding*2, 
+		Draw.rect(this.getX() - PADDING, 
+				this.getY() - PADDING, 
+				PADDING, 
+				this.getH() + PADDING*2, 
 				anchorRight?0:1, anchorRight?1:0, 0, 1);
 		
 		Draw.rect(this.getX() + this.getW(), 
-				this.getY() - padding, 
-				padding, 
-				this.getH() + padding*2, 
+				this.getY() - PADDING, 
+				PADDING, 
+				this.getH() + PADDING*2, 
 				anchorLeft?0:1, anchorLeft?1:0, 0, 1);
 		
 	}
@@ -157,10 +158,10 @@ public class Selectable {
 		
 		DisplayAnchor.anchors.remove(this);
 		
-		int justifyLeft = this instanceof InfoBlock ? padding*2 : padding;
-		int justifyRight = res.getScaledWidth() - this.getW() - padding;
-		int justifyUp = this instanceof InfoBlock ? padding*2 : padding;
-		int justifyDown = res.getScaledHeight() - this.getH() - padding;
+		int justifyLeft = this instanceof InfoBlock ? PADDING*2 : PADDING;
+		int justifyRight = res.getScaledWidth() - this.getW() - PADDING;
+		int justifyUp = this instanceof InfoBlock ? PADDING*2 : PADDING;
+		int justifyDown = res.getScaledHeight() - this.getH() - PADDING;
 		
 		// Holding CTRL will snap the box to the edges of the screen.
 		if (ctrl) {
@@ -175,25 +176,25 @@ public class Selectable {
 		} else {
 			// Move left
 			if (direction == 'l') 
-				this.setX(this.getX() - moveBy - padding < 0 ? 
+				this.setX(this.getX() - moveBy - PADDING < 0 ? 
 						justifyLeft : 
 						this.getX() - moveBy);
 			
 			// Move right
 			if (direction == 'r')
-				this.setX(this.getX() + this.getW() + moveBy + padding > res.getScaledWidth() ? 
+				this.setX(this.getX() + this.getW() + moveBy + PADDING > res.getScaledWidth() ? 
 						justifyRight : 
 						this.getX() + moveBy);
 
 			// Move up
 			if (direction == 'u')
-				this.setY(this.getY() - moveBy - padding < 0 ? 
+				this.setY(this.getY() - moveBy - PADDING < 0 ? 
 						justifyUp : 
 						this.getY() - moveBy);
 
 			// Move down
 			if (direction == 'd')
-				this.setY(this.getY() + moveBy + padding + this.getH() > res.getScaledHeight() ? 
+				this.setY(this.getY() + moveBy + PADDING + this.getH() > res.getScaledHeight() ? 
 						justifyDown : 
 						this.getY() + moveBy);
 		}
@@ -208,7 +209,7 @@ public class Selectable {
 		}
 		
 		if (this.getY() > res.getScaledHeight()/2) {
-			int distanceFromEdge = res.getScaledHeight() - this.getH() - this.getY() - padding;
+			int distanceFromEdge = res.getScaledHeight() - this.getH() - this.getY() - PADDING;
 			Data.put(this.toString() + ".y", "-" + distanceFromEdge);
 		} else {
 			Data.put(this.toString() + ".y", "" + this.getY());
@@ -218,8 +219,11 @@ public class Selectable {
 	
 	/**
 	 * @return The base X coordinate of the selectable.
+	 * {@link ConfigHUD#margin} by default.
 	 */
-	public int getX() { return -1; }
+	public int getX() { 
+		return ConfigHUD.margin;
+	}
 	
 	@SuppressWarnings("unused")
 	/**
@@ -230,9 +234,10 @@ public class Selectable {
 	
 	/**
 	 * Performs the loading on the X coordinate that the selectable
-	 * should be at. Checks for anchors (both in data and in DisplayAnchor.anchors)
-	 * and saved coordinates in Data. Defaults to ConfigHUD.margin if no
-	 * saved value is found.
+	 * should be at. Checks for:<ul>
+	 * <li>Anchors in {@link Data} and in {@link DisplayAnchor#anchors}
+	 * <li>Saved coordinates in {@link Data}.</li>
+	 * Defaults to ConfigHUD.margin if no saved value is found.<br><br>
 	 * @return The X coordinate the selectable should be set to.
 	 */
 	public int loadX() {
@@ -308,8 +313,11 @@ public class Selectable {
 
 	/**
 	 * @return The base Y coordinate of the selectable.
+	 * {@link ConfigHUD#margin} by default.
 	 */
-	public int getY() { return -1; }
+	public int getY() { 
+		return ConfigHUD.margin;
+	}
 	
 	@SuppressWarnings("unused")
 	/**
@@ -320,9 +328,10 @@ public class Selectable {
 	
 	/**
 	 * Performs the loading on the Y coordinate that the selectable
-	 * should be at. Checks for anchors (both in data and in DisplayAnchor.anchors)
-	 * and saved coordinates in Data. Defaults to ConfigHUD.margin if no
-	 * saved value is found.
+	 * should be at. Checks for:<ul>
+	 * <li>Anchors in {@link Data} and in {@link DisplayAnchor#anchors}
+	 * <li>Saved coordinates in {@link Data}.</li>
+	 * Defaults to ConfigHUD.margin if no saved value is found.<br><br>
 	 * @return The Y coordinate the selectable should be set to.
 	 */
 	public int loadY() {
@@ -339,9 +348,9 @@ public class Selectable {
 
 			// Directional support and adjustment.
 			if (anchor.direction == 'd') {
-				return validateY(anchor.parent.getY() + anchor.parent.getH() + padding);
+				return validateY(anchor.parent.getY() + anchor.parent.getH() + PADDING);
 			} else if (anchor.direction == 'u') {
-				return validateY(anchor.parent.getY() - anchor.parent.getH() - padding);
+				return validateY(anchor.parent.getY() - anchor.parent.getH() - PADDING);
 			}
 		}
 		
@@ -378,7 +387,7 @@ public class Selectable {
 			if (savedY.startsWith("-")) {
 				
 				// Subtract the total height and the found value from the height of the screen.
-				return validateY(res.getScaledHeight() - this.getH() - Math.abs(Integer.parseInt(Data.get(this.toString() + ".y"))) - padding);
+				return validateY(res.getScaledHeight() - this.getH() - Math.abs(Integer.parseInt(Data.get(this.toString() + ".y"))) - PADDING);
 			}
 			// Return the positive (literal) stored Y.
 			return validateY(Integer.parseInt(savedY));
@@ -428,6 +437,22 @@ public class Selectable {
 	}
 	
 	/**
+	 * Used in testing if clicks in {@link GuiMoveBlocks} were
+	 * over a Selectable. 
+	 * @param clickX The X coordinate that the mouse was clicked at.
+	 * @param clickY The Y coordinate that the mouse was clicked at.
+	 * @return The Selectable that was clicked, or null if 
+	 * no selectable was at the click location.
+	 */
+	public static Selectable clicked(int clickX, int clickY) {
+		for (Selectable selectable : getShowing()) {
+			if (selectable.getRect().contains(clickX, clickY))
+				return selectable;
+		}
+		return null;
+	}
+	
+	/**
 	 * @return The server that this selectable should show during.
 	 */
 	public Server getServer() { return Server.ALL; }
@@ -436,5 +461,12 @@ public class Selectable {
 	 * @return The state that this selectable should show during.
 	 */
 	public State getState() { return DummyState.NONE; }
+	
+	/**
+	 * @return A Rectangle area of the Selectable.
+	 */
+	public Rectangle getRect() {
+		return new Rectangle(this.getX(), this.getY(), this.getW(), this.getH());
+	}
 
 }

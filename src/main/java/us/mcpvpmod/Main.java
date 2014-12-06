@@ -12,8 +12,10 @@ import us.mcpvpmod.config.all.ConfigMisc;
 import us.mcpvpmod.events.Events;
 import us.mcpvpmod.gui.ArmorDisplay;
 import us.mcpvpmod.gui.InfoBlock;
+import us.mcpvpmod.gui.InfoBox;
 import us.mcpvpmod.gui.PotionDisplay;
 import us.mcpvpmod.gui.screen.GuiSecondChat;
+import us.mcpvpmod.json.BoxXML;
 import us.mcpvpmod.json.ServerJSON;
 import us.mcpvpmod.json.StreamJSON;
 import us.mcpvpmod.json.VersionJSON;
@@ -79,6 +81,8 @@ public class Main {
 	/** A reference to the InfoBlock that will become the FriendsList during Sync. */
 	public static InfoBlock friendsList = null;
 	
+	public static InfoBox box = null;
+	
 	@EventHandler
 	public void preInit(@SuppressWarnings("unused") FMLPreInitializationEvent e) {	
 		Main.l(Format.s("startup"));
@@ -90,10 +94,13 @@ public class Main {
     	
 		// Create the directories and files for saving data.
 		Data.make();
+		BoxXML.make();
 		
     	// Sync all files and configurations.
 		Sync.sync();
-    }
+		
+		InfoBox.loadBoxes();
+	}
     	
     @EventHandler
 	public void init(@SuppressWarnings("unused") FMLInitializationEvent e) {   	

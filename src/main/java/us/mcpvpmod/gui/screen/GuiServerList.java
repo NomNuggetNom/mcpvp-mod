@@ -83,6 +83,7 @@ public class GuiServerList extends GuiScreen {
 			count++;
 		}
 		
+		((GuiButton)this.buttonList.get(this.buttonList.size()-1)).width = 310;
 		
 		y+=25;
 		
@@ -136,7 +137,6 @@ public class GuiServerList extends GuiScreen {
 			regionButton.displayString = Format.s("gui.join.region") + serverRegion.toUpperCase();
 		}
 		this.setServerCategory(serverType, serverRegion);
-		//this.serverList = new GuiServerCategory(this, MCPVPServer.getSortedOfType(serverType, serverRegion));
 		
 		// Update the region button by removing it and re-adding it.
 		this.buttonList.remove(regionButton);
