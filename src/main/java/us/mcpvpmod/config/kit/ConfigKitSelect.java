@@ -8,35 +8,27 @@ import java.util.List;
 
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
+import us.mcpvpmod.util.Format;
 import cpw.mods.fml.common.DummyModContainer;
+import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
 
-public class ConfigKitHUD extends DummyModContainer {
+public class ConfigKitSelect extends DummyModContainer {
 
-	public static String[] render= new String[1000];
-	public static boolean renderDebug = false;
-	public static String[] yourStats = new String[1000];
-	public static String[] gameInfo = new String[1000];
-	public static boolean customTextures = false;
-	public static boolean renderBG = true;
-	public static int margin = 3;
-	public static boolean centerTitles = true;
-	public static boolean alignWidths = false;
-	public static boolean alignHeights = false;
-	public static int medalTimer = 7;
-	
-    public static String fileName = "mcpvp_kit_hud.cfg";
+	public static String selectMode;
+	public static String selectKit;
+    
+    public static String fileName = "mcpvp_kit_select.cfg";
     
     private static Configuration config;
 
-    public ConfigKitHUD() {
+    public ConfigKitSelect() {
         config = null;
         File cfgFile = new File(Loader.instance().getConfigDir(), fileName);
         config = new Configuration(cfgFile);
 
         syncConfig();
     }
-    
     
     public static Configuration getConfig() {
         if (config == null) {
@@ -57,26 +49,23 @@ public class ConfigKitHUD extends DummyModContainer {
         List<String> propOrder = new ArrayList<String>();
         
         Property prop;
-        
-    	prop = config.get(CATEGORY_GENERAL, "render", new String[]{
-    			
-    			"#bold##underline#KitPVP", 
-    			"#cyan##italic#X#gray# >> #r#{x}",
-    			"#cyan##italic#Y#gray# >> #r#{y}",
-    			"#cyan##italic#Z#gray# >> #r#{z}",
-    			"#cyan##italic#F#gray# >> #r#{dir} ({f})",
-    			"#cyan##italic#FPS#gray# >> #r#{fps}",
-    			"#cyan##italic#Ping#gray# >> #r#{ping}"
-    			
-    	});
-        prop.setLanguageKey("kit.config.hud.render");
-    	render = prop.getStringList();
+
+        prop = config.get(CATEGORY_GENERAL, "selectMode", "Select Before Start", Format.s("hg.config.select.selectMode.tooltip"), 
+        		new String[]{Format.s("hg.config.select.selectMode.m.join"), Format.s("hg.config.select.selectMode.m.start"), Format.s("hg.config.select.selectMode.m.dont")});
+        prop.setLanguageKey("kit.config.select.selectMode");
+    	selectMode = prop.getString();
     	propOrder.add(prop.getName());
-    	
+        
+    	prop = config.get(CATEGORY_GENERAL, "selectKit", "backup");
+        prop.setLanguageKey("kit.config.select.selectKit");
+    	selectKit = prop.getString();
+    	propOrder.add(prop.getName());
+        
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
 
         if (config.hasChanged())
         {
+        	FMLLog.info("[MCPVP] Syncing configuration for %s", fileName);
             config.save();
         }
     }

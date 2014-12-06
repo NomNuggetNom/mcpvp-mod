@@ -10,7 +10,6 @@ import java.util.regex.Pattern;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import us.mcpvpmod.game.alerts.CustomAlert;
-import us.mcpvpmod.util.Format;
 import cpw.mods.fml.common.DummyModContainer;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
@@ -50,6 +49,13 @@ public class ConfigKitAlerts extends DummyModContainer {
         
         Property prop;
         
+    	prop = config.get(CATEGORY_GENERAL, "alertKit", "Kill 'em ||| #gray#Selected #green#{kit} ||| kit");
+    	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
+        prop.setLanguageKey("kit.config.alerts.kit");
+    	propOrder.add(prop.getName());
+    	new CustomAlert("kit.kit", prop.getString());
+        
+    	/*
     	prop = config.get(CATEGORY_GENERAL, "alertStreak", Format.s("kit.config.alerts.streak.default"));
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
         prop.setLanguageKey("kit.config.alerts.streak");
@@ -67,6 +73,7 @@ public class ConfigKitAlerts extends DummyModContainer {
         prop.setLanguageKey("kit.config.alerts.restart");
     	propOrder.add(prop.getName());
     	new CustomAlert("kit.restart", prop.getString());
+    	*/
         
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
 
