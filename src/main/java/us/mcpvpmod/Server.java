@@ -2,6 +2,7 @@ package us.mcpvpmod;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Locale;
 
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -17,11 +18,13 @@ import us.mcpvpmod.events.chat.ChatKit;
 import us.mcpvpmod.events.chat.ChatMaze;
 import us.mcpvpmod.events.chat.ChatRaid;
 import us.mcpvpmod.events.chat.ChatSab;
+import us.mcpvpmod.events.chat.ChatSmash;
 import us.mcpvpmod.events.join.AllJoin;
 import us.mcpvpmod.events.join.JoinHG;
 import us.mcpvpmod.events.join.JoinMaze;
 import us.mcpvpmod.events.join.JoinRaid;
 import us.mcpvpmod.events.join.JoinSab;
+import us.mcpvpmod.events.join.JoinSmash;
 import us.mcpvpmod.events.render.AllRender;
 import us.mcpvpmod.events.render.RenderBuild;
 import us.mcpvpmod.events.render.RenderCTF;
@@ -32,6 +35,7 @@ import us.mcpvpmod.events.render.RenderKit;
 import us.mcpvpmod.events.render.RenderMaze;
 import us.mcpvpmod.events.render.RenderRaid;
 import us.mcpvpmod.events.render.RenderSab;
+import us.mcpvpmod.events.render.RenderSmash;
 import us.mcpvpmod.events.tick.AllTick;
 import us.mcpvpmod.events.tick.TickBuild;
 import us.mcpvpmod.events.tick.TickCTF;
@@ -42,6 +46,7 @@ import us.mcpvpmod.events.tick.TickKit;
 import us.mcpvpmod.events.tick.TickMaze;
 import us.mcpvpmod.events.tick.TickRaid;
 import us.mcpvpmod.events.tick.TickSab;
+import us.mcpvpmod.events.tick.TickSmash;
 import us.mcpvpmod.game.checks.assists.AssistTrackerCTF;
 import us.mcpvpmod.game.state.DummyState;
 import us.mcpvpmod.game.state.State;
@@ -50,6 +55,7 @@ import us.mcpvpmod.game.state.StateHG;
 import us.mcpvpmod.game.state.StateKit;
 import us.mcpvpmod.game.state.StateMaze;
 import us.mcpvpmod.game.state.StateSab;
+import us.mcpvpmod.game.state.StateSmash;
 import us.mcpvpmod.game.vars.AllVars;
 import us.mcpvpmod.game.vars.VarsBuild;
 import us.mcpvpmod.game.vars.VarsCTF;
@@ -58,6 +64,7 @@ import us.mcpvpmod.game.vars.VarsKit;
 import us.mcpvpmod.game.vars.VarsMaze;
 import us.mcpvpmod.game.vars.VarsRaid;
 import us.mcpvpmod.game.vars.VarsSab;
+import us.mcpvpmod.game.vars.VarsSmash;
 import us.mcpvpmod.util.Format;
 import cpw.mods.fml.common.gameevent.TickEvent;
 
@@ -72,14 +79,14 @@ public enum Server {
 	 * @return The friendly name of the server from the lang file.
 	 */
 	public String getName() {
-		return Format.s("server." + this.toString().toLowerCase() + ".name");
+		return Format.s("server." + this.toString().toLowerCase(Locale.ENGLISH) + ".name");
 	}
 	
 	/**
 	 * @return The base IP of the server from the lang file.
 	 */
 	public String baseIP() {
-		return Format.s("server." + this.toString().toLowerCase() + ".ip");
+		return Format.s("server." + this.toString().toLowerCase(Locale.ENGLISH) + ".ip");
 	}
 		
 	/**
@@ -101,7 +108,8 @@ public enum Server {
 		if (ip.endsWith("raid.mcpvp.com"))		return RAID;
 		if (ip.endsWith("v2.mc-hg.com"))		return HG2;
 		if (ip.endsWith("mc-hg.com"))			return HG;
-
+		if (ip.endsWith("mcsmash.com"))			return SMASH;
+		
 		return NONE;
 	}
 	
@@ -129,6 +137,7 @@ public enum Server {
 		case SAB: 	ChatSab.onChat(event);		return;
 		case BUILD:	ChatBuild.onChat(event);	return;
 		case HS: 	ChatHS.onChat(event); 		return;
+		case SMASH: ChatSmash.onChat(event);	return;
 		case HUB: 	ChatHub.onChat(event); 		return;
 		case HG2:	return;
 		case PARTY:	return;
@@ -153,6 +162,7 @@ public enum Server {
 		case SAB: 	RenderSab.onRender(event);		return;
 		case BUILD:	RenderBuild.onRender(event);	return;
 		case HS: 	RenderHS.onRender(event); 		return;
+		case SMASH: RenderSmash.onRender(event);	return;
 		case HUB: 	RenderHub.onRender(event); 		return;
 		case HG2:	return;
 		case PARTY:	return;
@@ -177,6 +187,7 @@ public enum Server {
 		case SAB: 	TickSab.onTick(event);		return;
 		case BUILD:	TickBuild.onTick(event);	return;
 		case HS: 	TickHS.onTick(event); 		return;
+		case SMASH: TickSmash.onTick(event);	return;
 		case HUB: 	TickHub.onTick(event); 		return;
 		case HG2:	return;
 		case PARTY:	return;
@@ -200,6 +211,7 @@ public enum Server {
 		case SAB: 	JoinSab.onJoin();
 		case BUILD:	return;
 		case HS: 	return;
+		case SMASH: JoinSmash.onJoin();
 		case HUB: 	return;
 		case HG2:	return;
 		case PARTY:	return;
@@ -269,6 +281,7 @@ public enum Server {
 		case SAB: 	return VarsSab.get(var);
 		case BUILD:	return VarsBuild.get(var);
 		case HS: 	break;
+		case SMASH: return VarsSmash.get(var);
 		case HUB: 	break;
 		case NONE: 	break;
 		case HG2:	break;
@@ -292,6 +305,7 @@ public enum Server {
 		case SAB: 	return StateSab.getState();
 		case BUILD:	break;
 		case HS: 	break;
+		case SMASH: return StateSmash.state;
 		case HUB: 	break;
 		case NONE: 	break;
 		case HG2:	break;
@@ -312,6 +326,7 @@ public enum Server {
 		case BUILD:	return false;
 		case HS: 	return true;
 		case HUB: 	return false;
+		case SMASH: return false;
 		case NONE: 	return false;
 		case HG2:	return false;
 		case PARTY: return false;
@@ -337,6 +352,7 @@ public enum Server {
 		case NONE: 	return 1;
 		case HG2:	return 1;
 		case PARTY: return 1;
+		case SMASH:	return 2;
 		default: 	return 1;
 		}
 	}
@@ -347,7 +363,10 @@ public enum Server {
 		//Draw.string(getState().toString(), 0, 9, 0xFFFFFF, true);
 	}
 	
+	/**
+	 * @return A list of all servers to show on the connection GUI.
+	 */
 	public static ArrayList<Server> serverList() {
-		return new ArrayList<Server>(Arrays.asList(HUB, KIT, HG, MAZE, SAB, CTF, HS, BUILD, RAID));
+		return new ArrayList<Server>(Arrays.asList(HUB, KIT, HG, MAZE, SAB, CTF, HS, BUILD, RAID, SMASH));
 	}
 }
