@@ -1,12 +1,13 @@
 package us.mcpvpmod.gui;
 
+import java.awt.Rectangle;
+
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
-import net.minecraft.client.renderer.texture.TextureManager;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
@@ -17,12 +18,60 @@ import us.mcpvpmod.util.Format;
 
 public class Draw {
 
+	/**
+	 * Used for drawing a string.
+	 * @param string The string to draw. Automatically passed through
+	 * {@link Format#process(String)}.
+	 * @param x The x coordinate to start drawing the string from.
+	 * @param y The y coordinate to start drawing the string from.
+	 * @param color The color of the string as a hexadecimal value,
+	 * e.g. <code>0xFFFFFF</code> for white.
+	 * @param shadow Whether or not to add a shadow to the text.
+	 */
 	public static void string(String string, int x, int y, int color, boolean shadow) {
 		Minecraft.getMinecraft().fontRenderer.drawString(Format.process(string), x, y, color, shadow);
 	}
+
+	/**
+	 * Used for drawing a simple white string with shadow.
+	 * @param string The string to draw. Automatically passed through
+	 * {@link Format#process(String)}.
+	 * @param x The x coordinate to start drawing the string from.
+	 * @param y The y coordinate to start drawing the string from.
+	 */
+	public static void string(String string, int x, int y) {
+		string(string, x, y, 0xFFFFFF, true);
+	}
 	
+	/**
+	 * Used for drawing a split string.
+	 * @param string The string to draw. Automatically passed through
+	 * {@link Format#process(String)}.
+	 * @param x The x coordinate to start drawing the string from.
+	 * @param y The y coordinate to start drawing the string from.
+	 * @param w The max width that the string can occupy before it
+	 * begins drawing on a new line.
+	 * @param color The color of the string as a hexadecimal value,
+	 * e.g. <code>0xFFFFFF</code> for white.
+	 */
 	public static void splitString(String string, int x, int y, int w, int color) {
 		Minecraft.getMinecraft().fontRenderer.drawSplitString(Format.process(string), x, y, w, color);
+	}
+	
+	/**
+	 * Used for drawing a centered string.
+	 * @param string The string to draw. Automatically passed through
+	 * {@link Format#process(String)}.
+	 * @param x The x coordinate to start drawing the string from.
+	 * @param y The y coordinate to start drawing the string from.
+	 * @param w The width of the area to center the string in.
+	 * @param color The color of the string as a hexadecimal value,
+	 * e.g. <code>0xFFFFFF</code> for white.
+	 * @param shadow Whether or not to add a shadow to the text.
+	 */
+	public static void centeredString(String string, int x, int y, int w, int color, boolean shadow) {
+		Minecraft.getMinecraft().fontRenderer.drawString(
+				Format.process(string), x + w/2 - Main.mc.fontRenderer.getStringWidth(Format.process(string))/2, y, color, shadow);
 	}
 	
 	/**
@@ -74,6 +123,10 @@ public class Draw {
 	 * @param imageWidth The width of the texture being drawn.
 	 * @param imageHeight The height of the texture being drawn.
 	 * @param scale The scale of the image.
+	 * @param red The red value to assign the background color.
+	 * @param green The green value to assign the background color.
+	 * @param blue The blue value to assign the background color.
+	 * @param alpha The alpha value to assign the background color.
 	 */
 	public static void texturedRect(ResourceLocation texture, double x,
 			double y, int u, int v, int width, int height, int imageWidth,
@@ -102,21 +155,32 @@ public class Draw {
         GL11.glDepthMask(true);
     }
 
-	public static void rect(float startX, float startY, float width, float height, float red, float green, float blue, float alpha) {
-		float endX = startX + width;
-		float endY = startY + height;
+	/**
+	 * Used for drawing colored rectangles.
+	 * @param x The x coordinate to start drawing at.
+	 * @param y The y coordinate to start drawing at.
+	 * @param width The width of the rectangle.
+	 * @param height The height of the rectangle.
+	 * @param red The red value to assign the background color.
+	 * @param green The green value to assign the background color.
+	 * @param blue The blue value to assign the background color.
+	 * @param alpha The alpha value to assign the background color.
+	 */
+	public static void rect(float x, float y, float width, float height, float red, float green, float blue, float alpha) {
+		float endX = x + width;
+		float endY = y + height;
     	
         float j1;
-	        if (startX < endX)
+	        if (x < endX)
         {
-            j1 = startX;
-            startX = endX;
+            j1 = x;
+            x = endX;
             endX = j1;
         }
-	        if (startY < endY)
+	        if (y < endY)
         {
-            j1 = startY;
-            startY = endY;
+            j1 = y;
+            y = endY;
             endY = j1;
         }
         Tessellator tessellator = Tessellator.instance;
@@ -125,19 +189,39 @@ public class Draw {
         OpenGlHelper.glBlendFunc(770, 771, 1, 0);
         GL11.glColor4f(red, green, blue, alpha);
         tessellator.startDrawingQuads();
-        tessellator.addVertex(startX, endY, 0.0D);
+        tessellator.addVertex(x, endY, 0.0D);
         tessellator.addVertex(endX, endY, 0.0D);
-        tessellator.addVertex(endX, startY, 0.0D);
-        tessellator.addVertex(startX, startY, 0.0D);
+        tessellator.addVertex(endX, y, 0.0D);
+        tessellator.addVertex(x, y, 0.0D);
         tessellator.draw();
         GL11.glEnable(GL11.GL_TEXTURE_2D);
         GL11.glDisable(GL11.GL_BLEND);
     }
 	
-	public static void item(FontRenderer fontRenderer, TextureManager textureManager, final ItemStack itemStack, int x, int y) {
-		new RenderItem().renderItemAndEffectIntoGUI(fontRenderer, textureManager, itemStack, x, y);
+	/**
+	 * Used for drawing colored rectangles.
+	 * @param rect The rectangle to draw.
+	 * @param color The color to fill the rectangle with.
+	 */
+	public static void rect(Rectangle rect, float red, float green, float blue, float alpha) {
+		rect(rect.x, rect.y, rect.width, rect.height, red, green, blue, alpha);
 	}
 	
+	/**
+	 * Used for drawing a black rectangle.
+	 * @param rect The rectangle to draw.
+	 * @param alpha The alpha value of the rectangle.
+	 */
+	public static void rect(Rectangle rect, float alpha) {
+		rect(rect, 0f, 0f, 0f, alpha);
+	}
+	
+	/**
+	 * Used for drawing an item stack.
+	 * @param itemStack The ItemStack to draw.
+	 * @param x The x coordinate to begin drawing at.
+	 * @param y The y coordinate to begin drawing at.
+	 */
 	public static void item(final ItemStack itemStack, int x, int y) {
         RenderHelper.enableGUIStandardItemLighting();
         RenderHelper.enableStandardItemLighting();
@@ -146,7 +230,14 @@ public class Draw {
 		RenderHelper.disableStandardItemLighting();
 	}
 	
-	public static void centeredString(String string, int x, int y, int w, int color, boolean shadow) {
-		Minecraft.getMinecraft().fontRenderer.drawString(Format.process(string), x + w/2 - Main.mc.fontRenderer.getStringWidth(Format.process(string))/2, y, color, shadow);
+	/**
+	 * Used for drawing an item. Forms an ItemStack then 
+	 * calls {@link Draw#item(ItemStack, int, int)}.
+	 * @param itemStack The ItemStack to draw.
+	 * @param x The x coordinate to begin drawing at.
+	 * @param y The y coordinate to begin drawing at.
+	 */
+	public static void item(final Item item, int x, int y) {
+		item(new ItemStack(item), x, y);
 	}
 }
