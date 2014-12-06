@@ -19,7 +19,6 @@ import us.mcpvpmod.events.chat.ChatMaze;
 import us.mcpvpmod.events.chat.ChatRaid;
 import us.mcpvpmod.events.chat.ChatSab;
 import us.mcpvpmod.events.chat.ChatSmash;
-import us.mcpvpmod.events.join.AllJoin;
 import us.mcpvpmod.events.join.JoinHG;
 import us.mcpvpmod.events.join.JoinMaze;
 import us.mcpvpmod.events.join.JoinRaid;
@@ -65,6 +64,7 @@ import us.mcpvpmod.game.vars.VarsMaze;
 import us.mcpvpmod.game.vars.VarsRaid;
 import us.mcpvpmod.game.vars.VarsSab;
 import us.mcpvpmod.game.vars.VarsSmash;
+import us.mcpvpmod.gui.Draw;
 import us.mcpvpmod.util.Format;
 import cpw.mods.fml.common.gameevent.TickEvent;
 
@@ -199,10 +199,9 @@ public enum Server {
 	/**
 	 * Dictates which join handler to re-direct to.
 	 */
-	public static void onJoin(String ip) {
-		AllJoin.onJoin();
+	public void onJoin() {
 		
-		switch(getServer(ip)) {
+		switch(this) {
 		case HG: 	JoinHG.onJoin();
 		case CTF: 	return;
 		case RAID: 	JoinRaid.onJoin();
@@ -218,6 +217,7 @@ public enum Server {
 		case NONE: 	return;
 		default:	return;
 		}
+		
 	}
 	
 	/**
@@ -357,10 +357,10 @@ public enum Server {
 		}
 	}
 	
-	public void drawOnScreen() {
+	public static void drawOnScreen() {
 		if (Main.mc.gameSettings.showDebugInfo) return;
-		//Draw.string(this.toString(), 0, 0, 0xFFFFFF, true);
-		//Draw.string(getState().toString(), 0, 9, 0xFFFFFF, true);
+		Draw.string(Server.getServer().toString(), 0, 0, 0xFFFFFF, true);
+		Draw.string(getState().toString(), 0, 9, 0xFFFFFF, true);
 	}
 	
 	/**

@@ -75,6 +75,7 @@ public class AllJoin {
 			// Clear the tracked messages.
 			AllChat.tracked.clear();
 		}
+		server.onJoin();
 	}
 	
 	/**

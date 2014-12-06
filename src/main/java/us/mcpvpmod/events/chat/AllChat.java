@@ -48,7 +48,6 @@ public class AllChat {
 		
 		//Main.l("message: \"%s\"", event.message.getFormattedText());
 		if (message.equals(msgLogged)) {
-			//Server.onJoin(Main.mc.func_147104_D().serverIP);
 			AllJoin.onJoin();
 			track = true;
 		}
@@ -80,10 +79,11 @@ public class AllChat {
 	
 	public static void catchIP(String message) {
 		if (message.matches(reIP)) {
-			Main.l("Received IP message! Current: %s, joined: %s", Server.getServer(), Server.getServer(message.replaceAll(reIP, "$1")));
-			if (Server.getServer() != Server.getServer(message.replaceAll(reIP, "$1"))) {
+			Server joined = Server.getServer(message.replaceAll(reIP, "$1")); 
+			Main.l("Received IP message! Current: %s, joined: %s", Server.getServer(), joined);
+			if (Server.getServer() != joined) {
 				ServerHelper.currentIP = message.replaceAll(reIP, "$1");
-				AllJoin.trueJoin(Server.getServer(message.replaceAll(reIP, "$1")));
+				AllJoin.trueJoin(joined);
 			}
 		}
 	}
