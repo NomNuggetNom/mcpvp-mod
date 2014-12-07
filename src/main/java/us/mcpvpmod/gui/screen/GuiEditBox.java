@@ -2,11 +2,12 @@ package us.mcpvpmod.gui.screen;
 
 import java.util.ArrayList;
 
-import org.lwjgl.input.Keyboard;
-
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
+
+import org.lwjgl.input.Keyboard;
+
 import us.mcpvpmod.Main;
 import us.mcpvpmod.gui.Draw;
 import us.mcpvpmod.gui.InfoBox;
@@ -27,7 +28,8 @@ public class GuiEditBox extends GuiScreen {
 	public GuiButton cancel;
 	public GuiButton add;
 	public GuiButton remove;
-	char lastChar;
+
+	String tabName;
 	
 	/**
 	 * A screen that allows the editing of an {@link InfoBox}
@@ -42,7 +44,6 @@ public class GuiEditBox extends GuiScreen {
 
 	@Override
 	public void initGui() {
-		super.initGui();
         titleField = new GuiTextField(Main.mc.fontRenderer, 
 				width/2 - width/4, //x
 				20, // y 
@@ -54,6 +55,7 @@ public class GuiEditBox extends GuiScreen {
         this.buttonList.add(save);
         
 		this.list = new GuiEditBoxProps(this, box.getRaw());
+		super.initGui();
 	}
 	
 	@Override
@@ -70,8 +72,8 @@ public class GuiEditBox extends GuiScreen {
 	
 	@Override
     public void drawScreen(int p_73863_1_, int p_73863_2_, float p_73863_3_) {
-		save.yPosition = this.height - 35;
-		save.xPosition = this.width/2 - 100;
+		save.yPosition = super.height - 35;
+		save.xPosition = super.width/2 - 100;
 		this.list.drawScreen(p_73863_1_, p_73863_2_, p_73863_3_);
 		this.titleField.drawTextBox();
 		Draw.string(this.titleText, width/2 - Main.mc.fontRenderer.getStringWidth(this.titleText)/2, 7, 0xFFFFFF, true);
@@ -92,7 +94,6 @@ public class GuiEditBox extends GuiScreen {
     	this.titleField.textboxKeyTyped(eventChar, eventKey);
     	this.list.keyTyped(eventChar, eventKey);
     	super.keyTyped(eventChar, eventKey);
-    	lastChar = eventChar;
     }
     
     @Override

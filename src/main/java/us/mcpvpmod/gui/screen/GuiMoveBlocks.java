@@ -91,9 +91,8 @@ public class GuiMoveBlocks extends GuiScreen {
 					Main.mc.displayGuiScreen(new GuiEditBlock(this, (InfoBlock) Selectable.selected));
 			}
 			
-			if (Selectable.selected instanceof InfoBox) {
+			if (Selectable.selected instanceof InfoBox)
 				Main.mc.displayGuiScreen(new GuiEditBox(this, (InfoBox) Selectable.selected));
-			}
 	
 		}
 		
