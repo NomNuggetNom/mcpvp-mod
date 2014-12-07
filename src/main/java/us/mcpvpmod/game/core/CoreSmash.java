@@ -6,33 +6,32 @@ import us.mcpvpmod.triggers.ChatTrigger;
 
 public class CoreSmash {
 
-	public static String rePlayAs = "\u00A7r\u00A77This week's free class is \u00A7r\u00A7e(.*)\u00A7r\u00A77!\u00A7r";
-	public static String reKit = "\u00A7r\u00A76You have selected the \u00A7r\u00A7a(.*)\u00A7r\u00A76 class\u00A7r";
-	public static String reBegin = "\u00A7r\u00A793-Round Game will start in (.*) seconds*!\u00A7r";
-	public static String reMap = "\u00A7r\u00A77You're playing on \u00A7r\u00A7b(.*) \\(#(.*)\\) by (.*)\u00A7r\u00A77!\u00A7r";
-	public static String reRoundBegin = "\u00A7r\u00A76Round will begin in (.*) seconds*!\u00A7r";
-	public static String reRoundEnd = "\u00A7r\u00A7dRound ending in (.*) seconds*!\u00A7r";
-	public static String reRoundOver = "\u00A7r\u00A76Game finished!\u00A7r";
-	public static String reRoundWinner = "(?:\u00A7r\u00A7(.*) wins with a score of (.*)!\u00A7r|\u00A7r\u00A76MrRandom999 and LlamasATA_ draw with a score of 2!\u00A7r)";
-	public static String reElo = "\u00A7r\u00A77Your Elo Rating: (.*)\u00A7r";
+	public static final String 
+		RE_FREE = "\u00A7r\u00A77This week's free class is \u00A7r\u00A7.(.*).*!.*\u00A7r.*",
+		RE_KIT = "\u00A7r\u00A76Selected the \u00A7r\u00A7a(.*)\u00A7r\u00A76 class!\u00A7r",
+		RE_BEGIN = "\u00A7r\u00A793-Round Game will start in (.*) seconds*!\u00A7r",
+		RE_MAP = "\u00A7r\u00A77You're playing on \u00A7r\u00A7b(.*)!.*",
+		RE_ROUND_BEGIN = "\u00A7r\u00A76Round will begin in (.*) seconds*!\u00A7r",
+		RE_ROUND_END = "\u00A7r\u00A7dRound ending in (.*) seconds*!\u00A7r",
+		MSG_GAME_OVER = "\u00A7r\u00A76Game finished!\u00A7r",
+		RE_ROUND_WINNER = "(?:\u00A7r\u00A7(.*) wins with a score of (.*)!\u00A7r|\u00A7r\u00A76MrRandom999 and LlamasATA_ draw with a score of 2!\u00A7r)",
+		RE_ELO = "\u00A7r\u00A77Your Elo Rating: (.*)\u00A7r";
 	
 	public static void setup() {
 		
-		new ChatTracker(rePlayAs, Server.SMASH,
+		new ChatTracker(RE_FREE, Server.SMASH,
 				new String[]{"smash:kit", "$1"});
 		
-		new ChatTracker(reElo, Server.SMASH,
+		new ChatTracker(RE_ELO, Server.SMASH,
 				new String[]{"smash:elo", "$1"});
 		
-		new ChatTracker(reKit, Server.SMASH,
+		new ChatTracker(RE_KIT, Server.SMASH,
 				new String[]{"smash:kit", "$1"});
 		
-		new ChatTracker(reMap, Server.SMASH,
-				new String[]{"smash:map.name", "$1"},
-				new String[]{"smash:map.id", "$2"},
-				new String[]{"smash:map.author", "$3"});
+		new ChatTracker(RE_MAP, Server.SMASH,
+				new String[]{"smash:map.name", "$1"});
 		
-		new ChatTrigger(reKit, "smash.kit", Server.SMASH, 
+		new ChatTrigger(RE_KIT, "smash.kit", Server.SMASH, 
 				new String[]{"kit", "$1"});
 
 	}

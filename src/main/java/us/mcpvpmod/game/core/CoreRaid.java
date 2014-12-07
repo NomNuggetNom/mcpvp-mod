@@ -6,22 +6,23 @@ import us.mcpvpmod.triggers.ChatTrigger;
 
 public class CoreRaid {
 	
-	public static String reNewBalance = "\u00A7r\u00A7aNew Balance: (.*)G\u00A7r";
-	public static String reBalance = "\00A7r\u00A76Balance: \u00A7r\u00A76\u00A7o(.*)G\u00A7r";
-	public static String reRaid = "\u00A7r\u00A7c(.*) is raiding your base!\u00A7r";
+	public static final String 
+		RE_NEW_BALANCE = "\u00A7r\u00A7aNew Balance: (.*)G\u00A7r",
+		RE_BALANCE = "\00A7r\u00A76Balance: \u00A7r\u00A76\u00A7o(.*)G\u00A7r",
+		RE_RAID = "\u00A7r\u00A7c(.*) is raiding your base!\u00A7r";
 
 	public static void setup() {
 		
-		new ChatTracker(reNewBalance, Server.RAID,
+		new ChatTracker(RE_NEW_BALANCE, Server.RAID,
 				new String[]{"raid:balance", "$1"});
 		
-		new ChatTracker(reBalance, Server.RAID,
+		new ChatTracker(RE_BALANCE, Server.RAID,
 				new String[]{"raid:balance", "$1"});
 		
-		new ChatTrigger(reNewBalance, "raid.balance", Server.RAID, 
+		new ChatTrigger(RE_NEW_BALANCE, "raid.balance", Server.RAID, 
 				new String[]{"balance", "$1"});
 		
-		new ChatTrigger(reRaid, "raid.raid", Server.RAID,
+		new ChatTrigger(RE_RAID, "raid.raid", Server.RAID,
 				new String[]{"player", "$1"});
 		
 	}
