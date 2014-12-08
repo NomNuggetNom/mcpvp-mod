@@ -88,23 +88,30 @@ public class Selectable {
 			anchorTop = distTop <= ConfigHUD.margin 
 					&& distTop >= -1 
 					&& selectable.getX() <= this.getX() 
-					&& (selectable.getX() + selectable.getW() >= this.getX() + this.getW());
+					&& (selectable.getX() + selectable.getW() >= this.getX() + this.getW()
+						|| this.getX() == selectable.getX())
+					&& !selectable.anchoredTo(this);
 					
 			anchorBottom = distBottom <= ConfigHUD.margin 
 					&& distBottom >= -1 
 					&& selectable.getX() < this.getX() 
-					&& (selectable.getX() + selectable.getW() > this.getX() + this.getW());
+					&& (selectable.getX() + selectable.getW() > this.getX() + this.getW()
+						|| this.getX() == selectable.getX())
+					&& !selectable.anchoredTo(this);
 					
 			anchorRight = distRight <= ConfigHUD.margin 
 					&& distRight >= -1 
 					&& selectable.getY() <= this.getY() 
 					&& (selectable.getY() + selectable.getH() >= this.getY() + this.getH()
-					|| this.getY() == selectable.getY());
+						|| this.getY() == selectable.getY())
+					&& !selectable.anchoredTo(this);
 
 			anchorLeft = distLeft <= ConfigHUD.margin 
 					&& distLeft >= -1 
 					&& selectable.getY() <= this.getY() 
-					&& (selectable.getY() + selectable.getH() >= this.getY() + this.getH());
+					&& (selectable.getY() + selectable.getH() >= this.getY() + this.getH()
+						|| this.getY() == selectable.getY())
+					&& !selectable.anchoredTo(this);
 					
 			if (anchorTop)
 				GuiMoveBlocks.potentialAnchors.put(this, new DisplayAnchor(selectable, this, 'd'));
@@ -114,9 +121,11 @@ public class Selectable {
 				GuiMoveBlocks.potentialAnchors.put(this, new DisplayAnchor(selectable, this, 'r'));
 			else if (anchorLeft)
 				GuiMoveBlocks.potentialAnchors.put(this, new DisplayAnchor(selectable, this, 'l'));
-			else 
+			else {
 				GuiMoveBlocks.potentialAnchors.remove(this);
-
+				DisplayAnchor.anchors.remove(this);
+			}
+			
 		}
 		
 		Draw.rect(this.getX(), 
@@ -424,10 +433,17 @@ public class Selectable {
 		if (parent == null) return;
 		DisplayAnchor.anchors.put(this, new DisplayAnchor(parent, this, direction));
 		
-		if (direction == 'u' && (DisplayAnchor.anchors.get(parent) != null && DisplayAnchor.anchors.get(parent).direction != 'd'));
-		if (direction == 'd' && (DisplayAnchor.anchors.get(parent) != null && DisplayAnchor.anchors.get(parent).direction != 'u'));
-		if (direction == 'l' && (DisplayAnchor.anchors.get(parent) != null && DisplayAnchor.anchors.get(parent).direction != 'r'));
-		if (direction == 'r' && (DisplayAnchor.anchors.get(parent) != null && DisplayAnchor.anchors.get(parent).direction != 'l'));
+		if (direction == 'u' 
+				&& (DisplayAnchor.anchors.get(parent) != null && DisplayAnchor.anchors.get(parent).direction != 'd'));
+		
+		if (direction == 'd' 
+				&& (DisplayAnchor.anchors.get(parent) != null && DisplayAnchor.anchors.get(parent).direction != 'u'));
+		
+		if (direction == 'l' 
+				&& (DisplayAnchor.anchors.get(parent) != null && DisplayAnchor.anchors.get(parent).direction != 'r'));
+		
+		if (direction == 'r' 
+				&& (DisplayAnchor.anchors.get(parent) != null && DisplayAnchor.anchors.get(parent).direction != 'l'));
 		
 		if (direction == 'u' || direction == 'd') {
 			Data.put(this.toString() + ".y", "a." + parent.toString() + "." + direction);
@@ -453,6 +469,16 @@ public class Selectable {
 	}
 	
 	/**
+	 * Tests if the given Selectable is anchored to this.
+	 * @param selectable The Selectable to check.
+	 * @return True if an anchor exists, false if not.
+	 */
+	public boolean anchoredTo(Selectable selectable) {
+		return DisplayAnchor.anchors.containsKey(this) 
+				&& DisplayAnchor.anchors.get(this).child.equals(selectable);
+	}
+	
+	/**
 	 * @return The server that this selectable should show during.
 	 */
 	public Server getServer() { return Server.ALL; }
@@ -465,8 +491,24 @@ public class Selectable {
 	/**
 	 * @return A Rectangle area of the Selectable.
 	 */
-	public Rectangle getRect() {
+	public Rectangle getRect/*M8*/() {
 		return new Rectangle(this.getX(), this.getY(), this.getW(), this.getH());
+	}
+	
+	/**
+	 * @return The friendly name to be used on the selection 
+	 * screen. Differs from the saveable name, {@link #getID()}.
+	 */
+	public String getName() {
+		return this.toString();
+	}
+	
+	/**
+	 * @return The unique ID that the Selectable will be
+	 * referred to by in {@link Data}.
+	 */
+	public String getID() {
+		return this.toString();
 	}
 
 }
