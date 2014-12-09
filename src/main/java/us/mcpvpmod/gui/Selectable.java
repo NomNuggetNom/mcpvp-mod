@@ -77,7 +77,7 @@ public class Selectable {
 		boolean anchorLeft = false;
 		
 		for (Selectable selectable : this.getShowing()) {
-			if (selectable.toString().equals(this.toString())) continue;
+			if (selectable.getID().equals(this.getID())) continue;
 			if (anchorTop || anchorBottom || anchorRight || anchorLeft) continue;
 			
 			int distTop = this.getY() - selectable.getH() - selectable.getY();
@@ -123,7 +123,7 @@ public class Selectable {
 				GuiMoveBlocks.potentialAnchors.put(this, new DisplayAnchor(selectable, this, 'l'));
 			else {
 				GuiMoveBlocks.potentialAnchors.remove(this);
-				DisplayAnchor.anchors.remove(this);
+				DisplayAnchor.removeAnchor(this);
 			}
 			
 		}
@@ -165,7 +165,7 @@ public class Selectable {
 		
 		ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
 		
-		DisplayAnchor.anchors.remove(this);
+		DisplayAnchor.removeAnchor(this);
 		
 		int justifyLeft = this instanceof InfoBlock ? PADDING*2 : PADDING;
 		int justifyRight = res.getScaledWidth() - this.getW() - PADDING;
@@ -212,16 +212,16 @@ public class Selectable {
 		if (this.getX() > res.getScaledWidth()/2) {
 			// Distance from the edge.
 			int distanceFromEdge = 0 - this.getX() - this.getW() + res.getScaledWidth();
-			Data.put(this.toString() + ".x", "-" + distanceFromEdge);
+			Data.put(this.getID() + ".x", "-" + distanceFromEdge);
 		} else {
-			Data.put(this.toString() + ".x", "" + this.getX());
+			Data.put(this.getID() + ".x", "" + this.getX());
 		}
 		
 		if (this.getY() > res.getScaledHeight()/2) {
 			int distanceFromEdge = res.getScaledHeight() - this.getH() - this.getY() - PADDING;
-			Data.put(this.toString() + ".y", "-" + distanceFromEdge);
+			Data.put(this.getID() + ".y", "-" + distanceFromEdge);
 		} else {
-			Data.put(this.toString() + ".y", "" + this.getY());
+			Data.put(this.getID() + ".y", "" + this.getY());
 		}
 		
 	}
@@ -255,8 +255,9 @@ public class Selectable {
 		
 		// This checks if there is a registered anchor.
 		// There could still be one saved as text in the file!
-		if (DisplayAnchor.anchors.get(this) != null) {
-			DisplayAnchor anchor = DisplayAnchor.anchors.get(this);
+		if (DisplayAnchor.get(this) != null) {
+			
+			DisplayAnchor anchor = DisplayAnchor.get(this);
 			
 			// Update the information about the parent by re-getting it.
 			anchor.parent = Selectable.getSelectable(anchor.parent.toString());		
@@ -270,20 +271,22 @@ public class Selectable {
 		}
 		
 		// This checks this text file for saved values.
-		if (Data.get(this.toString() + ".x") != null) {
+		if (Data.get(this.getID() + ".x") != null) {
 			
 			// The saved coordinate.
-			String savedX = Data.get(this.toString() + ".x");
+			String savedX = Data.get(this.getID() + ".x");
 			
 			// Occasionally, a glitch in the matrix occurs and it saves as --#.
 			// This is just to prevent a terrible, horrible crash.
 			if (savedX.startsWith("--")) {
 				FMLLog.warning("[MCPVP] Force resetting X coord of block \"%s\" due to incorrect saved coordinate.", this);
-				Data.put(this.toString() + ".x", "" + 0);
+				Data.put(this.getID() + ".x", "" + 0);
 				return ConfigHUD.margin;
 			
 			// This supports saved anchors in the format of "a.ParentBlockName.AnchorDirectionChar"
 			} else if (savedX.startsWith("a.")) {
+				
+				Data.remove(this.getID() + ".x");
 				
 				if (Selectable.getSelectable(savedX.split("\\.")[1]) == null)
 					return ConfigHUD.margin;
@@ -302,7 +305,7 @@ public class Selectable {
 			if (savedX.startsWith("-")) {
 					
 				// Subtract the height and the found value from the height of the screen.
-				return validateX(res.getScaledWidth() - this.getW() - Math.abs(Integer.parseInt(Data.get(this.toString() + ".x"))));
+				return validateX(res.getScaledWidth() - this.getW() - Math.abs(Integer.parseInt(Data.get(this.getID() + ".x"))));
 			}
 			return validateX(Integer.parseInt(savedX));
 		}
@@ -349,11 +352,11 @@ public class Selectable {
 		
 		// This checks if there is a registered anchor.
 		// There could still be one saved as text in the file!
-		if (DisplayAnchor.anchors.get(this) != null) {
-			DisplayAnchor anchor = DisplayAnchor.anchors.get(this);
+		if (DisplayAnchor.get(this) != null) {
+			DisplayAnchor anchor = DisplayAnchor.get(this);
 			
 			// Update the information about the parent by re-getting it.
-			anchor.parent = Selectable.getSelectable(anchor.parent.toString());			
+			anchor.parent = Selectable.getSelectable(anchor.parent.toString());
 
 			// Directional support and adjustment.
 			if (anchor.direction == 'd') {
@@ -364,20 +367,23 @@ public class Selectable {
 		}
 		
 		// This checks this text file for saved values.
-		if (Data.get(this.toString() + ".y") != null) {
+		if (Data.get(this.getID() + ".y") != null) {
 			
 			// The saved coordinate.
-			String savedY = Data.get(this.toString() + ".y");
+			String savedY = Data.get(this.getID() + ".y");
 			
 			// Occasionally, a glitch in the matrix occurs and it saves as --#.
 			// This is just to prevent a terrible, horrible crash.
 			if (savedY.startsWith("--")) {
 				FMLLog.warning("[MCPVP] Force resetting Y coord of block \"%s\" due to incorrect saved coordinate.", this);
-				Data.put(this.toString() + ".y", "" + 0);
+				Data.put(this.getID() + ".y", "" + 0);
 				return ConfigHUD.margin;
 			
 			// This supports saved anchors in the format of "a.ParentBlockName.AnchorDirectionChar"
 			} else if (savedY.startsWith("a.")) {
+				
+				// Remove the old school anchor. Anchors are now stored in a separate XML file.
+				Data.remove(this.getID() + ".y");
 				
 				if (Selectable.getSelectable(savedY.split("\\.")[1]) == null)
 					return ConfigHUD.margin;
@@ -389,14 +395,13 @@ public class Selectable {
 				
 				// Return ConfigHUD.margin because on the next tick, the first check for anchors will catch it anyway.
 				return ConfigHUD.margin;
-				
 			}
 			
 			// Support for negative numbers, i.e. subtracting from the edges.
 			if (savedY.startsWith("-")) {
 				
 				// Subtract the total height and the found value from the height of the screen.
-				return validateY(res.getScaledHeight() - this.getH() - Math.abs(Integer.parseInt(Data.get(this.toString() + ".y"))) - PADDING);
+				return validateY(res.getScaledHeight() - this.getH() - Math.abs(Integer.parseInt(Data.get(this.getID() + ".y"))) - PADDING);
 			}
 			// Return the positive (literal) stored Y.
 			return validateY(Integer.parseInt(savedY));
@@ -431,25 +436,8 @@ public class Selectable {
 	 */
 	public void anchorTo(Selectable parent, char direction) {
 		if (parent == null) return;
-		DisplayAnchor.anchors.put(this, new DisplayAnchor(parent, this, direction));
-		
-		if (direction == 'u' 
-				&& (DisplayAnchor.anchors.get(parent) != null && DisplayAnchor.anchors.get(parent).direction != 'd'));
-		
-		if (direction == 'd' 
-				&& (DisplayAnchor.anchors.get(parent) != null && DisplayAnchor.anchors.get(parent).direction != 'u'));
-		
-		if (direction == 'l' 
-				&& (DisplayAnchor.anchors.get(parent) != null && DisplayAnchor.anchors.get(parent).direction != 'r'));
-		
-		if (direction == 'r' 
-				&& (DisplayAnchor.anchors.get(parent) != null && DisplayAnchor.anchors.get(parent).direction != 'l'));
-		
-		if (direction == 'u' || direction == 'd') {
-			Data.put(this.toString() + ".y", "a." + parent.toString() + "." + direction);
-		} else if (direction == 'l' || direction == 'r') {
-			Data.put(this.toString() + ".x", "a." + parent.toString() + "." + direction);
-		}
+		System.out.println("anchorTo!");
+		DisplayAnchor.addAnchor(this, new DisplayAnchor(parent, this, direction));
 	}
 	
 	/**
@@ -474,8 +462,8 @@ public class Selectable {
 	 * @return True if an anchor exists, false if not.
 	 */
 	public boolean anchoredTo(Selectable selectable) {
-		return DisplayAnchor.anchors.containsKey(this) 
-				&& DisplayAnchor.anchors.get(this).child.equals(selectable);
+		return DisplayAnchor.get(this) != null
+				&& DisplayAnchor.get(this).child.equals(selectable);
 	}
 	
 	/**
@@ -500,7 +488,7 @@ public class Selectable {
 	 * screen. Differs from the saveable name, {@link #getID()}.
 	 */
 	public String getName() {
-		return this.toString();
+		return this.getID();
 	}
 	
 	/**
@@ -509,6 +497,11 @@ public class Selectable {
 	 */
 	public String getID() {
 		return this.toString();
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		return o instanceof Selectable && ((Selectable)o).getID().equals(this.getID());
 	}
 
 }
