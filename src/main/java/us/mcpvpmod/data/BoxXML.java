@@ -1,4 +1,4 @@
-package us.mcpvpmod.json;
+package us.mcpvpmod.data;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import org.apache.commons.io.IOUtils;
 
+import us.mcpvpmod.Main;
 import us.mcpvpmod.gui.InfoBox;
 
 import com.thoughtworks.xstream.XStream;
@@ -18,7 +19,9 @@ public class BoxXML {
 	 */
 	public static void make() {
 		try {
-			InfoBox.DATA_FILE.createNewFile();
+			if (InfoBox.DATA_FILE.createNewFile()) {
+				Main.l("Created the InfoBox XML file!");
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -35,22 +38,17 @@ public class BoxXML {
 	}
 	
 	public static ArrayList<InfoBox> getBoxes() {
-		ArrayList<InfoBox> boxes = new ArrayList<InfoBox>();
-		XStream xml = new XStream(new StaxDriver());
-		
 		try {
+			
 			// Load the saved text from the dataFile.
 			String saved = IOUtils.toString(new FileInputStream(InfoBox.DATA_FILE), "UTF-8");
 			// Deserialize the saved string.
-			ArrayList objs = (ArrayList) xml.fromXML(saved);
-			
-			for (Object o : objs)
-				boxes.add((InfoBox)o);
+			return (ArrayList<InfoBox>) new XStream(new StaxDriver()).fromXML(saved);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return boxes;
+		return null;
 	}
  
 }
