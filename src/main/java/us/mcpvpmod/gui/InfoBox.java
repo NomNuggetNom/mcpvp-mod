@@ -1,6 +1,5 @@
 package us.mcpvpmod.gui;
 
-import java.awt.Color;
 import java.awt.Rectangle;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -8,32 +7,27 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import net.minecraft.client.gui.FontRenderer;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
-import us.mcpvpmod.Sync;
-import us.mcpvpmod.events.Events;
+import us.mcpvpmod.config.all.ConfigHUD;
+import us.mcpvpmod.data.BoxXML;
+import us.mcpvpmod.events.render.AllRender;
+import us.mcpvpmod.game.FriendsList;
 import us.mcpvpmod.game.state.DummyState;
 import us.mcpvpmod.game.state.State;
-import us.mcpvpmod.gui.screen.GuiEditBlock;
+import us.mcpvpmod.gui.screen.GuiEditBox;
 import us.mcpvpmod.gui.screen.GuiMoveBlocks;
-import us.mcpvpmod.json.BoxXML;
+import us.mcpvpmod.util.Data;
 import us.mcpvpmod.util.Format;
-import cpw.mods.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 /**
  * A box that is used to display informating relevant to the game.
- * Can be completely configured in each {@link Server}'s respective
- * ConfigHUD configuration. 
- * <br><br>
- * Boxes are created in {@link Sync#syncBlocks()}, which is called on startup via 
- * {@link Main#preInit(FMLPreInitializationEvent)} and on Configuration 
- * changes via {@link Events#onConfigChanged(OnConfigChangedEvent)}.
- * They can be edited in-game in {@link GuiEditBlock}, which results
- * in a calling of {@link #setRaw(ArrayList)}.
+ * Can be completely configured in-game using {@link GuiEditBox}.
  * <br><br>
  * Boxes are automatically displayed when {@link #server} matches 
- * {@link Server#getServer()} and {@link #state} matches {@link Server#getState()}.
+ * {@link Server#getServer()} and {@link #state} matches {@link Server#getState()}
+ * via {@link AllRender}.
  */
 public class InfoBox extends Selectable {
 	
@@ -49,6 +43,8 @@ public class InfoBox extends Selectable {
 	public static final int LINE_SPACING = 2;
 	/** The height of the text. */
 	public static int lineHeight = 10;
+	public static boolean centerTitles;
+	public static final String ALIGN_AT = ">>";
 	
 	/** A unique identifier for the box that will never change. 
 	 * Formatted as: <code>server.state.uniqueIdOfBlock</code>. */
@@ -93,27 +89,25 @@ public class InfoBox extends Selectable {
 	 * @param server The server for this box to be rendered on.
 	 * {@link Server#ALL} is rendered on every server,
 	 * @param state The state for this box to be rendered on.
-	 * {@link DummyState#NONE} is rendered during every state.
+	 * {@link DummyState#NONE} is rndered during every state.
+	 * @param save Whether or not the Box should be immediately saved to
+	 * memory. Generally, this should be true.
 	 */
-	public InfoBox(String title, ArrayList<String> raw, Server server, State state) {
+	public InfoBox(String title, ArrayList<String> raw, Server server, State state, boolean save) {
 		this.title	= title;
 		this.raw	= raw;
 		this.server = server;
 		this.state  = state;
 		this.id		= generateID();
 		this.info	= new ArrayList<String>();
-		this.setX(PADDING);
-		this.setY(PADDING);
-		boxes.add(this);
-		Selectable.put(this.id, this);
-		this.save();
+		register(this, save);
 	}
 	
 	/**
 	 * A box that is used to display information relevant to the game.
 	 * See {@link InfoBox} for a more detailed description.
 	 * 
-	 * @param raw Unprocessed information, straight from the configuration file.
+	 * @param raw Unprocessed information, straight from the configuration.
 	 * Processed and sent to {@link #info} every render tick. The first entry
 	 * will become the {@link #title} of the block.
 	 * @param server The server for this box to be rendered on.
@@ -121,8 +115,20 @@ public class InfoBox extends Selectable {
 	 * @param state The state for this box to be rendered on.
 	 * {@link DummyState#NONE} is rendered during every state.
 	 */
-	public InfoBox(ArrayList<String> raw, Server server, State state) {
-		this(raw.get(0), new ArrayList<String>(raw.subList(1, raw.size()-1)), server, state);
+	public InfoBox(ArrayList<String> raw, Server server, State state, boolean save) {
+		this(raw.get(0), new ArrayList<String>(raw.subList(1, raw.size()-1)), server, state, save);
+	}
+	
+	/**
+	 * Performs some initial setups on the InfoBox, including 
+	 * adding the box to the boxes Array, adding to the 
+	 * Selectables Array, and finally saving the XML data.
+	 * @param box The box to register.
+	 */
+	public static void register(InfoBox box, boolean save) {
+		boxes.add(box);
+		Selectable.put(box.id, box);
+		if (save) save();
 	}
 	
 	/**
@@ -131,11 +137,24 @@ public class InfoBox extends Selectable {
 	 * (e.g. indexing in the Selectables database).
 	 */
 	public static void loadBoxes() {
-		for (InfoBox box : BoxXML.getBoxes()) {
-			InfoBox newBox = new InfoBox(box.getTitle(), box.getRaw(), box.getServer(), box.getState());
-			newBox.setX(box.getX());
-			newBox.setY(box.getY());
+		Main.l("Loading InfoBoxes...");
+
+		// Convert InfoBlocks to InfoBoxes
+		if (!Data.contains("haveConvertedBlocks")) {
+			for (int i = InfoBlock.blocks.size()-1; i != -1 ; i--) {
+				convert(InfoBlock.blocks.get(i));
+				Main.l("Converted InfoBlock: %s", InfoBlock.blocks.get(i));
+				InfoBlock.blocks.remove(i);
+			}
+			Data.put("haveConvertedBlocks", "true");
 		}
+
+		// Load boxes from storage.
+		for (InfoBox box : BoxXML.getBoxes()) {
+			register(box, false);
+			Main.l("Loaded InfoBox: %s", box);
+		}
+		save();
 	}
 	
 	/**
@@ -149,6 +168,7 @@ public class InfoBox extends Selectable {
 	 */
 	public static ArrayList<InfoBox> get(Server server, State state) {
 		ArrayList<InfoBox> showing = new ArrayList<InfoBox>();
+		
 		for (InfoBox box : boxes)
 			// Add any box that has the specified server and state.
 			if (box.getServer() == server && box.getState() == state)
@@ -156,6 +176,7 @@ public class InfoBox extends Selectable {
 			// Add any box that uses Server.ALL and DummyState.NONE.
 			else if (box.getServer() == Server.ALL && box.getState() == DummyState.NONE)
 				showing.add(box);
+		
 		return showing;
 	}
 	
@@ -214,12 +235,17 @@ public class InfoBox extends Selectable {
 			line = Format.process(line);
 			line = Format.vars(line);
 			
-			// Add the changed line to our info box for rendering.
-			// Sometimes "null" will be returned to signal that the 
-			// line doesn't need to be shown (i.e. no value).
-			// e.g. Free day returns "null" when it's not free day.
-			if (line != "null")
-				info.add(line);
+			if (line.equals("friends")) {
+				// Add all friends to the list.
+				info.addAll(FriendsList.getFriends());
+			} else {
+				// Add the changed line to our info box for rendering.
+				// Sometimes "null" will be returned to signal that the 
+				// line doesn't need to be shown (i.e. no value).
+				// e.g. Free day returns "null" when it's not free day.
+				if (line != "null")
+					info.add(line);
+			}
 		}
 	}
 	
@@ -238,9 +264,10 @@ public class InfoBox extends Selectable {
 	public static void save() {
 		try {
 
+			System.out.println("Save!");
 			// Form the buffered writer and write the
 			// XML representation of the boxes array.
-			BufferedWriter out = new BufferedWriter(new FileWriter(DATA_FILE, !DATA_FILE.exists()));
+			BufferedWriter out = new BufferedWriter(new FileWriter(DATA_FILE, false));
 			out.write(BoxXML.xmlify(boxes));
 			out.close();
 			
@@ -255,6 +282,8 @@ public class InfoBox extends Selectable {
 	 * information before drawing the box.
 	 */
 	public void display() {
+		this.setX(this.loadX());
+		this.setY(this.loadY());
 		this.setW(this.calcW());
 		this.setH(this.calcH());
 		this.update();
@@ -265,33 +294,34 @@ public class InfoBox extends Selectable {
 	 * Draws the info box on the screen, assuming it has
 	 * something to render. Rendering process is as follows:
 	 * <ul>
-	 * <li>Draw the background using {@link Draw#rect(Rectangle, Color)}
-	 * with {@link #getRect()} as the Rectangle argument
+	 * <li>Draw the background
+	 * <li>Draw the title's background
 	 * <li>Draw the title string
 	 * <li>Draw every item in {@link #info}.
 	 */
 	private void draw() {
-		// Don't draw if there is nothing in info!
 		if (this.info.size() == 0) return;
 		
-		// Set the line height.
 		lineHeight = Main.mc.fontRenderer.FONT_HEIGHT;
 		// The location to draw the strings.
 		int y = this.getY();
 
-		// Draw the background.
+		// Draw the background for the whole box.
 		Draw.rect(this.getRect(), 0.3f);
-		
 		// Draw the title background over the old
 		// background to make it darker.
 		Draw.rect(this.getTitleRect(), 0.2f);
 		
-		Draw.string(this.getTitle(), this.getX() + this.PADDING, y + this.PADDING);
+		// Draw the title string.
+		if (centerTitles)
+			Draw.centeredString(this.getTitle(), this.getX() + this.PADDING, y + this.PADDING, this.getTitleRect().width);
+		else 
+			Draw.string(this.getTitle(), this.getX() + this.PADDING, y + this.PADDING);
 		y += this.getTitleRect().height;
 		
 		// Draw the rest of the information.
 		for (String line : this.info) {
-			Draw.string(line, this.getX() + this.PADDING, y + this.PADDING);
+			Draw.string(line, this.getX() + this.PADDING + align(line, ALIGN_AT), y + this.PADDING);
 			y += lineHeight + LINE_SPACING;
 		}
 
@@ -305,11 +335,11 @@ public class InfoBox extends Selectable {
 	public int calcW() {
 		int max = 0;
 		for (String line : this.info) {
-			int width = Main.mc.fontRenderer.getStringWidth(line);
+			int width = Main.mc.fontRenderer.getStringWidth(line) + align(line, ALIGN_AT);
 			max = width > max ? width : max;
 		}
 
-		int width = Main.mc.fontRenderer.getStringWidth(this.getTitle());
+		int width = Main.mc.fontRenderer.getStringWidth(Format.process(this.getTitle()));
 		max = width > max ? width : max;
 		
 		if (this.padded)
@@ -319,7 +349,7 @@ public class InfoBox extends Selectable {
 	
 	/**
 	 * Calculates the height of the box, considering
-	 * both the title and every line of {@link info}.
+	 * both the title and every line of {@link #info}.
 	 * @return The height of the box.
 	 */
 	private int calcH() {
@@ -335,6 +365,34 @@ public class InfoBox extends Selectable {
 		if (this.padded)
 			return h + PADDING*2;
 		return h;
+	}
+	
+	/**
+	 * Used in aligning lines in the box. Calculates the
+	 * number of pixels required to shift a line to make the
+	 * occurrence of the given String line up with the same 
+	 * occurrence of the String in other lines of the Box.
+	 * @param line The line to calculate the value for.
+	 * @param alignTo The String to align at.
+	 * @return The number of pixels required to shift the
+	 * line to make it match all other lines.
+	 */
+	private int align(String line, String alignTo) {
+		if (!ConfigHUD.alignItems || !line.contains(alignTo)) return 0;
+		
+		int toMiddle = 0;
+		FontRenderer f = Main.mc.fontRenderer;
+		// Get the maximum width of any string.
+		for (String string : this.info) {
+			if (!string.contains(alignTo)) continue;
+			if (f.getStringWidth(string.replaceAll(alignTo + ".*", "")) > toMiddle) {
+				toMiddle = f.getStringWidth(string.replaceAll(alignTo + ".*", ""));
+			}
+		}
+
+		String adjusted = line.replaceAll(alignTo + ".*", "");
+		int needed = toMiddle - f.getStringWidth(adjusted);
+		return needed;
 	}
 	
 	/**
@@ -400,7 +458,8 @@ public class InfoBox extends Selectable {
 		this.h = h;
 	}
 
-	public String getId() {
+	@Override
+	public String getID() {
 		return id;
 	}
 
@@ -443,5 +502,25 @@ public class InfoBox extends Selectable {
 				this.getY(), 
 				this.getW(), 
 				Main.mc.fontRenderer.FONT_HEIGHT + PADDING*2);
+	}
+	
+	@Override
+	public String getName() {
+		return Format.process(this.title);
+	}
+	
+	/**
+	 * Used to convert old InfoBlocks into InfoBoxes
+	 * while preserving all the data unique to the block.
+	 * @param block The block to convert.
+	 * @return An InfoBox that has an identical title,
+	 * array of raw info, server, and state to the given block.
+	 */
+	public static InfoBox convert(InfoBlock block) {
+		return new InfoBox(block.getTitle(), 
+						   block.getToDisplay(), 
+						   block.getServer(), 
+						   block.getState(),
+						   false);
 	}
 }

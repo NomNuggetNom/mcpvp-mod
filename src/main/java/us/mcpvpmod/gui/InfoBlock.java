@@ -69,6 +69,8 @@ public class InfoBlock extends Selectable {
 	 * @param info The lines to render, which will be processed every render tick.
 	 * @param server The server to render the block on.
 	 * @param state The state to render the block on.
+	 * 
+	 * @deprecated Use {@link InfoBox} instead.
 	 */
 	public InfoBlock(String title, ArrayList<String> info, Server server, State state) {
 		this.title		= title;
@@ -76,7 +78,7 @@ public class InfoBlock extends Selectable {
 		this.state		= state;
 		this.server		= server;
 		blocks.add(this);
-		Selectable.put(title, this);
+		//Selectable.put(title, this);
 
 		Main.l("Registered new InfoBlock: %s", this);
 	}
@@ -171,7 +173,7 @@ public class InfoBlock extends Selectable {
 			lines.remove(0);
 
 			if (lines.size() > 0) {
-				InfoBlock block = new InfoBlock(Format.process(title), lines, server, state);
+				InfoBlock block = new InfoBlock(title, lines, server, state);
 				made.add(block);
 			} else {
 				Main.l("Not enough lines for InfoBlock ", title);
@@ -546,6 +548,10 @@ public class InfoBlock extends Selectable {
 	@Override
 	public String toString() {
 		return this.title;
+	}
+	
+	public ArrayList<String> getToDisplay() {
+		return this.toDisplay;
 	}
 	
 }
