@@ -10,10 +10,12 @@ public class TickSmash {
 	public static void onTick(@SuppressWarnings("unused") TickEvent event) {		
 		VarsSmash.putVars();
 		
-		if (StateSmash.getState() != StateSmash.PRE  && BoardHelper.getBoardTitle().contains("Classes"))
+		if (StateSmash.getState() != StateSmash.PRE  
+				&& BoardHelper.getBoardTitle().contains("Classes"))
 			StateSmash.state = StateSmash.PRE;
 		
-		if (StateSmash.getState() != StateSmash.PLAY && StateSmash.getState() != StateSmash.POST
+		if (StateSmash.getState() != StateSmash.PLAY 
+				&& StateSmash.getState() != StateSmash.POST
 				&& !BoardHelper.getBoardTitle().contains("Classes"))
 			StateSmash.state = StateSmash.PLAY;
 		

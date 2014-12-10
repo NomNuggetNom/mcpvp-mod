@@ -14,7 +14,7 @@ public class ChatSmash {
 		ChatTrigger.checkAll(message);
 		ChatTracker.checkAll(message);
 		
-		if (message.matches(CoreSmash.reRoundOver))
+		if (message.matches(CoreSmash.MSG_GAME_OVER))
 				StateSmash.state = StateSmash.POST;
 	}
 	
