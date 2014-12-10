@@ -75,6 +75,18 @@ public class Draw {
 	}
 	
 	/**
+	 * Used for drawing a simple white centered string with a shadow.
+	 * @param string The string to draw. Automatically passed through
+	 * {@link Format#process(String)}.
+	 * @param x The x coordinate to start drawing the string from.
+	 * @param y The y coordinate to start drawing the string from.
+	 * @param w The width of the area to center the string in.
+	 */
+	public static void centeredString(String string, int x, int y, int w) {
+		centeredString(string, x, y, w, 0xFFFFFF, true);
+	}
+	
+	/**
 	 * Used for drawing textured rectangles.
 	 * @param texture The texture to draw.
 	 * @param x The x coordinate to start drawing at.
