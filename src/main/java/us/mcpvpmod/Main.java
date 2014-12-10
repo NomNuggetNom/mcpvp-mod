@@ -9,13 +9,14 @@ import net.minecraftforge.common.MinecraftForge;
 import org.lwjgl.input.Keyboard;
 
 import us.mcpvpmod.config.all.ConfigMisc;
+import us.mcpvpmod.data.AnchorXML;
+import us.mcpvpmod.data.BoxXML;
 import us.mcpvpmod.events.Events;
 import us.mcpvpmod.gui.ArmorDisplay;
-import us.mcpvpmod.gui.InfoBlock;
+import us.mcpvpmod.gui.DisplayAnchor;
 import us.mcpvpmod.gui.InfoBox;
 import us.mcpvpmod.gui.PotionDisplay;
 import us.mcpvpmod.gui.screen.GuiSecondChat;
-import us.mcpvpmod.json.BoxXML;
 import us.mcpvpmod.json.ServerJSON;
 import us.mcpvpmod.json.StreamJSON;
 import us.mcpvpmod.json.VersionJSON;
@@ -78,10 +79,6 @@ public class Main {
 	public static ArmorDisplay armorDisplay = new ArmorDisplay();
 	/** A reference to the on-screen PotionDisplay. */
 	public static PotionDisplay potionDisplay = new PotionDisplay();
-	/** A reference to the InfoBlock that will become the FriendsList during Sync. */
-	public static InfoBlock friendsList = null;
-	
-	public static InfoBox box = null;
 	
 	@EventHandler
 	public void preInit(@SuppressWarnings("unused") FMLPreInitializationEvent e) {	
@@ -95,11 +92,13 @@ public class Main {
 		// Create the directories and files for saving data.
 		Data.make();
 		BoxXML.make();
+		AnchorXML.make();
 		
     	// Sync all files and configurations.
 		Sync.sync();
 		
 		InfoBox.loadBoxes();
+		DisplayAnchor.loadAnchors();
 	}
     	
     @EventHandler
