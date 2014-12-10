@@ -14,24 +14,21 @@ import cpw.mods.fml.common.Loader;
 public class ConfigBuildHUD extends DummyModContainer {
 
 	public static String[] render= new String[1000];
-	public static boolean renderDebug = false;
-	public static String[] yourStats = new String[1000];
-	public static String[] gameInfo = new String[1000];
-	public static boolean customTextures = false;
-	public static boolean renderBG = true;
-	public static int margin = 3;
-	public static boolean centerTitles = true;
-	public static boolean alignWidths = false;
-	public static boolean alignHeights = false;
-	public static int medalTimer = 7;
+	public static final String[] DEFAULT_RENDER = {
+		"---#b##u#Build", 
+		"#purple##i#Map #gray#>> #white#{map}", 
+		"#purple##i#ID #gray#>> #white#{id}", 
+		"#purple##i#Rank #gray#>> #white#{rank}", 
+		"#purple##i#IP #gray#>> #white#{ip}"};
+
 	
-    public static String fileName = "mcpvp_build_hud.cfg";
+    public static final String FILE_NAME = "mcpvp_build_hud.cfg";
     
     private static Configuration config;
 
     public ConfigBuildHUD() {
         config = null;
-        File cfgFile = new File(Loader.instance().getConfigDir(), fileName);
+        File cfgFile = new File(Loader.instance().getConfigDir(), FILE_NAME);
         config = new Configuration(cfgFile);
 
         syncConfig();
@@ -39,7 +36,7 @@ public class ConfigBuildHUD extends DummyModContainer {
     
     public static Configuration getConfig() {
         if (config == null) {
-            File cfgFile = new File(Loader.instance().getConfigDir(), fileName);
+            File cfgFile = new File(Loader.instance().getConfigDir(), FILE_NAME);
             config = new Configuration(cfgFile);
         }
 
@@ -50,7 +47,7 @@ public class ConfigBuildHUD extends DummyModContainer {
     
     public static void syncConfig() {
         if (config == null) {
-            File cfgFile = new File(Loader.instance().getConfigDir(), fileName);
+            File cfgFile = new File(Loader.instance().getConfigDir(), FILE_NAME);
             config = new Configuration(cfgFile);
         }
     	
@@ -58,15 +55,7 @@ public class ConfigBuildHUD extends DummyModContainer {
         
         Property prop;
         
-    	prop = config.get(CATEGORY_GENERAL, "render", new String[]{
-    			
-    			"---#b##u#Build", 
-    			"#purple##i#Map #gray#>> #white#{map}", 
-    			"#purple##i#ID #gray#>> #white#{id}", 
-    			"#purple##i#Rank #gray#>> #white#{rank}", 
-    			"#purple##i#IP #gray#>> #white#{ip}", 
-    			
-    			});
+    	prop = config.get(CATEGORY_GENERAL, "render", DEFAULT_RENDER);
         prop.setLanguageKey("build.config.hud.render");
     	render = prop.getStringList();
     	propOrder.add(prop.getName());

@@ -14,24 +14,22 @@ import cpw.mods.fml.common.Loader;
 public class ConfigKitHUD extends DummyModContainer {
 
 	public static String[] render= new String[1000];
-	public static boolean renderDebug = false;
-	public static String[] yourStats = new String[1000];
-	public static String[] gameInfo = new String[1000];
-	public static boolean customTextures = false;
-	public static boolean renderBG = true;
-	public static int margin = 3;
-	public static boolean centerTitles = true;
-	public static boolean alignWidths = false;
-	public static boolean alignHeights = false;
-	public static int medalTimer = 7;
+	public static final String[] DEFAULT_RENDER = {
+		"#bold##underline#KitPVP", 
+		"#cyan##italic#X#gray# >> #r#{x}",
+		"#cyan##italic#Y#gray# >> #r#{y}",
+		"#cyan##italic#Z#gray# >> #r#{z}",
+		"#cyan##italic#F#gray# >> #r#{dir} ({f})",
+		"#cyan##italic#FPS#gray# >> #r#{fps}",
+		"#cyan##italic#Ping#gray# >> #r#{ping}"};
 	
-    public static String fileName = "mcpvp_kit_hud.cfg";
+    public static final String FILE_NAME = "mcpvp_kit_hud.cfg";
     
     private static Configuration config;
 
     public ConfigKitHUD() {
         config = null;
-        File cfgFile = new File(Loader.instance().getConfigDir(), fileName);
+        File cfgFile = new File(Loader.instance().getConfigDir(), FILE_NAME);
         config = new Configuration(cfgFile);
 
         syncConfig();
@@ -40,7 +38,7 @@ public class ConfigKitHUD extends DummyModContainer {
     
     public static Configuration getConfig() {
         if (config == null) {
-            File cfgFile = new File(Loader.instance().getConfigDir(), fileName);
+            File cfgFile = new File(Loader.instance().getConfigDir(), FILE_NAME);
             config = new Configuration(cfgFile);
         }
 
@@ -50,7 +48,7 @@ public class ConfigKitHUD extends DummyModContainer {
     
     public static void syncConfig() {
         if (config == null) {
-            File cfgFile = new File(Loader.instance().getConfigDir(), fileName);
+            File cfgFile = new File(Loader.instance().getConfigDir(), FILE_NAME);
             config = new Configuration(cfgFile);
         }
     	
@@ -58,17 +56,7 @@ public class ConfigKitHUD extends DummyModContainer {
         
         Property prop;
         
-    	prop = config.get(CATEGORY_GENERAL, "render", new String[]{
-    			
-    			"#bold##underline#KitPVP", 
-    			"#cyan##italic#X#gray# >> #r#{x}",
-    			"#cyan##italic#Y#gray# >> #r#{y}",
-    			"#cyan##italic#Z#gray# >> #r#{z}",
-    			"#cyan##italic#F#gray# >> #r#{dir} ({f})",
-    			"#cyan##italic#FPS#gray# >> #r#{fps}",
-    			"#cyan##italic#Ping#gray# >> #r#{ping}"
-    			
-    	});
+    	prop = config.get(CATEGORY_GENERAL, "render", DEFAULT_RENDER);
         prop.setLanguageKey("kit.config.hud.render");
     	render = prop.getStringList();
     	propOrder.add(prop.getName());

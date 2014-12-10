@@ -13,16 +13,24 @@ import cpw.mods.fml.common.Loader;
 
 public class ConfigHGHUD extends DummyModContainer {
 
-	public static String[] renderPre= new String[1000];
-	public static String[] renderPlay= new String[1000];
+	public static String[] render = new String[1000];
+	public static final String[] DEFAULT_RENDER = {
+		"#bold##underline#HG", 
+		"#green##italic#X#gray# >> #r#{x}",
+		"#green##italic#Y#gray# >> #r#{y}",
+		"#green##italic#Z#gray# >> #r#{z}",
+		"#green##italic#F#gray# >> #r#{dir} ({f})",
+		"#green##italic#FPS#gray# >> #r#{fps}",
+		"#green##italic#Ping#gray# >> #r#{ping}",
+		"#green##italic#IP#gray# >> #r#{short ip}"};
 	
-    public static String fileName = "mcpvp_hg_hud.cfg";
+    public static final String FILE_NAME = "mcpvp_hg_hud.cfg";
     
     private static Configuration config;
 
     public ConfigHGHUD() {
         config = null;
-        File cfgFile = new File(Loader.instance().getConfigDir(), fileName);
+        File cfgFile = new File(Loader.instance().getConfigDir(), FILE_NAME);
         config = new Configuration(cfgFile);
 
         syncConfig();
@@ -30,7 +38,7 @@ public class ConfigHGHUD extends DummyModContainer {
     
     public static Configuration getConfig() {
         if (config == null) {
-            File cfgFile = new File(Loader.instance().getConfigDir(), fileName);
+            File cfgFile = new File(Loader.instance().getConfigDir(), FILE_NAME);
             config = new Configuration(cfgFile);
         }
 
@@ -41,7 +49,7 @@ public class ConfigHGHUD extends DummyModContainer {
     
     public static void syncConfig() {
         if (config == null) {
-            File cfgFile = new File(Loader.instance().getConfigDir(), fileName);
+            File cfgFile = new File(Loader.instance().getConfigDir(), FILE_NAME);
             config = new Configuration(cfgFile);
         }
     	
@@ -64,20 +72,9 @@ public class ConfigHGHUD extends DummyModContainer {
     	propOrder.add(prop.getName());
     	*/
     	
-    	prop = config.get(CATEGORY_GENERAL, "renderPlay", new String[]{   
-    			
-    			"#bold##underline#HG", 
-    			"#green##italic#X#gray# >> #r#{x}",
-    			"#green##italic#Y#gray# >> #r#{y}",
-    			"#green##italic#Z#gray# >> #r#{z}",
-    			"#green##italic#F#gray# >> #r#{dir} ({f})",
-    			"#green##italic#FPS#gray# >> #r#{fps}",
-    			"#green##italic#Ping#gray# >> #r#{ping}",
-    			"#green##italic#IP#gray# >> #r#{short ip}"
-    			
-    	});
+    	prop = config.get(CATEGORY_GENERAL, "renderPlay", DEFAULT_RENDER);
     	prop.setLanguageKey("hg.config.hud.renderPlay");
-    	renderPlay = prop.getStringList();
+    	render = prop.getStringList();
     	propOrder.add(prop.getName());
     	
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);

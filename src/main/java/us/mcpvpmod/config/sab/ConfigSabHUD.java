@@ -16,14 +16,28 @@ public class ConfigSabHUD extends DummyModContainer {
 	public static String[] renderPre= new String[1000];
 	public static String[] renderPlay= new String[1000];
 	public static String[] renderPost= new String[1000];
+	public static final String[] DEFAULT_RENDER_PRE = {	
+		"---#b##u#Sab Pre", 
+		"#red##i#Players #gray#>> #r#{players}"};
+	public static final String[] DEFAULT_RENDER_PLAY = {
+		"---#b##u#Sab Play", 
+		"#red##i#Role #gray#>> #r#{role}", 
+		"#red##i#Detective #gray#>> #r#{detective}", 
+		"#red##i#Players #gray#>> #r#{remain}"};
+	public static final String[] DEFAULT_RENDER_POST = {
+		"---#b##u#Sab Post", 
+		"#red##i#Role #gray#>> #r#{role}", 
+		"#red##i#Detective #gray#>> #r#{detective}", 
+		"#red##i#Players #gray#>> #r#{remain}",
+		"#red##i#Winner #gray#>> #r#{winner}"};
 	
-    public static String fileName = "mcpvp_sab_hud.cfg";
+    public static final String FILE_NAME = "mcpvp_sab_hud.cfg";
     
     private static Configuration config;
 
     public ConfigSabHUD() {
         config = null;
-        File cfgFile = new File(Loader.instance().getConfigDir(), fileName);
+        File cfgFile = new File(Loader.instance().getConfigDir(), FILE_NAME);
         config = new Configuration(cfgFile);
 
         syncConfig();
@@ -31,7 +45,7 @@ public class ConfigSabHUD extends DummyModContainer {
     
     public static Configuration getConfig() {
         if (config == null) {
-            File cfgFile = new File(Loader.instance().getConfigDir(), fileName);
+            File cfgFile = new File(Loader.instance().getConfigDir(), FILE_NAME);
             config = new Configuration(cfgFile);
         }
 
@@ -42,7 +56,7 @@ public class ConfigSabHUD extends DummyModContainer {
     
     public static void syncConfig() {
         if (config == null) {
-            File cfgFile = new File(Loader.instance().getConfigDir(), fileName);
+            File cfgFile = new File(Loader.instance().getConfigDir(), FILE_NAME);
             config = new Configuration(cfgFile);
         }
     	
@@ -50,37 +64,17 @@ public class ConfigSabHUD extends DummyModContainer {
         
         Property prop;
         
-    	prop = config.get(CATEGORY_GENERAL, "renderPre", new String[]{
-    			
-    			"---#b##u#Sab Pre", 
-    			"#red##i#Players #gray#>> #r#{players}", 
-    			
-    	});
+    	prop = config.get(CATEGORY_GENERAL, "renderPre", DEFAULT_RENDER_PRE);
         prop.setLanguageKey("mcpvp.sab.configHUD.renderPre");
     	renderPre = prop.getStringList();
     	propOrder.add(prop.getName());
     	
-    	prop = config.get(CATEGORY_GENERAL, "renderPlay", new String[]{
-    			
-    			"---#b##u#Sab Play", 
-    			"#red##i#Role #gray#>> #r#{role}", 
-    			"#red##i#Detective #gray#>> #r#{detective}", 
-    			"#red##i#Players #gray#>> #r#{remain}"
-    			
-    	});
+    	prop = config.get(CATEGORY_GENERAL, "renderPlay", DEFAULT_RENDER_PLAY);
     	prop.setLanguageKey("mcpvp.sab.configHUD.renderPlay");
     	renderPlay = prop.getStringList();
     	propOrder.add(prop.getName());
     	
-    	prop = config.get(CATEGORY_GENERAL, "renderPost", new String[]{
-    			
-    			"---#b##u#Sab Post", 
-    			"#red##i#Role #gray#>> #r#{role}", 
-    			"#red##i#Detective #gray#>> #r#{detective}", 
-    			"#red##i#Players #gray#>> #r#{remain}",
-    			"#red##i#Winner #gray#>> #r#{winner}"
-    			
-    	});
+    	prop = config.get(CATEGORY_GENERAL, "renderPost", DEFAULT_RENDER_POST);
     	prop.setLanguageKey("mcpvp.sab.configHUD.renderPost");
     	renderPost = prop.getStringList();
     	propOrder.add(prop.getName());
