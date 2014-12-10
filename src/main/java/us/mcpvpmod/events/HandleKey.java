@@ -21,7 +21,7 @@ public class HandleKey {
         	Main.mc.thePlayer.dropOneItem(lastKeyIsCMD);
     	lastKeyIsCMD = Main.cmdMac.isPressed();
 
-        if(Main.openConfig.isPressed())	
+        if(Main.openConfig.isPressed())
         	openConfigScreen();
         
         if (Main.moveBlocks.isPressed())

@@ -16,10 +16,10 @@ public class ChatHG {
 		ChatTracker.checkAll(message);
 		ChatTrigger.checkAll(message);
 		
-		if (message.matches(CoreHG.msgWelcome))
+		if (message.matches(CoreHG.MSG_WELCOME))
 			StateHG.state = StateHG.WAIT;
 		
-		if (message.matches(CoreHG.msgVulernable))
+		if (message.matches(CoreHG.MSG_VULNERABLE))
 			StateHG.state = StateHG.PLAY;
 		
 		if (message.startsWith("\00A7r\u00A7b" + Main.mc.thePlayer.getDisplayName())) {

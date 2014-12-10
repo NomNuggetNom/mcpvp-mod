@@ -16,11 +16,11 @@ public class ChatSab {
 		
 		ChatTracker.checkAll(message);
 		
-		if (message.matches(CoreSab.reWin)) {
+		if (message.matches(CoreSab.RE_WIN)) {
 			Vars.put("sab:winner", InfoSab.formatWinners());
 		}
 		
-		if (message.matches(CoreSab.reRole)) {
+		if (message.matches(CoreSab.RE_ROLE)) {
 			Vars.put("sab:role", InfoSab.formatRole());
 			
 			// If the user is the detective, set the detective variable
@@ -34,28 +34,28 @@ public class ChatSab {
 		
 		// Sabotage state detection relies on chat messages.
 		
-		if (message.matches(CoreSab.reWelcome) 
-				|| message.matches(CoreSab.reVoting)
-				|| message.matches(CoreSab.reStarting)
-				|| message.matches(CoreSab.reWait)) {
+		if (message.matches(CoreSab.MSG_WELCOME) 
+				|| message.matches(CoreSab.MSG_VOTING)
+				|| message.matches(CoreSab.MSG_STARTING)
+				|| message.matches(CoreSab.MSG_WAITING)) {
 			StateSab.state = StateSab.PRE;
 		}
 		
-		if (message.matches(CoreSab.reRole) || message.matches(CoreSab.reStart)) {
+		if (message.matches(CoreSab.RE_ROLE) || message.matches(CoreSab.MSG_START)) {
 			StateSab.state = StateSab.PLAY;
 		}
 		
-		if (message.matches(CoreSab.reSpectate)) {
+		if (message.matches(CoreSab.MSG_SPECTATE)) {
 			StateSab.state = StateSab.DEAD;
 		}
 		
-		if (message.matches(CoreSab.reWin)) {
+		if (message.matches(CoreSab.RE_WIN)) {
 			StateSab.state = StateSab.POST;
 		}
 		
 		// Dinging noises before the game starts.
-		if (message.matches(CoreSab.reTime)) {
-			int time = Integer.valueOf(message.replaceAll(CoreSab.reTime, "$1"));
+		if (message.matches(CoreSab.RE_TIME)) {
+			int time = Integer.valueOf(message.replaceAll(CoreSab.RE_TIME, "$1"));
 			if (time <= 5 && time != 1)
 				Main.mc.thePlayer.playSound("note.pling", 1.0F, 0.5F);
 			else if (time == 1)
