@@ -97,6 +97,7 @@ public class GuiEditBoxProps extends GuiListExtended {
 			this.minus = new GuiButton(101, 0, 2, 20, 20, Format.process("#red##b#-"));
 			this.add = new GuiButton(100, 0, 2, 20, 20, Format.process("#green##b#+"));
 			this.parent = parent;
+			this.field.setMaxStringLength(10000);
 			this.field.setText(entry);
 		}
         

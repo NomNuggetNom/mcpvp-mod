@@ -116,11 +116,11 @@ public class GuiMoveBlocks extends GuiScreen {
 		
 		if (Selectable.selected != null) {
 			Selectable current = Selectable.selected;
-			Draw.centeredString("#r#Selected: \"" + current + "#r#\" (" + current.getX() + ", " + current.getY() + ")",
+			Draw.centeredString("#r#Selected: \"" + current.getName() + "#r#\" (" + current.getX() + ", " + current.getY() + ")",
 					0, this.height/4 + 15, this.width, 0xFFFFFF, true);
 			
-			if (Selectable.selected instanceof InfoBlock) {
-				Draw.centeredString("      #i#Hit #gray#[#green##b#E#gray#]#white##i# to edit the info.",
+			if (current instanceof InfoBlock || current instanceof InfoBox) {
+				Draw.centeredString("      #i#Hit #gray#[#green##b#E#gray#]#white##i# to edit.",
 						0, this.height/4 + 15 + 15, this.width, 0xFFFFFF, true);
 			}
 			
@@ -135,7 +135,7 @@ public class GuiMoveBlocks extends GuiScreen {
 	@Override
     protected void actionPerformed(GuiButton button) {
 		if (button == this.add) {
-			InfoBox box = new InfoBox("New Box", new ArrayList<String>(), Server.getServer(), Server.getState());
+			InfoBox box = new InfoBox("New Box", new ArrayList<String>(), Server.getServer(), Server.getState(), true);
 			Main.mc.displayGuiScreen(new GuiEditBox(this, box));
 		}
 		if (button == this.minus) {

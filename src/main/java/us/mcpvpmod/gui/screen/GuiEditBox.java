@@ -22,7 +22,6 @@ public class GuiEditBox extends GuiScreen {
 	/** The editor screen. */
 	public GuiEditBoxProps list;
 	public GuiTextField titleField;
-	public GuiTextField colorField;
 	public String titleText = "Box Title";
 	public GuiButton save;
 	public GuiButton cancel;
@@ -102,6 +101,11 @@ public class GuiEditBox extends GuiScreen {
         super.updateScreen();
     }
     
+    @Override
+    public void drawDefaultBackground() {
+        this.drawGradientRect(0, 0, this.width, this.height, -1072689136, -804253680);
+    }
+    
     public void save() {
     	String title = this.titleField.getText();
     	ArrayList<String> raw = new ArrayList<String>();
@@ -110,7 +114,7 @@ public class GuiEditBox extends GuiScreen {
     	raw.remove(raw.size()-1);
     	box.setTitle(title);
     	box.setRaw(raw);
-    	
+    	InfoBox.save();
     }
 
 }
