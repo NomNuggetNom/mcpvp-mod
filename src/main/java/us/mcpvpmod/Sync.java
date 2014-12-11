@@ -1,8 +1,5 @@
 package us.mcpvpmod;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import us.mcpvpmod.config.all.ConfigAlerts;
 import us.mcpvpmod.config.all.ConfigChat;
 import us.mcpvpmod.config.all.ConfigFriends;
@@ -60,6 +57,7 @@ import us.mcpvpmod.game.state.StateMaze;
 import us.mcpvpmod.game.state.StateSab;
 import us.mcpvpmod.game.state.StateSmash;
 import us.mcpvpmod.gui.InfoBlock;
+import us.mcpvpmod.util.Data;
 import us.mcpvpmod.util.Format;
 import cpw.mods.fml.common.FMLLog;
 
@@ -181,7 +179,15 @@ public class Sync {
 		// The FriendsList is a unique InfoBlock that displays regardless of server.
 		// This is created directly, instead of using a creatBlocks method.
 		// From here on out, the FriendsList is referenced using Main.friendsList.
-		Main.friendsList = new InfoBlock(Format.process(ConfigFriends.onlineTitle), new ArrayList<String>(Arrays.asList("friends")), Server.ALL, DummyState.NONE);
+		/*
+		Main.friendsList = new InfoBox
+				(Format.process(ConfigFriends.onlineTitle), 
+						new ArrayList<String>(Arrays.asList("friends")), 
+						Server.ALL, 
+						DummyState.NONE);
+		*/
+		
+		if (Data.get("haveConvertedBlocks") != null) return;
 		
 		// Create blocks for Build
 		InfoBlock.createBlocks(ConfigBuildHUD.render, Server.BUILD, DummyState.NONE);
@@ -193,11 +199,11 @@ public class Sync {
 		InfoBlock.createBlocks(ConfigCTFHUD.renderPost, Server.CTF,StateCTF.POST);
 		
 		// Create blocks for HG
-		InfoBlock.createBlocks(ConfigHGHUD.renderPre, Server.HG, StateHG.PRE);
-		InfoBlock.createBlocks(ConfigHGHUD.renderPlay, Server.HG, StateHG.PLAY);
+		InfoBlock.createBlocks(ConfigHGHUD.render, Server.HG, StateHG.PRE);
+		InfoBlock.createBlocks(ConfigHGHUD.render, Server.HG, StateHG.PLAY);
 		
 		// Create blocks for HS
-		InfoBlock.createBlocks(ConfigHSHUD.renderPlay, Server.HS, StateHS.PLAY);
+		InfoBlock.createBlocks(ConfigHSHUD.render, Server.HS, StateHS.PLAY);
 		
 		// Create blocks for Kit
 		InfoBlock.createBlocks(ConfigKitHUD.render, Server.KIT, StateKit.PLAY);
