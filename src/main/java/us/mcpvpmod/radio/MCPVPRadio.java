@@ -1,11 +1,6 @@
 package us.mcpvpmod.radio;
 
-import java.io.BufferedInputStream;
-import java.net.URL;
-
 import javax.sound.sampled.AudioInputStream;
-
-import us.mcpvpmod.Main;
 
 public class MCPVPRadio {
 	
