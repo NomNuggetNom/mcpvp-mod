@@ -8,10 +8,10 @@ import net.minecraft.client.gui.ScaledResolution;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.config.all.ConfigHUD;
+import us.mcpvpmod.data.Data;
 import us.mcpvpmod.game.state.DummyState;
 import us.mcpvpmod.game.state.State;
 import us.mcpvpmod.gui.screen.GuiMoveBlocks;
-import us.mcpvpmod.util.Data;
 import cpw.mods.fml.common.FMLLog;
 
 public class Selectable {	
@@ -260,7 +260,12 @@ public class Selectable {
 			DisplayAnchor anchor = DisplayAnchor.get(this);
 			
 			// Update the information about the parent by re-getting it.
-			anchor.parent = Selectable.getSelectable(anchor.parent.toString());		
+			if (anchor.parent != null)
+				anchor.parent = Selectable.getSelectable(anchor.parent.toString());
+			else {
+				DisplayAnchor.removeAnchor(this);
+				return this.getX();
+			}
 			
 			// Directional support and adjustment.
 			if (anchor.direction == 'r') {
@@ -356,8 +361,13 @@ public class Selectable {
 			DisplayAnchor anchor = DisplayAnchor.get(this);
 			
 			// Update the information about the parent by re-getting it.
-			anchor.parent = Selectable.getSelectable(anchor.parent.toString());
-
+			if (anchor.parent != null)
+				anchor.parent = Selectable.getSelectable(anchor.parent.toString());
+			else {
+				DisplayAnchor.removeAnchor(this);
+				return this.getY();
+			}
+			
 			// Directional support and adjustment.
 			if (anchor.direction == 'd') {
 				return validateY(anchor.parent.getY() + anchor.parent.getH() + PADDING);

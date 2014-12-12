@@ -35,6 +35,7 @@ import us.mcpvpmod.config.sab.ConfigSabSounds;
 import us.mcpvpmod.config.smash.ConfigSmashAlerts;
 import us.mcpvpmod.config.smash.ConfigSmashHUD;
 import us.mcpvpmod.config.smash.ConfigSmashSelect;
+import us.mcpvpmod.data.Data;
 import us.mcpvpmod.game.FriendsList;
 import us.mcpvpmod.game.core.CoreBuild;
 import us.mcpvpmod.game.core.CoreCTF;
@@ -57,7 +58,6 @@ import us.mcpvpmod.game.state.StateMaze;
 import us.mcpvpmod.game.state.StateSab;
 import us.mcpvpmod.game.state.StateSmash;
 import us.mcpvpmod.gui.InfoBlock;
-import us.mcpvpmod.util.Data;
 import us.mcpvpmod.util.Format;
 import cpw.mods.fml.common.FMLLog;
 
@@ -178,17 +178,9 @@ public class Sync {
 		
 		// The FriendsList is a unique InfoBlock that displays regardless of server.
 		// This is created directly, instead of using a creatBlocks method.
-		// From here on out, the FriendsList is referenced using Main.friendsList.
-		/*
-		Main.friendsList = new InfoBox
-				(Format.process(ConfigFriends.onlineTitle), 
-						new ArrayList<String>(Arrays.asList("friends")), 
-						Server.ALL, 
-						DummyState.NONE);
-		*/
-		
+		// From here on out, the FriendsList is referenced using Main.friendsList.		
 		if (Data.get("haveConvertedBlocks") != null) return;
-		
+
 		// Create blocks for Build
 		InfoBlock.createBlocks(ConfigBuildHUD.render, Server.BUILD, DummyState.NONE);
 

@@ -11,6 +11,7 @@ import org.lwjgl.input.Keyboard;
 import us.mcpvpmod.config.all.ConfigMisc;
 import us.mcpvpmod.data.AnchorXML;
 import us.mcpvpmod.data.BoxXML;
+import us.mcpvpmod.data.Data;
 import us.mcpvpmod.events.Events;
 import us.mcpvpmod.gui.ArmorDisplay;
 import us.mcpvpmod.gui.DisplayAnchor;
@@ -23,7 +24,6 @@ import us.mcpvpmod.json.VersionJSON;
 import us.mcpvpmod.timers.PingTimer;
 import us.mcpvpmod.timers.SimpleTimer;
 import us.mcpvpmod.timers.UpdateTimer;
-import us.mcpvpmod.util.Data;
 import us.mcpvpmod.util.Format;
 import us.mcpvpmod.version.MCPVPVersion;
 

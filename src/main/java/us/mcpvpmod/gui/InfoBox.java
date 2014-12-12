@@ -5,20 +5,22 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Locale;
 
 import net.minecraft.client.gui.FontRenderer;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
+import us.mcpvpmod.config.all.ConfigFriends;
 import us.mcpvpmod.config.all.ConfigHUD;
 import us.mcpvpmod.data.BoxXML;
+import us.mcpvpmod.data.Data;
 import us.mcpvpmod.events.render.AllRender;
 import us.mcpvpmod.game.FriendsList;
 import us.mcpvpmod.game.state.DummyState;
 import us.mcpvpmod.game.state.State;
 import us.mcpvpmod.gui.screen.GuiEditBox;
 import us.mcpvpmod.gui.screen.GuiMoveBlocks;
-import us.mcpvpmod.util.Data;
 import us.mcpvpmod.util.Format;
 
 /**
@@ -119,6 +121,10 @@ public class InfoBox extends Selectable {
 		this(raw.get(0), new ArrayList<String>(raw.subList(1, raw.size()-1)), server, state, save);
 	}
 	
+	public InfoBox(String[] raw, Server server, State state, boolean save) {
+		this(new ArrayList(Arrays.asList(raw)), server, state, save);
+	}
+	
 	/**
 	 * Performs some initial setups on the InfoBox, including 
 	 * adding the box to the boxes Array, adding to the 
@@ -128,45 +134,76 @@ public class InfoBox extends Selectable {
 	public static void register(InfoBox box, boolean save) {
 		boxes.add(box);
 		Selectable.put(box.id, box);
+		Main.l("Registered new InfoBox: %s", box);
 		if (save) save();
 	}
 	
 	/**
 	 * Performs the loading of saved InfoBoxes from {@link BoxXML}.
 	 * Initializes each one so startup functions are still performed
-	 * (e.g. indexing in the Selectables database).
+	 * (e.g. indexing in the Selectables database). Also calls
+	 * {@link #convertBlocks()} every time, although it only actually
+	 * performs an action one time.
 	 */
 	public static void loadBoxes() {
-		Main.l("Loading InfoBoxes...");
-
-		// Convert InfoBlocks to InfoBoxes
-		if (!Data.contains("haveConvertedBlocks")) {
-			for (int i = InfoBlock.blocks.size()-1; i != -1 ; i--) {
-				convert(InfoBlock.blocks.get(i));
-				Main.l("Converted InfoBlock: %s", InfoBlock.blocks.get(i));
-				InfoBlock.blocks.remove(i);
+		convertBlocks();
+		
+		// Load boxes from storage the DATA_FILE.
+		if (BoxXML.getBoxes() != null) {
+			Main.l("Loading InfoBoxes...");
+			for (InfoBox box : BoxXML.getBoxes()) {
+				register(box, false);
+				Main.l("Loaded InfoBox: %s", box);
 			}
-			Data.put("haveConvertedBlocks", "true");
-		}
-
-		// Load boxes from storage.
-		for (InfoBox box : BoxXML.getBoxes()) {
-			register(box, false);
-			Main.l("Loaded InfoBox: %s", box);
 		}
 		save();
 	}
 	
 	/**
-	 * Used to get every InfoBox that is being displayed during the
-	 * given server & state. Note that the boxes may not be rendering
+	 * Performs the conversion of InfoBlocks in {@link InfoBlock#blocks}
+	 * to InfoBoxes. This process is only ever done once (regulated by
+	 * <code>haveConvertedBlocks</code> key in {@link Data}). The purpose
+	 * of this is to allow users to keep their old InfoBlock configurations.
+	 */
+	public static void convertBlocks() {
+		if (!Data.contains("haveConvertedBlocks")) {
+			Main.l("Converting InfoBlocks... %s", InfoBlock.blocks);
+			
+			// Cycle through each InfoBlock and convert it. This step
+			// happens after InfoBlock.blocks is populated, so every
+			// InfoBlock is present.
+			for (int i = InfoBlock.blocks.size()-1; i != -1 ; i--) {
+				InfoBlock block = InfoBlock.blocks.get(i);
+				convert(block);
+				Main.l("Converted InfoBlock: %s", block);
+				InfoBlock.blocks.remove(i);
+			}
+			
+			// Define the Friends List, as it is not present in
+			// the InfoBlock.blocks array.
+			new InfoBox(ConfigFriends.onlineTitle, 
+					new ArrayList<String>(Arrays.asList(new String[]{"friends"})), 
+					Server.ALL, DummyState.NONE, false);
+			
+			// Save that blocks have been converted so this 
+			// process is never repeated.
+			Data.put("haveConvertedBlocks", "true");
+		}
+
+	}
+	
+	/**
+	 * Used to get every InfoBox that is registered to the given 
+	 * server & state. Note that the boxes may not be rendering
 	 * if they have no content.
 	 * @param server The server of the Boxes to have returned.
 	 * @param state The state of the Boxes to have returned.
+	 * @param includeAll If true, boxes that display in {@link Server#ALL}
+	 * and {@link DummyState#NONE} will be included.
 	 * @return All InfoBoxes that have the same Server and State
 	 * or are {@link Server#All} and {@link DummyState#NONE}. 
 	 */
-	public static ArrayList<InfoBox> get(Server server, State state) {
+	public static ArrayList<InfoBox> get(Server server, State state, boolean includeAll) {
 		ArrayList<InfoBox> showing = new ArrayList<InfoBox>();
 		
 		for (InfoBox box : boxes)
@@ -174,7 +211,9 @@ public class InfoBox extends Selectable {
 			if (box.getServer() == server && box.getState() == state)
 				showing.add(box);
 			// Add any box that uses Server.ALL and DummyState.NONE.
-			else if (box.getServer() == Server.ALL && box.getState() == DummyState.NONE)
+			else if (includeAll 
+					&& box.getServer() == Server.ALL 
+					&& box.getState()  == DummyState.NONE)
 				showing.add(box);
 		
 		return showing;
@@ -190,18 +229,18 @@ public class InfoBox extends Selectable {
 	 * Note that the boxes may not be rendered if they have no content. 
 	 */
 	public static ArrayList<InfoBox> getShowingBoxes() {
-		return get(Server.getServer(), Server.getState());
+		return get(Server.getServer(), Server.getState(), true);
 	}
 	
 
 	/**
 	 * Generates a unique numerical ID, not taken by any other box
 	 * that has the same Server and State. Will never change!
-	 * IDs start at 1 and increase by 1 for each other box.
+	 * IDs start at 0 and increase by 1 for each other box.
 	 * @return The unique ID generated.
 	 */
 	private int openID() {
-		return get(this.getServer(), this.getState()).size();
+		return get(this.getServer(), this.getState(), false).size();
 	}
 
 	/**
@@ -210,8 +249,8 @@ public class InfoBox extends Selectable {
 	 * the box. If a box is deleted, it's ID can be used
 	 * by other boxes.
 	 * <br><br>
-	 * The format of the ID is <code>server.state.id</code>. The id
-	 * is generated from {@link #openID()}.
+	 * The format of the ID is <code>server.state.id</code>. The numerical
+	 * id is generated from {@link #openID()}.
 	 * @return The unique string ID of the box.
 	 */
 	private String generateID() {
@@ -243,7 +282,7 @@ public class InfoBox extends Selectable {
 				// Sometimes "null" will be returned to signal that the 
 				// line doesn't need to be shown (i.e. no value).
 				// e.g. Free day returns "null" when it's not free day.
-				if (line != "null")
+				if (!line.equals("null"))
 					info.add(line);
 			}
 		}
@@ -264,7 +303,6 @@ public class InfoBox extends Selectable {
 	public static void save() {
 		try {
 
-			System.out.println("Save!");
 			// Form the buffered writer and write the
 			// XML representation of the boxes array.
 			BufferedWriter out = new BufferedWriter(new FileWriter(DATA_FILE, false));
@@ -301,6 +339,7 @@ public class InfoBox extends Selectable {
 	 */
 	private void draw() {
 		if (this.info.size() == 0) return;
+		this.centerTitles = true;
 		
 		lineHeight = Main.mc.fontRenderer.FONT_HEIGHT;
 		// The location to draw the strings.
@@ -308,20 +347,30 @@ public class InfoBox extends Selectable {
 
 		// Draw the background for the whole box.
 		Draw.rect(this.getRect(), 0.3f);
-		// Draw the title background over the old
-		// background to make it darker.
+		// Draw the title background over the old background to make it darker.
 		Draw.rect(this.getTitleRect(), 0.2f);
 		
 		// Draw the title string.
 		if (centerTitles)
-			Draw.centeredString(this.getTitle(), this.getX() + this.PADDING, y + this.PADDING, this.getTitleRect().width);
+			Draw.centeredString(
+					Format.process(this.getTitle()), 
+					this.getX(), 
+					y + this.PADDING, 
+					this.getTitleRect().width);
 		else 
-			Draw.string(this.getTitle(), this.getX() + this.PADDING, y + this.PADDING);
+			Draw.string(
+					this.getTitle(), 
+					this.getX() + 
+					this.PADDING, 
+					y + this.PADDING);
 		y += this.getTitleRect().height;
 		
 		// Draw the rest of the information.
 		for (String line : this.info) {
-			Draw.string(line, this.getX() + this.PADDING + align(line, ALIGN_AT), y + this.PADDING);
+			Draw.string(
+					line, 
+					this.getX() + this.PADDING + align(line, ALIGN_AT), 
+					y + this.PADDING);
 			y += lineHeight + LINE_SPACING;
 		}
 
@@ -412,7 +461,7 @@ public class InfoBox extends Selectable {
 	 * @param state The state to filter the boxes by.
 	 */
 	public static void displayAll(Server server, State state) {
-		for (InfoBox box : get(server, state))
+		for (InfoBox box : get(server, state, true))
 			box.display();
 	}
 	
