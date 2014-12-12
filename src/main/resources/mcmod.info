@@ -3,7 +3,7 @@
   "modid": "mcpvp",
   "name": "MCPVP Mod",
   "description": "",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "mcversion": "${mcversion}",
   "url": "http://mcpvp.com",
   "updateUrl": "https://github.com/NomNuggetNom/mcpvp-mod/releases",
