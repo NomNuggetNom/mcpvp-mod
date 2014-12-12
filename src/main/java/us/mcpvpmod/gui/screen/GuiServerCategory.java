@@ -110,12 +110,14 @@ public class GuiServerCategory extends GuiScrollingList {
 			toReturn.add(Format.process("#gray#In progress."));
 		
 		// Servers that are "waiting" are colored yellow.
-		if (motd.toLowerCase(Locale.ENGLISH).matches(".*waiting.*"))
+		else if (motd.toLowerCase(Locale.ENGLISH).matches(".*waiting.*"))
 			toReturn.add(Format.process("#yellow#Waiting..."));
 		
 		// This catches CTF and HS maps and colors them gold.
 		if (motd.toLowerCase(Locale.ENGLISH).contains("map"))
 			toReturn.add(motd.replaceAll(".*Map:(.*)", Format.process("#gold#$1")));
+		
+		
 		
 		return toReturn;
 	}

@@ -12,6 +12,7 @@ import org.lwjgl.input.Keyboard;
 
 import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
+import us.mcpvpmod.config.all.ConfigFriends;
 import us.mcpvpmod.config.all.ConfigHUD;
 import us.mcpvpmod.gui.ArmorDisplay;
 import us.mcpvpmod.gui.DisplayAnchor;
@@ -85,14 +86,17 @@ public class GuiMoveBlocks extends GuiScreen {
 		if (keyNum == Keyboard.KEY_E && Selectable.selected != null) {
 			
 			if (Selectable.selected instanceof InfoBlock) {
-				if (Selectable.selected == Main.friendsList)
+				if (((InfoBlock)Selectable.selected).getTitle().equals(ConfigFriends.onlineTitle))
 					Main.mc.displayGuiScreen(new GuiAddFriends());
 				else
 					Main.mc.displayGuiScreen(new GuiEditBlock(this, (InfoBlock) Selectable.selected));
 			}
 			
 			if (Selectable.selected instanceof InfoBox)
-				Main.mc.displayGuiScreen(new GuiEditBox(this, (InfoBox) Selectable.selected));
+				if (((InfoBox)Selectable.selected).getTitle().equals(ConfigFriends.onlineTitle))
+					Main.mc.displayGuiScreen(new GuiAddFriends());
+				else
+					Main.mc.displayGuiScreen(new GuiEditBox(this, (InfoBox) Selectable.selected));
 	
 		}
 		

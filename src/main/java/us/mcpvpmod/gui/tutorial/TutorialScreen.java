@@ -4,9 +4,9 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import us.mcpvpmod.Main;
+import us.mcpvpmod.data.Data;
 import us.mcpvpmod.gui.Draw;
 import us.mcpvpmod.gui.Selectable;
-import us.mcpvpmod.util.Data;
 import us.mcpvpmod.util.Format;
 
 public class TutorialScreen extends GuiScreen {

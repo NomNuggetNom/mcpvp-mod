@@ -10,6 +10,7 @@ import us.mcpvpmod.Main;
 import us.mcpvpmod.gui.InfoBox;
 
 import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.StreamException;
 import com.thoughtworks.xstream.io.xml.StaxDriver;
 
 public class BoxXML {
@@ -45,6 +46,9 @@ public class BoxXML {
 			// Deserialize the saved string.
 			return (ArrayList<InfoBox>) new XStream(new StaxDriver()).fromXML(saved);
 
+		} catch (StreamException e) {
+			make();
+			return null;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -11,12 +11,12 @@ import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.ServerHelper;
 import us.mcpvpmod.config.all.ConfigHUD;
+import us.mcpvpmod.data.Data;
 import us.mcpvpmod.gui.CustomTextureAsync;
 import us.mcpvpmod.gui.InfoBox;
 import us.mcpvpmod.gui.PotionDisplay;
 import us.mcpvpmod.gui.Selectable;
 import us.mcpvpmod.gui.screen.GuiIngameMCPVP;
-import us.mcpvpmod.util.Data;
 
 import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 
@@ -64,7 +64,6 @@ public class AllRender {
 			Main.start("mcpvp", "skinFixer");
 			fixSkins();
 			Main.end(2);
-			//removeSkins();
 		}
 		
 		// Display all InfoBoxes for the current Server and State.
@@ -136,5 +135,6 @@ public class AllRender {
 			Main.mc.getTextureManager().deleteTexture(texture.getResource());
 			CustomTextureAsync.textures.remove(texture.id);
 		}
+		texturesToRemove.clear();
 	}
 }

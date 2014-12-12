@@ -4,8 +4,10 @@ import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.config.all.ConfigSelect;
+import us.mcpvpmod.data.Data;
 import us.mcpvpmod.events.chat.AllChat;
 import us.mcpvpmod.events.chat.IgnoreResult;
+import us.mcpvpmod.events.render.AllRender;
 import us.mcpvpmod.game.vars.AllVars;
 import us.mcpvpmod.game.vars.Vars;
 import us.mcpvpmod.game.vars.VarsBuild;
@@ -19,7 +21,6 @@ import us.mcpvpmod.game.vars.VarsSmash;
 import us.mcpvpmod.gui.tutorial.Tutorial;
 import us.mcpvpmod.html.HTMLStats;
 import us.mcpvpmod.radio.MCPVPRadio;
-import us.mcpvpmod.util.Data;
 
 public class AllJoin {
 
@@ -75,6 +76,8 @@ public class AllJoin {
 			// Clear the tracked messages.
 			AllChat.tracked.clear();
 		}
+		AllRender.removeSkins();
+		
 		server.onJoin();
 	}
 	

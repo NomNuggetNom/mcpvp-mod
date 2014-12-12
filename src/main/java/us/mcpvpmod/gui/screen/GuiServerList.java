@@ -13,7 +13,7 @@ import us.mcpvpmod.MCPVPServer;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.ServerHelper;
-import us.mcpvpmod.util.Data;
+import us.mcpvpmod.data.Data;
 import us.mcpvpmod.util.Format;
 import cpw.mods.fml.client.FMLClientHandler;
 

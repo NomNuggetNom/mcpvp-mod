@@ -6,11 +6,11 @@ import java.util.Arrays;
 
 import net.minecraft.client.gui.GuiScreen;
 import us.mcpvpmod.Server;
+import us.mcpvpmod.data.Data;
 import us.mcpvpmod.game.state.DummyState;
 import us.mcpvpmod.gui.Draw;
 import us.mcpvpmod.gui.InfoBlock;
 import us.mcpvpmod.gui.Selectable;
-import us.mcpvpmod.util.Data;
 import us.mcpvpmod.util.Format;
 
 public class TutScreen2 extends TutorialScreen {

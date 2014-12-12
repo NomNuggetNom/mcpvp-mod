@@ -8,7 +8,7 @@ import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.entity.EntityOtherPlayerMP;
 import net.minecraft.client.gui.GuiPlayerInfo;
 import net.minecraft.entity.player.EntityPlayer;
-import us.mcpvpmod.util.Data;
+import us.mcpvpmod.data.Data;
 
 public class ServerHelper {
 

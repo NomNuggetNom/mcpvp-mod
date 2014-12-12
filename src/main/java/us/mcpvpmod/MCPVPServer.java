@@ -8,7 +8,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.multiplayer.GuiConnecting;
 import net.minecraft.client.multiplayer.ServerData;
-import us.mcpvpmod.util.Data;
+import us.mcpvpmod.data.Data;
 import cpw.mods.fml.client.FMLClientHandler;
 
 public class MCPVPServer {

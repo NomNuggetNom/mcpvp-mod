@@ -9,7 +9,6 @@ import org.apache.commons.io.IOUtils;
 
 import us.mcpvpmod.Main;
 import us.mcpvpmod.gui.DisplayAnchor;
-import us.mcpvpmod.gui.Selectable;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.StaxDriver;
