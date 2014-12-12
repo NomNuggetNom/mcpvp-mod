@@ -139,8 +139,8 @@ server.build.name=Minecraft Build
 server.build.ip=minecraftbuild.com
 server.raid.name=Raid
 server.raid.ip=raid.mcpvp.com
-server.hg2.name=Phoenix Hunger Games
-server.hg2.ip=Phoenix Hunger Games
+server.smash.name=Smash
+server.smash.ip=mcsmash.com
 server.none.name=None
 server.none.ip=None
 
