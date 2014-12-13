@@ -117,7 +117,8 @@ public class GuiServerCategory extends GuiScrollingList {
 		if (motd.toLowerCase(Locale.ENGLISH).contains("map"))
 			toReturn.add(motd.replaceAll(".*Map:(.*)", Format.process("#gold#$1")));
 		
-		
+		if (motd.toLowerCase(Locale.ENGLISH).contains("ends in"))
+			toReturn.add(motd.replaceAll(".*Ends in (.*) seconds", Format.process("#gray#Ends in #green#$1#gray#s")));
 		
 		return toReturn;
 	}
