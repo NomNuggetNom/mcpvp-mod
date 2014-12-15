@@ -39,23 +39,23 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid = Main.modID, name = Main.name, version = Main.mcVersion + "-" + Main.modVersion, guiFactory = Main.guiFactory)
+@Mod(modid = Main.MOD_ID, name = Main.MOD_NAME, version = Main.MOD_MC_VERSION + "-" + Main.MOD_VERSION, guiFactory = Main.GUI_FACTORY)
 public class Main {
 	
 	/** The ID of the mod. Used in detecting configuration changes and for building the mod. */
-	public static final String modID = "mcpvp";
+	public static final String MOD_ID = "mcpvp";
 	/** The name of the mod is displayed on the configuration screen. */
-	public static final String name = "MCPVP Mod";
+	public static final String MOD_NAME = "MCPVP Mod";
 	/** The version of the mod. */
-	public static final String modVersion = "2.0.4";
+	public static final String MOD_VERSION = "2.0.4.1";
 	/** The version of MC that the mod was compiled for. */
-	public static final String mcVersion = "1.7.10";
+	public static final String MOD_MC_VERSION = "1.7.10";
 	/** The version of Forge that the mod was compiled for. */
-	public static final String forgeVersion = "10.13.0.1180";
+	public static final String MOD_FORGE_VERSION = "10.13.0.1180";
 	/** A reference to the GuiFactory. Necessary for loading the configuration screen. */
-	public static final String guiFactory = "us.mcpvpmod.config.GuiFactory";
+	public static final String GUI_FACTORY = "us.mcpvpmod.config.GuiFactory";
 	/** Whether or not this mod is a beta release. */
-	public static final boolean isBeta = true;
+	public static final boolean IS_BETA = true;
 	
 	@Instance
 	/** Used by Forge to recognize this as a Forge mod. */
@@ -74,6 +74,7 @@ public class Main {
 	public static KeyBinding moveBlocks;
 	/** The key used to open the help screen, which is also shown once before. */
 	public static KeyBinding showHelp;
+	/** The key used to enable drop stacking for Macs. */
 	public static KeyBinding cmdMac;
 	/** A reference to the on-screen ArmorDisplay. */
 	public static ArmorDisplay armorDisplay = new ArmorDisplay();
@@ -97,6 +98,7 @@ public class Main {
     	// Sync all files and configurations.
 		Sync.sync();
 		
+		// Load stored data.
 		InfoBox.loadBoxes();
 		DisplayAnchor.loadAnchors();
 	}
