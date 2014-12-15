@@ -26,6 +26,7 @@ public class Format {
 	 * @return The processed line.
 	 */
 	public static String process(String line) {
+		if (line == null) return "";
 		// Form our matcher for color codes.
 		Matcher colorMatch = Pattern.compile(reFormat).matcher(line);
 		while (colorMatch.find()) {
@@ -102,6 +103,16 @@ public class Format {
 	 */
 	public static String s(String key) {
 		return I18n.format(key);
+	}
+	
+	/**
+	 * Replaces any unusual characters in names.
+	 * @param name The name to format.
+	 * @return The plain display name with no colors
+	 * or additional information.
+	 */
+	public static String name(String name) {
+		return name.replaceAll("\u00A7.", "").replaceAll("\\[.*\\]", "");
 	}
 	
 	private static final Pattern NONLATIN = Pattern.compile("[^\\w-]");
