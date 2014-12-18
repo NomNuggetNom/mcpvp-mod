@@ -47,7 +47,7 @@ public class Main {
 	/** The name of the mod is displayed on the configuration screen. */
 	public static final String MOD_NAME = "MCPVP Mod";
 	/** The version of the mod. */
-	public static final String MOD_VERSION = "2.0.4.1";
+	public static final String MOD_VERSION = "2.0.4.2";
 	/** The version of MC that the mod was compiled for. */
 	public static final String MOD_MC_VERSION = "1.7.10";
 	/** The version of Forge that the mod was compiled for. */
