@@ -4,31 +4,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Properties;
 
 import us.mcpvpmod.Main;
-import us.mcpvpmod.Server;
-import us.mcpvpmod.config.all.ConfigFriends;
-import us.mcpvpmod.config.build.ConfigBuildHUD;
-import us.mcpvpmod.config.ctf.ConfigCTFHUD;
-import us.mcpvpmod.config.hg.ConfigHGHUD;
-import us.mcpvpmod.config.hs.ConfigHSHUD;
-import us.mcpvpmod.config.kit.ConfigKitHUD;
-import us.mcpvpmod.config.maze.ConfigMazeHUD;
-import us.mcpvpmod.config.raid.ConfigRaidHUD;
-import us.mcpvpmod.config.sab.ConfigSabHUD;
-import us.mcpvpmod.config.smash.ConfigSmashHUD;
-import us.mcpvpmod.game.state.DummyState;
-import us.mcpvpmod.game.state.StateCTF;
-import us.mcpvpmod.game.state.StateHG;
-import us.mcpvpmod.game.state.StateHS;
-import us.mcpvpmod.game.state.StateKit;
-import us.mcpvpmod.game.state.StateMaze;
-import us.mcpvpmod.game.state.StateSab;
-import us.mcpvpmod.game.state.StateSmash;
-import us.mcpvpmod.gui.InfoBox;
 
 public class Data {
 	
@@ -118,5 +96,9 @@ public class Data {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static boolean converted() {
+		return contains("haveConvertedBlocks");
 	}
 }
