@@ -123,7 +123,7 @@ public class BoxXML {
 		
 		new InfoBox(ConfigFriends.onlineTitle, 
 				new ArrayList<String>(Arrays.asList(new String[]{"friends"})), 
-				Server.ALL, DummyState.NONE, false);
+				Server.MCPVP, DummyState.NONE, false);
 		
 		InfoBox.save();
 	}

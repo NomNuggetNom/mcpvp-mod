@@ -25,7 +25,7 @@ public class ArmorDisplay extends Selectable {
 	
 	public static int w;
 	public static int h;
-	public Server server = Server.ALL;
+	public Server server = Server.MCPVP;
 	public State state = DummyState.NONE;
 	
 	public ArmorDisplay() {

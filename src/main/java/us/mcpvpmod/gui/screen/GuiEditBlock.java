@@ -72,7 +72,6 @@ public class GuiEditBlock extends GuiScreen {
 		case SMASH: return ConfigSmashHUD.getConfig();
 		case HUB: 	break;
 		case NONE: 	break;
-		case HG2:	break;
 		case PARTY:	break;
 		default:	break;
 		}
@@ -124,7 +123,6 @@ public class GuiEditBlock extends GuiScreen {
 			}
 		case HUB: 	break;
 		case NONE: 	break;
-		case HG2:	break;
 		case PARTY:	break;
 		default:	break;
 		}

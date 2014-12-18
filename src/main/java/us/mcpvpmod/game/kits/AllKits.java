@@ -22,7 +22,6 @@ public class AllKits {
 		case SMASH: return KitSmash.getKit(kitName).getIcon();
 		case HUB: 	break;
 		case NONE: 	break;
-		case HG2:	break;
 		case PARTY:	break;
 		default:	break;
 		}

@@ -73,7 +73,7 @@ import cpw.mods.fml.common.gameevent.TickEvent;
  * Provides a main class for getting server dependent information.
  */
 public enum Server {
-	HUB, KIT, HG, MAZE, SAB, CTF, HS, PARTY, BUILD, RAID, HG2, SMASH, NONE, ALL;
+	HUB, KIT, HG, MAZE, SAB, CTF, HS, PARTY, BUILD, RAID, SMASH, MCPVP, NONE;
 	
 	/**
 	 * @return The friendly name of the server from the lang file.
@@ -106,7 +106,6 @@ public enum Server {
 		if (ip.endsWith("party.mcpvp.com"))		return PARTY;
 		if (ip.endsWith("minecraftbuild.com"))	return BUILD;
 		if (ip.endsWith("raid.mcpvp.com"))		return RAID;
-		if (ip.endsWith("v2.mc-hg.com"))		return HG2;
 		if (ip.endsWith("mc-hg.com"))			return HG;
 		if (ip.endsWith("mcsmash.com"))			return SMASH;
 		
@@ -139,7 +138,6 @@ public enum Server {
 		case HS: 	ChatHS.onChat(event); 		return;
 		case SMASH: ChatSmash.onChat(event);	return;
 		case HUB: 	ChatHub.onChat(event); 		return;
-		case HG2:	return;
 		case PARTY:	return;
 		case NONE: 	return;
 		default:	return;
@@ -164,7 +162,6 @@ public enum Server {
 		case HS: 	RenderHS.onRender(event); 		return;
 		case SMASH: RenderSmash.onRender(event);	return;
 		case HUB: 	RenderHub.onRender(event); 		return;
-		case HG2:	return;
 		case PARTY:	return;
 		case NONE: 	return;
 		default:	return;
@@ -189,7 +186,6 @@ public enum Server {
 		case HS: 	TickHS.onTick(event); 		return;
 		case SMASH: TickSmash.onTick(event);	return;
 		case HUB: 	TickHub.onTick(event); 		return;
-		case HG2:	return;
 		case PARTY:	return;
 		case NONE: 	return;
 		default:	return;
@@ -212,7 +208,6 @@ public enum Server {
 		case HS: 	return;
 		case SMASH: JoinSmash.onJoin();
 		case HUB: 	return;
-		case HG2:	return;
 		case PARTY:	return;
 		case NONE: 	return;
 		default:	return;
@@ -236,7 +231,6 @@ public enum Server {
 		case HS: 	break;
 		case HUB: 	break;
 		case NONE: 	break;
-		case HG2:	break;
 		case PARTY:	break;
 		default:	break;
 		}
@@ -258,7 +252,6 @@ public enum Server {
 		case HS: 	return;
 		case HUB: 	return;
 		case NONE: 	return;
-		case HG2:	return;
 		case PARTY:	return;
 		default:	return;
 		}
@@ -284,7 +277,6 @@ public enum Server {
 		case SMASH: return VarsSmash.get(var);
 		case HUB: 	break;
 		case NONE: 	break;
-		case HG2:	break;
 		case PARTY:	break;
 		default:	break;
 		}
@@ -308,7 +300,6 @@ public enum Server {
 		case SMASH: return StateSmash.state;
 		case HUB: 	break;
 		case NONE: 	break;
-		case HG2:	break;
 		case PARTY:	break;
 		default:	break;
 		}
@@ -328,7 +319,6 @@ public enum Server {
 		case HUB: 	return false;
 		case SMASH: return false;
 		case NONE: 	return false;
-		case HG2:	return false;
 		case PARTY: return false;
 		default: 	return false;
 		}
@@ -350,7 +340,6 @@ public enum Server {
 		case HS: 	return 2;
 		case HUB: 	return 1;
 		case NONE: 	return 1;
-		case HG2:	return 1;
 		case PARTY: return 1;
 		case SMASH:	return 2;
 		default: 	return 1;
