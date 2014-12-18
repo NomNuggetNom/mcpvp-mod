@@ -8,6 +8,7 @@ import java.util.List;
 
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
+import us.mcpvpmod.Server;
 import us.mcpvpmod.game.alerts.SoundAlert;
 import cpw.mods.fml.common.DummyModContainer;
 import cpw.mods.fml.common.FMLLog;
@@ -51,18 +52,11 @@ public class ConfigKitSounds extends DummyModContainer {
         
         Property prop;
         
-    	prop = config.get(CATEGORY_GENERAL, "soundStreak", "mob.enderdragon.growl");
-        prop.setLanguageKey("kit.config.sounds.soundStole");
-    	soundStreak = prop.getString();
+    	prop = config.get(CATEGORY_GENERAL, "soundKit", "mob.villager.yes");
+        prop.setLanguageKey("kit.config.sounds.kit");
     	propOrder.add(prop.getName());
-    	new SoundAlert("streak.get", prop.getString());
+    	new SoundAlert("kit.kit", prop.getString(), Server.KIT);
 
-    	prop = config.get(CATEGORY_GENERAL, "soundStreakEnd", "mob.skeleton.death");
-        prop.setLanguageKey("kit.config.sounds.soundStreak");
-    	soundStreakEnd = prop.getString();
-    	propOrder.add(prop.getName());
-    	new SoundAlert("streak.end", prop.getString());
-        
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
 
         if (config.hasChanged())
