@@ -47,7 +47,7 @@ public class Selectable {
 			//System.out.println(selectable + ", " + selectable.getServer() + "," + selectable.getState());
 			if (selectable.getServer().equals(Server.getServer()) && selectable.getState().equals(Server.getState()))
 				toReturn.add(selectable);
-			else if (selectable.getServer().equals(Server.MCPVP) && selectable.getState().equals(DummyState.NONE))
+			else if (selectable.getServer().equals(Server.ALL) && selectable.getState().equals(DummyState.NONE))
 				toReturn.add(selectable);
 		}
 		
@@ -479,7 +479,7 @@ public class Selectable {
 	/**
 	 * @return The server that this selectable should show during.
 	 */
-	public Server getServer() { return Server.MCPVP; }
+	public Server getServer() { return Server.ALL; }
 
 	/**
 	 * @return The state that this selectable should show during.

@@ -48,7 +48,7 @@ public class InfoBlock extends Selectable {
 	 * Could be DummyState.NONE, which is rendered in all States. */
 	private final State state;
 	/** The Server to render the block in.
-	 *  Could be {@link Server#MCPVP}, which is rendered in all Servers. */
+	 *  Could be {@link Server#ALL}, which is rendered in all Servers. */
 	private final Server server;
 	/** The starting X coordinate. */
 	private int baseX;
@@ -133,7 +133,7 @@ public class InfoBlock extends Selectable {
 			// This supports the use of Server.ALL and DummyState.NONE.
 			// Basically this returns all blocks that are currently showing
 			// if the specified Server/State is a catch-all.
-			else if (server == Server.MCPVP && state == DummyState.NONE)
+			else if (server == Server.ALL && state == DummyState.NONE)
 				if (block.server.equals(Server.getServer()) && block.state.equals(Server.getState()))
 						toReturn.add(block);
 		}

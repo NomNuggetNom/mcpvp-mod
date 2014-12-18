@@ -47,7 +47,7 @@ public class SoundAlert {
 	 * @param sound The sound file to be played
 	 */
 	public SoundAlert(String id, String sound) {
-		this(id, sound, Server.MCPVP);
+		this(id, sound, Server.ALL);
 	}
 	@Override
 	public String toString() {
@@ -70,7 +70,7 @@ public class SoundAlert {
 	public void play() {
 		// Support for canceling.
 		if (!this.sound.startsWith("-X-") && 
-				(Server.getServer() == this.server || this.server == Server.MCPVP)) {
+				(Server.getServer() == this.server || this.server == Server.ALL)) {
 			Main.mc.thePlayer.playSound(this.sound, this.volume/2, 1.0F);
 			Main.l("SoundAlert triggered: \"%s\"", this);
 		}

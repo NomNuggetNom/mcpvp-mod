@@ -61,7 +61,7 @@ public class InfoBox extends Selectable {
 	 * from {@link #rawInfo} every render tick. */
 	ArrayList<String> info;
 	/** The server for this box to be rendered on.
-	 * {@link Server#MCPVP} is rendered on every server. */
+	 * {@link Server#ALL} is rendered on every server. */
 	final Server server;
 	/** The state for this box to be rendered on.
 	 * {@link DummyState#NONE} is rendered during every state. */
@@ -89,7 +89,7 @@ public class InfoBox extends Selectable {
 	 * @param raw Unprocessed information, straight from the configuration file.
 	 * Processed and sent to {@link info} every render tick.
 	 * @param server The server for this box to be rendered on.
-	 * {@link Server#MCPVP} is rendered on every server,
+	 * {@link Server#ALL} is rendered on every server,
 	 * @param state The state for this box to be rendered on.
 	 * {@link DummyState#NONE} is rndered during every state.
 	 * @param save Whether or not the Box should be immediately saved to
@@ -113,7 +113,7 @@ public class InfoBox extends Selectable {
 	 * Processed and sent to {@link #info} every render tick. The first entry
 	 * will become the {@link #title} of the block.
 	 * @param server The server for this box to be rendered on.
-	 * {@link Server#MCPVP} is rendered on every server,
+	 * {@link Server#ALL} is rendered on every server,
 	 * @param state The state for this box to be rendered on.
 	 * {@link DummyState#NONE} is rendered during every state.
 	 */
@@ -186,7 +186,7 @@ public class InfoBox extends Selectable {
 			// the InfoBlock.blocks array.
 			new InfoBox(ConfigFriends.onlineTitle, 
 					new ArrayList<String>(Arrays.asList(new String[]{"friends"})), 
-					Server.MCPVP, DummyState.NONE, false);
+					Server.ALL, DummyState.NONE, false);
 			
 			// Save that blocks have been converted so this 
 			// process is never repeated.
@@ -201,7 +201,7 @@ public class InfoBox extends Selectable {
 	 * if they have no content.
 	 * @param server The server of the Boxes to have returned.
 	 * @param state The state of the Boxes to have returned.
-	 * @param includeAll If true, boxes that display in {@link Server#MCPVP}
+	 * @param includeAll If true, boxes that display in {@link Server#ALL}
 	 * and {@link DummyState#NONE} will be included.
 	 * @return All InfoBoxes that have the same Server and State
 	 * or are {@link Server#All} and {@link DummyState#NONE}. 
@@ -215,7 +215,7 @@ public class InfoBox extends Selectable {
 				showing.add(box);
 			// Add any box that uses Server.ALL and DummyState.NONE.
 			else if (includeAll 
-					&& box.getServer() == Server.MCPVP 
+					&& box.getServer() == Server.ALL 
 					&& box.getState()  == DummyState.NONE)
 				showing.add(box);
 		
