@@ -6,6 +6,7 @@ import java.util.List;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;
+import us.mcpvpmod.data.Data;
 import us.mcpvpmod.util.Format;
 import cpw.mods.fml.client.config.DummyConfigElement.DummyCategoryElement;
 import cpw.mods.fml.client.config.GuiConfig;
@@ -23,7 +24,8 @@ public class ConfigSab extends CategoryEntry {
     protected GuiScreen buildChildScreen() {
         List<IConfigElement> list = new ArrayList<IConfigElement>();
         
-        list.add(new DummyCategoryElement(Format.s("config.hud.title"), "mcpvp.config.sab.HUD", SabHUD.class));
+        if (!Data.converted())
+        	list.add(new DummyCategoryElement(Format.s("config.hud.title"), "mcpvp.config.sab.HUD", SabHUD.class));
         list.add(new DummyCategoryElement(Format.s("config.alerts.title"), "mcpvp.config.sab.Alerts", SabAlerts.class));
         list.add(new DummyCategoryElement(Format.s("config.sounds.title"), "mcpvp.config.sab.Sounds", SabSounds.class));
         list.add(new DummyCategoryElement(Format.s("config.select.title"), "mcpvp.config.sab.Select", SabSelect.class));

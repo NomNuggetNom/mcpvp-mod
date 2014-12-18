@@ -6,6 +6,7 @@ import java.util.List;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;
+import us.mcpvpmod.data.Data;
 import us.mcpvpmod.util.Format;
 import cpw.mods.fml.client.config.DummyConfigElement.DummyCategoryElement;
 import cpw.mods.fml.client.config.GuiConfig;
@@ -23,7 +24,8 @@ public class ConfigCTF extends CategoryEntry {
     protected GuiScreen buildChildScreen() {
         List<IConfigElement> list = new ArrayList<IConfigElement>();
         
-        list.add(new DummyCategoryElement(Format.s("config.hud.title"), "ctf.config.HUD", CTFHUD.class));
+        if (!Data.converted())
+        	list.add(new DummyCategoryElement(Format.s("config.hud.title"), "ctf.config.HUD", CTFHUD.class));
         list.add(new DummyCategoryElement(Format.s("config.chat.title"), "ctf.config.Chat", CTFChat.class));
         list.add(new DummyCategoryElement(Format.s("config.alerts.title"), "ctf.config.Alerts", CTFAlerts.class));
         list.add(new DummyCategoryElement(Format.s("config.sounds.title"), "ctf.config.Sounds", SoundsEntry.class));

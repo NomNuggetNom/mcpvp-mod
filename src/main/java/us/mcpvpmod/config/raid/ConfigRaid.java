@@ -6,6 +6,7 @@ import java.util.List;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;
+import us.mcpvpmod.data.Data;
 import us.mcpvpmod.util.Format;
 import cpw.mods.fml.client.config.DummyConfigElement.DummyCategoryElement;
 import cpw.mods.fml.client.config.GuiConfig;
@@ -23,7 +24,8 @@ public class ConfigRaid extends CategoryEntry {
     protected GuiScreen buildChildScreen() {
         List<IConfigElement> list = new ArrayList<IConfigElement>();
         
-        list.add(new DummyCategoryElement(Format.s("config.hud.title"), "config.hud", RaidHUD.class));
+        if (!Data.converted())
+        	list.add(new DummyCategoryElement(Format.s("config.hud.title"), "config.hud", RaidHUD.class));
         list.add(new DummyCategoryElement(Format.s("config.alerts.title"), "config.alerts", RaidAlerts.class));
         list.add(new DummyCategoryElement(Format.s("config.sounds.title"), "config.raid.sounds", RaidSounds.class));
         
