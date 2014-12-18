@@ -8,6 +8,7 @@ import java.util.List;
 
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
+import us.mcpvpmod.Server;
 import us.mcpvpmod.game.alerts.SoundAlert;
 import cpw.mods.fml.common.DummyModContainer;
 import cpw.mods.fml.common.FMLLog;
@@ -56,19 +57,19 @@ public class ConfigHGSounds extends DummyModContainer {
         prop.setLanguageKey("hg.config.sounds.start");
     	soundStart = prop.getString();
     	propOrder.add(prop.getName());
-    	new SoundAlert("hg.start", prop.getString());
+    	new SoundAlert("hg.start", prop.getString(), Server.HG);
     	
     	prop = config.get(CATEGORY_GENERAL, "soundDeath", "mob.skeleton.death");
     	prop.setLanguageKey("hg.config.sounds.death");
     	soundStart = prop.getString();
     	propOrder.add(prop.getName());
-    	new SoundAlert("hg.death", prop.getString());
+    	new SoundAlert("hg.death", prop.getString(), Server.HG);
     	
     	prop = config.get(CATEGORY_GENERAL, "soundEnd", "mob.enderdragon.end");
     	prop.setLanguageKey("hg.config.sounds.end");
     	soundStart = prop.getString();
     	propOrder.add(prop.getName());
-    	new SoundAlert("hg.end", prop.getString());
+    	new SoundAlert("hg.end", prop.getString(), Server.HG);
         
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
 

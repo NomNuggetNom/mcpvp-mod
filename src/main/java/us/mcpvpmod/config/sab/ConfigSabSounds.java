@@ -8,6 +8,7 @@ import java.util.List;
 
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
+import us.mcpvpmod.Server;
 import us.mcpvpmod.game.alerts.SoundAlert;
 import cpw.mods.fml.common.DummyModContainer;
 import cpw.mods.fml.common.FMLLog;
@@ -55,19 +56,19 @@ public class ConfigSabSounds extends DummyModContainer {
         prop.setLanguageKey("mcpvp.sab.config.Sounds.start");
     	soundStart = prop.getString();
     	propOrder.add(prop.getName());
-    	new SoundAlert("sab.start", prop.getString());
+    	new SoundAlert("sab.start", prop.getString(), Server.SAB);
     	
     	prop = config.get(CATEGORY_GENERAL, "soundDeath", "mob.skeleton.death");
     	prop.setLanguageKey("mcpvp.sab.config.Sounds.death");
     	soundStart = prop.getString();
     	propOrder.add(prop.getName());
-    	new SoundAlert("sab.death", prop.getString());
+    	new SoundAlert("sab.death", prop.getString(), Server.SAB);
     	
     	prop = config.get(CATEGORY_GENERAL, "soundEnd", "mob.enderdragon.end");
     	prop.setLanguageKey("mcpvp.sab.config.Sounds.end");
     	soundStart = prop.getString();
     	propOrder.add(prop.getName());
-    	new SoundAlert("sab.end", prop.getString());
+    	new SoundAlert("sab.end", prop.getString(), Server.SAB);
         
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
 

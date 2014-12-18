@@ -8,6 +8,7 @@ import java.util.List;
 
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
+import us.mcpvpmod.Server;
 import us.mcpvpmod.game.alerts.SoundAlert;
 import cpw.mods.fml.common.DummyModContainer;
 import cpw.mods.fml.common.FMLLog;
@@ -54,22 +55,22 @@ public class ConfigMazeSounds extends DummyModContainer {
     	prop = config.get(CATEGORY_GENERAL, "soundKit", "mob.villager.yes");
         prop.setLanguageKey("maze.config.sounds.kit");
     	propOrder.add(prop.getName());
-    	new SoundAlert("maze.kit", prop.getString());
+    	new SoundAlert("maze.kit", prop.getString(), Server.MAZE);
     	
     	prop = config.get(CATEGORY_GENERAL, "soundPlayerKilled", "mob.villager.yes");
         prop.setLanguageKey("maze.config.sounds.playerKilled");
     	propOrder.add(prop.getName());
-    	new SoundAlert("maze.playerKilled", prop.getString());
+    	new SoundAlert("maze.playerKilled", prop.getString(), Server.MAZE);
     	
     	prop = config.get(CATEGORY_GENERAL, "soundTeamOut", "mob.wither.death, 0.2F");
         prop.setLanguageKey("maze.config.sounds.teamOut");
     	propOrder.add(prop.getName());
-    	new SoundAlert("maze.team.out", prop.getString());
+    	new SoundAlert("maze.team.out", prop.getString(), Server.MAZE);
     
     	prop = config.get(CATEGORY_GENERAL, "soundHunger", "mob.pig.say");
     	prop.setLanguageKey("maze.config.sounds.hunger");
     	propOrder.add(prop.getName());
-    	new SoundAlert("maze.hunger", prop.getString());
+    	new SoundAlert("maze.hunger", prop.getString(), Server.MAZE);
         
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
 

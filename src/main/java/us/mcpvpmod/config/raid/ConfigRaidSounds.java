@@ -8,6 +8,7 @@ import java.util.List;
 
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
+import us.mcpvpmod.Server;
 import us.mcpvpmod.game.alerts.SoundAlert;
 import cpw.mods.fml.common.DummyModContainer;
 import cpw.mods.fml.common.FMLLog;
@@ -51,12 +52,12 @@ public class ConfigRaidSounds extends DummyModContainer {
     	prop = config.get(CATEGORY_GENERAL, "soundDespoit", "mob.villager.yes");
         prop.setLanguageKey("raid.config.sounds.soundStole");
     	propOrder.add(prop.getName());
-    	new SoundAlert("raid.balance", prop.getString());
+    	new SoundAlert("raid.balance", prop.getString(), Server.RAID);
 
     	prop = config.get(CATEGORY_GENERAL, "soundRaid", "mob.wolf.growl");
         prop.setLanguageKey("raid.config.sounds.soundStreak");
     	propOrder.add(prop.getName());
-    	new SoundAlert("raid.raid", prop.getString());
+    	new SoundAlert("raid.raid", prop.getString(), Server.RAID);
         
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
 
