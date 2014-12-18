@@ -36,7 +36,7 @@ public class HandleKey {
     	for (ModContainer mod : Loader.instance().getModList()) {
     		if (mod.getModId() == null) continue;
     		
-    		if (mod.getModId().equals(Main.modID)) {
+    		if (mod.getModId().equals(Main.MOD_ID)) {
 				try {
     	            IModGuiFactory guiFactory = FMLClientHandler.instance().getGuiFactoryFor(mod);
 					GuiScreen newScreen = guiFactory.mainConfigGuiClass().getConstructor(GuiScreen.class).newInstance(Main.mc.currentScreen);

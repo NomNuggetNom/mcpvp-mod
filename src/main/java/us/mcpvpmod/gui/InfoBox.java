@@ -155,6 +155,9 @@ public class InfoBox extends Selectable {
 				register(box, false);
 				Main.l("Loaded InfoBox: %s", box);
 			}
+		} else {
+			if (!Data.contains("haveConvertedBlocks"))
+				BoxXML.setDefaults();
 		}
 		save();
 	}

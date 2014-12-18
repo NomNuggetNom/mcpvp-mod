@@ -56,7 +56,7 @@ public class ConfigVersion extends DummyModContainer {
         updateNotifications = prop.getBoolean();
     	propOrder.add(prop.getName());
         
-    	prop = config.get(CATEGORY_GENERAL, "versionChannel", Main.isBeta ? "Beta" : "Main", "The channel of the mod that you want updates about.", new String[]{"Main", "Beta"});
+    	prop = config.get(CATEGORY_GENERAL, "versionChannel", Main.IS_BETA ? "Beta" : "Main", "The channel of the mod that you want updates about.", new String[]{"Main", "Beta"});
         prop.setLanguageKey("config.version.versionChannel");
     	channel = prop.getString();
     	propOrder.add(prop.getName());

@@ -77,7 +77,7 @@ public class MCPVPServer {
 	public static ArrayList<MCPVPServer> getSortedOfType(String type, String region) {
 		ArrayList<MCPVPServer> toReturn = new ArrayList<MCPVPServer>();
 		
-		// Tier 1 is for servers that are starting soon, or CTF/HS games that are in progress.
+		// Tier 1 is for servers that are starting soon, or CTF/HS/Smash games that are in progress.
 		ArrayList<MCPVPServer> tier1 = new ArrayList<MCPVPServer>();
 		// Tier 2 is for servers that are still "waiting for players"
 		ArrayList<MCPVPServer> tier2 = new ArrayList<MCPVPServer>();
@@ -86,12 +86,16 @@ public class MCPVPServer {
 		// Tier 4 is for offline servers.
 		ArrayList<MCPVPServer> tier4 = new ArrayList<MCPVPServer>();
 		
+		String motd = "";
+		boolean smash = false;
 		for (MCPVPServer server : servers) {
 			if ((server.ServerType.equals(type) || server.ServerType.endsWith(type)) && server.Region.equals(region)) {
-				String motd = server.MOTD.replaceAll("Â", "");
+				motd = server.MOTD.replaceAll("Â", "");
 				if (motd.startsWith("\u00A7aStarts in") 
-						|| motd.startsWith("\u00A76[")) {
+						|| motd.startsWith("\u00A76[")
+						|| motd.contains("Ends in")) { //Smash servers
 					tier1.add(server);
+					smash = motd.contains("Ends in");
 				} else if (motd.startsWith("\u00A7aWaiting") 
 						|| motd.startsWith("\u00A7eWaiting")
 						|| motd.startsWith("\u00A76Game starting soon!")) {
@@ -114,6 +118,7 @@ public class MCPVPServer {
 		sortByPlayers(tier2);
 		sortByPlayers(tier3);
 		sortByPlayers(tier4);
+		if (smash) sortByTime(tier1);
 		toReturn.addAll(tier1);
 		toReturn.addAll(tier2);
 		toReturn.addAll(tier3);
@@ -132,6 +137,25 @@ public class MCPVPServer {
 			@Override
 			public int compare(MCPVPServer server1, MCPVPServer server2) {
 				return ((Integer)server2.Players).compareTo(server1.Players);
+			}
+		});
+
+	}
+	
+	/**
+	 * Sorts the list of servers by the number of players.
+	 * @param servers The list to sort.
+	 */
+	public static void sortByTime(ArrayList<MCPVPServer> servers) {
+
+		Collections.sort(servers, new Comparator<MCPVPServer>() {
+			@Override
+			public int compare(MCPVPServer server1, MCPVPServer server2) {
+				if (server2.MOTD.replaceAll(".*Ends in (.*) seconds.*", "$1").matches("\\d+") && 
+						server1.MOTD.replaceAll(".*Ends in (.*) seconds.*", "$1").matches("\\d+"))
+					return (Integer.valueOf(server2.MOTD.replaceAll(".*Ends in (.*) seconds.*", "$1")))
+						.compareTo(Integer.valueOf(server1.MOTD.replaceAll(".*Ends in (.*) seconds.*", "$1")));
+				return 0;
 			}
 		});
 

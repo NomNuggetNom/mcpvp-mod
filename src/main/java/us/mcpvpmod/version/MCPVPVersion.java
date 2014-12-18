@@ -19,9 +19,9 @@ public class MCPVPVersion {
 	 */
 	public static boolean updateAvailable() {
 		if (ConfigVersion.channel.equalsIgnoreCase("Main"))
-			return us.mcpvpmod.Main.mcpvpVersion.main!=null && !us.mcpvpmod.Main.modVersion.equals(us.mcpvpmod.Main.mcpvpVersion.main.mod);
+			return us.mcpvpmod.Main.mcpvpVersion.main!=null && !us.mcpvpmod.Main.MOD_VERSION.equals(us.mcpvpmod.Main.mcpvpVersion.main.mod);
 		else if (ConfigVersion.channel.equalsIgnoreCase("Beta"))
-			return us.mcpvpmod.Main.mcpvpVersion.beta!=null && !us.mcpvpmod.Main.modVersion.equals(us.mcpvpmod.Main.mcpvpVersion.beta.mod);
+			return us.mcpvpmod.Main.mcpvpVersion.beta!=null && !us.mcpvpmod.Main.MOD_VERSION.equals(us.mcpvpmod.Main.mcpvpVersion.beta.mod);
 		return false;
 	}
 

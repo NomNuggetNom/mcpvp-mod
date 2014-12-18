@@ -44,10 +44,6 @@ public class AllJoin {
 		
 		// Select tag.
 		autoTag();
-		
-		// Set defaults of display.
-		// Only does something once.
-		Data.setDefaults();
 
 		// Clear the second chat.
 		Main.secondChat.clearChatMessages();

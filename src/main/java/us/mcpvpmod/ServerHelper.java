@@ -87,7 +87,7 @@ public class ServerHelper {
 	public static List<String> getPlayerUsernames() {
 		ArrayList<String> players = new ArrayList<String>();
 		for (EntityPlayer player : getPlayersFromWorld()) {
-			if (player.getDisplayName() == null) continue;
+			if (player == null || player.getDisplayName() == null) continue;
 			players.add(player.getDisplayName().replaceAll("\u00A7.", ""));
 		}
 		return players;

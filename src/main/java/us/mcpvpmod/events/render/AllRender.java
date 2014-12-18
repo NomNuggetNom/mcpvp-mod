@@ -17,6 +17,7 @@ import us.mcpvpmod.gui.InfoBox;
 import us.mcpvpmod.gui.PotionDisplay;
 import us.mcpvpmod.gui.Selectable;
 import us.mcpvpmod.gui.screen.GuiIngameMCPVP;
+import us.mcpvpmod.util.Format;
 
 import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 
@@ -84,22 +85,23 @@ public class AllRender {
 
 		// Cycle through every player on the server.
 		for (EntityPlayer player : ServerHelper.getPlayersFromWorld()) {
+			AbstractClientPlayer absP = (AbstractClientPlayer)player;
+			
 			// Safeguard because players are sometimes null...
-			if (player == null 
-					|| ((AbstractClientPlayer) player).getLocationSkin() != ((AbstractClientPlayer) player).locationStevePng) continue;
+			if (player == null || absP.getLocationSkin() != absP.locationStevePng) continue;
 			
 			// The name of the player without colors.
-			String name = player.getDisplayName().replaceAll("\u00A7.", "");
+			String name = Format.name(player.getDisplayName());
 			// The URL to download from.
-			String url = "http://s3.amazonaws.com/MinecraftSkins/" + name + ".png";
+			String url = "http://skins.minecraft.net/MinecraftSkins/" + name + ".png";
 			// The Steve skin is the backup.
-			ResourceLocation steve = ((AbstractClientPlayer) player).locationStevePng;
+			ResourceLocation steve = absP.locationStevePng;
 			
 			 // Store it as "username.skin"
 			ResourceLocation skin = CustomTextureAsync.get(name + ".skin", url, steve); 
 			
 			// Assign the location of the skin.
-			((AbstractClientPlayer) player).func_152121_a(MinecraftProfileTexture.Type.SKIN, skin);
+			absP.func_152121_a(MinecraftProfileTexture.Type.SKIN, skin);
 			
 		}
 	}
