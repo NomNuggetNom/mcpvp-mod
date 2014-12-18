@@ -34,6 +34,7 @@ public class AllChat {
 	 * @param event The chat event to check.
 	 */
 	public static void handleChat(ClientChatReceivedEvent event) {
+		if (event.message == null || event.message.getUnformattedText() == null) return;
 		String message = event.message.getUnformattedText();
 
 		AllJoin.showWelcome();

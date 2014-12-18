@@ -78,6 +78,7 @@ public class TutScreen2 extends TutorialScreen {
 	
 	@Override
 	protected void keyTyped(char key, int keyNum) {
+		if (Selectable.selected == null) return;
 		hasMoved = true;
 		// Hide the menu.
 		if (key == 'x') Selectable.selected = null;
