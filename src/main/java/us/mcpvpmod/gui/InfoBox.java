@@ -366,7 +366,7 @@ public class InfoBox extends Selectable {
 					this.getX() + 
 					this.PADDING, 
 					y + this.PADDING);
-		y += this.getTitleRect().height;
+		y += this.getTitleRect().height + 1;
 		
 		// Draw the rest of the information.
 		for (String line : this.info) {
