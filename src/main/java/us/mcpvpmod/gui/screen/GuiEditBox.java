@@ -39,10 +39,12 @@ public class GuiEditBox extends GuiScreen {
 	public GuiEditBox(GuiScreen parent, InfoBox box) {
 		this.parent = parent;
 		this.box	= box;
+		this.initGui();
 	}
 
 	@Override
 	public void initGui() {
+		System.out.println("INIT!!!");
         titleField = new GuiTextField(Main.mc.fontRenderer, 
 				width/2 - width/4, //x
 				20, // y 
@@ -71,8 +73,8 @@ public class GuiEditBox extends GuiScreen {
 	
 	@Override
     public void drawScreen(int p_73863_1_, int p_73863_2_, float p_73863_3_) {
-		save.yPosition = super.height - 35;
-		save.xPosition = super.width/2 - 100;
+		save.yPosition = parent.height - 35;
+		save.xPosition = parent.width/2 - 100;
 		this.list.drawScreen(p_73863_1_, p_73863_2_, p_73863_3_);
 		this.titleField.drawTextBox();
 		Draw.string(this.titleText, width/2 - Main.mc.fontRenderer.getStringWidth(this.titleText)/2, 7, 0xFFFFFF, true);
