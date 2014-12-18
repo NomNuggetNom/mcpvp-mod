@@ -73,6 +73,8 @@ public class AllRender {
 		Main.end(2);
 	}
 	
+	public static final ResourceLocation STEVE_SKIN = ((AbstractClientPlayer)Main.mc.thePlayer).locationStevePng;
+	
 	/**
 	 * Cycles through each player, downloads their skin, and assigns it to the location
 	 * in their profile. The downloading is performed asynchronously, but can still
@@ -94,11 +96,9 @@ public class AllRender {
 			String name = Format.name(player.getDisplayName());
 			// The URL to download from.
 			String url = "http://skins.minecraft.net/MinecraftSkins/" + name + ".png";
-			// The Steve skin is the backup.
-			ResourceLocation steve = absP.locationStevePng;
 			
 			 // Store it as "username.skin"
-			ResourceLocation skin = CustomTextureAsync.get(name + ".skin", url, steve); 
+			ResourceLocation skin = CustomTextureAsync.get(name + ".skin", url, STEVE_SKIN); 
 			
 			// Assign the location of the skin.
 			absP.func_152121_a(MinecraftProfileTexture.Type.SKIN, skin);
@@ -134,7 +134,8 @@ public class AllRender {
 		// Cycle through each texture that was cued for deletion and delete it.
 		for (CustomTextureAsync texture : texturesToRemove) {
 			Main.l("Removing %s", texture);
-			Main.mc.getTextureManager().deleteTexture(texture.getResource());
+			if (texture.getResource() != STEVE_SKIN)
+				Main.mc.getTextureManager().deleteTexture(texture.getResource());
 			CustomTextureAsync.textures.remove(texture.id);
 		}
 		texturesToRemove.clear();
