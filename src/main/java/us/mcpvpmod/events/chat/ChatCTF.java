@@ -8,7 +8,6 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.config.ctf.ConfigCTFChat;
-import us.mcpvpmod.game.alerts.CustomAlert;
 import us.mcpvpmod.game.info.InfoCTF;
 import us.mcpvpmod.game.kits.KitCTF;
 import us.mcpvpmod.game.state.StateCTF;
@@ -100,13 +99,6 @@ public class ChatCTF {
 			event.setCanceled(true);
 		}
 		
-		String reYay = "§f\\[§7TW§f\\] §6NomNuggetNom§.> §f§r§6\\/a §fYay! @(.*)";
-		if (message.matches(reYay)) {
-			if (message.replaceAll(reYay, "$1").equals(Main.mc.thePlayer.getDisplayName())) {
-				CustomAlert.get("yay").show();
-			}
-		}
-		
 		// Medic calling.
 		if (message.matches(reMedic)) {		
 			if (StateCTF.getState() == StateCTF.PLAY) {
@@ -167,7 +159,6 @@ public class ChatCTF {
 			// The chat message in the second chat.
 			String oldMessage = ((ChatLine)chatLine).func_151461_a().getUnformattedText();
 			if (oldMessage.equals(event.message.getUnformattedText())) {
-				Main.l("Found a duplicate: \"%s\"", event.message.getUnformattedText());
 				event.setCanceled(true);
 			}
 		}
