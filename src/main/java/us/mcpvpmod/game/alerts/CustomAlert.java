@@ -182,8 +182,8 @@ public class CustomAlert {
 	 */
 	public void show() {
 		// Update information. 
-		title = replaceInfo(title);
-		desc  = replaceInfo(desc);
+		String newTitle = replaceInfo(title);
+		String newDesc  = replaceInfo(desc);
 		
 		// Avoid showing alerts that should be cancelled
 		if (desc.startsWith("-X-") || title.startsWith("-X-")) {
@@ -193,15 +193,15 @@ public class CustomAlert {
 
 		if (this.mode == Mode.ITEM) {
 			item = setCustomItem(item);
-			Alerts.alert.sendAlertWithItem(title, desc, -1, item);
+			Alerts.alert.sendAlertWithItem(newTitle, newDesc, -1, item);
 			Main.l("Alert \"%s\" was shown (mode:item)", this);
 		} else if (this.mode == Mode.INTERNAL_IMAGE) {
 			image = setCustomImage(image);
-			Alerts.alert.sendAlertWithImage(title, desc, -1, image);
+			Alerts.alert.sendAlertWithImage(newTitle, newDesc, -1, image);
 			Main.l("Alert \"%s\" was shown (mode:image)", this);
 		} else if (this.mode == Mode.EXTERNAL_IMAGE) {
 			image = CustomTexture.get(this.id, this.template.split("\\s*\\|\\|\\|\\s*")[2]);
-			Alerts.alert.sendAlertWithImage(title, desc, -1, image);
+			Alerts.alert.sendAlertWithImage(newTitle, newDesc, -1, image);
 			Main.l("Alert \"%s\" was shown (mode:image)", this);
 		} else {
 			Main.l("Alert \"%s\" has an unrecognized mode: %s", this, this.mode);
