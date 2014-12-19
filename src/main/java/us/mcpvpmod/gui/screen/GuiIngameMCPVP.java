@@ -52,7 +52,7 @@ public class GuiIngameMCPVP extends GuiIngameMenu {
 			y += 25;
 			this.buttonList.add(new GuiButton(5, this.width / 2 - 100, y, Format.s("gui.ingame.codes")));
 			y += 25;
-			this.buttonList.add(new GuiButton(6, this.width / 2 - 100, y, "Add a Friend"));
+			this.buttonList.add(new GuiButton(6, this.width / 2 - 100, y, Format.s("gui.ingame.friends")));
 			this.buttonList.add(new GuiButton(100, this.width / 2 - 100, this.height - this.height/4, I18n.format("menu.returnToGame")));
 		}
 		
@@ -61,7 +61,7 @@ public class GuiIngameMCPVP extends GuiIngameMenu {
 			if (button.id == 100) Main.mc.displayGuiScreen(null);
 			if (button.id == 1) Main.mc.displayGuiScreen(new GuiServerList(this));
 			if (button.id == 2) HandleKey.openConfigScreen();
-			if (button.id == 3) Main.mc.displayGuiScreen(new GuiMoveBlocks(this));
+			if (button.id == 3) Main.mc.displayGuiScreen(new GuiEditHUD(this));
 			if (button.id == 4) Tutorial.build();
 			if (button.id == 5) {
 				try { 

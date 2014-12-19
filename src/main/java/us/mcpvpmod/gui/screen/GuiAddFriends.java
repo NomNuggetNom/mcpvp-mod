@@ -12,13 +12,14 @@ import net.minecraftforge.common.config.Property;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.config.all.ConfigFriends;
 import us.mcpvpmod.game.FriendsList;
+import us.mcpvpmod.util.Format;
 
 public class GuiAddFriends extends GuiScreen {
 	
 	static GuiTextField textField = new GuiTextField(Main.mc.fontRenderer, 200, 200, 100, 20);
-	static GuiButton list1 = new GuiButton(1, 10, 10, "Add to List One");
-	static GuiButton list2 = new GuiButton(1, 10, 10, "Add to List One");
-	static GuiButton list3 = new GuiButton(2, 10, 10, "Add to List One");
+	static GuiButton list1 = new GuiButton(1, 10, 10, Format.s("gui.friends.add") + " " + Format.s("gui.friends.1"));
+	static GuiButton list2 = new GuiButton(1, 10, 10, Format.s("gui.friends.add") + " " + Format.s("gui.friends.2"));
+	static GuiButton list3 = new GuiButton(2, 10, 10, Format.s("gui.friends.add") + " " + Format.s("gui.friends.3"));
 	static boolean add = true;
 	static ArrayList<Integer> removeFrom = new ArrayList<Integer>();
 	
@@ -41,10 +42,10 @@ public class GuiAddFriends extends GuiScreen {
 			list3.enabled = textField.getText().matches("\\w+") && this.removeFrom.contains(3);
 		}
 
-		String text = add ? "Add to" : "Remove from";
-		list1.displayString = text + " List One";
-		list2.displayString = text + " List Two";
-		list3.displayString = text + " List Three";
+		String text = add ? Format.s("gui.friends.add") : Format.s("gui.friends.remove");
+		list1.displayString = text + " " + Format.s("gui.friends.1");
+		list2.displayString = text + " " + Format.s("gui.friends.2");
+		list3.displayString = text + " " + Format.s("gui.friends.3");
 		
 		textField.drawTextBox();
 		super.drawScreen(p_73863_1_, p_73863_2_, p_73863_3_);
@@ -55,10 +56,10 @@ public class GuiAddFriends extends GuiScreen {
 		textField = new GuiTextField(Main.mc.fontRenderer, this.width/2 - this.width/2/2, this.height/2 - 75, this.width/2, 20);
 		textField.setFocused(true);
 		
-		String text = add ? "Add to" : "Remove from";
-		list1 = new GuiButton(1, this.width/2 - 100, this.height/3 + 40, text + " List One");
-		list2 = new GuiButton(2, this.width/2 - 100, this.height/3 + 40 + 25,  text + " List Two");
-		list3 = new GuiButton(3, this.width/2 - 100, this.height/3 + 40 + 25*2,  text + " List Three");
+		String text = add ? Format.s("gui.friends.add") : Format.s("gui.friends.remove");
+		list1 = new GuiButton(1, this.width/2 - 100, this.height/3 + 40, text + " " + Format.s("gui.friends.1"));
+		list2 = new GuiButton(2, this.width/2 - 100, this.height/3 + 40 + 25,  text + " " + Format.s("gui.friends.2"));
+		list3 = new GuiButton(3, this.width/2 - 100, this.height/3 + 40 + 25*2,  text + " " + Format.s("gui.friends.3"));
 		this.buttonList.add(list1);
 		this.buttonList.add(list2);
 		this.buttonList.add(list3);

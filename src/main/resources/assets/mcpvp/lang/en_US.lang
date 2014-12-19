@@ -41,6 +41,7 @@ gui.choose.vanilla=Vanilla Server Menu
 gui.join.region=Region: 
 gui.join.rejoin=Re-Join Last
 gui.join.vanilla=Vanilla
+
 gui.ingame=MCPVP Menu
 gui.ingame.button=#b#MCPVP Options
 gui.ingame.connect=Connect to a Server
@@ -48,6 +49,7 @@ gui.ingame.settings=Edit Settings
 gui.ingame.hud=Edit HUD
 gui.ingame.help=View Help
 gui.ingame.codes=Codes
+gui.ingame.friends=Add a Friend
 
 gui.tut.finish=Finish Tutorial
 gui.tut.1.1=#i#Welcome to the MCPVP Mod!
@@ -106,6 +108,26 @@ gui.tut.4.11=Codes can be found in #gray#[#green##b#ESC#gray#]#r# > MCPVP Option
 gui.tut.4.12=
 gui.tut.4.13=Example:
 gui.tut.4.14=\\#green\\#FPS: \\#b\\#{fps} #gray#==>#r# #green#FPS: #b#{{fps}}
+
+gui.friends.add=Add to
+gui.friends.remove=Remove from
+gui.friends.1=List 1
+gui.friends.2=List 2
+gui.friends.3=List 3
+
+gui.edit.select=Click on something to select it!
+gui.edit.edit=      #i#Hit #gray#[#green##b#E#gray#]#white##i# to edit.
+gui.edit.stop=      #i#Hit #gray#[#green##b#ESC#gray#]#white##i# to stop editing.
+gui.edit.selected=#r#Selected: 
+
+gui.servers.starting=#gray#Starting in #green#$1
+gui.servers.progress=#gray#In progress
+gui.servers.waiting=#yellow#Waiting...
+gui.servers.ending=#gray#Ends in #green#$1#gray#s
+
+gui.save=Save
+
+gui.box.title=Edit Box
 
 key.categories.mcpvp=MCPVP
 key.openConfig=Open Config

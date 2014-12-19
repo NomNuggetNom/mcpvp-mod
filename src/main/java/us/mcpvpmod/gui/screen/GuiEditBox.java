@@ -12,6 +12,7 @@ import us.mcpvpmod.Main;
 import us.mcpvpmod.gui.Draw;
 import us.mcpvpmod.gui.InfoBox;
 import us.mcpvpmod.gui.screen.GuiEditBoxProps.TextFieldEntry;
+import us.mcpvpmod.util.Format;
 
 public class GuiEditBox extends GuiScreen {
 	
@@ -22,7 +23,7 @@ public class GuiEditBox extends GuiScreen {
 	/** The editor screen. */
 	public GuiEditBoxProps list;
 	public GuiTextField titleField;
-	public String titleText = "Box Title";
+	public String titleText = Format.s("gui.box.title");
 	public GuiButton save;
 	public GuiButton cancel;
 	public GuiButton add;
@@ -44,7 +45,6 @@ public class GuiEditBox extends GuiScreen {
 
 	@Override
 	public void initGui() {
-		System.out.println("INIT!!!");
         titleField = new GuiTextField(Main.mc.fontRenderer, 
 				width/2 - width/4, //x
 				20, // y 
@@ -52,7 +52,7 @@ public class GuiEditBox extends GuiScreen {
 				20); //h
         titleField.setText(box.getTitle());
 
-        save = new GuiButton(1, 0, 0, "Save");
+        save = new GuiButton(1, 0, 0, Format.s("gui.save"));
         this.buttonList.add(save);
         
 		this.list = new GuiEditBoxProps(this, box.getRaw());

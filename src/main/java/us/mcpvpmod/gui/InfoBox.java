@@ -20,7 +20,7 @@ import us.mcpvpmod.game.FriendsList;
 import us.mcpvpmod.game.state.DummyState;
 import us.mcpvpmod.game.state.State;
 import us.mcpvpmod.gui.screen.GuiEditBox;
-import us.mcpvpmod.gui.screen.GuiMoveBlocks;
+import us.mcpvpmod.gui.screen.GuiEditHUD;
 import us.mcpvpmod.util.Format;
 
 /**
@@ -448,7 +448,7 @@ public class InfoBox extends Selectable {
 	}
 	
 	/**
-	 * Called from {@link GuiMoveBlocks} when <code>DELETE</code>
+	 * Called from {@link GuiEditHUD} when <code>DELETE</code>
 	 * is pressed with an InfoBox selected.
 	 */
 	public void delete() {

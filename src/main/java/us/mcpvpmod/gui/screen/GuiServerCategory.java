@@ -102,23 +102,24 @@ public class GuiServerCategory extends GuiScrollingList {
 			char time = 'h';
 			if (motd.matches(".*minutes*.*")) time = 'm';
 			if (motd.matches(".*seconds*.*")) time = 's';
-			toReturn.add(motd.replaceAll(".*Starts in (\\d+) (minutes*|seconds*).*", Format.process("#gray#Starting in #green#$1" + time)));
+			toReturn.add(motd.replaceAll(".*Starts in (\\d+) (minutes*|seconds*).*", 
+					Format.process(Format.s("gui.servers.starting") + time)));
 		}
 		
 		// In progress games are grayed out.
 		if (!server.IsAcceptingPlayers && server.MaxPlayers != 0)
-			toReturn.add(Format.process("#gray#In progress."));
+			toReturn.add(Format.process(Format.s("gui.servers.progress")));
 		
 		// Servers that are "waiting" are colored yellow.
 		else if (motd.toLowerCase(Locale.ENGLISH).matches(".*waiting.*"))
-			toReturn.add(Format.process("#yellow#Waiting..."));
+			toReturn.add(Format.process(Format.s("gui.servers.waiting")));
 		
 		// This catches CTF and HS maps and colors them gold.
 		if (motd.toLowerCase(Locale.ENGLISH).contains("map"))
 			toReturn.add(motd.replaceAll(".*Map:(.*)", Format.process("#gold#$1")));
 		
 		if (motd.toLowerCase(Locale.ENGLISH).contains("ends in"))
-			toReturn.add(motd.replaceAll(".*Ends in (.*) seconds", Format.process("#gray#Ends in #green#$1#gray#s")));
+			toReturn.add(motd.replaceAll(".*Ends in (.*) seconds", Format.process(Format.s("gui.servers.ending"))));
 		
 		return toReturn;
 	}

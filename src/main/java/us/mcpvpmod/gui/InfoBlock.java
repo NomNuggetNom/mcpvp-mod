@@ -12,7 +12,7 @@ import us.mcpvpmod.config.all.ConfigHUD;
 import us.mcpvpmod.game.FriendsList;
 import us.mcpvpmod.game.state.DummyState;
 import us.mcpvpmod.game.state.State;
-import us.mcpvpmod.gui.screen.GuiMoveBlocks;
+import us.mcpvpmod.gui.screen.GuiEditHUD;
 import us.mcpvpmod.util.Format;
 
 /**
@@ -462,15 +462,15 @@ public class InfoBlock extends Selectable {
 			//System.out.println("top: " + anchorTop + ", bottom: " + anchorBottom + ", right: " + anchorRight + ", left: " + anchorLeft);
 					
 			if (anchorTop) 
-				GuiMoveBlocks.potentialAnchors.put(this, new DisplayAnchor(selectable, this, 'd'));
+				GuiEditHUD.potentialAnchors.put(this, new DisplayAnchor(selectable, this, 'd'));
 			else if (anchorBottom)
-				GuiMoveBlocks.potentialAnchors.put(this, new DisplayAnchor(selectable, this, 'u'));
+				GuiEditHUD.potentialAnchors.put(this, new DisplayAnchor(selectable, this, 'u'));
 			else if (anchorRight)
-				GuiMoveBlocks.potentialAnchors.put(this, new DisplayAnchor(selectable, this, 'r'));
+				GuiEditHUD.potentialAnchors.put(this, new DisplayAnchor(selectable, this, 'r'));
 			else if (anchorLeft)
-				GuiMoveBlocks.potentialAnchors.put(this, new DisplayAnchor(selectable, this, 'l'));
+				GuiEditHUD.potentialAnchors.put(this, new DisplayAnchor(selectable, this, 'l'));
 			else
-				GuiMoveBlocks.potentialAnchors.remove(this);
+				GuiEditHUD.potentialAnchors.remove(this);
 
 		}
 		

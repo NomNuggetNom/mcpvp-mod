@@ -11,7 +11,7 @@ import us.mcpvpmod.config.all.ConfigHUD;
 import us.mcpvpmod.data.Data;
 import us.mcpvpmod.game.state.DummyState;
 import us.mcpvpmod.game.state.State;
-import us.mcpvpmod.gui.screen.GuiMoveBlocks;
+import us.mcpvpmod.gui.screen.GuiEditHUD;
 import cpw.mods.fml.common.FMLLog;
 
 public class Selectable {	
@@ -114,15 +114,15 @@ public class Selectable {
 					&& !selectable.anchoredTo(this);
 					
 			if (anchorTop)
-				GuiMoveBlocks.potentialAnchors.put(this, new DisplayAnchor(selectable, this, 'd'));
+				GuiEditHUD.potentialAnchors.put(this, new DisplayAnchor(selectable, this, 'd'));
 			else if (anchorBottom)
-				GuiMoveBlocks.potentialAnchors.put(this, new DisplayAnchor(selectable, this, 'u'));
+				GuiEditHUD.potentialAnchors.put(this, new DisplayAnchor(selectable, this, 'u'));
 			else if (anchorRight)
-				GuiMoveBlocks.potentialAnchors.put(this, new DisplayAnchor(selectable, this, 'r'));
+				GuiEditHUD.potentialAnchors.put(this, new DisplayAnchor(selectable, this, 'r'));
 			else if (anchorLeft)
-				GuiMoveBlocks.potentialAnchors.put(this, new DisplayAnchor(selectable, this, 'l'));
+				GuiEditHUD.potentialAnchors.put(this, new DisplayAnchor(selectable, this, 'l'));
 			else {
-				GuiMoveBlocks.potentialAnchors.remove(this);
+				GuiEditHUD.potentialAnchors.remove(this);
 				DisplayAnchor.removeAnchor(this);
 			}
 			
@@ -451,7 +451,7 @@ public class Selectable {
 	}
 	
 	/**
-	 * Used in testing if clicks in {@link GuiMoveBlocks} were
+	 * Used in testing if clicks in {@link GuiEditHUD} were
 	 * over a Selectable. 
 	 * @param clickX The X coordinate that the mouse was clicked at.
 	 * @param clickY The Y coordinate that the mouse was clicked at.
