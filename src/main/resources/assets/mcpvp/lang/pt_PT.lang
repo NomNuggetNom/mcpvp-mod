@@ -5,15 +5,15 @@
 <!-- =========== -->
 <!-- DEBUG -->
 startup=[MCPVP] Mod a iniciar!
-sync=[MCPVP] A sincronizar configuraÁıes!
-error.json.server=[MCPVP] N„o foi possÌvel obter o JSON dos servers!
+sync=[MCPVP] A sincronizar configura√ß√µes!
+error.json.server=[MCPVP] N√£o foi poss√≠vel obter o JSON dos servers!
  
 <!-- UPDATE -->
 update-url=http://google.com/
-update-msg=#b##u#v#green##b##u#<VERSION>#white##b##u# est· disponivel para Minecraft #cyan##b##u#<MCVERSION>#white##b##u#! Clica para fazeres download.
+update-msg=#b##u#v#green##b##u#<VERSION>#white##b##u# est√° disponivel para Minecraft #cyan##b##u#<MCVERSION>#white##b##u#! Clica para fazeres download.
  
 stream-url=http://www.twitch.tv/mcpvp
-stream-msg=#gold##i##u#The #red##i##u#A Stream da MCPVP #gold##i##u#comeÁou! Clica para veres.
+stream-msg=#gold##i##u#The #red##i##u#A Stream da MCPVP #gold##i##u#come√ßou! Clica para veres.
  
 <!-- COLORS -->
 c<!-- COLORS -->
@@ -40,75 +40,75 @@ gui.choose=Escolha o seu menu de servers:
 gui.choose.mcpvp=Menu de servers da MCPVP
 gui.choose.vanilla=Menu de servers vanilla
 gui.join.region=Region:
-gui.join.rejoin=Reconectar ao ˙ltimo
+gui.join.rejoin=Reconectar ao √∫ltimo
 gui.join.vanilla=Vanilla
 gui.ingame=MCPVP Menu
-gui.ingame.button=#b#OpÁıes MCPVP
+gui.ingame.button=#b#Op√ß√µes MCPVP
 gui.ingame.connect=Conectar a um servidor
-gui.ingame.settings=Editar ConfiguraÁıes
-gui.ingame.hud=Editar Display de informaÁıes
+gui.ingame.settings=Editar Configura√ß√µes
+gui.ingame.hud=Editar Display de informa√ß√µes
 gui.ingame.help=Ver ajuda
-gui.ingame.codes=CÛdigos
+gui.ingame.codes=C√≥digos
 gui.tut.finish=Acabar Tutorial
 gui.tut.1.1=#i#Bem vindo ao Mod da MCPVP!
 gui.tut.1.2=#green##s#                                                                         
-gui.tut.1.3=Isto È um tutorial r·pido para te ajudar a usar o mod.
-gui.tut.1.4=Para progredir atravÈs do tutorial, carrega no bot„o ‡ direita.
-gui.tut.1.5=Podes voltar atr·s ao carregar no bot„o ‡ esquerda.
-gui.tut.1.6=Podes tambÈm sair a qualquer altura ao pressionar ESC.
-gui.tut.1.7=N„o que queiras isso, certo?
+gui.tut.1.3=Isto √© um tutorial r√°pido para te ajudar a usar o mod.
+gui.tut.1.4=Para progredir atrav√©s do tutorial, carrega no bot√£o √† direita.
+gui.tut.1.5=Podes voltar atr√°s ao carregar no bot√£o √† esquerda.
+gui.tut.1.6=Podes tamb√©m sair a qualquer altura ao pressionar ESC.
+gui.tut.1.7=N√£o que queiras isso, certo?
 gui.tut.1.8=
-gui.tut.1.9=#b#… altamento recomendado que uses uma GUI pequena
-gui.tut.1.10=#b#e uma janela grande! #r#De outra forma, pode ser que n„o consigas ver tudo.
-gui.tut.1.11=Muda a configuraÁ„o e entra num servidor para ver este ecr„ de novo.
+gui.tut.1.9=#b#√â altamento recomendado que uses uma GUI pequena
+gui.tut.1.10=#b#e uma janela grande! #r#De outra forma, pode ser que n√£o consigas ver tudo.
+gui.tut.1.11=Muda a configura√ß√£o e entra num servidor para ver este ecr√£ de novo.
 
-gui.tut.2.1=#i#Mover e editar Display de informaÁıes
+gui.tut.2.1=#i#Mover e editar Display de informa√ß√µes
 gui.tut.2.2=#cyan##s#                                                                         
-gui.tut.2.3=Podes editar Display de informaÁıes pressionando #gray#[#green##b#X#gray#]#r# no teu teclado.
+gui.tut.2.3=Podes editar Display de informa√ß√µes pressionando #gray#[#green##b#X#gray#]#r# no teu teclado.
 gui.tut.2.4=Esta tecla pode ser configurada no menu de Controlos do Minecraft normal.
-gui.tut.2.5=Quando entras em modo de ediÁ„o, ir·s ver isto no teu ecr„:
+gui.tut.2.5=Quando entras em modo de edi√ß√£o, ir√°s ver isto no teu ecr√£:
 gui.tut.2.6=
 gui.tut.2.7=      #i#Pressiona #gray#[#green##b#ESC#gray#]#white##i# para parar de editar.
 gui.tut.2.8=Clica em algo para selecionares!
 gui.tut.2.9=
 gui.tut.2.10=Para selecionares um item no display, basta clicar. Para mover um item, usa as tuas
 gui.tut.2.11=setas do teclado. Podes segurar #gray#[#green##b#SHIFT#gray#]#r# para mover algo 10 pixels, ou segurar
-gui.tut.2.12=#gray#[#green##b#CTRL#gray#]#r# para mover o item para o canto do teu ecr„. Tenta:
+gui.tut.2.12=#gray#[#green##b#CTRL#gray#]#r# para mover o item para o canto do teu ecr√£. Tenta:
 
-gui.tut.3.1=#i#ConfiguraÁ„o
+gui.tut.3.1=#i#Configura√ß√£o
 gui.tut.3.2=#purple##s#                                                                         
-gui.tut.3.3=Uma das melhores coisas acerca deste mod È a sua habilidade de
-gui.tut.3.4=mudar tudo. Podes editar a tua configuraÁ„o de v·rias maneiras:
+gui.tut.3.3=Uma das melhores coisas acerca deste mod √© a sua habilidade de
+gui.tut.3.4=mudar tudo. Podes editar a tua configura√ß√£o de v√°rias maneiras:
 gui.tut.3.5=
-gui.tut.3.6=1. Pressiona #gray#[#green##b#C#gray#]#r# in-game (n„o agora.)                           
-gui.tut.3.7=2. Pressiona #gray#[#green##b#ESC#gray#]#r#, seleciona OpÁıes MCPVP, e carrega em Editar ConfiguraÁıes
-gui.tut.3.8=3. Do meu principal do Minecraft carrega em Mods > MCPVP > ConfiguraÁ„o     
+gui.tut.3.6=1. Pressiona #gray#[#green##b#C#gray#]#r# in-game (n√£o agora.)                           
+gui.tut.3.7=2. Pressiona #gray#[#green##b#ESC#gray#]#r#, seleciona Op√ß√µes MCPVP, e carrega em Editar Configura√ß√µes
+gui.tut.3.8=3. Do meu principal do Minecraft carrega em Mods > MCPVP > Configura√ß√£o     
 gui.tut.3.9=
-gui.tut.3.10=Uma vez l·, podes customizar tudo! Podes notar em
+gui.tut.3.10=Uma vez l√°, podes customizar tudo! Podes notar em
 gui.tut.3.11=algumas "coisas estranhas", tais como "\#red\#" or "{ip}".
-gui.tut.3.12=Estes s„o modificadores especiais, cÛdigos de cores
-gui.tut.3.13=e vari·veis, respetivamente.
+gui.tut.3.12=Estes s√£o modificadores especiais, c√≥digos de cores
+gui.tut.3.13=e vari√°veis, respetivamente.
 gui.tut.3.14=
-gui.tut.3.15=#b##u#PROTIP: Para obteres mais informaÁ„o acerca de algo na configuraÁ„o,
-gui.tut.3.16=#b##u#paira o teu mouse sobre o texto ‡ esquerda da entrada da configuraÁ„o!
+gui.tut.3.15=#b##u#PROTIP: Para obteres mais informa√ß√£o acerca de algo na configura√ß√£o,
+gui.tut.3.16=#b##u#paira o teu mouse sobre o texto √† esquerda da entrada da configura√ß√£o!
 
-gui.tut.4.1=#i#Formatar com Cores e Vari·veis
+gui.tut.4.1=#i#Formatar com Cores e Vari√°veis
 gui.tut.4.2=#gold##s#                                                                         
-gui.tut.4.3=Vari·veis s„o informaÁ„o automaticamente
-gui.tut.4.4=substituÌdas quando exibidas. Por exemplo, {x} torna-se
+gui.tut.4.3=Vari√°veis s√£o informa√ß√£o automaticamente
+gui.tut.4.4=substitu√≠das quando exibidas. Por exemplo, {x} torna-se
 gui.tut.4.5=a tua coordenada x atual. O mesmo para {z} e {y}.
-gui.tut.4.6=Vari·veis podem ser encontradas em #gray#[#green##b#ESC#gray#]#r# > OpÁıes MCPVP > CÛdigos.
+gui.tut.4.6=Vari√°veis podem ser encontradas em #gray#[#green##b#ESC#gray#]#r# > Op√ß√µes MCPVP > C√≥digos.
 gui.tut.4.7=
-gui.tut.4.8=CÛdigos de cor s„o usados para mudar o texto, incluindo mudar a cor
-gui.tut.4.9=e torn·-los negrito/it·lico/sublinhar, etc.
+gui.tut.4.8=C√≥digos de cor s√£o usados para mudar o texto, incluindo mudar a cor
+gui.tut.4.9=e torn√°-los negrito/it√°lico/sublinhar, etc.
 gui.tut.4.10=Para utilizar isto, escreve: \#color_name\#.
-gui.tut.4.11=Os cÛdigos podem ser encontrados em #gray#[#green##b#ESC#gray#]#r# > OpÁıes MCPVP > CÛdigos.
+gui.tut.4.11=Os c√≥digos podem ser encontrados em #gray#[#green##b#ESC#gray#]#r# > Op√ß√µes MCPVP > C√≥digos.
 gui.tut.4.12=
 gui.tut.4.13=Exemplo:
 gui.tut.4.14=\\#green\\#FPS: \\#b\\#{fps} #gray#==>#r# #green#FPS: #b#{{fps}}
  
 key.categories.mcpvp=MCPVP
-key.openConfig=Abrir as configuraÁıes
+key.openConfig=Abrir as configura√ß√µes
 key.moveBlocks=Editar GUI
 key.showHelp=Ver Ajuda
  
@@ -134,7 +134,7 @@ server.ctf.name=Capture The Flag
 server.ctf.ip=mcctf.com
 server.hs.name=Headshot
 server.hs.ip=mcheadshot.com
-server.party.name=PiÒata Party
+server.party.name=Pi√±ata Party
 server.party.ip=party.mcpvp.com
 server.build.name=Minecraft Build
 server.build.ip=minecraftbuild.com
@@ -154,140 +154,140 @@ server.none.ip=None
 <!-- ===---------=== -->
 <!-- = ALL SERVERS = -->
 <!-- ===---------=== -->
-config.title=ConfiguraÁ„o MCPVP
+config.title=Configura√ß√£o MCPVP
 config.mcpvp=Todos os servers
-config.mcpvp.tooltip=OpÁıes de configuraÁ„o para todos os servers da MCPVP.
-config.mcpvp.title=ConfiguraÁ„o global MCPVP
+config.mcpvp.tooltip=Op√ß√µes de configura√ß√£o para todos os servers da MCPVP.
+config.mcpvp.title=Configura√ß√£o global MCPVP
 config.ctf=Capture the Flag
-config.ctf.tooltip=OpÁıes de configuraÁ„o para Capture the Flag.
-config.ctf.title=ConfiguraÁıes Capture the Flag
+config.ctf.tooltip=Op√ß√µes de configura√ß√£o para Capture the Flag.
+config.ctf.title=Configura√ß√µes Capture the Flag
 config.kit=KitPVP
-config.kit.tooltip=OpÁıes de configuraÁ„o para KitPVP.
-config.kit.title=ConfiguraÁıes KitPVP
+config.kit.tooltip=Op√ß√µes de configura√ß√£o para KitPVP.
+config.kit.title=Configura√ß√µes KitPVP
 config.maze=Maze Runner
-config.maze.tooltip=OpÁıes de configuraÁ„o para Maze Runner.
-config.maze.title=ConfiguraÁıes Maze Runner
+config.maze.tooltip=Op√ß√µes de configura√ß√£o para Maze Runner.
+config.maze.title=Configura√ß√µes Maze Runner
 config.build=Minecraft Build
-config.build.tooltip=OpÁıes de configuraÁ„o para Minecraft Build.
-config.build.title=ConfiguraÁıes Minecraft Build
+config.build.tooltip=Op√ß√µes de configura√ß√£o para Minecraft Build.
+config.build.title=Configura√ß√µes Minecraft Build
 config.sab=Sabotage
-config.sab.tooltip=OpÁıes de configuraÁ„o para Sabotage.
-config.sab.title=ConfiguraÁıes Sabotage
+config.sab.tooltip=Op√ß√µes de configura√ß√£o para Sabotage.
+config.sab.title=Configura√ß√µes Sabotage
 config.hg=Hardcore Games
-config.hg.tooltip=OpÁıes de configuraÁ„o para Hardcore Games.
-config.hg.title=ConfiguraÁıes Hardcore Games
-config.hs.tooltip=OpÁıes de configuraÁ„o para Headshot.
-config.hs.title=ConfiguraÁıes Headshot
+config.hg.tooltip=Op√ß√µes de configura√ß√£o para Hardcore Games.
+config.hg.title=Configura√ß√µes Hardcore Games
+config.hs.tooltip=Op√ß√µes de configura√ß√£o para Headshot.
+config.hs.title=Configura√ß√µes Headshot
 
  
 <!-- ALERTS -->
 config.alerts.title=Alertas
-config.alerts.tooltip=Aqui podes customizar todos os alertas incluindo o tÌtulo e a descriÁ„o
+config.alerts.tooltip=Aqui podes customizar todos os alertas incluindo o t√≠tulo e a descri√ß√£o
 config.alerts.online=Amigos online
-config.alerts.online.tooltip=O alerta mostrado quando um amigo est· online.
-config.alerts.online.default=#white#Hora de festa! ||| {player}#gray# est· online. ||| head
+config.alerts.online.tooltip=O alerta mostrado quando um amigo est√° online.
+config.alerts.online.default=#white#Hora de festa! ||| {player}#gray# est√° online. ||| head
  
 <!-- CHAT -->
 config.chat.title=Controlos do chat.
-config.chat.tooltip=OpÁıes para o chat.
+config.chat.tooltip=Op√ß√µes para o chat.
 config.chat.filterWords=Palavras filtradas
-config.chat.filterWords.tooltip=Estas palavras ir„o ser censuradas no chat. E.g. "arrombado" -> "*********"
-config.chat.removeWords=Remover mensagens que contÍm
-config.chat.removeWords.tooltip=Se uma mensagem tiver uma palavra que esteja nesta lista, ser· totalmente removida do chat.
+config.chat.filterWords.tooltip=Estas palavras ir√£o ser censuradas no chat. E.g. "arrombado" -> "*********"
+config.chat.removeWords=Remover mensagens que cont√™m
+config.chat.removeWords.tooltip=Se uma mensagem tiver uma palavra que esteja nesta lista, ser√° totalmente removida do chat.
 config.chat.splitChat=Enviar para o segundo chat.
-config.chat.splitChat.tooltip=Se uma mensagem tiver uma palavra que esteja nesta lista, ser· enviada para o segundo chat.
-config.chat.movekNoHax=Mover mensagens de detecc„o de hack
-config.chat.movekNoHax.tooltip=Move as deteÁıes de hack para um outro lado.
+config.chat.splitChat.tooltip=Se uma mensagem tiver uma palavra que esteja nesta lista, ser√° enviada para o segundo chat.
+config.chat.movekNoHax=Mover mensagens de detecc√£o de hack
+config.chat.movekNoHax.tooltip=Move as dete√ß√µes de hack para um outro lado.
  
 <!-- FRIENDS -->
 config.friends.title=Lista de Amigos
-config.friends.tooltip=OpÁıes da lista de amigos, È aqui que podes adicionar pessoas!
+config.friends.tooltip=Op√ß√µes da lista de amigos, √© aqui que podes adicionar pessoas!
 config.friends.onlineTitle=Nome da caixa de amigos
 config.friends.onlineTitle.tooltip=O nome mostrado para a lista de amigos
 config.friends.group1=Grupo de Amigos Um
 config.friends.group1.tooltip=Grupo Um dos teus amigos. Sugerimos membros da tua equipa. (CTF)
 config.friends.group2=Grupo de Amigos dois
 config.friends.group2.tooltip=Grupo dois dos teus amigos. Sugerimos mercs da tua equipa. (CTF)
-config.friends.group3=Grupo de Amigos TrÍs
-config.friends.group3.tooltip=Grupo trÍs dos teus amigos. Sugerimos colocar aqui os teus amigos em geral.
+config.friends.group3=Grupo de Amigos Tr√™s
+config.friends.group3.tooltip=Grupo tr√™s dos teus amigos. Sugerimos colocar aqui os teus amigos em geral.
 config.friends.group1Format=Formato do Grupo Um
-config.friends.group1Format.tooltip=Este È o formato aplicada ao grupo um
-config.friends.group2Format=Formatac„o do Grupo Dois
-config.friends.group2Format.tooltip=Este È o formato aplicada ao grupo dois
-config.friends.group3Format=Formatac„o do Grupo TrÍs
-config.friends.group3Format.tooltip=Este È o formato aplicada ao grupo trÍs
+config.friends.group1Format.tooltip=Este √© o formato aplicada ao grupo um
+config.friends.group2Format=Formatac√£o do Grupo Dois
+config.friends.group2Format.tooltip=Este √© o formato aplicada ao grupo dois
+config.friends.group3Format=Formatac√£o do Grupo Tr√™s
+config.friends.group3Format.tooltip=Este √© o formato aplicada ao grupo tr√™s
 config.friends.alwaysShow=Sempre mostrar.
-config.friends.alwaysShow.tooltip=Se est· "verdadeiro" e n„o tem nenhum amigo online, a caixa ir· mostrar com "NinguÈm :(". Se "falso", a caixa ir· desaparecer quando n„o tiver amigos online
+config.friends.alwaysShow.tooltip=Se est√° "verdadeiro" e n√£o tem nenhum amigo online, a caixa ir√° mostrar com "Ningu√©m :(". Se "falso", a caixa ir√° desaparecer quando n√£o tiver amigos online
 config.friends.onlineNotifications=Notificacoes online
-config.friends.onlineNotifications.tooltip=Se est· "verdadeiro" e algum amigo seu entrar em um jogo, vocÍ receber· uma linda notificac„o
+config.friends.onlineNotifications.tooltip=Se est√° "verdadeiro" e algum amigo seu entrar em um jogo, voc√™ receber√° uma linda notificac√£o
 config.friends.cooldownTime=Tempo de espera (sec)
-config.friends.cooldownTime.tooltip=O tempo de espera que previne que recebas v·rios alertas da mesma pessoa.
+config.friends.cooldownTime.tooltip=O tempo de espera que previne que recebas v√°rios alertas da mesma pessoa.
  
  
 <!-- HUD -->
-config.hud.title=Display de InformaÁıes
-config.hud.tooltip=Opcıes para o Display
+config.hud.title=Display de Informa√ß√µes
+config.hud.tooltip=Opc√µes para o Display
 config.hud.showArmor=Mostar Armadura
-config.hud.showArmor.tooltip=Mostrar ou n„o o display da armadura quem contÈm Ìcones e durabilidade (pode ser ajustado).
+config.hud.showArmor.tooltip=Mostrar ou n√£o o display da armadura quem cont√©m √≠cones e durabilidade (pode ser ajustado).
 config.hud.armorMode=Modo de Display da Armadura
-config.hud.armorMode.tooltip=O modo que o display da armadura ter·. Mostrar Durabilidade restante ir·  mostrar"123"; Mostrar Durabilidade Restante do Total ir· mostrar "123/456"; N„o Mostrar Durabilidade ir· fazer apenas o item aparecer
+config.hud.armorMode.tooltip=O modo que o display da armadura ter√°. Mostrar Durabilidade restante ir√°  mostrar"123"; Mostrar Durabilidade Restante do Total ir√° mostrar "123/456"; N√£o Mostrar Durabilidade ir√° fazer apenas o item aparecer
 config.hud.armorMode.m.show=Mostrar a Durabilidade Restante
 config.hud.armorMode.m.total=Mostrar a Durabilidade Restante do Total
-config.hud.armorMode.m.dont=N„o mostrar a Durabilidade Restante
-config.hud.armorPosition=PosiÁ„o dos Stats da Armadura
-config.hud.armorPosition.tooltip=Isto dita onde a durabilidade ir· ser mostrada. Se tens Modo de Display da Armadura em "N„o mostrar" ent„o n„o te precisas de preocupar com isto.
+config.hud.armorMode.m.dont=N√£o mostrar a Durabilidade Restante
+config.hud.armorPosition=Posi√ß√£o dos Stats da Armadura
+config.hud.armorPosition.tooltip=Isto dita onde a durabilidade ir√° ser mostrada. Se tens Modo de Display da Armadura em "N√£o mostrar" ent√£o n√£o te precisas de preocupar com isto.
 config.hud.armorPosition.m.l=Esquerda da Armadura
 config.hud.armorPosition.m.r=Direita da Armadura
-config.hud.showPotion=Mostrar Efeitos de PoÁ„o
-config.hud.showPotion.tooltip=Mostrar ou n„o o display dos efeitos das poÁıes. Ir· mostrar o Ìcone do efeito, a "forÁa", e o tempo restante (dependendo do Modo de Display das PoÁıes).
-config.hud.potionMode=Modo de Display das PoÁıes
-config.hud.potionMode.tooltip=O modo que o display das poÁıes ter·. "Mostrar Tempo Restante" ir· mostrar o tempo restante e a "forÁa"; "N„o Mostrar Tempo Restante" apenas mostrar· o Ìcone da poÁ„o.
-config.hud.potionMode.m.show=Mostrar Tempo e "ForÁa"
-config.hud.potionMode.m.dont=N„o Mostrar Tempo e "ForÁa"
-config.hud.potionPosition=PosiÁ„o da InformaÁ„o da PoÁ„o
-config.hud.potionPosition=Isto dita onde o tempo e a "forÁa" da poÁ„o ir· ser mostrada, relevante para o Ìcone do efeito da poÁ„o.
+config.hud.showPotion=Mostrar Efeitos de Po√ß√£o
+config.hud.showPotion.tooltip=Mostrar ou n√£o o display dos efeitos das po√ß√µes. Ir√° mostrar o √≠cone do efeito, a "for√ßa", e o tempo restante (dependendo do Modo de Display das Po√ß√µes).
+config.hud.potionMode=Modo de Display das Po√ß√µes
+config.hud.potionMode.tooltip=O modo que o display das po√ß√µes ter√°. "Mostrar Tempo Restante" ir√° mostrar o tempo restante e a "for√ßa"; "N√£o Mostrar Tempo Restante" apenas mostrar√° o √≠cone da po√ß√£o.
+config.hud.potionMode.m.show=Mostrar Tempo e "For√ßa"
+config.hud.potionMode.m.dont=N√£o Mostrar Tempo e "For√ßa"
+config.hud.potionPosition=Posi√ß√£o da Informa√ß√£o da Po√ß√£o
+config.hud.potionPosition=Isto dita onde o tempo e a "for√ßa" da po√ß√£o ir√° ser mostrada, relevante para o √≠cone do efeito da po√ß√£o.
 config.hud.fixSkins=Fix Skins (laggy)
 config.hud.fixSkins.tooltip=WARNING: THIS CAUSES LAG. This forces skins to be fixed on MCPVP Servers. Expect frame drops and stuttering. There's nothing I can do about this :(.
-config.hud.potionPosition.m.l=Esquerda das PoÁıes
-config.hud.potionPosition.m.r=Direita das PoÁıes
+config.hud.potionPosition.m.l=Esquerda das Po√ß√µes
+config.hud.potionPosition.m.r=Direita das Po√ß√µes
 config.hud.renderBG=Renderizar Background
-config.hud.renderBG.tooltip=Renderizar ou n„o a background escura nas caixas de informaÁıes
+config.hud.renderBG.tooltip=Renderizar ou n√£o a background escura nas caixas de informa√ß√µes
 config.hud.margin=Margem
-config.hud.margin.tooltip=O espaÁo entre blocos de informaÁ„o
-config.hud.centerTitles=Centrar TÌtulo
-config.hud.centerTitles.tooltip=Centrar ou n„o o tÌtulo acima dos blocos de informaÁ„o.
+config.hud.margin.tooltip=O espa√ßo entre blocos de informa√ß√£o
+config.hud.centerTitles=Centrar T√≠tulo
+config.hud.centerTitles.tooltip=Centrar ou n√£o o t√≠tulo acima dos blocos de informa√ß√£o.
 config.hud.alignItems=Alinhar Entradas
-config.hud.alignItems.tooltip=Se "verdadeiro", qualquer linha com ">>" ir·-se ajustar horizontalmente com outras linhas com ">>" o que faz uma tabela.
+config.hud.alignItems.tooltip=Se "verdadeiro", qualquer linha com ">>" ir√°-se ajustar horizontalmente com outras linhas com ">>" o que faz uma tabela.
 config.hud.alignWidths=Alinhar Larguras
-config.hud.alignWidths.tooltip=Alinhar ou n„o a largura das caixas de informaÁıes
+config.hud.alignWidths.tooltip=Alinhar ou n√£o a largura das caixas de informa√ß√µes
 config.hud.alignHeights=Alinhar Altura
-config.hud.alignHeights.tooltip=Alinhar ou n„o a altura das caixas de informaÁıes
-config.hud.medalTimer=CronÙmetro para Medalha
-config.hud.medalTimer.tooltip=O tempo em segundos que uma medalha ser· mostrada
+config.hud.alignHeights.tooltip=Alinhar ou n√£o a altura das caixas de informa√ß√µes
+config.hud.medalTimer=Cron√¥metro para Medalha
+config.hud.medalTimer.tooltip=O tempo em segundos que uma medalha ser√° mostrada
  
 <!-- SELECT -->
-config.select.title=SeleÁ„o Autom·tica
-config.select.tooltip=OpÁıes da SeleÁ„o Autom·tica.
-config.select.autoTagB=Tag Autom·tica
-config.select.autoTagB.tooltip=Se "verdadeiro", esta ser· a tua tag para o que especificares abaixo.
+config.select.title=Sele√ß√£o Autom√°tica
+config.select.tooltip=Op√ß√µes da Sele√ß√£o Autom√°tica.
+config.select.autoTagB=Tag Autom√°tica
+config.select.autoTagB.tooltip=Se "verdadeiro", esta ser√° a tua tag para o que especificares abaixo.
 config.select.autoTag=Selecionar Tag
-config.select.autoTag.tooltip=A tag ser· automaticamente aplicada se a Tag Autom·tica estiver ativada.
+config.select.autoTag.tooltip=A tag ser√° automaticamente aplicada se a Tag Autom√°tica estiver ativada.
 config.select.autoDespawn=Auto Despawn do Animal
-config.select.autoDespawn.tooltip=Se "verdadeiro", o teu animal ir· ser automaticamente "despawnado" quando entras num servidor.
+config.select.autoDespawn.tooltip=Se "verdadeiro", o teu animal ir√° ser automaticamente "despawnado" quando entras num servidor.
 config.select.autoSilent=Auto /silent
 config.select.autoSilent.tooltip=Silencia automaticamente os alerts de hackers.
  
 <!-- VERSION -->
-config.version.title=Verificar vers„o
-config.version.tooltip=OpÁıes para verificar vers„o.
-config.version.updateNotifications=NotificaÁıes de atualizaÁ„o
-config.version.updateNotifications.tooltip=Receber ou n„o notificaÁıes acerca de atualizaÁıes disponiveis. As notificaÁıes ir„o aparecer no chat uma vez no chat quando entrares num server.
+config.version.title=Verificar vers√£o
+config.version.tooltip=Op√ß√µes para verificar vers√£o.
+config.version.updateNotifications=Notifica√ß√µes de atualiza√ß√£o
+config.version.updateNotifications.tooltip=Receber ou n√£o notifica√ß√µes acerca de atualiza√ß√µes disponiveis. As notifica√ß√µes ir√£o aparecer no chat uma vez no chat quando entrares num server.
 config.version.versionChannel=Version Channel
-config.version.versionChannel.tooltip=O "canal" do mod que queres receber atualizaÁıes.Main recebe menos atualizaÁıes, mas as atualizaÁıes Beta podem "bugar" algumas vezes.
+config.version.versionChannel.tooltip=O "canal" do mod que queres receber atualiza√ß√µes.Main recebe menos atualiza√ß√µes, mas as atualiza√ß√µes Beta podem "bugar" algumas vezes.
  
 <!-- SOUNDS -->
 config.sounds.title=Sons
-config.sounds.tooltip=OpÁıes para sons.
+config.sounds.tooltip=Op√ß√µes para sons.
 config.sounds.online=Amigos Online
 config.sounds.online.tooltip=O som tocado quando um amigo entra online.
  
@@ -295,13 +295,13 @@ config.sounds.online.tooltip=O som tocado quando um amigo entra online.
 <!-- = BUILD = -->
 <!-- ===---=== -->
 build.config.hud.render=Render
-build.config.hud.render.tooltip=InformaÁ„o que È renderizada no ecr„, enquanto est·s a jogar Minecraft Build.
+build.config.hud.render.tooltip=Informa√ß√£o que √© renderizada no ecr√£, enquanto est√°s a jogar Minecraft Build.
  
 <!-- ===--=== -->
 <!-- = RAID = -->
 <!-- ===--=== -->
 raid.config.hud.render=Render
-raid.config.hud.render.tooltip=InformaÁ„o que È renderizada no ecr„, enquanto est·s a jogar Raid.
+raid.config.hud.render.tooltip=Informa√ß√£o que √© renderizada no ecr√£, enquanto est√°s a jogar Raid.
  
 raid.config.alerts.deposit=Depositar
 raid.config.alerts.deposit.tooltip=O alerta mostrado quando depositas ouro.
@@ -313,91 +313,91 @@ raid.config.alerts.raid.default=#white#Defend yourself! ||| #red#You're being ra
 <!-- ===-=== -->
 <!-- = CTF = -->
 <!-- ===-=== -->
-ctf.config.title=ConfiguraÁıes para Capture the Flag
+ctf.config.title=Configura√ß√µes para Capture the Flag
  
 <!-- ALERTS -->
 ctf.config.alerts.stole=Bandeira roubada
-ctf.config.alerts.stole.tooltip=O alerta mostrado quando a bandeira È roubada.
+ctf.config.alerts.stole.tooltip=O alerta mostrado quando a bandeira √© roubada.
 ctf.config.alerts.stole.default=#white#Bandeira roubada! ||| {player} #gray#roubou a bandeira {team}#gray# ||| wool
 ctf.config.alerts.dropped=Bandeira dropada
-ctf.config.alerts.dropped.tooltip=O alerta mostrado quando a bandeira È dropada.
+ctf.config.alerts.dropped.tooltip=O alerta mostrado quando a bandeira √© dropada.
 ctf.config.alerts.dropped.default=#white#Bandeira dropada! ||| {player} #gray#dropou a bandeira {team}#gray# ||| wool
 ctf.config.alerts.pickedUp=Bandeira apanhada
-ctf.config.alerts.pickedUp.tooltip=O alerta mostrado quando a bandeira È apanhada.
+ctf.config.alerts.pickedUp.tooltip=O alerta mostrado quando a bandeira √© apanhada.
 ctf.config.alerts.pickedUp.default=#white#Bandeira apanhada! ||| {player} #gray#apanhou a bandeira {team}#gray# ||| wool
 ctf.config.alerts.recovered=Bandeira recuperada
-ctf.config.alerts.recovered.tooltip=O alerta mostrado quando a bandeira È recuperada.
+ctf.config.alerts.recovered.tooltip=O alerta mostrado quando a bandeira √© recuperada.
 ctf.config.alerts.recovered.default=#white#Bandeira recuperada! ||| {player} #gray#recuperou a bandeira {team}#gray# ||| wool
 ctf.config.alerts.restored=Bandeira restaurada
-ctf.config.alerts.restored.tooltip=O alerta mostrado quando a bandeira È restaurada.
+ctf.config.alerts.restored.tooltip=O alerta mostrado quando a bandeira √© restaurada.
 ctf.config.alerts.restored.default=#white#Bandeira restaurada! |||A bandeira da equipa {team}#gray#foi restaurada ||| wool
 ctf.config.alerts.captured=Bandeira capturada
-ctf.config.alerts.captured.tooltip=O alerta mostrado quando a bandeira È capturada.
+ctf.config.alerts.captured.tooltip=O alerta mostrado quando a bandeira √© capturada.
 ctf.config.alerts.captured.default=#white#Bandeira capturada! ||| {player} #gray#capturou a bandeira {team}#gray# ||| wool
 ctf.config.alerts.streak=Kill streak terminada
-ctf.config.alerts.streak.tooltip=O alerta mostrado quando uma kill streak È terminada.
+ctf.config.alerts.streak.tooltip=O alerta mostrado quando uma kill streak √© terminada.
 ctf.config.alerts.streak.default=#white#Kill streak terminada! ||| {killer} #gray#acabou {killed}#gray#'s #cyan#{streak} #gray#streak ||| bone
-ctf.config.alerts.compass=B˙ssola mudada
+ctf.config.alerts.compass=B√∫ssola mudada
 ctf.config.alerts.compass.tooltip=O alerta mostrado de quando o objetivo da bussola muda.
 ctf.config.alerts.compass.default=-X- #white#A bussola mudou ||| #gray#A apontar para a bandeira da equipa{team}#gray# ||| compass
 ctf.config.alerts.class=Troca de classe
 ctf.config.alerts.class.tooltip=O alerta mostrado quando tu mudas de classe.
-ctf.config.alerts.class.default=#white#Legal ||| #gray#…s agora #green#{class} ||| class
-ctf.config.alerts.assist=AssistÍncia
+ctf.config.alerts.class.default=#white#Legal ||| #gray#√âs agora #green#{class} ||| class
+ctf.config.alerts.assist=Assist√™ncia
 ctf.config.alerts.assist.tooltip=O alerta mostrado quando tu ajudas a matar um jogador.
 ctf.config.alerts.assist.default=Assist Kill ||| #gray#Ajudas-te a matar {player} ||| witherskull
-ctf.config.alerts.start=ComeÁo do jogo
-ctf.config.alerts.start.tooltip=O alerta mostrado quando o jogo comeÁa.
-ctf.config.alerts.start.default=Hooray! ||| #cyan#O jogo comeÁou. Diverte-te ||| nether_star
+ctf.config.alerts.start=Come√ßo do jogo
+ctf.config.alerts.start.tooltip=O alerta mostrado quando o jogo come√ßa.
+ctf.config.alerts.start.default=Hooray! ||| #cyan#O jogo come√ßou. Diverte-te ||| nether_star
 ctf.config.alerts.five=5 Minutos restantes
 ctf.config.alerts.five.tooltip=O alerta mostrado quando restam 5 minutos de jogo.
-ctf.config.alerts.five.default=AtenÁ„o! ||| #yellow#5:00 #gray#restantes. ||| clock
+ctf.config.alerts.five.default=Aten√ß√£o! ||| #yellow#5:00 #gray#restantes. ||| clock
 ctf.config.alerts.one=1 Minuto restantes
 ctf.config.alerts.one.tooltip=O alerta mostrado quando resta 1 minuto de jogo.
-ctf.config.alerts.one.default=AtenÁ„o! ||| #red#1:00 #gray#restante! ||| clock
+ctf.config.alerts.one.default=Aten√ß√£o! ||| #red#1:00 #gray#restante! ||| clock
 ctf.config.alerts.end=Fim do jogo
 ctf.config.alerts.end.tooltip=O alerta mostrado quando o jogo acaba.
 ctf.config.alerts.end.default=Fim do jogo! ||| {team} #gray#ganhou o jogo! ||| wool
  
 <!-- CHAT -->
 ctf.config.chat.removeTips=Remover Dicas
-ctf.config.chat.removeTips.tooltip=Remover ou n„o as dicas de jogo do chat.
+ctf.config.chat.removeTips.tooltip=Remover ou n√£o as dicas de jogo do chat.
 ctf.config.chat.medicClasses=Grifar quando Medic
-ctf.config.chat.medicClasses.tooltip=Se vocÍ È uma das classes nessas listas, as mensagens de um medi ser„o destacadas
-ctf.config.chat.chatHistory=HistÛrico do Chat
+ctf.config.chat.medicClasses.tooltip=Se voc√™ √© uma das classes nessas listas, as mensagens de um medi ser√£o destacadas
+ctf.config.chat.chatHistory=Hist√≥rico do Chat
 ctf.config.chat.chatHistory.tooltip=Isso transforma o chat igual ao chat normal do Minecraft.
  
 <!-- HUD -->
 ctf.config.hud.renderPre=Render Pre
-ctf.config.hud.renderPre.tooltip=InformaÁ„o a ser mostrada antes do jogo comeÁar
+ctf.config.hud.renderPre.tooltip=Informa√ß√£o a ser mostrada antes do jogo come√ßar
 ctf.config.hud.renderPlay=Render Play
-ctf.config.hud.renderPlay.tooltip=InformaÁ„o a ser mostrada durante o jogo
+ctf.config.hud.renderPlay.tooltip=Informa√ß√£o a ser mostrada durante o jogo
 ctf.config.hud.renderPost=Render Post
-ctf.config.hud.renderPost.tooltip=InformaÁ„o a ser mostrada depois do jogo
+ctf.config.hud.renderPost.tooltip=Informa√ß√£o a ser mostrada depois do jogo
  
 <!-- SOUNDS -->
 ctf.config.sounds.stole=Bandeira roubada
-ctf.config.sounds.stole.tooltip=O som tocado quando a bandeira È roubada
+ctf.config.sounds.stole.tooltip=O som tocado quando a bandeira √© roubada
 ctf.config.sounds.dropped=Bandeira dropada
-ctf.config.sounds.dropped.tooltip=O som tocado quando a bandeira È dropada
+ctf.config.sounds.dropped.tooltip=O som tocado quando a bandeira √© dropada
 ctf.config.sounds.pickedUp=Bandeira apanhada
-ctf.config.sounds.pickedUp.tooltip=O som tocado quando a bandeira È apanhada
+ctf.config.sounds.pickedUp.tooltip=O som tocado quando a bandeira √© apanhada
 ctf.config.sounds.recovered=Bandeira recuperada
-ctf.config.sounds.recovered.tooltip=O som tocado quando a bandeira È recuperada
+ctf.config.sounds.recovered.tooltip=O som tocado quando a bandeira √© recuperada
 ctf.config.sounds.restored=Bandeira restaurada
-ctf.config.sounds.restored.tooltip=O som tocado quando a bandeira È restaurada
+ctf.config.sounds.restored.tooltip=O som tocado quando a bandeira √© restaurada
 ctf.config.sounds.captured=Bandeira capturada
-ctf.config.sounds.captured.tooltip=O som tocado quando a bandeira È capturada
+ctf.config.sounds.captured.tooltip=O som tocado quando a bandeira √© capturada
 ctf.config.sounds.streak=Streak terminada
-ctf.config.sounds.streak.tooltip=O som tocado quando uma killstreak È terminada
-ctf.config.sounds.compass=B˙ssola Mudada
-ctf.config.sounds.compass.tooltip=O som tocado quando o objetivo da b˙ssola È alterado
+ctf.config.sounds.streak.tooltip=O som tocado quando uma killstreak √© terminada
+ctf.config.sounds.compass=B√∫ssola Mudada
+ctf.config.sounds.compass.tooltip=O som tocado quando o objetivo da b√∫ssola √© alterado
 ctf.config.sounds.class=Classe mudada
 ctf.config.sounds.class.tooltip=O som tocado quando trocas de classe
-ctf.config.sounds.assist=AssistÍncia
-ctf.config.sounds.assist.tooltip=O som tocado quando ajudas a matar alguÈm
-ctf.config.sounds.start=InÌcio do jogo
-ctf.config.sounds.start.tooltip=O som tocado quando o jogo comeÁa
+ctf.config.sounds.assist=Assist√™ncia
+ctf.config.sounds.assist.tooltip=O som tocado quando ajudas a matar algu√©m
+ctf.config.sounds.start=In√≠cio do jogo
+ctf.config.sounds.start.tooltip=O som tocado quando o jogo come√ßa
 ctf.config.sounds.five=5 Minutos restantes
 ctf.config.sounds.five.tooltip=O som tocado quando restam 5 minutos de jogo
 ctf.config.sounds.one=1 Minuto restante
@@ -413,12 +413,12 @@ ctf.config.sounds.end.tooltip=O som tocado quando o jogo acaba
 hg.config.alerts.kit=Kit selecionado
 hg.config.alerts.kit.tooltip=O alerta mostrado quando selecionas um kit.
 hg.config.alerts.kit.default=#white#Parece bem ||| #gray#Escolheste o kit  #green#{kit} ||| kit
-hg.config.alerts.start=O jogo comeÁou
-hg.config.alerts.start.tooltip=O alerta mostrado quando o jogo comeÁa.
-hg.config.alerts.start.default=#white#O jogo comeÁou! ||| #gray#Diverte-te, e tenta #i#n„o #r##gray#morreres ||| nether_star
+hg.config.alerts.start=O jogo come√ßou
+hg.config.alerts.start.tooltip=O alerta mostrado quando o jogo come√ßa.
+hg.config.alerts.start.default=#white#O jogo come√ßou! ||| #gray#Diverte-te, e tenta #i#n√£o #r##gray#morreres ||| nether_star
 hg.config.alerts.vulnerable=Perda de vulnerabilidade
 hg.config.alerts.vulnerable.tooltip=O alerta mostrado quando perdes a vulnerabilidade.
-hg.config.alerts.vulnerable.default=#white#MantÈm-te calmo... ||| #red#A invencibilidade acabou! ||| skeletonskull
+hg.config.alerts.vulnerable.default=#white#Mant√©m-te calmo... ||| #red#A invencibilidade acabou! ||| skeletonskull
 hg.config.alerts.feast.mini=Mini Feast
 hg.config.alerts.feast.mini.tooltip=O alerta mostrado quando um mini feast spawna.
 hg.config.alerts.feast.mini.default=#white#Oh yeaaah ||| #gray#Um mini feast spawnou entre #cyan#{x1}#gray#, #cyan#{x2} #gray#& #cyan#{z1}#gray#, #cyan#{z2} ||| chest
@@ -427,23 +427,23 @@ hg.config.alerts.feast.tooltip=O alerta mostrado quando o feast spawna.
 hg.config.alerts.feast.default=#white#Espero que estejas esfomeado ||| #gray#O feast spanwou em #cyan#{x}#gray#, #cyan#{y}#gray#, #cyan#{z} ||| ender_chest
 hg.config.alerts.feast.bonus=Bonus Feast
 hg.config.alerts.feast.bonus.tooltip=O alerta mostrado quando o bonus feast spawna.
-hg.config.alerts.feast.bonus.default=#white#Morres-te e foste para o cÈu? ||| #gray#Um #underline#bonus #r##gray#feast spawnou! ||| ender_chest
+hg.config.alerts.feast.bonus.default=#white#Morres-te e foste para o c√©u? ||| #gray#Um #underline#bonus #r##gray#feast spawnou! ||| ender_chest
  
 <!-- HUD -->
 hg.config.hud.renderPre=Render Pre
-hg.config.hud.renderPre.tooltip=Informac„o a ser mostrada antes do jogo
+hg.config.hud.renderPre.tooltip=Informac√£o a ser mostrada antes do jogo
 hg.config.hud.renderPlay=Render Play
-hg.config.hud.renderPlay.tooltip=Informac„o a ser mostrada durante o jogo
+hg.config.hud.renderPlay.tooltip=Informac√£o a ser mostrada durante o jogo
  
 <!-- CONFIG -->
-hg.config.select.selectMode=Modo de Selec„o
-hg.config.select.selectMode.tooltip=Isso muda quando o teu kit È automaticamente selecionado. "Select On Join" seleciona logo quando entras no server; "Select Before Start" seleciona 5 segundos antes do jogo comecar; "Don't Select" nunca seleciona.
+hg.config.select.selectMode=Modo de Selec√£o
+hg.config.select.selectMode.tooltip=Isso muda quando o teu kit √© automaticamente selecionado. "Select On Join" seleciona logo quando entras no server; "Select Before Start" seleciona 5 segundos antes do jogo comecar; "Don't Select" nunca seleciona.
 hg.config.select.selectKit=Selecionar Kit
 hg.config.select.selectKit.tooltip=O kit a ser automaticamente selecionado
  
 <!-- SOUNDS -->
 hg.config.sounds.start=Jogo Iniciado
-hg.config.sounds.start.tooltip=O som tocado quando o jogo comeÁa
+hg.config.sounds.start.tooltip=O som tocado quando o jogo come√ßa
 hg.config.sounds.death=Jogador Morto
 hg.config.sounds.death.tooltip=O som tocado quando um jogador morre
 hg.config.sounds.end=Fim de Jogo
@@ -453,25 +453,25 @@ hg.config.sounds.end.tooltip=O som tocado quando o jogo acaba
 <!-- = KIT = -->
 <!-- ===-=== -->
 <!-- ALERTS -->
-kit.config.alerts.streak=Streak alcanÁada
-kit.config.alerts.streak.tooltip=O som tocado quando um jogador alcanÁa uma killstreak.
+kit.config.alerts.streak=Streak alcan√ßada
+kit.config.alerts.streak.tooltip=O som tocado quando um jogador alcan√ßa uma killstreak.
 kit.config.alerts.streak.default=#white#Kill Streak! ||| {player} #gray#conseguiu uma killstreak de #cyan#{streak} ||| nether_star
 kit.config.alerts.streakEnd=Streak terminada
-kit.config.alerts.streakEnd.tooltip=O som tocado quando a killstreak È terminada
+kit.config.alerts.streakEnd.tooltip=O som tocado quando a killstreak √© terminada
 kit.config.alerts.streakEnd.default=#white#Killstreak terminada! ||| {killer} #gray#acabou com a killstreak de #r#{killed}#gray# #cyan#{streak} ||| bone
 kit.config.alerts.restart=A reiniciar
-kit.config.alerts.restart.tooltip=O som tocado quando o server est· prests a reiniciar.
-kit.config.alerts.restart.default=#white#AtenÁ„o! ||| #gray#Server reiniciando em #red#1 #r#minute ||| clock
+kit.config.alerts.restart.tooltip=O som tocado quando o server est√° prests a reiniciar.
+kit.config.alerts.restart.default=#white#Aten√ß√£o! ||| #gray#Server reiniciando em #red#1 #r#minute ||| clock
  
 <!-- HUD -->
 kit.config.hud.render=Render
-kit.config.hud.render.tooltip=A informac„o que È mostrada no ecr„, enquanto jogas KitPVP
+kit.config.hud.render.tooltip=A informac√£o que √© mostrada no ecr√£, enquanto jogas KitPVP
  
 <!-- SOUNDS -->
-kit.config.sounds.streak=Streak alcanÁada
-kit.config.sounds.streak.tooltip=O som tocado quando um jogador alcanÁa uma killstreak no KitPVP
+kit.config.sounds.streak=Streak alcan√ßada
+kit.config.sounds.streak.tooltip=O som tocado quando um jogador alcan√ßa uma killstreak no KitPVP
 kit.config.sounds.streakEnd=Fim de Streak
-kit.config.sounds.streakEnd.tooltip=O som tocado quando uma killstreak È terminada
+kit.config.sounds.streakEnd.tooltip=O som tocado quando uma killstreak √© terminada
  
 <!-- ===--=== -->
 <!-- = MAZE = -->
@@ -484,28 +484,28 @@ maze.config.alerts.teamJoin=Entraste na equipa
 maze.config.alerts.teamJoin.tooltip=O alerta mostrado quando entras numa equipa
 maze.config.alerts.teamJoin.default=#white#Entraste na equipa ||| #gray#Agora na equipa #green#{team} ||| nether_star
 maze.config.alerts.playerKilled=Player Killed
-maze.config.alerts.playerKilled.tooltip=O alerta mostrado quando um jogador È morto.
+maze.config.alerts.playerKilled.tooltip=O alerta mostrado quando um jogador √© morto.
 maze.config.alerts.playerKilled.default=-X- #white#Jogador morto! ||| {killed}#gray# foi morto por {killer} ({kit}) ||| bone
 maze.config.alerts.teamOut=Equipa eliminada
-maze.config.alerts.teamOut.tooltip=O alerta mostrado quando uma equipa È eliminada.
+maze.config.alerts.teamOut.tooltip=O alerta mostrado quando uma equipa √© eliminada.
 maze.config.alerts.teamOut.default=#white#Equipa fora! ||| {team} foi eliminada! {remain} equipas ainda em jogo. ||| skeletonskull
 maze.config.alerts.hunger=Princess Hungry
 maze.config.alerts.hunger.tooltip=O alerta mostrado quando a princesa tem fome..
-maze.config.alerts.hunger.default=#white#N„o te esqueÁas... ||| #gray#A tua princesa est· em #red#{hunger} ||| bread
+maze.config.alerts.hunger.default=#white#N√£o te esque√ßas... ||| #gray#A tua princesa est√° em #red#{hunger} ||| bread
  
 <!-- HUD -->
 maze.config.hud.renderPre=Render Pre
-maze.config.hud.renderPre.tooltip=InformaÁ„o a ser mostrada antes do jogo
+maze.config.hud.renderPre.tooltip=Informa√ß√£o a ser mostrada antes do jogo
 maze.config.hud.renderPlay=Render Play
-maze.config.hud.renderPlay.tooltip=InformaÁ„o ser mostrada durante o jogo
+maze.config.hud.renderPlay.tooltip=Informa√ß√£o ser mostrada durante o jogo
 maze.config.hud.renderPost=Render Post
-maze.config.hud.renderPost.tooltip=InformaÁ„o a ser mostrada depois do jogo
+maze.config.hud.renderPost.tooltip=Informa√ß√£o a ser mostrada depois do jogo
  
 <!-- SELECT -->
-maze.config.select.selectMode=Modo de Selec„o
-maze.config.select.selectMode.tooltip=Isso muda quando o teu kit È automaticamente selecionado. "Select On Join" seleciona logo quando entras no server; "Select Before Start" seleciona 5 segundos antes do jogo comeÁar; "Don't Select" nunca seleciona.
+maze.config.select.selectMode=Modo de Selec√£o
+maze.config.select.selectMode.tooltip=Isso muda quando o teu kit √© automaticamente selecionado. "Select On Join" seleciona logo quando entras no server; "Select Before Start" seleciona 5 segundos antes do jogo come√ßar; "Don't Select" nunca seleciona.
 maze.config.select.selectKit=Selecionar Kit
-maze.config.select.selectKit.tooltip=O kit que È automaticamente selecionado
+maze.config.select.selectKit.tooltip=O kit que √© automaticamente selecionado
 maze.config.select.selectTeam=Entrar em Time
 maze.config.select.selectTeam.tooltip=A equipa em que entras automaticamente
  
@@ -514,11 +514,11 @@ maze.config.select.selectTeam.tooltip=A equipa em que entras automaticamente
 <!-- ===------=== -->
 <!-- ALERTS -->
 sab.config.alerts.start=Inicio do jogo
-sab.config.alerts.start.tooltip=O alerta mostrado quando o jogo comeÁa.
-sab.config.alerts.start.default=#white#O jogo comeÁou! ||| #gray#O teu papel È {role}#gray#. Boa sorte! ||| nether_star 
+sab.config.alerts.start.tooltip=O alerta mostrado quando o jogo come√ßa.
+sab.config.alerts.start.default=#white#O jogo come√ßou! ||| #gray#O teu papel √© {role}#gray#. Boa sorte! ||| nether_star 
 sab.config.alerts.death=Morte
 sab.config.alerts.death.tooltip=O alerta mostrado quando um jogador morre.
-sab.config.alerts.death.default=#white#Apertem os vossos cintos... ||| #gray#AlguÈm morreu. Apenas #cyan#{remain} #gray#jogadores restantes. ||| bone
+sab.config.alerts.death.default=#white#Apertem os vossos cintos... ||| #gray#Algu√©m morreu. Apenas #cyan#{remain} #gray#jogadores restantes. ||| bone
 sab.config.alerts.chest=Vaga de chests
 sab.config.alerts.chest.tooltip=O alerta mostrado quando uma vaga de chests spawna.
 sab.config.alerts.chest.default=#white#Ooooo, goodies! ||| #gray#Vaga de chests #green#{wave} #gray#spawnou. ||| chest
@@ -528,15 +528,15 @@ sab.config.alerts.end.default=#white#Fim do Jogo! ||| #gray#Vencedor: {winner} |
 
 <!-- HUD -->
 sab.config.hud.renderPre=Render Pre
-sab.config.hud.renderPre.tooltip=InformaÁ„o a ser mostrada antes do jogo.
+sab.config.hud.renderPre.tooltip=Informa√ß√£o a ser mostrada antes do jogo.
 sab.config.hud.renderPlay=Render Play
-sab.config.hud.renderPlay.tooltip=InformaÁ„o ser mostrada durante o jogo.
+sab.config.hud.renderPlay.tooltip=Informa√ß√£o ser mostrada durante o jogo.
 sab.config.hud.renderPost=Render Post
-sab.config.hud.renderPost.tooltip=InformaÁ„o a ser mostrada depois do jogo.
+sab.config.hud.renderPost.tooltip=Informa√ß√£o a ser mostrada depois do jogo.
 
 <!-- SOUNDS -->
 sab.config.sounds.start=Game Start
-sab.config.sounds.start.tooltip=O som tocado quando o jogo comeÁa.
+sab.config.sounds.start.tooltip=O som tocado quando o jogo come√ßa.
 sab.config.sounds.death=Death
 sab.config.sounds.death.tooltip=O som tocado quando um jogador morreu.
 sab.config.sounds.end=Game End
@@ -544,11 +544,60 @@ sab.config.sounds.end.tooltip=O som tocado quando o jogo acaba.
 
 <!-- SELECT -->
 sab.config.select.autoSab=Auto Sab
-sab.config.select.autoSab.tooltip=Se "verdadeiro", /sab ser· automaticamente feito quando entras num servidor de Sab.
+sab.config.select.autoSab.tooltip=Se "verdadeiro", /sab ser√° automaticamente feito quando entras num servidor de Sab.
 
 <!-- ===------=== -->
 <!-- = HEADSHOT = -->
 <!-- ===------=== -->
 <!-- RENDER -->
 hs.config.hud.render=Render
-hs.config.hud.render.tootlip=InformaÁ„o que È renderizada no ecr„, enquanto est·s a jogar Headshot.
+hs.config.hud.render.tootlip=Informa√ß√£o que √© renderizada no ecr√£, enquanto est√°s a jogar Headshot.
+
+gui.ingame.friends=Adicionar um amigo
+gui.friends.add=Adicionar a
+gui.friends.remove=Remover de
+gui.friends.1=Lista 1
+gui.friends.2=Lista 2
+gui.friends.3=Lista 3
+gui.edit.select=Clica em algo para o selecionares!
+gui.edit.edit=      #i#Pressiona #gray#[#green##b#E#gray#]#white##i# para editar.
+gui.edit.stop=      #i#Pressiona #gray#[#green##b#ESC#gray#]#white##i# para parar de editar.
+gui.edit.selected=#r#Selecionado: 
+gui.servers.starting=#gray#A come√ßar em #green#$1
+gui.servers.progress=#gray#Em progresso
+gui.servers.waiting=#yellow#Esperando...
+gui.servers.ending=#gray#Acaba em #green#$1#gray#s
+gui.save=Guardar
+gui.box.title=Editar Caixa
+key.cmdMac=Mac Dropar Stack
+server.smash.name=Smash
+server.smash.ip=mcsmash.com
+config.hs=Headshot
+config.alerts.showAlerts=Mostrar alertas
+config.alerts.showAlerts.tooltip=Mostrar ou n√£o todos os alertas.
+config.chat.movePMs=Send PMs para o segundo chat
+config.chat.movePMs.tooltip=Mandar ou n√£o as PMs para o segundo chat.
+config.chat.fixLinks="Consertar" links
+config.chat.fixLinks.tooltip=Se "verdadeiro", links ser√£o re-activados no chat, permitindo-te clicar neles.
+config.chat.alignChat=Alinhar Segundo Chat
+config.chat.alignChat=Muda a forma que o segundo chat √© alinhado.
+config.hud.potionPosition=Isto dita onde o tempo e a "for√ßa" da po√ß√£o ir√° ser mostrada, relevante para o √≠cone do efeito da po√ß√£o.
+config.misc.title=Variados
+config.misc.tooltip=Outras configura√ß√µes.
+config.misc.pingVar=Variavel de Ping
+config.misc.pingVar.tooltip=Isto ativa a variavel {ping}, mas algumas vezes pode spamar o teu chat. Desativa isto se receberes muitas mensagens.
+config.misc.pingFreq=Frequencia de Ping (sec)
+config.misc.pingFreq.tooltip=O qu√£o frequentemente a variavel {ping}  atualiza em segundos. Requere um reinicio para ser aplicado.
+config.misc.defaultMenu=Menu de Server Default
+config.misc.defaultMenu.tooltip=Qual menu de server "abrir quando "Multiplayer" √© selecionado no menu principal do MC.
+raid.config.alerts.balance=Altera√ß√£o de "saldo"
+raid.config.alerts.balance.tooltip=O alerta mostrado quando depositas ou retiras ouro.
+raid.config.alerts.balance.default=Altera√ß√£o de saldo ||| #gray#Tens agora #green#{balance} #gray#ouro no banco ||| gold_ingot
+hg.config.select.selectMode.m.join=Selecionar quando entras num server
+hg.config.select.selectMode.m.start=Selecionar antes do come√ßo
+hg.config.select.selectMode.m.dont=N√£o selecionar
+maze.config.select.selectMode.m.join=Selecionar quando entras num server
+maze.config.select.selectMode.m.start=Selecionar antes do come√ßo
+maze.config.select.selectMode.m.dont=N√£o selecionar
+smash.config.select.autoSelect=Selecionar automaticamente
+smash.config.select.autoSelect.tooltip=Se "verdadeiro", o kit especificado ir√° ser automaticamente escolhido quando entras num server.
