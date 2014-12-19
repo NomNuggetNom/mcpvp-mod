@@ -51,7 +51,7 @@ public class ConfigSmashAlerts extends DummyModContainer {
         
     	prop = config.get(CATEGORY_GENERAL, "alertKit", "Show time ||| #gray#Selected #green#{kit} ||| kit");
     	prop.setValidationPattern(Pattern.compile(".*\\|\\|\\|.*\\|\\|\\|.*"));
-        prop.setLanguageKey("smash.config.alerts.kit");
+        prop.setLanguageKey("kit.config.alerts.kit");
     	propOrder.add(prop.getName());
     	new CustomAlert("smash.kit", prop.getString());
         

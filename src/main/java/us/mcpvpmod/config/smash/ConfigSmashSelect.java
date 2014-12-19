@@ -51,7 +51,7 @@ public class ConfigSmashSelect extends DummyModContainer {
         Property prop;
 
     	prop = config.get(CATEGORY_GENERAL, "autoSelect", false);
-        prop.setLanguageKey("mcpvp.smash.config.select.autoSelect");
+        prop.setLanguageKey("smash.config.select.autoSelect");
     	autoSelect = prop.getBoolean();
     	propOrder.add(prop.getName());
         
