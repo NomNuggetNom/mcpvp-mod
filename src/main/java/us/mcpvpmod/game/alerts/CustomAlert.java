@@ -21,6 +21,8 @@ public class CustomAlert {
 	
 	/** An map of all created alerts. <Alert ID, Alert> */
 	public static HashMap<String, CustomAlert> alerts = new HashMap<String, CustomAlert>();
+	/** Special  names for icons, e.g. "head", new ItemStack(Items.skull). Populated via {@link #setIcons}. */
+	public static HashMap<String, ItemStack> icons = new HashMap<String, ItemStack>();
 	
 	/** The ID that the CustomAlert can be referenced from. 
 	 * Usually related to when it is triggered, e.g. "flag.captured"
@@ -49,7 +51,7 @@ public class CustomAlert {
 		this.id = id;
 		this.template = template;
 		setStrings();
-		this.mode = Mode.NONE;
+		setMode();
 		alerts.put(id, this);
 	}
 	
@@ -158,32 +160,28 @@ public class CustomAlert {
 		} else if (GameData.getItemRegistry().containsKey(name)) {
 			return new ItemStack(GameData.getItemRegistry().getObject(name));
 		} else {
-			if (name.equals("head")) {
-				return new ItemStack(Items.skull, 1, 3);
-			} else if (name.equals("class") || name.equals("kit")) {
+			if (name.matches("(?i)(class|kit|character).*(.*icon)*"))
 				return AllKits.getIcon(Vars.get("kit"));
-			} else if (name.matches("skeleton.*skull")) {
-				return new ItemStack(Items.skull, 1, 0);
-			} else if (name.matches("wither.*skull")) {
-				return new ItemStack(Items.skull, 1, 1);
-			} else if (name.matches("zombie.*head")) {
-				return new ItemStack(Items.skull, 1, 2);
-			} else if (name.matches("creeper.*head")) {
-				return new ItemStack(Items.skull, 1, 3);
-			} else if (name.matches("sab.winner")) {
+			else if (name.matches("(?i)sab.*winner"))
 				return InfoSab.getWinnerIcon();
+			else {
+				for (String s : icons.keySet()) {
+					if (name.matches(s))
+						return icons.get(s);
+				}
+				return new ItemStack(Blocks.air);
 			}
-			return new ItemStack(Blocks.air);
 		}
 	}
 	
 	/**
-	 * Shows the alert.
+	 * Shows the alert, assuming it isn't cancelled.
+	 * Calls {@link #setStrings} then {@link #setMode} to set 
+	 * the {@link Mode}, which sets images. Information is 
+	 * then processed and displayed.
 	 */
 	public void show() {
-		// Update information.
-		setStrings();
-		setMode();
+		// Update information. 
 		title = replaceInfo(title);
 		desc  = replaceInfo(desc);
 		
@@ -197,8 +195,12 @@ public class CustomAlert {
 			item = setCustomItem(item);
 			Alerts.alert.sendAlertWithItem(title, desc, -1, item);
 			Main.l("Alert \"%s\" was shown (mode:item)", this);
-		} else if (this.mode == Mode.IMAGE) {
+		} else if (this.mode == Mode.INTERNAL_IMAGE) {
 			image = setCustomImage(image);
+			Alerts.alert.sendAlertWithImage(title, desc, -1, image);
+			Main.l("Alert \"%s\" was shown (mode:image)", this);
+		} else if (this.mode == Mode.EXTERNAL_IMAGE) {
+			image = CustomTexture.get(this.id, this.template.split("\\s*\\|\\|\\|\\s*")[2]);
 			Alerts.alert.sendAlertWithImage(title, desc, -1, image);
 			Main.l("Alert \"%s\" was shown (mode:image)", this);
 		} else {
@@ -207,16 +209,29 @@ public class CustomAlert {
 	}
 	
 	/**
+	 * Indexes certain custom icons, like zombie
+	 * skulls, to be used in custom alerts. Runs on start.
+	 */
+	public static void setIcons() {
+		icons.put("(steve)*.*(skull|head)", new ItemStack(Items.skull, 1, 3));
+		icons.put("(skeleton|skele).*(skull|head)", new ItemStack(Items.skull, 1, 0));
+		icons.put("wither.*(skull|head)", new ItemStack(Items.skull, 1, 1));
+		icons.put("zombie.*(skull|head)", new ItemStack(Items.skull, 1, 2));
+		icons.put("creeper.*(skull|head)", new ItemStack(Items.skull, 1, 3));
+	}
+	
+	/**
 	 * The mode of the image dictates how the alert will be displayed.
 	 * <br>
 	 * <br>
-	 * ITEM uses in-game items as the thumbnail on the alert.
-	 * <br>
-	 * IMAGE uses images: either included in the mod as a resource,
-	 * or downloaded using a CustomTexture.
+	 * <code>ITEM</code> uses in-game items as the thumbnail on the alert.<br>
+	 * <code>INTERNAL_IMAGE</code> uses an image that is packaged in the mod
+	 * and doesn't require downloading.<br>
+	 * <code>EXTERNAL_IMAGE</code> uses an image that is on an external source
+	 * and needs to be downloaded.
 	 */
 	public enum Mode {
-		ITEM, IMAGE, NONE;
+		ITEM, INTERNAL_IMAGE, EXTERNAL_IMAGE, NONE;
 		
 		/**
 		 * Determines which mode the alert is using. This is determined using
@@ -225,9 +240,9 @@ public class CustomAlert {
 		 * <br>
 		 * Ex ITEM construct: bread
 		 * <br>
-		 * Ex IMAGE construct: image.png (must end with .png)
+		 * Ex INTERNAL_IMAGE construct: image.png (must end with .png)
 		 * <br>
-		 * Ex IMAGE construct: http://google.com/image.png (must start with http:)
+		 * Ex EXTERNAL_IMAGE construct: http://google.com/image.png (must start with http:)
 		 * 
 		 * @param alert The alert to evaluate.
 		 * @return The MODE of the alert.
@@ -236,11 +251,11 @@ public class CustomAlert {
 			if (alert.template.split("\\s*\\|\\|\\|\\s*")[2].endsWith(".png") && !alert.template.split("\\s*\\|\\|\\|\\s*")[2].startsWith("http:")) {
 				alert.item  = null;
 				alert.image = new ResourceLocation("mcpvp", "textures/" + alert.template.split("\\s*\\|\\|\\|\\s*")[2]);
-				return IMAGE;
+				return INTERNAL_IMAGE;
 			} else if (alert.template.split("\\s*\\|\\|\\|\\s*")[2].startsWith("http:")) {
 				alert.item  = null;
-				alert.image = CustomTexture.get(alert.id, alert.template.split("\\s*\\|\\|\\|\\s*")[2]);
-				return IMAGE;
+				//alert.image = CustomTexture.get(alert.id, alert.template.split("\\s*\\|\\|\\|\\s*")[2]);
+				return EXTERNAL_IMAGE;
 			} else {
 				alert.item  = getItem(alert.template.split("\\s*\\|\\|\\|\\s*")[2]);
 				alert.image = null;
