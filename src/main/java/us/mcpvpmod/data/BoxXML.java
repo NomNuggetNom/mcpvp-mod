@@ -92,6 +92,7 @@ public class BoxXML {
 		new InfoBox(ConfigCTFHUD.renderPre, Server.CTF, StateCTF.PRE, false);
 		new InfoBox(ConfigCTFHUD.renderPlay, Server.CTF,StateCTF.PLAY, false);
 		new InfoBox(ConfigCTFHUD.renderPost, Server.CTF,StateCTF.POST, false);
+		new InfoBox(ConfigCTFHUD.renderPost, Server.CTF,StateCTF.END, false);
 		
 		// Create blocks for HG
 		new InfoBox(ConfigHGHUD.render, Server.HG, StateHG.PRE, false);
