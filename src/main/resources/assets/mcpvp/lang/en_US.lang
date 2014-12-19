@@ -215,6 +215,8 @@ config.chat.title=Chat Controls
 config.chat.tooltip=Options for chat.
 config.chat.movePMs=Send PMs to Second Chat
 config.chat.movePMs.tooltip=This controls whether or not private messages are automatically sent to the second chat.
+config.chat.fixLinks=Fix Links
+config.chat.fixLinks.tooltip=If this is set to true, links will be re-activated in chat, allowing you to click on them.
 config.chat.filterWords=Filtered Words
 config.chat.filterWords.tooltip=These words will appear censored in chat. E.g. "toot" -> "****"
 config.chat.removeWords=Remove Messages Containing
@@ -223,6 +225,8 @@ config.chat.splitChat=Send to Second Chat
 config.chat.splitChat.tooltip=If a message has a word in this list, it will be sent to the second chat window.
 config.chat.movekNoHax=Move Detection Messages
 config.chat.movekNoHax.tooltip=Moves hack detection messages to the second chat.
+config.chat.alignChat=Align Second Chat
+config.chat.alignChat=Changes how the second chat is aligned.
 
 <!-- FRIENDS -->
 config.friends.title=Friends List
@@ -592,3 +596,9 @@ sab.config.select.autoSab.tooltip=If enabled, you will automatically /sab when y
 <!-- RENDER -->
 hs.config.hud.render=Render
 hs.config.hud.render.tootlip=Information to be rendered while playing Headshot.
+
+<!-- ===---=== -->
+<!-- = SMASH = -->
+<!-- ==----=== -->
+smash.config.select.autoSelect=Auto Select
+smash.config.select.autoSelect.tooltip=If this is true, the kit specified below will be automatically selected when you join.
