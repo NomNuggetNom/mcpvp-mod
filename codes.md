@@ -99,6 +99,15 @@ To use a variable, place it in curly brackets, like so: `{variable}`.
 - `detective` - The name of the detective.
 - `winner` - The winner of the game.
 
+**Smash**
+- `kit` - Your selected kit/character/class.
+- `character` - Your selected kit/character/class.
+- `class` - Your selected kit/character/class.
+- `map` - The map/stage you're currently on.
+- `stage`  - The map/stage you're currently on.
+- `score` - Your score.
+- `time` - The time remaining in the game.
+
 ###Color Codes
 - `black` -> ` 0`
 - `dark_blue` -> ` 1`
