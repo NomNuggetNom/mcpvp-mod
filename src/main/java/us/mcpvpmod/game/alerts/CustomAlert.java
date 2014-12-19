@@ -137,7 +137,10 @@ public class CustomAlert {
 		String imgName = resource.getResourcePath().replaceAll("textures/(.*)\\.png", "$1");
 		
 		if (imgName.equals("flag")) {
-			return new ResourceLocation("mcpvp", ("textures/flag_" + Vars.get("team").replaceAll("\u00A7.", "").toLowerCase(Locale.ENGLISH) + "_" + Vars.get("action") + ".png").replaceAll(" ", "_"));
+			return new ResourceLocation("mcpvp", 
+					("textures/flag_" + 
+			Vars.get("team").replaceAll("\u00A7.", "").toLowerCase(Locale.ENGLISH) + "_" + Vars.get("action") + ".png")
+			.replaceAll(" ", "_"));
 		}
 		return resource;
 	}
@@ -160,7 +163,7 @@ public class CustomAlert {
 		} else if (GameData.getItemRegistry().containsKey(name)) {
 			return new ItemStack(GameData.getItemRegistry().getObject(name));
 		} else {
-			if (name.matches("(?i)(class|kit|character).*(.*icon)*"))
+			if (name.matches("(?i)(class|kit|character).*(icon)*"))
 				return AllKits.getIcon(Vars.get("kit"));
 			else if (name.matches("(?i)sab.*winner"))
 				return InfoSab.getWinnerIcon();
@@ -192,7 +195,7 @@ public class CustomAlert {
 		}
 
 		if (this.mode == Mode.ITEM) {
-			item = setCustomItem(item);
+			item = setCustomItem(getItem(this.template.split("\\s*\\|\\|\\|\\s*")[2]));
 			Alerts.alert.sendAlertWithItem(newTitle, newDesc, -1, item);
 			Main.l("Alert \"%s\" was shown (mode:item)", this);
 		} else if (this.mode == Mode.INTERNAL_IMAGE) {
@@ -257,7 +260,7 @@ public class CustomAlert {
 				//alert.image = CustomTexture.get(alert.id, alert.template.split("\\s*\\|\\|\\|\\s*")[2]);
 				return EXTERNAL_IMAGE;
 			} else {
-				alert.item  = getItem(alert.template.split("\\s*\\|\\|\\|\\s*")[2]);
+				//alert.item  = getItem(alert.template.split("\\s*\\|\\|\\|\\s*")[2]);
 				alert.image = null;
 				return ITEM;
 			}
