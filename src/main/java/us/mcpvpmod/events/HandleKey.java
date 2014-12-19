@@ -2,7 +2,7 @@ package us.mcpvpmod.events;
 
 import net.minecraft.client.gui.GuiScreen;
 import us.mcpvpmod.Main;
-import us.mcpvpmod.gui.screen.GuiMoveBlocks;
+import us.mcpvpmod.gui.screen.GuiEditHUD;
 import us.mcpvpmod.gui.tutorial.Tutorial;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.IModGuiFactory;
@@ -25,7 +25,7 @@ public class HandleKey {
         	openConfigScreen();
         
         if (Main.moveBlocks.isPressed())
-        	Main.mc.displayGuiScreen(new GuiMoveBlocks(Main.mc.currentScreen));
+        	Main.mc.displayGuiScreen(new GuiEditHUD(Main.mc.currentScreen));
         
         if (Main.showHelp.isPressed())
         	Tutorial.build();

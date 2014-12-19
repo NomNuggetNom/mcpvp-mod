@@ -37,6 +37,7 @@ import us.mcpvpmod.config.smash.ConfigSmashHUD;
 import us.mcpvpmod.config.smash.ConfigSmashSelect;
 import us.mcpvpmod.data.Data;
 import us.mcpvpmod.game.FriendsList;
+import us.mcpvpmod.game.alerts.CustomAlert;
 import us.mcpvpmod.game.core.CoreBuild;
 import us.mcpvpmod.game.core.CoreCTF;
 import us.mcpvpmod.game.core.CoreHG;
@@ -85,6 +86,8 @@ public class Sync {
 		Format.setCodes();
 		// Clear the friends list.
 		FriendsList.clearList();
+		// Add custom icons for custom alerts.
+		CustomAlert.setIcons();
 		
 	}
 	

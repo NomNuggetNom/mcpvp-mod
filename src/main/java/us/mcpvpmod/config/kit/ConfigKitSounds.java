@@ -53,7 +53,7 @@ public class ConfigKitSounds extends DummyModContainer {
         Property prop;
         
     	prop = config.get(CATEGORY_GENERAL, "soundKit", "mob.villager.yes");
-        prop.setLanguageKey("kit.config.sounds.kit");
+        prop.setLanguageKey("ctf.config.sounds.class");
     	propOrder.add(prop.getName());
     	new SoundAlert("kit.kit", prop.getString(), Server.KIT);
 
