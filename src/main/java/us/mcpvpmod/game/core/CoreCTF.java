@@ -8,7 +8,7 @@ import us.mcpvpmod.triggers.ChatTrigger;
 public class CoreCTF {
 
 	public static final String 
-		RE_ACTION = "\u00A7.(.*)\u00A7. (stole|dropped|picked up|recovered|captured) \u00A7.(.*)\u00A7.'s flag!.*",
+		RE_ACTION = "\u00A7.(.*)\u00A7. (stole|dropped|picked up|recovered|captured) (\u00A7..*)\u00A7.'s flag!.*",
 		RE_STOLE = "(\u00A7..*)\u00A7. stole (\u00A7..*)\u00A7.'s flag!.*",
 		RE_DROPPED = "(\u00A7..*)\u00A7. dropped (\u00A7..*)\u00A7.'s flag!.*",
 		RE_PICKEDUP = "(\u00A7..*)\u00A7. picked up (\u00A7..*)\u00A7.'s flag!.*",
@@ -28,7 +28,6 @@ public class CoreCTF {
 	public static void setup() {
 		
 		new ChatTracker(RE_CLASS, Server.CTF,
-				new String[]{"ctf:kit", "$1"},
 				new String[]{"ctf:class", "$1"});
 		
 		new ChatTracker(RE_RESTORE, Server.CTF,
@@ -60,7 +59,9 @@ public class CoreCTF {
 				new String[]{"ctf:winner", "$1"});
 		
 		new ChatTracker(RE_ACTION, Server.CTF,
-				new String[]{"action", "$2"});
+				new String[]{"player", "$1"},
+				new String[]{"action", "$2"},
+				new String[]{"team", "$3"});
 		
 		new ChatTrigger(RE_STOLE, "flag.stolen", Server.CTF, 
 				new String[]{"player", "$1"}, 
