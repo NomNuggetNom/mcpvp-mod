@@ -19,6 +19,7 @@ public class ConfigChat extends DummyModContainer {
     public static String[] sendToSecondChat = new String[1000];
     public static boolean movekNoHax;
     public static boolean movePMs;
+    public static boolean fixLinks;
     public static String align;
     
     public static String fileName = "mcpvp_chat.cfg";
@@ -57,6 +58,11 @@ public class ConfigChat extends DummyModContainer {
     	prop = config.get(CATEGORY_GENERAL, "movePMs", true);
         prop.setLanguageKey("config.chat.movePMs");
     	movePMs = prop.getBoolean();
+    	propOrder.add(prop.getName());
+    	
+    	prop = config.get(CATEGORY_GENERAL, "fixLinks", true);
+        prop.setLanguageKey("config.chat.fixLinks");
+    	fixLinks = prop.getBoolean();
     	propOrder.add(prop.getName());
         
     	prop = config.get(CATEGORY_GENERAL, "filterWords", new String[]{"toot", "shucks"});

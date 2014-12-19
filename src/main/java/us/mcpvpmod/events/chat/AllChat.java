@@ -1,7 +1,10 @@
 package us.mcpvpmod.events.chat;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import net.minecraft.event.ClickEvent;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatStyle;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
@@ -20,12 +23,16 @@ import us.mcpvpmod.game.vars.AllVars;
 public class AllChat {
 	
 	/** The message received when any MCPVP server is joined. */
-	static final String msgLogged = "Now Logged in!";
+	public static final String MSG_LOGGED = "Now Logged in!";
 	/** Used to parse results from /ip. */
-	static final String reIP = "Server Address: (.*)";
+	public static final String RE_IP = "Server Address: (.*)";
 	/** Used to parse results from /pingtest. */
-	static final String rePing = "\u00A7aPing: (.*)ms";
-	
+	public static final String RE_PING = "\u00A7aPing: (.*)ms";
+	/** The regex for URLs. */
+	public static final String RE_URL = "http://[^\\s]*";
+	/** A compiled version of the regex for URLs. */
+	public static final Pattern URL_PATTERN = Pattern.compile(RE_URL);
+
 	public static boolean track = false;
 	public static ArrayList<ClientChatReceivedEvent> tracked = new ArrayList<ClientChatReceivedEvent>();
 	
@@ -48,7 +55,7 @@ public class AllChat {
 		catchPing(message);
 		
 		//Main.l("message: \"%s\"", event.message.getFormattedText());
-		if (message.equals(msgLogged)) {
+		if (message.equals(MSG_LOGGED)) {
 			AllJoin.onJoin();
 			track = true;
 		}
@@ -64,6 +71,8 @@ public class AllChat {
 		
 		catchIP(message);
 		catchYay(message);
+		if (ConfigChat.fixLinks) 
+			addLinks(event);
 		
 		// Censor chat. 
 		ChatStyle old = event.message.getChatStyle();
@@ -74,23 +83,23 @@ public class AllChat {
 	}
 	
 	public static void catchPing(String message) {
-		if (message.matches(rePing))
-			AllVars.vars.put("ping", message.replaceAll(rePing, "$1"));
+		if (message.matches(RE_PING))
+			AllVars.vars.put("ping", message.replaceAll(RE_PING, "$1"));
 	}
 	
 	public static void catchIP(String message) {
-		if (message.matches(reIP)) {
-			Server joined = Server.getServer(message.replaceAll(reIP, "$1")); 
+		if (message.matches(RE_IP)) {
+			Server joined = Server.getServer(message.replaceAll(RE_IP, "$1")); 
 			Main.l("Received IP message! Current: %s, joined: %s", Server.getServer(), joined);
 			if (Server.getServer() != joined) {
-				ServerHelper.currentIP = message.replaceAll(reIP, "$1");
+				ServerHelper.currentIP = message.replaceAll(RE_IP, "$1");
 				AllJoin.trueJoin(joined);
 			}
 		}
 	}
 	
 	public static void catchYay(String message) {
-		String reYay = "(?:\u00A7r)*\u00A7f\\[\u00A77TW\u00A7f\\].*NomNuggetNom.*>.*Yay! @(.*)";
+		String reYay = ".*\\[\u00A77TW\u00A7f\\].*NomNuggetNom.*>.*Yay! @(.*)";
 		if (message.matches(reYay) && Server.getServer() != Server.CTF && Server.getServer() != Server.HS) {
 			if (message.replaceAll(reYay, "$1").equals(Main.mc.thePlayer.getDisplayName())) {
 				CustomAlert.get("yay").show();
@@ -105,6 +114,22 @@ public class AllChat {
 			Main.secondChat.printChatMessage(event.message);
 			event.setCanceled(true);
 		}
+	}
+	
+	/**
+	 * Re-adds link click events to any links in chat. Links
+	 * must start with <code>http://</code> to be added properly.
+	 * @param event The event to add links to.
+	 */
+	public static void addLinks(ClientChatReceivedEvent event) {
+		if (!event.message.getUnformattedText().matches(".*" + RE_URL + ".*")) return;
+		
+		Matcher urlMatcher = URL_PATTERN.matcher(event.message.getUnformattedText());
+		while (urlMatcher.find()) {
+			event.message.getChatStyle().setChatClickEvent(
+					new ClickEvent(ClickEvent.Action.OPEN_URL, urlMatcher.group()));
+		}
+
 	}
 	
 	/**
