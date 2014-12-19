@@ -16,7 +16,7 @@ public class ChatTracker {
 	public String pattern;
 	/** The key that the value will be registered to. Used in replacing the custom alert constructs, e.g. {player}. */
 	public String key;
-	/** The value of the variable to assign in Vars. Usually a position in the message ($1, $2, etc), which will be evaluated. */
+	/** The value of the variable to assign in Vars. Usually a position in the message ($1, $2, etc). */
 	public String value;
 	/** The server to track on. Used to prevent conflicts. */
 	public Server server;
