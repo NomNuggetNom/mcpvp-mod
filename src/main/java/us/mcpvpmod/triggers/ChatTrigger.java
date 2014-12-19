@@ -15,79 +15,45 @@ public class ChatTrigger {
 	
 	/** The pattern of the message to match. Checked every time a message comes in. */
 	public String pattern;
-	/** The ID of the alert to trigger. */
+	/** The ID of the alerts to trigger. */
 	public String alertID;
-	/** The key that the value will be registered to. Used in replacing the custom alert constructs, e.g. {player}. */
-	public String key;
-	/** The value of the variable to use in the alert. Usually a position in the message ($1, $2, etc). " */
-	public String value;
+	/** An array of each given key and value pair. */
+	public ArrayList<String[]> pairs = new ArrayList<String[]>();
 	/** The server to trigger this alert on. Used to prevent conflicts. */
 	public Server server;
 	
 	/**
-	 * An alert that is triggered when a message is received that results in the setting of a variable.
-	 * @param message The message to match.
-	 * @param alertID The ID of the alert to trigger, specified in the relevant config class.
+	 * An alert that is triggered when a message is received. Triggers both a 
+	 * {@link CustomAlert} and a {@link SoundAlert} with the given {@link #alertID}.
+	 * @param message The message to match. When this message is received (determined
+	 * by calling {@link #check}, the trigger process is started and the alerts are usually shown.
+	 * @param alertID The ID of the alerts to trigger, specified in the relevant config class.
 	 * @param server The server to trigger this alert on. Used to prevent conflicts.
 	 * @param regex Can be any of the following:
 	 * <ul>
-	 * <li>Pair of a position in the regular expression to match, and the variable name to assign the value, e.g. {"killer", "$1"} assigns the variable "killer" to the value of "$1" in the message.
-	 * <li>A custom value and the variable name, e.g. {"killer", "noob"} assigns the variable "killer" to the value of "noob."
-	 * <li>OR a variable name and a new value in the alert,e.g. {"sab:winner", "winner"} assigns the value of "winner" to the variable "sab:winner"
-	 * </ul>
-	 */
-	public ChatTrigger(String message, String alertID, Server server, String[] regex) {
-		this.pattern = message;
-		this.alertID = alertID;
-		this.server  = server;
-		if (regex == null) {
-			this.value	= null;
-			this.key	= null;
-		} else {
-			this.key	= regex[0];
-			this.value	= regex[1];
-		}
-		triggers.add(this);
-	}
-	
-	/**
-	 * An alert that is triggered when a message is received that results in the setting of a variable.
-	 * @param message The message to match.
-	 * @param alertID The ID of the alert to trigger, specified in the relevant config class.
-	 * @param server The server to trigger this alert on. Used to prevent conflicts.
-	 * @param regex Can be any of the following:
-	 * <ul>
-	 * <li>Pair of a position in the regular expression to match, and the variable name to assign the value, e.g. {"killer", "$1"} assigns the variable "killer" to the value of "$1" in the message.
-	 * <li>A custom value and the variable name, e.g. {"killer", "noob"} assigns the variable "killer" to the value of "noob."
-	 * <li>OR a variable name and a new value in the alert,e.g. {"sab:winner", "winner"} assigns the value of "winner" to the variable "sab:winner"
+	 * <li>Pair of a position in the regular expression to match, and the variable name to assign the value, 
+	 * e.g. {"killer", "$1"} assigns the variable "killer" to the value of "$1" in the message. Because
+	 * <code>replace</code> is called, a valid second argument could also be <code>Hello,$1world!</code>
+	 * or similar.
+	 * <li>A custom value and the variable name, e.g. {"killer", "noob"} assigns the variable "killer" 
+	 * to the value of "noob."
+	 * <li>A variable name and a new value in the alert,e.g. {"sab:winner", "winner"} assigns 
+	 * the value of "winner" to the variable "sab:winner"
 	 * </ul>
 	 */
 	public ChatTrigger(String message, String alertID, Server server, String[]... regex) {
-		for (String[] string : regex) {
-			new ChatTrigger(message, alertID, server, string);
-		}
-	}
-	
-	/**
-	 * An alert that is triggered when a message is received, and does not set any special variables.
-	 * @param message The message to match.
-	 * @param alertID The ID of the alert to trigger, specified in the relevant config class.
-	 * @param server The server to trigger this alert on. Used to prevent conflicts.
-	 */
-	public ChatTrigger(String message, String alertID, Server server) {
 		this.pattern = message;
 		this.alertID = alertID;
 		this.server  = server;
-		this.value = null;
-		this.key = null;
+		for (String[] re : regex)
+			this.pairs.add(re);
 		triggers.add(this);
 	}
-	
+
 	@Override
 	public String toString() {
 		return "ChatTrigger [pattern=" + pattern + ", alertID=" + alertID
-				+ ", key=" + key + ", value=" + value + ", server=" + server
-				+ "]";
+				+ ", pairs=" + pairs + ", server=" + server + "]";
 	}
 
 	/**
@@ -98,36 +64,54 @@ public class ChatTrigger {
 		if (Server.getServer() != this.server) return;
 		
 		if (message.matches(this.pattern)) {
-
+			prep(message);
+			
+			// Trigger the specified CustomAlert, if it isn't null.
+			if (CustomAlert.get(this.alertID) != null) {
+				Main.l("Message \"%s\" resulted in CustomAlert \"%s\" via ChatTrigger \"%s\"", 
+						message, this.alertID, this);
+				CustomAlert.get(this.alertID).show();
+			}
+			
+			// Trigger the specified SoundAlert, if it isn't null.
+			if (SoundAlert.get(this.alertID) != null) {
+				Main.l("Message \"%s\" resulted in SoundAlert \"%s\" via ChatTrigger \"%s\"", 
+						message, this.alertID, this);
+				SoundAlert.get(this.alertID).play();
+			}
+		}
+	}
+	
+	/**
+	 * Prepares for sending the alerts: cycles through all the
+	 * given keys and pairs and evaluates their value in the message that
+	 * triggered the alert.
+	 * @param message The message to evaluate for variable values.
+	 */
+	public void prep(String message) {
+		
+		// Cycle through each regex entry.
+		for (String[] regex : this.pairs) {
+			String key = regex[0];
+			String value = regex[1];
+			
 			// Some ChatTriggers have no value or key, instead using a raw pre-determined value.
 			// Rarely used, but avoids errors.
 			if (value != null && key != null) {
 				
-				// Most ChatTriggers use a regex pattern and assign a value to the first index in the expression.
-				if (value.startsWith("$")) {
+				// Most ChatTriggers use a regex position string.
+				if (value.contains("$")) {
 					String val = message.replaceAll(pattern, value);
 					Vars.put(key, val);
 					
 				// Some ChatTriggers reference a variable (e.g. "hg:feast.x") in order to relay information
 				// from other messages or sources (such as ChatTrackers).
 				} else if (value.matches("\\w+:.+")){
-					Main.l("Unusual ChatTrigger: %s", this);
 					Vars.put(key, Vars.get(value));
 				}
 			}
-			
-			// Trigger the specified CustomAlert, if it isn't null.
-			if (CustomAlert.get(this.alertID) != null) {
-				Main.l("Message \"%s\" resulted in CustomAlert \"%s\" via ChatTrigger \"%s\"", message, this.alertID, this);
-				CustomAlert.get(this.alertID).show();
-			}
-			
-			// Trigger the specified SoundAlert, if it isn't null.
-			if (SoundAlert.get(this.alertID) != null) {
-				Main.l("Message \"%s\" resulted in SoundAlert \"%s\" via ChatTrigger \"%s\"", message, this.alertID, this);
-				SoundAlert.get(this.alertID).play();
-			}
 		}
+		
 	}
 	
 
@@ -136,9 +120,8 @@ public class ChatTrigger {
 	 * @param message The message to check.
 	 */
 	public static void checkAll(String message) {
-		for (ChatTrigger trigger : triggers) {
+		for (ChatTrigger trigger : triggers)
 			trigger.check(message);
-		}
 	}
 	
 }
