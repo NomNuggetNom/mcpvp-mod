@@ -2,7 +2,7 @@ package us.mcpvpmod.events.tick;
 
 import us.mcpvpmod.game.checks.CheckTimeMaze;
 import us.mcpvpmod.game.vars.VarsMaze;
-import cpw.mods.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public class TickMaze {
 

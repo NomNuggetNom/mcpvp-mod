@@ -1,5 +1,7 @@
 package us.mcpvpmod.gui.screen;
 
+import java.io.IOException;
+
 import us.mcpvpmod.Main;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiMultiplayer;
@@ -30,6 +32,10 @@ public class GuiMultiplayerMCPVP extends GuiMultiplayer {
     protected void actionPerformed(GuiButton button) {
 		if (button.equals(mcpvpButton)) 
 			Main.mc.displayGuiScreen(new GuiServerList(this));
-		super.actionPerformed(button);
+		try {
+			super.actionPerformed(button);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

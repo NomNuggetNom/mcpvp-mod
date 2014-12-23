@@ -1,11 +1,9 @@
 package us.mcpvpmod.util;
 
-import java.util.Collection;
-import java.util.Iterator;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.scoreboard.Score;
 import net.minecraft.scoreboard.ScoreObjective;
+import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.scoreboard.Scoreboard;
 import us.mcpvpmod.Main;
 
@@ -21,12 +19,8 @@ public class BoardHelper {
 		Scoreboard board = Minecraft.getMinecraft().theWorld.getScoreboard();
 		if (board != null) {
 	        
-	        // Null check. For some reason, sometimes _a(0) works and other times _a(1) works.
-	        if (board.func_96539_a(0) != null) {
-				return board.func_96539_a(0).getDisplayName();
-	        } else if (board.func_96539_a(1) != null) {
-	        	return board.func_96539_a(1).getDisplayName();
-	        }
+	        if (board.getObjectiveInDisplaySlot(1) != null)
+				return board.getObjectiveInDisplaySlot(1).getDisplayName();
 		}
 		return "";
 	}
@@ -38,16 +32,23 @@ public class BoardHelper {
 		if (Main.mc.theWorld == null) return -1;
 		if (Main.mc.theWorld.getScoreboard() == null) return -1;
 		Scoreboard board = Minecraft.getMinecraft().theWorld.getScoreboard();
-		
+
 		if (board != null) {
 			// Grab the main objective of the scoreboard.
-	        ScoreObjective objective = board.func_96539_a(1);
+	        //ScoreObjective objective = board.getObjectiveInDisplaySlot(1);
 	        
 	        // Collection of all scoreboard teams.
-	        Collection teams = board.func_96534_i(objective);
+	        //Collection teams = board.getTeamNames();
+			
+			//ScorePlayerTeam team = board.getTeam(displayName);
+			
+			for (Object objective : board.getScoreObjectives()) {
+				if (board.entityHasObjective(displayName, (ScoreObjective)objective ))
+					return board.getValueFromObjective(displayName, (ScoreObjective)objective).getScorePoints();
+			}
 	        
 	        // Iterate through the collection of entries.
-	        Iterator iterator = teams.iterator();
+	        /*
 	        while (iterator.hasNext()) {
 		        Score score = (Score)iterator.next();
 		        
@@ -60,20 +61,16 @@ public class BoardHelper {
 			        return score.getScorePoints();
 		        }
 	        }
+	        */
 		}
 	    return -1;
 	}
 	
-	public static Collection getTeams() {
-		if (Main.mc.theWorld == null) return null;
-		if (Main.mc.theWorld.getScoreboard() == null) return null;
-		Scoreboard board = Minecraft.getMinecraft().theWorld.getScoreboard();
-		
-		return board.func_96534_i(board.func_96539_a(1));
-	}
-	
 	public static boolean hasTeams() {
-		return (getTeams() != null);
+		return Main.mc.theWorld != null 
+				&& Main.mc.theWorld.getScoreboard() != null 
+				&& Main.mc.theWorld.getScoreboard().getTeams() != null 
+				&& Main.mc.theWorld.getScoreboard().getTeams().size() != 0;
 	}
 	
 	/**

@@ -3,7 +3,7 @@ package us.mcpvpmod.game.kits;
 import java.util.HashMap;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.entity.EntityClientPlayerMP;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -57,7 +57,7 @@ public class KitSmash {
 		return new ItemStack(this.icon);
 	}
 	
-	public static KitSmash getKit(EntityClientPlayerMP player) {
+	public static KitSmash getKit(EntityPlayer player) {
 		for (KitSmash kit : kits.values()) {
 			if (player == null 
 					|| player.inventory == null 

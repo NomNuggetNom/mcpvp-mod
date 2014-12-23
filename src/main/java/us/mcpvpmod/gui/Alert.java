@@ -12,6 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
+import us.mcpvpmod.Main;
 import us.mcpvpmod.config.all.ConfigAlerts;
 
 public class Alert extends GuiAchievement
@@ -26,7 +27,7 @@ public class Alert extends GuiAchievement
     private double scale = 0.5;
     private String title;
     private String description;
-    private RenderItem item = new RenderItem();
+    private RenderItem item = Main.mc.getRenderItem();
     private ItemStack itemStack;
     private long field_146263_l;
     private boolean field_146262_n;
@@ -46,14 +47,14 @@ public class Alert extends GuiAchievement
         this.field_146263_l = Minecraft.getSystemTime();
         this.field_146262_n = false;
         this.itemStack = givenItem;
-        this.item = new RenderItem();
+        this.item = Main.mc.getRenderItem();
         this.image = null;
         
         if (givenWidth == -1) {
-        	if (mc.fontRenderer.getStringWidth(title) > mc.fontRenderer.getStringWidth(description)) {
-        		this.alertWidth = 30 + mc.fontRenderer.getStringWidth(title) + 5;
+        	if (Main.fr.getStringWidth(title) > Main.fr.getStringWidth(description)) {
+        		this.alertWidth = 30 + Main.fr.getStringWidth(title) + 5;
         	} else {
-        		this.alertWidth = 30 + mc.fontRenderer.getStringWidth(description) + 5;
+        		this.alertWidth = 30 + Main.fr.getStringWidth(description) + 5;
         	}
         }
     }
@@ -69,10 +70,10 @@ public class Alert extends GuiAchievement
         this.image = givenImage;
         
         if (givenWidth == -1) {
-        	if (mc.fontRenderer.getStringWidth(title) > mc.fontRenderer.getStringWidth(description)) {
-        		this.alertWidth = 30 + mc.fontRenderer.getStringWidth(title) + 5;
+        	if (Main.fr.getStringWidth(title) > Main.fr.getStringWidth(description)) {
+        		this.alertWidth = 30 + Main.fr.getStringWidth(title) + 5;
         	} else {
-        		this.alertWidth = 30 + mc.fontRenderer.getStringWidth(description) + 5;
+        		this.alertWidth = 30 + Main.fr.getStringWidth(description) + 5;
         	}
         }
     }
@@ -175,22 +176,22 @@ public class Alert extends GuiAchievement
 
             if (this.field_146262_n)
             {
-                this.mc.fontRenderer.drawSplitString(this.description, var5 + 30, var6 + 7, 120, -1);
+            	Main.fr.drawSplitString(this.description, var5 + 30, var6 + 7, 120, -1);
             }
             else
             {
-            	this.mc.fontRenderer.drawString(this.title, var5 + 30, var6 + 7, -256); // -256
+            	Main.fr.drawString(this.title, var5 + 30, var6 + 7, -256); // -256
                 /*
             	if (ConfigNotifications.replaceColors) {
-                    this.mc.fontRenderer.drawString(this.description.
+                    this.Main.fr.drawString(this.description.
                     		replaceAll("\u00A76", "\u00A77").replaceAll("\u00A75", "\u00A77")
                     		.replaceAll("\u00A7b", "\u00A77").replaceAll("\u00A7d" , "\u00A77")
                     		, var5 + 30, var6 + 18, -1);
             	} else {
-                    this.mc.fontRenderer.drawString(this.description, var5 + 30, var6 + 18, -1); //-1
+                    this.Main.fr.drawString(this.description, var5 + 30, var6 + 18, -1); //-1
             	}
             	*/
-                this.mc.fontRenderer.drawString(this.description, var5 + 30, var6 + 18, -1); //-1
+                Main.fr.drawString(this.description, var5 + 30, var6 + 18, -1); //-1
             }
 
             if (this.itemStack != null && this.item != null) {
@@ -202,11 +203,14 @@ public class Alert extends GuiAchievement
                 GL11.glEnable(GL11.GL_DEPTH_TEST);
                 
                 RenderHelper.enableGUIStandardItemLighting();
+                Draw.item(this.itemStack, var5 + 8, var6 + 8);
+                /*
                 this.item.renderItemAndEffectIntoGUI(
-                		mc.fontRenderer,
+                		Main.fr,
                 		mc.getTextureManager(),
                 		this.itemStack,
                 		var5 + 8, var6 + 8);
+                		*/
                 RenderHelper.disableStandardItemLighting();  
                 
             } else if (this.image != null) {

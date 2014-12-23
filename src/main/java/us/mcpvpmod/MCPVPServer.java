@@ -9,7 +9,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.multiplayer.GuiConnecting;
 import net.minecraft.client.multiplayer.ServerData;
 import us.mcpvpmod.data.Data;
-import cpw.mods.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.client.FMLClientHandler;
 
 public class MCPVPServer {
 
@@ -170,7 +170,7 @@ public class MCPVPServer {
 		return null;
 	}
 	public static void connect(String ip, GuiScreen gui, Minecraft mc) {
-		mc.setServer(ip, 25565);
+		//mc.setServer(ip, 25565);
 		mc.setServerData(new ServerData("MCPVP", ip));
 		mc.displayGuiScreen(new GuiConnecting(gui, mc, ip, 25565));
 	}

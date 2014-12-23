@@ -110,14 +110,6 @@ public class InfoCTF {
 		return null;
 	}
 	
-	public static String getIP() {
-		return Main.mc.func_147104_D().serverIP;
-	}
-	
-	public static int getPing() {
-		return (int) Main.mc.func_147104_D().pingToServer;
-	}
-	
 	public static String getMap() {
 		return currentMap;
 	}

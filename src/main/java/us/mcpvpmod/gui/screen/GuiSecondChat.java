@@ -22,11 +22,12 @@ import org.lwjgl.opengl.GL11;
 
 import us.mcpvpmod.Main;
 import us.mcpvpmod.config.all.ConfigChat;
+import us.mcpvpmod.gui.Draw;
 
 import com.google.common.collect.Lists;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class GuiSecondChat extends Gui
@@ -133,21 +134,21 @@ public class GuiSecondChat extends Gui
                                 		res.getScaledHeight() + j2 - 56 + 8 + yOff,  //y2
                                 		i2 / 4 << 24);
                             
-                                String chatString = chatline.func_151461_a().getFormattedText();
+                                String chatString = chatline.getChatComponent().getFormattedText();
                                 
                                 // Draw the chatString.
                                 if (ConfigChat.align.startsWith("R")) {
-	                                this.mc.fontRenderer.drawStringWithShadow(
+                                	Draw.string(
 	                                		chatString, 
-	                                		x - this.mc.fontRenderer.getStringWidth(chatString) - 4 + xOff, 
+	                                		x - Main.fr.getStringWidth(chatString) - 4 + xOff, 
 	                                		res.getScaledHeight() + j2 - 56 + yOff,
-	                                		16777215 + (i2 << 24));
+	                                		16777215 + (i2 << 24), true);
                                 } else {
-	                                this.mc.fontRenderer.drawStringWithShadow(
+                                	Draw.string(
 	                                		chatString, 
 	                                		x - func_146228_f() + xOff - 2, 
 	                                		res.getScaledHeight() + j2 - 56 + yOff,
-	                                		16777215 + (i2 << 24));
+	                                		16777215 + (i2 << 24), true);
                                 }
                                 
                                 GL11.glDisable(GL11.GL_ALPHA_TEST);
@@ -158,7 +159,7 @@ public class GuiSecondChat extends Gui
 
                 if (chatOpen)
                 {
-                    j1 = this.mc.fontRenderer.FONT_HEIGHT;
+                    j1 = Main.fr.FONT_HEIGHT;
                     GL11.glTranslatef(-3.0F, 0.0F, 0.0F);
                     int k2 = l * j1 + l;
                     k1 = k * j1 + k;
@@ -225,21 +226,21 @@ public class GuiSecondChat extends Gui
         {
             IChatComponent ichatcomponent1 = (IChatComponent)arraylist1.get(i1);
             String s = this.func_146235_b(ichatcomponent1.getChatStyle().getFormattingCode() + ichatcomponent1.getUnformattedTextForChat());
-            int j1 = this.mc.fontRenderer.getStringWidth(s);
+            int j1 = Main.fr.getStringWidth(s);
             ChatComponentText chatcomponenttext1 = new ChatComponentText(s);
             chatcomponenttext1.setChatStyle(ichatcomponent1.getChatStyle().createShallowCopy());
             boolean flag1 = false;
 
             if (l + j1 > k)
             {
-                String s1 = this.mc.fontRenderer.trimStringToWidth(s, k - l, false);
+                String s1 = Main.fr.trimStringToWidth(s, k - l, false);
                 String s2 = s1.length() < s.length() ? s.substring(s1.length()) : null;
 
                 if (s2 != null && s2.length() > 0)
                 {
                     int k1 = s1.lastIndexOf(" ");
 
-                    if (k1 >= 0 && this.mc.fontRenderer.getStringWidth(s.substring(0, k1)) > 0)
+                    if (k1 >= 0 && Main.fr.getStringWidth(s.substring(0, k1)) > 0)
                     {
                         s1 = s.substring(0, k1);
                         s2 = s.substring(k1);
@@ -250,7 +251,7 @@ public class GuiSecondChat extends Gui
                     arraylist1.add(i1 + 1, chatcomponenttext2);
                 }
 
-                j1 = this.mc.fontRenderer.getStringWidth(s1);
+                j1 = Main.fr.getStringWidth(s1);
                 chatcomponenttext1 = new ChatComponentText(s1);
                 chatcomponenttext1.setChatStyle(ichatcomponent1.getChatStyle().createShallowCopy());
                 flag1 = true;
@@ -357,7 +358,7 @@ public class GuiSecondChat extends Gui
         for (int i = this.chatLines.size() - 1; i >= 0; --i)
         {
             ChatLine chatline = (ChatLine)this.chatLines.get(i);
-            this.func_146237_a(chatline.func_151461_a(), chatline.getChatLineID(), chatline.getUpdatedCounter(), true);
+            this.func_146237_a(chatline.getChatComponent(), chatline.getChatLineID(), chatline.getUpdatedCounter(), true);
         }
     }
 
@@ -428,15 +429,15 @@ public class GuiSecondChat extends Gui
 		{
 		    int j1 = Math.min(this.func_146232_i(), this.field_146253_i.size());
 
-		    if (l <= MathHelper.floor_float(this.func_146228_f() / this.func_146244_h()) && i1 < this.mc.fontRenderer.FONT_HEIGHT * j1 + j1)
+		    if (l <= MathHelper.floor_float(this.func_146228_f() / this.func_146244_h()) && i1 < Main.fr.FONT_HEIGHT * j1 + j1)
 		    {
-		        int k1 = i1 / this.mc.fontRenderer.FONT_HEIGHT + this.field_146250_j;
+		        int k1 = i1 / Main.fr.FONT_HEIGHT + this.field_146250_j;
 
 		        if (k1 >= 0 && k1 < this.field_146253_i.size())
 		        {
 		            ChatLine chatline = (ChatLine)this.field_146253_i.get(k1);
 		            int l1 = 0;
-		            Iterator iterator = chatline.func_151461_a().iterator();
+		            Iterator iterator = chatline.getChatComponent().iterator();
 
 		            while (iterator.hasNext())
 		            {
@@ -444,7 +445,7 @@ public class GuiSecondChat extends Gui
 
 		                if (ichatcomponent instanceof ChatComponentText)
 		                {
-		                    l1 += this.mc.fontRenderer.getStringWidth(this.func_146235_b(((ChatComponentText)ichatcomponent).getChatComponentText_TextValue()));
+		                    l1 += Main.fr.getStringWidth(this.func_146235_b(((ChatComponentText)ichatcomponent).getChatComponentText_TextValue()));
 
 		                    if (l1 > l)
 		                    {

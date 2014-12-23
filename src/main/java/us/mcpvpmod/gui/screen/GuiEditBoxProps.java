@@ -89,7 +89,7 @@ public class GuiEditBoxProps extends GuiListExtended {
 
 			ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
 			
-			this.field = new GuiTextField(Main.mc.fontRenderer, 
+			this.field = new GuiTextField(1000, Main.fr, 
 					res.getScaledWidth()/2 - res.getScaledWidth()/4, //x
 					0, // y 
 					res.getScaledWidth()/2, //w 
@@ -116,7 +116,7 @@ public class GuiEditBoxProps extends GuiListExtended {
         }
         
         @Override
-        public void drawEntry(int slotIndex, int x, int y, int listWidth, int slotHeight, Tessellator tessellator, int mouseX, int mouseY, boolean isSelected) {
+        public void drawEntry(int slotIndex, int x, int y, int listWidth, int slotHeight, int mouseX, int mouseY, boolean isSelected) {
         	if (slotIndex != parent.entries.size() - 1) {
         		this.field.setVisible(true);
         		this.field.yPosition = y + 1;
@@ -158,6 +158,14 @@ public class GuiEditBoxProps extends GuiListExtended {
         public void updateCursorCounter() {
         	this.field.updateCursorCounter();
 		}
+
+		@Override
+		public void setSelected(int p_178011_1_, int p_178011_2_,
+				int p_178011_3_) {
+			// TODO Auto-generated method stub
+			
+		}
+
 	}
 
 

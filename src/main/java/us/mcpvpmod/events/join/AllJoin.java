@@ -19,8 +19,6 @@ import us.mcpvpmod.game.vars.VarsRaid;
 import us.mcpvpmod.game.vars.VarsSab;
 import us.mcpvpmod.game.vars.VarsSmash;
 import us.mcpvpmod.gui.tutorial.Tutorial;
-import us.mcpvpmod.html.HTMLStats;
-import us.mcpvpmod.radio.MCPVPRadio;
 
 public class AllJoin {
 
@@ -48,8 +46,8 @@ public class AllJoin {
 		// Clear the second chat.
 		Main.secondChat.clearChatMessages();
 		
-		new HTMLStats("NomNuggetNom").establish(true);
-		MCPVPRadio.establish();
+		//new HTMLStats("NomNuggetNom").establish(true);
+		//MCPVPRadio.establish();
 	}
 	
 	/**

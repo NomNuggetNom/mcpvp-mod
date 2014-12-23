@@ -15,7 +15,7 @@ import us.mcpvpmod.game.kits.AllKits;
 import us.mcpvpmod.game.vars.Vars;
 import us.mcpvpmod.gui.CustomTexture;
 import us.mcpvpmod.util.Format;
-import cpw.mods.fml.common.registry.GameData;
+import net.minecraftforge.fml.common.registry.GameData;
 
 public class CustomAlert {
 	

@@ -1,6 +1,5 @@
 package us.mcpvpmod.game.info;
 
-import net.minecraft.util.Direction;
 import net.minecraft.util.MathHelper;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.ServerHelper;
@@ -56,7 +55,9 @@ public class AllInfo {
 	public static String getDirection() {
 		if (Main.mc.thePlayer == null) return "";
 		int i4 = MathHelper.floor_double(Main.mc.thePlayer.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
-		return Direction.directions[i4];
+		// TODO: fix
+		return "0";
+		//return Direction.directions[i4];
 	}
 	
 	/**
@@ -93,7 +94,7 @@ public class AllInfo {
 	public static int getPlayersOnline() {
 		if (!ServerHelper.isMultiplayer()) return -1;
 		if (Main.mc.thePlayer == null) return -1;
-		return Main.mc.thePlayer.sendQueue.playerInfoList.size();
+		return ServerHelper.getPlayersFromWorld().size();
 	}
 	
 }

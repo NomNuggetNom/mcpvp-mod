@@ -2,7 +2,7 @@ package us.mcpvpmod.gui;
 
 import java.util.ArrayList;
 
-import net.minecraft.client.entity.EntityClientPlayerMP;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.item.ItemStack;
 import us.mcpvpmod.Main;
@@ -16,7 +16,7 @@ public class ArmorDisplay extends Selectable {
 
 	public static ArrayList<ItemStack> items = new ArrayList<ItemStack>();
 	
-	public static RenderItem renderItem = new RenderItem();	
+	public static RenderItem renderItem = Main.mc.getRenderItem();
 	public static int x;
 	public static int y;
 	public static String text;
@@ -40,7 +40,7 @@ public class ArmorDisplay extends Selectable {
 	public static void getArmor() {
 		if (Main.mc.thePlayer == null || Main.mc.thePlayer.inventory == null) return;
 		
-		EntityClientPlayerMP player = Main.mc.thePlayer;
+		EntityPlayer player = Main.mc.thePlayer;
 
 		items.clear();
 		if (player.inventory.armorInventory[3] != null) items.add(player.inventory.armorInventory[3]);
@@ -93,9 +93,9 @@ public class ArmorDisplay extends Selectable {
 	
 	public static String getText(ItemStack item) {
 		if (ConfigHUD.armorMode.equals(Format.s("config.hud.armorMode.m.show"))) {
-			return "" + (item.getMaxDamage() - item.getItemDamageForDisplay());
+			return "" + (item.getMaxDamage() - item.getItemDamage());
 		} else if (ConfigHUD.armorMode.equals(Format.s("config.hud.armorMode.m.total"))) {
-			return (item.getMaxDamage() - item.getItemDamageForDisplay()) + "/" + item.getMaxDamage();
+			return (item.getMaxDamage() - item.getItemDamage()) + "/" + item.getMaxDamage();
 		} else {
 			return "";
 		}
@@ -104,8 +104,8 @@ public class ArmorDisplay extends Selectable {
 	public static int getStringWidth() {
 		int max = 0;
 		for (ItemStack item : items) {
-			if (Main.mc.fontRenderer.getStringWidth(getText(item)) > max) {
-				max = Main.mc.fontRenderer.getStringWidth(getText(item));
+			if (Main.fr.getStringWidth(getText(item)) > max) {
+				max = Main.fr.getStringWidth(getText(item));
 			}
 		}
 		return max;

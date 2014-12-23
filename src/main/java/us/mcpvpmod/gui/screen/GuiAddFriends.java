@@ -2,6 +2,7 @@ package us.mcpvpmod.gui.screen;
 
 import static net.minecraftforge.common.config.Configuration.CATEGORY_GENERAL;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -16,7 +17,7 @@ import us.mcpvpmod.util.Format;
 
 public class GuiAddFriends extends GuiScreen {
 	
-	static GuiTextField textField = new GuiTextField(Main.mc.fontRenderer, 200, 200, 100, 20);
+	static GuiTextField textField = new GuiTextField(1000, Main.fr, 200, 200, 100, 20);
 	static GuiButton list1 = new GuiButton(1, 10, 10, Format.s("gui.friends.add") + " " + Format.s("gui.friends.1"));
 	static GuiButton list2 = new GuiButton(1, 10, 10, Format.s("gui.friends.add") + " " + Format.s("gui.friends.2"));
 	static GuiButton list3 = new GuiButton(2, 10, 10, Format.s("gui.friends.add") + " " + Format.s("gui.friends.3"));
@@ -53,7 +54,7 @@ public class GuiAddFriends extends GuiScreen {
 	
 	@Override
 	public void initGui() {
-		textField = new GuiTextField(Main.mc.fontRenderer, this.width/2 - this.width/2/2, this.height/2 - 75, this.width/2, 20);
+		textField = new GuiTextField(1000, Main.fr, this.width/2 - this.width/2/2, this.height/2 - 75, this.width/2, 20);
 		textField.setFocused(true);
 		
 		String text = add ? Format.s("gui.friends.add") : Format.s("gui.friends.remove");
@@ -87,12 +88,20 @@ public class GuiAddFriends extends GuiScreen {
 				&& p_73864_2_ >= this.textField.yPosition && p_73864_2_ < this.textField.yPosition + this.textField.height) {
 			this.textField.mouseClicked(p_73864_1_, p_73864_2_, p_73864_3_);
 		}
-		super.mouseClicked(p_73864_1_, p_73864_2_, p_73864_3_);
+		try {
+			super.mouseClicked(p_73864_1_, p_73864_2_, p_73864_3_);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}	
 	
 	@Override
 	protected void keyTyped(char p_73869_1_, int p_73869_2_) {
-		super.keyTyped(p_73869_1_, p_73869_2_);
+		try {
+			super.keyTyped(p_73869_1_, p_73869_2_);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		this.textField.textboxKeyTyped(p_73869_1_, p_73869_2_);
 		if (this.textField.getText().matches("\\w+")) {
 			

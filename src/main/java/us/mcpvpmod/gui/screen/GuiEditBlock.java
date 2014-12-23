@@ -2,6 +2,7 @@ package us.mcpvpmod.gui.screen;
 
 import static net.minecraftforge.common.config.Configuration.CATEGORY_GENERAL;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -158,7 +159,7 @@ public class GuiEditBlock extends GuiScreen {
 		for (String s : this.info) {
 			
 			// Define the text field to add.
-			GuiTextField field = new GuiTextField(Main.mc.fontRenderer, 
+			GuiTextField field = new GuiTextField(1000, Main.fr, 
 					res.getScaledWidth()/2 - res.getScaledWidth()/4, 
 					y, 
 					res.getScaledWidth()/2, 
@@ -266,12 +267,20 @@ public class GuiEditBlock extends GuiScreen {
 			if (!field.equals(selected))
 				field.setFocused(false);
 		}
-		super.mouseClicked(clickX, clickY, clicked);
+		try {
+			super.mouseClicked(clickX, clickY, clicked);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}	
 	
 	@Override
 	protected void keyTyped(char key, int keyNum) {
-		super.keyTyped(key, keyNum);
+		try {
+			super.keyTyped(key, keyNum);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		for (GuiTextField field : this.textFields) {
 			if (field.isFocused())
 				field.textboxKeyTyped(key, keyNum);

@@ -2,10 +2,10 @@ package us.mcpvpmod.game;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiPlayerInfo;
+import net.minecraft.entity.player.EntityPlayer;
+//import net.minecraft.client.gui.GuiPlayerInfo;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.ServerHelper;
 import us.mcpvpmod.config.all.ConfigFriends;
@@ -161,11 +161,10 @@ public class FriendsList {
 	
 	public static ArrayList<String> onlineInList(ArrayList<String> playersToFind) {
 		ArrayList<String> returnPlayers = new ArrayList<String>();
-		List<GuiPlayerInfo> onlinePlayers = mc.thePlayer.sendQueue.playerInfoList;
 		
 		// Cycle through every player that's online.
-		for (GuiPlayerInfo player : onlinePlayers) {
-			String playerName = player.name.replaceAll("\u00A7.", "");
+		for (EntityPlayer player : ServerHelper.getPlayersFromWorld()) {
+			String playerName = Format.name(player.getDisplayNameString());
 			
 			// Cycle through all the players in the specified list (friends).
 			for (String friend : playersToFind) {
@@ -183,10 +182,9 @@ public class FriendsList {
 	
 	public static ArrayList<String> onlineInListOnTeam(ArrayList checkPlayers, TeamCTF team) {
 		ArrayList<String> returnPlayers = new ArrayList<String>();
-		List<GuiPlayerInfo> onlinePlayers = mc.thePlayer.sendQueue.playerInfoList;
-		
-		for (GuiPlayerInfo player : onlinePlayers) {
-			String playerName = player.name.replaceAll("\u00A7.", "");
+
+		for (EntityPlayer player : ServerHelper.getPlayersFromWorld()) {
+			String playerName = Format.name(player.getDisplayNameString());
 			if (checkPlayers.contains(playerName) && TeamCTF.getTeam(playerName).equals(team)) {
 				returnPlayers.add(playerName);
 			}

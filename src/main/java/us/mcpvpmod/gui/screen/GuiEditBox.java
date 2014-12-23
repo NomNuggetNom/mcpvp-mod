@@ -1,5 +1,6 @@
 package us.mcpvpmod.gui.screen;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import net.minecraft.client.gui.GuiButton;
@@ -45,7 +46,7 @@ public class GuiEditBox extends GuiScreen {
 
 	@Override
 	public void initGui() {
-        titleField = new GuiTextField(Main.mc.fontRenderer, 
+        titleField = new GuiTextField(1000, Main.fr, 
 				width/2 - width/4, //x
 				20, // y 
 				width/2, //w 
@@ -68,7 +69,11 @@ public class GuiEditBox extends GuiScreen {
 		}
 		
 		this.list.actionPerformed(button);
-		super.actionPerformed(button);
+		try {
+			super.actionPerformed(button);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
@@ -77,7 +82,7 @@ public class GuiEditBox extends GuiScreen {
 		save.xPosition = parent.width/2 - 100;
 		this.list.drawScreen(p_73863_1_, p_73863_2_, p_73863_3_);
 		this.titleField.drawTextBox();
-		Draw.string(this.titleText, width/2 - Main.mc.fontRenderer.getStringWidth(this.titleText)/2, 7, 0xFFFFFF, true);
+		Draw.string(this.titleText, width/2 - Main.fr.getStringWidth(this.titleText)/2, 7, 0xFFFFFF, true);
 		super.drawScreen(p_73863_1_, p_73863_2_, p_73863_3_);
 	}
 	
@@ -85,7 +90,11 @@ public class GuiEditBox extends GuiScreen {
 	protected void mouseClicked(int clickX, int clickY, int mouseEvent) {
 		this.titleField.mouseClicked(clickX, clickY, mouseEvent);
 		this.list.mouseClicked(clickX, clickY, mouseEvent);
-		super.mouseClicked(clickX, clickY, mouseEvent);
+		try {
+			super.mouseClicked(clickX, clickY, mouseEvent);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}	
 	
     @Override
@@ -94,7 +103,11 @@ public class GuiEditBox extends GuiScreen {
     		InfoBox.save();
     	this.titleField.textboxKeyTyped(eventChar, eventKey);
     	this.list.keyTyped(eventChar, eventKey);
-    	super.keyTyped(eventChar, eventKey);
+    	try {
+			super.keyTyped(eventChar, eventKey);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
     
     @Override

@@ -3,23 +3,21 @@ package us.mcpvpmod;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityClientPlayerMP;
+//import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.entity.EntityOtherPlayerMP;
-import net.minecraft.client.gui.GuiPlayerInfo;
+//import net.minecraft.client.gui.GuiPlayerInfo;
 import net.minecraft.entity.player.EntityPlayer;
 import us.mcpvpmod.data.Data;
 
 public class ServerHelper {
 
-	public static Minecraft mc = Minecraft.getMinecraft();
 	public static String currentIP = "";
 	
 	/**
 	 * @return If we're on a server.
 	 */
 	public static boolean isMultiplayer() {
-		return (!mc.isSingleplayer() && mc.func_147104_D() != null);
+		return (!Main.mc.isSingleplayer() && Main.mc.getCurrentServerData() != null);
 	}
 	
 	/**
@@ -54,15 +52,18 @@ public class ServerHelper {
 	 * @return A list of all player's GuiInfo. The list of players
 	 * is identical to what is showing in tab.
 	 */
+	/*
 	public static List<GuiPlayerInfo> getPlayersGui() {
 		if (Main.mc.thePlayer == null) return new ArrayList<GuiPlayerInfo>();
-		return Main.mc.thePlayer.sendQueue.playerInfoList;
+		return Main.mc.thePlayer.sendQueue.func_175106_d();
 	}
+	*/
 	
 	/**
 	 * @return A list of all player's as EntityPlayers. The list of players
 	 * is identical to what is showing in tab.
 	 */
+	/*
 	public static List<EntityPlayer> getPlayers() {
 		List<EntityPlayer> players = new ArrayList<EntityPlayer>();
 		for (GuiPlayerInfo player : getPlayersGui()) {
@@ -70,7 +71,7 @@ public class ServerHelper {
 		}
 		return players;
 	}
-	
+	*/
 	/**
 	 * @return A list of all player's as EntityPlayers. Relies on the
 	 * list of playerEntities in the current world.
@@ -78,8 +79,8 @@ public class ServerHelper {
 	public static List<EntityPlayer> getPlayersFromWorld() {
 		ArrayList<EntityPlayer> players = new ArrayList<EntityPlayer>();
 		for (Object player : Main.mc.theWorld.playerEntities) {
-			if (player instanceof EntityClientPlayerMP) continue;
-			players.add(Main.mc.theWorld.getPlayerEntityByName(((EntityOtherPlayerMP)player).getDisplayName().replaceAll("\u00A7.(.*)", "$1")));
+			if (player instanceof EntityPlayer) continue;
+			players.add(Main.mc.theWorld.getPlayerEntityByName(((EntityOtherPlayerMP)player).getName().replaceAll("\u00A7.(.*)", "$1")));
 		}
 		return players;
 	}
@@ -88,13 +89,15 @@ public class ServerHelper {
 		ArrayList<String> players = new ArrayList<String>();
 		for (EntityPlayer player : getPlayersFromWorld()) {
 			if (player == null || player.getDisplayName() == null) continue;
-			players.add(player.getDisplayName().replaceAll("\u00A7.", ""));
+			players.add(player.getName().replaceAll("\u00A7.", ""));
 		}
 		return players;
 	}
 	
 	public static String getColorPrefix(String playerName) {
+		return "";
 		
+		/*
 		// Cycle through each online player.
 		for (GuiPlayerInfo player : getPlayersGui()) {
 			
@@ -110,6 +113,7 @@ public class ServerHelper {
 			}
 		}
 		return " ";
+		*/
 	}
 
 }

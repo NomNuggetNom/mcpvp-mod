@@ -2,7 +2,7 @@ package us.mcpvpmod.game.info;
 
 import java.util.ArrayList;
 
-import net.minecraft.client.gui.GuiPlayerInfo;
+import net.minecraft.entity.player.EntityPlayer;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.ServerHelper;
 import us.mcpvpmod.game.team.AllTeam;
@@ -24,18 +24,18 @@ public class InfoMaze {
 	
 	public static String getTeamColor() {
 		if (Main.mc.thePlayer == null) return "";
-		return AllTeam.getTeamOfPlayer(Main.mc.thePlayer.getDisplayName()).toString();
+		return AllTeam.getTeamOfPlayer(Main.mc.thePlayer.getName()).toString();
 	}
 	
 	public static int getTeamsLeft() {
 		ArrayList<String> found = new ArrayList<String>();
-		for (GuiPlayerInfo info : ServerHelper.getPlayersGui()) {
-			String prefix = ServerHelper.getColorPrefix(info.name);
+		for (EntityPlayer info : ServerHelper.getPlayersFromWorld()) {
+			String prefix = ServerHelper.getColorPrefix(info.getDisplayNameString());
 			if (AllTeam.getTeamFromColor(prefix.charAt(0)) == AllTeam.NONE 
 					|| AllTeam.getTeamFromColor(prefix.charAt(0)) == AllTeam.GRAY)
 				continue;
-			if (!found.contains(ServerHelper.getColorPrefix(info.name))) {
-				found.add(ServerHelper.getColorPrefix(info.name));
+			if (!found.contains(ServerHelper.getColorPrefix(info.getDisplayNameString()))) {
+				found.add(ServerHelper.getColorPrefix(info.getDisplayNameString()));
 			}
 		}
 		return found.size();

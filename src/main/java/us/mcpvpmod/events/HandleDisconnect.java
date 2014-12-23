@@ -1,7 +1,7 @@
 package us.mcpvpmod.events;
 
 import us.mcpvpmod.ServerHelper;
-import cpw.mods.fml.common.network.FMLNetworkEvent.ClientDisconnectionFromServerEvent;
+import net.minecraftforge.fml.common.network.FMLNetworkEvent.ClientDisconnectionFromServerEvent;
 
 public class HandleDisconnect {
 	

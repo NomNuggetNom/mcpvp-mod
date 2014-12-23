@@ -10,9 +10,9 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.game.alerts.SoundAlert;
-import cpw.mods.fml.common.DummyModContainer;
-import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.common.Loader;
+import net.minecraftforge.fml.common.DummyModContainer;
+import net.minecraftforge.fml.common.FMLLog;
+import net.minecraftforge.fml.common.Loader;
 
 public class ConfigRaidSounds extends DummyModContainer {
 

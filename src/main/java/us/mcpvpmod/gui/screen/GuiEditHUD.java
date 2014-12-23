@@ -2,6 +2,7 @@ package us.mcpvpmod.gui.screen;
 
 import static net.minecraftforge.common.config.Configuration.CATEGORY_GENERAL;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -51,7 +52,11 @@ public class GuiEditHUD extends GuiScreen {
 		if (Selectable.clicked(x, y) != null)
 			Selectable.clicked(x, y).click();
 		
-		super.mouseClicked(x, y, p_73864_3_);
+		try {
+			super.mouseClicked(x, y, p_73864_3_);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -64,7 +69,11 @@ public class GuiEditHUD extends GuiScreen {
 		int moveBy = GuiScreen.isShiftKeyDown() ? 10 : 1;
 		
 		if (Selectable.selected == null) {
-			super.keyTyped(key, keyNum);
+			try {
+				super.keyTyped(key, keyNum);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			return;
 		}
 		
@@ -100,7 +109,11 @@ public class GuiEditHUD extends GuiScreen {
 	
 		}
 		
-		super.keyTyped(key, keyNum);
+		try {
+			super.keyTyped(key, keyNum);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Override

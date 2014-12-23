@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.Tessellator;
 import us.mcpvpmod.MCPVPServer;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.util.Format;
-import cpw.mods.fml.client.GuiScrollingList;
+import net.minecraftforge.fml.client.GuiScrollingList;
 
 public class GuiServerCategory extends GuiScrollingList {
 	
@@ -63,7 +63,7 @@ public class GuiServerCategory extends GuiScrollingList {
 	@Override
 	protected void drawSlot(int i, int var2, int var3, int var4,Tessellator var5) {
 		
-		FontRenderer f = Main.mc.fontRenderer;
+		FontRenderer f = Main.fr;
 		MCPVPServer server = servers.get(i);
 		String ip = server.Server;
 		String motd = server.MOTD.replaceAll("\u00C2", "").replaceAll("\u00AC\u00DF(.)", "$1");
@@ -71,7 +71,7 @@ public class GuiServerCategory extends GuiScrollingList {
 		@SuppressWarnings("unused")
 		String append = "#white#";
 		if (!servers.get(i).IsAcceptingPlayers) append += "#gray#";
-		 
+		
 		f.drawString(f.trimStringToWidth(Format.process("#white#" + ip), 
 				parent.width - 10), 
 				parent.width/2 - f.getStringWidth(Format.process("#white#" + ip))/2, 
@@ -125,7 +125,7 @@ public class GuiServerCategory extends GuiScrollingList {
 	}
 	
 	public static String playerBar(MCPVPServer server) {
-		FontRenderer f = Main.mc.fontRenderer;
+		FontRenderer f = Main.fr;
 		
 		// Calculate the areas of the characters/strings.
 		int ipWidth = f.getStringWidth(server.Server);

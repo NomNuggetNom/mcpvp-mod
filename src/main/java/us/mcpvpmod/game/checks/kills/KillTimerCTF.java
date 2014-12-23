@@ -4,7 +4,7 @@ import us.mcpvpmod.Server;
 import us.mcpvpmod.game.state.StateCTF;
 import us.mcpvpmod.game.vars.Vars;
 import us.mcpvpmod.gui.Medal;
-import cpw.mods.fml.common.FMLLog;
+import net.minecraftforge.fml.common.FMLLog;
 
 public class KillTimerCTF {
 	

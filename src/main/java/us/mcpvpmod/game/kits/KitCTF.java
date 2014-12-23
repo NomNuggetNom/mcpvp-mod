@@ -3,7 +3,7 @@ package us.mcpvpmod.game.kits;
 import java.util.HashMap;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.entity.EntityClientPlayerMP;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -56,7 +56,7 @@ public class KitCTF {
 		return new ItemStack(this.icon);
 	}
 	
-	public static KitCTF getKit(EntityClientPlayerMP player) {
+	public static KitCTF getKit(EntityPlayer player) {
 		
 		for (KitCTF kit : kits.values()) {
 			

@@ -157,7 +157,7 @@ public class ChatCTF {
 		for (Object chatLine : Main.secondChat.getMessages()) {
 			
 			// The chat message in the second chat.
-			String oldMessage = ((ChatLine)chatLine).func_151461_a().getUnformattedText();
+			String oldMessage = ((ChatLine)chatLine).getChatComponent().getUnformattedText();
 			if (oldMessage.equals(event.message.getUnformattedText())) {
 				event.setCanceled(true);
 			}

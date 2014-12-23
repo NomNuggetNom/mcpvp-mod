@@ -20,7 +20,7 @@ public class FriendAlerts {
 		if (!(event.entity instanceof EntityPlayer) || Main.mc.isSingleplayer()) return;
 		
 		// Get the name.
-		String name = ((EntityPlayer) event.entity).getDisplayName();
+		String name = ((EntityPlayer) event.entity).getDisplayNameString();
 
 		// Check some important things.
 		if (!FriendsList.renderPlayers.contains(name)

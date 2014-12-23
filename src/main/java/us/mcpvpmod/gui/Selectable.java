@@ -12,7 +12,7 @@ import us.mcpvpmod.data.Data;
 import us.mcpvpmod.game.state.DummyState;
 import us.mcpvpmod.game.state.State;
 import us.mcpvpmod.gui.screen.GuiEditHUD;
-import cpw.mods.fml.common.FMLLog;
+import net.minecraftforge.fml.common.FMLLog;
 
 public class Selectable {	
 	

@@ -53,7 +53,7 @@ public class GuiChooseMultiplayer extends GuiScreen {
 	public void drawScreen(int p_73863_1_, int p_73863_2_, float p_73863_3_) {
 		this.drawDefaultBackground();
 		Draw.string(Format.s("gui.choose"), 
-				(this.width/2) - (Main.mc.fontRenderer.getStringWidth(Format.s("gui.choose"))/2), 
+				(this.width/2) - (Main.fr.getStringWidth(Format.s("gui.choose"))/2), 
 				this.height/2 - 35, 0xFFFFFF, true);
 		super.drawScreen(p_73863_1_, p_73863_2_, p_73863_3_);
 	}

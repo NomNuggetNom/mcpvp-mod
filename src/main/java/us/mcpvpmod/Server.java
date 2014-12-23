@@ -19,6 +19,7 @@ import us.mcpvpmod.events.chat.ChatMaze;
 import us.mcpvpmod.events.chat.ChatRaid;
 import us.mcpvpmod.events.chat.ChatSab;
 import us.mcpvpmod.events.chat.ChatSmash;
+import us.mcpvpmod.events.join.JoinCTF;
 import us.mcpvpmod.events.join.JoinHG;
 import us.mcpvpmod.events.join.JoinMaze;
 import us.mcpvpmod.events.join.JoinRaid;
@@ -66,7 +67,7 @@ import us.mcpvpmod.game.vars.VarsSab;
 import us.mcpvpmod.game.vars.VarsSmash;
 import us.mcpvpmod.gui.Draw;
 import us.mcpvpmod.util.Format;
-import cpw.mods.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 /**
  * Serves as the enum for all Servers.
@@ -97,6 +98,10 @@ public enum Server {
 	public static Server getServer(String ip) {	
 		if (Main.mc.isSingleplayer()) return NONE;
 
+		for (Server server : Server.values()) 
+			if (ip.endsWith(server.baseIP())) return server;
+		
+		/*
 		if (ip.endsWith("hub.mcpvp.com"))		return HUB;
 		if (ip.endsWith("kitpvp.us"))			return KIT;
 		if (ip.endsWith("mc-maze.com"))			return MAZE;
@@ -108,6 +113,7 @@ public enum Server {
 		if (ip.endsWith("raid.mcpvp.com"))		return RAID;
 		if (ip.endsWith("mc-hg.com"))			return HG;
 		if (ip.endsWith("mcsmash.com"))			return SMASH;
+		*/
 		
 		return NONE;
 	}
@@ -199,7 +205,7 @@ public enum Server {
 		
 		switch(this) {
 		case HG: 	JoinHG.onJoin();
-		case CTF: 	return;
+		case CTF: 	JoinCTF.onJoin();
 		case RAID: 	JoinRaid.onJoin();
 		case KIT: 	return;
 		case MAZE: 	JoinMaze.onJoin();

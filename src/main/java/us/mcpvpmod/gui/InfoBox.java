@@ -344,7 +344,7 @@ public class InfoBox extends Selectable {
 		if (this.info.size() == 0) return;
 		this.centerTitles = true;
 		
-		lineHeight = Main.mc.fontRenderer.FONT_HEIGHT;
+		lineHeight = Main.fr.FONT_HEIGHT;
 		// The location to draw the strings.
 		int y = this.getY();
 
@@ -387,11 +387,11 @@ public class InfoBox extends Selectable {
 	public int calcW() {
 		int max = 0;
 		for (String line : this.info) {
-			int width = Main.mc.fontRenderer.getStringWidth(line) + align(line, ALIGN_AT);
+			int width = Main.fr.getStringWidth(line) + align(line, ALIGN_AT);
 			max = width > max ? width : max;
 		}
 
-		int width = Main.mc.fontRenderer.getStringWidth(Format.process(this.getTitle()));
+		int width = Main.fr.getStringWidth(Format.process(this.getTitle()));
 		max = width > max ? width : max;
 		
 		if (this.padded)
@@ -433,7 +433,7 @@ public class InfoBox extends Selectable {
 		if (!ConfigHUD.alignItems || !line.contains(alignTo)) return 0;
 		
 		int toMiddle = 0;
-		FontRenderer f = Main.mc.fontRenderer;
+		FontRenderer f = Main.fr;
 		// Get the maximum width of any string.
 		for (String string : this.info) {
 			if (!string.contains(alignTo)) continue;
@@ -553,7 +553,7 @@ public class InfoBox extends Selectable {
 		return new Rectangle(this.getX(), 
 				this.getY(), 
 				this.getW(), 
-				Main.mc.fontRenderer.FONT_HEIGHT + PADDING*2);
+				Main.fr.FONT_HEIGHT + PADDING*2);
 	}
 	
 	@Override

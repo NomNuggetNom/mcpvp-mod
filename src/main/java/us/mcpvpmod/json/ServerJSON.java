@@ -17,7 +17,7 @@ import us.mcpvpmod.util.Format;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import cpw.mods.fml.common.FMLLog;
+import net.minecraftforge.fml.common.FMLLog;
 
 public class ServerJSON extends TimerTask {
 

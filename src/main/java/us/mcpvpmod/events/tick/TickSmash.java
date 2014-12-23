@@ -3,7 +3,7 @@ package us.mcpvpmod.events.tick;
 import us.mcpvpmod.game.state.StateSmash;
 import us.mcpvpmod.game.vars.VarsSmash;
 import us.mcpvpmod.util.BoardHelper;
-import cpw.mods.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public class TickSmash {
 

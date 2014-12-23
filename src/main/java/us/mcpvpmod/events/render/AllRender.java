@@ -13,6 +13,7 @@ import us.mcpvpmod.ServerHelper;
 import us.mcpvpmod.config.all.ConfigHUD;
 import us.mcpvpmod.data.Data;
 import us.mcpvpmod.gui.CustomTextureAsync;
+import us.mcpvpmod.gui.Draw;
 import us.mcpvpmod.gui.InfoBox;
 import us.mcpvpmod.gui.PotionDisplay;
 import us.mcpvpmod.gui.Selectable;
@@ -27,7 +28,8 @@ import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 public class AllRender {
 	
 	public static void onRender(RenderGameOverlayEvent event) {
-		
+		if (event.type == RenderGameOverlayEvent.ElementType.TEXT)
+			Draw.rect(5, 5, 50, 50, 0, 0, 0, 0.5);
 		// If this doesn't render during the TEXT phase, other displays will be screwed up due to OpenGL settings.
 		if (!ServerHelper.onMCPVP() || event.type != RenderGameOverlayEvent.ElementType.TEXT) return;
 		
@@ -73,7 +75,7 @@ public class AllRender {
 		Main.end(2);
 	}
 	
-	public static final ResourceLocation STEVE_SKIN = ((AbstractClientPlayer)Main.mc.thePlayer).locationStevePng;
+	//public static final ResourceLocation STEVE_SKIN = ((AbstractClientPlayer)Main.mc.thePlayer).locationStevePng;
 	
 	/**
 	 * Cycles through each player, downloads their skin, and assigns it to the location
@@ -85,6 +87,7 @@ public class AllRender {
 	 */
 	public static void fixSkins() {
 
+		/*
 		// Cycle through every player on the server.
 		for (EntityPlayer player : ServerHelper.getPlayersFromWorld()) {
 			AbstractClientPlayer absP = (AbstractClientPlayer)player;
@@ -104,10 +107,12 @@ public class AllRender {
 			absP.func_152121_a(MinecraftProfileTexture.Type.SKIN, skin);
 			
 		}
+		*/
 	}
 	
 	public static void removeSkins() {
 		
+		/*
 		// All these textures will be removed because they aren't needed.
 		ArrayList<CustomTextureAsync> texturesToRemove = new ArrayList<CustomTextureAsync>();
 		
@@ -139,5 +144,6 @@ public class AllRender {
 			CustomTextureAsync.textures.remove(texture.id);
 		}
 		texturesToRemove.clear();
+		*/
 	}
 }

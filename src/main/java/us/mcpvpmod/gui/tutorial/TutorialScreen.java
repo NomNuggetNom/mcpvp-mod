@@ -15,7 +15,7 @@ public class TutorialScreen extends GuiScreen {
 	String content;
 	TutorialScreen previous;
 	TutorialScreen next;
-	FontRenderer f = Main.mc.fontRenderer;
+	FontRenderer f = Main.fr;
 	
 	public TutorialScreen(String name, String content, TutorialScreen previous, TutorialScreen next) {
 		this.name = name;

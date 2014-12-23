@@ -14,7 +14,7 @@ import us.mcpvpmod.version.MCPVPVersion;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import cpw.mods.fml.common.FMLLog;
+import net.minecraftforge.fml.common.FMLLog;
 
 public class VersionJSON extends TimerTask {
 

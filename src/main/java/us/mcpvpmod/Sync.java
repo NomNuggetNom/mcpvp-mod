@@ -60,7 +60,7 @@ import us.mcpvpmod.game.state.StateSab;
 import us.mcpvpmod.game.state.StateSmash;
 import us.mcpvpmod.gui.InfoBlock;
 import us.mcpvpmod.util.Format;
-import cpw.mods.fml.common.FMLLog;
+import net.minecraftforge.fml.common.FMLLog;
 
 public class Sync {
 

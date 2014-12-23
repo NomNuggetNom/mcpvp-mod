@@ -60,7 +60,7 @@ public class InfoBlock extends Selectable {
 	private int h;
 	
 	static Minecraft mc = Minecraft.getMinecraft();
-	static FontRenderer f = mc.fontRenderer;
+	static FontRenderer f = Main.fr;
 	static ScaledResolution res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
 
 	/**
@@ -188,7 +188,7 @@ public class InfoBlock extends Selectable {
 	 */
 	public void display() {
 		Main.start("ib");
-		f = Main.mc.fontRenderer;
+		f = Main.fr;
 		res = new ScaledResolution(Main.mc, Main.mc.displayWidth, Main.mc.displayHeight);
 		this.update();
 		this.setW();
@@ -393,7 +393,7 @@ public class InfoBlock extends Selectable {
 			if (ConfigHUD.centerTitles) {
 				Draw.centeredString(getTitle(), baseX, baseY-1, w, 0xFFFFFF, true);
 			} else {
-				f.drawStringWithShadow(getTitle(), baseX, baseY-1, 0xFFFFFF);
+				Draw.string(getTitle(), baseX, baseY-1, 0xFFFFFF, true);
 			}
 			// Set our offset. All titles result in an offset of 12.
 			offset = 12;
@@ -401,7 +401,7 @@ public class InfoBlock extends Selectable {
 
 		// Render all other strings under the title.
 		for (String string : display) {
-			f.drawStringWithShadow(string, baseX + align(string), baseY+offset, 0xFFFFFF);
+			Draw.string(string, baseX + align(string), baseY+offset, 0xFFFFFF, true);
 			offset = offset + f.FONT_HEIGHT+2;
 		}
 	}

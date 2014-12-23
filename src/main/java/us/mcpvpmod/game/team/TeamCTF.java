@@ -53,7 +53,7 @@ public enum TeamCTF implements Team {
 	 * Returns the team of the current player.
 	 */
 	public static TeamCTF usersTeam() {
-		return getTeam(Minecraft.getMinecraft().thePlayer.getDisplayName());
+		return getTeam(Minecraft.getMinecraft().thePlayer.getName());
 	}
 	
 	/**

@@ -1,7 +1,7 @@
 package us.mcpvpmod.events.tick;
 
 import us.mcpvpmod.game.checks.kills.KillTimerCTF;
-import cpw.mods.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public class TickCTF {
 

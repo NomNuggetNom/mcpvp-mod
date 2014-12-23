@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 import net.minecraft.client.resources.I18n;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.game.vars.AllVars;
-import cpw.mods.fml.common.FMLLog;
+import net.minecraftforge.fml.common.FMLLog;
 
 public class Format {
 

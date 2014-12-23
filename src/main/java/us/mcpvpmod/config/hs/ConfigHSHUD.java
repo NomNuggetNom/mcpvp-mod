@@ -8,8 +8,8 @@ import java.util.List;
 
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
-import cpw.mods.fml.common.DummyModContainer;
-import cpw.mods.fml.common.Loader;
+import net.minecraftforge.fml.common.DummyModContainer;
+import net.minecraftforge.fml.common.Loader;
 
 public class ConfigHSHUD extends DummyModContainer {
 

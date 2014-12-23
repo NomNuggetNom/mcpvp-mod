@@ -15,7 +15,7 @@ import us.mcpvpmod.Server;
 import us.mcpvpmod.ServerHelper;
 import us.mcpvpmod.data.Data;
 import us.mcpvpmod.util.Format;
-import cpw.mods.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.client.FMLClientHandler;
 
 public class GuiServerList extends GuiScreen {
 

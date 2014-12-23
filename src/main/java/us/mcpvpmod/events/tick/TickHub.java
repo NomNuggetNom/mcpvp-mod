@@ -1,6 +1,6 @@
 package us.mcpvpmod.events.tick;
 
-import cpw.mods.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public class TickHub {
 

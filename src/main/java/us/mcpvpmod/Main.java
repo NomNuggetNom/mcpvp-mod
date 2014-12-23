@@ -3,8 +3,18 @@ package us.mcpvpmod;
 import java.util.Timer;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.FMLLog;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.Mod.Instance;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 import org.lwjgl.input.Keyboard;
 
@@ -27,18 +37,6 @@ import us.mcpvpmod.timers.UpdateTimer;
 import us.mcpvpmod.util.Format;
 import us.mcpvpmod.version.MCPVPVersion;
 
-import com.jadarstudios.developercapes.DevCapes;
-
-import cpw.mods.fml.client.registry.ClientRegistry;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-
 @Mod(modid = Main.MOD_ID, name = Main.MOD_NAME, version = Main.MOD_MC_VERSION + "-" + Main.MOD_VERSION, guiFactory = Main.GUI_FACTORY)
 public class Main {
 	
@@ -49,13 +47,13 @@ public class Main {
 	/** The version of the mod. */
 	public static final String MOD_VERSION = "2.0.5";
 	/** The version of MC that the mod was compiled for. */
-	public static final String MOD_MC_VERSION = "1.7.10";
+	public static final String MOD_MC_VERSION = "1.8";
 	/** The version of Forge that the mod was compiled for. */
-	public static final String MOD_FORGE_VERSION = "10.13.0.1180";
+	public static final String MOD_FORGE_VERSION = "11.14.0.1274";
 	/** A reference to the GuiFactory. Necessary for loading the configuration screen. */
 	public static final String GUI_FACTORY = "us.mcpvpmod.config.GuiFactory";
 	/** Whether or not this mod is a beta release. */
-	public static final boolean IS_BETA = false;
+	public static final boolean IS_BETA = true;
 	
 	@Instance
 	/** Used by Forge to recognize this as a Forge mod. */
@@ -80,6 +78,8 @@ public class Main {
 	public static ArmorDisplay armorDisplay = new ArmorDisplay();
 	/** A reference to the on-screen PotionDisplay. */
 	public static PotionDisplay potionDisplay = new PotionDisplay();
+	/** A reference to the font renderer, purely for ease of access. */
+	public static FontRenderer fr = mc.fontRendererObj;
 	
 	@EventHandler
 	public void preInit(@SuppressWarnings("unused") FMLPreInitializationEvent e) {	
@@ -88,7 +88,7 @@ public class Main {
     	// Register all events in the Events class.
 		// This allows all Events to be caught and processed later on.
 		MinecraftForge.EVENT_BUS.register(new Events());
-		FMLCommonHandler.instance().bus().register(new Events());
+		//FMLCommonHandler.instance().bus().register(new Events());
     	
 		// Create the directories and files for saving data.
 		Data.make();
@@ -114,7 +114,7 @@ public class Main {
         cmdMac = new KeyBinding("key.cmdMac", 29, "MCPVP");
         ClientRegistry.registerKeyBinding(cmdMac);
         
-        DevCapes.getInstance().registerConfig("https://raw.githubusercontent.com/NomNuggetNom/mcpvp-mod/master/capes.json");
+        //DevCapes.getInstance().registerConfig("https://raw.githubusercontent.com/NomNuggetNom/mcpvp-mod/master/capes.json");
 	}
     
 	@EventHandler
@@ -129,6 +129,8 @@ public class Main {
 		timer.scheduleAtFixedRate(new UpdateTimer(), 15*1000, 5*60*1000L);
 		timer.scheduleAtFixedRate(new SimpleTimer(), 0, 1*1000L);
 		timer.scheduleAtFixedRate(new PingTimer(), 0, ConfigMisc.pingFreq*1000L);
+		
+		fr = mc.fontRendererObj;
 	}
 	
 	public static void l(Object string, Object... data) {

@@ -16,7 +16,7 @@ import us.mcpvpmod.util.Format;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import cpw.mods.fml.common.FMLLog;
+import net.minecraftforge.fml.common.FMLLog;
 
 public class StreamJSON extends TimerTask {
 

@@ -1,6 +1,7 @@
 package us.mcpvpmod.gui.tutorial;
 
 import java.awt.Rectangle;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -73,7 +74,11 @@ public class TutScreen2 extends TutorialScreen {
 			InfoBlock.get("#b##u#Move me!").click();
 		}
 		
-		super.mouseClicked(clickX, clickY, p_73864_3_);
+		try {
+			super.mouseClicked(clickX, clickY, p_73864_3_);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
@@ -95,7 +100,11 @@ public class TutScreen2 extends TutorialScreen {
 		// Move down
 		if (keyNum == 208) Selectable.selected.move('d', moveBy, GuiScreen.isCtrlKeyDown());
 		
-		super.keyTyped(key, keyNum);
+		try {
+			super.keyTyped(key, keyNum);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

@@ -10,9 +10,9 @@ import java.util.regex.Pattern;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import us.mcpvpmod.game.alerts.CustomAlert;
-import cpw.mods.fml.common.DummyModContainer;
-import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.common.Loader;
+import net.minecraftforge.fml.common.DummyModContainer;
+import net.minecraftforge.fml.common.FMLLog;
+import net.minecraftforge.fml.common.Loader;
 
 public class ConfigSmashAlerts extends DummyModContainer {
 

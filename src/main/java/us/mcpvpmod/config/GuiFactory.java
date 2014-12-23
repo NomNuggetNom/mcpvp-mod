@@ -18,10 +18,10 @@ import us.mcpvpmod.config.raid.ConfigRaid;
 import us.mcpvpmod.config.sab.ConfigSab;
 import us.mcpvpmod.config.smash.ConfigSmash;
 import us.mcpvpmod.util.Format;
-import cpw.mods.fml.client.IModGuiFactory;
-import cpw.mods.fml.client.config.DummyConfigElement.DummyCategoryElement;
-import cpw.mods.fml.client.config.GuiConfig;
-import cpw.mods.fml.client.config.IConfigElement;
+import net.minecraftforge.fml.client.IModGuiFactory;
+import net.minecraftforge.fml.client.config.DummyConfigElement.DummyCategoryElement;
+import net.minecraftforge.fml.client.config.GuiConfig;
+import net.minecraftforge.fml.client.config.IConfigElement;
 
 public class GuiFactory implements IModGuiFactory {
 

@@ -1,6 +1,7 @@
 package us.mcpvpmod.gui.screen;
 
 import java.awt.Desktop;
+import java.io.IOException;
 import java.net.URI;
 
 import net.minecraft.client.gui.GuiButton;
@@ -29,7 +30,11 @@ public class GuiIngameMCPVP extends GuiIngameMenu {
     protected void actionPerformed(GuiButton button) {
     	if (button.id == 100) Main.mc.displayGuiScreen(new GuiMCPVPOptions());
     	if (button.id == 101) Main.mc.displayGuiScreen(new GuiServerList(this));
-    	super.actionPerformed(button);
+    	try {
+			super.actionPerformed(button);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 	
 	@Override
@@ -72,7 +77,11 @@ public class GuiIngameMCPVP extends GuiIngameMenu {
 			}
 			if (button.id == 6) Main.mc.displayGuiScreen(new GuiAddFriends());
 				//Main.mc.displayGuiScreen(new GuiCodes());
-	    	super.actionPerformed(button);
+	    	try {
+				super.actionPerformed(button);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		@Override

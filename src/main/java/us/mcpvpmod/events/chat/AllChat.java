@@ -46,11 +46,11 @@ public class AllChat {
 
 		AllJoin.showWelcome();
 		IgnoreResult.checkAll(event);
-		
+
 		// Track chat messages so the server
 		// can catch up.
 		if (track) tracked.add(event);
-		
+
 		// Catch ping messages.
 		catchPing(message);
 		
@@ -59,7 +59,7 @@ public class AllChat {
 			AllJoin.onJoin();
 			track = true;
 		}
-		
+
 		// Check for removal of chat.
 		if (removeChat(message)) {
 			event.setCanceled(true);
@@ -68,8 +68,9 @@ public class AllChat {
 			// Returning might screw things up with alerts that need data from removed messages.
 			return;
 		}
-		
+
 		catchIP(message);
+		/*
 		catchYay(message);
 		if (ConfigChat.fixLinks) 
 			addLinks(event);
@@ -80,6 +81,7 @@ public class AllChat {
 		event.message.setChatStyle(old);
 
 		checkSplit(event);
+		*/
 	}
 	
 	public static void catchPing(String message) {
@@ -87,6 +89,12 @@ public class AllChat {
 			AllVars.vars.put("ping", message.replaceAll(RE_PING, "$1"));
 	}
 	
+	/**
+	 * Used to catch IP messages from the server. Critical
+	 * in detecting what server the client is connected to. Responsible
+	 * for firing the {@link AllJoin#trueJoin(Server)} event.
+	 * @param message The message to check for the IP.
+	 */
 	public static void catchIP(String message) {
 		if (message.matches(RE_IP)) {
 			Server joined = Server.getServer(message.replaceAll(RE_IP, "$1")); 
@@ -107,6 +115,12 @@ public class AllChat {
 		}
 	}
 	
+	/**
+	 * Checks if the event should be sent to second chat. If so,
+	 * print the message in the chat and cancel the event.
+	 * @param event The event to check. Will be cancelled if
+	 * it is sent to second chat.
+	 */
 	public static void checkSplit(ClientChatReceivedEvent event) {
 		if (Main.secondChat.shouldSplit(event) 
 				&& !Server.getServer().equals(Server.CTF)

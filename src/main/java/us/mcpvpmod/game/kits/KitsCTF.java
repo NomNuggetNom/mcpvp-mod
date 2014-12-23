@@ -12,7 +12,7 @@ public class KitsCTF {
 	public static void putKits() {
 		
 		ItemStack dwarfSword = new ItemStack(Items.diamond_sword);
-		dwarfSword.addEnchantment(Enchantment.baneOfArthropods, 69);
+		dwarfSword.addEnchantment(Enchantment.fortune, 69);
 		
 		new KitCTF("Archer", 
 				Items.bow, 

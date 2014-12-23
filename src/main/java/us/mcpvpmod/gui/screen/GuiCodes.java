@@ -7,7 +7,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.Tessellator;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.gui.Draw;
-import cpw.mods.fml.client.GuiScrollingList;
+import net.minecraftforge.fml.client.GuiScrollingList;
 
 public class GuiCodes extends GuiScreen {
 	

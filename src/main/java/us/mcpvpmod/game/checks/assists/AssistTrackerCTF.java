@@ -19,7 +19,7 @@ public class AssistTrackerCTF {
 	
 	public static void onAttack(AttackEntityEvent event) {
 		if (!(event.target instanceof EntityPlayer)) return;
-		String name = ((EntityPlayer)event.target).getDisplayName();
+		String name = ((EntityPlayer)event.target).getDisplayNameString();
 
 		// Check for the same team to avoid medic healing causing problems.
 		if (TeamCTF.getTeam(name).equals(TeamCTF.usersTeam())) return;

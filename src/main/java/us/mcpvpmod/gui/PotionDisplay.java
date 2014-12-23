@@ -107,10 +107,10 @@ public class PotionDisplay extends Selectable {
 		   		  
 		   		  if (ConfigHUD.potionPosition.equals(Format.s("config.hud.potionPosition.m.r"))) {
 		   			  if (strength.equals("")) {
-			   			  Draw.string(timeLeft, x + iconSize - Main.mc.fontRenderer.getStringWidth(timeLeft) + 6, y + iconSize/3, 0xFFFFFF, true);
+			   			  Draw.string(timeLeft, x + iconSize - Main.fr.getStringWidth(timeLeft) + 6, y + iconSize/3, 0xFFFFFF, true);
 		   			  } else {
-			   			  Draw.string(timeLeft, x + iconSize - Main.mc.fontRenderer.getStringWidth(timeLeft) + 6, y + iconSize/2, 0xFFFFFF, true);
-					   	  Draw.string(strength, x + iconSize - Main.mc.fontRenderer.getStringWidth(strength) + 6, y, 0xFFFFFF, true);
+			   			  Draw.string(timeLeft, x + iconSize - Main.fr.getStringWidth(timeLeft) + 6, y + iconSize/2, 0xFFFFFF, true);
+					   	  Draw.string(strength, x + iconSize - Main.fr.getStringWidth(strength) + 6, y, 0xFFFFFF, true);
 		   			  }
 		   		  }
 		   		  
@@ -135,12 +135,12 @@ public class PotionDisplay extends Selectable {
 			PotionEffect potioneffect = (PotionEffect) obj;
 			Potion potion = Potion.potionTypes[potioneffect.getPotionID()];
 			String timeLeft = potion.getDurationString(potioneffect);
-			if (Main.mc.fontRenderer.getStringWidth(timeLeft) > max && ConfigHUD.potionMode.equals(Format.s("config.hud.potionMode.m.show")))
-				max = Main.mc.fontRenderer.getStringWidth(timeLeft);
+			if (Main.fr.getStringWidth(timeLeft) > max && ConfigHUD.potionMode.equals(Format.s("config.hud.potionMode.m.show")))
+				max = Main.fr.getStringWidth(timeLeft);
 			if (potioneffect.getAmplifier() == 1 || potioneffect.getAmplifier() == 2 || potioneffect.getAmplifier() == 3) {
-				if (!(max > Main.mc.fontRenderer.getStringWidth(I18n.format("enchantment.level." + (potioneffect.getAmplifier() + 1))))
+				if (!(max > Main.fr.getStringWidth(I18n.format("enchantment.level." + (potioneffect.getAmplifier() + 1))))
 						&& ConfigHUD.potionMode.equals(Format.s("config.hud.potionMode.m.show")))
-					max = Main.mc.fontRenderer.getStringWidth(I18n.format("enchantment.level." + (potioneffect.getAmplifier() + 1))) + 4;
+					max = Main.fr.getStringWidth(I18n.format("enchantment.level." + (potioneffect.getAmplifier() + 1))) + 4;
 			}
 		}
 		

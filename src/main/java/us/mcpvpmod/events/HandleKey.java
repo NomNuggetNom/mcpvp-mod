@@ -4,11 +4,11 @@ import net.minecraft.client.gui.GuiScreen;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.gui.screen.GuiEditHUD;
 import us.mcpvpmod.gui.tutorial.Tutorial;
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.client.IModGuiFactory;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.ModContainer;
-import cpw.mods.fml.common.gameevent.InputEvent;
+import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.client.IModGuiFactory;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.ModContainer;
+import net.minecraftforge.fml.common.gameevent.InputEvent;
 
 public class HandleKey {
 	

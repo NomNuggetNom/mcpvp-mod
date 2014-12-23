@@ -1,12 +1,12 @@
 package us.mcpvpmod.events.tick;
 
 import net.minecraft.client.gui.GuiChat;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.game.alerts.Alerts;
 import us.mcpvpmod.game.vars.AllVars;
 import us.mcpvpmod.gui.Medal;
 import us.mcpvpmod.trackers.BoardTracker;
-import cpw.mods.fml.common.gameevent.TickEvent;
 
 public class AllTick {
 
@@ -32,7 +32,7 @@ public class AllTick {
 			tracker.update();
 			Main.end(2);
 		}
-		
+
 	}
 	
 }
