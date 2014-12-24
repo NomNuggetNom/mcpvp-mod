@@ -3,7 +3,6 @@ package us.mcpvpmod.gui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.gui.achievement.GuiAchievement;
-import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -17,7 +16,7 @@ import us.mcpvpmod.config.all.ConfigAlerts;
 
 public class Alert extends GuiAchievement
 {
-    private static final ResourceLocation background = new ResourceLocation("textures/gui/achievement/achievement_background.png");
+    private static final ResourceLocation BACKGROUND = new ResourceLocation("textures/gui/achievement/achievement_background.png");
     private Minecraft mc;
     private int width;
     private int height;
@@ -30,7 +29,6 @@ public class Alert extends GuiAchievement
     private RenderItem item = Main.mc.getRenderItem();
     private ItemStack itemStack;
     private long field_146263_l;
-    private boolean field_146262_n;
     public static int alertWidth;
     public ResourceLocation image;
 
@@ -45,7 +43,6 @@ public class Alert extends GuiAchievement
         this.title = "\u00A7f" + title;
         this.description = description;
         this.field_146263_l = Minecraft.getSystemTime();
-        this.field_146262_n = false;
         this.itemStack = givenItem;
         this.item = Main.mc.getRenderItem();
         this.image = null;
@@ -64,7 +61,6 @@ public class Alert extends GuiAchievement
         this.title = "\u00A7f" + title;
         this.description = description;
         this.field_146263_l = Minecraft.getSystemTime();
-        this.field_146262_n = false;
         this.itemStack = null;
         this.item = null;
         this.image = givenImage;
@@ -105,6 +101,10 @@ public class Alert extends GuiAchievement
         GL11.glTranslatef(0.0F, 0.0F, -2000.0F);
     }
 
+    /**
+     * The main call that renders alerts. Should be called every
+     * render tick to display proper animations and timing.
+     */
     public void showAlerts()
     {
     	if (!ConfigAlerts.showAlerts) return;
@@ -114,17 +114,9 @@ public class Alert extends GuiAchievement
         {
             double var1 = (Minecraft.getSystemTime() - this.field_146263_l) / 3000.0D;
 
-            if (!this.field_146262_n)
-            {
-                if (var1 < 0.0D || var1 > 1.0D)
-                {
-                    this.field_146263_l = 0L;
-                    return;
-                }
-            }
-            else if (var1 > 0.5D)
-            {
-                var1 = 0.5D;
+            if (var1 < 0.0D || var1 > 1.0D) {
+            	this.field_146263_l = 0L;
+            	return;
             }
 
             this.func_146258_c();
@@ -147,52 +139,34 @@ public class Alert extends GuiAchievement
 
             var3 *= var3;
             var3 *= var3;
-            //int var5 = this.width - 160;
-            int var5 = ((res.getScaledWidth()/2) - (this.alertWidth+10)/2);
-            //int var6 = 0;
-            int var6 = 0 - (int)(var3 * 36.0D);
+            int x = ((res.getScaledWidth()/2) - (this.alertWidth+10)/2);
+            int y = 0 - (int)(var3 * 36.0D);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             GL11.glEnable(GL11.GL_TEXTURE_2D);
-            this.mc.getTextureManager().bindTexture(background);
+            this.mc.getTextureManager().bindTexture(BACKGROUND);
             GL11.glDisable(GL11.GL_LIGHTING);
 
             // Left Edge
-            this.drawTexturedModalRect(var5, var6, 96, 202, 5, 32);
+            this.drawTexturedModalRect(x, y, 96, 202, 5, 32);
             
             // Middle
             if (alertWidth > 100) {
             	for (int i = 0; i < (alertWidth/100); i++) {
-                    this.drawTexturedModalRect(var5+5+i*100, var6, 106, 202, 100, 32);
+                    this.drawTexturedModalRect(x+5+i*100, y, 106, 202, 100, 32);
             	}
             }
             
             // Extra middle
             if (alertWidth % 100 > 0) {
-                this.drawTexturedModalRect(var5+5+alertWidth/100*100, var6, 106, 202, alertWidth % 100, 32);
+                this.drawTexturedModalRect(x+5+alertWidth/100*100, y, 106, 202, alertWidth % 100, 32);
             }
             
             // Right Edge
-            this.drawTexturedModalRect(var5+5+alertWidth, var6, 96+155, 202, 5, 32);
-
-            if (this.field_146262_n)
-            {
-            	Main.fr.drawSplitString(this.description, var5 + 30, var6 + 7, 120, -1);
-            }
-            else
-            {
-            	Main.fr.drawString(this.title, var5 + 30, var6 + 7, -256); // -256
-                /*
-            	if (ConfigNotifications.replaceColors) {
-                    this.Main.fr.drawString(this.description.
-                    		replaceAll("\u00A76", "\u00A77").replaceAll("\u00A75", "\u00A77")
-                    		.replaceAll("\u00A7b", "\u00A77").replaceAll("\u00A7d" , "\u00A77")
-                    		, var5 + 30, var6 + 18, -1);
-            	} else {
-                    this.Main.fr.drawString(this.description, var5 + 30, var6 + 18, -1); //-1
-            	}
-            	*/
-                Main.fr.drawString(this.description, var5 + 30, var6 + 18, -1); //-1
-            }
+            this.drawTexturedModalRect(x+5+alertWidth, y, 96+155, 202, 5, 32);
+            
+            // Draw the title & description.
+            Main.fr.drawString(this.title, x + 30, y + 7, -256); // -256
+            Main.fr.drawString(this.description, x + 30, y + 18, -1); //-1
 
             if (this.itemStack != null && this.item != null) {
                 // Render the item.
@@ -201,27 +175,14 @@ public class Alert extends GuiAchievement
                 GL11.glEnable(GL11.GL_COLOR_MATERIAL);
                 GL11.glDepthMask(true);
                 GL11.glEnable(GL11.GL_DEPTH_TEST);
-                
-                RenderHelper.enableGUIStandardItemLighting();
-                Draw.item(this.itemStack, var5 + 8, var6 + 8);
-                /*
-                this.item.renderItemAndEffectIntoGUI(
-                		Main.fr,
-                		mc.getTextureManager(),
-                		this.itemStack,
-                		var5 + 8, var6 + 8);
-                		*/
-                RenderHelper.disableStandardItemLighting();  
+
+                Draw.item(this.itemStack, x + 8, y + 8);
                 
             } else if (this.image != null) {
             	// Render the image.
-                Draw.texturedRect(this.image, var5+8, var6+8, this.u, this.v, this.imgWidth, this.imgWidth, 32, 32, this.scale);
+                Draw.texturedRect(this.image, x+8, y+8, this.u, this.v, this.imgWidth, this.imgWidth, 32, 32, this.scale, false);
             }
         }
     }
 
-    public void func_146257_b()
-    {
-        this.field_146263_l = 0L;
-    }
 }

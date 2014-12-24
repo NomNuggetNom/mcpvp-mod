@@ -7,18 +7,14 @@ import us.mcpvpmod.game.state.StateCTF;
 import us.mcpvpmod.game.stats.StatsCTF;
 import us.mcpvpmod.game.team.TeamCTF;
 
-/**
- * Variables for CTF.
- * @author NomNuggetNom
- */
-public class VarsCTF {
+public class VarsCTF implements IVarProvider {
 	
-	public static HashMap<String, String> vars = new HashMap<String, String>();
+	private static HashMap<String, String> vars = new HashMap<String, String>();
 	
 	/**
 	 * Called every tick to update information.
 	 */
-	public static void putVars() {
+	public void putVars() {
 		vars.put("kills", Vars.get("ctf:kills"));
 		vars.put("streak", Vars.get("ctf:streak"));
 		vars.put("deaths", Vars.get("ctf:deaths"));
@@ -69,7 +65,7 @@ public class VarsCTF {
 	 * @param string The key of the variable to get.
 	 * @return The value of the stored variable.
 	 */
-	public static String get(String string) {
+	public String get(String string) {
 		if (vars.keySet().contains(string))
 			return vars.get(string);
 		return "";
@@ -78,8 +74,14 @@ public class VarsCTF {
 	/**
 	 * Resets the variable storage by clearing it. 
 	 */
-	public static void reset() {
+	public void reset() {
 		vars.clear();
+	}
+
+	@Override
+	public void put(String string, String level) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

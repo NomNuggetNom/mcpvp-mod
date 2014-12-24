@@ -29,7 +29,7 @@ public class TutScreen3 extends TutorialScreen {
 		setStrings();
 		int y = this.height/7;
 		for (String string : this.strings) {
-			Draw.centeredString(Format.process(string), 0, y, this.width, 0xFFFFFF, true);
+			Draw.centeredString(Format.style(string), 0, y, this.width, 0xFFFFFF, true);
 			y += 11;
 		}
 		//String color = SimpleTimer.value ? "#red#" : "#orange#";

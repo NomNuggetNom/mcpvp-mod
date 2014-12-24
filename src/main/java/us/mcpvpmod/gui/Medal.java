@@ -131,6 +131,6 @@ public class Medal {
 	 * Draws the medal image on-screen.
 	 */
 	public void draw() {
-		Draw.texturedRect(img, x, y, u, v, width, height, width, height, scale);
+		Draw.texturedRect(img, x, y, u, v, width, height, width, height, scale, false);
 	}
 }

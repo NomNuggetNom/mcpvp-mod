@@ -35,27 +35,27 @@ public class FriendsList {
 		if (Server.hasTeams()) {
 
 			for (String player : onlineInListOnTeam(group1, TeamCTF.usersTeam())) {
-				renderPlayers.add(BoardHelper.getTeamColor(player) + dot + " " + reset + Format.process(ConfigFriends.group1Format) + player);
+				renderPlayers.add(BoardHelper.getTeamColor(player) + dot + " " + reset + Format.style(ConfigFriends.group1Format) + player);
 			}
 			
 			for (String player : onlineInListOnTeam(group2, TeamCTF.usersTeam())) {
-				renderPlayers.add(BoardHelper.getTeamColor(player) + dot + " " + reset + Format.process(ConfigFriends.group2Format) + player);
+				renderPlayers.add(BoardHelper.getTeamColor(player) + dot + " " + reset + Format.style(ConfigFriends.group2Format) + player);
 			}
 			
 			for (String player : onlineInListOnTeam(group3, TeamCTF.usersTeam())) {
-				renderPlayers.add(BoardHelper.getTeamColor(player) + dot + " " + reset + Format.process(ConfigFriends.group3Format) + player);
+				renderPlayers.add(BoardHelper.getTeamColor(player) + dot + " " + reset + Format.style(ConfigFriends.group3Format) + player);
 			}
 			
 			for (String player : onlineInListOnTeam(group1, TeamCTF.otherTeam())) {
-				renderPlayers.add(BoardHelper.getTeamColor(player) + dot + " " + reset + Format.process(ConfigFriends.group1Format) + player);
+				renderPlayers.add(BoardHelper.getTeamColor(player) + dot + " " + reset + Format.style(ConfigFriends.group1Format) + player);
 			}
 			
 			for (String player : onlineInListOnTeam(group2, TeamCTF.otherTeam())) {
-				renderPlayers.add(BoardHelper.getTeamColor(player) + dot + " " + reset + Format.process(ConfigFriends.group2Format) + player);
+				renderPlayers.add(BoardHelper.getTeamColor(player) + dot + " " + reset + Format.style(ConfigFriends.group2Format) + player);
 			}
 			
 			for (String player : onlineInListOnTeam(group3, TeamCTF.otherTeam())) {
-				renderPlayers.add(BoardHelper.getTeamColor(player) + dot + " " + reset + Format.process(ConfigFriends.group3Format) + player);
+				renderPlayers.add(BoardHelper.getTeamColor(player) + dot + " " + reset + Format.style(ConfigFriends.group3Format) + player);
 			}
 		} 
 
@@ -69,41 +69,41 @@ public class FriendsList {
 		
 		if (Server.hasTeams()) {
 			for (String player : onlineInListOnTeam(group1, TeamCTF.usersTeam())) {
-				renderPlayers.add(BoardHelper.getTeamColor(player) + dot + " " + reset + Format.process(ConfigFriends.group1Format) + player);
+				renderPlayers.add(BoardHelper.getTeamColor(player) + dot + " " + reset + Format.style(ConfigFriends.group1Format) + player);
 			}
 			
 			for (String player : onlineInListOnTeam(group2, TeamCTF.usersTeam())) {
-				renderPlayers.add(BoardHelper.getTeamColor(player) + dot + " " + reset + Format.process(ConfigFriends.group2Format) + player);
+				renderPlayers.add(BoardHelper.getTeamColor(player) + dot + " " + reset + Format.style(ConfigFriends.group2Format) + player);
 			}
 			
 			for (String player : onlineInListOnTeam(group3, TeamCTF.usersTeam())) {
-				renderPlayers.add(BoardHelper.getTeamColor(player) + dot + " " + reset + Format.process(ConfigFriends.group3Format) + player);
+				renderPlayers.add(BoardHelper.getTeamColor(player) + dot + " " + reset + Format.style(ConfigFriends.group3Format) + player);
 			}
 			
 			for (String player : onlineInListOnTeam(group1, TeamCTF.otherTeam())) {
-				renderPlayers.add(BoardHelper.getTeamColor(player) + dot + " " + reset + Format.process(ConfigFriends.group1Format) + player);
+				renderPlayers.add(BoardHelper.getTeamColor(player) + dot + " " + reset + Format.style(ConfigFriends.group1Format) + player);
 			}
 			
 			for (String player : onlineInListOnTeam(group2, TeamCTF.otherTeam())) {
-				renderPlayers.add(BoardHelper.getTeamColor(player) + dot + " " + reset + Format.process(ConfigFriends.group2Format) + player);
+				renderPlayers.add(BoardHelper.getTeamColor(player) + dot + " " + reset + Format.style(ConfigFriends.group2Format) + player);
 			}
 			
 			for (String player : onlineInListOnTeam(group3, TeamCTF.otherTeam())) {
-				renderPlayers.add(BoardHelper.getTeamColor(player) + dot + " " + reset + Format.process(ConfigFriends.group3Format) + player);
+				renderPlayers.add(BoardHelper.getTeamColor(player) + dot + " " + reset + Format.style(ConfigFriends.group3Format) + player);
 			}
 			
 		} else {
 
 			for (String player : onlineInList(group1)) {
-				renderPlayers.add("\u00A7" + ServerHelper.getColorPrefix(player) + dot + " " + reset + Format.process(ConfigFriends.group1Format) + player);
+				renderPlayers.add("\u00A7" + ServerHelper.getColorPrefix(player) + dot + " " + reset + Format.style(ConfigFriends.group1Format) + player);
 			}
 			
 			for (String player : onlineInList(group2)) {
-				renderPlayers.add("\u00A7" + ServerHelper.getColorPrefix(player) + dot + " " + reset + Format.process(ConfigFriends.group2Format) + player);
+				renderPlayers.add("\u00A7" + ServerHelper.getColorPrefix(player) + dot + " " + reset + Format.style(ConfigFriends.group2Format) + player);
 			}
 			
 			for (String player : onlineInList(group3)) {
-				renderPlayers.add("\u00A7" + ServerHelper.getColorPrefix(player) + dot + " " + reset + Format.process(ConfigFriends.group3Format) + player);
+				renderPlayers.add("\u00A7" + ServerHelper.getColorPrefix(player) + dot + " " + reset + Format.style(ConfigFriends.group3Format) + player);
 			}
 		}
 

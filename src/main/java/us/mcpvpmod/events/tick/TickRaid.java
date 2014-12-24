@@ -1,12 +1,12 @@
 package us.mcpvpmod.events.tick;
 
-import us.mcpvpmod.game.vars.VarsRaid;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import us.mcpvpmod.Server;
 
 public class TickRaid {
 
 	public static void onTick(@SuppressWarnings("unused") TickEvent event) {
-		VarsRaid.putVars();
+		Server.RAID.varProvider.putVars();
 	}
 	
 }

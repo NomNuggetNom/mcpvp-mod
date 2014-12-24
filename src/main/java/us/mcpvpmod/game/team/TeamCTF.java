@@ -75,11 +75,11 @@ public enum TeamCTF implements Team {
 	public String color() {
 		switch (this) {
 		case BLUE:
-			return Format.process("#blue#");
+			return Format.style("#blue#");
 		case RED:
-			return Format.process("#red#");
+			return Format.style("#red#");
 		default:
-			return Format.process("#white#");
+			return Format.style("#white#");
 		}
 	}
 	

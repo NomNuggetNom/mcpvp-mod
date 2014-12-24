@@ -1,9 +1,7 @@
 package us.mcpvpmod.util;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.scoreboard.Score;
 import net.minecraft.scoreboard.ScoreObjective;
-import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.scoreboard.Scoreboard;
 import us.mcpvpmod.Main;
 
@@ -106,7 +104,7 @@ public class BoardHelper {
 		if (Main.mc.theWorld.getScoreboard() == null) return "";
 		Scoreboard board = Minecraft.getMinecraft().theWorld.getScoreboard();
 		
-		if (board.getPlayersTeam(player) == null) return Format.process("#r#");
+		if (board.getPlayersTeam(player) == null) return Format.style("#r#");
 		return board.getPlayersTeam(player).getColorPrefix();
 	}
 	

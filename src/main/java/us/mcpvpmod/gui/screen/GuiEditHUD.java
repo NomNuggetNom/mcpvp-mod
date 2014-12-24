@@ -39,8 +39,8 @@ public class GuiEditHUD extends GuiScreen {
 	@Override
 	public void initGui() {
 		Keyboard.enableRepeatEvents(true);
-		add		= new GuiButton(1000, width/2 - 12, this.height/4 - 25, 20, 20, Format.process("#green##b#+"));
-		minus	= new GuiButton(1001, width/2 + 12, this.height/4 - 25, 20, 20, Format.process("#red##b#-"));
+		add		= new GuiButton(1000, width/2 - 12, this.height/4 - 25, 20, 20, Format.style("#green##b#+"));
+		minus	= new GuiButton(1001, width/2 + 12, this.height/4 - 25, 20, 20, Format.style("#red##b#-"));
 		this.buttonList.add(add);
 		this.buttonList.add(minus);
 	}
@@ -142,7 +142,7 @@ public class GuiEditHUD extends GuiScreen {
 			}
 			
 		} else {
-			Draw.centeredString(Format.process(Format.s("gui.edit.select")), 0, 
+			Draw.centeredString(Format.style(Format.s("gui.edit.select")), 0, 
 					this.height/4 + 15, this.width, 0xFFFFFF, true);
 		}
 		

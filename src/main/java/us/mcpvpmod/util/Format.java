@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 import net.minecraft.client.resources.I18n;
 import us.mcpvpmod.Server;
 import us.mcpvpmod.game.vars.AllVars;
+import us.mcpvpmod.game.vars.IVarProvider;
 import net.minecraftforge.fml.common.FMLLog;
 
 public class Format {
@@ -25,7 +26,7 @@ public class Format {
 	 * @param line The line to process.
 	 * @return The processed line.
 	 */
-	public static String process(String line) {
+	public static String style(String line) {
 		if (line == null) return "";
 		// Form our matcher for color codes.
 		Matcher colorMatch = Pattern.compile(reFormat).matcher(line);
@@ -45,7 +46,7 @@ public class Format {
 	}
 	
 	/**
-	 * Processes {variables} in text, e.g. {kills} -> 2.
+	 * Processes {variables} in text, e.g. <code>{kills}</code> -> 2.
 	 * The value is pulled from {@link AllVars} in which
 	 * <code>kills</code> is the argument to {@link AllVars#get(String)}.
 	 * If {@link AllVars#get(String)} doesn't contain the value 
@@ -74,16 +75,57 @@ public class Format {
 			// The text inside the braces, e.g. "kills"
 			String var = varMatch.group().replaceAll("\\{", "").replaceAll("\\}", "");
 
-			String varAll = AllVars.get(var);
+			String varAll = Server.ALL.varProvider.get(var);
 			String varServer = Server.getVar(var);
 			
 			// Check AllVars first.
 			if (!ignore.contains(varAll)) {
-				line = line.replaceAll("\\{" + var + "\\}", AllVars.get(var));
+				line = line.replaceAll("\\{" + var + "\\}", varAll);
 
 			} else if (!ignore.contains(varServer)) {		
 				// Replace the ocurrance of the var with the actual info.
-				line = line.replaceAll("\\{" + var + "\\}", Server.getVar(var));
+				line = line.replaceAll("\\{" + var + "\\}", varServer);
+				
+			} else {
+				// There is no value found.
+				if (!line.replaceFirst(reVar, "").matches(".*" + reVar + ".*")) {
+					// There is only one variable in the string. 
+					// Return "null" to prevent it from being rendered.
+					return "null";
+				}
+			}
+		}
+		return line;
+	}
+	
+	public static String vars(String line, IVarProvider vars) {
+		
+		// If a value in the list is returned from the variable get,
+		// it is assumed that it doesn't have a valid value.
+		ArrayList ignore = new ArrayList<String>(Arrays.asList("", "" + Integer.MIN_VALUE));
+		
+		// The regular expression to use in matching the variable.
+		String reVar = "\\{(.+?)\\}";
+
+		// Form our matcher for variables.
+		Matcher varMatch = Pattern.compile(reVar).matcher(line);
+		
+		// Cycle through each found match.
+		while (varMatch.find()) {
+			
+			// The text inside the braces, e.g. "kills"
+			String var = varMatch.group().replaceAll("\\{", "").replaceAll("\\}", "");
+
+			String varAll = Server.ALL.varProvider.get(var);
+			String varServer = vars.get(var);
+			
+			// Check AllVars first.
+			if (!ignore.contains(varAll)) {
+				line = line.replaceAll("\\{" + var + "\\}", varAll);
+
+			} else if (!ignore.contains(varServer)) {		
+				// Replace the ocurrance of the var with the actual info.
+				line = line.replaceAll("\\{" + var + "\\}", varServer);
 				
 			} else {
 				// There is no value found.

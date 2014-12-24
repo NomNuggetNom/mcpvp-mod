@@ -7,7 +7,6 @@ import net.minecraft.client.gui.GuiListExtended;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.renderer.Tessellator;
 
 import org.lwjgl.input.Keyboard;
 
@@ -94,8 +93,8 @@ public class GuiEditBoxProps extends GuiListExtended {
 					0, // y 
 					res.getScaledWidth()/2, //w 
 					18); //h
-			this.minus = new GuiButton(101, 0, 2, 20, 20, Format.process("#red##b#-"));
-			this.add = new GuiButton(100, 0, 2, 20, 20, Format.process("#green##b#+"));
+			this.minus = new GuiButton(101, 0, 2, 20, 20, Format.style("#red##b#-"));
+			this.add = new GuiButton(100, 0, 2, 20, 20, Format.style("#green##b#+"));
 			this.parent = parent;
 			this.field.setMaxStringLength(10000);
 			this.field.setText(entry);

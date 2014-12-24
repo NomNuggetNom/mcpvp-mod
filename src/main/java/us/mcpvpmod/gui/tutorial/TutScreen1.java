@@ -30,7 +30,7 @@ public class TutScreen1 extends TutorialScreen {
 		int y = this.height/7;
 		for (String string : this.strings) {
 			//Main.mc.fontRenderer.drawSplitString(Format.process(string), 0, y, this.width, 0xFFFFFF);
-			Draw.centeredString(Format.process(string), 0, y, this.width, 0xFFFFFF, true);
+			Draw.centeredString(Format.style(string), 0, y, this.width, 0xFFFFFF, true);
 			y += 11;
 		}
 		super.drawScreen(p_73863_1_, p_73863_2_, p_73863_3_);

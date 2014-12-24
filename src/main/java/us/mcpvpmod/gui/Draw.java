@@ -21,7 +21,7 @@ public class Draw {
 	/**
 	 * Used for drawing a string.
 	 * @param string The string to draw. Automatically passed through
-	 * {@link Format#process(String)}.
+	 * {@link Format#style(String)}.
 	 * @param x The x coordinate to start drawing the string from. The int value of this Number is used.
 	 * @param y The y coordinate to start drawing the string from. The int value of this Number is used.
 	 * @param color The color of the string as a hexadecimal value,
@@ -29,13 +29,13 @@ public class Draw {
 	 * @param shadow Whether or not to add a shadow to the text.
 	 */
 	public static void string(String string, Number x, Number y, int color, boolean shadow) {
-		Main.fr.func_175065_a(Format.process(string), x.intValue(), y.intValue(), color, shadow);
+		Main.fr.func_175065_a(Format.style(string), x.intValue(), y.intValue(), color, shadow);
 	}
 
 	/**
 	 * Used for drawing a simple white string with shadow.
 	 * @param string The string to draw. Automatically passed through
-	 * {@link Format#process(String)}.
+	 * {@link Format#style(String)}.
 	 * @param x The x coordinate to start drawing the string from.
 	 * @param y The y coordinate to start drawing the string from.
 	 */
@@ -46,7 +46,7 @@ public class Draw {
 	/**
 	 * Used for drawing a split string.
 	 * @param string The string to draw. Automatically passed through
-	 * {@link Format#process(String)}.
+	 * {@link Format#style(String)}.
 	 * @param x The x coordinate to start drawing the string from. The int value of this Number is used.
 	 * @param y The y coordinate to start drawing the string from. The int value of this Number is used.
 	 * @param w The max width that the string can occupy before it
@@ -55,13 +55,13 @@ public class Draw {
 	 * e.g. <code>0xFFFFFF</code> for white.
 	 */
 	public static void splitString(String string, Number x, Number y, Number w, int color) {
-		Main.fr.drawSplitString(Format.process(string), x.intValue(), y.intValue(), w.intValue(), color);
+		Main.fr.drawSplitString(Format.style(string), x.intValue(), y.intValue(), w.intValue(), color);
 	}
 	
 	/**
 	 * Used for drawing a centered string.
 	 * @param string The string to draw. Automatically passed through
-	 * {@link Format#process(String)}.
+	 * {@link Format#style(String)}.
 	 * @param x The x coordinate to start drawing the string from. The int value of this Number is used.
 	 * @param y The y coordinate to start drawing the string from. The int value of this Number is used.
 	 * @param w The width of the area to center the string in. The int value of this Number is used.
@@ -70,13 +70,13 @@ public class Draw {
 	 * @param shadow Whether or not to add a shadow to the text.
 	 */
 	public static void centeredString(String string, Number x, Number y, Number w, int color, boolean shadow) {
-		string(string, x.intValue() + w.intValue()/2 - Main.fr.getStringWidth(Format.process(string))/2, y, color, shadow);
+		string(string, x.intValue() + w.intValue()/2 - Main.fr.getStringWidth(Format.style(string))/2, y, color, shadow);
 	}
 	
 	/**
 	 * Used for drawing a simple white centered string with a shadow.
 	 * @param string The string to draw. Automatically passed through
-	 * {@link Format#process(String)}.
+	 * {@link Format#style(String)}.
 	 * @param x The x coordinate to start drawing the string from. The int value of this Number is used.
 	 * @param y The y coordinate to start drawing the string from. The int value of this Number is used.
 	 * @param w The width of the area to center the string in. The int value of this Number is used.
@@ -97,9 +97,11 @@ public class Draw {
 	 * @param imageWidth The width of the texture being drawn.
 	 * @param imageHeight The height of the texture being drawn.
 	 * @param scale The scale of the image.
+	 * @param bg If true, a white background will appear behind the texture. If false, no
+	 * background will appear behind the texture.
 	 */
-	public static void texturedRect(ResourceLocation texture, double x, double y, int u, int v, int width, int height, int imageWidth, int imageHeight, double scale) {
-		texturedRect(texture, x, y, u, v, width, height, imageWidth, imageHeight, scale, 1.0f, 1.0f, 1.0f, 1.0f);
+	public static void texturedRect(ResourceLocation texture, double x, double y, int u, int v, int width, int height, int imageWidth, int imageHeight, double scale, boolean bg) {
+		texturedRect(texture, x, y, u, v, width, height, imageWidth, imageHeight, scale, bg?1:0, bg?1:0, bg?1:0, bg?1:0);
 		/*
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glDisable(GL11.GL_DEPTH_TEST);

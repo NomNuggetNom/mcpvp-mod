@@ -24,7 +24,7 @@ public class UpdateTimer extends TimerTask {
 			 else if (ConfigVersion.channel.equalsIgnoreCase("Beta")) 
 				msg = Format.s("update-msg").replace("<VERSION>", Main.mcpvpVersion.beta.mod).replace("<MCVERSION>", Main.mcpvpVersion.beta.mc);
 			
-			IChatComponent send = new ChatComponentText(Format.process(msg));
+			IChatComponent send = new ChatComponentText(Format.style(msg));
 			send.getChatStyle().setChatClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, Format.s("update-url")));
 			Main.mc.thePlayer.addChatMessage(send);
 		}

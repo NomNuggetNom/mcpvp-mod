@@ -7,7 +7,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 import us.mcpvpmod.Main;
-import us.mcpvpmod.game.vars.AllVars;
+import us.mcpvpmod.Server;
 
 public class HTMLStats {
 
@@ -52,11 +52,11 @@ public class HTMLStats {
 			public void run() {
 				System.out.println("Loading HTMLStats");
 				String level = getLevel();
-				AllVars.put("rank-level", level);
-				AllVars.put("web-level", level);
+				Server.ALL.varProvider.put("rank-level", level);
+				Server.ALL.varProvider.put("web-level", level);
 				String xp = getXP();
-				AllVars.put("rank-xp", xp);
-				AllVars.put("web-xp", xp);
+				Server.ALL.varProvider.put("rank-xp", xp);
+				Server.ALL.varProvider.put("web-xp", xp);
 			}
 		};
 		load.start();
@@ -164,13 +164,13 @@ public class HTMLStats {
 				@Override
 				public void run() {
 					Main.l("Loading HTMLStats.CTF for %s", name);
-					AllVars.put("ctf:s.games_played", getStat("Total", "Games Played", false));
-					AllVars.put("ctf:s.time_played", getStat("Total", "Time Played", false));
-					AllVars.put("ctf:s.kills", getStat("Total", "Kills", false));
-					AllVars.put("ctf:s.deaths", getStat("Total", "Deaths", false));
-					AllVars.put("ctf:s.damage_dealt", getStat("Total", "Damage Dealt", false));
-					AllVars.put("ctf:s.damage_received", getStat("Total", "Damage Received", false));
-					AllVars.put("ctf:s.best_kill_streak", getStat("Total", "Best Kill Streak", false));
+					Server.ALL.varProvider.put("ctf:s.games_played", getStat("Total", "Games Played", false));
+					Server.ALL.varProvider.put("ctf:s.time_played", getStat("Total", "Time Played", false));
+					Server.ALL.varProvider.put("ctf:s.kills", getStat("Total", "Kills", false));
+					Server.ALL.varProvider.put("ctf:s.deaths", getStat("Total", "Deaths", false));
+					Server.ALL.varProvider.put("ctf:s.damage_dealt", getStat("Total", "Damage Dealt", false));
+					Server.ALL.varProvider.put("ctf:s.damage_received", getStat("Total", "Damage Received", false));
+					Server.ALL.varProvider.put("ctf:s.best_kill_streak", getStat("Total", "Best Kill Streak", false));
 				}
 			};
 			load.start();

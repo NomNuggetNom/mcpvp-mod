@@ -100,7 +100,7 @@ public class CustomAlert {
 
 			}
 		}
-		string = Format.process(string);
+		string = Format.style(string);
 		return string;
 	}
 	

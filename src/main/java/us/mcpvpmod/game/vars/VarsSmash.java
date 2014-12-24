@@ -4,14 +4,14 @@ import java.util.HashMap;
 
 import us.mcpvpmod.game.info.InfoSmash;
 
-public class VarsSmash {
+public class VarsSmash implements IVarProvider  {
 
-	public static HashMap<String, String> vars = new HashMap<String, String>();
+	private static HashMap<String, String> vars = new HashMap<String, String>();
 	
 	/**
 	 * Called every tick to update information.
 	 */
-	public static void putVars() {
+	public void putVars() {
 		vars.put("kit", Vars.get("smash:kit"));
 		vars.put("class", Vars.get("smash:kit"));
 		vars.put("character", Vars.get("smash:kit"));
@@ -30,7 +30,7 @@ public class VarsSmash {
 	 * @param string The key of the variable to get.
 	 * @return The value of the stored variable.
 	 */
-	public static String get(String string) {
+	public String get(String string) {
 		if (vars.keySet().contains(string))
 			return vars.get(string);
 		return "";
@@ -39,8 +39,14 @@ public class VarsSmash {
 	/**
 	 * Resets the variable storage by clearing it. 
 	 */
-	public static void reset() {
+	public void reset() {
 		vars.clear();
+	}
+
+	@Override
+	public void put(String string, String level) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

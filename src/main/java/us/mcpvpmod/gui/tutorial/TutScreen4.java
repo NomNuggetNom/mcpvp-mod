@@ -2,7 +2,7 @@ package us.mcpvpmod.gui.tutorial;
 
 import java.util.ArrayList;
 
-import us.mcpvpmod.game.vars.AllVars;
+import us.mcpvpmod.Server;
 import us.mcpvpmod.gui.Draw;
 import us.mcpvpmod.util.Format;
 
@@ -19,7 +19,7 @@ public class TutScreen4 extends TutorialScreen {
 		strings.clear();
 		int i = 1;
 		while (!Format.s("gui.tut.4." + i).equals("gui.tut.4." + i)) {
-			strings.add(Format.s("gui.tut.4." + i).replaceAll("\\{\\{fps\\}\\}", AllVars.get("fps")));
+			strings.add(Format.s("gui.tut.4." + i).replaceAll("\\{\\{fps\\}\\}", Server.ALL.varProvider.get("fps")));
 			i++;
 		}
 	}
@@ -31,7 +31,7 @@ public class TutScreen4 extends TutorialScreen {
 		int y = this.height/7;
 		for (String string : this.strings) {
 			if (string == null) continue;
-			Draw.centeredString(Format.process(string), 0, y, this.width, 0xFFFFFF, true);
+			Draw.centeredString(Format.style(string), 0, y, this.width, 0xFFFFFF, true);
 			y += 11;
 		}
 		//String color = SimpleTimer.value ? "#red#" : "#orange#";

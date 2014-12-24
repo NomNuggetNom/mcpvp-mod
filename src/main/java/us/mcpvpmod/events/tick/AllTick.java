@@ -3,8 +3,8 @@ package us.mcpvpmod.events.tick;
 import net.minecraft.client.gui.GuiChat;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import us.mcpvpmod.Main;
+import us.mcpvpmod.Server;
 import us.mcpvpmod.game.alerts.Alerts;
-import us.mcpvpmod.game.vars.AllVars;
 import us.mcpvpmod.gui.Medal;
 import us.mcpvpmod.trackers.BoardTracker;
 
@@ -14,7 +14,7 @@ public class AllTick {
 		
 		if (System.currentTimeMillis() % 10 == 0) {
 			Main.start("mcpvp", "vars");
-			AllVars.putVars();
+			Server.ALL.varProvider.putVars();
 			Main.end(2);
 		}
 		

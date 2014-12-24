@@ -90,7 +90,7 @@ public class InfoBlock extends Selectable {
 	 * It could be that the returned block is not being displayed due to differences in Server or State.
 	 */
 	public static InfoBlock get(String getTitle) {
-		getTitle = Format.process(getTitle);
+		getTitle = Format.style(getTitle);
 		
 		// Prioritize sending back the most logical matches, just in case
 		// another block exists in a different Server/State with the same
@@ -209,7 +209,7 @@ public class InfoBlock extends Selectable {
 		for (String line : this.toDisplay) {
 			// Run the line through our processors.
 			line = Format.vars(line);
-			line = Format.process(line);
+			line = Format.style(line);
 			
 			if (line.equals("friends")) {
 				// This adds all our friends.

@@ -138,8 +138,8 @@ public class GuiEditBlock extends GuiScreen {
 		cancel = new GuiButton(2, res.getScaledWidth()/2 + 2, y, "Cancel");
 		save = new GuiButton(1, res.getScaledWidth()/2 - 200 - 2, y, "Save");
 		
-		add = new GuiButton(3, 0, 0, 98, 20, Format.process("#green##b#+ Add"));
-		remove = new GuiButton(4, 0, 0, 98, 20, Format.process("#red##b#- Remove"));
+		add = new GuiButton(3, 0, 0, 98, 20, Format.style("#green##b#+ Add"));
+		remove = new GuiButton(4, 0, 0, 98, 20, Format.style("#red##b#- Remove"));
 		
 		this.buttonList.add(save);
 		this.buttonList.add(cancel);

@@ -72,17 +72,17 @@ public class GuiServerCategory extends GuiScrollingList {
 		String append = "#white#";
 		if (!servers.get(i).IsAcceptingPlayers) append += "#gray#";
 		
-		f.drawString(f.trimStringToWidth(Format.process("#white#" + ip), 
+		f.drawString(f.trimStringToWidth(Format.style("#white#" + ip), 
 				parent.width - 10), 
-				parent.width/2 - f.getStringWidth(Format.process("#white#" + ip))/2, 
+				parent.width/2 - f.getStringWidth(Format.style("#white#" + ip))/2, 
 				var3 + 2, 0xFFFFFF);
 		
 		motd = motd.replaceAll("\\s\\s+", " - ");
 
 		int y = 0;
 		for (String string : getToDisplay(server)) {
-			f.drawString(f.trimStringToWidth(Format.process("#gray#") + string, parent.width - 10), 
-					parent.width/2 - f.getStringWidth(Format.process("#gray#") + string)/2, 
+			f.drawString(f.trimStringToWidth(Format.style("#gray#") + string, parent.width - 10), 
+					parent.width/2 - f.getStringWidth(Format.style("#gray#") + string)/2, 
 					//parent.width/2 - f.getStringWidth(server.Server)/2,
 					var3 + 12 + y, 0xFFFFFF);
 			y += 10;
@@ -95,7 +95,7 @@ public class GuiServerCategory extends GuiScrollingList {
 		
 		//toReturn.add(server.Server);
 		//toReturn.add(server.Players + "/" + server.MaxPlayers + " players");
-		toReturn.add(Format.process("#gray#" + server.Players + " " + playerBar(server) + " #gray#" + server.MaxPlayers));
+		toReturn.add(Format.style("#gray#" + server.Players + " " + playerBar(server) + " #gray#" + server.MaxPlayers));
 		
 		// Get the time.
 		if (motd.matches(".*Starts in (\\d+) (minutes*|seconds*).*")) {
@@ -103,23 +103,23 @@ public class GuiServerCategory extends GuiScrollingList {
 			if (motd.matches(".*minutes*.*")) time = 'm';
 			if (motd.matches(".*seconds*.*")) time = 's';
 			toReturn.add(motd.replaceAll(".*Starts in (\\d+) (minutes*|seconds*).*", 
-					Format.process(Format.s("gui.servers.starting") + time)));
+					Format.style(Format.s("gui.servers.starting") + time)));
 		}
 		
 		// In progress games are grayed out.
 		if (!server.IsAcceptingPlayers && server.MaxPlayers != 0)
-			toReturn.add(Format.process(Format.s("gui.servers.progress")));
+			toReturn.add(Format.style(Format.s("gui.servers.progress")));
 		
 		// Servers that are "waiting" are colored yellow.
 		else if (motd.toLowerCase(Locale.ENGLISH).matches(".*waiting.*"))
-			toReturn.add(Format.process(Format.s("gui.servers.waiting")));
+			toReturn.add(Format.style(Format.s("gui.servers.waiting")));
 		
 		// This catches CTF and HS maps and colors them gold.
 		if (motd.toLowerCase(Locale.ENGLISH).contains("map"))
-			toReturn.add(motd.replaceAll(".*Map:(.*)", Format.process("#gold#$1")));
+			toReturn.add(motd.replaceAll(".*Map:(.*)", Format.style("#gold#$1")));
 		
 		if (motd.toLowerCase(Locale.ENGLISH).contains("ends in"))
-			toReturn.add(motd.replaceAll(".*Ends in (.*) seconds", Format.process(Format.s("gui.servers.ending"))));
+			toReturn.add(motd.replaceAll(".*Ends in (.*) seconds", Format.style(Format.s("gui.servers.ending"))));
 		
 		return toReturn;
 	}
@@ -129,7 +129,7 @@ public class GuiServerCategory extends GuiScrollingList {
 		
 		// Calculate the areas of the characters/strings.
 		int ipWidth = f.getStringWidth(server.Server);
-		int nonBarWidth = f.getStringWidth(Format.process("#gray#" + server.Players + " " + " #gray#" + server.MaxPlayers));
+		int nonBarWidth = f.getStringWidth(Format.style("#gray#" + server.Players + " " + " #gray#" + server.MaxPlayers));
 		int barWidth = f.getStringWidth("|");
 		int bars = (ipWidth - nonBarWidth) / barWidth;
 		int numBars = server.MaxPlayers == 0 ? bars : (server.Players*bars/server.MaxPlayers*bars)/bars ;
@@ -148,8 +148,8 @@ public class GuiServerCategory extends GuiScrollingList {
 			color = "#green#";
 		
 		if (numBars < 0 || bars-numBars < 0) return "";
-		return new String(new char[numBars]).replaceAll("\0", Format.process(color + "|#r#")) 
-			 + new String(new char[bars-numBars]).replaceAll("\0", Format.process("#dark_gray#|#r#"));
+		return new String(new char[numBars]).replaceAll("\0", Format.style(color + "|#r#")) 
+			 + new String(new char[bars-numBars]).replaceAll("\0", Format.style("#dark_gray#|#r#"));
 	}
 	
 }

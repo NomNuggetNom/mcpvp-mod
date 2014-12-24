@@ -2,14 +2,14 @@ package us.mcpvpmod.game.vars;
 
 import java.util.HashMap;
 
-public class VarsBuild {
+public class VarsBuild implements IVarProvider {
 	
-	public static HashMap<String, String> vars = new HashMap<String, String>();
+	private static HashMap<String, String> vars = new HashMap<String, String>();
 	
 	/**
 	 * Called every tick to update information.
 	 */
-	public static void putVars() {
+	public void putVars() {
 		vars.put("map", Vars.get("build:map.name"));
 		vars.put("map-name", Vars.get("build:map.name"));
 		vars.put("id", Vars.get("build:map.id"));
@@ -23,7 +23,7 @@ public class VarsBuild {
 	 * @param string The key of the variable to get.
 	 * @return The value of the stored variable.
 	 */
-	public static String get(String string) {
+	public String get(String string) {
 		if (vars.keySet().contains(string))
 			return vars.get(string);
 		return "";
@@ -32,8 +32,12 @@ public class VarsBuild {
 	/**
 	 * Resets the variable storage by clearing it. 
 	 */
-	public static void reset() {
+	public void reset() {
 		vars.clear();
+	}
+
+	@Override
+	public void put(String string, String level) {
 	}
 	
 }

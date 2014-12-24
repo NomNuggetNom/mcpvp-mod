@@ -1,14 +1,14 @@
 package us.mcpvpmod.events.tick;
 
-import us.mcpvpmod.game.state.StateSmash;
-import us.mcpvpmod.game.vars.VarsSmash;
-import us.mcpvpmod.util.BoardHelper;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import us.mcpvpmod.Server;
+import us.mcpvpmod.game.state.StateSmash;
+import us.mcpvpmod.util.BoardHelper;
 
 public class TickSmash {
 
 	public static void onTick(@SuppressWarnings("unused") TickEvent event) {		
-		VarsSmash.putVars();
+		Server.SMASH.varProvider.putVars();
 		
 		if (StateSmash.getState() != StateSmash.PRE  
 				&& BoardHelper.getBoardTitle().contains("Classes"))

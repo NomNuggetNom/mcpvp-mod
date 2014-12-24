@@ -274,7 +274,7 @@ public class InfoBox extends Selectable {
 			
 			// Run the line through formatters, replacing color
 			// codes and evaluating the values of variables.
-			line = Format.process(line);
+			line = Format.style(line);
 			line = Format.vars(line);
 			
 			if (line.equals("friends")) {
@@ -356,7 +356,7 @@ public class InfoBox extends Selectable {
 		// Draw the title string.
 		if (centerTitles)
 			Draw.centeredString(
-					Format.process(this.getTitle()), 
+					Format.style(this.getTitle()), 
 					this.getX(), 
 					y + this.PADDING, 
 					this.getTitleRect().width);
@@ -391,7 +391,7 @@ public class InfoBox extends Selectable {
 			max = width > max ? width : max;
 		}
 
-		int width = Main.fr.getStringWidth(Format.process(this.getTitle()));
+		int width = Main.fr.getStringWidth(Format.style(this.getTitle()));
 		max = width > max ? width : max;
 		
 		if (this.padded)
@@ -558,7 +558,7 @@ public class InfoBox extends Selectable {
 	
 	@Override
 	public String getName() {
-		return Format.process(this.title);
+		return Format.style(this.title);
 	}
 	
 	/**

@@ -56,7 +56,7 @@ public class StreamJSON extends TimerTask {
 	}
 	
 	public static void sendStreamOnline() {
-		IChatComponent send = new ChatComponentText(Format.process(Format.s("stream-msg")));
+		IChatComponent send = new ChatComponentText(Format.style(Format.s("stream-msg")));
 		send.getChatStyle().setChatClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, Format.s("stream-url")));
 		Main.mc.thePlayer.addChatMessage(send);
 	}

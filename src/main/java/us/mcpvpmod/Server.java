@@ -57,6 +57,7 @@ import us.mcpvpmod.game.state.StateMaze;
 import us.mcpvpmod.game.state.StateSab;
 import us.mcpvpmod.game.state.StateSmash;
 import us.mcpvpmod.game.vars.AllVars;
+import us.mcpvpmod.game.vars.IVarProvider;
 import us.mcpvpmod.game.vars.VarsBuild;
 import us.mcpvpmod.game.vars.VarsCTF;
 import us.mcpvpmod.game.vars.VarsHG;
@@ -74,7 +75,31 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
  * Provides a main class for getting server dependent information.
  */
 public enum Server {
-	HUB, KIT, HG, MAZE, SAB, CTF, HS, PARTY, BUILD, RAID, SMASH, ALL, NONE;
+	HUB(), 
+	KIT(new VarsKit()), 
+	HG(new VarsHG()), 
+	MAZE(new VarsMaze()), 
+	SAB(new VarsSab()), 
+	CTF(new VarsCTF()), 
+	HS(), 
+	PARTY(), 
+	BUILD(new VarsBuild()), 
+	RAID(new VarsRaid()), 
+	SMASH(new VarsSmash()), 
+	ALL(new AllVars()), 
+	NONE();
+	
+	/** The variable system for the server, responsible for the storage and retrieval
+	 * of server-dependent information. */
+	public final IVarProvider varProvider;
+	
+	Server() {
+		this.varProvider = null;
+	}
+	
+	Server(IVarProvider varProvider) {
+		this.varProvider = varProvider;
+	}
 	
 	/**
 	 * @return The friendly name of the server from the lang file.
@@ -96,24 +121,11 @@ public enum Server {
 	 * Returns NONE if on an un-recognized server.
 	 */
 	public static Server getServer(String ip) {	
-		if (Main.mc.isSingleplayer()) return NONE;
-
+		if (Main.mc.isSingleplayer()) 
+			return NONE;
+		
 		for (Server server : Server.values()) 
 			if (ip.endsWith(server.baseIP())) return server;
-		
-		/*
-		if (ip.endsWith("hub.mcpvp.com"))		return HUB;
-		if (ip.endsWith("kitpvp.us"))			return KIT;
-		if (ip.endsWith("mc-maze.com"))			return MAZE;
-		if (ip.endsWith("mc-sabotage.com"))		return SAB;
-		if (ip.endsWith("mcctf.com"))			return CTF;
-		if (ip.endsWith("mcheadshot.com"))		return HS;
-		if (ip.endsWith("party.mcpvp.com"))		return PARTY;
-		if (ip.endsWith("minecraftbuild.com"))	return BUILD;
-		if (ip.endsWith("raid.mcpvp.com"))		return RAID;
-		if (ip.endsWith("mc-hg.com"))			return HG;
-		if (ip.endsWith("mcsmash.com"))			return SMASH;
-		*/
 		
 		return NONE;
 	}
@@ -175,7 +187,7 @@ public enum Server {
 	}
 	
 	/**
-	 * Dictates which render handler to re-direct to.
+	 * Dictates which tick handler to re-direct to.
 	 * @param event The render event to handle.
 	 */
 	public void onTick(TickEvent event) {
@@ -264,13 +276,20 @@ public enum Server {
 	}
 	
 	/**
-	 * Gets the variable from the particular var class.
+	 * Attempts to retrieve the value of the given variable name (key)
+	 * from both {@link AllVars} and the Server's varProvider. Checks in
+	 * AllVars happen first, and therefore override the Servers' varProvider.
 	 * @param var The name/key of the variable to get.
 	 * @return The value stored, or "" if no value is found.
 	 */
 	public static String getVar(String var) {
-		if (!AllVars.get(var).equals("")) return (AllVars.get(var));
+		if (!Server.ALL.varProvider.get(var).equals("")) 
+			return (Server.ALL.varProvider.get(var));
+		else if (getServer().varProvider != null)
+			return getServer().varProvider.get(var);
+		return "";
 		
+		/*
 		switch (getServer()) {
 		case HG: 	return VarsHG.get(var);
 		case CTF: 	return VarsCTF.get(var);
@@ -286,7 +305,7 @@ public enum Server {
 		case PARTY:	break;
 		default:	break;
 		}
-		return "";
+		*/
 	}
 	
 	/**

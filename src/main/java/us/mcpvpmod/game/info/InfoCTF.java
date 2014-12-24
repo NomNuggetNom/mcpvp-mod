@@ -1,8 +1,7 @@
 package us.mcpvpmod.game.info;
 
-import us.mcpvpmod.Main;
+import us.mcpvpmod.Server;
 import us.mcpvpmod.game.state.StateCTF;
-import us.mcpvpmod.game.vars.VarsCTF;
 import us.mcpvpmod.util.BoardHelper;
 import us.mcpvpmod.util.Format;
 
@@ -51,9 +50,9 @@ public class InfoCTF {
 			String timeLeft = boardTitle.replaceAll(StateCTF.getState().regex(), "$2");
 			
 			if (getTime() <= 500 && getTime() > 100) {
-				return (Format.process("#yellow#" + timeLeft));
+				return (Format.style("#yellow#" + timeLeft));
 			} else if (getTime() <= 100) {
-				return (Format.process("#red#" + timeLeft));
+				return (Format.style("#red#" + timeLeft));
 			} else {
 				return timeLeft;
 			}
@@ -71,7 +70,7 @@ public class InfoCTF {
 		} 
 		
 		if (StateCTF.getState() == StateCTF.PLAY) {
-			return getFormattedTime() + Format.process(" #r#remaining!");
+			return getFormattedTime() + Format.style(" #r#remaining!");
 		}
 		
 		if (StateCTF.getState() == StateCTF.POST) {
@@ -104,7 +103,7 @@ public class InfoCTF {
 	
 	public static String getFreeDay() {
 		if (freeDay) {
-			return Format.process("#green#Free day!");
+			return Format.style("#green#Free day!");
 		}
 		// Return null so it isn't rendered.
 		return null;
@@ -115,15 +114,15 @@ public class InfoCTF {
 	}
 	
 	public static String getRedTimer() {
-		if (VarsCTF.get("red-flag").contains("s")) {
-			return VarsCTF.get("red-flag").replaceAll(".* (\\d+)s.*", "$1");
+		if (Server.CTF.varProvider.get("red-flag").contains("s")) {
+			return Server.CTF.varProvider.get("red-flag").replaceAll(".* (\\d+)s.*", "$1");
 		}
 		return "";
 	}
 	
 	public static String getBlueTimer() {
-		if (VarsCTF.get("blue-flag").contains("s")) {
-			return VarsCTF.get("blue-flag").replaceAll(".* (\\d+)s.*", "$1");
+		if (Server.CTF.varProvider.get("blue-flag").contains("s")) {
+			return Server.CTF.varProvider.get("blue-flag").replaceAll(".* (\\d+)s.*", "$1");
 		}
 		return "";
 	}

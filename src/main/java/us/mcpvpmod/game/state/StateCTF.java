@@ -5,7 +5,6 @@ import us.mcpvpmod.Server;
 import us.mcpvpmod.game.FriendsList;
 import us.mcpvpmod.game.alerts.ctf.TimeAlerts;
 import us.mcpvpmod.game.stats.StatsCTF;
-import us.mcpvpmod.game.vars.VarsCTF;
 import us.mcpvpmod.gui.InfoBlock;
 import us.mcpvpmod.util.BoardHelper;
 
@@ -57,7 +56,7 @@ public enum StateCTF implements State {
 	
 	public void render() {
 		if (Main.mc.gameSettings.showDebugInfo || StateCTF.getState().equals(StateCTF.NONE)) return;
-		VarsCTF.putVars();
+		Server.CTF.varProvider.putVars();
 		FriendsList.clearList();
 		
 		switch(this) {

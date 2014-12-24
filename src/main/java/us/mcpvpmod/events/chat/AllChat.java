@@ -5,8 +5,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import net.minecraft.event.ClickEvent;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.ChatStyle;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
@@ -70,8 +68,9 @@ public class AllChat {
 		}
 
 		catchIP(message);
-		/*
 		catchYay(message);
+		
+		/*
 		if (ConfigChat.fixLinks) 
 			addLinks(event);
 		
@@ -79,9 +78,9 @@ public class AllChat {
 		ChatStyle old = event.message.getChatStyle();
 		event.message = new ChatComponentText(censorChat(event.message.getFormattedText()));
 		event.message.setChatStyle(old);
-
-		checkSplit(event);
 		*/
+		
+		checkSplit(event);
 	}
 	
 	public static void catchPing(String message) {

@@ -49,7 +49,7 @@ public class TimeAlerts {
 				//SoundAlert.get("game.end").play();
 			} else if (oldTime == 10) {
 				if ((Vars.getInt("ctf:i.kills") > 15 && Vars.getInt("ctf:i.deaths") == 0)) {
-					Alerts.alert.sendAlertWithItem("Perfection!", Format.process("#gray#Kill #white#15 #gray#opponents without dying in one game."), -1, new ItemStack(Items.dye, 1, 15));
+					Alerts.alert.sendAlertWithItem("Perfection!", Format.style("#gray#Kill #white#15 #gray#opponents without dying in one game."), -1, new ItemStack(Items.dye, 1, 15));
 				}
 			}
 		}

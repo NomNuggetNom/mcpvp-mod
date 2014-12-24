@@ -18,9 +18,9 @@ public class InfoSab {
 		if (winner == "") return "None";
 		
 		if (winner.toLowerCase().contains("innocents")) {
-			return Format.process("#green#Innocents");
+			return Format.style("#green#Innocents");
 		} else if (winner.toLowerCase().contains("saboteurs")) {
-			return Format.process("#red#Saboteurs");
+			return Format.style("#red#Saboteurs");
 		}
 		
 		return "";
@@ -47,15 +47,15 @@ public class InfoSab {
 		if (role == "") return "None";
 		
 		if (StateSab.getState().equals(StateSab.DEAD)) {
-			return Format.process("#gray#Spectator");
+			return Format.style("#gray#Spectator");
 		}
 		
 		if (role.toLowerCase().contains("innocent")) {
-			return Format.process("#green#Innocent#r#");
+			return Format.style("#green#Innocent#r#");
 		} else if (role.toLowerCase().contains("detective")) {
-			return Format.process("#blue#Detective#r#");
+			return Format.style("#blue#Detective#r#");
 		} else if (role.toLowerCase().contains("saboteur")) {
-			return Format.process("#red#Saboteur#r#");
+			return Format.style("#red#Saboteur#r#");
 		}
 		
 		return "None";

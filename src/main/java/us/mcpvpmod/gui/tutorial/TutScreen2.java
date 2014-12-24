@@ -16,25 +16,25 @@ import us.mcpvpmod.util.Format;
 
 public class TutScreen2 extends TutorialScreen {
 
-	public static InfoBlock moveable = new InfoBlock(Format.process("#b##u#Move me!"), new ArrayList<String>(Arrays.asList("I can be moved anywhere on your screen!", "#b#Don't hit ESC or you'll exit the tutorial!", "Click again to de-select.")), Server.ALL, DummyState.NONE);
+	public static InfoBlock moveable = new InfoBlock(Format.style("#b##u#Move me!"), new ArrayList<String>(Arrays.asList("I can be moved anywhere on your screen!", "#b#Don't hit ESC or you'll exit the tutorial!", "Click again to de-select.")), Server.ALL, DummyState.NONE);
 	public static ArrayList<String> strings = new ArrayList<String>();
 	public static String toProgress = "#b##u#Click the button on the right to continue!";
 	public static boolean hasMoved = false;
 	
 	public TutScreen2(String name, String content, TutorialScreen previous, TutorialScreen next) {
 		super(name, content, previous, next);
-		moveable = new InfoBlock(Format.process("#b##u#Move me!"),
+		moveable = new InfoBlock(Format.style("#b##u#Move me!"),
 				new ArrayList<String>(Arrays.asList("I can be moved anywhere on your screen!", "#b#Don't hit ESC or you'll exit the tutorial!", "Click again to de-select.")), 
 				Server.ALL, 
 				DummyState.NONE);
-		Data.put(Format.process("#b##u#Move me!.x"), "" + (this.width/2 - InfoBlock.get("#b##u#Move me!").getW()/2));
-		Data.put(Format.process("#b##u#Move me!.y"), "" + (this.height - 235));
+		Data.put(Format.style("#b##u#Move me!.x"), "" + (this.width/2 - InfoBlock.get("#b##u#Move me!").getW()/2));
+		Data.put(Format.style("#b##u#Move me!.y"), "" + (this.height - 235));
 	}
 
 	public void setStrings() {
 		if (!hasMoved) {
-			Data.put(Format.process("#b##u#Move me!.x"), "" + (this.width/2 - InfoBlock.get("#b##u#Move me!").getW()/2));
-			Data.put(Format.process("#b##u#Move me!.y"), "" + (this.height - 235));
+			Data.put(Format.style("#b##u#Move me!.x"), "" + (this.width/2 - InfoBlock.get("#b##u#Move me!").getW()/2));
+			Data.put(Format.style("#b##u#Move me!.y"), "" + (this.height - 235));
 		}
 
 		if (!Selectable.selectables.containsValue(InfoBlock.get("#b##u#Move me!"))) {
@@ -55,10 +55,10 @@ public class TutScreen2 extends TutorialScreen {
 		setStrings();
 		int y = this.height/7;
 		for (String string : this.strings) {
-			Draw.centeredString(Format.process(string), 0, y, this.width, 0xFFFFFF, true);
+			Draw.centeredString(Format.style(string), 0, y, this.width, 0xFFFFFF, true);
 			y += 11;
 		}
-		InfoBlock.get(Format.process("#b##u#Move me!")).display();
+		InfoBlock.get(Format.style("#b##u#Move me!")).display();
 		//String color = SimpleTimer.value ? "#red#" : "#orange#";
 		//Draw.centeredString(Format.process(color + toProgress), 0, this.height - 100, this.width, 0xFFFFF, true);
 		super.drawScreen(p_73863_1_, p_73863_2_, p_73863_3_);

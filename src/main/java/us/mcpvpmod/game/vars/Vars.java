@@ -5,15 +5,18 @@ import java.util.HashMap;
 import us.mcpvpmod.Main;
 
 /**
- * General purpose variables that are assigned
- * via: {@link ChatTrigger}, {@link ChatTracker},
- * and other such utilities. Differ from {@link AllVars} in
- * that they are not considered when processing an {@link InfoBlock}.
- * The only visible use of these variables is in a {@link CustomAlert}.
+ * General purpose variable storage that are assigned via: {@link ChatTrigger},
+ * {@link ChatTracker}, and other such utilities. Differ from {@link AllVars} in
+ * that they are not considered when processing an {@link InfoBox}. However,
+ * because ChatTrackers are server based, variables in this collection might be
+ * related to servers, and referenced in the Server's VariableProvider. Besides
+ * this, the only visible use of these variables is in a {@link CustomAlert},
+ * where all variable arguments ( <code>{var_name}</code>) are pulled directly
+ * from this class.
  */
 public class Vars {
 
-	public static HashMap<String, String> vars = new HashMap<String, String>();
+	private static HashMap<String, String> vars = new HashMap<String, String>();
 	
 	/**
 	 * Puts a value into the variable storage.

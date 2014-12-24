@@ -1,26 +1,17 @@
 package us.mcpvpmod.events.render;
 
-import java.util.ArrayList;
-
-import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.gui.GuiIngameMenu;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.init.Items;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import us.mcpvpmod.Main;
 import us.mcpvpmod.Server;
-import us.mcpvpmod.ServerHelper;
 import us.mcpvpmod.config.all.ConfigHUD;
 import us.mcpvpmod.data.Data;
-import us.mcpvpmod.gui.CustomTextureAsync;
-import us.mcpvpmod.gui.Draw;
+import us.mcpvpmod.game.alerts.Alerts;
 import us.mcpvpmod.gui.InfoBox;
 import us.mcpvpmod.gui.PotionDisplay;
 import us.mcpvpmod.gui.Selectable;
 import us.mcpvpmod.gui.screen.GuiIngameMCPVP;
-import us.mcpvpmod.util.Format;
-
-import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 
 /**
  * Render handling for all servers.
@@ -28,10 +19,14 @@ import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 public class AllRender {
 	
 	public static void onRender(RenderGameOverlayEvent event) {
-		if (event.type == RenderGameOverlayEvent.ElementType.TEXT)
-			Draw.rect(5, 5, 50, 50, 0, 0, 0, 0.5);
 		// If this doesn't render during the TEXT phase, other displays will be screwed up due to OpenGL settings.
-		if (!ServerHelper.onMCPVP() || event.type != RenderGameOverlayEvent.ElementType.TEXT) return;
+		if (/*!ServerHelper.onMCPVP() || */event.type != RenderGameOverlayEvent.ElementType.TEXT) return;
+		
+		if (System.currentTimeMillis() % 100 == 0)
+			{
+			System.out.println("Hi!");
+			Alerts.alert.sendAlertWithItem("Testing", "Sample Alert", -1, Items.apple);
+			}
 		
 		// Draw the split chat.
 		Main.secondChat.drawChat(Main.mc.ingameGUI.getUpdateCounter());

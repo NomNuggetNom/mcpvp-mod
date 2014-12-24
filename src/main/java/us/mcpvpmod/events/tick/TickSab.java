@@ -1,12 +1,12 @@
 package us.mcpvpmod.events.tick;
 
-import us.mcpvpmod.game.vars.VarsSab;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import us.mcpvpmod.Server;
 
 public class TickSab {
 
 	public static void onTick(@SuppressWarnings("unused") TickEvent event) {
-		VarsSab.putVars();
+		Server.SAB.varProvider.putVars();
 	}
 	
 }

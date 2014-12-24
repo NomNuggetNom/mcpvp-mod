@@ -4,15 +4,14 @@ import java.util.HashMap;
 
 import us.mcpvpmod.game.info.InfoMaze;
 
-public class VarsMaze {
+public class VarsMaze implements IVarProvider  {
 
-	public static HashMap<String, String> vars = new HashMap<String, String>();
-	public static HashMap<String, Boolean> alerts = new HashMap<String, Boolean>();
+	private static HashMap<String, String> vars = new HashMap<String, String>();
 	
 	/**
 	 * Called every tick to update information.
 	 */
-	public static void putVars() {
+	public void putVars() {
 		vars.put("hunger", Vars.get("maze:princess.hunger"));
 		vars.put("princesshunger", Vars.get("maze:princess.hunger"));
 		vars.put("princess_hunger", Vars.get("maze:princess.hunger"));
@@ -36,7 +35,7 @@ public class VarsMaze {
 	 * @param string The key of the variable to get.
 	 * @return The value of the stored variable.
 	 */
-	public static String get(String string) {
+	public String get(String string) {
 		if (vars.keySet().contains(string))
 			return vars.get(string);
 		return "";
@@ -45,8 +44,14 @@ public class VarsMaze {
 	/**
 	 * Resets the variable storage by clearing it. 
 	 */
-	public static void reset() {
+	public void reset() {
 		vars.clear();
+	}
+
+	@Override
+	public void put(String string, String level) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

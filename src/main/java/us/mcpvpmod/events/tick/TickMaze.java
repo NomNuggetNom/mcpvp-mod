@@ -1,13 +1,13 @@
 package us.mcpvpmod.events.tick;
 
-import us.mcpvpmod.game.checks.CheckTimeMaze;
-import us.mcpvpmod.game.vars.VarsMaze;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import us.mcpvpmod.Server;
+import us.mcpvpmod.game.checks.CheckTimeMaze;
 
 public class TickMaze {
 
 	public static void onTick(@SuppressWarnings("unused") TickEvent event) {
-		VarsMaze.putVars();
+		Server.MAZE.varProvider.putVars();
 		CheckTimeMaze.updateTime();
 	}
 

@@ -30,9 +30,9 @@ public class InfoHG {
 		String timeLeft = boardTitle.replaceAll(reTime, "$1");
 			
 		if (getTime() <= 130 && getTime() > 100) {
-			return (Format.process("#yellow#" + timeLeft));
+			return (Format.style("#yellow#" + timeLeft));
 		} else if (getTime() <= 30) {
-			return (Format.process("#red#" + timeLeft));
+			return (Format.style("#red#" + timeLeft));
 		} else {
 			return timeLeft;
 		}
