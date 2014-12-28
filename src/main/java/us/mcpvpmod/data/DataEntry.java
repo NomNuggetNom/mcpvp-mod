@@ -1,15 +1,14 @@
 package us.mcpvpmod.data;
 
-
 /**
- * Essentially a String representation of a key, pair value to store to disk.
- * Formatted as such:<br>
+ * A String representation of a key, pair value to store to disk.
+ * Formatted as such:<br><br>
  * <code>keyName=typeCode:valAsString</code> <br>
  * <br>
  * The <code>keyName</code> is simply the given {@link #key}. The
  * <code>typeCode</code> is a 3 letter String representation of the given Object
  * {@link #val}. See {@link DataEntryType#values()}. If the Object's type has no
- * established character, the fall-back is <code>???</code>.
+ * established code, the fall-back is <code>???</code>.
  */
 public class DataEntry {
 
@@ -22,7 +21,7 @@ public class DataEntry {
 	final String valString;
 	
 	/** The regular expression that all DataEntries must match. */
-	static final String RE = "(.*)=(\\w{3}):(.*)";
+	static final String RE_ENTRY = "(.*)=(\\w{3}):(.*)";
 	
 	/**
 	 * Essentially a String representation of a key, pair value to store to
@@ -53,16 +52,35 @@ public class DataEntry {
 	}
 	
 	/**
+	 * @return A String representation of {@link #val}, to be combined with
+	 * {@link #valCode()} and saved to disk.
+	 * @throws UnsupportedDataException If a data type is attempted to be converted
+	 * that has no registered code.
+	 */
+	private String entryString() throws UnsupportedDataException {
+		for (DataEntryType entryType : DataEntryType.values()) {
+			if (entryType.clazz.equals(val.getClass()))
+				return entryType.getAsString(this.val);
+		}
+		throw new UnsupportedDataException(val.getClass().toString());
+	}
+	
+	/**
 	 * @return The appropriate string representation of the value argument in the
 	 * key, pair storage system. Formatted as <code>typeCode:valAsString</code>
 	 */
 	private String valString() {
 		try {
-			return valCode() + ":" + this.val.toString();
+			return valCode() + ":" + entryString();
 		} catch (UnsupportedDataException e) {
 			e.printStackTrace();
 		}
-		return "???:" + this.val.toString();
+		try {
+			return "???:" + entryString();
+		} catch (UnsupportedDataException e) {
+			e.printStackTrace();
+		}
+		return "???:???";
 	}
 	
 	/**
@@ -86,8 +104,8 @@ public class DataEntry {
 
 		/**
 		 * Throws an exception stating that the data type that was attempted
-		 * to be saved is not supported and will use a <code>?</code> char as
-		 * it's representation.
+		 * to be saved is not supported and will use a <code>>>?</code> code
+		 * as it's representation.
 		 * @param string The class that wasn't allowed.
 		 */
 		public UnsupportedDataException(String string) {

@@ -1,5 +1,6 @@
 package us.mcpvpmod.data;
 
+
 /**
  * Established values for classes and the code that should be used to represent
  * them when they are written to disk. Aids in preserving value validity and
@@ -10,22 +11,22 @@ package us.mcpvpmod.data;
  * All primitive data types are supported, in addition to Strings.
  */
 public enum DataEntryType {
-	BYTE(Byte.class, "byt"),
-	SHORT(Short.class, "shr"),
-	INTEGER(Integer.class, "int"),
-	LONG(Long.class, "lng"),
-	FLOAT(Float.class, "flt"),
-	DOUBLE(Double.class, "dbl"),
-	BOOLEAN(Boolean.class, "bln"),
-	CHAR(Character.class, "chr"),
-	STRING(String.class, "str");
+	BYTE	(Byte.class,		"byt"),
+	SHORT	(Short.class,		"shr"),
+	INTEGER	(Integer.class,		"int"),
+	LONG	(Long.class,		"lng"),
+	FLOAT	(Float.class,		"flt"),
+	DOUBLE	(Double.class,		"dbl"),
+	BOOLEAN	(Boolean.class,		"bln"),
+	CHAR	(Character.class,	"chr"),
+	STRING	(String.class,		"str");
 	
 	/** The Class that will be represented by the symbol. */
-	public final Class clazz;
+	public final Class<?> clazz;
 	/** The symbol to represent the class. */
 	public final String symbol;
 	
-	DataEntryType(Class type, String symbol) {
+	DataEntryType(Class<?> type, String symbol) {
 		this.clazz = type;
 		this.symbol = symbol;
 	}
@@ -50,5 +51,25 @@ public enum DataEntryType {
 		case STRING:	return String.valueOf(string);
 		default:		return null;
 		}
+	}
+	
+	/**
+	 * Future-proof method for extensibility. Overrides the
+	 * toString method of the entry type.
+	 * @return A string representation of the entry to be saved.
+	 */
+	public String getAsString(Object obj) {
+		switch(this) {
+		case BYTE:		break;
+		case SHORT:		break;
+		case INTEGER:	break;
+		case LONG:		break;
+		case FLOAT:		break;
+		case DOUBLE:	break;
+		case BOOLEAN:	break;
+		case CHAR:		break;
+		case STRING:	break;
+		}
+		return obj.toString();
 	}
 }

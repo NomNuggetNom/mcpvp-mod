@@ -27,34 +27,30 @@ public class Data {
 	 * mod, then loads all stored properties. The first time the operation is
 	 * performed, the {@link prop} list is simply empty.
 	 */
-	public static void make() {
-		File data = new File(DATA_DIR, "test.txt");
-		try {
-			data.createNewFile();
-			FileUtils.waitFor(data, 10);
-			DataSet set = new DataSet(data, "test_category");
-			set.add(new DataEntry("test_int", 10), true);
-			set.add(new DataEntry("test_string", "Hello, world!"), true);
-			System.out.println(set.getEntries());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		/*
-		DataSet set = new DataSet(new File(DATA_DIR, "test.txt"));
-		DataEntry entry = new DataEntry("test_string", "Hello!");
-		set.add(new DataEntry("test_int", 1));
-		set.add(new DataEntry("test_long", 2L));
-		set.add(new DataEntry("test_double", 3D));
-		set.add(new DataEntry("test_float", 4F));
-		set.add(entry);
-		set.save();
-		*/
-		
+	public static void make() {		
 		makeDir();
 		makeFile();
 		load();
 		made = true;
+		
+		/* Example usage of the Data system.
+		File data = new File(DATA_DIR, "test.txt");
+		try {
+			data.createNewFile();
+			DataFile file = new DataFile(data);
+			file.load();
+			DataSet general = new DataSet(null, "general");
+			general.addEntry(new DataEntry("test", 1));
+			DataSet sub = new DataSet(general, "test_cat");
+			sub.addEntry(new DataEntry("test", "hello"));
+			new DataSet(general, "test_cat_2").addEntry(new DataEntry("test", "hello"));
+			file.addSet(general);
+			file.addSet(sub);
+			file.save();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		 */
 	}
 	
 	/**
