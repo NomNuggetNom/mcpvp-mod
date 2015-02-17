@@ -32,7 +32,8 @@ public enum DataEntryType {
 	}
 	
 	/**
-	 * Used to return the saved value of the given string.
+	 * Translates the saved String value of the entry and returns the
+	 * equal Object value.
 	 * @param string The String to extract a value from. It is assumed 
 	 * this is a String representation of {@link DataEntry#val}.
 	 * @return The extracted value from the String, identical to what
@@ -56,6 +57,7 @@ public enum DataEntryType {
 	/**
 	 * Future-proof method for extensibility. Overrides the
 	 * toString method of the entry type.
+	 * @param obj The object to get a String representation for.
 	 * @return A string representation of the entry to be saved.
 	 */
 	public String getAsString(Object obj) {

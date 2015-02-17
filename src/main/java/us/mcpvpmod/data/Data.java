@@ -7,8 +7,6 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.Properties;
 
-import org.apache.commons.io.FileUtils;
-
 import us.mcpvpmod.Main;
 
 public class Data {
@@ -33,7 +31,16 @@ public class Data {
 		load();
 		made = true;
 		
-		/* Example usage of the Data system.
+		File data = new File(DATA_DIR, "test.txt");
+		DataFile file = new DataFile(data);
+		try {
+			file.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println(file.getSet("test_cat").getString("test"));
+		//Example usage of the Data system.
+		/*
 		File data = new File(DATA_DIR, "test.txt");
 		try {
 			data.createNewFile();
@@ -50,7 +57,7 @@ public class Data {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		 */
+		*/
 	}
 	
 	/**

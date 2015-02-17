@@ -110,6 +110,18 @@ public class DataSet {
 	}
 	
 	/**
+	 * Retrieves a DataEntry from {@link #entries}.
+	 * @param key The key of the entry to retrieve.
+	 * @return A DataEntry in this DataSet with the given key.
+	 */
+	public DataEntry getEntry(String key) {
+		for (DataEntry entry : this.getEntries())
+			if (entry.getKey().equals(key))
+				return entry;
+		return null;
+	}
+	
+	/**
 	 * Initializes a {@link DataEntry} with information extracted from the given
 	 * string and adds it to {@link #entries}.
 	 * @param line The line to extract information from.
@@ -118,9 +130,145 @@ public class DataSet {
 		addEntry(new DataEntry(extractKey(line), getVal(line)));
 	}
 	
+	/**
+	 * @param clazz The class to filter by.
+	 * @return A filtered ArrayList of DataEntries where each DataEntry
+	 * saves a value of the given class.
+	 */
+	private ArrayList<DataEntry> filterClass(Class clazz) {
+		ArrayList<DataEntry> filtered = new ArrayList<DataEntry>();
+		for (DataEntry entry : this.getEntries())
+			if (entry.getClazz().equals(clazz))
+				filtered.add(entry);
+		return filtered;
+	}
+	
+	/**
+	 * Used to retrieve a stored byte value from this DataSet.
+	 * @param key The key of the byte value to retrieve.
+	 * @return The value of the stored byte, if an entry with the
+	 * given key exists and is a byte value. Otherwise, null is returned.
+	 */
+	public Byte getByte(String key) {
+		for (DataEntry entry : this.filterClass(Byte.class))
+			if (entry.getKey().equals(key))
+				return (Byte) entry.getVal();
+		return null;
+	}
+	
+	/**
+	 * Used to retrieve a stored short value from this DataSet.
+	 * @param key The key of the short value to retrieve.
+	 * @return The value of the stored short, if an entry with the
+	 * given key exists and is a short value. Otherwise, null is returned.
+	 */
+	public Short getShort(String key) {
+		for (DataEntry entry : this.filterClass(Short.class))
+			if (entry.getKey().equals(key))
+				return (Short) entry.getVal();
+		return null;
+	}
+	
+	/**
+	 * Used to retrieve a stored integer value from this DataSet.
+	 * @param key The key of the integer value to retrieve.
+	 * @return The value of the stored integer, if an entry with the
+	 * given key exists and is a integer value. Otherwise, null is returned.
+	 */
+	public Integer getInteger(String key) {
+		for (DataEntry entry : this.filterClass(Integer.class))
+			if (entry.getKey().equals(key))
+				return (Integer) entry.getVal();
+		return null;
+	}
+	
+	/**
+	 * Used to retrieve a stored long value from this DataSet.
+	 * @param key The key of the long value to retrieve.
+	 * @return The value of the stored long, if an entry with the
+	 * given key exists and is a long value. Otherwise, null is returned.
+	 */
+	public Long getLong(String key) {
+		for (DataEntry entry : this.filterClass(Long.class))
+			if (entry.getKey().equals(key))
+				return (Long) entry.getVal();
+		return null;
+	}
+	
+	/**
+	 * Used to retrieve a stored float value from this DataSet.
+	 * @param key The key of the float value to retrieve.
+	 * @return The value of the stored float, if an entry with the
+	 * given key exists and is a float value. Otherwise, null is returned.
+	 */
+	public Float getFloat(String key) {
+		for (DataEntry entry : this.filterClass(Float.class))
+			if (entry.getKey().equals(key))
+				return (Float) entry.getVal();
+		return null;
+	}
+	
+	/**
+	 * Used to retrieve a stored double value from this DataSet.
+	 * @param key The key of the double value to retrieve.
+	 * @return The value of the stored double, if an entry with the
+	 * given key exists and is a double value. Otherwise, null is returned.
+	 */
+	public Double getDouble(String key) {
+		for (DataEntry entry : this.filterClass(Double.class))
+			if (entry.getKey().equals(key))
+				return (Double) entry.getVal();
+		return null;
+	}
+	
+	/**
+	 * Used to retrieve a stored boolean value from this DataSet.
+	 * @param key The key of the boolean value to retrieve.
+	 * @return The value of the stored boolean, if an entry with the
+	 * given key exists and is a boolean value. Otherwise, null is returned.
+	 */
+	public Boolean getBoolean(String key) {
+		for (DataEntry entry : this.filterClass(Boolean.class))
+			if (entry.getKey().equals(key))
+				return (Boolean) entry.getVal();
+		return null;
+	}
+	
+	/**
+	 * Used to retrieve a stored character value from this DataSet.
+	 * @param key The key of the character value to retrieve.
+	 * @return The value of the stored character, if an entry with the
+	 * given key exists and is a character value. Otherwise, null is returned.
+	 */
+	public Character getCharacter(String key) {
+		for (DataEntry entry : this.filterClass(Character.class))
+			if (entry.getKey().equals(key))
+				return (Character) entry.getVal();
+		return null;
+	}
+	
+	/**
+	 * Used to retrieve a stored string value from this DataSet.
+	 * @param key The key of the string value to retrieve.
+	 * @return The value of the stored string, if an entry with the
+	 * given key exists and is a string value. Otherwise, null is returned.
+	 */
+	public String getString(String key) {
+		for (DataEntry entry : this.filterClass(String.class))
+			if (entry.getKey().equals(key))
+				return (String) entry.getVal();
+		return null;
+	}
+
+	
 	@Override
 	public String toString() {
 		return "DataSet [name=" + name + ", parent=" + parent + "]";
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		return o instanceof DataSet && ((DataSet)o).name.equals(this.name);
 	}
 
 	public ArrayList<DataEntry> getEntries() {

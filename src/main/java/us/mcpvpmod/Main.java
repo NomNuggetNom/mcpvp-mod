@@ -7,7 +7,6 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -29,10 +28,10 @@ import us.mcpvpmod.gui.InfoBox;
 import us.mcpvpmod.gui.PotionDisplay;
 import us.mcpvpmod.gui.screen.GuiSecondChat;
 import us.mcpvpmod.json.ServerJSON;
-import us.mcpvpmod.json.StreamJSON;
 import us.mcpvpmod.json.VersionJSON;
 import us.mcpvpmod.timers.PingTimer;
 import us.mcpvpmod.timers.SimpleTimer;
+import us.mcpvpmod.timers.StreamTimer;
 import us.mcpvpmod.timers.UpdateTimer;
 import us.mcpvpmod.util.Format;
 import us.mcpvpmod.version.MCPVPVersion;
@@ -82,7 +81,7 @@ public class Main {
 	public static FontRenderer fr = mc.fontRendererObj;
 	
 	@EventHandler
-	public void preInit(@SuppressWarnings("unused") FMLPreInitializationEvent e) {	
+	public void preInit(@SuppressWarnings("unused") FMLPreInitializationEvent e) {
 		Main.l(Format.s("startup"));
     	
     	// Register all events in the Events class.
@@ -124,7 +123,7 @@ public class Main {
 		Timer timer = new Timer();
 		// TODO: Should be as needed. No reason to have it repeating.
 		timer.scheduleAtFixedRate(serverJson, 0, 5*1000L);
-		timer.scheduleAtFixedRate(new StreamJSON(), 0, 30*1000L);
+		timer.scheduleAtFixedRate(new StreamTimer(), 0, 30*1000L);
 		timer.scheduleAtFixedRate(new VersionJSON(), 0, 60*60*1000L);
 		timer.scheduleAtFixedRate(new UpdateTimer(), 15*1000, 5*60*1000L);
 		timer.scheduleAtFixedRate(new SimpleTimer(), 0, 1*1000L);

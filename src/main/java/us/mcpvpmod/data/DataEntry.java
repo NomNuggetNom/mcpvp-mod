@@ -13,9 +13,9 @@ package us.mcpvpmod.data;
 public class DataEntry {
 
 	/** The key of the entry. */
-	String key;
+	private final String key;
 	/** The value to store. Not directly saved: factored into the {@link #valString}. */
-	Object val;
+	private final Object val;
 	/** The value String that will be saved, composed of 
 	 * the value character and the string representation of the {@link #val}. */
 	final String valString;
@@ -94,6 +94,18 @@ public class DataEntry {
 	@Override
 	public boolean equals(Object o) {
 		return o instanceof DataEntry && ((DataEntry)o).key.equals(this.key);
+	}
+	
+	public Class getClazz() {
+		return this.val.getClass();
+	}
+	
+	public String getKey() {
+		return this.key;
+	}
+	
+	public Object getVal() {
+		return this.val;
 	}
 	
 	/**

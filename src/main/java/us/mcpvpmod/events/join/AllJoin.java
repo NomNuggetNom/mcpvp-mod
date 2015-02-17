@@ -22,6 +22,7 @@ public class AllJoin {
 	 * {@link Server#getServer()} will still return {@link Server#NONE}.
 	 */
 	public static void onJoin() {
+		Data.make();
 		lastLogin = System.currentTimeMillis();
 		Main.l("Logged in!");
 		

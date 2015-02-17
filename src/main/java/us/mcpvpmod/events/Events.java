@@ -19,7 +19,7 @@ import us.mcpvpmod.Sync;
 
 public class Events {
 
-	//@SubscribeEvent
+	@SubscribeEvent
 	public void onChat(ClientChatReceivedEvent event) {
 		if (Main.mc.isSingleplayer()) return;
 		Main.start();

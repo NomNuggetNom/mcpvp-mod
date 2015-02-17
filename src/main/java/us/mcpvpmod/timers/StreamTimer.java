@@ -21,19 +21,19 @@ import net.minecraftforge.fml.common.FMLLog;
 public class StreamTimer extends TimerTask {
 
 	public static boolean streamOnline;
-	
+
 	@Override
 	public void run() {
 
 		try {
-			
+
 			URL url = new URL("https://api.twitch.tv/kraken/streams/mcpvp/");
-		    HttpsURLConnection con = (HttpsURLConnection)url.openConnection();
+			HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
 			InputStreamReader inputStreamReader = new InputStreamReader(con.getInputStream());
 			BufferedReader bf = new BufferedReader(inputStreamReader);
 			String json = bf.readLine();
 			JsonObject obj = new JsonParser().parse(json).getAsJsonObject();
-			
+
 			if (obj.get("stream").isJsonNull()) {
 				if (this.streamOnline)
 					this.streamOnline = false;
@@ -43,13 +43,13 @@ public class StreamTimer extends TimerTask {
 					this.streamOnline = true;
 				}
 			}
-			
+
 			inputStreamReader.close();
 		} catch (Exception ex) {
 			FMLLog.warning("[MCPVP] Couldn't get stream status: %s", ex.toString());
 		}
 	}
-	
+
 	public static void sendStreamOnline() {
 		IChatComponent send = new ChatComponentText(Format.style(Format.s("stream-msg")));
 		send.getChatStyle().setChatClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, Format.s("stream-url")));

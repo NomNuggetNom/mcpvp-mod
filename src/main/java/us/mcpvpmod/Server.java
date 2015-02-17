@@ -94,7 +94,7 @@ public enum Server {
 	public final IVarProvider varProvider;
 	
 	Server() {
-		this.varProvider = null;
+		this(null);
 	}
 	
 	Server(IVarProvider varProvider) {
