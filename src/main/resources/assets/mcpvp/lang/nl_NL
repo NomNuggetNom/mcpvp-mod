@@ -1,0 +1,605 @@
+<!-- =========== -->
+<!-- ===-----=== -->
+<!-- = GENERAL = -->
+<!-- ===-----=== -->
+<!-- =========== -->
+<!-- DEBUG -->
+startup=[MCPVP] Mod start op!
+sync=[MCPVP] Synchroniseert configuratie!
+error.json.server=[MCPVP] Onmogelijk om JSON te krijgen voor de servers!
+
+<!-- UPDATE -->
+update-url=https://github.com/NomNuggetNom/mcpvp-mod/releases
+update-msg=#b##u#v#green##b##u#<VERSION>#white##b##u# is uit voor MC #cyan##b##u#<MCVERSION>#white##b##u#! Klik hier om te downloaden.
+
+stream-url=http://www.twitch.tv/mcpvp
+stream-msg=#gold##i##u#The #red##i##u#MCPVP Stream #gold##i##u#is nu live! Kilk hier om te kijken.
+
+<!-- COLORS -->
+color-code=#
+color-0=zwart
+color-1=donker_blauw
+color-2=donker_groen
+color-3=donker_aqua
+color-4=donker_rood
+color-5=donker_paars
+color-6=goud
+color-7=grijs
+color-8=donker_grijs
+color-9=blauw
+color-a=groen
+color-b=aqua
+color-c=rood
+color-d=paars
+color-e=geel
+color-f=wit
+
+<!-- GUI -->
+gui.choose=Kies jouw server menu:
+gui.choose.mcpvp=MCPVP Server Menu
+gui.choose.vanilla=Vanilla Server Menu
+gui.join.region=Region: 
+gui.join.rejoin=Re-Join laatste
+gui.join.vanilla=Vanilla
+
+gui.ingame=MCPVP Menu
+gui.ingame.button=#b#MCPVP Opties
+gui.ingame.connect=Verbind naar een server
+gui.ingame.settings=Bewerk instellingen
+gui.ingame.hud=Bewerk HUD
+gui.ingame.help=Toon Help
+gui.ingame.codes=Codes
+gui.ingame.friends=Voeg een vriend toe
+
+gui.tut.finish=Voltooi Tutorial
+gui.tut.1.1=#i#Welkom bij de MCPVP Mod!
+gui.tut.1.2=#green##s#                                                                         
+gui.tut.1.3=Dit is een snelle tutorial om je te laten beginnen met deze mod.
+gui.tut.1.4=Om hier door heen te gaan, klik op de knop rechts.
+gui.tut.1.5=Je kan terug gaan door op de knop links te drukken.
+gui.tut.1.6=Je kan het ook afsluiten op elk moment jij maar wilt door op de ESC toets te drukken.
+gui.tut.1.7=Niet dat je  dat zal gaan doen, toch?
+gui.tut.1.8=
+gui.tut.1.9=#b#Het is je aangeraden om door te gaan met een kleine GUI
+gui.tut.1.10=#b#en een groot beeld! #r#Anders zie je waarschijnlijk niet alles.
+gui.tut.1.11=Verander de instelling en Re-Join een server om dit scherm weer te zien.
+
+gui.tut.2.1=#i#Verplaatsen en bewerken van de weergave.
+gui.tut.2.2=#cyan##s#                                                                         
+gui.tut.2.3=Je kan het bewerken door #gray#[#green##b#X#gray#]#r# te typen om je toetsenbord.
+gui.tut.2.4=Deze toets kan geconfigureerd worden in het normale Minecraft Controls menu.
+gui.tut.2.5=Wanneer je in de bewerk optie bent, zul je deze tekst zien in het beeldscherm:
+gui.tut.2.6=
+gui.tut.2.7=      #i#Druk op #gray#[#green##b#ESC#gray#]#white##i# om het bewerken te stoppen.
+gui.tut.2.8=Klik op iets om het te selecteren.
+gui.tut.2.9=
+gui.tut.2.10=Om een item te selecteren, moet je er gewoon op klikken. Om het item te bewegen gebruik je
+gui.tut.2.11=pijltjes toetsen. Je kan #gray#[#green##b#SHIFT#gray#]#r# vasthouden om het 10 pixels te laten verschuiven,
+gui.tut.2.12=of houdt #gray#[#green##b#CTRL#gray#]#r# in om het naar een hoek te verschuiven. Probeer het maar:
+
+gui.tut.3.1=#i#Configuratie
+gui.tut.3.2=#purple##s#                                                                         
+gui.tut.3.3=Eén van de beste dingen van deze mod is de mogelijkheid om
+gui.tut.3.4=alles te kunnen veranderen. Je kan de config veranderen in meerdere manieren:
+gui.tut.3.5=
+gui.tut.3.6=1. Druk op #gray#[#green##b#C#gray#]#r# wanner je in-game bent (niet nu.)                           
+gui.tut.3.7=2. Druk op #gray#[#green##b#ESC#gray#]#r#, druk op MCPVP Opties, en druk op Bewerk instellingen.
+gui.tut.3.8=3. Van het hoofd MC menu druk op Mods > MCPVP > Config     
+gui.tut.3.9=
+gui.tut.3.10=Wanneer je daar bent, kun je alles veranderen! Het zal je waarschijnlijk opvallen
+gui.tut.3.11=dat er rare structuren zijn, zoals "\#red\#" or "{ip}".
+gui.tut.3.12=Deze speciale parameters worden "kleuren codes
+gui.tut.3.13=and vairabelen, respectively." genoemd
+gui.tut.3.14=
+gui.tut.3.15=#b##u#PROTIP: Om meer informatie te krijgen over de config,
+gui.tut.3.16=#b##u#Beweeg uw muis over de tekst aan de linkerkant van de config-post!
+
+gui.tut.4.1=#i#Opmaak met kleuren en variabelen
+gui.tut.4.2=#gold##s#                                                                         
+gui.tut.4.3=Variabelen zijn stukjes informatie die automatisch
+gui.tut.4.4=veranderen wanneer ze worden geprojecteerd, {x} wordt
+gui.tut.4.5=jouw huidige x coordinaat. Zelfde voor {z} en {y}.
+gui.tut.4.6=Variabelen kunnen gevonden word bij #gray#[#green##b#ESC#gray#]#r# > MCPVP Opties > Codes.
+gui.tut.4.7=
+gui.tut.4.8=Kleuren codes worden gebruikt bij de opmaak van tekst, inclusief kleuren
+gui.tut.4.9=van de opmaak en het dik/schuin/onderstreept maken, etc. 
+gui.tut.4.10=Om deze codes te maken, schrijf: \#kleur_naam\#.
+gui.tut.4.11=Codes kunnen gevonden worden bij #gray#[#green##b#ESC#gray#]#r# > MCPVP Opties > Codes.
+gui.tut.4.12=
+gui.tut.4.13=Voorbeeld:
+gui.tut.4.14=\\#green\\#FPS: \\#b\\#{fps} #gray#==>#r# #green#FPS: #b#{{fps}}
+
+gui.friends.add=Toevoegen aan
+gui.friends.remove=Verwijderen van
+gui.friends.1=Lijst 1
+gui.friends.2=Lijst 2
+gui.friends.3=Lijst 3
+
+gui.edit.select=Klik op iets om het te selecteren!
+gui.edit.edit=      #i#Druk op #gray#[#green##b#E#gray#]#white##i# om te bewerken.
+gui.edit.stop=      #i#Druk op #gray#[#green##b#ESC#gray#]#white##i# om het bewerken te stoppen.
+gui.edit.selected=#r#Geselecteerd: 
+
+gui.servers.starting=#gray#Start in #green#$1
+gui.servers.progress=#gray#Is bezig
+gui.servers.waiting=#yellow#Wachten...
+gui.servers.ending=#gray#Eindigt in #green#$1#gray#s
+
+gui.save=Opslaan
+
+gui.box.title=Bewerk Vak
+
+key.categories.mcpvp=MCPVP
+key.openConfig=Open Config
+key.moveBlocks=Bewerk GUI
+key.showHelp=Toon Help
+key.cmdMac=Mac Drop Stack
+
+<!-- =========== -->
+<!-- ===-----=== -->
+<!-- = SERVERS = -->
+<!-- ===-----=== -->
+<!-- =========== -->
+server.all=Alle Servers
+server.hub.name=Hub
+server.hub.ip=hub.mcpvp.com
+server.kit.name=KitPVP
+server.kit.ip=kitpvp.us
+server.hg.name=Hardcore Games
+server.hg.ip=mc-hg.com
+server.maze.name=Maze Runner
+server.maze.ip=mc-maze.com
+server.sab.name=Sabotage
+server.sab.ip=mc-sabotage.com
+server.ctf.name=Capture The Flag
+server.ctf.ip=mcctf.com
+server.hs.name=Headshot
+server.hs.ip=mcheadshot.com
+server.party.name=Piñata Party
+server.party.ip=party.mcpvp.com
+server.build.name=Minecraft Build
+server.build.ip=minecraftbuild.com
+server.raid.name=Raid
+server.raid.ip=raid.mcpvp.com
+server.smash.name=Smash
+server.smash.ip=mcsmash.com
+server.none.name=Geen
+server.none.ip=Geen
+
+<!-- ========== -->
+<!-- ===----=== -->
+<!-- = CONFIG = -->
+<!-- ===----=== -->
+<!-- ========== -->
+
+<!-- ===---------=== -->
+<!-- = ALL SERVERS = -->
+<!-- ===---------=== -->
+config.title=MCPVP Configuratie
+config.mcpvp=Alle Servers
+config.mcpvp.tooltip=Configuratie opties voor alle MCPVP servers.
+config.mcpvp.title=MCPVP Globale Configuratie
+config.ctf=Capture the Flag
+config.ctf.tooltip=Configuratie opties voor Capture the Flag.
+config.ctf.title=Capture the Flag Configuratie
+config.kit=KitPVP
+config.kit.tooltip=Configuratie opties voor KitPVP.
+config.kit.title=KitPVP Configuratie
+config.maze=Maze Runner
+config.maze.tooltip=Configuratie opties voor Maze Runner.
+config.maze.title=Maze Runner Configuratie
+config.build=Minecraft Build
+config.build.tooltip=Configuratie opties voor Minecraft Build.
+config.build.title=Minecraft Build Configuratie
+config.sab=Sabotage
+config.sab.tooltip=Configuratie opties voor Sabotage.
+config.sab.title=Sabotage Configuratie
+config.hg=Hardcore Games
+config.hg.tooltip=Configuratie opties voor Hardcore Games.
+config.hg.title=Hardcore Games Configuratie
+config.hs=Headshot
+config.hs.tooltip=Configuratie opties voor Headshot.
+config.hs.title=Headshot Configuratie
+
+<!-- ALERTS -->
+config.alerts.title=Waarschuwing
+config.alerts.tooltip=Hier kun je alles veranderen inclusief de titel, beschrijving en 
+ weergegeven op de waarschuwing.
+config.alerts.showAlerts=Toon weergave
+config.alerts.showAlerts.tooltip=Een globale schakelaar voor het tonen van alle waarschuwingen.
+config.alerts.online=Vriend Online
+config.alerts.online.tooltip=De waarschuwing ingebracht wanneer een vriend online komt.
+config.alerts.online.default=#white#Party time! ||| {player}#gray# is nu online ||| head
+
+<!-- CHAT -->
+config.chat.title=Chat Besturingselementen
+config.chat.tooltip=Opties voor de chat. 
+config.chat.movePMs=Zend PMs naar de Tweede Chat
+config.chat.movePMs.tooltip=Hiermee wordt bepaald of prive-berichten automatisch worden verzonden naar de tweede chat.
+config.chat.fixLinks=Repareer Links
+config.chat.fixLinks.tooltip=Als deze op aan staat, links zullen opnieuw geactiveerd zijn in chat, toestemming om jou er op te laten klikken.
+config.chat.filterWords=Gefilterde Woorden
+config.chat.filterWords.tooltip=Deze woorden zullen gecensorseerd worden in de chat. Bijv.: "Poep" -> "****"
+config.chat.removeWords=Totaal verwijderen van berichten
+config.chat.removeWords.tooltip=Als een bericht een woord heeft van deze lijst, zal het helemaal verwijderd worden uit dit bericht.
+config.chat.splitChat=Zend naar Tweede Chat
+config.chat.splitChat.tooltip=Als een bericht een woord heeft van deze lijst, zal het verzonden worden naar de tweede chat.
+config.chat.movekNoHax=Verplaats detectie berichten
+config.chat.movekNoHax.tooltip=Verplaatst hack detectie berichten naar de tweede chat.
+config.chat.alignChat=Uitlijnen Tweede Chat
+config.chat.alignChat=Veranderd hoe de tweede chat is uitgelijnd.
+
+<!-- FRIENDS -->
+config.friends.title=Vriendenlijst
+config.friends.tooltip=Opties met betrekking to de Vriendenlijst. Dit is waar je je vrienden toevoegd aan je lijst!
+config.friends.onlineTitle=Vrienden Vak Titel
+config.friends.onlineTitle.tooltip=De titel die word weergegeven voor de vriendenlijst.
+config.friends.group1=Vriendengroep Eén
+config.friends.group1.tooltip=Groep één Group one van jouw vrienden. Ik raad team leden aan.
+config.friends.group2=Friends Group Twee
+config.friends.group2.tooltip=Groep twee Group one van jouw vrienden. Ik raad team mercs aan.
+config.friends.group3=Friends Group Drie
+config.friends.group3.tooltip=Groep drie Group one van jouw vrienden. Ik raad niet-team vrienden aan.
+config.friends.group1Format=Groep Eén Formaat.
+config.friends.group1Format.tooltip=Deze opmaak wordt toegepast op vrienden in groep één.
+config.friends.group2Format=Groep Twee Formaat.
+config.friends.group2Format.tooltip=Deze opmaak wordt toegepast op vrienden in groep twee.
+config.friends.group3Format=Groep Drie Formaat.
+config.friends.group3Format.tooltip=Deze opmaak wordt toegepast op vrienden in groep drie.
+config.friends.alwaysShow=Altijd tonen
+config.friends.alwaysShow.tooltip=Als deze aanstaat en er zijn geen vrienden online, dit vlak zal weergegeven worden met "Niemand :(". Als deze uit staat en er zijn geen vrienden online, zal dit vlak niet worden weergegeven.
+config.friends.onlineNotifications=Online Notificaites
+config.friends.onlineNotifications.tooltip=Als deze aan staat en een vriend jouw spel in gaat, zul je een leuke notificatie krijgen.
+config.friends.cooldownTime=Cooldown Tijd (sec)
+config.friends.cooldownTime.tooltip=De hoeveelheid tijd die verstrijken moet voordat u een waarschuwing voor iemand tweemaal ontvangt. Dit helpt te voorkomen dat 414ing van triggering meerdere waarschuwingen.
+
+<!-- HUD -->
+config.hud.title=Weergave Informatie
+config.hud.tooltip=Opties voor de Weergave Informatie.
+config.hud.showArmor=Toon Uitrusting
+config.hud.showArmor.tooltip=Wel of niet te tonen een handige uitrusting weergave dat uitrusting pictogrammen en duurzaamheid cijfers bevat (die kan worden aangepast op Uitrusting Toon modus).
+config.hud.armorMode=Uitrusting Toon Modus
+config.hud.armorMode.tooltip=De toon modus van de uitrusting weergave. "Toon Duurzaamheid Over" zal tonen "123"; "Toon duurzaamheid van het totaal" zal tonen "123/456"; "Toon geen Duurzaamheid Over" zal alleen het item laten zien.
+config.hud.armorMode.m.show=Toon Duurzaamheid Over
+config.hud.armorMode.m.total=Toon Duurzaamheid Over van het Totaal
+config.hud.armorMode.m.dont=Toon geen Duurzaamheid Over
+config.hud.armorPosition=Armor Status Positie
+config.hud.armorPosition.tooltip=Dit dicteert waar de duurzaamheid cijfers worden getoont. Als je de Uitrusting Modus hebt gezet op "Toon Geen" dan hoef je hier geen zorgen over te maken.
+config.hud.armorPosition.m.l=Links van de Uitrusting
+config.hud.armorPosition.m.r=Rechts van de Uitrusting
+config.hud.showPotion=Toon Potion Effects
+config.hud.showPotion.tooltip=Wel of niet te tonen van een zoete potion effect weergave. Het zal het effect pictogram tonen, de kracht en de resterende tijd (afhankelijk van uw instellingen van jouw Potion Weergave Modus)
+config.hud.potionMode=Potion Weergave Modus
+config.hud.potionMode.tooltip=De modus van de potion weergave. "Toon Tijd Over" zal de tijd weergegeven en de kracht van de potion; "Toon geen Tijd Over" laat alleen het pictogram zien.
+config.hud.potionMode.m.show=Toon Tijd & Kracht
+config.hud.potionMode.m.dont=Toon Geen Tijd & Kracht
+config.hud.potionPosition=Potion Informatie Positie
+config.hud.portionPosition=Dit dicteert waar de potions kracht en tijd zal worden weergegeven, relevante van het potion effect pictogram.
+config.hud.potionPosition.m.l=Rechts van de Potions
+config.hud.potionPosition.m.r=Links van de Potions
+config.hud.fixSkins=Repareer Skins (laggy)
+config.hud.fixSkins.tooltip=WAARSCHUWING: DIT GEEFT LAG. Dit dwingt skins om te worden vastgesteld op MCPVP Servers. Verwacht frame drops and stotteren. Er is niks anders wat ik hieraan kan doen :(.
+config.hud.renderBG=Render Achtergronden
+config.hud.renderBG.tooltip=Wel of niet weergeven van de zwarte achtergrond achter info blokken.
+config.hud.margin=Marge
+config.hud.margin.tooltip=De ruimte tussen de info blokken.
+config.hud.centerTitles=Midden Titels
+config.hud.centerTitles.tooltip=Wel of niet naar het midden van de titels boven info blokken..
+config.hud.alignItems=Items Uitlijnen
+config.hud.alignItems.tooltip=Als deze aan staat, alle lijnen die ">>" bevatten zullen overheen komen met de andere lijnen die ">>" bevatten die een coole weergave uitstraalt.
+config.hud.alignWidths=Uitlijnen Breedten
+config.hud.alignWidths.tooltip=Wel of geen Uitlijnen Breedten van de info blokken hebben dezelfde x coördinaten.
+config.hud.alignHeights=Uitlijnen Hoogten
+config.hud.alignHeights.tooltip=Wel of geen Uitlijnen Hoogten van de info blockken hebben dezelfde y coördinaten.
+config.hud.medalTimer=Medaille Timer
+config.hud.medalTimer.tooltip=De nummer van seconden dat een Medaille laat zien voor.
+ 
+<!-- SELECT -->
+config.select.title=Auto-Selectie
+config.select.tooltip=Opties voor Auto-Selectie.
+config.select.autoTagB=Auto Tag
+config.select.autoTagB.tooltip=Als deze aan staat, zul je automatisch getagged worden wat u hieronder moet preciseren.
+config.select.autoTag=Selectie Tag
+config.select.autoTag.tooltip=Deze tag zal automatisch worden toegepast als de Auto Tag is aangezet.
+config.select.autoDespawn=Auto Despawn Huisdier
+config.select.autoDespawn.tooltip=Als deze aan staat, jouw huisdier zal despawned worden wanneer je een spel in gaat.
+config.select.autoSilent=Auto /silent
+config.select.autoSilent.tooltip=Automatisch dempt die vervelende hacker meldingen.
+
+<!-- VERSION -->
+config.version.title=Versie Checken
+config.version.tooltip=Opties voor Versie Checken.
+config.version.updateNotifications=Update Meldingen
+config.version.updateNotifications.tooltip=Wel of geen meldingen krijgen over een nieuwe updates. De meldingen zullen verschijnen in jouw chat, elke keer wanneer je inlogt.
+config.version.versionChannel=Versie Kanaal
+config.version.versionChannel.tooltip=Het kanaal van de mod gewenste bijgewerkt over. Main ontvangt minder frequente updates, maar soms kan de bèta-updates wat glitchy zijn.
+
+<!-- SOUNDS -->
+config.sounds.title=Geluiden
+config.sounds.tooltip=Opties voor Geluiden.
+config.sounds.online=Vriend Online
+config.sounds.online.tooltip=Het geluid gaat af wanneer een vriend online komt.
+
+<!-- MISC -->
+config.misc.title=Diversen
+config.misc.tooltip=Andere instellingen.
+config.misc.pingVar=Ping Variabele
+config.misc.pingVar.tooltip=Dit activeerd de {ping} variabele, maar soms kan het je chat vol spammen. Deactiveer dit als je veel berichten krijgt over het testen van ping.
+config.misc.pingFreq=Ping Frequentie (sec)
+config.misc.pingFreq.tooltip=Hoe vaak de {ping} variabele updates in seconden. Vereist een restart om toegepast te worden.
+config.misc.defaultMenu=Standaard Server Menu
+config.misc.defaultMenu.tooltip=Welk server menu moet openen wanneer er op "Multiplayer" is gedrukt op het hoofd MC scherm.
+
+<!-- ===---=== -->
+<!-- = BUILD = -->
+<!-- ===---=== -->
+build.config.hud.render=Render
+build.config.hud.render.tooltip=Informatie dat word weergegeven onder het spelen van Minecraft Build.
+
+<!-- ===--=== -->
+<!-- = RAID = -->
+<!-- ===--=== -->
+raid.config.hud.render=Render
+raid.config.hud.render.tooltip=Informatie dat word weergegeven onder het spelen van Raid.
+
+raid.config.alerts.balance=Saldo Veranderd
+raid.config.alerts.balance.tooltip=De melding gaat af wanneer je deposit of withdraw goud.
+raid.config.alerts.balance.default=Saldo veranderd ||| #gray#Nu heb je #green#{balance} #gray#goud op de bank ||| gold_ingot
+raid.config.alerts.raid=Getting Raided
+raid.config.alerts.raid.tooltip=De melding gaat af wanneer iemand je een inval krijgt in je base.
+raid.config.alerts.raid.default=#white#Verdedig jezelf! ||| #red#Je hebt een inval door {player}! ||| iron_sword
+
+<!-- ===-=== -->
+<!-- = CTF = -->
+<!-- ===-=== -->
+ctf.config.title=Capture the Flag Configuratie
+
+<!-- ALERTS -->
+ctf.config.alerts.stole=Vlag Gestolen
+ctf.config.alerts.stole.tooltip=De melding gaat af wanneer de vlag is gestolen.
+ctf.config.alerts.stole.default=#white#Vlag gestolen! ||| {player} #gray#heeft de vlag van {team}#gray# #gray#gestolen! ||| flag.png
+ctf.config.alerts.dropped=Vlag Gedropt
+ctf.config.alerts.dropped.tooltip=De melding gaat af wanneer de vlag is gedropt.
+ctf.config.alerts.dropped.default=#white#Vlag gedropt! ||| {player} #gray#heeft de vlag van {team}#gray# gedropt! ||| flag.png
+ctf.config.alerts.pickedUp=Vlag Opgepakt
+ctf.config.alerts.pickedUp.tooltip=De melding gaat af wanneer de vlag is opgepakt.
+ctf.config.alerts.pickedUp.default=#white#Vlag opgepakt! ||| {player} #gray#heeft de vlag van {team}#gray# opgepakt! ||| flag.png
+ctf.config.alerts.recovered=Vlag Teruggebracht
+ctf.config.alerts.recovered.tooltip=De melding gaat af wanneer de vlag is teruggebracht.
+ctf.config.alerts.recovered.default=#white#Vlag teruggebracht! ||| {player} #gray#heeft de vlag van {team}#gray# teruggebracht! ||| flag.png
+ctf.config.alerts.restored=Vlag Hersteld
+ctf.config.alerts.restored.tooltip=De melding gaat af wanneer de vlag is hersteld.
+ctf.config.alerts.restored.default=#white#Vlag hersteld! ||| {player} #gray#heeft de vlag van {team}#gray# hersteld! ||| flag.png
+ctf.config.alerts.captured=Vlag Veroverd
+ctf.config.alerts.captured.tooltip=De melding gaat af wanneer de vlag is veroverd.
+ctf.config.alerts.captured.default=#white#Vlag veroverd! ||| {player} #gray#heeft de vlag van {team}#gray# veroverd! ||| flag.png
+ctf.config.alerts.streak=Streak Geëindigd
+ctf.config.alerts.streak.tooltip=De melding gaat af wanneer een kill streak is geëindigd.
+ctf.config.alerts.streak.default=#white#Streak geëindigd! ||| {killer} #gray#heeft de streak van {killed}#gray# #cyan#{streak} #gray#geëindigd ||| bone
+ctf.config.alerts.compass=Kompas Veranderd
+ctf.config.alerts.compass.tooltip=De melding gaat af wanneer de kompas van doel veranderd.
+ctf.config.alerts.compass.default=-X- #white#Kompas veranderd ||| #gray#Nu wijst de kompas op de vlag van {team}#gray# ||| compass
+ctf.config.alerts.class=Veranderde Klass
+ctf.config.alerts.class.tooltip=De melding gaat af wanneer je jouw klas veranderd.
+ctf.config.alerts.class.default=#white#Fancy shit! ||| #gray#Veranderd naar #green#{class} ||| class
+ctf.config.alerts.assist=Helper
+ctf.config.alerts.assist.tooltip=De melding gaat af wanneer je helpt met het vermoorden van een speler.
+ctf.config.alerts.assist.default=Helpende Kill ||| #gray#Je hebt geholpen om {player} te doden! ||| witherskull
+ctf.config.alerts.start=Spel Start
+ctf.config.alerts.start.tooltip=De melding gaat af wanneer het spel start.
+ctf.config.alerts.start.default=Hoera! ||| #cyan#Het spel is begonnen! Veel plezier! ||| nether_star
+ctf.config.alerts.five=Vijf Mins Over
+ctf.config.alerts.five.tooltip=De melding gaat af wanneer er nog vijf minuten over zijn in het spel.
+ctf.config.alerts.five.default=Let op! ||| #yellow#5:00 #gray#over. ||| clock
+ctf.config.alerts.one=Eén Min Over
+ctf.config.alerts.one.tooltip=De melding gaat af wanneer er nog één minuut over is in het spel.
+ctf.config.alerts.one.default=Waarchuwing! ||| #red#1:00 #gray#over! ||| clock
+ctf.config.alerts.end=Spel Eindigt
+ctf.config.alerts.end.tooltip=De melding gaat af wanneer het spel eindigt.
+ctf.config.alerts.end.default=Game over! ||| {team} #gray#heeft het spel gewonnen! ||| flag.png
+
+<!-- CHAT -->
+ctf.config.chat.removeTips=Verwijder Tips
+ctf.config.chat.removeTips.tooltip=Wel of geen verwijder tips in chat.
+ctf.config.chat.medicClasses=Dikgedrukt Medic Als
+ctf.config.chat.medicClasses.tooltip=Als je een klas bent in deze lijst, medic berichten zullen dikgedrukt in chat zijn.
+ctf.config.chat.chatHistory=Chat Geschiendenis
+ctf.config.chat.chatHistory.tooltip=Dit transformeert chat in een regelmatige Minecraft chat ervaring. Bijvoorbeeld, kunt u bladeren door oude berichten.
+
+<!-- HUD -->
+ctf.config.hud.renderPre=Pre Renderen
+ctf.config.hud.renderPre.tooltip=Informatie dat word weergegeven voordat het spel begint.
+ctf.config.hud.renderPlay=Render Tijdens Het Spelen
+ctf.config.hud.renderPlay.tooltip=Informatie dat word weergegeven ondetussen dat het spel bezig is.
+ctf.config.hud.renderPost=Na Renderen
+ctf.config.hud.renderPost.tooltip=Informatie dat word weergegeven na het spel in geëindigd.
+
+<!-- SOUNDS -->
+ctf.config.sounds.stole=Vlag Gestolen
+ctf.config.sounds.stole.tooltip=Het geluid gaat af wanneer de vlag is gestolen.
+ctf.config.sounds.dropped=Vlag Gedropt
+ctf.config.sounds.dropped.tooltip=Het geluid gaat af wanneer de vlag is gedropt.
+ctf.config.sounds.pickedUp=Vlag Opgepakt
+ctf.config.sounds.pickedUp.tooltip=Het geluid gaat af wanneer de vlag is opgepakt.
+ctf.config.sounds.recovered=Vlag Teruggebracht
+ctf.config.sounds.recovered.tooltip=Het geluid gaat af wanneer de vlag is teruggebracht.
+ctf.config.sounds.restored=Vlag Hersteld
+ctf.config.sounds.restored.tooltip=Het geluid gaat af wanneer de vlag is hersteld.
+ctf.config.sounds.captured=Vlag Veroverd
+ctf.config.sounds.captured.tooltip=Het geluid gaat af wanneer de vlag is veroverd.
+ctf.config.sounds.streak=Streak Geëindigd
+ctf.config.sounds.streak.tooltip=Het geluid gaat af wanneer een kill streak is geëindigd.
+ctf.config.sounds.compass=Kompas Veranderd
+ctf.config.sounds.compass.tooltip=Het geluid gaat af wanneer de kompas van doel veranderd.
+ctf.config.sounds.class=Klas Veranderd
+ctf.config.sounds.class.tooltip=Het geluid gaat af wanneer je jouw klas veranderd.
+ctf.config.sounds.assist=Helper
+ctf.config.sounds.assist.tooltip=Het geluid gaat af wanneer je helpt met het vermoorden van een speler.
+ctf.config.sounds.start=Spel Start
+ctf.config.sounds.start.tooltip=Het geluid gaat af wanneer het spel start.
+ctf.config.sounds.five=Vijf Mins Over
+ctf.config.sounds.five.tooltip=Het geluid gaat af wanneer er nog vijf minuten over zijn in het spel.
+ctf.config.sounds.one=Eén Min Over
+ctf.config.sounds.one.tooltip=Het geluid gaat af wanneer er nog één minuut over is in het spel.
+ctf.config.sounds.end=Spel Eindigt
+ctf.config.sounds.end.tooltip=Het geluid gaat af wanneer het spel eindigt.
+
+
+<!-- ===--=== -->
+<!-- =  HG  = -->
+<!-- ===--=== -->
+<!-- ALERTS -->
+hg.config.alerts.kit=Kit Geselecteerd
+hg.config.alerts.kit.tooltip=De melding gaat af wanneer je een kit selecteert.
+hg.config.alerts.kit.default=#white#Ziet er goed uit! ||| #gray#Je hebt gekozen voor de #green#{kit} ||| kit
+hg.config.alerts.start=Spel Gestart
+hg.config.alerts.start.tooltip=De melding gaat af wanneer het spel start.
+hg.config.alerts.start.default=#white#Het spel is begonnen! ||| #gray#Geniet ervan, en probeer #i#niet #r##gray#dood te gaan! ||| nether_star
+hg.config.alerts.vulnerable=Vrijheid Verloren
+hg.config.alerts.vulnerable.tooltip=De melding gaat af wanneer je weer aangeraakt kan worden.
+hg.config.alerts.vulnerable.default=#white#Blijf kalm... ||| #red#Je bent niet langer onoverwinnelijk! ||| skeletonskull
+hg.config.alerts.feast.mini=Mini Feast
+hg.config.alerts.feast.mini.tooltip=De melding gaat af wanneer er een mini feast komt.
+hg.config.alerts.feast.mini.default=#white#Oh yeaaah ||| #gray#Een mini feast is verschenen tussen #cyan#{x1}#gray#, #cyan#{x2} #gray#& #cyan#{z1}#gray#, #cyan#{z2} ||| chest
+hg.config.alerts.feast=Feast
+hg.config.alerts.feast.tooltip=De melding gaat af wanneer er de feast komt.
+hg.config.alerts.feast.default=#white#Ik hoop dat je honger hebt! ||| #gray#Een feast is verschenen op #cyan#{x}#gray#, #cyan#{y}#gray#, #cyan#{z} ||| ender_chest
+hg.config.alerts.feast.bonus=Bonus Feast
+hg.config.alerts.feast.bonus.tooltip=De melding gaat af wanneer de bonus feast komt.
+hg.config.alerts.feast.bonus.default=#white#Stierf en naar de hemel gegaan? ||| #gray#A #underline#bonus #r##gray#feast is verschenen! ||| ender_chest
+
+<!-- HUD -->
+hg.config.hud.renderPre=Pre Renderen
+hg.config.hud.renderPre.tooltip=Informatie dat word weergegeven voor het spel start.
+hg.config.hud.renderPlay=Render Tijdens Het Spelen
+hg.config.hud.renderPlay.tooltip=Informatie dat word weergegeven ondetussen dat het spel bezig is.
+
+<!-- SELECT -->
+hg.config.select.selectMode=Selectie Modus
+hg.config.select.selectMode.tooltip=Dit veranderd wanneer jouw kit is automatisch geselecteerd. "Selecteer Op Join" selecteert het meteen als je de server in komt; "Selecteer Voor Start" selecteert het 5 seconden voordat het spel start; "Selecteer Niet" selecteert nooit.
+hg.config.select.selectMode.m.join=Selecteer Op Join
+hg.config.select.selectMode.m.start=Selecteer Voor Start
+hg.config.select.selectMode.m.dont=Selecteer Niet
+hg.config.select.selectKit=Selecteer Kit
+hg.config.select.selectKit.tooltip=De kit word automatisch geselecteerd.
+
+<!-- SOUNDS -->
+hg.config.sounds.start=Spel Gestart
+hg.config.sounds.start.tooltip=Het geluid gaat af wanneer het spel start.
+hg.config.sounds.death=Speler Dood
+hg.config.sounds.death.tooltip=Het geluid gaat af wanneer een player sterft.
+hg.config.sounds.end=Game Over
+hg.config.sounds.end.tooltip=Het geluid gaat af wanneer het spel eindigt.
+
+<!-- ===-=== -->
+<!-- = KIT = -->
+<!-- ===-=== -->
+<!-- ALERTS -->
+kit.config.alerts.streak=Streak Bereikt
+kit.config.alerts.streak.tooltip=Het geluid gaat af wanneer een speler een kill streak bereikt.
+kit.config.alerts.streak.default=#white#Kill Streak! ||| {player} #gray#heeft een kill streak van #cyan#{streak} ||| nether_star
+kit.config.alerts.streakEnd=Streak Beëindigd
+kit.config.alerts.streakEnd.tooltip=Het geluid gaat af wannneer een kill streak is geëindigd.
+kit.config.alerts.streakEnd.default=#white#Streak Beëindigd! ||| {killer} #gray#eindigde #r#{killed}#gray#'s streak van #cyan#{streak} ||| bone
+kit.config.alerts.restart=Herstarten
+kit.config.alerts.restart.tooltip=De melding gaat af wanneer de server gaat herstarten.
+kit.config.alerts.restart.default=#white#Let Op! ||| #gray#Server herstart in #red#1 #r#minuut ||| clock
+
+<!-- HUD -->
+kit.config.hud.render=Render
+kit.config.hud.render.tooltip=Informatie dat word weergegeven ondertussen dat je KitPVP speelt.
+
+<!-- SOUNDS -->
+kit.config.sounds.streak=Streak Bereikt
+kit.config.sounds.streak.tooltip=Het geluid gaat af wanneer een speler een kill streak bereikt.
+kit.config.sounds.streakEnd=Streak Beëindigd
+kit.config.sounds.streakEnd.tooltip=Het geluid gaat af wanneer een kill streak is geëindigd.
+
+<!-- ===--=== -->
+<!-- = MAZE = -->
+<!-- ===--=== -->
+<!-- ALERTS -->
+maze.config.alerts.kit=Kit Geselecteerd
+maze.config.alerts.kit.tooltip=De melding gaat af wanneer je een kit selecteert.
+maze.config.alerts.kit.default=#white#Kit Geselecteerd ||| #gray#Nu een #green#{kit} ||| kit
+maze.config.alerts.teamJoin=Joined Team
+maze.config.alerts.teamJoin.tooltip=De melding gaat af wanneer je een team in gaat.
+maze.config.alerts.teamJoin.default=#white#Joined Team ||| #gray#Nu in team #green#{team} ||| nether_star
+maze.config.alerts.playerKilled=Speler Vermoord 
+maze.config.alerts.playerKilled.tooltip=De melding gaa af wanneer een speler word vermoord.
+maze.config.alerts.playerKilled.default=-X- #white#Speler Vermoord! ||| {killed}#gray# is vermoord door {killer} ({kit}) ||| bone
+maze.config.alerts.teamOut=Team Uitgeschakelt
+maze.config.alerts.teamOut.tooltip=De melding gaat af wanneer een team word uitgeschakelt.
+maze.config.alerts.teamOut.default=#white#Team Uitgeschakelt! ||| {team}#gray# is uitgeschakelt! {remain} teams over ||| skeletonskull
+maze.config.alerts.hunger=Prinses Honger
+maze.config.alerts.hunger.tooltip=De melding gaat af wanneer de prinses honger heeft.
+maze.config.alerts.hunger.default=#white#Vergeet het niet... ||| #gray#Jullie prinses heeft nog #red#{hunger} ||| bread
+
+<!-- HUD -->
+maze.config.hud.renderPre=Pre Renderen
+maze.config.hud.renderPre.tooltip=Informatie dat word weergegeven voordat het spel begint.
+maze.config.hud.renderPlay=Render Tijdens Het Spelen
+maze.config.hud.renderPlay.tooltip=Informatie dat word weergegeven ondertussen dat je speelt.
+maze.config.hud.renderPost=Na Renderen
+maze.config.hud.renderPost.tooltip=Informatie dat word weergegeven na het spel eindigt.
+
+<!-- SELECT -->
+maze.config.select.selectMode=Selectie Modus
+maze.config.select.selectMode.tooltip=Dit veranderd wanneer jouw kit is automatisch geselecteerd. "Selecteer Op Join" selecteert het meteen als je de server in komt; "Selecteer Voor Start" selecteert het 5 seconden voordat het spel start; "Selecteer Niet" selecteert nooit.
+maze.config.select.selectMode.m.join=Selecteer Op Join
+maze.config.select.selectMode.m.start=Selecteer Voor Start
+maze.config.select.selectMode.m.dont=Selecteer Niet
+maze.config.select.selectKit=Selecteer Kit
+maze.config.select.selectKit.tooltip=De kit word automatisch geselecteerd.
+maze.config.select.selectTeam=Join Team
+maze.config.select.selectTeam.tooltip=De team om automatisch te joinen.
+
+<!-- ===------=== -->
+<!-- = SABOTAGE = -->
+<!-- ===------=== -->
+<!-- ALERTS -->
+sab.config.alerts.start=Spel Start
+sab.config.alerts.start.tooltip=De melding gaat af wanneer het spel start.
+sab.config.alerts.start.default=#white#Het spel is begonnen! ||| #gray#Jij bent {role}#gray#. Succes! ||| nether_star
+sab.config.alerts.death=Dood
+sab.config.alerts.death.tooltip=De melding gaat af wanneer een player sterft.
+sab.config.alerts.death.default=#white#Ga goed zitten mensen... ||| #gray#Iemand is zojuist gestorven. Nog #cyan#{remain} #gray#spelers over. ||| bone
+sab.config.alerts.chest=Kist Gold
+sab.config.alerts.chest.tooltip=De melding word weergegeven wanneer een kist golf komt.	
+sab.config.alerts.chest.default=#white#Ooooo, goodies! ||| #gray#Kist golf #green#{wave} #gray#is gekomen. ||| chest
+sab.config.alerts.end=Spel Eindigt
+sab.config.alerts.end.tooltip=De melding word weergegeven wanneer het spel eindigt.
+sab.config.alerts.end.default=#white#Game Over! ||| #gray#Winnaar: {winner} ||| sab.winner
+
+<!-- HUD -->
+sab.config.hud.renderPre=Pre Renderen
+sab.config.hud.renderPre.tooltip=Informatiie dat word weergegeven voordat het spel begint.
+sab.config.hud.renderPlay=Render Tijdens Het Spelen
+sab.config.hud.renderPlay.tooltip=Informatie dat word weergegeven ondertussen dat je speelt.
+sab.config.hud.renderPost=Na Renderen
+sab.config.hud.renderPost.tooltip=Informatie dat word weergegeven na het spel eindigt.
+
+<!-- SOUNDS -->
+sab.config.sounds.start=Spel Start
+sab.config.sounds.start.tooltip=Het geluid gaat af wanneer het spel start.
+sab.config.sounds.death=Dood
+sab.config.sounds.death.tooltip=Het geluid gaat af wanneer een speler sterft. 
+sab.config.sounds.end=Spel Eindigt
+sab.config.sounds.end.tooltip=Het geluid gaat af wanneer het spel eindigt.
+
+<!-- SELECT -->
+sab.config.select.autoSab=Auto Sab
+sab.config.select.autoSab.tooltip=Als deze aanstaat, zal je automatisch /sab activeren wanneer je een sab spel in komt.
+
+<!-- ===------=== -->
+<!-- = HEADSHOT = -->
+<!-- ===------=== -->
+<!-- RENDER -->
+hs.config.hud.render=Renderen
+hs.config.hud.render.tootlip=Informatie dat word weergegeven ondertussen dat je Headshot speelt.
+
+<!-- ===---=== -->
+<!-- = SMASH = -->
+<!-- ==----=== -->
+smash.config.select.autoSelect=Auto Selectie
+smash.config.select.autoSelect.tooltip=Als deze aan staat, zal de kit die u hieronder hebt gekozen automatisch worden gekozen wanneer je dit spel in komt.
