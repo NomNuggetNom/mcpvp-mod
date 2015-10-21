@@ -1,3 +1,5 @@
+No longer supported. RIP MCPVP.
+
 ##The MCPVP Mod
 
 #### Version
